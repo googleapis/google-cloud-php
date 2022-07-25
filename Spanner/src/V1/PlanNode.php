@@ -87,7 +87,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *           parent.
      *     @type string $display_name
      *           The display name for the node.
-     *     @type \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $child_links
+     *     @type array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $child_links
      *           List of child node `index`es and their relationship to this parent.
      *     @type \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $short_representation
      *           Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
@@ -212,7 +212,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * List of child node `index`es and their relationship to this parent.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
-     * @param \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildLinks($var)

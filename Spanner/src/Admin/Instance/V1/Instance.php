@@ -174,7 +174,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           specific characters being disallowed.  For example, representing labels
      *           as the string:  name + "_" + value  would prove problematic if we were to
      *           allow "_" in a future release.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $endpoint_uris
      *           Deprecated. This field is not populated.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the instance was created.
@@ -462,7 +462,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Deprecated. This field is not populated.
      *
      * Generated from protobuf field <code>repeated string endpoint_uris = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndpointUris($var)

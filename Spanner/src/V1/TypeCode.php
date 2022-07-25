@@ -124,7 +124,7 @@ class TypeCode
         self::DATE => 'DATE',
         self::STRING => 'STRING',
         self::BYTES => 'BYTES',
-        self::PBARRAY => 'PBARRAY',
+        self::PBARRAY => 'ARRAY',
         self::STRUCT => 'STRUCT',
         self::NUMERIC => 'NUMERIC',
         self::JSON => 'JSON',
@@ -144,8 +144,12 @@ class TypeCode
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

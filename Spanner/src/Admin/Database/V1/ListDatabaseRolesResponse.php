@@ -36,7 +36,7 @@ class ListDatabaseRolesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole[]|\Google\Protobuf\Internal\RepeatedField $database_roles
+     *     @type array<\Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole>|\Google\Protobuf\Internal\RepeatedField $database_roles
      *           Database roles that matched the request.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -64,7 +64,7 @@ class ListDatabaseRolesResponse extends \Google\Protobuf\Internal\Message
      * Database roles that matched the request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.database.v1.DatabaseRole database_roles = 1;</code>
-     * @param \Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\Admin\Database\V1\DatabaseRole>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatabaseRoles($var)

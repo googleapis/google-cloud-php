@@ -35,7 +35,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\V1\Partition[]|\Google\Protobuf\Internal\RepeatedField $partitions
+     *     @type array<\Google\Cloud\Spanner\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $partitions
      *           Partitions created by this request.
      *     @type \Google\Cloud\Spanner\V1\Transaction $transaction
      *           Transaction created by this request.
@@ -61,7 +61,7 @@ class PartitionResponse extends \Google\Protobuf\Internal\Message
      * Partitions created by this request.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Partition partitions = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\Partition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\Partition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartitions($var)

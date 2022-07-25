@@ -57,10 +57,10 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      *           `projects/<project>/instanceConfigs/[a-z][-a-z0-9]*`.
      *     @type string $display_name
      *           The name of this instance configuration as it appears in UIs.
-     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[]|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $replicas
      *           The geographic placement of nodes in this instance configuration and their
      *           replication properties.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $leader_options
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $leader_options
      *           Allowed values of the "default_leader" schema option for databases in
      *           instances that use this instance configuration.
      * }
@@ -143,7 +143,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * replication properties.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.ReplicaInfo replicas = 3;</code>
-     * @param \Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicas($var)
@@ -171,7 +171,7 @@ class InstanceConfig extends \Google\Protobuf\Internal\Message
      * instances that use this instance configuration.
      *
      * Generated from protobuf field <code>repeated string leader_options = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLeaderOptions($var)
