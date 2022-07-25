@@ -37,7 +37,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $allow_all_package_names
      *           If set to true, allowed_package_names are not enforced.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_package_names
      *           Android package names of apps allowed to use the key.
      *           Example: 'com.companyname.appname'
      * }
@@ -90,7 +90,7 @@ class AndroidKeySettings extends \Google\Protobuf\Internal\Message
      * Example: 'com.companyname.appname'
      *
      * Generated from protobuf field <code>repeated string allowed_package_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedPackageNames($var)

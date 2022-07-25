@@ -60,7 +60,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *           Encrypted Scrypt hash of the canonicalized username+password. It is
      *           re-encrypted by the server and returned through
      *           `reencrypted_user_credentials_hash`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $encrypted_leak_match_prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $encrypted_leak_match_prefixes
      *           List of prefixes of the encrypted potential password leaks that matched the
      *           given parameters. They should be compared with the client-side decryption
      *           prefix of `reencrypted_user_credentials_hash`
@@ -152,7 +152,7 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      * prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEncryptedLeakMatchPrefixes($var)
