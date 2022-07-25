@@ -49,7 +49,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      *           The ID of the database against which to make the request.
      *           '(default)' is not allowed; please use empty string '' to refer the default
      *           database.
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           Required. A list of keys with incomplete key paths for which to allocate IDs.
      *           No key may be reserved/read-only.
      * }
@@ -132,7 +132,7 @@ class AllocateIdsRequest extends \Google\Protobuf\Internal\Message
      * No key may be reserved/read-only.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

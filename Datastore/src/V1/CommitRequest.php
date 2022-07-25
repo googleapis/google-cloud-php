@@ -70,7 +70,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           The identifier of the transaction associated with the commit. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
-     *     @type \Google\Cloud\Datastore\V1\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type array<\Google\Cloud\Datastore\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
      *           The mutations to perform.
      *           When mode is `TRANSACTIONAL`, mutations affecting a single entity are
      *           applied in order. The following sequences of mutations affecting a single
@@ -238,7 +238,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * entity.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Mutation mutations = 6;</code>
-     * @param \Google\Cloud\Datastore\V1\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutations($var)

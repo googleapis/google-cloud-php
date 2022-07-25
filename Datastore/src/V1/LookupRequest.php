@@ -56,7 +56,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *           database.
      *     @type \Google\Cloud\Datastore\V1\ReadOptions $read_options
      *           The options for this lookup request.
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           Required. Keys of entities to look up.
      * }
      */
@@ -172,7 +172,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * Required. Keys of entities to look up.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

@@ -42,7 +42,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\MutationResult[]|\Google\Protobuf\Internal\RepeatedField $mutation_results
+     *     @type array<\Google\Cloud\Datastore\V1\MutationResult>|\Google\Protobuf\Internal\RepeatedField $mutation_results
      *           The result of performing the mutations.
      *           The i-th mutation result corresponds to the i-th mutation in the request.
      *     @type int $index_updates
@@ -74,7 +74,7 @@ class CommitResponse extends \Google\Protobuf\Internal\Message
      * The i-th mutation result corresponds to the i-th mutation in the request.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.MutationResult mutation_results = 3;</code>
-     * @param \Google\Cloud\Datastore\V1\MutationResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\MutationResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutationResults($var)

@@ -21,7 +21,7 @@ class PBReadOnly extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 1;</code>
      */
-    protected $read_time = null;
+    private $read_time = null;
 
     /**
      * Constructor.

@@ -89,16 +89,16 @@ class Query extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\Projection[]|\Google\Protobuf\Internal\RepeatedField $projection
+     *     @type array<\Google\Cloud\Datastore\V1\Projection>|\Google\Protobuf\Internal\RepeatedField $projection
      *           The projection to return. Defaults to returning all properties.
-     *     @type \Google\Cloud\Datastore\V1\KindExpression[]|\Google\Protobuf\Internal\RepeatedField $kind
+     *     @type array<\Google\Cloud\Datastore\V1\KindExpression>|\Google\Protobuf\Internal\RepeatedField $kind
      *           The kinds to query (if empty, returns entities of all kinds).
      *           Currently at most 1 kind may be specified.
      *     @type \Google\Cloud\Datastore\V1\Filter $filter
      *           The filter to apply.
-     *     @type \Google\Cloud\Datastore\V1\PropertyOrder[]|\Google\Protobuf\Internal\RepeatedField $order
+     *     @type array<\Google\Cloud\Datastore\V1\PropertyOrder>|\Google\Protobuf\Internal\RepeatedField $order
      *           The order to apply to the query results (if empty, order is unspecified).
-     *     @type \Google\Cloud\Datastore\V1\PropertyReference[]|\Google\Protobuf\Internal\RepeatedField $distinct_on
+     *     @type array<\Google\Cloud\Datastore\V1\PropertyReference>|\Google\Protobuf\Internal\RepeatedField $distinct_on
      *           The properties to make distinct. The query results will contain the first
      *           result for each distinct combination of values for the given properties
      *           (if empty, all results are returned).
@@ -142,7 +142,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * The projection to return. Defaults to returning all properties.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Projection projection = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\Projection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Projection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProjection($var)
@@ -170,7 +170,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * Currently at most 1 kind may be specified.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.KindExpression kind = 3;</code>
-     * @param \Google\Cloud\Datastore\V1\KindExpression[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\KindExpression>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKind($var)
@@ -232,7 +232,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * The order to apply to the query results (if empty, order is unspecified).
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyOrder order = 5;</code>
-     * @param \Google\Cloud\Datastore\V1\PropertyOrder[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\PropertyOrder>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrder($var)
@@ -262,7 +262,7 @@ class Query extends \Google\Protobuf\Internal\Message
      * (if empty, all results are returned).
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.PropertyReference distinct_on = 6;</code>
-     * @param \Google\Cloud\Datastore\V1\PropertyReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\PropertyReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDistinctOn($var)

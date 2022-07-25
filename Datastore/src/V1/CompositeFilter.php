@@ -38,7 +38,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type int $op
      *           The operator for combining multiple filters.
-     *     @type \Google\Cloud\Datastore\V1\Filter[]|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type array<\Google\Cloud\Datastore\V1\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
      *           The list of filters to combine.
      *           Requires:
      *           * At least one filter is present.
@@ -94,7 +94,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      * * At least one filter is present.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Filter filters = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\Filter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Filter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilters($var)
