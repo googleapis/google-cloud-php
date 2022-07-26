@@ -28,7 +28,7 @@ class ImportDocumentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           Includes details about skipped documents or any other warnings.
      * }
      */
@@ -52,7 +52,7 @@ class ImportDocumentsResponse extends \Google\Protobuf\Internal\Message
      * Includes details about skipped documents or any other warnings.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status warnings = 1;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarnings($var)

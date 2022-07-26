@@ -43,7 +43,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig[]|\Google\Protobuf\Internal\RepeatedField $feature_configs
+     *     @type array<\Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig>|\Google\Protobuf\Internal\RepeatedField $feature_configs
      *           Configuration of different suggestion features. One feature can have only
      *           one config.
      *     @type bool $group_suggestion_responses
@@ -80,7 +80,7 @@ class SuggestionConfig extends \Google\Protobuf\Internal\Message
      * one config.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.HumanAgentAssistantConfig.SuggestionFeatureConfig feature_configs = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\SuggestionFeatureConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatureConfigs($var)
