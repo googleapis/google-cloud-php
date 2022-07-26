@@ -1725,6 +1725,8 @@ class BigtableInstanceAdminGapicClient
      *           Output only. A server-assigned timestamp representing when this Instance was created.
      *           For instances created before this field was added (August 2021), this value
      *           is `seconds: 0, nanos: 1`.
+     *     @type bool $satisfiesPzs
+     *           Output only. Reserved for future use.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a
      *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
@@ -1751,6 +1753,10 @@ class BigtableInstanceAdminGapicClient
 
         if (isset($optionalArgs['createTime'])) {
             $request->setCreateTime($optionalArgs['createTime']);
+        }
+
+        if (isset($optionalArgs['satisfiesPzs'])) {
+            $request->setSatisfiesPzs($optionalArgs['satisfiesPzs']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

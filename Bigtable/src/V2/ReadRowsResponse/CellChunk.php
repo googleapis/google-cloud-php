@@ -121,7 +121,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      *           only allow values of `timestamp_micros` which are multiples of
      *           1000.  Timestamps are only set in the first CellChunk per cell
      *           (for cells split into multiple chunks).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $labels
      *           Labels applied to the cell by a
      *           [RowFilter][google.bigtable.v2.RowFilter].  Labels are only set
      *           on the first CellChunk per cell.
@@ -402,7 +402,7 @@ class CellChunk extends \Google\Protobuf\Internal\Message
      * on the first CellChunk per cell.
      *
      * Generated from protobuf field <code>repeated string labels = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabels($var)
