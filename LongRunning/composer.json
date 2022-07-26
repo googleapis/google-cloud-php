@@ -18,10 +18,8 @@
             "target": "googleapis/php-longrunning"
         }
     },
-    "require": {
-        "google/gax": "^1.13.0"
-    },
     "require-dev": {
+        "google/gax": "^1.13.0"
         "phpunit/phpunit": "^4.8|^5.0|^8.0"
     }
 }
