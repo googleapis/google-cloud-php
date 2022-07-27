@@ -676,10 +676,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -782,10 +781,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -893,10 +891,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1014,10 +1011,9 @@ class CloudChannelServiceGapicClient
      *     @type string $purchaseOrderId
      *           Optional. Purchase order ID provided by the reseller.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1126,10 +1122,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1189,10 +1184,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse
@@ -1257,10 +1251,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -1338,10 +1331,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
@@ -1394,10 +1386,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -1475,10 +1466,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
@@ -1592,10 +1582,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1649,10 +1638,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1695,10 +1683,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1747,10 +1734,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -1802,10 +1788,9 @@ class CloudChannelServiceGapicClient
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Channel\V1\ChannelPartnerLinkView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -1861,10 +1846,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
@@ -1913,10 +1897,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -1968,10 +1951,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
@@ -2019,10 +2001,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Entitlement
@@ -2096,10 +2077,9 @@ class CloudChannelServiceGapicClient
      *           information.
      *           Format: accounts/{account_id}/customers/{customer_id}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -2194,10 +2174,9 @@ class CloudChannelServiceGapicClient
      *           Optional. The level of granularity the ChannelPartnerLink will display.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Channel\V1\ChannelPartnerLinkView}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2300,10 +2279,9 @@ class CloudChannelServiceGapicClient
      *           accounts/account_id/channelPartnerLinks/c1` OR `channel_partner_link =
      *           accounts/account_id/channelPartnerLinks/c2`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2404,10 +2382,9 @@ class CloudChannelServiceGapicClient
      *           Example: customer = accounts/account_id/customers/c1 OR
      *           customer = accounts/account_id/customers/c2.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2491,10 +2468,9 @@ class CloudChannelServiceGapicClient
      *           https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers
      *           for more information.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2574,10 +2550,9 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2658,10 +2633,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2744,10 +2718,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2830,10 +2803,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -2928,10 +2900,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3022,10 +2993,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3112,10 +3082,9 @@ class CloudChannelServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3209,10 +3178,9 @@ class CloudChannelServiceGapicClient
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3326,10 +3294,9 @@ class CloudChannelServiceGapicClient
      *           The default value is "en-US".
      *           Optional.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -3401,10 +3368,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Offer
@@ -3493,10 +3459,9 @@ class CloudChannelServiceGapicClient
      *     @type bool $validateOnly
      *           Validate the request and preview the review, but do not post it.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3563,10 +3528,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\RegisterSubscriberResponse
@@ -3666,10 +3630,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3769,10 +3732,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -3887,10 +3849,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -4003,10 +3964,9 @@ class CloudChannelServiceGapicClient
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -4070,10 +4030,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\UnregisterSubscriberResponse
@@ -4140,10 +4099,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerLink
@@ -4210,10 +4168,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig
@@ -4264,10 +4221,9 @@ class CloudChannelServiceGapicClient
      *           The update mask that applies to the resource.
      *           Optional.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\Customer
@@ -4336,10 +4292,9 @@ class CloudChannelServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Channel\V1\CustomerRepricingConfig
