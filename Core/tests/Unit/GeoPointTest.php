@@ -99,6 +99,12 @@ class GeoPointTest extends TestCase
         ], $point->point());
     }
 
+    public function testJsonEncode()
+    {
+        $point = new GeoPoint(1.1, 2.2);
+        $this->assertEquals('{"latitude":1.1,"longitude":2.2}', json_encode($point));
+    }
+
     public function methods()
     {
         return [

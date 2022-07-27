@@ -33,7 +33,7 @@ use InvalidArgumentException;
  * $point = new GeoPoint(37.423147, -122.085015);
  * ```
  */
-class GeoPoint
+class GeoPoint implements \JsonSerializable
 {
     /**
      * @var float
@@ -203,5 +203,23 @@ class GeoPoint
         return $allowNull && $value === null
             ? $value
             : (float) $value;
+    }
+
+    /**
+     * Implement JsonSerializable by representing GeoPoint as a JSON-object:
+     *
+     * ```
+     * {
+     *   latitude: 31.778333
+     *   longitude: 35.229722
+     * }
+     * ```
+     *
+     * @return object
+     * @access private
+     */
+    public function jsonSerialize()
+    {
+        return (object) $this->point();
     }
 }
