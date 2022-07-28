@@ -52,15 +52,15 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $found
+     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $found
      *           Entities found as `ResultType.FULL` entities. The order of results in this
      *           field is undefined and has no relation to the order of the keys in the
      *           input.
-     *     @type \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $missing
+     *     @type array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $missing
      *           Entities not found as `ResultType.KEY_ONLY` entities. The order of results
      *           in this field is undefined and has no relation to the order of the keys
      *           in the input.
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $deferred
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $deferred
      *           A list of keys that were not looked up due to resource constraints. The
      *           order of results in this field is undefined and has no relation to the
      *           order of the keys in the input.
@@ -92,7 +92,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult found = 1;</code>
-     * @param \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFound($var)
@@ -122,7 +122,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.EntityResult missing = 2;</code>
-     * @param \Google\Cloud\Datastore\V1\EntityResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\EntityResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMissing($var)
@@ -152,7 +152,7 @@ class LookupResponse extends \Google\Protobuf\Internal\Message
      * order of the keys in the input.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key deferred = 3;</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeferred($var)
