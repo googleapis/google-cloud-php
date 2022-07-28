@@ -14,7 +14,7 @@
         "component": {
             "id": "longrunning",
             "path": "LongRunning",
-            "entry": "src/ApiCore/LongRunning/OperationsClient.php",
+            "entry": null,
             "target": "googleapis/php-longrunning"
         }
     },
