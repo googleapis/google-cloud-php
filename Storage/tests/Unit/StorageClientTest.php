@@ -115,7 +115,15 @@ class StorageClientTest extends TestCase
 
     public function testCreatesDualRegionBucket()
     {
-        $this->connection->insertBucket(Argument::any())->willReturn(['name' => 'bucket']);
+        $this->connection
+            ->insertBucket([
+                'project' => self::PROJECT,
+                'location' => 'US',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
+            ])
+            ->willReturn(['name' => 'bucket']);
         $this->connection->projectId()
             ->willReturn(self::PROJECT);
         $this->client->___setProperty('connection', $this->connection->reveal());
