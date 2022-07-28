@@ -3978,6 +3978,14 @@
                 "v0.1.0",
                 "main"
             ]
+        },
+        {
+            "id": "longrunning",
+            "name": "google/longrunning",
+            "defaultService": "longrunning/readme",
+            "versions": [
+                "main"
+            ]
         }
     ],
     "content": "json",
