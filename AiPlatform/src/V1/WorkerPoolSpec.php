@@ -55,7 +55,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      *           Optional. Immutable. The specification of a single machine.
      *     @type int|string $replica_count
      *           Optional. The number of worker replicas to use for this worker pool.
-     *     @type \Google\Cloud\AIPlatform\V1\NfsMount[]|\Google\Protobuf\Internal\RepeatedField $nfs_mounts
+     *     @type array<\Google\Cloud\AIPlatform\V1\NfsMount>|\Google\Protobuf\Internal\RepeatedField $nfs_mounts
      *           Optional. List of NFS mount spec.
      *     @type \Google\Cloud\AIPlatform\V1\DiskSpec $disk_spec
      *           Disk spec.
@@ -205,7 +205,7 @@ class WorkerPoolSpec extends \Google\Protobuf\Internal\Message
      * Optional. List of NFS mount spec.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NfsMount nfs_mounts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\AIPlatform\V1\NfsMount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\NfsMount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNfsMounts($var)

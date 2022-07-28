@@ -25,6 +25,16 @@ class ListModelDeploymentMonitoringJobsRequest extends \Google\Protobuf\Internal
     private $parent = '';
     /**
      * The standard list filter.
+     * Supported fields:
+     *   * `display_name` supports `=`, `!=` comparisons, and `:` wildcard.
+     *   * `state` supports `=`, `!=` comparisons.
+     *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
+     *     `create_time` must be in RFC 3339 format.
+     * Some examples of using the filter are:
+     *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
+     *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
+     *   * `NOT display_name="my_job"`
+     *   * `create_time>"2021-05-18T00:00:00Z"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -59,6 +69,16 @@ class ListModelDeploymentMonitoringJobsRequest extends \Google\Protobuf\Internal
      *           Format: `projects/{project}/locations/{location}`
      *     @type string $filter
      *           The standard list filter.
+     *           Supported fields:
+     *             * `display_name` supports `=`, `!=` comparisons, and `:` wildcard.
+     *             * `state` supports `=`, `!=` comparisons.
+     *             * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
+     *               `create_time` must be in RFC 3339 format.
+     *           Some examples of using the filter are:
+     *             * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
+     *             * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
+     *             * `NOT display_name="my_job"`
+     *             * `create_time>"2021-05-18T00:00:00Z"`
      *     @type int $page_size
      *           The standard list page size.
      *     @type string $page_token
@@ -102,6 +122,16 @@ class ListModelDeploymentMonitoringJobsRequest extends \Google\Protobuf\Internal
 
     /**
      * The standard list filter.
+     * Supported fields:
+     *   * `display_name` supports `=`, `!=` comparisons, and `:` wildcard.
+     *   * `state` supports `=`, `!=` comparisons.
+     *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
+     *     `create_time` must be in RFC 3339 format.
+     * Some examples of using the filter are:
+     *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
+     *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
+     *   * `NOT display_name="my_job"`
+     *   * `create_time>"2021-05-18T00:00:00Z"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -113,6 +143,16 @@ class ListModelDeploymentMonitoringJobsRequest extends \Google\Protobuf\Internal
 
     /**
      * The standard list filter.
+     * Supported fields:
+     *   * `display_name` supports `=`, `!=` comparisons, and `:` wildcard.
+     *   * `state` supports `=`, `!=` comparisons.
+     *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
+     *     `create_time` must be in RFC 3339 format.
+     * Some examples of using the filter are:
+     *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
+     *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
+     *   * `NOT display_name="my_job"`
+     *   * `create_time>"2021-05-18T00:00:00Z"`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

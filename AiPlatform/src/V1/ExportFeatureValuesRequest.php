@@ -63,7 +63,7 @@ class ExportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *           Required. Specifies destination location and format.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureSelector $feature_selector
      *           Required. Selects Features to export values of.
-     *     @type \Google\Cloud\AIPlatform\V1\DestinationFeatureSetting[]|\Google\Protobuf\Internal\RepeatedField $settings
+     *     @type array<\Google\Cloud\AIPlatform\V1\DestinationFeatureSetting>|\Google\Protobuf\Internal\RepeatedField $settings
      *           Per-Feature export settings.
      * }
      */
@@ -255,7 +255,7 @@ class ExportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * Per-Feature export settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DestinationFeatureSetting settings = 6;</code>
-     * @param \Google\Cloud\AIPlatform\V1\DestinationFeatureSetting[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DestinationFeatureSetting>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSettings($var)

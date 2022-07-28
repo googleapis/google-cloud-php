@@ -42,7 +42,7 @@ class Header extends \Google\Protobuf\Internal\Message
      *           The resource name of the EntityType from the
      *           [ReadFeatureValuesRequest][google.cloud.aiplatform.v1.ReadFeatureValuesRequest]. Value format:
      *           `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entityType}`.
-     *     @type \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor[]|\Google\Protobuf\Internal\RepeatedField $feature_descriptors
+     *     @type array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor>|\Google\Protobuf\Internal\RepeatedField $feature_descriptors
      *           List of Feature metadata corresponding to each piece of
      *           [ReadFeatureValuesResponse.data][].
      * }
@@ -99,7 +99,7 @@ class Header extends \Google\Protobuf\Internal\Message
      * [ReadFeatureValuesResponse.data][].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.FeatureDescriptor feature_descriptors = 2;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\FeatureDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatureDescriptors($var)

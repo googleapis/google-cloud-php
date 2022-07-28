@@ -42,9 +42,9 @@ class ExamplesRestrictionsNamespace extends \Google\Protobuf\Internal\Message
      *
      *     @type string $namespace_name
      *           The namespace name.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allow
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allow
      *           The list of allowed tags.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $deny
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deny
      *           The list of deny tags.
      * }
      */
@@ -94,7 +94,7 @@ class ExamplesRestrictionsNamespace extends \Google\Protobuf\Internal\Message
      * The list of allowed tags.
      *
      * Generated from protobuf field <code>repeated string allow = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllow($var)
@@ -120,7 +120,7 @@ class ExamplesRestrictionsNamespace extends \Google\Protobuf\Internal\Message
      * The list of deny tags.
      *
      * Generated from protobuf field <code>repeated string deny = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeny($var)

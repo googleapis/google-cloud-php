@@ -41,7 +41,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the Dataset resource.
      *           Format:
      *           `projects/{project}/locations/{location}/datasets/{dataset}`
-     *     @type \Google\Cloud\AIPlatform\V1\ImportDataConfig[]|\Google\Protobuf\Internal\RepeatedField $import_configs
+     *     @type array<\Google\Cloud\AIPlatform\V1\ImportDataConfig>|\Google\Protobuf\Internal\RepeatedField $import_configs
      *           Required. The desired input locations. The contents of all input locations will be
      *           imported in one batch.
      * }
@@ -98,7 +98,7 @@ class ImportDataRequest extends \Google\Protobuf\Internal\Message
      * imported in one batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportDataConfig import_configs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\ImportDataConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ImportDataConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImportConfigs($var)

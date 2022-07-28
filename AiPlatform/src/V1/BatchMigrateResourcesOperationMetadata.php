@@ -36,7 +36,7 @@ class BatchMigrateResourcesOperationMetadata extends \Google\Protobuf\Internal\M
      *
      *     @type \Google\Cloud\AIPlatform\V1\GenericOperationMetadata $generic_metadata
      *           The common part of the operation metadata.
-     *     @type \Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult[]|\Google\Protobuf\Internal\RepeatedField $partial_results
+     *     @type array<\Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult>|\Google\Protobuf\Internal\RepeatedField $partial_results
      *           Partial results that reflect the latest migration operation progress.
      * }
      */
@@ -96,7 +96,7 @@ class BatchMigrateResourcesOperationMetadata extends \Google\Protobuf\Internal\M
      * Partial results that reflect the latest migration operation progress.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.BatchMigrateResourcesOperationMetadata.PartialResult partial_results = 2;</code>
-     * @param \Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\BatchMigrateResourcesOperationMetadata\PartialResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialResults($var)

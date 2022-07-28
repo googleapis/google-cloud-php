@@ -44,7 +44,7 @@ class WriteTensorboardRunDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the TensorboardRun to write data to.
      *           Format:
      *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
-     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $time_series_data
+     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $time_series_data
      *           Required. The TensorboardTimeSeries data to write.
      *           Values with in a time series are indexed by their step value.
      *           Repeated writes to the same step will overwrite the existing value for that
@@ -110,7 +110,7 @@ class WriteTensorboardRunDataRequest extends \Google\Protobuf\Internal\Message
      * The upper limit of data points per write request is 5000.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesData time_series_data = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesData[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesData>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeriesData($var)

@@ -34,7 +34,7 @@ class ListDataItemsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\DataItem[]|\Google\Protobuf\Internal\RepeatedField $data_items
+     *     @type array<\Google\Cloud\AIPlatform\V1\DataItem>|\Google\Protobuf\Internal\RepeatedField $data_items
      *           A list of DataItems that matches the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
@@ -60,7 +60,7 @@ class ListDataItemsResponse extends \Google\Protobuf\Internal\Message
      * A list of DataItems that matches the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DataItem data_items = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\DataItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DataItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataItems($var)

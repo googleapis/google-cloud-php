@@ -172,7 +172,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           The name can be up to 128 characters long and can be consist of any UTF-8
      *           characters.
      *           Display name of a DataLabelingJob.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $datasets
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $datasets
      *           Required. Dataset resource names. Right now we only support labeling from a single
      *           Dataset.
      *           Format:
@@ -224,7 +224,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      *           and are immutable. Following system labels exist for each DataLabelingJob:
      *           * "aiplatform.googleapis.com/schema": output only, its value is the
      *             [inputs_schema][google.cloud.aiplatform.v1.DataLabelingJob.inputs_schema_uri]'s title.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $specialist_pools
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $specialist_pools
      *           The SpecialistPools' resource names associated with this job.
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a DataLabelingJob. If set, this
@@ -321,7 +321,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * `projects/{project}/locations/{location}/datasets/{dataset}`
      *
      * Generated from protobuf field <code>repeated string datasets = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatasets($var)
@@ -755,7 +755,7 @@ class DataLabelingJob extends \Google\Protobuf\Internal\Message
      * The SpecialistPools' resource names associated with this job.
      *
      * Generated from protobuf field <code>repeated string specialist_pools = 16;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpecialistPools($var)

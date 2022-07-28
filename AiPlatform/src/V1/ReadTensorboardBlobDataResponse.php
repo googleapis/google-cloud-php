@@ -28,7 +28,7 @@ class ReadTensorboardBlobDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TensorboardBlob[]|\Google\Protobuf\Internal\RepeatedField $blobs
+     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $blobs
      *           Blob messages containing blob bytes.
      * }
      */
@@ -52,7 +52,7 @@ class ReadTensorboardBlobDataResponse extends \Google\Protobuf\Internal\Message
      * Blob messages containing blob bytes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob blobs = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TensorboardBlob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlobs($var)

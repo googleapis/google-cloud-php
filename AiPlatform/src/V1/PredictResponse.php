@@ -59,7 +59,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $predictions
+     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $predictions
      *           The predictions that are the output of the predictions call.
      *           The schema of any single prediction may be specified via Endpoint's
      *           DeployedModels' [Model's ][google.cloud.aiplatform.v1.DeployedModel.model]
@@ -106,7 +106,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * [prediction_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.prediction_schema_uri].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value predictions = 1;</code>
-     * @param \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPredictions($var)

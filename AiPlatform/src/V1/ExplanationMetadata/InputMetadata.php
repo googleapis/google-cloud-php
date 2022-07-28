@@ -133,7 +133,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $input_baselines
+     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $input_baselines
      *           Baseline inputs for this feature.
      *           If no baseline is specified, Vertex AI chooses the baseline for this
      *           feature. If multiple baselines are specified, Vertex AI returns the
@@ -169,7 +169,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *           Specifies the shape of the values of the input if the input is a sparse
      *           representation. Refer to Tensorflow documentation for more details:
      *           https://www.tensorflow.org/api_docs/python/tf/sparse/SparseTensor.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $index_feature_mapping
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $index_feature_mapping
      *           A list of feature names for each index in the input tensor.
      *           Required when the input [InputMetadata.encoding][google.cloud.aiplatform.v1.ExplanationMetadata.InputMetadata.encoding] is BAG_OF_FEATURES,
      *           BAG_OF_FEATURES_SPARSE, INDICATOR.
@@ -181,7 +181,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      *           input tensor is not differentiable.
      *           An encoded tensor is generated if the input tensor is encoded by a lookup
      *           table.
-     *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $encoded_baselines
+     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $encoded_baselines
      *           A list of baselines for the encoded tensor.
      *           The shape of each baseline should match the shape of the encoded tensor.
      *           If a scalar is provided, Vertex AI broadcasts to the same shape as the
@@ -242,7 +242,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * [instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value input_baselines = 1;</code>
-     * @param \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputBaselines($var)
@@ -456,7 +456,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * BAG_OF_FEATURES_SPARSE, INDICATOR.
      *
      * Generated from protobuf field <code>repeated string index_feature_mapping = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexFeatureMapping($var)
@@ -526,7 +526,7 @@ class InputMetadata extends \Google\Protobuf\Internal\Message
      * encoded tensor.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value encoded_baselines = 10;</code>
-     * @param \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEncodedBaselines($var)
