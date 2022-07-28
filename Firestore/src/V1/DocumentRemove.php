@@ -48,7 +48,7 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
      *
      *     @type string $document
      *           The resource name of the [Document][google.firestore.v1.Document] that has gone out of view.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $removed_target_ids
      *           A set of target IDs for targets that previously matched this document.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           The read timestamp at which the remove was observed.
@@ -101,7 +101,7 @@ class DocumentRemove extends \Google\Protobuf\Internal\Message
      * A set of target IDs for targets that previously matched this document.
      *
      * Generated from protobuf field <code>repeated int32 removed_target_ids = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRemovedTargetIds($var)
