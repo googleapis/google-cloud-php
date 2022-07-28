@@ -1827,6 +1827,14 @@
             ]
         },
         {
+            "id": "cloud-gke-backup",
+            "name": "google/cloud-gke-backup",
+            "defaultService": "gkebackup/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-gke-connect-gateway",
             "name": "google/cloud-gke-connect-gateway",
             "defaultService": "gkeconnectgateway/readme",

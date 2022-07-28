@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-gke-backup",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-gke-backup/latest",
+    "library_type": "GAPIC_AUTO"
+}
