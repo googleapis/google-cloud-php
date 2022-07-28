@@ -37,9 +37,9 @@ class SmartComposeSuggestionData extends \Google\Protobuf\Internal\Message
      */
     private $metadata;
     /**
-     * The name of the answer record.
+     * Name of the query record.
      * Format:
-     * projects/{project}/locations/{location}/answerRecords/{answer_record}
+     * projects/{project}/locations/{location}/queryRecords/{query_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      */
@@ -61,9 +61,9 @@ class SmartComposeSuggestionData extends \Google\Protobuf\Internal\Message
      *           Map that contains metadata about the Smart Compose suggestion and the
      *           document from which it originates.
      *     @type string $query_record
-     *           The name of the answer record.
+     *           Name of the query record.
      *           Format:
-     *           projects/{project}/locations/{location}/answerRecords/{answer_record}
+     *           projects/{project}/locations/{location}/queryRecords/{query_record}
      * }
      */
     public function __construct($data = NULL) {
@@ -156,9 +156,9 @@ class SmartComposeSuggestionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the answer record.
+     * Name of the query record.
      * Format:
-     * projects/{project}/locations/{location}/answerRecords/{answer_record}
+     * projects/{project}/locations/{location}/queryRecords/{query_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      * @return string
@@ -169,9 +169,9 @@ class SmartComposeSuggestionData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the answer record.
+     * Name of the query record.
      * Format:
-     * projects/{project}/locations/{location}/answerRecords/{answer_record}
+     * projects/{project}/locations/{location}/queryRecords/{query_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      * @param string $var
