@@ -50,13 +50,13 @@ class IamTest extends StorageTestCase
                     'role' => 'roles/storage.legacyBucketOwner',
                     'members' => [
                         'projectEditor:' . $projectId,
-                        'projectOwner:' . $projectId
-                    ]
+                        'projectOwner:' . $projectId,
+                    ],
                 ],
                 [
                     'role' => 'roles/storage.legacyBucketReader',
-                    'members' => ['projectViewer:' . $projectId]
-                ]
+                    'members' => ['projectViewer:' . $projectId],
+                ],
 
             ],
             $policy['bindings']
@@ -72,17 +72,17 @@ class IamTest extends StorageTestCase
         $policy = $iam->policy();
         $newBinding = [
             'role' => 'roles/storage.legacyBucketReader',
-            'members' => ['allUsers']
+            'members' => ['allUsers'],
         ];
 
         $policy['bindings'][] = $newBinding;
 
         $iam->setPolicy($policy);
         $policy = $iam->reload();
-        $this->assertStringContainsString(
+        $this->assertContains(
             [
                 'role' => 'roles/storage.legacyBucketReader',
-                'members' => ['allUsers', 'projectViewer:' . $projectId]
+                'members' => ['allUsers', 'projectViewer:' . $projectId],
             ],
             $policy['bindings']
         );
@@ -104,13 +104,13 @@ class IamTest extends StorageTestCase
                 'title' => 'always-true',
                 'description' => 'this condition is always effective',
                 'expression' => 'true',
-            ]
+            ],
         ];
 
         $policy['bindings'][] = $conditionalBinding;
         $iam->setPolicy($policy);
         $policy = $iam->reload(['requestedPolicyVersion' => 3]);
-        $this->assertStringContainsString(
+        $this->assertContains(
             $conditionalBinding,
             $policy['bindings']
         );
@@ -121,9 +121,9 @@ class IamTest extends StorageTestCase
         return [
             'iamConfiguration' => [
                 'uniformBucketLevelAccess' => [
-                    'enabled' => $enabled
-                ]
-            ]
+                    'enabled' => $enabled,
+                ],
+            ],
         ];
     }
 }
