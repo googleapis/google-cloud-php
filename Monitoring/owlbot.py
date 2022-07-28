@@ -38,7 +38,7 @@ php.owlbot_main(
         src / "*/src/V3/GroupServiceClient.php",
         src / "*/src/V3/NotificationChannelServiceClient.php",
         src / "*/src/V3/ServiceMonitoringServiceClient.php",
-        src / "*/src/V3/UptimeCheckServiceGapicClient.php",
+        src / "*/src/V3/UptimeCheckServiceClient.php",
     ]
 )
 
