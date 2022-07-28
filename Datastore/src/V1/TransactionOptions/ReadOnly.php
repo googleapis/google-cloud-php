@@ -4,6 +4,12 @@
 
 namespace Google\Cloud\Datastore\V1\TransactionOptions;
 
-class_exists(PBReadOnly::class); // autoload the new class, which will also create an alias to the deprecated class
+/**
+ * @deprecated
+ */
+class ReadOnly extends PBReadOnly
+{
+}
+
 @trigger_error(__NAMESPACE__ . '\ReadOnly is deprecated and will be removed in the next major release. Use PBReadOnly instead', E_USER_DEPRECATED);
 
