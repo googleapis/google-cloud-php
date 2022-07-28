@@ -7,9 +7,9 @@
             "type": "longrunning\/readme"
         },
 	{
-            "title": "GrafeasClient (v1)",
-            "type": "longrunning\/longrunning/operationsclient"
+            "title": "OperationsClient",
+            "type": "longrunning\/apicore\/longrunning\/operationsclient"
         }
     ],
-    "pattern": "longrunning\/"
+    "pattern": "longrunning\/\\w{1,}"
 }
