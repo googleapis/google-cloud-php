@@ -27,7 +27,8 @@ jobs:
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
-    - uses: actions-ecosystem/action-remove-labels@v1
+    - if: ${{ github.event.action == 'labeled' }}
+      uses: actions-ecosystem/action-remove-labels@v1
       with:
         labels: gh:run-tests
     - uses: actions/checkout@v3
