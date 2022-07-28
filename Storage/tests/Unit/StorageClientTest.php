@@ -119,6 +119,7 @@ class StorageClientTest extends TestCase
             ->insertBucket([
                 'project' => self::PROJECT,
                 'location' => 'US',
+                'name' => 'bucket',
                 'customPlacementConfig' => [
                     'dataLocations' => ['US-EAST1', 'US-WEST1'],
                 ]
