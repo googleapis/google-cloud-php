@@ -20,7 +20,7 @@ class WaitOperationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * The maximum duration to wait before timing out. If left blank, the wait
      * will be at most the time permitted by the underlying HTTP/RPC protocol.
@@ -28,7 +28,7 @@ class WaitOperationRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Duration timeout = 2;</code>
      */
-    protected $timeout = null;
+    private $timeout = null;
 
     /**
      * Constructor.
