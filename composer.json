@@ -43,7 +43,7 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.6",
         "rize/uri-template": "~0.3",
         "guzzlehttp/guzzle": "^5.3|^6.5.7|^7.4.4",
         "guzzlehttp/psr7": "^1.7|^2.0",

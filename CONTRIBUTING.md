@@ -18,7 +18,7 @@ You can sign these electronically (just scroll to the bottom). After that, we'll
 In order to use Google Cloud PHP, some setup is required!
 
 1. Install PHP.
-    Google Cloud PHP requires PHP 5.5 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
+    Google Cloud PHP requires PHP 5.6 or higher. Installation of PHP varies depending on your system. Refer to the [PHP installation and configuration documentation](http://php.net/manual/en/install.php) for detailed instructions.
 
 2. Install [Composer](https://getcomposer.org/download/).
 
