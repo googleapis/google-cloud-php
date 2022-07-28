@@ -55,7 +55,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
      *           The indexes supported for this field.
      *     @type bool $uses_ancestor_config
      *           Output only. When true, the `Field`'s index configuration is set from the
@@ -94,7 +94,7 @@ class IndexConfig extends \Google\Protobuf\Internal\Message
      * The indexes supported for this field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index indexes = 1;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexes($var)

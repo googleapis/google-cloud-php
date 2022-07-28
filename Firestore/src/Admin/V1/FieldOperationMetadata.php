@@ -82,7 +82,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type string $field
      *           The field resource that this operation is acting on. For example:
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
-     *     @type \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $index_config_deltas
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $index_config_deltas
      *           A list of [IndexConfigDelta][google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta], which describe the intent of this
      *           operation.
      *     @type int $state
@@ -219,7 +219,7 @@ class FieldOperationMetadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.FieldOperationMetadata.IndexConfigDelta index_config_deltas = 4;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\FieldOperationMetadata\IndexConfigDelta>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexConfigDeltas($var)

@@ -38,11 +38,11 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\V1\WriteResult[]|\Google\Protobuf\Internal\RepeatedField $write_results
+     *     @type array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $write_results
      *           The result of applying the writes.
      *           This i-th write result corresponds to the i-th write in the
      *           request.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $status
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $status
      *           The status of applying the writes.
      *           This i-th write status corresponds to the i-th write in the
      *           request.
@@ -72,7 +72,7 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.WriteResult write_results = 1;</code>
-     * @param \Google\Cloud\Firestore\V1\WriteResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\WriteResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWriteResults($var)
@@ -102,7 +102,7 @@ class BatchWriteResponse extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status status = 2;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatus($var)

@@ -35,7 +35,7 @@ class ListFieldsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\Admin\V1\Field[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\Field>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The requested fields.
      *     @type string $next_page_token
      *           A page token that may be used to request another page of results. If blank,
@@ -62,7 +62,7 @@ class ListFieldsResponse extends \Google\Protobuf\Internal\Message
      * The requested fields.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Field fields = 1;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\Field[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\Field>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

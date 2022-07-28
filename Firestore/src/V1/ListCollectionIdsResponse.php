@@ -34,7 +34,7 @@ class ListCollectionIdsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           The collection ids.
      *     @type string $next_page_token
      *           A page token that may be used to continue the list.
@@ -60,7 +60,7 @@ class ListCollectionIdsResponse extends \Google\Protobuf\Internal\Message
      * The collection ids.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCollectionIds($var)
