@@ -45,7 +45,7 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           The list of matching backup [long-running
      *           operations][google.longrunning.Operation]. Each operation's name will be
      *           prefixed by the backup's name. The operation's
@@ -97,7 +97,7 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
      * from the most recently started operation.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

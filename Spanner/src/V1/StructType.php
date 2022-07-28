@@ -33,7 +33,7 @@ class StructType extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\V1\StructType\Field[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Spanner\V1\StructType\Field>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The list of fields that make up this struct. Order is
      *           significant, because values of this struct type are represented as
      *           lists, where the order of field values matches the order of
@@ -72,7 +72,7 @@ class StructType extends \Google\Protobuf\Internal\Message
      * fields in the `SELECT` clause of a query.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.StructType.Field fields = 1;</code>
-     * @param \Google\Cloud\Spanner\V1\StructType\Field[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\StructType\Field>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

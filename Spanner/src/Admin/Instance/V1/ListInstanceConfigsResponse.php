@@ -36,7 +36,7 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $instance_configs
+     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig>|\Google\Protobuf\Internal\RepeatedField $instance_configs
      *           The list of requested instance configurations.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -64,7 +64,7 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instance configurations.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.InstanceConfig instance_configs = 1;</code>
-     * @param \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceConfigs($var)

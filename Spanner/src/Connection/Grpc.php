@@ -56,7 +56,7 @@ use Google\Cloud\Spanner\V1\Session;
 use Google\Cloud\Spanner\V1\SpannerClient;
 use Google\Cloud\Spanner\V1\TransactionOptions;
 use Google\Cloud\Spanner\V1\TransactionOptions\PartitionedDml;
-use Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly;
+use Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly;
 use Google\Cloud\Spanner\V1\TransactionOptions\ReadWrite;
 use Google\Cloud\Spanner\V1\TransactionSelector;
 use Google\Cloud\Spanner\V1\Type;
@@ -524,7 +524,7 @@ class Grpc implements ConnectionInterface
         $expireTime = new Timestamp(
             $this->formatTimestampForApi($this->pluck('expireTime', $args))
         );
-        
+
         $res = $this->send([$this->getDatabaseAdminClient(), 'copyBackup'], [
             $instanceName,
             $this->pluck('backupId', $args),
@@ -919,11 +919,13 @@ class Grpc implements ConnectionInterface
     public function beginTransaction(array $args)
     {
         $options = new TransactionOptions;
-
         $transactionOptions = $this->formatTransactionOptions($this->pluck('transactionOptions', $args));
         if (isset($transactionOptions['readOnly'])) {
+            $readOnlyClass = PHP_VERSION_ID >= 80100
+                ? PBReadOnly::class
+                : 'Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly';
             $readOnly = $this->serializer->decodeMessage(
-                new ReadOnly(),
+                new $readOnlyClass(),
                 $transactionOptions['readOnly']
             );
             $options->setReadOnly($readOnly);

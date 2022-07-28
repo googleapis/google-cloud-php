@@ -65,7 +65,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      *           executed more than once. If this is undesirable, use
      *           [BeginTransaction][google.spanner.v1.Spanner.BeginTransaction] and
      *           [Commit][google.spanner.v1.Spanner.Commit] instead.
-     *     @type \Google\Cloud\Spanner\V1\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type array<\Google\Cloud\Spanner\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
      *           The mutations to be executed when this transaction commits. All
      *           mutations are applied atomically, in the order they appear in
      *           this list.
@@ -205,7 +205,7 @@ class CommitRequest extends \Google\Protobuf\Internal\Message
      * this list.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.Mutation mutations = 4;</code>
-     * @param \Google\Cloud\Spanner\V1\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutations($var)
