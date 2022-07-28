@@ -459,7 +459,7 @@ class SubscriptionTest extends TestCase
         foreach ($ackIds as $id) {
             $messages[] = new Message([], ['ackId' => $id]);
         }
-        
+
         // The JSON exception msg for a failure in a sub with EOD enabled
         $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"EXACTLY_ONCE_ACKID_FAILURE","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
 
@@ -493,7 +493,7 @@ class SubscriptionTest extends TestCase
         foreach ($ackIds as $id) {
             $messages[] = new Message([], ['ackId' => $id]);
         }
-        
+
         // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
         // in it's exception msg, then it should bubble up
         $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"FAILURE_REASON","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
@@ -513,9 +513,6 @@ class SubscriptionTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAcknowledgeBatchInvalidArgument()
     {
         $this->expectException('InvalidArgumentException');
@@ -581,7 +578,7 @@ class SubscriptionTest extends TestCase
         foreach ($ackIds as $id) {
             $messages[] = new Message([], ['ackId' => $id]);
         }
-        
+
         // The JSON exception msg for a failure in a sub with EOD enabled
         $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"EXACTLY_ONCE_ACKID_FAILURE","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
 
@@ -614,11 +611,11 @@ class SubscriptionTest extends TestCase
         ];
         $seconds = 10;
         $messages = [];
-        
+
         foreach ($ackIds as $id) {
             $messages[] = new Message([], ['ackId' => $id]);
         }
-        
+
         // If an exception has a reason different than 'EXACTLY_ONCE_ACKID_FAILURE'
         // in it's exception msg, then it should bubble up
         $exMsg = '{"error":{"code":400,"message":"...","status":"INVALID_ARGUMENT","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"FAILURE_REASON","domain":"pubsub.googleapis.com","metadata":{"foobar":"PERMANENT_FAILURE_INVALID_ACK_ID","otherAckId":"PERMANENT_FAILURE_INVALID_ACK_ID"}},{"@type":"type.googleapis.com/google.rpc.DebugInfo","detail":"..."}]}}';//phpcs:ignore
@@ -639,9 +636,6 @@ class SubscriptionTest extends TestCase
         }
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
         $this->expectException('InvalidArgumentException');
