@@ -325,7 +325,7 @@
             "GPBMetadata\\Google\\Iam\\Credentials\\": "IamCredentials/metadata",
             "GPBMetadata\\Google\\Identity\\Accesscontextmanager\\": "AccessContextManager/metadata",
             "GPBMetadata\\Google\\Logging\\": "Logging/metadata",
-            "GPBMetadata\\Google\\Longrunning\\": "LongRunning/metadata",
+            "GPBMetadata\\Google\\Longrunning\\": "LongRunning/metadata/Longrunning",
             "GPBMetadata\\Google\\Monitoring\\": "Monitoring/metadata",
             "GPBMetadata\\Google\\Privacy\\Dlp\\": "Dlp/metadata",
             "GPBMetadata\\Google\\Pubsub\\": "PubSub/metadata",
