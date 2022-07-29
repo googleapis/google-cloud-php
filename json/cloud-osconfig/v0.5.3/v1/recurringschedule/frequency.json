@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/recurringschedule\/frequency","type":"","title":"Google\\Cloud\\OsConfig\\V1\\RecurringSchedule\\Frequency","name":"Frequency","description":"<p>Specifies the frequency of the recurring patch deployments.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.RecurringSchedule.Frequency<\/code><\/p>","examples":[],"resources":[],"methods":[]}

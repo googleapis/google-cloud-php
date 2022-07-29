@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/cloudsqlsettings\/sqldatadisktype","type":"","title":"Google\\Cloud\\CloudDms\\V1\\CloudSqlSettings\\SqlDataDiskType","name":"SqlDataDiskType","description":"<p>The storage options for Cloud SQL databases.<\/p>\n<p>Protobuf type <code>google.cloud.clouddms.v1.CloudSqlSettings.SqlDataDiskType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

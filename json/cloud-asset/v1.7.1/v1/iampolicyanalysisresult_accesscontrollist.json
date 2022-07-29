@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/iampolicyanalysisresult_accesscontrollist","type":"","title":"Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisResult_AccessControlList","name":"IamPolicyAnalysisResult_AccessControlList","description":"<p>This class is deprecated. Use Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisResult\\AccessControlList instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"videotranscoder\/v1beta1\/job\/processingstate","type":"","title":"Google\\Cloud\\Video\\Transcoder\\V1beta1\\Job\\ProcessingState","name":"ProcessingState","description":"<p>The current state of the job.<\/p>\n<p>Protobuf type <code>google.cloud.video.transcoder.v1beta1.Job.ProcessingState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"managedidentities\/v1\/trust_trustdirection","type":"","title":"Google\\Cloud\\ManagedIdentities\\V1\\Trust_TrustDirection","name":"Trust_TrustDirection","description":"<p>This class is deprecated. Use Google\\Cloud\\ManagedIdentities\\V1\\Trust\\TrustDirection instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"iot\/v1\/publickeycertificateformat","type":"","title":"Google\\Cloud\\Iot\\V1\\PublicKeyCertificateFormat","name":"PublicKeyCertificateFormat","description":"<p>The supported formats for the public key.<\/p>\n<p>Protobuf type <code>google.cloud.iot.v1.PublicKeyCertificateFormat<\/code><\/p>","examples":[],"resources":[],"methods":[]}

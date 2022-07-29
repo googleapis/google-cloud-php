@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/storagesystem","type":"","title":"Google\\Cloud\\Dataplex\\V1\\StorageSystem","name":"StorageSystem","description":"<p>Identifies the cloud system that manages the data storage.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.StorageSystem<\/code><\/p>","examples":[],"resources":[],"methods":[]}

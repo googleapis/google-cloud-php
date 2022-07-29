@@ -1,0 +1,1 @@
+{"id":"videostitcher\/v1\/manifestoptions\/orderpolicy","type":"","title":"Google\\Cloud\\Video\\Stitcher\\V1\\ManifestOptions\\OrderPolicy","name":"OrderPolicy","description":"<p>Defines the ordering policy during manifest generation.<\/p>\n<p>Protobuf type <code>google.cloud.video.stitcher.v1.ManifestOptions.OrderPolicy<\/code><\/p>","examples":[],"resources":[],"methods":[]}

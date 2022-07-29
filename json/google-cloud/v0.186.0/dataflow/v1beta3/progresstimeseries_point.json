@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/progresstimeseries_point","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\ProgressTimeseries_Point","name":"ProgressTimeseries_Point","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataflow\\V1beta3\\ProgressTimeseries\\Point instead.<\/p>","examples":[],"resources":[],"methods":[]}

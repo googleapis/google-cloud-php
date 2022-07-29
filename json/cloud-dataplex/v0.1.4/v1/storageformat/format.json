@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/storageformat\/format","type":"","title":"Google\\Cloud\\Dataplex\\V1\\StorageFormat\\Format","name":"Format","description":"<p>The specific file format of the data.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.StorageFormat.Format<\/code><\/p>","examples":[],"resources":[],"methods":[]}

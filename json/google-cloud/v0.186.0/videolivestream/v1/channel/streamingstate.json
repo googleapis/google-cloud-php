@@ -1,0 +1,1 @@
+{"id":"videolivestream\/v1\/channel\/streamingstate","type":"","title":"Google\\Cloud\\Video\\LiveStream\\V1\\Channel\\StreamingState","name":"StreamingState","description":"<p>State of streaming operation that the channel is running.<\/p>\n<p>Protobuf type <code>google.cloud.video.livestream.v1.Channel.StreamingState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

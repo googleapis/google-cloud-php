@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/bigqueryconfig\/state","type":"","title":"Google\\Cloud\\PubSub\\V1\\BigQueryConfig\\State","name":"State","description":"<p>Possible states for a BigQuery subscription.<\/p>\n<p>Protobuf type <code>google.pubsub.v1.BigQueryConfig.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

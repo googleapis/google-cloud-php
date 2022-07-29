@@ -1,0 +1,1 @@
+{"id":"automl\/v1beta1\/typecode","type":"","title":"Google\\Cloud\\AutoMl\\V1beta1\\TypeCode","name":"TypeCode","description":"<p><code>TypeCode<\/code> is used as a part of\n[DataType][google.cloud.automl.v1beta1.DataType].<\/p>\n<p>Protobuf type <code>google.cloud.automl.v1beta1.TypeCode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

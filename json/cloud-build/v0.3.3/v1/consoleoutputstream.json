@@ -1,0 +1,1 @@
+{"id":"build\/v1\/consoleoutputstream","type":"","title":"Google\\Cloud\\Build\\V1\\ConsoleOutputStream","name":"ConsoleOutputStream","description":"<p>The type of console output stream.<\/p>\n<p>Protobuf type <code>google.devtools.build.v1.ConsoleOutputStream<\/code><\/p>","examples":[],"resources":[],"methods":[]}

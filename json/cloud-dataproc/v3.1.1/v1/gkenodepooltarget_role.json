@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/gkenodepooltarget_role","type":"","title":"Google\\Cloud\\Dataproc\\V1\\GkeNodePoolTarget_Role","name":"GkeNodePoolTarget_Role","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\GkeNodePoolTarget\\Role instead.<\/p>","examples":[],"resources":[],"methods":[]}

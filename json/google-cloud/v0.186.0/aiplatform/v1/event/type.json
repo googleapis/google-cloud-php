@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/event\/type","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\Event\\Type","name":"Type","description":"<p>Describes whether an Event's Artifact is the Execution's input or output.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.Event.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/custommetric_restrictedmetrictype","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\CustomMetric_RestrictedMetricType","name":"CustomMetric_RestrictedMetricType","description":"<p>This class is deprecated. Use Google\\Analytics\\Admin\\V1alpha\\CustomMetric\\RestrictedMetricType instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"texttospeech\/v1\/customvoiceparams_reportedusage","type":"","title":"Google\\Cloud\\TextToSpeech\\V1\\CustomVoiceParams_ReportedUsage","name":"CustomVoiceParams_ReportedUsage","description":"<p>This class is deprecated. Use Google\\Cloud\\TextToSpeech\\V1\\CustomVoiceParams\\ReportedUsage instead.<\/p>","examples":[],"resources":[],"methods":[]}

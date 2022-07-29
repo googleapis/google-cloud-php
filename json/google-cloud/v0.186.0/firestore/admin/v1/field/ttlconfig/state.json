@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/field\/ttlconfig\/state","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\Field\\TtlConfig\\State","name":"State","description":"<p>The state of applying the TTL configuration to all documents.<\/p>\n<p>Protobuf type <code>google.firestore.admin.v1.Field.TtlConfig.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

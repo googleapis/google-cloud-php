@@ -1,0 +1,1 @@
+{"id":"build\/v1\/publishlifecycleeventrequest_servicelevel","type":"","title":"Google\\Cloud\\Build\\V1\\PublishLifecycleEventRequest_ServiceLevel","name":"PublishLifecycleEventRequest_ServiceLevel","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\PublishLifecycleEventRequest\\ServiceLevel instead.<\/p>","examples":[],"resources":[],"methods":[]}

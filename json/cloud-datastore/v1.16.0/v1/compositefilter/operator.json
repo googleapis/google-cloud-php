@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/compositefilter\/operator","type":"","title":"Google\\Cloud\\Datastore\\V1\\CompositeFilter\\Operator","name":"Operator","description":"<p>A composite filter operator.<\/p>\n<p>Protobuf type <code>google.datastore.v1.CompositeFilter.Operator<\/code><\/p>","examples":[],"resources":[],"methods":[]}

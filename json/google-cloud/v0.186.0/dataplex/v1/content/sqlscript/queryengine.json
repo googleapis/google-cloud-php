@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/content\/sqlscript\/queryengine","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Content\\SqlScript\\QueryEngine","name":"QueryEngine","description":"<p>Query Engine Type of the SQL Script.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Content.SqlScript.QueryEngine<\/code><\/p>","examples":[],"resources":[],"methods":[]}

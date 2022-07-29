@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/iampolicyanalysisquery_identityselector","type":"","title":"Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisQuery_IdentitySelector","name":"IamPolicyAnalysisQuery_IdentitySelector","description":"<p>This class is deprecated. Use Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisQuery\\IdentitySelector instead.<\/p>","examples":[],"resources":[],"methods":[]}

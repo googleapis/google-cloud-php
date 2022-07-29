@@ -1,0 +1,1 @@
+{"id":"tpu\/v1\/node\/apiversion","type":"","title":"Google\\Cloud\\Tpu\\V1\\Node\\ApiVersion","name":"ApiVersion","description":"<p>TPU API Version.<\/p>\n<p>Protobuf type <code>google.cloud.tpu.v1.Node.ApiVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

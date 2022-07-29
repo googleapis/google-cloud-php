@@ -1,0 +1,1 @@
+{"id":"container\/v1\/loggingcomponentconfig\/component","type":"","title":"Google\\Cloud\\Container\\V1\\LoggingComponentConfig\\Component","name":"Component","description":"<p>GKE components exposing logs<\/p>\n<p>Protobuf type <code>google.container.v1.LoggingComponentConfig.Component<\/code><\/p>","examples":[],"resources":[],"methods":[]}

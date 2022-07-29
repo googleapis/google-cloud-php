@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/version\/versionstatus","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Version\\VersionStatus","name":"VersionStatus","description":"<p>The status of a version.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Version.VersionStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

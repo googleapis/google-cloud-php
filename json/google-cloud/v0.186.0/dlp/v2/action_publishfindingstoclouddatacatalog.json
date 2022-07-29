@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/action_publishfindingstoclouddatacatalog","type":"","title":"Google\\Cloud\\Dlp\\V2\\Action_PublishFindingsToCloudDataCatalog","name":"Action_PublishFindingsToCloudDataCatalog","description":"<p>This class is deprecated. Use Google\\Cloud\\Dlp\\V2\\Action\\PublishFindingsToCloudDataCatalog instead.<\/p>","examples":[],"resources":[],"methods":[]}

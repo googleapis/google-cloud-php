@@ -1,0 +1,1 @@
+{"id":"language\/v1\/partofspeech\/person","type":"","title":"Google\\Cloud\\Language\\V1\\PartOfSpeech\\Person","name":"Person","description":"<p>The distinction between the speaker, second person, third person, etc.<\/p>\n<p>Protobuf type <code>google.cloud.language.v1.PartOfSpeech.Person<\/code><\/p>","examples":[],"resources":[],"methods":[]}

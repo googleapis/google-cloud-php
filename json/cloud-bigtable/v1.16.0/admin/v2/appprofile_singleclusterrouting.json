@@ -1,0 +1,1 @@
+{"id":"bigtable\/admin\/v2\/appprofile_singleclusterrouting","type":"","title":"Google\\Cloud\\Bigtable\\Admin\\V2\\AppProfile_SingleClusterRouting","name":"AppProfile_SingleClusterRouting","description":"<p>This class is deprecated. Use Google\\Cloud\\Bigtable\\Admin\\V2\\AppProfile\\SingleClusterRouting instead.<\/p>","examples":[],"resources":[],"methods":[]}

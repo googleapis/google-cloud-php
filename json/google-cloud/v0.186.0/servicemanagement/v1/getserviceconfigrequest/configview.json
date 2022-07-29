@@ -1,0 +1,1 @@
+{"id":"servicemanagement\/v1\/getserviceconfigrequest\/configview","type":"","title":"Google\\Cloud\\ServiceManagement\\V1\\GetServiceConfigRequest\\ConfigView","name":"ConfigView","description":"<p>Protobuf type <code>google.api.servicemanagement.v1.GetServiceConfigRequest.ConfigView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

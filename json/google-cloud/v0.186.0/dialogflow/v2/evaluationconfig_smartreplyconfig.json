@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/evaluationconfig_smartreplyconfig","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\EvaluationConfig_SmartReplyConfig","name":"EvaluationConfig_SmartReplyConfig","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\EvaluationConfig\\SmartReplyConfig instead.<\/p>","examples":[],"resources":[],"methods":[]}

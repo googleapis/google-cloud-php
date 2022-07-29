@@ -1,0 +1,1 @@
+{"id":"automl\/v1beta1\/classificationtype","type":"","title":"Google\\Cloud\\AutoMl\\V1beta1\\ClassificationType","name":"ClassificationType","description":"<p>Type of the classification problem.<\/p>\n<p>Protobuf type <code>google.cloud.automl.v1beta1.ClassificationType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"build\/v1\/pubsubconfig\/state","type":"","title":"Google\\Cloud\\Build\\V1\\PubsubConfig\\State","name":"State","description":"<p>Enumerates potential issues with the underlying Pub\/Sub subscription\nconfiguration.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.PubsubConfig.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

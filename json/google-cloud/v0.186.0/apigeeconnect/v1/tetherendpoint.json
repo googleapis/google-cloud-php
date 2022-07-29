@@ -1,0 +1,1 @@
+{"id":"apigeeconnect\/v1\/tetherendpoint","type":"","title":"Google\\Cloud\\ApigeeConnect\\V1\\TetherEndpoint","name":"TetherEndpoint","description":"<p>Endpoint indicates where the messages will be delivered.<\/p>\n<p>Protobuf type <code>google.cloud.apigeeconnect.v1.TetherEndpoint<\/code><\/p>","examples":[],"resources":[],"methods":[]}

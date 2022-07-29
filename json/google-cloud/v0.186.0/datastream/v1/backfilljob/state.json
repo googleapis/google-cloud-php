@@ -1,0 +1,1 @@
+{"id":"datastream\/v1\/backfilljob\/state","type":"","title":"Google\\Cloud\\Datastream\\V1\\BackfillJob\\State","name":"State","description":"<p>State of the stream object's backfill job.<\/p>\n<p>Protobuf type <code>google.cloud.datastream.v1.BackfillJob.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/database\/concurrencymode","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\Database\\ConcurrencyMode","name":"ConcurrencyMode","description":"<p>The type of concurrency control mode for transactions.<\/p>\n<p>Protobuf type <code>google.firestore.admin.v1.Database.ConcurrencyMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

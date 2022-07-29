@@ -1,0 +1,1 @@
+{"id":"container\/v1\/binaryauthorization\/evaluationmode","type":"","title":"Google\\Cloud\\Container\\V1\\BinaryAuthorization\\EvaluationMode","name":"EvaluationMode","description":"<p>Binary Authorization mode of operation.<\/p>\n<p>Protobuf type <code>google.container.v1.BinaryAuthorization.EvaluationMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

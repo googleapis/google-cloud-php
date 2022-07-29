@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/instance\/v1\/replicainfo_replicatype","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Instance\\V1\\ReplicaInfo_ReplicaType","name":"ReplicaInfo_ReplicaType","description":"<p>This class is deprecated. Use Google\\Cloud\\Spanner\\Admin\\Instance\\V1\\ReplicaInfo\\ReplicaType instead.<\/p>","examples":[],"resources":[],"methods":[]}
