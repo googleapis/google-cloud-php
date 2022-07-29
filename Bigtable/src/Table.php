@@ -549,7 +549,17 @@ class Table
                 $ex->getCode(),
                 $ex->getMessage()
             );
-            throw new BigtableDataOperationException($ex->getMessage(), $ex->getCode(), $rowMutationsFailedResponse);
+            if (!is_null($ex->getErrorInfoMetadata())) {
+                $rowMutationsFailedResponse = array_merge(
+                    $rowMutationsFailedResponse,
+                    $ex->getErrorInfoMetadata()
+                );
+            }
+            throw new BigtableDataOperationException(
+                $ex->getMessage(),
+                $ex->getCode(),
+                $rowMutationsFailedResponse
+            );
         }
 
         if (!empty($rowMutationsFailedResponse)) {
