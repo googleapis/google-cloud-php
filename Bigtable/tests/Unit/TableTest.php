@@ -198,6 +198,47 @@ class TableTest extends TestCase
         $this->table->mutateRows($this->rowMutations);
     }
 
+    public function testMutateRowsApiExceptionThrowsErrorInfo()
+    {
+        $exMessage = 'unauthenticated';
+        $apiException = new ApiException(
+            $exMessage,
+            Code::UNAUTHENTICATED,
+            'unauthenticated',
+            [
+                'metadata' => [
+                    [
+                        'reason' => 'some failure reason',
+                        'domain' => 'some failure domain',
+                        'metadata' => [
+                            'service' => 'bigtable.googleapis.com',
+                            'consumer' => 'projects\/my-project',
+                        ],
+                    ],
+                ],
+            ]
+        );
+        $this->bigtableClient->mutateRows(self::TABLE_NAME, $this->entries, $this->options)
+            ->shouldBeCalled()
+            ->willThrow($apiException);
+        try {
+            $this->table->mutateRows($this->rowMutations);
+            $this->fail('Expected an Exception, but no exception was thrown.');
+        } catch (BigtableDataOperationException $ex) {
+            $this->assertEquals($apiException->getCode(), $ex->getCode());
+            $this->assertEquals($exMessage, $ex->getMessage());
+            $this->assertSame(
+                $apiException->getErrorInfoMetadata(),
+                array_intersect_key(
+                    $ex->getMetadata(),
+                    $apiException->getErrorInfoMetadata()
+                )
+            );
+        } catch (Exception $ex) {
+            $this->fail('Expected Exception of type BigtableDataOperationException.');
+        }
+    }
+
     public function testMutateRowsApiExceptionInReadAll()
     {
         $this->expectException('Google\Cloud\Bigtable\Exception\BigtableDataOperationException');
