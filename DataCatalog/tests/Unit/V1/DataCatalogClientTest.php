@@ -92,7 +92,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,10 +114,10 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         $entryId = 'entryId-2093663224';
         $entry = new Entry();
-        $response = $client->createEntry($formattedParent, $entryId, $entry);
+        $response = $gapicClient->createEntry($formattedParent, $entryId, $entry);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -139,7 +139,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -154,12 +154,12 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         $entryId = 'entryId-2093663224';
         $entry = new Entry();
         try {
-            $client->createEntry($formattedParent, $entryId, $entry);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEntry($formattedParent, $entryId, $entry);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -176,7 +176,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createEntryGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -190,9 +190,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $entryGroupId = 'entryGroupId-43122680';
-        $response = $client->createEntryGroup($formattedParent, $entryGroupId);
+        $response = $gapicClient->createEntryGroup($formattedParent, $entryGroupId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -212,7 +212,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,11 +227,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $entryGroupId = 'entryGroupId-43122680';
         try {
-            $client->createEntryGroup($formattedParent, $entryGroupId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEntryGroup($formattedParent, $entryGroupId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -248,7 +248,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -264,7 +264,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setColumn($column);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tagName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]', '[TAG]');
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $tag = new Tag();
         $tagTemplate = 'tagTemplate1678947892';
         $tag->setTemplate($tagTemplate);
@@ -273,7 +273,7 @@ class DataCatalogClientTest extends GeneratedTest
             'fieldsKey' => $fieldsValue,
         ];
         $tag->setFields($tagFields);
-        $response = $client->createTag($formattedParent, $tag);
+        $response = $gapicClient->createTag($formattedParent, $tag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -293,7 +293,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -308,7 +308,7 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tagName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]', '[TAG]');
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $tag = new Tag();
         $tagTemplate = 'tagTemplate1678947892';
         $tag->setTemplate($tagTemplate);
@@ -318,8 +318,8 @@ class DataCatalogClientTest extends GeneratedTest
         ];
         $tag->setFields($tagFields);
         try {
-            $client->createTag($formattedParent, $tag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTag($formattedParent, $tag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -336,7 +336,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -350,7 +350,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setIsPubliclyReadable($isPubliclyReadable);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tagTemplateId = 'tagTemplateId-2020335141';
         $tagTemplate = new TagTemplate();
         $fieldsValue = new TagTemplateField();
@@ -360,7 +360,7 @@ class DataCatalogClientTest extends GeneratedTest
             'fieldsKey' => $fieldsValue,
         ];
         $tagTemplate->setFields($tagTemplateFields);
-        $response = $client->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
+        $response = $gapicClient->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -382,7 +382,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -397,7 +397,7 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $tagTemplateId = 'tagTemplateId-2020335141';
         $tagTemplate = new TagTemplate();
         $fieldsValue = new TagTemplateField();
@@ -408,8 +408,8 @@ class DataCatalogClientTest extends GeneratedTest
         ];
         $tagTemplate->setFields($tagTemplateFields);
         try {
-            $client->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTagTemplate($formattedParent, $tagTemplateId, $tagTemplate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -426,7 +426,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -444,12 +444,12 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $formattedParent = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         $tagTemplateFieldId = 'tagTemplateFieldId-92144832';
         $tagTemplateField = new TagTemplateField();
         $tagTemplateFieldType = new FieldType();
         $tagTemplateField->setType($tagTemplateFieldType);
-        $response = $client->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
+        $response = $gapicClient->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -471,7 +471,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function createTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -486,14 +486,14 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $formattedParent = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         $tagTemplateFieldId = 'tagTemplateFieldId-92144832';
         $tagTemplateField = new TagTemplateField();
         $tagTemplateFieldType = new FieldType();
         $tagTemplateField->setType($tagTemplateFieldType);
         try {
-            $client->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTagTemplateField($formattedParent, $tagTemplateFieldId, $tagTemplateField);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -510,7 +510,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -518,8 +518,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $client->deleteEntry($formattedName);
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $gapicClient->deleteEntry($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -536,7 +536,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -551,10 +551,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->deleteEntry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEntry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -571,7 +571,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteEntryGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -579,8 +579,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $client->deleteEntryGroup($formattedName);
+        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $gapicClient->deleteEntryGroup($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -597,7 +597,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -612,10 +612,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $client->deleteEntryGroup($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEntryGroup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -632,7 +632,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -640,8 +640,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $client->deleteTag($formattedName);
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $gapicClient->deleteTag($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -658,7 +658,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -673,10 +673,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->deleteTag($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTag($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -693,7 +693,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -701,9 +701,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         $force = false;
-        $client->deleteTagTemplate($formattedName, $force);
+        $gapicClient->deleteTagTemplate($formattedName, $force);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -722,7 +722,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -737,11 +737,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         $force = false;
         try {
-            $client->deleteTagTemplate($formattedName, $force);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTagTemplate($formattedName, $force);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -758,7 +758,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -766,9 +766,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $force = false;
-        $client->deleteTagTemplateField($formattedName, $force);
+        $gapicClient->deleteTagTemplateField($formattedName, $force);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -787,7 +787,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function deleteTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -802,11 +802,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $force = false;
         try {
-            $client->deleteTagTemplateField($formattedName, $force);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTagTemplateField($formattedName, $force);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -823,7 +823,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -845,8 +845,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $client->getEntry($formattedName);
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $gapicClient->getEntry($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -864,7 +864,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -879,10 +879,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->getEntry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEntry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -899,7 +899,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getEntryGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -913,8 +913,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $client->getEntryGroup($formattedName);
+        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $response = $gapicClient->getEntryGroup($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -932,7 +932,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -947,10 +947,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedName = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $client->getEntryGroup($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEntryGroup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -967,7 +967,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -980,7 +980,7 @@ class DataCatalogClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -998,7 +998,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1015,8 +1015,8 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1033,7 +1033,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getTagTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1047,8 +1047,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setIsPubliclyReadable($isPubliclyReadable);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
-        $response = $client->getTagTemplate($formattedName);
+        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $response = $gapicClient->getTagTemplate($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1066,7 +1066,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function getTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1081,10 +1081,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
+        $formattedName = $gapicClient->tagTemplateName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]');
         try {
-            $client->getTagTemplate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTagTemplate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1101,7 +1101,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listEntriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1116,8 +1116,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setEntries($entries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $client->listEntries($formattedParent);
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $response = $gapicClient->listEntries($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1138,7 +1138,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listEntriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1153,10 +1153,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedParent = $gapicClient->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
         try {
-            $client->listEntries($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEntries($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1173,7 +1173,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listEntryGroupsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1188,8 +1188,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setEntryGroups($entryGroups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
-        $response = $client->listEntryGroups($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listEntryGroups($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1210,7 +1210,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listEntryGroupsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1225,10 +1225,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entryGroupName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listEntryGroups($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEntryGroups($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1245,7 +1245,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listTagsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1260,8 +1260,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setTags($tags);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $client->listTags($formattedParent);
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $gapicClient->listTags($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1282,7 +1282,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function listTagsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1297,10 +1297,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedParent = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->listTags($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTags($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1317,7 +1317,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function lookupEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1338,7 +1338,7 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $client->lookupEntry();
+        $response = $gapicClient->lookupEntry();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1354,7 +1354,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function lookupEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1369,8 +1369,8 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->lookupEntry();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->lookupEntry();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1387,7 +1387,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function modifyEntryContactsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1395,9 +1395,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new Contacts();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $contacts = new Contacts();
-        $response = $client->modifyEntryContacts($formattedName, $contacts);
+        $response = $gapicClient->modifyEntryContacts($formattedName, $contacts);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1417,7 +1417,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function modifyEntryContactsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1432,11 +1432,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $contacts = new Contacts();
         try {
-            $client->modifyEntryContacts($formattedName, $contacts);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyEntryContacts($formattedName, $contacts);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1453,7 +1453,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function modifyEntryOverviewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1463,9 +1463,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setOverview($overview);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $entryOverview = new EntryOverview();
-        $response = $client->modifyEntryOverview($formattedName, $entryOverview);
+        $response = $gapicClient->modifyEntryOverview($formattedName, $entryOverview);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1485,7 +1485,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function modifyEntryOverviewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1500,11 +1500,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         $entryOverview = new EntryOverview();
         try {
-            $client->modifyEntryOverview($formattedName, $entryOverview);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyEntryOverview($formattedName, $entryOverview);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1521,7 +1521,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function renameTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1539,9 +1539,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $newTagTemplateFieldId = 'newTagTemplateFieldId-1668354591';
-        $response = $client->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+        $response = $gapicClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1561,7 +1561,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function renameTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1576,11 +1576,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $newTagTemplateFieldId = 'newTagTemplateFieldId-1668354591';
         try {
-            $client->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->renameTagTemplateField($formattedName, $newTagTemplateFieldId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1597,7 +1597,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function renameTagTemplateFieldEnumValueTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1615,9 +1615,9 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+        $formattedName = $gapicClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
         $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
-        $response = $client->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+        $response = $gapicClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1637,7 +1637,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function renameTagTemplateFieldEnumValueExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1652,11 +1652,11 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
+        $formattedName = $gapicClient->tagTemplateFieldEnumValueName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[TAG_TEMPLATE_FIELD_ID]', '[ENUM_VALUE_DISPLAY_NAME]');
         $newEnumValueDisplayName = 'newEnumValueDisplayName2138960469';
         try {
-            $client->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->renameTagTemplateFieldEnumValue($formattedName, $newEnumValueDisplayName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1673,7 +1673,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function searchCatalogTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1690,7 +1690,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $scope = new Scope();
         $query = 'query107944136';
-        $response = $client->searchCatalog($scope, $query);
+        $response = $gapicClient->searchCatalog($scope, $query);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1713,7 +1713,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function searchCatalogExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1731,8 +1731,8 @@ class DataCatalogClientTest extends GeneratedTest
         $scope = new Scope();
         $query = 'query107944136';
         try {
-            $client->searchCatalog($scope, $query);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchCatalog($scope, $query);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1749,7 +1749,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1763,7 +1763,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1783,7 +1783,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1801,8 +1801,8 @@ class DataCatalogClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1819,7 +1819,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function starEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1827,8 +1827,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new StarEntryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $client->starEntry($formattedName);
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $gapicClient->starEntry($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1846,7 +1846,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function starEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1861,10 +1861,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->starEntry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->starEntry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1881,7 +1881,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1891,7 +1891,7 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1911,7 +1911,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1929,8 +1929,8 @@ class DataCatalogClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1947,7 +1947,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function unstarEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1955,8 +1955,8 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse = new UnstarEntryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
-        $response = $client->unstarEntry($formattedName);
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $response = $gapicClient->unstarEntry($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1974,7 +1974,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function unstarEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1989,10 +1989,10 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
+        $formattedName = $gapicClient->entryName('[PROJECT]', '[LOCATION]', '[ENTRY_GROUP]', '[ENTRY]');
         try {
-            $client->unstarEntry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->unstarEntry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2009,7 +2009,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateEntryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2032,7 +2032,7 @@ class DataCatalogClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entry = new Entry();
-        $response = $client->updateEntry($entry);
+        $response = $gapicClient->updateEntry($entry);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2050,7 +2050,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateEntryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2067,8 +2067,8 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $entry = new Entry();
         try {
-            $client->updateEntry($entry);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateEntry($entry);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2085,7 +2085,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateEntryGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2100,7 +2100,7 @@ class DataCatalogClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $entryGroup = new EntryGroup();
-        $response = $client->updateEntryGroup($entryGroup);
+        $response = $gapicClient->updateEntryGroup($entryGroup);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2118,7 +2118,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateEntryGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2135,8 +2135,8 @@ class DataCatalogClientTest extends GeneratedTest
         // Mock request
         $entryGroup = new EntryGroup();
         try {
-            $client->updateEntryGroup($entryGroup);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateEntryGroup($entryGroup);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2153,7 +2153,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2177,7 +2177,7 @@ class DataCatalogClientTest extends GeneratedTest
             'fieldsKey' => $fieldsValue,
         ];
         $tag->setFields($tagFields);
-        $response = $client->updateTag($tag);
+        $response = $gapicClient->updateTag($tag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2195,7 +2195,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2219,8 +2219,8 @@ class DataCatalogClientTest extends GeneratedTest
         ];
         $tag->setFields($tagFields);
         try {
-            $client->updateTag($tag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTag($tag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2237,7 +2237,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagTemplateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2259,7 +2259,7 @@ class DataCatalogClientTest extends GeneratedTest
             'fieldsKey' => $fieldsValue,
         ];
         $tagTemplate->setFields($tagTemplateFields);
-        $response = $client->updateTagTemplate($tagTemplate);
+        $response = $gapicClient->updateTagTemplate($tagTemplate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2277,7 +2277,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagTemplateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2301,8 +2301,8 @@ class DataCatalogClientTest extends GeneratedTest
         ];
         $tagTemplate->setFields($tagTemplateFields);
         try {
-            $client->updateTagTemplate($tagTemplate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTagTemplate($tagTemplate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2319,7 +2319,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagTemplateFieldTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2337,11 +2337,11 @@ class DataCatalogClientTest extends GeneratedTest
         $expectedResponse->setOrder($order);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $tagTemplateField = new TagTemplateField();
         $tagTemplateFieldType = new FieldType();
         $tagTemplateField->setType($tagTemplateFieldType);
-        $response = $client->updateTagTemplateField($formattedName, $tagTemplateField);
+        $response = $gapicClient->updateTagTemplateField($formattedName, $tagTemplateField);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2361,7 +2361,7 @@ class DataCatalogClientTest extends GeneratedTest
     public function updateTagTemplateFieldExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2376,13 +2376,13 @@ class DataCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
+        $formattedName = $gapicClient->tagTemplateFieldName('[PROJECT]', '[LOCATION]', '[TAG_TEMPLATE]', '[FIELD]');
         $tagTemplateField = new TagTemplateField();
         $tagTemplateFieldType = new FieldType();
         $tagTemplateField->setType($tagTemplateFieldType);
         try {
-            $client->updateTagTemplateField($formattedName, $tagTemplateField);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTagTemplateField($formattedName, $tagTemplateField);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
