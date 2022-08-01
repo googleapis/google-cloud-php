@@ -26,6 +26,7 @@ class AwsProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole $cross_account_role
      *           Authentication using Google owned AWS IAM user's access key to assume
      *           into customer's AWS IAM Role.
+     *           Deprecated, do not use.
      *     @type \Google\Cloud\BigQuery\Connection\V1\AwsAccessRole $access_role
      *           Authentication using Google owned service account to assume into
      *           customer's AWS IAM Role.
@@ -39,30 +40,37 @@ class AwsProperties extends \Google\Protobuf\Internal\Message
     /**
      * Authentication using Google owned AWS IAM user's access key to assume
      * into customer's AWS IAM Role.
+     * Deprecated, do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsCrossAccountRole cross_account_role = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsCrossAccountRole cross_account_role = 2 [deprecated = true];</code>
      * @return \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole|null
+     * @deprecated
      */
     public function getCrossAccountRole()
     {
+        @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
         return $this->readOneof(2);
     }
 
     public function hasCrossAccountRole()
     {
+        @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
         return $this->hasOneof(2);
     }
 
     /**
      * Authentication using Google owned AWS IAM user's access key to assume
      * into customer's AWS IAM Role.
+     * Deprecated, do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsCrossAccountRole cross_account_role = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AwsCrossAccountRole cross_account_role = 2 [deprecated = true];</code>
      * @param \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole $var
      * @return $this
+     * @deprecated
      */
     public function setCrossAccountRole($var)
     {
+        @trigger_error('cross_account_role is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\AwsCrossAccountRole::class);
         $this->writeOneof(2, $var);
 

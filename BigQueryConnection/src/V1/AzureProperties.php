@@ -20,39 +20,39 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string application = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $application = '';
+    private $application = '';
     /**
      * Output only. The client id of the Azure Active Directory Application.
      *
      * Generated from protobuf field <code>string client_id = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $client_id = '';
+    private $client_id = '';
     /**
      * Output only. The object id of the Azure Active Directory Application.
      *
      * Generated from protobuf field <code>string object_id = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $object_id = '';
+    private $object_id = '';
     /**
      * The id of customer's directory that host the data.
      *
      * Generated from protobuf field <code>string customer_tenant_id = 4;</code>
      */
-    protected $customer_tenant_id = '';
+    private $customer_tenant_id = '';
     /**
      * The URL user will be redirected to after granting consent during connection
      * setup.
      *
      * Generated from protobuf field <code>string redirect_uri = 5;</code>
      */
-    protected $redirect_uri = '';
+    private $redirect_uri = '';
     /**
      * The client id of the user's Azure Active Directory Application used for a
      * federated connection.
      *
      * Generated from protobuf field <code>string federated_application_client_id = 6;</code>
      */
-    protected $federated_application_client_id = '';
+    private $federated_application_client_id = '';
     /**
      * Output only. A unique Google-owned and Google-generated identity for the Connection.
      * This identity will be used to access the user's Azure Active Directory
@@ -60,7 +60,7 @@ class AzureProperties extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string identity = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $identity = '';
+    private $identity = '';
 
     /**
      * Constructor.
