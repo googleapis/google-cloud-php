@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Mode
 {
     /**
-     * Default value. Defaults to
+     * Default value. In this case, server behavior defaults to
      * [Mode.AUTO][google.cloud.retail.v2.SearchRequest.PersonalizationSpec.Mode.AUTO].
      *
      * Generated from protobuf enum <code>MODE_UNSPECIFIED = 0;</code>

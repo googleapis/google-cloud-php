@@ -104,7 +104,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      *             unset or set to false.
      *           * The max summed total bytes of custom attribute keys and values per
      *             product is 5MiB.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fulfillment_types
      *           Input only. Supported fulfillment types. Valid fulfillment type values
      *           include commonly used types (such as pickup in store and same day
      *           delivery), and custom types. Customers have to map custom types to their
@@ -301,7 +301,7 @@ class LocalInventory extends \Google\Protobuf\Internal\Message
      * returned.
      *
      * Generated from protobuf field <code>repeated string fulfillment_types = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentTypes($var)

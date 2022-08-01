@@ -84,7 +84,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *           If the caller does not have permission to access the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
-     *     @type \Google\Cloud\Retail\V2\LocalInventory[]|\Google\Protobuf\Internal\RepeatedField $local_inventories
+     *     @type array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
      *           Required. A list of inventory information at difference places. Each place
      *           is identified by its place ID. At most 3000 inventories are allowed per
      *           request.
@@ -172,7 +172,7 @@ class AddLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Retail\V2\LocalInventory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocalInventories($var)

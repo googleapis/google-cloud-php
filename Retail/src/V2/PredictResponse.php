@@ -50,7 +50,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\PredictResponse\PredictionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Retail\V2\PredictResponse\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           A list of recommended products. The order represents the ranking (from the
      *           most relevant product to the least).
      *     @type string $attribution_token
@@ -58,7 +58,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      *           [UserEvent][google.cloud.retail.v2.UserEvent] logs resulting from this
      *           recommendation, which enables accurate attribution of recommendation model
      *           performance.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $missing_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $missing_ids
      *           IDs of products in the request that were missing from the inventory.
      *     @type bool $validate_only
      *           True if the validateOnly property was set in the request.
@@ -86,7 +86,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * most relevant product to the least).
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.PredictResponse.PredictionResult results = 1;</code>
-     * @param \Google\Cloud\Retail\V2\PredictResponse\PredictionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\PredictResponse\PredictionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)
@@ -144,7 +144,7 @@ class PredictResponse extends \Google\Protobuf\Internal\Message
      * IDs of products in the request that were missing from the inventory.
      *
      * Generated from protobuf field <code>repeated string missing_ids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMissingIds($var)
