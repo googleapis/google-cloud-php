@@ -41,6 +41,8 @@ use UnderflowException;
  * (https://github.com/grpc/grpc/blob/master/src/php/lib/Grpc/BaseStub.php)
  * It provides functionality to add responses, get received calls, and overrides the _simpleRequest
  * method so that the elements of $responses are returned instead of making a call to the API.
+ *
+ * @internal
  */
 trait MockStubTrait
 {

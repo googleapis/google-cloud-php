@@ -37,6 +37,9 @@ use Google\Protobuf\Internal\Message;
 use Google\Protobuf\Internal\RepeatedField;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ */
 abstract class GeneratedTest extends TestCase
 {
     public function assertProtobufEquals(&$expected, &$actual)

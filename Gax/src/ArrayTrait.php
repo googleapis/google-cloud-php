@@ -34,6 +34,8 @@ namespace Google\ApiCore;
 
 /**
  * Provides basic array helper methods.
+ *
+ * @internal
  */
 trait ArrayTrait
 {

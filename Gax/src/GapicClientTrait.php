@@ -53,6 +53,8 @@ use GuzzleHttp\Promise\PromiseInterface;
 
 /**
  * Common functions used to work with various clients.
+ *
+ * @internal
  */
 trait GapicClientTrait
 {

@@ -31,6 +31,9 @@
  */
 namespace Google\ApiCore;
 
+/**
+ * @internal
+ */
 class Version
 {
     /**

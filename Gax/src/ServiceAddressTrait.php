@@ -35,6 +35,7 @@ namespace Google\ApiCore;
 /**
  * Provides helper methods for service address handling.
  *
+ * @deprecated
  * @todo (dwsupplee) serviceAddress is deprecated now in favor of
  *        apiEndpoint. Rename the trait/method in our next major release.
  */

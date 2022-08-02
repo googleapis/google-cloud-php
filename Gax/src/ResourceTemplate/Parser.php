@@ -36,6 +36,8 @@ use Google\ApiCore\ValidationException;
 
 /**
  * Collection of methods for parsing Segments.
+ *
+ * @internal
  */
 class Parser
 {

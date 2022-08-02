@@ -31,6 +31,9 @@
  */
 namespace Google\ApiCore;
 
+/**
+ * @internal
+ */
 trait ValidationTrait
 {
     /**

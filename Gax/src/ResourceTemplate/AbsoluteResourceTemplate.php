@@ -48,6 +48,8 @@ use Google\ApiCore\ValidationException;
  * for details. A template consists of a sequence of literals, wildcards, and variable bindings,
  * where each binding can have a sub-path. A string representation can be parsed into an
  * instance of AbsoluteResourceTemplate, which can then be used to perform matching and instantiation.
+ *
+ * @internal
  */
 class AbsoluteResourceTemplate implements ResourceTemplateInterface
 {

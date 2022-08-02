@@ -41,6 +41,9 @@ use Google\ApiCore\Transport\TransportInterface;
 use Google\Rpc\Code;
 use GuzzleHttp\Promise\Promise;
 
+/**
+ * @internal
+ */
 class MockTransport implements TransportInterface
 {
     use MockStubTrait;

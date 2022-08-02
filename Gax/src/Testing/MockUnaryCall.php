@@ -41,6 +41,8 @@ use Google\Rpc\Code;
  * The MockUnaryCall object is constructed with a response object, an optional deserialize
  * method, and an optional status. The response object and status are returned immediately from the
  * wait() method.
+ *
+ * @internal
  */
 class MockUnaryCall extends \Grpc\UnaryCall
 {
