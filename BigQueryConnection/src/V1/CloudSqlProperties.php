@@ -39,6 +39,15 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.CloudSqlCredential credential = 4 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $credential = null;
+    /**
+     * Output only. The account ID of the service used for the purpose of this connection.
+     * When the connection is used in the context of an operation in
+     * BigQuery, this service account will serve as identity being used for
+     * connecting to the CloudSQL instance specified in this connection.
+     *
+     * Generated from protobuf field <code>string service_account_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $service_account_id = '';
 
     /**
      * Constructor.
@@ -54,6 +63,11 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
      *           Type of the Cloud SQL database.
      *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential $credential
      *           Input only. Cloud SQL credential.
+     *     @type string $service_account_id
+     *           Output only. The account ID of the service used for the purpose of this connection.
+     *           When the connection is used in the context of an operation in
+     *           BigQuery, this service account will serve as identity being used for
+     *           connecting to the CloudSQL instance specified in this connection.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +185,38 @@ class CloudSqlProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\CloudSqlCredential::class);
         $this->credential = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The account ID of the service used for the purpose of this connection.
+     * When the connection is used in the context of an operation in
+     * BigQuery, this service account will serve as identity being used for
+     * connecting to the CloudSQL instance specified in this connection.
+     *
+     * Generated from protobuf field <code>string service_account_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getServiceAccountId()
+    {
+        return $this->service_account_id;
+    }
+
+    /**
+     * Output only. The account ID of the service used for the purpose of this connection.
+     * When the connection is used in the context of an operation in
+     * BigQuery, this service account will serve as identity being used for
+     * connecting to the CloudSQL instance specified in this connection.
+     *
+     * Generated from protobuf field <code>string service_account_id = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccountId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account_id = $var;
 
         return $this;
     }
