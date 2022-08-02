@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GrpcEndpoint extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The target URI of the gRPC endpoint. Only UDS path is supported, and
-     * should start with “unix:”.
+     * Required. The target URI of the gRPC endpoint. Only UDS path is supported,
+     * and should start with "unix:".
      *
      * Generated from protobuf field <code>string target_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -30,8 +30,8 @@ class GrpcEndpoint extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $target_uri
-     *           Required. The target URI of the gRPC endpoint. Only UDS path is supported, and
-     *           should start with “unix:”.
+     *           Required. The target URI of the gRPC endpoint. Only UDS path is supported,
+     *           and should start with "unix:".
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class GrpcEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target URI of the gRPC endpoint. Only UDS path is supported, and
-     * should start with “unix:”.
+     * Required. The target URI of the gRPC endpoint. Only UDS path is supported,
+     * and should start with "unix:".
      *
      * Generated from protobuf field <code>string target_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -52,8 +52,8 @@ class GrpcEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The target URI of the gRPC endpoint. Only UDS path is supported, and
-     * should start with “unix:”.
+     * Required. The target URI of the gRPC endpoint. Only UDS path is supported,
+     * and should start with "unix:".
      *
      * Generated from protobuf field <code>string target_uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
