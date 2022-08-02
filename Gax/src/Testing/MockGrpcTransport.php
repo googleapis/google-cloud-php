@@ -35,6 +35,9 @@ namespace Google\ApiCore\Testing;
 use Google\ApiCore\Transport\GrpcTransport;
 use Grpc\ChannelCredentials;
 
+/**
+ * @internal
+ */
 class MockGrpcTransport extends GrpcTransport
 {
     private $requestArguments;

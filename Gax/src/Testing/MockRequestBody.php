@@ -8,6 +8,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Generated from protobuf message <code>google.apicore.testing.MockRequestBody</code>
+ *
+ * @internal
  */
 class MockRequestBody extends \Google\Protobuf\Internal\Message
 {

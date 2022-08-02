@@ -34,6 +34,9 @@ namespace Google\ApiCore\Testing;
 
 use Google\Rpc\Code;
 
+/**
+ * @internal
+ */
 class MockStatus
 {
     /** @var Code $code */

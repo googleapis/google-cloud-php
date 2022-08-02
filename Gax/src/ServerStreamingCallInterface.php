@@ -32,6 +32,9 @@
 
 namespace Google\ApiCore;
 
+/**
+ * @internal
+ */
 interface ServerStreamingCallInterface
 {
 

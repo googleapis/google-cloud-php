@@ -22,6 +22,9 @@ use Google\Protobuf\Internal\Message;
 use SebastianBergmann\Comparator\Comparator;
 use SebastianBergmann\Comparator\ComparisonFailure;
 
+/**
+ * @internal
+ */
 class ProtobufGPBEmptyComparator extends Comparator
 {
     /**

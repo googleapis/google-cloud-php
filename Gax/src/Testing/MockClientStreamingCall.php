@@ -46,6 +46,8 @@ use Grpc;
  * method, and an optional status. The response object and status are returned immediately from the
  * wait() method. It also provides a write() method that accepts request objects, and a
  * getAllRequests() method that returns all request objects passed to write(), and clears them.
+ *
+ * @internal
  */
 class MockClientStreamingCall extends Grpc\ClientStreamingCall
 {

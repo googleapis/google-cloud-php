@@ -37,7 +37,9 @@ use Doctum\Doctum;
 use Doctum\RemoteRepository\GitHubRemoteRepository;
 use Symfony\Component\Finder\Finder;
 
-
+/**
+ * @internal
+ */
 class DoctumConfigBuilder
 {
     public static function checkPhpVersion()

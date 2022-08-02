@@ -33,6 +33,9 @@ namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\Internal\Message;
 
+/**
+ * @internal
+ */
 trait SerializationTrait
 {
     protected function deserializeMessage($message, $deserialize)

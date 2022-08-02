@@ -37,6 +37,7 @@ use Google\ApiCore\ValidationException;
 /**
  * Represents a segment in a resource template. This is used internally by RelativeResourceTemplate,
  * but is not intended for public use and may change without notice.
+ *
  * @internal
  */
 class Segment
