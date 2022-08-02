@@ -73,7 +73,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Stored info type version state. Read-only, updated by the system
      *           during dictionary creation.
-     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Errors that occurred when creating this storedInfoType version, or
      *           anomalies detected in the storedInfoType data that render it unusable. Only
      *           the five most recent errors will be displayed, with the most recent error
@@ -231,7 +231,7 @@ class StoredInfoTypeVersion extends \Google\Protobuf\Internal\Message
      * not the source of the error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

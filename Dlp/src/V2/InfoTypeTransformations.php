@@ -32,7 +32,7 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[]|\Google\Protobuf\Internal\RepeatedField $transformations
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation>|\Google\Protobuf\Internal\RepeatedField $transformations
      *           Required. Transformation for each infoType. Cannot specify more than one
      *           for a given infoType.
      * }
@@ -59,7 +59,7 @@ class InfoTypeTransformations extends \Google\Protobuf\Internal\Message
      * for a given infoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeTransformations.InfoTypeTransformation transformations = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeTransformations\InfoTypeTransformation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransformations($var)

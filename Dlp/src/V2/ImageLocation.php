@@ -28,7 +28,7 @@ class ImageLocation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\BoundingBox[]|\Google\Protobuf\Internal\RepeatedField $bounding_boxes
+     *     @type array<\Google\Cloud\Dlp\V2\BoundingBox>|\Google\Protobuf\Internal\RepeatedField $bounding_boxes
      *           Bounding boxes locating the pixels within the image containing the finding.
      * }
      */
@@ -52,7 +52,7 @@ class ImageLocation extends \Google\Protobuf\Internal\Message
      * Bounding boxes locating the pixels within the image containing the finding.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BoundingBox bounding_boxes = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\BoundingBox[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\BoundingBox>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBoundingBoxes($var)

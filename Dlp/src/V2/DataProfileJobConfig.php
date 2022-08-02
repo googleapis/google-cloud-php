@@ -71,7 +71,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           The project that will run the scan. The DLP service
      *           account that exists within this project must have access to all resources
      *           that are profiled, and the Cloud DLP API must be enabled.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $inspect_templates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $inspect_templates
      *           Detection logic for profile generation.
      *           Not all template features are used by profiles. FindingLimits,
      *           include_quote and exclude_info_types have no impact on
@@ -85,7 +85,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      *           scanned.
      *           For more information, see
      *           https://cloud.google.com/dlp/docs/data-profiles#data_residency.
-     *     @type \Google\Cloud\Dlp\V2\DataProfileAction[]|\Google\Protobuf\Internal\RepeatedField $data_profile_actions
+     *     @type array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $data_profile_actions
      *           Actions to execute at the completion of the job.
      * }
      */
@@ -199,7 +199,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/dlp/docs/data-profiles#data_residency.
      *
      * Generated from protobuf field <code>repeated string inspect_templates = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInspectTemplates($var)
@@ -225,7 +225,7 @@ class DataProfileJobConfig extends \Google\Protobuf\Internal\Message
      * Actions to execute at the completion of the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DataProfileAction data_profile_actions = 6;</code>
-     * @param \Google\Cloud\Dlp\V2\DataProfileAction[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\DataProfileAction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataProfileActions($var)

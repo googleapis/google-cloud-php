@@ -40,6 +40,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string description = 4;</code>
      */
     private $description = '';
+    /**
+     * The category of the infoType.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
+     */
+    private $categories;
 
     /**
      * Constructor.
@@ -51,11 +57,13 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *           Internal name of the infoType.
      *     @type string $display_name
      *           Human readable form of the infoType name.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_by
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_by
      *           Which parts of the API supports this InfoType.
      *     @type string $description
      *           Description of the infotype. Translated when language is provided in the
      *           request.
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $categories
+     *           The category of the infoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -130,7 +138,7 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      * Which parts of the API supports this InfoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSupportedBy supported_by = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedBy($var)
@@ -165,6 +173,32 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * The category of the infoType.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getCategories()
+    {
+        return $this->categories;
+    }
+
+    /**
+     * The category of the infoType.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setCategories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\InfoTypeCategory::class);
+        $this->categories = $arr;
 
         return $this;
     }

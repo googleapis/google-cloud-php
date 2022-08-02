@@ -28,7 +28,7 @@ class Conditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\RecordCondition\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Dlp\V2\RecordCondition\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           A collection of conditions.
      * }
      */
@@ -52,7 +52,7 @@ class Conditions extends \Google\Protobuf\Internal\Message
      * A collection of conditions.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordCondition.Condition conditions = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\RecordCondition\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\RecordCondition\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)

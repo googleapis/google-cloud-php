@@ -37,7 +37,7 @@ class Error extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Rpc\Status $details
      *           Detailed error codes and messages.
-     *     @type \Google\Protobuf\Timestamp[]|\Google\Protobuf\Internal\RepeatedField $timestamps
+     *     @type array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $timestamps
      *           The times the error occurred.
      * }
      */
@@ -97,7 +97,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * The times the error occurred.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Timestamp timestamps = 2;</code>
-     * @param \Google\Protobuf\Timestamp[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Timestamp>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimestamps($var)
