@@ -22,10 +22,10 @@ class ListCloneJobsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of clone jobs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 clone jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of clone jobs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 clone jobs will
+     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -61,10 +61,10 @@ class ListCloneJobsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The parent, which owns this collection of source VMs.
      *     @type int $page_size
-     *           Optional. The maximum number of clone jobs to return. The service may return
-     *           fewer than this value. If unspecified, at most 500 clone jobs will be
-     *           returned. The maximum value is 1000; values above 1000 will be coerced to
-     *           1000.
+     *           Optional. The maximum number of clone jobs to return. The service may
+     *           return fewer than this value. If unspecified, at most 500 clone jobs will
+     *           be returned. The maximum value is 1000; values above 1000 will be coerced
+     *           to 1000.
      *     @type string $page_token
      *           Required. A page token, received from a previous `ListCloneJobs` call.
      *           Provide this to retrieve the subsequent page.
@@ -108,10 +108,10 @@ class ListCloneJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of clone jobs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 clone jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of clone jobs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 clone jobs will
+     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -122,10 +122,10 @@ class ListCloneJobsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of clone jobs to return. The service may return
-     * fewer than this value. If unspecified, at most 500 clone jobs will be
-     * returned. The maximum value is 1000; values above 1000 will be coerced to
-     * 1000.
+     * Optional. The maximum number of clone jobs to return. The service may
+     * return fewer than this value. If unspecified, at most 500 clone jobs will
+     * be returned. The maximum value is 1000; values above 1000 will be coerced
+     * to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var

@@ -572,6 +572,18 @@ return [
                     ],
                 ],
             ],
+            'UpgradeAppliance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{datacenter_connector=projects/*/locations/*/sources/*/datacenterConnectors/*}:upgradeAppliance',
+                'body' => '*',
+                'placeholders' => [
+                    'datacenter_connector' => [
+                        'getters' => [
+                            'getDatacenterConnector',
+                        ],
+                    ],
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

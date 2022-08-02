@@ -28,7 +28,7 @@ class VmwareVmsDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VMMigration\V1\VmwareVmDetails[]|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type array<\Google\Cloud\VMMigration\V1\VmwareVmDetails>|\Google\Protobuf\Internal\RepeatedField $details
      *           The details of the vmware VMs.
      * }
      */
@@ -52,7 +52,7 @@ class VmwareVmsDetails extends \Google\Protobuf\Internal\Message
      * The details of the vmware VMs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmwareVmDetails details = 1;</code>
-     * @param \Google\Cloud\VMMigration\V1\VmwareVmDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\VmwareVmDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetails($var)

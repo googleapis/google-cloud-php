@@ -22,8 +22,8 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
      */
     private $utilization_reports;
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -41,12 +41,12 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VMMigration\V1\UtilizationReport[]|\Google\Protobuf\Internal\RepeatedField $utilization_reports
+     *     @type array<\Google\Cloud\VMMigration\V1\UtilizationReport>|\Google\Protobuf\Internal\RepeatedField $utilization_reports
      *           Output only. The list of reports.
      *     @type string $next_page_token
-     *           Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Output only. A token, which can be sent as `page_token` to retrieve the
+     *           next page. If this field is omitted, there are no subsequent pages.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Output only. Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of reports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.UtilizationReport utilization_reports = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\VMMigration\V1\UtilizationReport[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\UtilizationReport>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUtilizationReports($var)
@@ -82,8 +82,8 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -94,8 +94,8 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -124,7 +124,7 @@ class ListUtilizationReportsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)
