@@ -236,6 +236,14 @@
             ]
         },
         {
+            "id": "cloud-apigee-registry",
+            "name": "google/cloud-apigee-registry",
+            "defaultService": "apigeeregistry/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-appengine-admin",
             "name": "google/cloud-appengine-admin",
             "defaultService": "appengineadmin/readme",
