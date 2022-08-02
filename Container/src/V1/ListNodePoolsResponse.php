@@ -28,7 +28,7 @@ class ListNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Container\V1\NodePool[]|\Google\Protobuf\Internal\RepeatedField $node_pools
+     *     @type array<\Google\Cloud\Container\V1\NodePool>|\Google\Protobuf\Internal\RepeatedField $node_pools
      *           A list of node pools for a cluster.
      * }
      */
@@ -52,7 +52,7 @@ class ListNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of node pools for a cluster.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodePool node_pools = 1;</code>
-     * @param \Google\Cloud\Container\V1\NodePool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\NodePool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodePools($var)

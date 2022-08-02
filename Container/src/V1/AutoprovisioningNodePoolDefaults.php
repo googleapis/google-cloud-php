@@ -49,7 +49,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      * This field is deprecated, min_cpu_platform should be specified using
-     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
+     * https://cloud.google.com/requested-min-cpu-platform label selector on the
+     * pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -103,7 +104,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           Scopes that are used by NAP when creating node pools.
      *     @type string $service_account
      *           The Google Cloud Platform Service Account to be used by the node VMs.
@@ -120,7 +121,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           information, read [how to specify min CPU
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *           This field is deprecated, min_cpu_platform should be specified using
-     *           cloud.google.com/requested-min-cpu-platform label selector on the pod.
+     *           https://cloud.google.com/requested-min-cpu-platform label selector on the
+     *           pod.
      *           To unset the min cpu platform field pass "automatic"
      *           as field value.
      *     @type int $disk_size_gb
@@ -164,7 +166,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * Scopes that are used by NAP when creating node pools.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -282,7 +284,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      * This field is deprecated, min_cpu_platform should be specified using
-     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
+     * https://cloud.google.com/requested-min-cpu-platform label selector on the
+     * pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *
@@ -305,7 +308,8 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * information, read [how to specify min CPU
      * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      * This field is deprecated, min_cpu_platform should be specified using
-     * cloud.google.com/requested-min-cpu-platform label selector on the pod.
+     * https://cloud.google.com/requested-min-cpu-platform label selector on the
+     * pod.
      * To unset the min cpu platform field pass "automatic"
      * as field value.
      *

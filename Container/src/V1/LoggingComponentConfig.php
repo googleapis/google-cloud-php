@@ -28,7 +28,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $enable_components
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $enable_components
      *           Select components to collect logs. An empty set would disable all logging.
      * }
      */
@@ -52,7 +52,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * Select components to collect logs. An empty set would disable all logging.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnableComponents($var)

@@ -44,7 +44,7 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      *           The release channel this configuration applies to.
      *     @type string $default_version
      *           The default version for newly created clusters on the channel.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_versions
      *           List of valid versions for the channel.
      * }
      */
@@ -120,7 +120,7 @@ class ReleaseChannelConfig extends \Google\Protobuf\Internal\Message
      * List of valid versions for the channel.
      *
      * Generated from protobuf field <code>repeated string valid_versions = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidVersions($var)

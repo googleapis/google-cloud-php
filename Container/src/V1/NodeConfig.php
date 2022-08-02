@@ -282,7 +282,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Size of the disk attached to each node, specified in GB.
      *           The smallest allowed disk size is 10GB.
      *           If unspecified, the default disk size is 100GB.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           The set of Google API scopes to be made available on all of the
      *           node VMs under the "default" service account.
      *           The following scopes are recommended, but not required, and by default are
@@ -346,7 +346,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           disks available on a machine per zone. See:
      *           https://cloud.google.com/compute/docs/disks/local-ssd
      *           for more information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The list of instance tags applied to all nodes. Tags are used to identify
      *           valid sources or targets for network firewalls and are specified by
      *           the client during cluster or node pool creation. Each tag within the list
@@ -355,7 +355,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Whether the nodes are created as preemptible VM instances. See:
      *           https://cloud.google.com/compute/docs/instances/preemptible for more
      *           information about preemptible VM instances.
-     *     @type \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           A list of hardware accelerators to be attached to each node.
      *           See https://cloud.google.com/compute/docs/gpus for more information about
      *           support for GPUs.
@@ -373,7 +373,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
      *           The workload metadata configuration for this node.
-     *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           List of kubernetes taints to be applied to each node.
      *           For more information, including usage and the valid values, see:
      *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -518,7 +518,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Monitoring are enabled, in which case their required scopes will be added.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -762,7 +762,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * must comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -822,7 +822,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
-     * @param \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -956,7 +956,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
-     * @param \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)
