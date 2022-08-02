@@ -51,7 +51,7 @@ class Interleave extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $filters
      *           The elements of "filters" all process a copy of the input row, and the
      *           results are pooled, sorted, and combined into a single output row.
      *           If multiple cells are produced with the same column and timestamp,
@@ -141,7 +141,7 @@ class Interleave extends \Google\Protobuf\Internal\Message
      * All interleaved filters are executed atomically.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.RowFilter filters = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\RowFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\RowFilter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilters($var)

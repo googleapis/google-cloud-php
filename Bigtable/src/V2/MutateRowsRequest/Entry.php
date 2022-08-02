@@ -39,7 +39,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      *
      *     @type string $row_key
      *           The key of the row to which the `mutations` should be applied.
-     *     @type \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $mutations
+     *     @type array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $mutations
      *           Required. Changes to be atomically applied to the specified row. Mutations are
      *           applied in order, meaning that earlier mutations can be masked by
      *           later ones.
@@ -98,7 +98,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      * You must specify at least one mutation.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Mutation mutations = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Bigtable\V2\Mutation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\Mutation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutations($var)

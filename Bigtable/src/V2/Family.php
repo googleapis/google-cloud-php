@@ -47,7 +47,7 @@ class Family extends \Google\Protobuf\Internal\Message
      *           Must match `[-_.a-zA-Z0-9]+`, except that AggregatingRowProcessors may
      *           produce cells in a sentinel family with an empty name.
      *           Must be no greater than 64 characters in length.
-     *     @type \Google\Cloud\Bigtable\V2\Column[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type array<\Google\Cloud\Bigtable\V2\Column>|\Google\Protobuf\Internal\RepeatedField $columns
      *           Must not be empty. Sorted in order of increasing "qualifier".
      * }
      */
@@ -107,7 +107,7 @@ class Family extends \Google\Protobuf\Internal\Message
      * Must not be empty. Sorted in order of increasing "qualifier".
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Column columns = 2;</code>
-     * @param \Google\Cloud\Bigtable\V2\Column[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\Column>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumns($var)

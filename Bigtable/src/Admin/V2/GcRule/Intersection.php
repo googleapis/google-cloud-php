@@ -28,7 +28,7 @@ class Intersection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\GcRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\GcRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           Only delete cells which would be deleted by every element of `rules`.
      * }
      */
@@ -52,7 +52,7 @@ class Intersection extends \Google\Protobuf\Internal\Message
      * Only delete cells which would be deleted by every element of `rules`.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.GcRule rules = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\GcRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\GcRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)
