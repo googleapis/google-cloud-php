@@ -54,7 +54,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      *           - `projects/<Project ID>/locations/<Location
      *              ID>/agent/environments/<Environment ID>`
      *           The environment ID for the default environment is `-`.
-     *     @type \Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           Output only. The list of agent environments. There will be a maximum number of items
      *           returned based on the page_size field in the request.
      *     @type string $next_page_token
@@ -120,7 +120,7 @@ class EnvironmentHistory extends \Google\Protobuf\Internal\Message
      * returned based on the page_size field in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.EnvironmentHistory.Entry entries = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

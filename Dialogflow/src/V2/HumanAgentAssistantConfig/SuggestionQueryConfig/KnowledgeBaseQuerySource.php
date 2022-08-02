@@ -32,7 +32,7 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $knowledge_bases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $knowledge_bases
      *           Required. Knowledge bases to query. Format:
      *           `projects/<Project ID>/locations/<Location
      *           ID>/knowledgeBases/<Knowledge Base ID>`. Currently, at most 5 knowledge
@@ -65,7 +65,7 @@ class KnowledgeBaseQuerySource extends \Google\Protobuf\Internal\Message
      * bases are supported.
      *
      * Generated from protobuf field <code>repeated string knowledge_bases = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKnowledgeBases($var)

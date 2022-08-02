@@ -60,7 +60,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      *           Required, unless image is present. The body text of the card.
      *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Image $image
      *           Optional. The image for the card.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[]|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
      *           Optional. The collection of card buttons.
      * }
      */
@@ -198,7 +198,7 @@ class BasicCard extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.BasicCard.Button buttons = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\BasicCard\Button>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setButtons($var)

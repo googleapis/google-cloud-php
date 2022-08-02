@@ -106,7 +106,7 @@ class Document extends \Google\Protobuf\Internal\Message
      *           less; otherwise, the creation request fails.
      *     @type string $mime_type
      *           Required. The MIME type of this document.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $knowledge_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $knowledge_types
      *           Required. The knowledge type of document content.
      *     @type string $content_uri
      *           The URI where the file content is located.
@@ -252,7 +252,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Required. The knowledge type of document content.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Document.KnowledgeType knowledge_types = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKnowledgeTypes($var)
