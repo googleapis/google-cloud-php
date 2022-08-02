@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DeleteProduct][] method.
+ * Request message for
+ * [ProductService.DeleteProduct][google.cloud.retail.v2.ProductService.DeleteProduct]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.DeleteProductRequest</code>
  */

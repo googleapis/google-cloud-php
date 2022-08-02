@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata related to the progress of the RemoveFulfillmentPlaces operation.
  * Currently empty because there is no meaningful metadata populated from the
- * [RemoveFulfillmentPlaces][] method.
+ * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveFulfillmentPlacesMetadata</code>
  */

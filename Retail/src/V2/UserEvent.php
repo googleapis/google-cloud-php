@@ -319,7 +319,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           Only required for
      *           [UserEventService.ImportUserEvents][google.cloud.retail.v2.UserEventService.ImportUserEvents]
      *           method. Timestamp of when the user event happened.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $experiment_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $experiment_ids
      *           A list of identifiers for the independent experiment groups this user event
      *           belongs to. This is used to distinguish between user events associated with
      *           different experiment setups (e.g. using Retail API, using different
@@ -346,7 +346,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           K's page, log the
      *           [PredictResponse.attribution_token][google.cloud.retail.v2.PredictResponse.attribution_token]
      *           to this field.
-     *     @type \Google\Cloud\Retail\V2\ProductDetail[]|\Google\Protobuf\Internal\RepeatedField $product_details
+     *     @type array<\Google\Cloud\Retail\V2\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $product_details
      *           The main product details related to the event.
      *           This field is optional except for the following event types:
      *           * `add-to-cart`
@@ -426,7 +426,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      *           If this field is negative, an INVALID_ARGUMENT is returned.
      *           This can only be set for `search` events. Other event types should not set
      *           this field. Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $page_categories
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $page_categories
      *           The categories associated with a category page.
      *           To represent full path of category, use '>' sign to separate different
      *           hierarchies. If '>' is part of the category name, please replace it with
@@ -661,7 +661,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * recommendation models).
      *
      * Generated from protobuf field <code>repeated string experiment_ids = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExperimentIds($var)
@@ -775,7 +775,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * desired. The end user may have not finished browsing the whole page yet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.ProductDetail product_details = 6;</code>
-     * @param \Google\Cloud\Retail\V2\ProductDetail[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\ProductDetail>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProductDetails($var)
@@ -1153,7 +1153,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string page_categories = 11;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPageCategories($var)

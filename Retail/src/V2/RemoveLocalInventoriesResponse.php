@@ -9,8 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response of the [RemoveLocalInventories][] API.  Currently empty because
- * there is no meaningful response populated from the [RemoveLocalInventories][]
+ * Response of the
+ * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+ * API.  Currently empty because there is no meaningful response populated from
+ * the
+ * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
  * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveLocalInventoriesResponse</code>

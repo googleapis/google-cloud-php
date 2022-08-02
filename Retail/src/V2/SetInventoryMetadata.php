@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata related to the progress of the SetInventory operation.
  * Currently empty because there is no meaningful metadata populated from the
- * [SetInventory][] method.
+ * [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.SetInventoryMetadata</code>
  */

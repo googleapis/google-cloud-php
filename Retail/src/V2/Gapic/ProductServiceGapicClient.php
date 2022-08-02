@@ -410,8 +410,9 @@ class ProductServiceGapicClient
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, the added place IDs are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -479,7 +480,8 @@ class ProductServiceGapicClient
      *                               If this field is set to an invalid value other than these, an
      *                               INVALID_ARGUMENT error is returned.
      *
-     *                               This field directly corresponds to [Product.fulfillment_info.type][].
+     *                               This field directly corresponds to
+     *                               [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      * @param string[] $placeIds     Required. The IDs for this
      *                               [type][google.cloud.retail.v2.AddFulfillmentPlacesRequest.type], such as
      *                               the store IDs for "pickup-in-store" or the region IDs for
@@ -510,10 +512,9 @@ class ProductServiceGapicClient
      *           NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -565,13 +566,15 @@ class ProductServiceGapicClient
      * and processed downstream. As a consequence, when a response is returned,
      * updates are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * Local inventory information can only be modified using this method.
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct] has no
-     * effect on local inventories.
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * has no effect on local inventories.
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -653,10 +656,9 @@ class ProductServiceGapicClient
      *           created. If set to false, a NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -737,10 +739,9 @@ class ProductServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\Product
@@ -812,10 +813,9 @@ class ProductServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -868,10 +868,9 @@ class ProductServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\Product
@@ -983,10 +982,9 @@ class ProductServiceGapicClient
      *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
      *           is set to `FULL`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1135,10 +1133,9 @@ class ProductServiceGapicClient
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1191,8 +1188,9 @@ class ProductServiceGapicClient
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, the removed place IDs are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -1287,10 +1285,9 @@ class ProductServiceGapicClient
      *           NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1340,13 +1337,15 @@ class ProductServiceGapicClient
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, removals are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * Local inventory information can only be removed using this method.
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct] has no
-     * effect on local inventories.
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * has no effect on local inventories.
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -1412,10 +1411,9 @@ class ProductServiceGapicClient
      *           NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1465,18 +1463,21 @@ class ProductServiceGapicClient
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, updates are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * When inventory is updated with
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct], the
-     * specified inventory field value(s) will overwrite any existing value(s)
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct],
+     * the specified inventory field value(s) will overwrite any existing value(s)
      * while ignoring the last update time for this field. Furthermore, the last
      * update time for the specified inventory fields will be overwritten to the
      * time of the
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] or
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * or
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
      * request.
      *
      * If no inventory fields are set in
@@ -1488,10 +1489,10 @@ class ProductServiceGapicClient
      * then any existing inventory information will be preserved.
      *
      * Pre-existing inventory information can only be updated with
-     * [SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
+     * [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
      * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
      * and
-     * [RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -1534,6 +1535,7 @@ class ProductServiceGapicClient
      *
      * @param Product $inventory    Required. The inventory information to update. The allowable fields to
      *                              update are:
+     *
      *                              * [Product.price_info][google.cloud.retail.v2.Product.price_info]
      *                              * [Product.availability][google.cloud.retail.v2.Product.availability]
      *                              * [Product.available_quantity][google.cloud.retail.v2.Product.available_quantity]
@@ -1541,8 +1543,9 @@ class ProductServiceGapicClient
      *                              The updated inventory fields must be specified in
      *                              [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask].
      *
-     *                              If [SetInventoryRequest.inventory.name][] is empty or invalid, an
-     *                              INVALID_ARGUMENT error is returned.
+     *                              If
+     *                              [SetInventoryRequest.inventory.name][google.cloud.retail.v2.Product.name]
+     *                              is empty or invalid, an INVALID_ARGUMENT error is returned.
      *
      *                              If the caller does not have permission to update the
      *                              [Product][google.cloud.retail.v2.Product] named in
@@ -1565,7 +1568,8 @@ class ProductServiceGapicClient
      *                              * Adds "fulfillment_info" in
      *                              [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
      *                              * Specifies only the desired fulfillment types and corresponding place IDs
-     *                              to update in [SetInventoryRequest.inventory.fulfillment_info][]
+     *                              to update in
+     *                              [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      *
      *                              The caller can clear all place IDs from a subset of fulfillment types in
      *                              the following ways:
@@ -1573,9 +1577,9 @@ class ProductServiceGapicClient
      *                              * Adds "fulfillment_info" in
      *                              [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask]
      *                              * Specifies only the desired fulfillment types to clear in
-     *                              [SetInventoryRequest.inventory.fulfillment_info][]
+     *                              [SetInventoryRequest.inventory.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      *                              * Checks that only the desired fulfillment info types have empty
-     *                              [SetInventoryRequest.inventory.fulfillment_info.place_ids][]
+     *                              [SetInventoryRequest.inventory.fulfillment_info.place_ids][google.cloud.retail.v2.FulfillmentInfo.place_ids]
      *
      *                              The last update time is recorded for the following inventory fields:
      *                              * [Product.price_info][google.cloud.retail.v2.Product.price_info]
@@ -1584,7 +1588,9 @@ class ProductServiceGapicClient
      *                              * [Product.fulfillment_info][google.cloud.retail.v2.Product.fulfillment_info]
      *
      *                              If a full overwrite of inventory information while ignoring timestamps is
-     *                              needed, [UpdateProduct][] should be invoked instead.
+     *                              needed,
+     *                              [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     *                              should be invoked instead.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -1608,10 +1614,9 @@ class ProductServiceGapicClient
      *           false, a NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1695,10 +1700,9 @@ class ProductServiceGapicClient
      *           found, a new [Product][google.cloud.retail.v2.Product] will be created. In
      *           this situation, `update_mask` is ignored.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\Product
