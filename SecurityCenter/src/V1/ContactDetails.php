@@ -28,7 +28,7 @@ class ContactDetails extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\Contact[]|\Google\Protobuf\Internal\RepeatedField $contacts
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $contacts
      *           A list of contacts
      * }
      */
@@ -52,7 +52,7 @@ class ContactDetails extends \Google\Protobuf\Internal\Message
      * A list of contacts
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Contact contacts = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Contact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Contact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContacts($var)

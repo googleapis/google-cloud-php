@@ -35,7 +35,7 @@ class ListSourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1p1beta1\Source[]|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type array<\Google\Cloud\SecurityCenter\V1p1beta1\Source>|\Google\Protobuf\Internal\RepeatedField $sources
      *           Sources belonging to the requested parent.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListSourcesResponse extends \Google\Protobuf\Internal\Message
      * Sources belonging to the requested parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1p1beta1.Source sources = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1p1beta1\Source[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1p1beta1\Source>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSources($var)

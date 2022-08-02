@@ -47,7 +47,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
      *           etc.
      *     @type string $version
      *           Version of the standard/benchmark e.g. 1.1
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
      *           Policies within the standard/benchmark e.g. A.12.4.1
      * }
      */
@@ -125,7 +125,7 @@ class Compliance extends \Google\Protobuf\Internal\Message
      * Policies within the standard/benchmark e.g. A.12.4.1
      *
      * Generated from protobuf field <code>repeated string ids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIds($var)

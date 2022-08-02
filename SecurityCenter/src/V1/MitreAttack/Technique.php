@@ -206,6 +206,12 @@ class Technique
      * Generated from protobuf enum <code>IMPAIR_DEFENSES = 31;</code>
      */
     const IMPAIR_DEFENSES = 31;
+    /**
+     * T1046
+     *
+     * Generated from protobuf enum <code>NETWORK_SERVICE_DISCOVERY = 32;</code>
+     */
+    const NETWORK_SERVICE_DISCOVERY = 32;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
@@ -240,6 +246,7 @@ class Technique
         self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
         self::DOMAIN_POLICY_MODIFICATION => 'DOMAIN_POLICY_MODIFICATION',
         self::IMPAIR_DEFENSES => 'IMPAIR_DEFENSES',
+        self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
     ];
 
     public static function name($value)
