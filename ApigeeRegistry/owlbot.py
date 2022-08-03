@@ -38,6 +38,15 @@ php.owlbot_main(
     ]
 )
 
+# remove class_alias code
+s.replace(
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
+
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",
