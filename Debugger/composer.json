@@ -16,7 +16,7 @@
         "squizlabs/php_codesniffer": "2.*",
         "phpdocumentor/reflection": "^3.0||^4.0",
         "erusev/parsedown": "^1.6",
-        "google/cloud-tools": "^0.12.0"
+        "google/cloud-tools": "^0.13.0"
     },
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
