@@ -8,7 +8,7 @@
         },
 	{
             "title": "OperationsClient",
-            "type": "longrunning\/apicore\/longrunning\/operationsclient"
+            "type": "longrunning\/apicore"
         }
     ],
     "pattern": "longrunning\/\\w{1,}"
