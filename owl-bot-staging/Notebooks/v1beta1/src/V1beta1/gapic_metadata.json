@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.notebooks.v1beta1",
+    "libraryPackage": "Google\\Cloud\\Notebooks\\V1beta1",
+    "services": {
+        "NotebookService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NotebookServiceGapicClient",
+                    "rpcs": {
+                        "CreateEnvironment": {
+                            "methods": [
+                                "createEnvironment"
+                            ]
+                        },
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "DeleteEnvironment": {
+                            "methods": [
+                                "deleteEnvironment"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "GetEnvironment": {
+                            "methods": [
+                                "getEnvironment"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "IsInstanceUpgradeable": {
+                            "methods": [
+                                "isInstanceUpgradeable"
+                            ]
+                        },
+                        "ListEnvironments": {
+                            "methods": [
+                                "listEnvironments"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "RegisterInstance": {
+                            "methods": [
+                                "registerInstance"
+                            ]
+                        },
+                        "ReportInstanceInfo": {
+                            "methods": [
+                                "reportInstanceInfo"
+                            ]
+                        },
+                        "ResetInstance": {
+                            "methods": [
+                                "resetInstance"
+                            ]
+                        },
+                        "SetInstanceAccelerator": {
+                            "methods": [
+                                "setInstanceAccelerator"
+                            ]
+                        },
+                        "SetInstanceLabels": {
+                            "methods": [
+                                "setInstanceLabels"
+                            ]
+                        },
+                        "SetInstanceMachineType": {
+                            "methods": [
+                                "setInstanceMachineType"
+                            ]
+                        },
+                        "StartInstance": {
+                            "methods": [
+                                "startInstance"
+                            ]
+                        },
+                        "StopInstance": {
+                            "methods": [
+                                "stopInstance"
+                            ]
+                        },
+                        "UpgradeInstance": {
+                            "methods": [
+                                "upgradeInstance"
+                            ]
+                        },
+                        "UpgradeInstanceInternal": {
+                            "methods": [
+                                "upgradeInstanceInternal"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

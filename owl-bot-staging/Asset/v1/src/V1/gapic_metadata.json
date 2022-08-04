@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.asset.v1",
+    "libraryPackage": "Google\\Cloud\\Asset\\V1",
+    "services": {
+        "AssetService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AssetServiceGapicClient",
+                    "rpcs": {
+                        "AnalyzeIamPolicy": {
+                            "methods": [
+                                "analyzeIamPolicy"
+                            ]
+                        },
+                        "AnalyzeIamPolicyLongrunning": {
+                            "methods": [
+                                "analyzeIamPolicyLongrunning"
+                            ]
+                        },
+                        "AnalyzeMove": {
+                            "methods": [
+                                "analyzeMove"
+                            ]
+                        },
+                        "BatchGetAssetsHistory": {
+                            "methods": [
+                                "batchGetAssetsHistory"
+                            ]
+                        },
+                        "BatchGetEffectiveIamPolicies": {
+                            "methods": [
+                                "batchGetEffectiveIamPolicies"
+                            ]
+                        },
+                        "CreateFeed": {
+                            "methods": [
+                                "createFeed"
+                            ]
+                        },
+                        "CreateSavedQuery": {
+                            "methods": [
+                                "createSavedQuery"
+                            ]
+                        },
+                        "DeleteFeed": {
+                            "methods": [
+                                "deleteFeed"
+                            ]
+                        },
+                        "DeleteSavedQuery": {
+                            "methods": [
+                                "deleteSavedQuery"
+                            ]
+                        },
+                        "ExportAssets": {
+                            "methods": [
+                                "exportAssets"
+                            ]
+                        },
+                        "GetFeed": {
+                            "methods": [
+                                "getFeed"
+                            ]
+                        },
+                        "GetSavedQuery": {
+                            "methods": [
+                                "getSavedQuery"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListFeeds": {
+                            "methods": [
+                                "listFeeds"
+                            ]
+                        },
+                        "ListSavedQueries": {
+                            "methods": [
+                                "listSavedQueries"
+                            ]
+                        },
+                        "SearchAllIamPolicies": {
+                            "methods": [
+                                "searchAllIamPolicies"
+                            ]
+                        },
+                        "SearchAllResources": {
+                            "methods": [
+                                "searchAllResources"
+                            ]
+                        },
+                        "UpdateFeed": {
+                            "methods": [
+                                "updateFeed"
+                            ]
+                        },
+                        "UpdateSavedQuery": {
+                            "methods": [
+                                "updateSavedQuery"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

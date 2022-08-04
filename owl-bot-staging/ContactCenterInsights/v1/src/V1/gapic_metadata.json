@@ -1,0 +1,188 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.contactcenterinsights.v1",
+    "libraryPackage": "Google\\Cloud\\ContactCenterInsights\\V1",
+    "services": {
+        "ContactCenterInsights": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ContactCenterInsightsGapicClient",
+                    "rpcs": {
+                        "CalculateIssueModelStats": {
+                            "methods": [
+                                "calculateIssueModelStats"
+                            ]
+                        },
+                        "CalculateStats": {
+                            "methods": [
+                                "calculateStats"
+                            ]
+                        },
+                        "CreateAnalysis": {
+                            "methods": [
+                                "createAnalysis"
+                            ]
+                        },
+                        "CreateConversation": {
+                            "methods": [
+                                "createConversation"
+                            ]
+                        },
+                        "CreateIssueModel": {
+                            "methods": [
+                                "createIssueModel"
+                            ]
+                        },
+                        "CreatePhraseMatcher": {
+                            "methods": [
+                                "createPhraseMatcher"
+                            ]
+                        },
+                        "CreateView": {
+                            "methods": [
+                                "createView"
+                            ]
+                        },
+                        "DeleteAnalysis": {
+                            "methods": [
+                                "deleteAnalysis"
+                            ]
+                        },
+                        "DeleteConversation": {
+                            "methods": [
+                                "deleteConversation"
+                            ]
+                        },
+                        "DeleteIssueModel": {
+                            "methods": [
+                                "deleteIssueModel"
+                            ]
+                        },
+                        "DeletePhraseMatcher": {
+                            "methods": [
+                                "deletePhraseMatcher"
+                            ]
+                        },
+                        "DeleteView": {
+                            "methods": [
+                                "deleteView"
+                            ]
+                        },
+                        "DeployIssueModel": {
+                            "methods": [
+                                "deployIssueModel"
+                            ]
+                        },
+                        "ExportInsightsData": {
+                            "methods": [
+                                "exportInsightsData"
+                            ]
+                        },
+                        "GetAnalysis": {
+                            "methods": [
+                                "getAnalysis"
+                            ]
+                        },
+                        "GetConversation": {
+                            "methods": [
+                                "getConversation"
+                            ]
+                        },
+                        "GetIssue": {
+                            "methods": [
+                                "getIssue"
+                            ]
+                        },
+                        "GetIssueModel": {
+                            "methods": [
+                                "getIssueModel"
+                            ]
+                        },
+                        "GetPhraseMatcher": {
+                            "methods": [
+                                "getPhraseMatcher"
+                            ]
+                        },
+                        "GetSettings": {
+                            "methods": [
+                                "getSettings"
+                            ]
+                        },
+                        "GetView": {
+                            "methods": [
+                                "getView"
+                            ]
+                        },
+                        "ListAnalyses": {
+                            "methods": [
+                                "listAnalyses"
+                            ]
+                        },
+                        "ListConversations": {
+                            "methods": [
+                                "listConversations"
+                            ]
+                        },
+                        "ListIssueModels": {
+                            "methods": [
+                                "listIssueModels"
+                            ]
+                        },
+                        "ListIssues": {
+                            "methods": [
+                                "listIssues"
+                            ]
+                        },
+                        "ListPhraseMatchers": {
+                            "methods": [
+                                "listPhraseMatchers"
+                            ]
+                        },
+                        "ListViews": {
+                            "methods": [
+                                "listViews"
+                            ]
+                        },
+                        "UndeployIssueModel": {
+                            "methods": [
+                                "undeployIssueModel"
+                            ]
+                        },
+                        "UpdateConversation": {
+                            "methods": [
+                                "updateConversation"
+                            ]
+                        },
+                        "UpdateIssue": {
+                            "methods": [
+                                "updateIssue"
+                            ]
+                        },
+                        "UpdateIssueModel": {
+                            "methods": [
+                                "updateIssueModel"
+                            ]
+                        },
+                        "UpdatePhraseMatcher": {
+                            "methods": [
+                                "updatePhraseMatcher"
+                            ]
+                        },
+                        "UpdateSettings": {
+                            "methods": [
+                                "updateSettings"
+                            ]
+                        },
+                        "UpdateView": {
+                            "methods": [
+                                "updateView"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

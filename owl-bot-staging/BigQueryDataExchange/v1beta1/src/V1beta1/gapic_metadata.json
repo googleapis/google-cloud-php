@@ -1,0 +1,93 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.bigquery.dataexchange.v1beta1",
+    "libraryPackage": "Google\\Cloud\\BigQuery\\DataExchange\\V1beta1",
+    "services": {
+        "AnalyticsHubService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AnalyticsHubServiceGapicClient",
+                    "rpcs": {
+                        "CreateDataExchange": {
+                            "methods": [
+                                "createDataExchange"
+                            ]
+                        },
+                        "CreateListing": {
+                            "methods": [
+                                "createListing"
+                            ]
+                        },
+                        "DeleteDataExchange": {
+                            "methods": [
+                                "deleteDataExchange"
+                            ]
+                        },
+                        "DeleteListing": {
+                            "methods": [
+                                "deleteListing"
+                            ]
+                        },
+                        "GetDataExchange": {
+                            "methods": [
+                                "getDataExchange"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetListing": {
+                            "methods": [
+                                "getListing"
+                            ]
+                        },
+                        "ListDataExchanges": {
+                            "methods": [
+                                "listDataExchanges"
+                            ]
+                        },
+                        "ListListings": {
+                            "methods": [
+                                "listListings"
+                            ]
+                        },
+                        "ListOrgDataExchanges": {
+                            "methods": [
+                                "listOrgDataExchanges"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "SubscribeListing": {
+                            "methods": [
+                                "subscribeListing"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateDataExchange": {
+                            "methods": [
+                                "updateDataExchange"
+                            ]
+                        },
+                        "UpdateListing": {
+                            "methods": [
+                                "updateListing"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
