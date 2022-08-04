@@ -166,7 +166,7 @@ class Address extends \Google\Protobuf\Internal\Message
      *           Check the Status enum for the list of possible values.
      *     @type string $subnetwork
      *           The URL of the subnetwork in which to reserve the address. If an IP address is specified, it must be within the subnetwork's IP range. This field can only be used with INTERNAL type with a GCE_ENDPOINT or DNS_RESOLVER purpose.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
      *           [Output Only] The URLs of the resources that are using this address.
      * }
      */
@@ -776,7 +776,7 @@ class Address extends \Google\Protobuf\Internal\Message
      * [Output Only] The URLs of the resources that are using this address.
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsers($var)

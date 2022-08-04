@@ -60,7 +60,7 @@ class RegionInstanceGroupList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\InstanceGroup[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of InstanceGroup resources.
      *     @type string $kind
      *           The resource type.
@@ -128,7 +128,7 @@ class RegionInstanceGroupList extends \Google\Protobuf\Internal\Message
      * A list of InstanceGroup resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceGroup items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

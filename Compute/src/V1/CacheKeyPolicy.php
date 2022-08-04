@@ -66,17 +66,17 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $include_host
      *           If true, requests to different hosts will be cached separately.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_http_headers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_http_headers
      *           Allows HTTP request headers (by name) to be used in the cache key.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_named_cookies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_named_cookies
      *           Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
      *     @type bool $include_protocol
      *           If true, http and https requests will be cached separately.
      *     @type bool $include_query_string
      *           If true, include query string parameters in the cache key according to query_string_whitelist and query_string_blacklist. If neither is set, the entire query string will be included. If false, the query string will be excluded from the cache key entirely.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $query_string_blacklist
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_string_blacklist
      *           Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
      *           Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      * }
      */
@@ -136,7 +136,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Allows HTTP request headers (by name) to be used in the cache key.
      *
      * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeHttpHeaders($var)
@@ -162,7 +162,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Allows HTTP cookies (by name) to be used in the cache key. The name=value pair will be used in the cache key Cloud CDN generates.
      *
      * Generated from protobuf field <code>repeated string include_named_cookies = 87316530;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeNamedCookies($var)
@@ -260,7 +260,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Names of query string parameters to exclude in cache keys. All other parameters will be included. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_blacklist = 354964742;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQueryStringBlacklist($var)
@@ -286,7 +286,7 @@ class CacheKeyPolicy extends \Google\Protobuf\Internal\Message
      * Names of query string parameters to include in cache keys. All other parameters will be excluded. Either specify query_string_whitelist or query_string_blacklist, not both. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQueryStringWhitelist($var)

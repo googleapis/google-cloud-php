@@ -85,7 +85,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#licenseCode for licenses.
-     *     @type \Google\Cloud\Compute\V1\LicenseCodeLicenseAlias[]|\Google\Protobuf\Internal\RepeatedField $license_alias
+     *     @type array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $license_alias
      *           [Output Only] URL and description aliases of Licenses with the same License Code.
      *     @type string $name
      *           [Output Only] Name of the resource. The name is 1-20 characters long and must be a valid 64 bit integer.
@@ -262,7 +262,7 @@ class LicenseCode extends \Google\Protobuf\Internal\Message
      * [Output Only] URL and description aliases of Licenses with the same License Code.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LicenseCodeLicenseAlias license_alias = 43550930;</code>
-     * @param \Google\Cloud\Compute\V1\LicenseCodeLicenseAlias[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LicenseCodeLicenseAlias>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseAlias($var)

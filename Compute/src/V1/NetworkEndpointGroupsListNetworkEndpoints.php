@@ -53,7 +53,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of NetworkEndpointWithHealthStatus resources.
      *     @type string $kind
      *           [Output Only] The resource type, which is always compute#networkEndpointGroupsListNetworkEndpoints for the list of network endpoints in the specified network endpoint group.
@@ -119,7 +119,7 @@ class NetworkEndpointGroupsListNetworkEndpoints extends \Google\Protobuf\Interna
      * A list of NetworkEndpointWithHealthStatus resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointWithHealthStatus items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

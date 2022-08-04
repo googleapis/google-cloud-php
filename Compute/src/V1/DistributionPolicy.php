@@ -37,7 +37,7 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $target_shape
      *           The distribution shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
      *           Check the TargetShape enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration[]|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $zones
      *           Zones where the regional managed instance group will create and manage its instances.
      * }
      */
@@ -99,7 +99,7 @@ class DistributionPolicy extends \Google\Protobuf\Internal\Message
      * Zones where the regional managed instance group will create and manage its instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DistributionPolicyZoneConfiguration zones = 116085319;</code>
-     * @param \Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\DistributionPolicyZoneConfiguration>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setZones($var)

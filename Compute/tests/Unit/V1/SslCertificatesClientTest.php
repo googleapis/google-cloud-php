@@ -79,7 +79,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -100,7 +100,7 @@ class SslCertificatesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -123,7 +123,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -140,8 +140,8 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -164,7 +164,7 @@ class SslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -182,7 +182,7 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->delete($project, $sslCertificate);
+        $response = $gapicClient->delete($project, $sslCertificate);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -226,7 +226,7 @@ class SslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,7 +250,7 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->delete($project, $sslCertificate);
+        $response = $gapicClient->delete($project, $sslCertificate);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -276,7 +276,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -308,7 +308,7 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslCertificate = 'sslCertificate-1027298332';
-        $response = $client->get($project, $sslCertificate);
+        $response = $gapicClient->get($project, $sslCertificate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -328,7 +328,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -346,8 +346,8 @@ class SslCertificatesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $sslCertificate = 'sslCertificate-1027298332';
         try {
-            $client->get($project, $sslCertificate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $sslCertificate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -370,7 +370,7 @@ class SslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -388,7 +388,7 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslCertificateResource = new SslCertificate();
-        $response = $client->insert($project, $sslCertificateResource);
+        $response = $gapicClient->insert($project, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -432,7 +432,7 @@ class SslCertificatesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -456,7 +456,7 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $sslCertificateResource = new SslCertificate();
-        $response = $client->insert($project, $sslCertificateResource);
+        $response = $gapicClient->insert($project, $sslCertificateResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -482,7 +482,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -504,7 +504,7 @@ class SslCertificatesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -525,7 +525,7 @@ class SslCertificatesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -542,8 +542,8 @@ class SslCertificatesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

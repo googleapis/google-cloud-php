@@ -33,7 +33,7 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AcceleratorType[]|\Google\Protobuf\Internal\RepeatedField $accelerator_types
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorType>|\Google\Protobuf\Internal\RepeatedField $accelerator_types
      *           [Output Only] A list of accelerator types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the accelerator types list is empty.
@@ -59,7 +59,7 @@ class AcceleratorTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of accelerator types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorType accelerator_types = 520872357;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAcceleratorTypes($var)

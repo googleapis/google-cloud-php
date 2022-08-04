@@ -81,7 +81,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -102,7 +102,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -125,7 +125,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -142,8 +142,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -166,7 +166,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -185,7 +185,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($forwardingRule, $project, $region);
+        $response = $gapicClient->delete($forwardingRule, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -232,7 +232,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -257,7 +257,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($forwardingRule, $project, $region);
+        $response = $gapicClient->delete($forwardingRule, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -283,7 +283,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -348,7 +348,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRule = 'forwardingRule-1340648706';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($forwardingRule, $project, $region);
+        $response = $gapicClient->get($forwardingRule, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -370,7 +370,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,8 +389,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($forwardingRule, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($forwardingRule, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -413,7 +413,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -432,7 +432,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRuleResource = new ForwardingRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($forwardingRuleResource, $project, $region);
+        $response = $gapicClient->insert($forwardingRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -479,7 +479,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -504,7 +504,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRuleResource = new ForwardingRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($forwardingRuleResource, $project, $region);
+        $response = $gapicClient->insert($forwardingRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -530,7 +530,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -553,7 +553,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -576,7 +576,7 @@ class ForwardingRulesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -594,8 +594,8 @@ class ForwardingRulesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -618,7 +618,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -638,7 +638,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRuleResource = new ForwardingRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($forwardingRule, $forwardingRuleResource, $project, $region);
+        $response = $gapicClient->patch($forwardingRule, $forwardingRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -687,7 +687,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -713,7 +713,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $forwardingRuleResource = new ForwardingRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($forwardingRule, $forwardingRuleResource, $project, $region);
+        $response = $gapicClient->patch($forwardingRule, $forwardingRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -745,7 +745,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -765,7 +765,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-        $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+        $response = $gapicClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -814,7 +814,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -840,7 +840,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-        $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+        $response = $gapicClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -872,7 +872,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -892,7 +892,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetReferenceResource = new TargetReference();
-        $response = $client->setTarget($forwardingRule, $project, $region, $targetReferenceResource);
+        $response = $gapicClient->setTarget($forwardingRule, $project, $region, $targetReferenceResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -941,7 +941,7 @@ class ForwardingRulesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -967,7 +967,7 @@ class ForwardingRulesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $targetReferenceResource = new TargetReference();
-        $response = $client->setTarget($forwardingRule, $project, $region, $targetReferenceResource);
+        $response = $gapicClient->setTarget($forwardingRule, $project, $region, $targetReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

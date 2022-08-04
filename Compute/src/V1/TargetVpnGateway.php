@@ -93,7 +93,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forwarding_rules
      *           [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -110,7 +110,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           [Output Only] The status of the VPN gateway, which can be one of the following: CREATING, READY, FAILED, or DELETING.
      *           Check the Status enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tunnels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tunnels
      *           [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using the compute.vpntunnels.insert method and associated with a VPN gateway.
      * }
      */
@@ -206,7 +206,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of URLs to the ForwardingRule resources. ForwardingRules are created using compute.forwardingRules.insert and associated with a VPN gateway.
      *
      * Generated from protobuf field <code>repeated string forwarding_rules = 315821365;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setForwardingRules($var)
@@ -486,7 +486,7 @@ class TargetVpnGateway extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of URLs to VpnTunnel resources. VpnTunnels are created using the compute.vpntunnels.insert method and associated with a VPN gateway.
      *
      * Generated from protobuf field <code>repeated string tunnels = 104561931;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTunnels($var)

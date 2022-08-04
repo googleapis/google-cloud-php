@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class Disk extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -239,13 +246,16 @@ class Disk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           The architecture of the disk. Valid values are ARM64 or X86_64.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type \Google\Cloud\Compute\V1\CustomerEncryptionKey $disk_encryption_key
      *           Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: "diskEncryptionKey.kmsKeyName": "projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later.
-     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -259,9 +269,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           [Output Only] Last attach timestamp in RFC3339 text format.
      *     @type string $last_detach_timestamp
      *           [Output Only] Last detach timestamp in RFC3339 text format.
-     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $license_codes
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $license_codes
      *           Integer license codes indicating which licenses are attached to this disk.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
      *     @type string $location_hint
      *           An opaque location hint used to place the disk close to other resources. This field is for use by internal tools that use the public API.
@@ -275,9 +285,9 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
      *     @type string $region
      *           [Output Only] URL of the region where the disk resides. Only applicable for regional resources. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $replica_zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $replica_zones
      *           URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
@@ -308,7 +318,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      *           Check the Status enum for the list of possible values.
      *     @type string $type
      *           URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk. For example: projects/project /zones/zone/diskTypes/pd-ssd . See Persistent disk types.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $users
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $users
      *           [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      *     @type string $zone
      *           [Output Only] URL of the zone where the disk resides. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
@@ -317,6 +327,44 @@ class Disk extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * The architecture of the disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**
@@ -442,7 +490,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -674,7 +722,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Integer license codes indicating which licenses are attached to this disk.
      *
      * Generated from protobuf field <code>repeated int64 license_codes = 45482664;</code>
-     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenseCodes($var)
@@ -700,7 +748,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenses($var)
@@ -942,7 +990,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * URLs of the zones where the disk should be replicated to. Only applicable for regional resources.
      *
      * Generated from protobuf field <code>repeated string replica_zones = 48438272;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicaZones($var)
@@ -968,7 +1016,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -1500,7 +1548,7 @@ class Disk extends \Google\Protobuf\Internal\Message
      * [Output Only] Links to the users of the disk (attached instances) in form: projects/project/zones/zone/instances/instance
      *
      * Generated from protobuf field <code>repeated string users = 111578632;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsers($var)

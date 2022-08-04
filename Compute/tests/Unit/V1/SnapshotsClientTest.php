@@ -88,7 +88,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -106,7 +106,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $snapshot = 'snapshot284874180';
-        $response = $client->delete($project, $snapshot);
+        $response = $gapicClient->delete($project, $snapshot);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -150,7 +150,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +174,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $snapshot = 'snapshot284874180';
-        $response = $client->delete($project, $snapshot);
+        $response = $gapicClient->delete($project, $snapshot);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -200,13 +200,15 @@ class SnapshotsClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $architecture = 'architecture839674195';
         $autoCreated = true;
         $chainName = 'chainName-2078839479';
+        $creationSizeBytes = 1199141901;
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $diskSizeGb = 757478089;
@@ -218,14 +220,19 @@ class SnapshotsClientTest extends GeneratedTest
         $name = 'name3373707';
         $satisfiesPzs = false;
         $selfLink = 'selfLink-1691268851';
+        $snapshotType = 'snapshotType1198091477';
         $sourceDisk = 'sourceDisk-85117119';
         $sourceDiskId = 'sourceDiskId-1693292839';
+        $sourceSnapshotSchedulePolicy = 'sourceSnapshotSchedulePolicy-837985533';
+        $sourceSnapshotSchedulePolicyId = 'sourceSnapshotSchedulePolicyId-2076994601';
         $status = 'status-892481550';
         $storageBytes = 2035244455;
         $storageBytesStatus = 'storageBytesStatus1027609994';
         $expectedResponse = new Snapshot();
+        $expectedResponse->setArchitecture($architecture);
         $expectedResponse->setAutoCreated($autoCreated);
         $expectedResponse->setChainName($chainName);
+        $expectedResponse->setCreationSizeBytes($creationSizeBytes);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setDiskSizeGb($diskSizeGb);
@@ -237,8 +244,11 @@ class SnapshotsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSnapshotType($snapshotType);
         $expectedResponse->setSourceDisk($sourceDisk);
         $expectedResponse->setSourceDiskId($sourceDiskId);
+        $expectedResponse->setSourceSnapshotSchedulePolicy($sourceSnapshotSchedulePolicy);
+        $expectedResponse->setSourceSnapshotSchedulePolicyId($sourceSnapshotSchedulePolicyId);
         $expectedResponse->setStatus($status);
         $expectedResponse->setStorageBytes($storageBytes);
         $expectedResponse->setStorageBytesStatus($storageBytesStatus);
@@ -246,7 +256,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $snapshot = 'snapshot284874180';
-        $response = $client->get($project, $snapshot);
+        $response = $gapicClient->get($project, $snapshot);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -266,7 +276,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -284,8 +294,8 @@ class SnapshotsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $snapshot = 'snapshot284874180';
         try {
-            $client->get($project, $snapshot);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $snapshot);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -302,7 +312,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -318,7 +328,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($project, $resource);
+        $response = $gapicClient->getIamPolicy($project, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -338,7 +348,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -356,8 +366,8 @@ class SnapshotsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($project, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($project, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -380,7 +390,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -398,7 +408,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $snapshotResource = new Snapshot();
-        $response = $client->insert($project, $snapshotResource);
+        $response = $gapicClient->insert($project, $snapshotResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -442,7 +452,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -466,7 +476,7 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $snapshotResource = new Snapshot();
-        $response = $client->insert($project, $snapshotResource);
+        $response = $gapicClient->insert($project, $snapshotResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -492,7 +502,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -514,7 +524,7 @@ class SnapshotsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -535,7 +545,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -552,8 +562,8 @@ class SnapshotsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -570,7 +580,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -587,7 +597,7 @@ class SnapshotsClientTest extends GeneratedTest
         $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $response = $client->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+        $response = $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -609,7 +619,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -628,8 +638,8 @@ class SnapshotsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         try {
-            $client->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -652,7 +662,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -671,7 +681,7 @@ class SnapshotsClientTest extends GeneratedTest
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $response = $client->setLabels($globalSetLabelsRequestResource, $project, $resource);
+        $response = $gapicClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -717,7 +727,7 @@ class SnapshotsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -742,7 +752,7 @@ class SnapshotsClientTest extends GeneratedTest
         $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
         $project = 'project-309310695';
         $resource = 'resource-341064690';
-        $response = $client->setLabels($globalSetLabelsRequestResource, $project, $resource);
+        $response = $gapicClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -768,7 +778,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -779,7 +789,7 @@ class SnapshotsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $response = $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -801,7 +811,7 @@ class SnapshotsClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -820,8 +830,8 @@ class SnapshotsClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         try {
-            $client->testIamPermissions($project, $resource, $testPermissionsRequestResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($project, $resource, $testPermissionsRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

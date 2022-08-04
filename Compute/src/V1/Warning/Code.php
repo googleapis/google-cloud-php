@@ -68,6 +68,12 @@ class Code
      */
     const INJECTED_KERNELS_DEPRECATED = 417377419;
     /**
+     * A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.
+     *
+     * Generated from protobuf enum <code>INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;</code>
+     */
+    const INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB = 401542606;
+    /**
      * When deploying a deployment with a exceedingly large number of resources
      *
      * Generated from protobuf enum <code>LARGE_DEPLOYMENT_WARNING = 481440678;</code>
@@ -186,6 +192,7 @@ class Code
         self::EXTERNAL_API_WARNING => 'EXTERNAL_API_WARNING',
         self::FIELD_VALUE_OVERRIDEN => 'FIELD_VALUE_OVERRIDEN',
         self::INJECTED_KERNELS_DEPRECATED => 'INJECTED_KERNELS_DEPRECATED',
+        self::INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB => 'INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB',
         self::LARGE_DEPLOYMENT_WARNING => 'LARGE_DEPLOYMENT_WARNING',
         self::MISSING_TYPE_DEPENDENCY => 'MISSING_TYPE_DEPENDENCY',
         self::NEXT_HOP_ADDRESS_NOT_ASSIGNED => 'NEXT_HOP_ADDRESS_NOT_ASSIGNED',

@@ -50,7 +50,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      *           [Output Only] The display name of the firewall policy.
      *     @type string $name
      *           [Output Only] The name of the firewall policy.
-     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           The rules that apply to the network.
      *     @type string $type
      *           [Output Only] The type of the firewall policy. Can be one of HIERARCHY, NETWORK, NETWORK_REGIONAL.
@@ -149,7 +149,7 @@ class RegionNetworkFirewallPoliciesGetEffectiveFirewallsResponseEffectiveFirewal
      * The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)

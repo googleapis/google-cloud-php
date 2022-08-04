@@ -37,6 +37,8 @@ class PscConnectionStatus
 
     const CLOSED = 'CLOSED';
 
+    const NEEDS_ATTENTION = 'NEEDS_ATTENTION';
+
     const PENDING = 'PENDING';
 
     const REJECTED = 'REJECTED';

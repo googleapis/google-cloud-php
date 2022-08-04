@@ -27,7 +27,7 @@ class TargetPoolsRemoveInstanceRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $instances
      *           URLs of the instances to be removed from target pool.
      * }
      */
@@ -51,7 +51,7 @@ class TargetPoolsRemoveInstanceRequest extends \Google\Protobuf\Internal\Message
      * URLs of the instances to be removed from target pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

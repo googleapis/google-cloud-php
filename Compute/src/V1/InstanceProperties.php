@@ -51,6 +51,13 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      */
     private $guest_accelerators;
     /**
+     * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+     * Check the KeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string key_revocation_action_type = 235941474;</code>
+     */
+    private $key_revocation_action_type = null;
+    /**
      * Labels to apply to instances that are created from these properties.
      *
      * Generated from protobuf field <code>map<string, string> labels = 500195327;</code>
@@ -150,10 +157,13 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet.
      *     @type string $description
      *           An optional text description for the instances that are created from these properties.
-     *     @type \Google\Cloud\Compute\V1\AttachedDisk[]|\Google\Protobuf\Internal\RepeatedField $disks
+     *     @type array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           An array of disks that are associated with the instances that are created from these properties.
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
      *           A list of guest accelerator cards' type and count to use for instances created from these properties.
+     *     @type string $key_revocation_action_type
+     *           KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+     *           Check the KeyRevocationActionType enum for the list of possible values.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to instances that are created from these properties.
      *     @type string $machine_type
@@ -162,7 +172,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See Project and instance metadata for more information.
      *     @type string $min_cpu_platform
      *           Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: "Intel Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information, read Specifying a Minimum CPU Platform.
-     *     @type \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           An array of network access configurations for this interface.
      *     @type \Google\Cloud\Compute\V1\NetworkPerformanceConfig $network_performance_config
      *           Note that for MachineImage, this is not supported yet.
@@ -173,11 +183,11 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      *           Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet.
      *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
      *           Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
      *           Specifies the scheduling options for the instances that are created from these properties.
-     *     @type \Google\Cloud\Compute\V1\ServiceAccount[]|\Google\Protobuf\Internal\RepeatedField $service_accounts
+     *     @type array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $service_accounts
      *           A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from these properties. Use metadata queries to obtain the access tokens for these instances.
      *     @type \Google\Cloud\Compute\V1\ShieldedInstanceConfig $shielded_instance_config
      *           Note that for MachineImage, this is not supported yet.
@@ -349,7 +359,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * An array of disks that are associated with the instances that are created from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AttachedDisk disks = 95594102;</code>
-     * @param \Google\Cloud\Compute\V1\AttachedDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDisks($var)
@@ -375,13 +385,51 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * A list of guest accelerator cards' type and count to use for instances created from these properties.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestAccelerators($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\AcceleratorConfig::class);
         $this->guest_accelerators = $arr;
+
+        return $this;
+    }
+
+    /**
+     * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+     * Check the KeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string key_revocation_action_type = 235941474;</code>
+     * @return string
+     */
+    public function getKeyRevocationActionType()
+    {
+        return isset($this->key_revocation_action_type) ? $this->key_revocation_action_type : '';
+    }
+
+    public function hasKeyRevocationActionType()
+    {
+        return isset($this->key_revocation_action_type);
+    }
+
+    public function clearKeyRevocationActionType()
+    {
+        unset($this->key_revocation_action_type);
+    }
+
+    /**
+     * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+     * Check the KeyRevocationActionType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string key_revocation_action_type = 235941474;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKeyRevocationActionType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->key_revocation_action_type = $var;
 
         return $this;
     }
@@ -535,7 +583,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * An array of network access configurations for this interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkInterface network_interfaces = 52735243;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -697,7 +745,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)
@@ -759,7 +807,7 @@ class InstanceProperties extends \Google\Protobuf\Internal\Message
      * A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from these properties. Use metadata queries to obtain the access tokens for these instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAccount service_accounts = 277537328;</code>
-     * @param \Google\Cloud\Compute\V1\ServiceAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ServiceAccount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccounts($var)

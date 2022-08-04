@@ -92,7 +92,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -112,7 +112,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
-        $response = $client->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
+        $response = $gapicClient->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -161,7 +161,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -187,7 +187,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksAddResourcePoliciesRequestResource = new RegionDisksAddResourcePoliciesRequest();
-        $response = $client->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
+        $response = $gapicClient->addResourcePolicies($disk, $project, $region, $regionDisksAddResourcePoliciesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -219,7 +219,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -239,7 +239,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $snapshotResource = new Snapshot();
-        $response = $client->createSnapshot($disk, $project, $region, $snapshotResource);
+        $response = $gapicClient->createSnapshot($disk, $project, $region, $snapshotResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -288,7 +288,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -314,7 +314,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $snapshotResource = new Snapshot();
-        $response = $client->createSnapshot($disk, $project, $region, $snapshotResource);
+        $response = $gapicClient->createSnapshot($disk, $project, $region, $snapshotResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -346,7 +346,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -365,7 +365,7 @@ class RegionDisksClientTest extends GeneratedTest
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($disk, $project, $region);
+        $response = $gapicClient->delete($disk, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -412,7 +412,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -437,7 +437,7 @@ class RegionDisksClientTest extends GeneratedTest
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($disk, $project, $region);
+        $response = $gapicClient->delete($disk, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -463,11 +463,12 @@ class RegionDisksClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $architecture = 'architecture839674195';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $id = 3355;
@@ -495,6 +496,7 @@ class RegionDisksClientTest extends GeneratedTest
         $type = 'type3575610';
         $zone = 'zone3744684';
         $expectedResponse = new Disk();
+        $expectedResponse->setArchitecture($architecture);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
@@ -526,7 +528,7 @@ class RegionDisksClientTest extends GeneratedTest
         $disk = 'disk3083677';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($disk, $project, $region);
+        $response = $gapicClient->get($disk, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -548,7 +550,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -567,8 +569,8 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($disk, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($disk, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -585,7 +587,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -602,7 +604,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($project, $region, $resource);
+        $response = $gapicClient->getIamPolicy($project, $region, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -624,7 +626,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -643,8 +645,8 @@ class RegionDisksClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($project, $region, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($project, $region, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -667,7 +669,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -686,7 +688,7 @@ class RegionDisksClientTest extends GeneratedTest
         $diskResource = new Disk();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($diskResource, $project, $region);
+        $response = $gapicClient->insert($diskResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -733,7 +735,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -758,7 +760,7 @@ class RegionDisksClientTest extends GeneratedTest
         $diskResource = new Disk();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($diskResource, $project, $region);
+        $response = $gapicClient->insert($diskResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -784,7 +786,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -807,7 +809,7 @@ class RegionDisksClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -830,7 +832,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -848,8 +850,8 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -872,7 +874,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -892,7 +894,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksRemoveResourcePoliciesRequestResource = new RegionDisksRemoveResourcePoliciesRequest();
-        $response = $client->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
+        $response = $gapicClient->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -941,7 +943,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -967,7 +969,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksRemoveResourcePoliciesRequestResource = new RegionDisksRemoveResourcePoliciesRequest();
-        $response = $client->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
+        $response = $gapicClient->removeResourcePolicies($disk, $project, $region, $regionDisksRemoveResourcePoliciesRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -999,7 +1001,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1019,7 +1021,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksResizeRequestResource = new RegionDisksResizeRequest();
-        $response = $client->resize($disk, $project, $region, $regionDisksResizeRequestResource);
+        $response = $gapicClient->resize($disk, $project, $region, $regionDisksResizeRequestResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1068,7 +1070,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1094,7 +1096,7 @@ class RegionDisksClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $regionDisksResizeRequestResource = new RegionDisksResizeRequest();
-        $response = $client->resize($disk, $project, $region, $regionDisksResizeRequestResource);
+        $response = $gapicClient->resize($disk, $project, $region, $regionDisksResizeRequestResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1120,7 +1122,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1138,7 +1140,7 @@ class RegionDisksClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-        $response = $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+        $response = $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1162,7 +1164,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1182,8 +1184,8 @@ class RegionDisksClientTest extends GeneratedTest
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
         try {
-            $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1206,7 +1208,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1226,7 +1228,7 @@ class RegionDisksClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-        $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+        $response = $gapicClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1275,7 +1277,7 @@ class RegionDisksClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1301,7 +1303,7 @@ class RegionDisksClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetLabelsRequestResource = new RegionSetLabelsRequest();
         $resource = 'resource-341064690';
-        $response = $client->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
+        $response = $gapicClient->setLabels($project, $region, $regionSetLabelsRequestResource, $resource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1327,7 +1329,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1339,7 +1341,7 @@ class RegionDisksClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $response = $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1363,7 +1365,7 @@ class RegionDisksClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1383,8 +1385,8 @@ class RegionDisksClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         try {
-            $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
