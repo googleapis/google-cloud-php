@@ -56,6 +56,15 @@ s.replace(
     r"\$transportConfig, and any \$serviceAddress",
     r"$transportConfig, and any `$apiEndpoint`")
 
+# remove class_alias code
+s.replace(
+    "src/V*/**/*.php",
+    r"^// Adding a class alias for backwards compatibility with the previous class name.$"
+    + "\n"
+    + r"^class_alias\(.*\);$"
+    + "\n",
+    '')
+
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
