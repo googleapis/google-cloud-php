@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/saveddisk\/architecture","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\SavedDisk\\Architecture","name":"Architecture","description":"<p>Architecture contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.SavedDisk.Architecture descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
