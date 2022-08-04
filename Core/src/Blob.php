@@ -87,6 +87,7 @@ class Blob implements \JsonSerializable
      * @return string
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return base64_encode((string) $this->value);
