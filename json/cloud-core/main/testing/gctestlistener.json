@@ -1,1 +1,1 @@
-{"id":"core\/testing\/gctestlistener","type":"","title":"GcTestListener","name":"GcTestListener","description":"<p>Garbage collector for tests<\/p>","examples":[],"resources":[],"methods":[]}
+{"id":"core\/testing\/gctestlistener","type":"","title":"Google\\Cloud\\Core\\Testing\\GcTestListener","name":"GcTestListener","description":"<p>Garbage collector for tests<\/p>","examples":[],"resources":[],"methods":[]}
