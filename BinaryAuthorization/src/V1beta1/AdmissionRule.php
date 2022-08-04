@@ -53,7 +53,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      *
      *     @type int $evaluation_mode
      *           Required. How this admission rule will be evaluated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $require_attestations_by
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $require_attestations_by
      *           Optional. The resource names of the attestors that must attest to
      *           a container image, in the format `projects/&#42;&#47;attestors/&#42;`. Each
      *           attestor must exist before a policy can reference it.  To add an attestor
@@ -123,7 +123,7 @@ class AdmissionRule extends \Google\Protobuf\Internal\Message
      * REQUIRE_ATTESTATION, otherwise it must be empty.
      *
      * Generated from protobuf field <code>repeated string require_attestations_by = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequireAttestationsBy($var)

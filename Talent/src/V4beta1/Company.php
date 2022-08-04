@@ -169,7 +169,7 @@ class Company extends \Google\Protobuf\Internal\Message
      *           site, for example, "https://careers.google.com".
      *     @type string $image_uri
      *           A URI that hosts the employer's company logo.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
      *           A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
      *           corresponding `string_values` are used in keyword searches. Jobs with
      *           `string_values` under these specified field keys are returned if any
@@ -514,7 +514,7 @@ class Company extends \Google\Protobuf\Internal\Message
      * and those keyword queries must be surrounded by quotes.
      *
      * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeywordSearchableJobCustomAttributes($var)

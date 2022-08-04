@@ -35,7 +35,7 @@ class ListTrainingPipelinesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TrainingPipeline[]|\Google\Protobuf\Internal\RepeatedField $training_pipelines
+     *     @type array<\Google\Cloud\AIPlatform\V1\TrainingPipeline>|\Google\Protobuf\Internal\RepeatedField $training_pipelines
      *           List of TrainingPipelines in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -62,7 +62,7 @@ class ListTrainingPipelinesResponse extends \Google\Protobuf\Internal\Message
      * List of TrainingPipelines in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TrainingPipeline training_pipelines = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TrainingPipeline[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TrainingPipeline>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrainingPipelines($var)

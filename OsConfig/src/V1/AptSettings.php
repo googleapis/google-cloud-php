@@ -48,9 +48,9 @@ class AptSettings extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           By changing the type to DIST, the patching is performed
      *           using `apt-get dist-upgrade` instead.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excludes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excludes
      *           List of packages to exclude from update. These packages will be excluded
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclusive_packages
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclusive_packages
      *           An exclusive list of packages to be updated. These are the only packages
      *           that will be updated. If these packages are not installed, they will be
      *           ignored. This field cannot be specified with any other patch configuration
@@ -105,7 +105,7 @@ class AptSettings extends \Google\Protobuf\Internal\Message
      * List of packages to exclude from update. These packages will be excluded
      *
      * Generated from protobuf field <code>repeated string excludes = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludes($var)
@@ -137,7 +137,7 @@ class AptSettings extends \Google\Protobuf\Internal\Message
      * fields.
      *
      * Generated from protobuf field <code>repeated string exclusive_packages = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExclusivePackages($var)

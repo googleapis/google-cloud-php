@@ -78,7 +78,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function batchRunPivotReportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,7 +87,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new BatchRunPivotReportsResponse();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->batchRunPivotReports();
+        $response = $gapicClient->batchRunPivotReports();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -103,7 +103,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function batchRunPivotReportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -118,8 +118,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->batchRunPivotReports();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchRunPivotReports();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -136,7 +136,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function batchRunReportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -145,7 +145,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new BatchRunReportsResponse();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->batchRunReports();
+        $response = $gapicClient->batchRunReports();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -161,7 +161,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function batchRunReportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -176,8 +176,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->batchRunReports();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchRunReports();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -194,14 +194,14 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function checkCompatibilityTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new CheckCompatibilityResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->checkCompatibility();
+        $response = $gapicClient->checkCompatibility();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -217,7 +217,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function checkCompatibilityExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -232,8 +232,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->checkCompatibility();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->checkCompatibility();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -250,7 +250,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function getMetadataTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,8 +260,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->metadataName('[PROPERTY]');
-        $response = $client->getMetadata($formattedName);
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
+        $response = $gapicClient->getMetadata($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -279,7 +279,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function getMetadataExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,10 +294,10 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->metadataName('[PROPERTY]');
+        $formattedName = $gapicClient->metadataName('[PROPERTY]');
         try {
-            $client->getMetadata($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMetadata($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -314,7 +314,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runPivotReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -323,7 +323,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse = new RunPivotReportResponse();
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->runPivotReport();
+        $response = $gapicClient->runPivotReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -339,7 +339,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runPivotReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -354,8 +354,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->runPivotReport();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->runPivotReport();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -372,7 +372,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runRealtimeReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -383,7 +383,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setRowCount($rowCount);
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->runRealtimeReport();
+        $response = $gapicClient->runRealtimeReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -399,7 +399,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runRealtimeReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -414,8 +414,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->runRealtimeReport();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->runRealtimeReport();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -432,7 +432,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -443,7 +443,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $expectedResponse->setRowCount($rowCount);
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->runReport();
+        $response = $gapicClient->runReport();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -459,7 +459,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
     public function runReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -474,8 +474,8 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->runReport();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->runReport();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

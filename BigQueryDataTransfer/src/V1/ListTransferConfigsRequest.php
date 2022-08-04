@@ -56,7 +56,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The BigQuery project id for which data sources
      *           should be returned: `projects/{project_id}` or
      *           `projects/{project_id}/locations/{location_id}`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $data_source_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
      *           When specified, only configurations of requested data sources are returned.
      *     @type string $page_token
      *           Pagination token, which can be used to request a specific page
@@ -118,7 +118,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
      * When specified, only configurations of requested data sources are returned.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataSourceIds($var)

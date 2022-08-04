@@ -44,7 +44,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $text
      *           The detected text.
-     *     @type \Google\Cloud\VideoIntelligence\V1\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\TextSegment>|\Google\Protobuf\Internal\RepeatedField $segments
      *           All video segments where OCR detected text appears.
      *     @type string $version
      *           Feature version.
@@ -96,7 +96,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where OCR detected text appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextSegment segments = 2;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\TextSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegments($var)

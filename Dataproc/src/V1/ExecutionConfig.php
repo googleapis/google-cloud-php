@@ -47,7 +47,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Network URI to connect workload to.
      *     @type string $subnetwork_uri
      *           Optional. Subnetwork URI to connect workload to.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Optional. Tags used for network traffic control.
      *     @type string $kms_key
      *           Optional. The Cloud KMS key to use for encryption.
@@ -161,7 +161,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Optional. Tags used for network traffic control.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)

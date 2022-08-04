@@ -46,9 +46,9 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Video\Stitcher\V1\ProgressEvent[]|\Google\Protobuf\Internal\RepeatedField $progress_events
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\ProgressEvent>|\Google\Protobuf\Internal\RepeatedField $progress_events
      *           List of events that are expected to be triggered, ordered by time.
-     *     @type \Google\Cloud\Video\Stitcher\V1\VodSessionAd[]|\Google\Protobuf\Internal\RepeatedField $ads
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\VodSessionAd>|\Google\Protobuf\Internal\RepeatedField $ads
      *           Ordered list of ads stitched into the ad break.
      *     @type \Google\Protobuf\Duration $end_time_offset
      *           Ad break end time in seconds relative to the start of the VOD asset.
@@ -76,7 +76,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * List of events that are expected to be triggered, ordered by time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.ProgressEvent progress_events = 1;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\ProgressEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\ProgressEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProgressEvents($var)
@@ -102,7 +102,7 @@ class VodSessionAdBreak extends \Google\Protobuf\Internal\Message
      * Ordered list of ads stitched into the ad break.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.VodSessionAd ads = 2;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\VodSessionAd[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\VodSessionAd>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAds($var)

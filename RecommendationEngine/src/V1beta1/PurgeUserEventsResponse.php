@@ -39,7 +39,7 @@ class PurgeUserEventsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $purged_events_count
      *           The total count of events purged as a result of the operation.
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[]|\Google\Protobuf\Internal\RepeatedField $user_events_sample
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $user_events_sample
      *           A sampling of events deleted (or will be deleted) depending on the `force`
      *           property in the request. Max of 500 items will be returned.
      * }
@@ -92,7 +92,7 @@ class PurgeUserEventsResponse extends \Google\Protobuf\Internal\Message
      * property in the request. Max of 500 items will be returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.UserEvent user_events_sample = 2;</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\UserEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\UserEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUserEventsSample($var)

@@ -58,7 +58,7 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           Required. Name of a parent resource from which to retrieve log entries:
      *           *  `projects/[PROJECT_ID]`
      *           *  `organizations/[ORGANIZATION_ID]`
@@ -122,7 +122,7 @@ class TailLogEntriesRequest extends \Google\Protobuf\Internal\Message
      *  * `folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *
      * Generated from protobuf field <code>repeated string resource_names = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceNames($var)

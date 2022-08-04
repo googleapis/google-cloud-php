@@ -30,7 +30,7 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type array<\Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentFrame>|\Google\Protobuf\Internal\RepeatedField $frames
      *           All video frames where explicit content was detected.
      * }
      */
@@ -54,7 +54,7 @@ class ExplicitContentAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where explicit content was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1beta2.ExplicitContentFrame frames = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1beta2\ExplicitContentFrame>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrames($var)

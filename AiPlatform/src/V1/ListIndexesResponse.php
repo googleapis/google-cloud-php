@@ -35,7 +35,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type array<\Google\Cloud\AIPlatform\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
      *           List of indexes in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * List of indexes in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Index indexes = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexes($var)

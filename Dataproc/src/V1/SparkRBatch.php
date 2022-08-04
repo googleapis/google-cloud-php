@@ -57,14 +57,14 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      *     @type string $main_r_file_uri
      *           Required. The HCFS URI of the main R file to use as the driver.
      *           Must be a `.R` or `.r` file.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the Spark driver. Do not include arguments
      *           that can be set as batch properties, such as `--conf`, since a collision
      *           can occur that causes an incorrect batch submission.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
      *           Optional. HCFS URIs of files to be placed in the working directory of
      *           each executor.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
      *           Optional. HCFS URIs of archives to be extracted into the working directory
      *           of each executor. Supported file types:
      *           `.jar`, `.tar`, `.tar.gz`, `.tgz`, and `.zip`.
@@ -122,7 +122,7 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      * can occur that causes an incorrect batch submission.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -150,7 +150,7 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      * each executor.
      *
      * Generated from protobuf field <code>repeated string file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileUris($var)
@@ -180,7 +180,7 @@ class SparkRBatch extends \Google\Protobuf\Internal\Message
      * `.jar`, `.tar`, `.tar.gz`, `.tgz`, and `.zip`.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArchiveUris($var)

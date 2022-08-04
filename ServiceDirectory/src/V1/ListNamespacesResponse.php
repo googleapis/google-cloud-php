@@ -36,7 +36,7 @@ class ListNamespacesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceDirectory\V1\PBNamespace[]|\Google\Protobuf\Internal\RepeatedField $namespaces
+     *     @type array<\Google\Cloud\ServiceDirectory\V1\PBNamespace>|\Google\Protobuf\Internal\RepeatedField $namespaces
      *           The list of namespaces.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -63,7 +63,7 @@ class ListNamespacesResponse extends \Google\Protobuf\Internal\Message
      * The list of namespaces.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Namespace namespaces = 1;</code>
-     * @param \Google\Cloud\ServiceDirectory\V1\PBNamespace[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceDirectory\V1\PBNamespace>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNamespaces($var)

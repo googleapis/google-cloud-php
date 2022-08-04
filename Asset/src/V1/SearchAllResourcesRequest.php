@@ -223,7 +223,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      *             resources that contain "Important" as a word in any of the searchable
      *             fields and are also located in the "us-west1" region or the "global"
      *             location.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           Optional. A list of asset types that this request searches for. If empty,
      *           it will search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
@@ -482,7 +482,7 @@ class SearchAllResourcesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)

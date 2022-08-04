@@ -38,7 +38,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      *     @type string $topic
      *           Required. The messages in the request will be published on this topic.
      *           Format is `projects/{project}/topics/{topic}`.
-     *     @type \Google\Cloud\PubSub\V1\PubsubMessage[]|\Google\Protobuf\Internal\RepeatedField $messages
+     *     @type array<\Google\Cloud\PubSub\V1\PubsubMessage>|\Google\Protobuf\Internal\RepeatedField $messages
      *           Required. The messages to publish.
      * }
      */
@@ -90,7 +90,7 @@ class PublishRequest extends \Google\Protobuf\Internal\Message
      * Required. The messages to publish.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.PubsubMessage messages = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\PubSub\V1\PubsubMessage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\PubsubMessage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessages($var)

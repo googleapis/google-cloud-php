@@ -60,7 +60,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      *           [Service Perimeters]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter].
      *           Format: `accessPolicies/{policy_id}`
-     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeter[]|\Google\Protobuf\Internal\RepeatedField $service_perimeters
+     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $service_perimeters
      *           Required. The desired [Service Perimeters]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeter] that should
      *           replace all existing [Service Perimeters]
@@ -139,7 +139,7 @@ class ReplaceServicePerimetersRequest extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessPolicy].
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeter service_perimeters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServicePerimeters($var)

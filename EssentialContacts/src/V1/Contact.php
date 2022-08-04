@@ -73,7 +73,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      *     @type string $email
      *           Required. The email address to send notifications to. This does not need to
      *           be a Google account.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $notification_category_subscriptions
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $notification_category_subscriptions
      *           The categories of notifications that the contact will receive
      *           communications for.
      *     @type string $language_tag
@@ -168,7 +168,7 @@ class Contact extends \Google\Protobuf\Internal\Message
      * communications for.
      *
      * Generated from protobuf field <code>repeated .google.cloud.essentialcontacts.v1.NotificationCategory notification_category_subscriptions = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationCategorySubscriptions($var)

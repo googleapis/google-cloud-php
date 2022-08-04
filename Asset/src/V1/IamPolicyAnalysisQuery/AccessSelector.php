@@ -38,9 +38,9 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $roles
      *           Optional. The roles to appear in result.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
      *           Optional. The permissions to appear in result.
      * }
      */
@@ -64,7 +64,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The roles to appear in result.
      *
      * Generated from protobuf field <code>repeated string roles = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoles($var)
@@ -90,7 +90,7 @@ class AccessSelector extends \Google\Protobuf\Internal\Message
      * Optional. The permissions to appear in result.
      *
      * Generated from protobuf field <code>repeated string permissions = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPermissions($var)

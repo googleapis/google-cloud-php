@@ -44,7 +44,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $column_spec_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $column_spec_ids
      *           The resource IDs of the column specs describing the columns of the row.
      *           If set must contain, but possibly in a different order, all input
      *           feature
@@ -52,7 +52,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *           of the Model this row is being passed to.
      *           Note: The below `values` field must match order of this field, if this
      *           field is set.
-     *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. The values of the row cells, given in the same order as the
      *           column_spec_ids, or, if not set, then in the same order as input
      *           feature
@@ -92,7 +92,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * field is set.
      *
      * Generated from protobuf field <code>repeated string column_spec_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumnSpecIds($var)
@@ -126,7 +126,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * of the Model this row is being passed to.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 3;</code>
-     * @param \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

@@ -38,11 +38,11 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $name_servers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $name_servers
      *           Required. A list of name servers that store the DNS zone for this domain. Each name
      *           server is a domain name, with Unicode domain names expressed in
      *           Punycode format.
-     *     @type \Google\Cloud\Domains\V1alpha2\DnsSettings\DsRecord[]|\Google\Protobuf\Internal\RepeatedField $ds_records
+     *     @type array<\Google\Cloud\Domains\V1alpha2\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $ds_records
      *           The list of DS records for this domain, which are used to enable DNSSEC.
      *           The domain's DNS provider can provide the values to set here. If this
      *           field is empty, DNSSEC is disabled.
@@ -72,7 +72,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * Punycode format.
      *
      * Generated from protobuf field <code>repeated string name_servers = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNameServers($var)
@@ -102,7 +102,7 @@ class CustomDns extends \Google\Protobuf\Internal\Message
      * field is empty, DNSSEC is disabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.DnsSettings.DsRecord ds_records = 2;</code>
-     * @param \Google\Cloud\Domains\V1alpha2\DnsSettings\DsRecord[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Domains\V1alpha2\DnsSettings\DsRecord>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDsRecords($var)

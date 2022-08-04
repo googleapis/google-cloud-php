@@ -67,7 +67,7 @@ class Source extends \Google\Protobuf\Internal\Message
      *           (.tar.gz), the FileHash will be for the single path to that file.
      *     @type \Grafeas\V1\SourceContext $context
      *           If provided, the source code used for the build came from this location.
-     *     @type \Grafeas\V1\SourceContext[]|\Google\Protobuf\Internal\RepeatedField $additional_contexts
+     *     @type array<\Grafeas\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $additional_contexts
      *           If provided, some of the source code used for the build may be found in
      *           these locations, in the case where the source repository had multiple
      *           remotes or submodules. This list will not include the context specified in
@@ -200,7 +200,7 @@ class Source extends \Google\Protobuf\Internal\Message
      * the context field.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.SourceContext additional_contexts = 4;</code>
-     * @param \Grafeas\V1\SourceContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\SourceContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalContexts($var)

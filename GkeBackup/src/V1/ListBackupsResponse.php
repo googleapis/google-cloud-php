@@ -36,7 +36,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeBackup\V1\Backup[]|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type array<\Google\Cloud\GkeBackup\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
      *           The list of Backups matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as [page_token][google.cloud.gkebackup.v1.ListBackupsRequest.page_token] in
@@ -64,7 +64,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * The list of Backups matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.Backup backups = 1;</code>
-     * @param \Google\Cloud\GkeBackup\V1\Backup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\Backup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackups($var)

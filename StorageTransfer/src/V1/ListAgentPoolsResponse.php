@@ -34,7 +34,7 @@ class ListAgentPoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\StorageTransfer\V1\AgentPool[]|\Google\Protobuf\Internal\RepeatedField $agent_pools
+     *     @type array<\Google\Cloud\StorageTransfer\V1\AgentPool>|\Google\Protobuf\Internal\RepeatedField $agent_pools
      *           A list of agent pools.
      *     @type string $next_page_token
      *           The list next page token.
@@ -60,7 +60,7 @@ class ListAgentPoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of agent pools.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.AgentPool agent_pools = 1;</code>
-     * @param \Google\Cloud\StorageTransfer\V1\AgentPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\StorageTransfer\V1\AgentPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAgentPools($var)

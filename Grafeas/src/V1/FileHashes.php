@@ -29,7 +29,7 @@ class FileHashes extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Grafeas\V1\Hash[]|\Google\Protobuf\Internal\RepeatedField $file_hash
+     *     @type array<\Grafeas\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $file_hash
      *           Required. Collection of file hashes.
      * }
      */
@@ -53,7 +53,7 @@ class FileHashes extends \Google\Protobuf\Internal\Message
      * Required. Collection of file hashes.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Hash file_hash = 1;</code>
-     * @param \Grafeas\V1\Hash[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Hash>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileHash($var)

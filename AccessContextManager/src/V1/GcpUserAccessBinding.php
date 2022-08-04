@@ -68,7 +68,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      *           to point at the changed group. This field does not accept group email
      *           addresses or aliases.
      *           Example: "01d520gv4vjcrht"
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_levels
      *           Required. Access level that a user must have to be granted access. Only one access
      *           level is supported, not multiple. This repeated field must have exactly
      *           one element.
@@ -173,7 +173,7 @@ class GcpUserAccessBinding extends \Google\Protobuf\Internal\Message
      * Example: "accessPolicies/9522/accessLevels/device_trusted"
      *
      * Generated from protobuf field <code>repeated string access_levels = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessLevels($var)

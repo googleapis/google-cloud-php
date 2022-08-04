@@ -36,7 +36,7 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Featurestore[]|\Google\Protobuf\Internal\RepeatedField $featurestores
+     *     @type array<\Google\Cloud\AIPlatform\V1\Featurestore>|\Google\Protobuf\Internal\RepeatedField $featurestores
      *           The Featurestores matching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as [ListFeaturestoresRequest.page_token][google.cloud.aiplatform.v1.ListFeaturestoresRequest.page_token] to
@@ -64,7 +64,7 @@ class ListFeaturestoresResponse extends \Google\Protobuf\Internal\Message
      * The Featurestores matching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Featurestore featurestores = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Featurestore[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Featurestore>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeaturestores($var)

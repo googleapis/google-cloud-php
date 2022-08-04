@@ -86,7 +86,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -106,8 +106,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $response = $client->batchProcessDocuments($formattedName);
+        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $response = $gapicClient->batchProcessDocuments($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -150,7 +150,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -172,8 +172,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $response = $client->batchProcessDocuments($formattedName);
+        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $response = $gapicClient->batchProcessDocuments($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -201,7 +201,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
     public function processDocumentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -209,8 +209,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $expectedResponse = new ProcessResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $response = $client->processDocument($formattedName);
+        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $response = $gapicClient->processDocument($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -228,7 +228,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
     public function processDocumentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -243,10 +243,10 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $formattedName = $gapicClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
         try {
-            $client->processDocument($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->processDocument($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -269,7 +269,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -291,8 +291,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedHumanReviewConfig = $client->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $response = $client->reviewDocument($formattedHumanReviewConfig);
+        $formattedHumanReviewConfig = $gapicClient->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $response = $gapicClient->reviewDocument($formattedHumanReviewConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -335,7 +335,7 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -357,8 +357,8 @@ class DocumentProcessorServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedHumanReviewConfig = $client->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-        $response = $client->reviewDocument($formattedHumanReviewConfig);
+        $formattedHumanReviewConfig = $gapicClient->humanReviewConfigName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+        $response = $gapicClient->reviewDocument($formattedHumanReviewConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

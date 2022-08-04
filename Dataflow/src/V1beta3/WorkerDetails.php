@@ -36,7 +36,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type string $worker_name
      *           Name of this worker
-     *     @type \Google\Cloud\Dataflow\V1beta3\WorkItemDetails[]|\Google\Protobuf\Internal\RepeatedField $work_items
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkItemDetails>|\Google\Protobuf\Internal\RepeatedField $work_items
      *           Work items processed by this worker, sorted by time.
      * }
      */
@@ -86,7 +86,7 @@ class WorkerDetails extends \Google\Protobuf\Internal\Message
      * Work items processed by this worker, sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkItemDetails work_items = 2;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\WorkItemDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\WorkItemDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkItems($var)

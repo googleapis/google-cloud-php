@@ -31,7 +31,7 @@ class JobExecutionStageInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $step_name
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $step_name
      *           The steps associated with the execution stage.
      *           Note that stages may have several steps, and that a given step
      *           might be run by more than one stage.
@@ -61,7 +61,7 @@ class JobExecutionStageInfo extends \Google\Protobuf\Internal\Message
      * might be run by more than one stage.
      *
      * Generated from protobuf field <code>repeated string step_name = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStepName($var)

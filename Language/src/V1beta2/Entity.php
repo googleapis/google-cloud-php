@@ -86,7 +86,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           importance or centrality of that entity to the entire document text.
      *           Scores closer to 0 are less salient, while scores closer to 1.0 are highly
      *           salient.
-     *     @type \Google\Cloud\Language\V1beta2\EntityMention[]|\Google\Protobuf\Internal\RepeatedField $mentions
+     *     @type array<\Google\Cloud\Language\V1beta2\EntityMention>|\Google\Protobuf\Internal\RepeatedField $mentions
      *           The mentions of this entity in the input document. The API currently
      *           supports proper noun mentions.
      *     @type \Google\Cloud\Language\V1beta2\Sentiment $sentiment
@@ -236,7 +236,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * supports proper noun mentions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1beta2.EntityMention mentions = 5;</code>
-     * @param \Google\Cloud\Language\V1beta2\EntityMention[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Language\V1beta2\EntityMention>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMentions($var)

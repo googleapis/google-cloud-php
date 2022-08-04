@@ -54,7 +54,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      *     @type int $id
      *           The Id of this operation.  Needs to be unique within the scope of the
      *           revision.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[]|\Google\Protobuf\Internal\RepeatedField $parents
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent>|\Google\Protobuf\Internal\RepeatedField $parents
      *           References to the original elements that are replaced.
      *     @type int $type
      *           The type of provenance operation.
@@ -138,7 +138,7 @@ class Provenance extends \Google\Protobuf\Internal\Message
      * References to the original elements that are replaced.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance.Parent parents = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Provenance\PBParent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParents($var)

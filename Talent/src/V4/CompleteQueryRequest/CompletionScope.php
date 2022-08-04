@@ -36,7 +36,7 @@ class CompletionScope
     private static $valueToName = [
         self::COMPLETION_SCOPE_UNSPECIFIED => 'COMPLETION_SCOPE_UNSPECIFIED',
         self::TENANT => 'TENANT',
-        self::PBPUBLIC => 'PBPUBLIC',
+        self::PBPUBLIC => 'PUBLIC',
     ];
 
     public static function name($value)
@@ -53,8 +53,12 @@ class CompletionScope
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

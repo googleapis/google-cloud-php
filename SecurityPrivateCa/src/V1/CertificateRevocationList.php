@@ -96,7 +96,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *              certificateRevocationLists/&#42;`.
      *     @type int|string $sequence_number
      *           Output only. The CRL sequence number that appears in pem_crl.
-     *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate[]|\Google\Protobuf\Internal\RepeatedField $revoked_certificates
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $revoked_certificates
      *           Output only. The revoked serial numbers that appear in pem_crl.
      *     @type string $pem_crl
      *           Output only. The PEM-encoded X.509 CRL.
@@ -194,7 +194,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The revoked serial numbers that appear in pem_crl.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CertificateRevocationList.RevokedCertificate revoked_certificates = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRevokedCertificates($var)

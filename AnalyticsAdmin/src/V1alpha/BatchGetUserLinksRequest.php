@@ -44,7 +44,7 @@ class BatchGetUserLinksRequest extends \Google\Protobuf\Internal\Message
      *           for. The parent of all provided values for the 'names' field must match
      *           this field.
      *           Example format: accounts/1234
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           Required. The names of the user links to retrieve.
      *           A maximum of 1000 user links can be retrieved in a batch.
      *           Format: accounts/{accountId}/userLinks/{userLinkId}
@@ -106,7 +106,7 @@ class BatchGetUserLinksRequest extends \Google\Protobuf\Internal\Message
      * Format: accounts/{accountId}/userLinks/{userLinkId}
      *
      * Generated from protobuf field <code>repeated string names = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNames($var)

@@ -88,7 +88,7 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      *           type) hasn't been published after this duration from when {build_event}
      *           is written to BES, consider this stream expired. If this field is not set,
      *           BES backend will use its own default value.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_keywords
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_keywords
      *           Additional information about a build request. These are define by the event
      *           publishers, and the Build Event Service does not validate or interpret
      *           them. They are used while notifying internal systems of new builds and
@@ -241,7 +241,7 @@ class PublishLifecycleEventRequest extends \Google\Protobuf\Internal\Message
      * BuildEnqueued/InvocationAttemptStarted.
      *
      * Generated from protobuf field <code>repeated string notification_keywords = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationKeywords($var)

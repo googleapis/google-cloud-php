@@ -40,7 +40,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      *           Required. The name of the parent ModelEvaluation resource.
      *           Format:
      *           `projects/{project}/locations/{location}/models/{model}/evaluations/{evaluation}`
-     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[]|\Google\Protobuf\Internal\RepeatedField $model_evaluation_slices
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $model_evaluation_slices
      *           Required. Model evaluation slice resource to be imported.
      * }
      */
@@ -94,7 +94,7 @@ class BatchImportModelEvaluationSlicesRequest extends \Google\Protobuf\Internal\
      * Required. Model evaluation slice resource to be imported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluationSlice model_evaluation_slices = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluationSlice[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelEvaluationSlice>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModelEvaluationSlices($var)

@@ -30,7 +30,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
      *           The BCP-47 language code(s) for terms defined in the glossary.
      *           All entries are unique. The list contains at least two entries.
      *           Expected to be an exact match for GlossaryTerm.language_code.
@@ -60,7 +60,7 @@ class LanguageCodesSet extends \Google\Protobuf\Internal\Message
      * Expected to be an exact match for GlossaryTerm.language_code.
      *
      * Generated from protobuf field <code>repeated string language_codes = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)

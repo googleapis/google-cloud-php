@@ -51,9 +51,9 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      *           `projects/<project-number>/locations/<region>/azureServerConfig`.
      *           See [Resource Names](https://cloud.google.com/apis/design/resource_names)
      *           for more details on GCP resource names.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo[]|\Google\Protobuf\Internal\RepeatedField $valid_versions
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $valid_versions
      *           List of valid Kubernetes versions.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_azure_regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_azure_regions
      *           The list of supported Azure regions.
      * }
      */
@@ -111,7 +111,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid Kubernetes versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AzureK8sVersionInfo valid_versions = 2;</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AzureK8sVersionInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidVersions($var)
@@ -137,7 +137,7 @@ class AzureServerConfig extends \Google\Protobuf\Internal\Message
      * The list of supported Azure regions.
      *
      * Generated from protobuf field <code>repeated string supported_azure_regions = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedAzureRegions($var)

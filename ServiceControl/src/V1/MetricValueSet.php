@@ -38,7 +38,7 @@ class MetricValueSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $metric_name
      *           The metric name defined in the service configuration.
-     *     @type \Google\Cloud\ServiceControl\V1\MetricValue[]|\Google\Protobuf\Internal\RepeatedField $metric_values
+     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValue>|\Google\Protobuf\Internal\RepeatedField $metric_values
      *           The values in this metric.
      * }
      */
@@ -88,7 +88,7 @@ class MetricValueSet extends \Google\Protobuf\Internal\Message
      * The values in this metric.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValue metric_values = 2;</code>
-     * @param \Google\Cloud\ServiceControl\V1\MetricValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\MetricValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricValues($var)

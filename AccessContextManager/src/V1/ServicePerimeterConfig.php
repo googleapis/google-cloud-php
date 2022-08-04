@@ -84,10 +84,10 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of Google Cloud resources that are inside of the service perimeter.
      *           Currently only projects are allowed. Format: `projects/{project_number}`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $access_levels
      *           A list of `AccessLevel` resource names that allow resources within the
      *           `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed
      *           must be in the same policy as this `ServicePerimeter`. Referencing a
@@ -96,14 +96,14 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      *           Cloud calls with request origins within the perimeter. Example:
      *           `"accessPolicies/MY_POLICY/accessLevels/MY_LEVEL"`.
      *           For Service Perimeter Bridge, must be empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_services
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_services
      *           Google Cloud services that are subject to the Service Perimeter
      *           restrictions. For example, if `storage.googleapis.com` is specified, access
      *           to the storage buckets inside the perimeter must meet the perimeter's
      *           access restrictions.
      *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\VpcAccessibleServices $vpc_accessible_services
      *           Configuration for APIs allowed within Perimeter.
-     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressPolicy[]|\Google\Protobuf\Internal\RepeatedField $ingress_policies
+     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressPolicy>|\Google\Protobuf\Internal\RepeatedField $ingress_policies
      *           List of [IngressPolicies]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
      *           to apply to the perimeter. A perimeter may have multiple [IngressPolicies]
@@ -112,7 +112,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      *           Policy]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
      *           grants it. Must be empty for a perimeter bridge.
-     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\EgressPolicy[]|\Google\Protobuf\Internal\RepeatedField $egress_policies
+     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\EgressPolicy>|\Google\Protobuf\Internal\RepeatedField $egress_policies
      *           List of [EgressPolicies]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy]
      *           to apply to the perimeter. A perimeter may have multiple [EgressPolicies]
@@ -145,7 +145,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * Currently only projects are allowed. Format: `projects/{project_number}`
      *
      * Generated from protobuf field <code>repeated string resources = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -185,7 +185,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * For Service Perimeter Bridge, must be empty.
      *
      * Generated from protobuf field <code>repeated string access_levels = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessLevels($var)
@@ -217,7 +217,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * access restrictions.
      *
      * Generated from protobuf field <code>repeated string restricted_services = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedServices($var)
@@ -293,7 +293,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * grants it. Must be empty for a perimeter bridge.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy ingress_policies = 8;</code>
-     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIngressPolicies($var)
@@ -333,7 +333,7 @@ class ServicePerimeterConfig extends \Google\Protobuf\Internal\Message
      * grants it. Must be empty for a perimeter bridge.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.EgressPolicy egress_policies = 9;</code>
-     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\EgressPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\EgressPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEgressPolicies($var)

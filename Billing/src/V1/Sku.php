@@ -81,11 +81,11 @@ class Sku extends \Google\Protobuf\Internal\Message
      *           characters.
      *     @type \Google\Cloud\Billing\V1\Category $category
      *           The category hierarchy of this SKU, purely for organizational purpose.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_regions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_regions
      *           List of service regions this SKU is offered at.
      *           Example: "asia-east1"
      *           Service regions can be found at https://cloud.google.com/about/locations/
-     *     @type \Google\Cloud\Billing\V1\PricingInfo[]|\Google\Protobuf\Internal\RepeatedField $pricing_info
+     *     @type array<\Google\Cloud\Billing\V1\PricingInfo>|\Google\Protobuf\Internal\RepeatedField $pricing_info
      *           A timeline of pricing info for this SKU in chronological order.
      *     @type string $service_provider_name
      *           Identifies the service provider.
@@ -236,7 +236,7 @@ class Sku extends \Google\Protobuf\Internal\Message
      * Service regions can be found at https://cloud.google.com/about/locations/
      *
      * Generated from protobuf field <code>repeated string service_regions = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceRegions($var)
@@ -262,7 +262,7 @@ class Sku extends \Google\Protobuf\Internal\Message
      * A timeline of pricing info for this SKU in chronological order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.PricingInfo pricing_info = 6;</code>
-     * @param \Google\Cloud\Billing\V1\PricingInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\V1\PricingInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPricingInfo($var)

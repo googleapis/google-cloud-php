@@ -203,10 +203,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitiesResponse
@@ -247,10 +246,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeEntitySentimentResponse
@@ -290,10 +288,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate sentence offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSentimentResponse
@@ -335,10 +332,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnalyzeSyntaxResponse
@@ -381,10 +377,9 @@ class LanguageServiceGapicClient
      *           The encoding type used by the API to calculate offsets.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Language\V1\EncodingType}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\AnnotateTextResponse
@@ -422,10 +417,9 @@ class LanguageServiceGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Language\V1\ClassifyTextResponse

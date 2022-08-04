@@ -63,7 +63,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      *     @type string $environment_id
      *           Environment ID for the Beam runner API proto Environment that corresponds
      *           to the current SDK Harness.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $capabilities
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $capabilities
      *           The set of capabilities enumerated in the above Environment proto. See also
      *           https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
      * }
@@ -178,7 +178,7 @@ class SdkHarnessContainerImage extends \Google\Protobuf\Internal\Message
      * https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
      *
      * Generated from protobuf field <code>repeated string capabilities = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCapabilities($var)

@@ -49,7 +49,7 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
      *           during EntityType creation.
      *     @type \Google\Cloud\AIPlatform\V1\FeatureSelector $feature_selector
      *           Required. Selectors choosing which Feature values to read from the EntityType.
-     *     @type \Google\Cloud\AIPlatform\V1\DestinationFeatureSetting[]|\Google\Protobuf\Internal\RepeatedField $settings
+     *     @type array<\Google\Cloud\AIPlatform\V1\DestinationFeatureSetting>|\Google\Protobuf\Internal\RepeatedField $settings
      *           Per-Feature settings for the batch read.
      * }
      */
@@ -139,7 +139,7 @@ class EntityTypeSpec extends \Google\Protobuf\Internal\Message
      * Per-Feature settings for the batch read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DestinationFeatureSetting settings = 3;</code>
-     * @param \Google\Cloud\AIPlatform\V1\DestinationFeatureSetting[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DestinationFeatureSetting>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSettings($var)

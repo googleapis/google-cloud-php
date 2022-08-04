@@ -66,7 +66,7 @@ class File extends \Google\Protobuf\Internal\Message
      *           If the file ID part contains slashes, they are escaped.
      *     @type int|string $size_bytes
      *           The size of the File in bytes.
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Hash[]|\Google\Protobuf\Internal\RepeatedField $hashes
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\Hash>|\Google\Protobuf\Internal\RepeatedField $hashes
      *           The hashes of the file content.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time when the File was created.
@@ -152,7 +152,7 @@ class File extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Hash hashes = 4;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Hash[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\Hash>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHashes($var)

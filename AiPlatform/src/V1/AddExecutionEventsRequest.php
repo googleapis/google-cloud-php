@@ -42,7 +42,7 @@ class AddExecutionEventsRequest extends \Google\Protobuf\Internal\Message
      *           Artifacts with.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/executions/{execution}`
-     *     @type \Google\Cloud\AIPlatform\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Cloud\AIPlatform\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
      *           The Events to create and add.
      * }
      */
@@ -98,7 +98,7 @@ class AddExecutionEventsRequest extends \Google\Protobuf\Internal\Message
      * The Events to create and add.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Event events = 2;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)

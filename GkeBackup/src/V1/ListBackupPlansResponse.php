@@ -44,7 +44,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeBackup\V1\BackupPlan[]|\Google\Protobuf\Internal\RepeatedField $backup_plans
+     *     @type array<\Google\Cloud\GkeBackup\V1\BackupPlan>|\Google\Protobuf\Internal\RepeatedField $backup_plans
      *           The list of BackupPlans matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
@@ -52,7 +52,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      *           `ListBackupPlans` call to retrieve the next page of results.
      *           If this field is omitted or empty, then there are no more results to
      *           return.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -76,7 +76,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * The list of BackupPlans matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.BackupPlan backup_plans = 1;</code>
-     * @param \Google\Cloud\GkeBackup\V1\BackupPlan[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\BackupPlan>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackupPlans($var)
@@ -136,7 +136,7 @@ class ListBackupPlansResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

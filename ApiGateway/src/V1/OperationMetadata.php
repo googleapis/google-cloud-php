@@ -90,7 +90,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *           corresponding to `Code.CANCELLED`.
      *     @type string $api_version
      *           Output only. API version used to start the operation.
-     *     @type \Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic[]|\Google\Protobuf\Internal\RepeatedField $diagnostics
+     *     @type array<\Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $diagnostics
      *           Output only. Diagnostics generated during processing of configuration source files.
      * }
      */
@@ -322,7 +322,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Output only. Diagnostics generated during processing of configuration source files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.OperationMetadata.Diagnostic diagnostics = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApiGateway\V1\OperationMetadata\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDiagnostics($var)

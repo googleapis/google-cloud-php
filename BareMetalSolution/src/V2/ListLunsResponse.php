@@ -40,11 +40,11 @@ class ListLunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BareMetalSolution\V2\Lun[]|\Google\Protobuf\Internal\RepeatedField $luns
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $luns
      *           The list of luns.
      *     @type string $next_page_token
      *           A token identifying a page of results from the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListLunsResponse extends \Google\Protobuf\Internal\Message
      * The list of luns.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Lun luns = 1;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\Lun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\Lun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLuns($var)
@@ -120,7 +120,7 @@ class ListLunsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

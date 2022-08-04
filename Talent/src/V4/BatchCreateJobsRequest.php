@@ -41,7 +41,7 @@ class BatchCreateJobsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the tenant under which the job is created.
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenants/bar".
-     *     @type \Google\Cloud\Talent\V4\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The jobs to be created.
      *           A maximum of 200 jobs can be created in a batch.
      * }
@@ -98,7 +98,7 @@ class BatchCreateJobsRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 200 jobs can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Talent\V4\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)

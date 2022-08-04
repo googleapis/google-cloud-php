@@ -89,7 +89,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function approveRolloutTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -97,9 +97,9 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse = new ApproveRolloutResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
         $approved = false;
-        $response = $client->approveRollout($formattedName, $approved);
+        $response = $gapicClient->approveRollout($formattedName, $approved);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -119,7 +119,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function approveRolloutExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -134,11 +134,11 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
         $approved = false;
         try {
-            $client->approveRollout($formattedName, $approved);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->approveRollout($formattedName, $approved);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -161,7 +161,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -189,10 +189,10 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deliveryPipelineId = 'deliveryPipelineId1972590605';
         $deliveryPipeline = new DeliveryPipeline();
-        $response = $client->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
+        $response = $gapicClient->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -239,7 +239,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -261,10 +261,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deliveryPipelineId = 'deliveryPipelineId1972590605';
         $deliveryPipeline = new DeliveryPipeline();
-        $response = $client->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
+        $response = $gapicClient->createDeliveryPipeline($formattedParent, $deliveryPipelineId, $deliveryPipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -298,7 +298,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -332,10 +332,10 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $formattedParent = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
         $releaseId = 'releaseId-1517127597';
         $release = new Release();
-        $response = $client->createRelease($formattedParent, $releaseId, $release);
+        $response = $gapicClient->createRelease($formattedParent, $releaseId, $release);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -382,7 +382,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -404,10 +404,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $formattedParent = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
         $releaseId = 'releaseId-1517127597';
         $release = new Release();
-        $response = $client->createRelease($formattedParent, $releaseId, $release);
+        $response = $gapicClient->createRelease($formattedParent, $releaseId, $release);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -441,7 +441,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -475,12 +475,12 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $formattedParent = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
         $rolloutId = 'rolloutId-91142551';
         $rollout = new Rollout();
         $rolloutTargetId = 'rolloutTargetId509050717';
         $rollout->setTargetId($rolloutTargetId);
-        $response = $client->createRollout($formattedParent, $rolloutId, $rollout);
+        $response = $gapicClient->createRollout($formattedParent, $rolloutId, $rollout);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -527,7 +527,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -549,12 +549,12 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $formattedParent = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
         $rolloutId = 'rolloutId-91142551';
         $rollout = new Rollout();
         $rolloutTargetId = 'rolloutTargetId509050717';
         $rollout->setTargetId($rolloutTargetId);
-        $response = $client->createRollout($formattedParent, $rolloutId, $rollout);
+        $response = $gapicClient->createRollout($formattedParent, $rolloutId, $rollout);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -588,7 +588,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -620,10 +620,10 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetId = 'targetId-815576439';
         $target = new Target();
-        $response = $client->createTarget($formattedParent, $targetId, $target);
+        $response = $gapicClient->createTarget($formattedParent, $targetId, $target);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -670,7 +670,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -692,10 +692,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetId = 'targetId-815576439';
         $target = new Target();
-        $response = $client->createTarget($formattedParent, $targetId, $target);
+        $response = $gapicClient->createTarget($formattedParent, $targetId, $target);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -729,7 +729,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -749,8 +749,8 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-        $response = $client->deleteDeliveryPipeline($formattedName);
+        $formattedName = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $response = $gapicClient->deleteDeliveryPipeline($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -793,7 +793,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -815,8 +815,8 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-        $response = $client->deleteDeliveryPipeline($formattedName);
+        $formattedName = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $response = $gapicClient->deleteDeliveryPipeline($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -850,7 +850,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -870,8 +870,8 @@ class CloudDeployClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
-        $response = $client->deleteTarget($formattedName);
+        $formattedName = $gapicClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
+        $response = $gapicClient->deleteTarget($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -914,7 +914,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -936,8 +936,8 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
-        $response = $client->deleteTarget($formattedName);
+        $formattedName = $gapicClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
+        $response = $gapicClient->deleteTarget($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -965,7 +965,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -977,8 +977,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setDefaultSkaffoldVersion($defaultSkaffoldVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->configName('[PROJECT]', '[LOCATION]');
-        $response = $client->getConfig($formattedName);
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->getConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -996,7 +996,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1011,10 +1011,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->configName('[PROJECT]', '[LOCATION]');
+        $formattedName = $gapicClient->configName('[PROJECT]', '[LOCATION]');
         try {
-            $client->getConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1031,7 +1031,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getDeliveryPipelineTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1047,8 +1047,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-        $response = $client->getDeliveryPipeline($formattedName);
+        $formattedName = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $response = $gapicClient->getDeliveryPipeline($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1066,7 +1066,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getDeliveryPipelineExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1081,10 +1081,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $formattedName = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
         try {
-            $client->getDeliveryPipeline($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDeliveryPipeline($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1101,7 +1101,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getReleaseTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1123,8 +1123,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setSkaffoldVersion($skaffoldVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
-        $response = $client->getRelease($formattedName);
+        $formattedName = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $response = $gapicClient->getRelease($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1142,7 +1142,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getReleaseExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1157,10 +1157,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $formattedName = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
         try {
-            $client->getRelease($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRelease($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1177,7 +1177,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getRolloutTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1199,8 +1199,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
-        $response = $client->getRollout($formattedName);
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $response = $gapicClient->getRollout($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1218,7 +1218,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getRolloutExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1233,10 +1233,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+        $formattedName = $gapicClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
         try {
-            $client->getRollout($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRollout($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1253,7 +1253,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getTargetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1273,8 +1273,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
-        $response = $client->getTarget($formattedName);
+        $formattedName = $gapicClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
+        $response = $gapicClient->getTarget($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1292,7 +1292,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function getTargetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1307,10 +1307,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
+        $formattedName = $gapicClient->targetName('[PROJECT]', '[LOCATION]', '[TARGET]');
         try {
-            $client->getTarget($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTarget($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1327,7 +1327,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listDeliveryPipelinesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1342,8 +1342,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setDeliveryPipelines($deliveryPipelines);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDeliveryPipelines($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDeliveryPipelines($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1364,7 +1364,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listDeliveryPipelinesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1379,10 +1379,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDeliveryPipelines($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDeliveryPipelines($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1399,7 +1399,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listReleasesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1414,8 +1414,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setReleases($releases);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
-        $response = $client->listReleases($formattedParent);
+        $formattedParent = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $response = $gapicClient->listReleases($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1436,7 +1436,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listReleasesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1451,10 +1451,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
+        $formattedParent = $gapicClient->deliveryPipelineName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]');
         try {
-            $client->listReleases($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listReleases($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1471,7 +1471,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listRolloutsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1486,8 +1486,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setRollouts($rollouts);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
-        $response = $client->listRollouts($formattedParent);
+        $formattedParent = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $response = $gapicClient->listRollouts($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1508,7 +1508,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listRolloutsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1523,10 +1523,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+        $formattedParent = $gapicClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
         try {
-            $client->listRollouts($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRollouts($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1543,7 +1543,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listTargetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1558,8 +1558,8 @@ class CloudDeployClientTest extends GeneratedTest
         $expectedResponse->setTargets($targets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listTargets($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listTargets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1580,7 +1580,7 @@ class CloudDeployClientTest extends GeneratedTest
     public function listTargetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1595,10 +1595,10 @@ class CloudDeployClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listTargets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTargets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1621,7 +1621,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1651,7 +1651,7 @@ class CloudDeployClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $deliveryPipeline = new DeliveryPipeline();
-        $response = $client->updateDeliveryPipeline($updateMask, $deliveryPipeline);
+        $response = $gapicClient->updateDeliveryPipeline($updateMask, $deliveryPipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1696,7 +1696,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1720,7 +1720,7 @@ class CloudDeployClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $deliveryPipeline = new DeliveryPipeline();
-        $response = $client->updateDeliveryPipeline($updateMask, $deliveryPipeline);
+        $response = $gapicClient->updateDeliveryPipeline($updateMask, $deliveryPipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1754,7 +1754,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1788,7 +1788,7 @@ class CloudDeployClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $target = new Target();
-        $response = $client->updateTarget($updateMask, $target);
+        $response = $gapicClient->updateTarget($updateMask, $target);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1833,7 +1833,7 @@ class CloudDeployClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1857,7 +1857,7 @@ class CloudDeployClientTest extends GeneratedTest
         // Mock request
         $updateMask = new FieldMask();
         $target = new Target();
-        $response = $client->updateTarget($updateMask, $target);
+        $response = $gapicClient->updateTarget($updateMask, $target);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

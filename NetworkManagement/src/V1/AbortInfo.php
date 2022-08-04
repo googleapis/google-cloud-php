@@ -46,7 +46,7 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      *           Causes that the analysis is aborted.
      *     @type string $resource_uri
      *           URI of the resource that caused the abort.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $projects_missing_permission
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects_missing_permission
      *           List of project IDs that the user has specified in the request but does
      *           not have permission to access network configs. Analysis is aborted in this
      *           case with the PERMISSION_DENIED cause.
@@ -128,7 +128,7 @@ class AbortInfo extends \Google\Protobuf\Internal\Message
      * case with the PERMISSION_DENIED cause.
      *
      * Generated from protobuf field <code>repeated string projects_missing_permission = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProjectsMissingPermission($var)

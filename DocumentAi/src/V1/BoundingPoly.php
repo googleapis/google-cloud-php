@@ -34,9 +34,9 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Vertex[]|\Google\Protobuf\Internal\RepeatedField $vertices
+     *     @type array<\Google\Cloud\DocumentAI\V1\Vertex>|\Google\Protobuf\Internal\RepeatedField $vertices
      *           The bounding polygon vertices.
-     *     @type \Google\Cloud\DocumentAI\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type array<\Google\Cloud\DocumentAI\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
      *           The bounding polygon normalized vertices.
      * }
      */
@@ -60,7 +60,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Vertex vertices = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Vertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Vertex>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVertices($var)
@@ -86,7 +86,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @param \Google\Cloud\DocumentAI\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNormalizedVertices($var)

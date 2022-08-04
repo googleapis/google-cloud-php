@@ -118,7 +118,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           organizations/{organization_number}/feeds/{client-assigned_feed_identifier}
      *           The client-assigned feed identifier must be unique within the parent
      *           project/folder/organization.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_names
      *           A list of the full names of the assets to receive updates. You must specify
      *           either or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
@@ -126,7 +126,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
      *           For a list of the full names for supported asset types, see [Resource
      *           name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
@@ -151,7 +151,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           See our [user
      *           guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes-with-condition)
      *           for detailed instructions.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
      *           A list of relationship types to output, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      *           content_type=RELATIONSHIP.
@@ -238,7 +238,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetNames($var)
@@ -274,7 +274,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -452,7 +452,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelationshipTypes($var)

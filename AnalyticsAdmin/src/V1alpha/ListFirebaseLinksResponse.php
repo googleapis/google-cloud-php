@@ -37,7 +37,7 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\FirebaseLink[]|\Google\Protobuf\Internal\RepeatedField $firebase_links
+     *     @type array<\Google\Analytics\Admin\V1alpha\FirebaseLink>|\Google\Protobuf\Internal\RepeatedField $firebase_links
      *           List of FirebaseLinks. This will have at most one value.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -66,7 +66,7 @@ class ListFirebaseLinksResponse extends \Google\Protobuf\Internal\Message
      * List of FirebaseLinks. This will have at most one value.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.FirebaseLink firebase_links = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\FirebaseLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\FirebaseLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFirebaseLinks($var)

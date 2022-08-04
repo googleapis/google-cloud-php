@@ -79,7 +79,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      *           preceding call to this method.  `pageToken` must be the value of
      *           `nextPageToken` from the previous response.  The values of other method
      *           parameters should be identical to those in the previous call.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           Optional. The resource name that owns the logs:
      *            * `projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
      *            * `organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]`
@@ -226,7 +226,7 @@ class ListLogsRequest extends \Google\Protobuf\Internal\Message
      * *  `folders/[FOLDER_ID]`
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceNames($var)

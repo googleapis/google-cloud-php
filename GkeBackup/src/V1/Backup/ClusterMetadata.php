@@ -228,4 +228,6 @@ class ClusterMetadata extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ClusterMetadata::class, \Google\Cloud\GkeBackup\V1\Backup_ClusterMetadata::class);
 

@@ -38,7 +38,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Table name.
-     *     @type \Google\Cloud\Datastream\V1\MysqlColumn[]|\Google\Protobuf\Internal\RepeatedField $mysql_columns
+     *     @type array<\Google\Cloud\Datastream\V1\MysqlColumn>|\Google\Protobuf\Internal\RepeatedField $mysql_columns
      *           MySQL columns in the database.
      *           When unspecified as part of include/exclude lists, includes/excludes
      *           everything.
@@ -94,7 +94,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>
-     * @param \Google\Cloud\Datastream\V1\MysqlColumn[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastream\V1\MysqlColumn>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMysqlColumns($var)

@@ -91,7 +91,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *           Output only. The time stamp this was previously updated. This
      *           represents the last time a call to `CreatePolicy` or `UpdatePolicy` was
      *           made for that `Policy`.
-     *     @type \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           Up to 10 PolicyRules are allowed.
      *           In Policies for boolean constraints, the following requirements apply:
      *             - There must be one and only one PolicyRule where condition is unset.
@@ -227,7 +227,7 @@ class PolicySpec extends \Google\Protobuf\Internal\Message
      *     true for a target resource take precedence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.PolicySpec.PolicyRule rules = 3;</code>
-     * @param \Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OrgPolicy\V2\PolicySpec\PolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)

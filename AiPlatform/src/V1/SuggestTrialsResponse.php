@@ -46,7 +46,7 @@ class SuggestTrialsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Trial[]|\Google\Protobuf\Internal\RepeatedField $trials
+     *     @type array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $trials
      *           A list of Trials.
      *     @type int $study_state
      *           The state of the Study.
@@ -76,7 +76,7 @@ class SuggestTrialsResponse extends \Google\Protobuf\Internal\Message
      * A list of Trials.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial trials = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Trial[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Trial>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTrials($var)

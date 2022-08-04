@@ -49,7 +49,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig\GkeNodeConfig $config
      *           Optional. The node pool configuration.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           Optional. The list of Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) where
      *           NodePool's nodes will be located.
@@ -127,7 +127,7 @@ class GkeNodePoolConfig extends \Google\Protobuf\Internal\Message
      * choose a location.
      *
      * Generated from protobuf field <code>repeated string locations = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)

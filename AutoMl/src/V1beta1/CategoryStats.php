@@ -29,7 +29,7 @@ class CategoryStats extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats[]|\Google\Protobuf\Internal\RepeatedField $top_category_stats
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats>|\Google\Protobuf\Internal\RepeatedField $top_category_stats
      *           The statistics of the top 20 CATEGORY values, ordered by
      *           [count][google.cloud.automl.v1beta1.CategoryStats.SingleCategoryStats.count].
      * }
@@ -56,7 +56,7 @@ class CategoryStats extends \Google\Protobuf\Internal\Message
      * [count][google.cloud.automl.v1beta1.CategoryStats.SingleCategoryStats.count].
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.CategoryStats.SingleCategoryStats top_category_stats = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\CategoryStats\SingleCategoryStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopCategoryStats($var)

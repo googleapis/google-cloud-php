@@ -84,7 +84,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      *           * yarn:   `yarn-site.xml`
      *           For more information, see [Cluster
      *           properties](https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $optional_components
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $optional_components
      *           Optional. The set of components to activate on the cluster.
      * }
      */
@@ -200,7 +200,7 @@ class SoftwareConfig extends \Google\Protobuf\Internal\Message
      * Optional. The set of components to activate on the cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Component optional_components = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOptionalComponents($var)

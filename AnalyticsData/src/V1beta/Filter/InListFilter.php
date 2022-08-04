@@ -35,7 +35,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           The list of string values.
      *           Must be non-empty.
      *     @type bool $case_sensitive
@@ -64,7 +64,7 @@ class InListFilter extends \Google\Protobuf\Internal\Message
      * Must be non-empty.
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

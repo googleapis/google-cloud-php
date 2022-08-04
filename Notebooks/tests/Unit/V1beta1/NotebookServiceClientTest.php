@@ -90,7 +90,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -121,7 +121,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $environmentId = 'environmentId608412359';
         $environment = new Environment();
-        $response = $client->createEnvironment($parent, $environmentId, $environment);
+        $response = $gapicClient->createEnvironment($parent, $environmentId, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -168,7 +168,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -193,7 +193,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $environmentId = 'environmentId608412359';
         $environment = new Environment();
-        $response = $client->createEnvironment($parent, $environmentId, $environment);
+        $response = $gapicClient->createEnvironment($parent, $environmentId, $environment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -227,7 +227,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -282,7 +282,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceMachineType = 'instanceMachineType-107765684';
         $instance->setMachineType($instanceMachineType);
-        $response = $client->createInstance($parent, $instanceId, $instance);
+        $response = $gapicClient->createInstance($parent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -329,7 +329,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -356,7 +356,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $instance = new Instance();
         $instanceMachineType = 'instanceMachineType-107765684';
         $instance->setMachineType($instanceMachineType);
-        $response = $client->createInstance($parent, $instanceId, $instance);
+        $response = $gapicClient->createInstance($parent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -390,7 +390,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -411,7 +411,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteEnvironment($name);
+        $response = $gapicClient->deleteEnvironment($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -454,7 +454,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -477,7 +477,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteEnvironment($name);
+        $response = $gapicClient->deleteEnvironment($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -511,7 +511,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -532,7 +532,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteInstance($name);
+        $response = $gapicClient->deleteInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -575,7 +575,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -598,7 +598,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->deleteInstance($name);
+        $response = $gapicClient->deleteInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -626,7 +626,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -643,7 +643,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getEnvironment($name);
+        $response = $gapicClient->getEnvironment($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -661,7 +661,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -678,8 +678,8 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getEnvironment($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEnvironment($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -696,7 +696,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -735,7 +735,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getInstance($name);
+        $response = $gapicClient->getInstance($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -753,7 +753,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -770,8 +770,8 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getInstance($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInstance($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -788,7 +788,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function isInstanceUpgradeableTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -803,7 +803,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $notebookInstance = 'notebookInstance-1078982023';
-        $response = $client->isInstanceUpgradeable($notebookInstance);
+        $response = $gapicClient->isInstanceUpgradeable($notebookInstance);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -821,7 +821,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function isInstanceUpgradeableExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -838,8 +838,8 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $notebookInstance = 'notebookInstance-1078982023';
         try {
-            $client->isInstanceUpgradeable($notebookInstance);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->isInstanceUpgradeable($notebookInstance);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -856,7 +856,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -872,7 +872,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listEnvironments($parent);
+        $response = $gapicClient->listEnvironments($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -893,7 +893,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -910,8 +910,8 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listEnvironments($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEnvironments($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -928,7 +928,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -944,7 +944,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listInstances($parent);
+        $response = $gapicClient->listInstances($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -965,7 +965,7 @@ class NotebookServiceClientTest extends GeneratedTest
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -982,8 +982,8 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listInstances($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInstances($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1006,7 +1006,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1058,7 +1058,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $instanceId = 'instanceId-2101995259';
-        $response = $client->registerInstance($parent, $instanceId);
+        $response = $gapicClient->registerInstance($parent, $instanceId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1103,7 +1103,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1127,7 +1127,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $instanceId = 'instanceId-2101995259';
-        $response = $client->registerInstance($parent, $instanceId);
+        $response = $gapicClient->registerInstance($parent, $instanceId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1161,7 +1161,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1213,7 +1213,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $vmId = 'vmId112317347';
-        $response = $client->reportInstanceInfo($name, $vmId);
+        $response = $gapicClient->reportInstanceInfo($name, $vmId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1258,7 +1258,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1282,7 +1282,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $vmId = 'vmId112317347';
-        $response = $client->reportInstanceInfo($name, $vmId);
+        $response = $gapicClient->reportInstanceInfo($name, $vmId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1316,7 +1316,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1367,7 +1367,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->resetInstance($name);
+        $response = $gapicClient->resetInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1410,7 +1410,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1433,7 +1433,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->resetInstance($name);
+        $response = $gapicClient->resetInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1467,7 +1467,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1520,7 +1520,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
         $coreCount = 1963855761;
-        $response = $client->setInstanceAccelerator($name, $type, $coreCount);
+        $response = $gapicClient->setInstanceAccelerator($name, $type, $coreCount);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1567,7 +1567,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1592,7 +1592,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $type = AcceleratorType::ACCELERATOR_TYPE_UNSPECIFIED;
         $coreCount = 1963855761;
-        $response = $client->setInstanceAccelerator($name, $type, $coreCount);
+        $response = $gapicClient->setInstanceAccelerator($name, $type, $coreCount);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1626,7 +1626,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1677,7 +1677,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->setInstanceLabels($name);
+        $response = $gapicClient->setInstanceLabels($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1720,7 +1720,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1743,7 +1743,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->setInstanceLabels($name);
+        $response = $gapicClient->setInstanceLabels($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1777,7 +1777,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1829,7 +1829,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $machineType = 'machineType1838323762';
-        $response = $client->setInstanceMachineType($name, $machineType);
+        $response = $gapicClient->setInstanceMachineType($name, $machineType);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1874,7 +1874,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1898,7 +1898,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $machineType = 'machineType1838323762';
-        $response = $client->setInstanceMachineType($name, $machineType);
+        $response = $gapicClient->setInstanceMachineType($name, $machineType);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1932,7 +1932,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1983,7 +1983,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->startInstance($name);
+        $response = $gapicClient->startInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2026,7 +2026,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2049,7 +2049,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->startInstance($name);
+        $response = $gapicClient->startInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2083,7 +2083,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2134,7 +2134,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->stopInstance($name);
+        $response = $gapicClient->stopInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2177,7 +2177,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2200,7 +2200,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->stopInstance($name);
+        $response = $gapicClient->stopInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2234,7 +2234,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2285,7 +2285,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $name = 'name3373707';
-        $response = $client->upgradeInstance($name);
+        $response = $gapicClient->upgradeInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2328,7 +2328,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2351,7 +2351,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $response = $client->upgradeInstance($name);
+        $response = $gapicClient->upgradeInstance($name);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2385,7 +2385,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2437,7 +2437,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $vmId = 'vmId112317347';
-        $response = $client->upgradeInstanceInternal($name, $vmId);
+        $response = $gapicClient->upgradeInstanceInternal($name, $vmId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2482,7 +2482,7 @@ class NotebookServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2506,7 +2506,7 @@ class NotebookServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $vmId = 'vmId112317347';
-        $response = $client->upgradeInstanceInternal($name, $vmId);
+        $response = $gapicClient->upgradeInstanceInternal($name, $vmId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

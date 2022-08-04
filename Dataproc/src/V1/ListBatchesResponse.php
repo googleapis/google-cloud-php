@@ -35,7 +35,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataproc\V1\Batch[]|\Google\Protobuf\Internal\RepeatedField $batches
+     *     @type array<\Google\Cloud\Dataproc\V1\Batch>|\Google\Protobuf\Internal\RepeatedField $batches
      *           The batches from the specified collection.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListBatchesResponse extends \Google\Protobuf\Internal\Message
      * The batches from the specified collection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch batches = 1;</code>
-     * @param \Google\Cloud\Dataproc\V1\Batch[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\Batch>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBatches($var)

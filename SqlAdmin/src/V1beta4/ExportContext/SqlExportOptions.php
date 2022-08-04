@@ -38,7 +38,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tables
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tables
      *           Tables to export, or that were exported, from the specified database. If
      *           you specify tables, specify one and only one database. For PostgreSQL
      *           instances, you can specify only one table.
@@ -71,7 +71,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * instances, you can specify only one table.
      *
      * Generated from protobuf field <code>repeated string tables = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTables($var)

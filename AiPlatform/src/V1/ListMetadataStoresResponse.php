@@ -36,7 +36,7 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\MetadataStore[]|\Google\Protobuf\Internal\RepeatedField $metadata_stores
+     *     @type array<\Google\Cloud\AIPlatform\V1\MetadataStore>|\Google\Protobuf\Internal\RepeatedField $metadata_stores
      *           The MetadataStores found for the Location.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -64,7 +64,7 @@ class ListMetadataStoresResponse extends \Google\Protobuf\Internal\Message
      * The MetadataStores found for the Location.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MetadataStore metadata_stores = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\MetadataStore[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\MetadataStore>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetadataStores($var)

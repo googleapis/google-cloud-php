@@ -32,7 +32,7 @@ class IdMatcher extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ids
      *           Required. The following are accepted as `ids`:
      *            * A single-element list containing only `*`, which selects all Features
      *            in the target EntityType, or
@@ -68,7 +68,7 @@ class IdMatcher extends \Google\Protobuf\Internal\Message
      *  those IDs in the target EntityType.
      *
      * Generated from protobuf field <code>repeated string ids = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIds($var)

@@ -43,7 +43,7 @@ class BatchUpdateUserLinksRequest extends \Google\Protobuf\Internal\Message
      *           for. The parent field in the UpdateUserLinkRequest messages must either be
      *           empty or match this field.
      *           Example format: accounts/1234
-     *     @type \Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The requests specifying the user links to update.
      *           A maximum of 1000 user links can be updated in a batch.
      * }
@@ -102,7 +102,7 @@ class BatchUpdateUserLinksRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 user links can be updated in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.UpdateUserLinkRequest requests = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\UpdateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

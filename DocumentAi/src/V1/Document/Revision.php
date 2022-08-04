@@ -57,7 +57,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           resource name.
      *     @type string $id
      *           Id of the revision.  Unique within the context of the document.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $parent
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $parent
      *           The revisions that this revision is based on.  This can include one or
      *           more parent (when documents are merged.)  This field represents the
      *           index into the `revisions` field.
@@ -183,7 +183,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * index into the `revisions` field.
      *
      * Generated from protobuf field <code>repeated int32 parent = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParent($var)

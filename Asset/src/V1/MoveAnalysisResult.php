@@ -37,10 +37,10 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\MoveImpact[]|\Google\Protobuf\Internal\RepeatedField $blockers
+     *     @type array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $blockers
      *           Blocking information that would prevent the target resource from moving
      *           to the specified destination at runtime.
-     *     @type \Google\Cloud\Asset\V1\MoveImpact[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           Warning information indicating that moving the target resource to the
      *           specified destination might be unsafe. This can include important policy
      *           information and configuration changes, but will not block moves at runtime.
@@ -68,7 +68,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * to the specified destination at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact blockers = 1;</code>
-     * @param \Google\Cloud\Asset\V1\MoveImpact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockers($var)
@@ -98,7 +98,7 @@ class MoveAnalysisResult extends \Google\Protobuf\Internal\Message
      * information and configuration changes, but will not block moves at runtime.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.MoveImpact warnings = 2;</code>
-     * @param \Google\Cloud\Asset\V1\MoveImpact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\MoveImpact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarnings($var)

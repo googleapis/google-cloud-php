@@ -44,7 +44,7 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Kms\V1\CryptoKey[]|\Google\Protobuf\Internal\RepeatedField $crypto_keys
+     *     @type array<\Google\Cloud\Kms\V1\CryptoKey>|\Google\Protobuf\Internal\RepeatedField $crypto_keys
      *           The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -75,7 +75,7 @@ class ListCryptoKeysResponse extends \Google\Protobuf\Internal\Message
      * The list of [CryptoKeys][google.cloud.kms.v1.CryptoKey].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.CryptoKey crypto_keys = 1;</code>
-     * @param \Google\Cloud\Kms\V1\CryptoKey[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Kms\V1\CryptoKey>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCryptoKeys($var)

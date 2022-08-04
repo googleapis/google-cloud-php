@@ -108,9 +108,9 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      *           Required. Unique identifier of the build.
      *     @type string $project_id
      *           ID of the project.
-     *     @type \Grafeas\V1\Command[]|\Google\Protobuf\Internal\RepeatedField $commands
+     *     @type array<\Grafeas\V1\Command>|\Google\Protobuf\Internal\RepeatedField $commands
      *           Commands requested by the build.
-     *     @type \Grafeas\V1\Artifact[]|\Google\Protobuf\Internal\RepeatedField $built_artifacts
+     *     @type array<\Grafeas\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $built_artifacts
      *           Output of the build.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Time at which the build was created.
@@ -207,7 +207,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Commands requested by the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Command commands = 3;</code>
-     * @param \Grafeas\V1\Command[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Command>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCommands($var)
@@ -233,7 +233,7 @@ class BuildProvenance extends \Google\Protobuf\Internal\Message
      * Output of the build.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Artifact built_artifacts = 4;</code>
-     * @param \Grafeas\V1\Artifact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuiltArtifacts($var)

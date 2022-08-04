@@ -379,7 +379,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If set to
      *           "true" AUTH is enabled on the instance. Default value is "false" meaning
      *           AUTH is disabled.
-     *     @type \Google\Cloud\Redis\V1beta1\TlsCertificate[]|\Google\Protobuf\Internal\RepeatedField $server_ca_certs
+     *     @type array<\Google\Cloud\Redis\V1beta1\TlsCertificate>|\Google\Protobuf\Internal\RepeatedField $server_ca_certs
      *           Output only. List of server CA certificates for the instance.
      *     @type int $transit_encryption_mode
      *           Optional. The TLS mode of the Redis instance.
@@ -396,7 +396,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           enabled for a Standard Tier instance, the only valid value is 1 and the
      *           default is 1. The valid value for basic tier is 0 and the default is also
      *           0.
-     *     @type \Google\Cloud\Redis\V1beta1\NodeInfo[]|\Google\Protobuf\Internal\RepeatedField $nodes
+     *     @type array<\Google\Cloud\Redis\V1beta1\NodeInfo>|\Google\Protobuf\Internal\RepeatedField $nodes
      *           Output only. Info per node.
      *     @type string $read_endpoint
      *           Output only. Hostname or IP address of the exposed readonly Redis
@@ -1106,7 +1106,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. List of server CA certificates for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1beta1.TlsCertificate server_ca_certs = 25 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Redis\V1beta1\TlsCertificate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Redis\V1beta1\TlsCertificate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServerCaCerts($var)
@@ -1270,7 +1270,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Output only. Info per node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.redis.v1beta1.NodeInfo nodes = 32 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Redis\V1beta1\NodeInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Redis\V1beta1\NodeInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodes($var)

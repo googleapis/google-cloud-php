@@ -124,7 +124,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           not be converted or the type (e.g. address) is not supported for certain
      *           parsers. This field is also only populated for certain supported document
      *           types.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Optional. Entities can be nested to form a hierarchical data structure
      *           representing the content in the document.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
@@ -410,7 +410,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * representing the content in the document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity properties = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProperties($var)

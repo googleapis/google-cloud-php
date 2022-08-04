@@ -36,7 +36,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Billing\V1\Sku[]|\Google\Protobuf\Internal\RepeatedField $skus
+     *     @type array<\Google\Cloud\Billing\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $skus
      *           The list of public SKUs of the given service.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. To retrieve the next page,
@@ -64,7 +64,7 @@ class ListSkusResponse extends \Google\Protobuf\Internal\Message
      * The list of public SKUs of the given service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.Sku skus = 1;</code>
-     * @param \Google\Cloud\Billing\V1\Sku[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\V1\Sku>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSkus($var)

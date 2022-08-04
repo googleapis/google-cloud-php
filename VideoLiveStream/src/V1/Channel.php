@@ -126,7 +126,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      *           Output only. The update time.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           User-defined key/value metadata.
-     *     @type \Google\Cloud\Video\LiveStream\V1\InputAttachment[]|\Google\Protobuf\Internal\RepeatedField $input_attachments
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\InputAttachment>|\Google\Protobuf\Internal\RepeatedField $input_attachments
      *           A list of input attachments that this channel uses.
      *           One channel can have multiple inputs as the input sources. Only one
      *           input can be selected as the input source at one time.
@@ -136,13 +136,13 @@ class Channel extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Video\LiveStream\V1\Channel\Output $output
      *           Required. Information about the output (that is, the Cloud Storage bucket to store
      *           the generated live stream).
-     *     @type \Google\Cloud\Video\LiveStream\V1\ElementaryStream[]|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of elementary streams.
-     *     @type \Google\Cloud\Video\LiveStream\V1\MuxStream[]|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\MuxStream>|\Google\Protobuf\Internal\RepeatedField $mux_streams
      *           List of multiplexing settings for output streams.
-     *     @type \Google\Cloud\Video\LiveStream\V1\Manifest[]|\Google\Protobuf\Internal\RepeatedField $manifests
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\Manifest>|\Google\Protobuf\Internal\RepeatedField $manifests
      *           List of output manifests.
-     *     @type \Google\Cloud\Video\LiveStream\V1\SpriteSheet[]|\Google\Protobuf\Internal\RepeatedField $sprite_sheets
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\SpriteSheet>|\Google\Protobuf\Internal\RepeatedField $sprite_sheets
      *           List of output sprite sheets.
      *     @type int $streaming_state
      *           Output only. State of the streaming operation.
@@ -304,7 +304,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * input can be selected as the input source at one time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.InputAttachment input_attachments = 16;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\InputAttachment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\InputAttachment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputAttachments($var)
@@ -396,7 +396,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * List of elementary streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.ElementaryStream elementary_streams = 10;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\ElementaryStream[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\ElementaryStream>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setElementaryStreams($var)
@@ -422,7 +422,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * List of multiplexing settings for output streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.MuxStream mux_streams = 11;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\MuxStream[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\MuxStream>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMuxStreams($var)
@@ -448,7 +448,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * List of output manifests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Manifest manifests = 12;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\Manifest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\Manifest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setManifests($var)
@@ -474,7 +474,7 @@ class Channel extends \Google\Protobuf\Internal\Message
      * List of output sprite sheets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.SpriteSheet sprite_sheets = 13;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\SpriteSheet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\SpriteSheet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpriteSheets($var)

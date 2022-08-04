@@ -35,7 +35,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\QueryError[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Monitoring\V3\QueryError>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Errors in parsing the time series query language text. The number of errors
      *           in the response may be limited.
      *     @type string $error_summary
@@ -64,7 +64,7 @@ class QueryErrorList extends \Google\Protobuf\Internal\Message
      * in the response may be limited.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.QueryError errors = 1;</code>
-     * @param \Google\Cloud\Monitoring\V3\QueryError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\QueryError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

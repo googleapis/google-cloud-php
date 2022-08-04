@@ -37,7 +37,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      *
      *     @type float $current_progress
      *           The current progress of the component, in the range [0,1].
-     *     @type \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point[]|\Google\Protobuf\Internal\RepeatedField $data_points
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point>|\Google\Protobuf\Internal\RepeatedField $data_points
      *           History of progress for the component.
      *           Points are sorted by time.
      * }
@@ -90,7 +90,7 @@ class ProgressTimeseries extends \Google\Protobuf\Internal\Message
      * Points are sorted by time.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ProgressTimeseries.Point data_points = 2;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ProgressTimeseries\Point>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataPoints($var)

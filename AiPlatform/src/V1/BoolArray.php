@@ -28,7 +28,7 @@ class BoolArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type bool[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<bool>|\Google\Protobuf\Internal\RepeatedField $values
      *           A list of bool values.
      * }
      */
@@ -52,7 +52,7 @@ class BoolArray extends \Google\Protobuf\Internal\Message
      * A list of bool values.
      *
      * Generated from protobuf field <code>repeated bool values = 1;</code>
-     * @param bool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<bool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

@@ -89,7 +89,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           If set, returns a [google.rpc.Status][google.rpc.Status] message that
      *           specifies the error for the operation.
-     *     @type \Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           This repeated list contains zero or more results that
      *           correspond to consecutive portions of the audio currently being processed.
      *           It contains zero or one `is_final=true` result (the newly settled portion),
@@ -165,7 +165,7 @@ class StreamingRecognizeResponse extends \Google\Protobuf\Internal\Message
      * followed by zero or more `is_final=false` results (the interim results).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.StreamingRecognitionResult results = 2;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\StreamingRecognitionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)

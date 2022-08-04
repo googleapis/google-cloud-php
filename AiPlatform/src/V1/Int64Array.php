@@ -28,7 +28,7 @@ class Int64Array extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           A list of int64 values.
      * }
      */
@@ -52,7 +52,7 @@ class Int64Array extends \Google\Protobuf\Internal\Message
      * A list of int64 values.
      *
      * Generated from protobuf field <code>repeated int64 values = 1;</code>
-     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

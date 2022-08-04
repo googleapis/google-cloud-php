@@ -34,7 +34,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AppEngine\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\AppEngine\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           The services belonging to the requested application.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -60,7 +60,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The services belonging to the requested application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.Service services = 1;</code>
-     * @param \Google\Cloud\AppEngine\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)

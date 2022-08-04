@@ -41,12 +41,12 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $audiences
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $audiences
      *           The list of JWT
      *           [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3).
      *           that are allowed to access. A JWT containing any of these audiences will
      *           be accepted.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_issuers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_issuers
      *           A list of allowed JWT issuers. Each entry must be a valid Google
      *           service account, in the following format:
      *           `service-account-name&#64;project-id.iam.gserviceaccount.com`
@@ -78,7 +78,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * be accepted.
      *
      * Generated from protobuf field <code>repeated string audiences = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAudiences($var)
@@ -108,7 +108,7 @@ class AuthProvider extends \Google\Protobuf\Internal\Message
      * `service-account-name&#64;project-id.iam.gserviceaccount.com`
      *
      * Generated from protobuf field <code>repeated string allowed_issuers = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedIssuers($var)

@@ -35,7 +35,7 @@ class ListInventoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\OsConfig\V1\Inventory[]|\Google\Protobuf\Internal\RepeatedField $inventories
+     *     @type array<\Google\Cloud\OsConfig\V1\Inventory>|\Google\Protobuf\Internal\RepeatedField $inventories
      *           List of inventory objects.
      *     @type string $next_page_token
      *           The pagination token to retrieve the next page of inventory objects.
@@ -61,7 +61,7 @@ class ListInventoriesResponse extends \Google\Protobuf\Internal\Message
      * List of inventory objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.Inventory inventories = 1;</code>
-     * @param \Google\Cloud\OsConfig\V1\Inventory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\Inventory>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInventories($var)

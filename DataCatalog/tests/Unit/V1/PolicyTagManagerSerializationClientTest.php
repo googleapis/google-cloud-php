@@ -75,7 +75,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function exportTaxonomiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,11 +83,11 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $expectedResponse = new ExportTaxonomiesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $formattedTaxonomies = [
-            $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+            $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
         ];
-        $response = $client->exportTaxonomies($formattedParent, $formattedTaxonomies);
+        $response = $gapicClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -107,7 +107,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function exportTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -122,13 +122,13 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $formattedTaxonomies = [
-            $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
+            $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]'),
         ];
         try {
-            $client->exportTaxonomies($formattedParent, $formattedTaxonomies);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->exportTaxonomies($formattedParent, $formattedTaxonomies);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -145,7 +145,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function importTaxonomiesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -153,8 +153,8 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $expectedResponse = new ImportTaxonomiesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->importTaxonomies($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->importTaxonomies($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -172,7 +172,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function importTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -187,10 +187,10 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->importTaxonomies($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->importTaxonomies($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -207,7 +207,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function replaceTaxonomyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,11 +223,11 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $expectedResponse->setPolicyTagCount($policyTagCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         $serializedTaxonomy = new SerializedTaxonomy();
         $serializedTaxonomyDisplayName = 'serializedTaxonomyDisplayName1493662264';
         $serializedTaxonomy->setDisplayName($serializedTaxonomyDisplayName);
-        $response = $client->replaceTaxonomy($formattedName, $serializedTaxonomy);
+        $response = $gapicClient->replaceTaxonomy($formattedName, $serializedTaxonomy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -247,7 +247,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
     public function replaceTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -262,13 +262,13 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
+        $formattedName = $gapicClient->taxonomyName('[PROJECT]', '[LOCATION]', '[TAXONOMY]');
         $serializedTaxonomy = new SerializedTaxonomy();
         $serializedTaxonomyDisplayName = 'serializedTaxonomyDisplayName1493662264';
         $serializedTaxonomy->setDisplayName($serializedTaxonomyDisplayName);
         try {
-            $client->replaceTaxonomy($formattedName, $serializedTaxonomy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->replaceTaxonomy($formattedName, $serializedTaxonomy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

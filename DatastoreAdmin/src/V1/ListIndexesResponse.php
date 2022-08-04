@@ -35,7 +35,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type array<\Google\Cloud\Datastore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
      *           The indexes.
      *     @type string $next_page_token
      *           The standard List next-page token.
@@ -61,7 +61,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * The indexes.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index indexes = 1;</code>
-     * @param \Google\Cloud\Datastore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexes($var)

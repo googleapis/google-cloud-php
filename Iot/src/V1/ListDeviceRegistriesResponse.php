@@ -36,7 +36,7 @@ class ListDeviceRegistriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iot\V1\DeviceRegistry[]|\Google\Protobuf\Internal\RepeatedField $device_registries
+     *     @type array<\Google\Cloud\Iot\V1\DeviceRegistry>|\Google\Protobuf\Internal\RepeatedField $device_registries
      *           The registries that matched the query.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more registries that match the
@@ -64,7 +64,7 @@ class ListDeviceRegistriesResponse extends \Google\Protobuf\Internal\Message
      * The registries that matched the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.DeviceRegistry device_registries = 1;</code>
-     * @param \Google\Cloud\Iot\V1\DeviceRegistry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\DeviceRegistry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeviceRegistries($var)

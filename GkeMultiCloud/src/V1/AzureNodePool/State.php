@@ -90,4 +90,6 @@ class State
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(State::class, \Google\Cloud\GkeMultiCloud\V1\AzureNodePool_State::class);
 

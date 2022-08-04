@@ -31,7 +31,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $received_messages
+     *     @type array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $received_messages
      *           Received Pub/Sub messages. The list will be empty if there are no more
      *           messages available in the backlog. For JSON, the response can be entirely
      *           empty. The Pub/Sub system may return fewer than the `maxMessages` requested
@@ -64,7 +64,7 @@ class PullResponse extends \Google\Protobuf\Internal\Message
      * even if there are more messages available in the backlog.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.ReceivedMessage received_messages = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\ReceivedMessage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\ReceivedMessage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReceivedMessages($var)

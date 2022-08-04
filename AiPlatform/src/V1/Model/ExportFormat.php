@@ -65,7 +65,7 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
      *           Used for iOS mobile devices.
      *           * `custom-trained`
      *           A Model that was uploaded or trained by custom code.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $exportable_contents
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $exportable_contents
      *           Output only. The content of this Model that may be exported.
      * }
      */
@@ -143,7 +143,7 @@ class ExportFormat extends \Google\Protobuf\Internal\Message
      * Output only. The content of this Model that may be exported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.ExportFormat.ExportableContent exportable_contents = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExportableContents($var)

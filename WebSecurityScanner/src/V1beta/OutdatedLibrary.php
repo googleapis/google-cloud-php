@@ -44,7 +44,7 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      *           The name of the outdated library.
      *     @type string $version
      *           The version number.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $learn_more_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $learn_more_urls
      *           URLs to learn more information about the vulnerabilities in the library.
      * }
      */
@@ -120,7 +120,7 @@ class OutdatedLibrary extends \Google\Protobuf\Internal\Message
      * URLs to learn more information about the vulnerabilities in the library.
      *
      * Generated from protobuf field <code>repeated string learn_more_urls = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLearnMoreUrls($var)
