@@ -126,7 +126,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field is ignored when inserting a UrlMap. An up-to-date fingerprint must be provided in order to update the UrlMap, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve a UrlMap.
      *     @type \Google\Cloud\Compute\V1\HttpHeaderAction $header_action
      *           Specifies changes to request and response headers that need to take effect for the selected backendService. The headerAction specified here take effect after headerAction specified under pathMatcher. headerAction is not supported for load balancers that have their loadBalancingScheme set to EXTERNAL. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
-     *     @type \Google\Cloud\Compute\V1\HostRule[]|\Google\Protobuf\Internal\RepeatedField $host_rules
+     *     @type array<\Google\Cloud\Compute\V1\HostRule>|\Google\Protobuf\Internal\RepeatedField $host_rules
      *           The list of host rules to use against the URL.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
@@ -134,13 +134,13 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#urlMaps for url maps.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *     @type \Google\Cloud\Compute\V1\PathMatcher[]|\Google\Protobuf\Internal\RepeatedField $path_matchers
+     *     @type array<\Google\Cloud\Compute\V1\PathMatcher>|\Google\Protobuf\Internal\RepeatedField $path_matchers
      *           The list of named PathMatchers to use against the URL.
      *     @type string $region
      *           [Output Only] URL of the region where the regional URL map resides. This field is not applicable to global URL maps. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type \Google\Cloud\Compute\V1\UrlMapTest[]|\Google\Protobuf\Internal\RepeatedField $tests
+     *     @type array<\Google\Cloud\Compute\V1\UrlMapTest>|\Google\Protobuf\Internal\RepeatedField $tests
      *           The list of expected URL mapping tests. Request to update the UrlMap succeeds only if all test cases pass. You can specify a maximum of 100 tests per UrlMap. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
      * }
      */
@@ -416,7 +416,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * The list of host rules to use against the URL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HostRule host_rules = 311804832;</code>
-     * @param \Google\Cloud\Compute\V1\HostRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\HostRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHostRules($var)
@@ -550,7 +550,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * The list of named PathMatchers to use against the URL.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PathMatcher path_matchers = 271664219;</code>
-     * @param \Google\Cloud\Compute\V1\PathMatcher[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PathMatcher>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPathMatchers($var)
@@ -648,7 +648,7 @@ class UrlMap extends \Google\Protobuf\Internal\Message
      * The list of expected URL mapping tests. Request to update the UrlMap succeeds only if all test cases pass. You can specify a maximum of 100 tests per UrlMap. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMapTest tests = 110251553;</code>
-     * @param \Google\Cloud\Compute\V1\UrlMapTest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\UrlMapTest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTests($var)

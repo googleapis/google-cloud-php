@@ -59,7 +59,7 @@ class RegionDiskTypeList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\DiskType[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\DiskType>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of DiskType resources.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#regionDiskTypeList for region disk types.
@@ -127,7 +127,7 @@ class RegionDiskTypeList extends \Google\Protobuf\Internal\Message
      * A list of DiskType resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskType items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\DiskType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\DiskType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

@@ -210,7 +210,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.
      *     @type string $user
      *           [Output Only] User who requested the operation, for example: `user&#64;example.com`.
-     *     @type \Google\Cloud\Compute\V1\Warnings[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      *     @type string $zone
      *           [Output Only] The URL of the zone where the operation resides. Only applicable when performing per-zone operations.
@@ -1028,7 +1028,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * [Output Only] If warning messages are generated during processing of the operation, this field will be populated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @param \Google\Cloud\Compute\V1\Warnings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarnings($var)

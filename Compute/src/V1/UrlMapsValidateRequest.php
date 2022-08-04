@@ -34,7 +34,7 @@ class UrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $load_balancing_schemes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $load_balancing_schemes
      *           Specifies the load balancer type(s) this validation request is for. Use EXTERNAL_MANAGED for HTTP/HTTPS External Global Load Balancer with Advanced Traffic Management. Use EXTERNAL for Classic HTTP/HTTPS External Global Load Balancer. Other load balancer types are not supported. For more information, refer to Choosing a load balancer. If unspecified, the load balancing scheme will be inferred from the backend service resources this URL map references. If that can not be inferred (for example, this URL map only references backend buckets, or this Url map is for rewrites and redirects only and doesn't reference any backends), EXTERNAL will be used as the default type. If specified, the scheme(s) must not conflict with the load balancing scheme of the backend service resources this Url map references.
      *           Check the LoadBalancingSchemes enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\UrlMap $resource
@@ -63,7 +63,7 @@ class UrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
      * Check the LoadBalancingSchemes enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string load_balancing_schemes = 6308527;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLoadBalancingSchemes($var)

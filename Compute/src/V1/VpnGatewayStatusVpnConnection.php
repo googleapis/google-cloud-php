@@ -52,7 +52,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      *           URL reference to the peer side VPN gateways to which the VPN tunnels in this VPN connection are connected. This field is mutually exclusive with peer_gcp_gateway.
      *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusHighAvailabilityRequirementState $state
      *           HighAvailabilityRequirementState for the VPN connection.
-     *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[]|\Google\Protobuf\Internal\RepeatedField $tunnels
+     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $tunnels
      *           List of VPN tunnels that are in this VPN connection.
      * }
      */
@@ -184,7 +184,7 @@ class VpnGatewayStatusVpnConnection extends \Google\Protobuf\Internal\Message
      * List of VPN tunnels that are in this VPN connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusTunnel tunnels = 104561931;</code>
-     * @param \Google\Cloud\Compute\V1\VpnGatewayStatusTunnel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VpnGatewayStatusTunnel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTunnels($var)

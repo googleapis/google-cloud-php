@@ -68,17 +68,17 @@ class Rule extends \Google\Protobuf\Internal\Message
      *     @type string $action
      *           This is deprecated and has no effect. Do not use.
      *           Check the Action enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Compute\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           This is deprecated and has no effect. Do not use.
      *     @type string $description
      *           This is deprecated and has no effect. Do not use.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ins
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ins
      *           This is deprecated and has no effect. Do not use.
-     *     @type \Google\Cloud\Compute\V1\LogConfig[]|\Google\Protobuf\Internal\RepeatedField $log_configs
+     *     @type array<\Google\Cloud\Compute\V1\LogConfig>|\Google\Protobuf\Internal\RepeatedField $log_configs
      *           This is deprecated and has no effect. Do not use.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $not_ins
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $not_ins
      *           This is deprecated and has no effect. Do not use.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
      *           This is deprecated and has no effect. Do not use.
      * }
      */
@@ -140,7 +140,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Condition conditions = 142882488;</code>
-     * @param \Google\Cloud\Compute\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -202,7 +202,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string ins = 104430;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIns($var)
@@ -228,7 +228,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfig log_configs = 152873846;</code>
-     * @param \Google\Cloud\Compute\V1\LogConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LogConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogConfigs($var)
@@ -254,7 +254,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotIns($var)
@@ -280,7 +280,7 @@ class Rule extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPermissions($var)

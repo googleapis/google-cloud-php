@@ -28,7 +28,7 @@ class SourceInstanceParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\DiskInstantiationConfig[]|\Google\Protobuf\Internal\RepeatedField $disk_configs
+     *     @type array<\Google\Cloud\Compute\V1\DiskInstantiationConfig>|\Google\Protobuf\Internal\RepeatedField $disk_configs
      *           Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      * }
      */
@@ -52,7 +52,7 @@ class SourceInstanceParams extends \Google\Protobuf\Internal\Message
      * Attached disks configuration. If not provided, defaults are applied: For boot disk and any other R/W disks, new custom images will be created from each disk. For read-only disks, they will be attached in read-only mode. Local SSD disks will be created as blank volumes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskInstantiationConfig disk_configs = 235580623;</code>
-     * @param \Google\Cloud\Compute\V1\DiskInstantiationConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\DiskInstantiationConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDiskConfigs($var)

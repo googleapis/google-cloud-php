@@ -39,7 +39,7 @@ class RouteType
     private static $valueToName = [
         self::UNDEFINED_ROUTE_TYPE => 'UNDEFINED_ROUTE_TYPE',
         self::BGP => 'BGP',
-        self::PBSTATIC => 'PBSTATIC',
+        self::PBSTATIC => 'STATIC',
         self::SUBNET => 'SUBNET',
         self::TRANSIT => 'TRANSIT',
     ];
@@ -58,8 +58,12 @@ class RouteType
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

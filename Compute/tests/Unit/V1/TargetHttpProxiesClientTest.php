@@ -80,7 +80,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -101,7 +101,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -124,7 +124,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -141,8 +141,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -165,7 +165,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -183,7 +183,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
-        $response = $client->delete($project, $targetHttpProxy);
+        $response = $gapicClient->delete($project, $targetHttpProxy);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -227,7 +227,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -251,7 +251,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
-        $response = $client->delete($project, $targetHttpProxy);
+        $response = $gapicClient->delete($project, $targetHttpProxy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -277,7 +277,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -307,7 +307,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
-        $response = $client->get($project, $targetHttpProxy);
+        $response = $gapicClient->get($project, $targetHttpProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -327,7 +327,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -345,8 +345,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
         try {
-            $client->get($project, $targetHttpProxy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $targetHttpProxy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -369,7 +369,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -387,7 +387,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetHttpProxyResource = new TargetHttpProxy();
-        $response = $client->insert($project, $targetHttpProxyResource);
+        $response = $gapicClient->insert($project, $targetHttpProxyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -431,7 +431,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -455,7 +455,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetHttpProxyResource = new TargetHttpProxy();
-        $response = $client->insert($project, $targetHttpProxyResource);
+        $response = $gapicClient->insert($project, $targetHttpProxyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -481,7 +481,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -503,7 +503,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -524,7 +524,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -541,8 +541,8 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -565,7 +565,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -584,7 +584,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
         $targetHttpProxyResource = new TargetHttpProxy();
-        $response = $client->patch($project, $targetHttpProxy, $targetHttpProxyResource);
+        $response = $gapicClient->patch($project, $targetHttpProxy, $targetHttpProxyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -630,7 +630,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -655,7 +655,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
         $targetHttpProxyResource = new TargetHttpProxy();
-        $response = $client->patch($project, $targetHttpProxy, $targetHttpProxyResource);
+        $response = $gapicClient->patch($project, $targetHttpProxy, $targetHttpProxyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -687,7 +687,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -706,7 +706,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
         $urlMapReferenceResource = new UrlMapReference();
-        $response = $client->setUrlMap($project, $targetHttpProxy, $urlMapReferenceResource);
+        $response = $gapicClient->setUrlMap($project, $targetHttpProxy, $urlMapReferenceResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -752,7 +752,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -777,7 +777,7 @@ class TargetHttpProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetHttpProxy = 'targetHttpProxy206872421';
         $urlMapReferenceResource = new UrlMapReference();
-        $response = $client->setUrlMap($project, $targetHttpProxy, $urlMapReferenceResource);
+        $response = $gapicClient->setUrlMap($project, $targetHttpProxy, $urlMapReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

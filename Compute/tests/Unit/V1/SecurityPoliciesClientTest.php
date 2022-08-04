@@ -87,7 +87,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -106,7 +106,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyRuleResource = new SecurityPolicyRule();
-        $response = $client->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+        $response = $gapicClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -152,7 +152,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -177,7 +177,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyRuleResource = new SecurityPolicyRule();
-        $response = $client->addRule($project, $securityPolicy, $securityPolicyRuleResource);
+        $response = $gapicClient->addRule($project, $securityPolicy, $securityPolicyRuleResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -203,7 +203,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -226,7 +226,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -249,7 +249,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,8 +266,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -290,7 +290,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -308,7 +308,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->delete($project, $securityPolicy);
+        $response = $gapicClient->delete($project, $securityPolicy);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -352,7 +352,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -376,7 +376,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->delete($project, $securityPolicy);
+        $response = $gapicClient->delete($project, $securityPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -402,7 +402,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -430,7 +430,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->get($project, $securityPolicy);
+        $response = $gapicClient->get($project, $securityPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -450,7 +450,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -468,8 +468,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         try {
-            $client->get($project, $securityPolicy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $securityPolicy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -486,7 +486,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function getRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -506,7 +506,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->getRule($project, $securityPolicy);
+        $response = $gapicClient->getRule($project, $securityPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -526,7 +526,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function getRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -544,8 +544,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         try {
-            $client->getRule($project, $securityPolicy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRule($project, $securityPolicy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -568,7 +568,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -586,7 +586,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->insert($project, $securityPolicyResource);
+        $response = $gapicClient->insert($project, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -630,7 +630,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -654,7 +654,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->insert($project, $securityPolicyResource);
+        $response = $gapicClient->insert($project, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -680,7 +680,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -700,7 +700,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -721,7 +721,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -738,8 +738,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -756,7 +756,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function listPreconfiguredExpressionSetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -765,7 +765,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->listPreconfiguredExpressionSets($project);
+        $response = $gapicClient->listPreconfiguredExpressionSets($project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -783,7 +783,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
     public function listPreconfiguredExpressionSetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -800,8 +800,8 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->listPreconfiguredExpressionSets($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPreconfiguredExpressionSets($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -824,7 +824,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -843,7 +843,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->patch($project, $securityPolicy, $securityPolicyResource);
+        $response = $gapicClient->patch($project, $securityPolicy, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -889,7 +889,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -914,7 +914,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyResource = new SecurityPolicy();
-        $response = $client->patch($project, $securityPolicy, $securityPolicyResource);
+        $response = $gapicClient->patch($project, $securityPolicy, $securityPolicyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -946,7 +946,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -965,7 +965,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyRuleResource = new SecurityPolicyRule();
-        $response = $client->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
+        $response = $gapicClient->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1011,7 +1011,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1036,7 +1036,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
         $securityPolicyRuleResource = new SecurityPolicyRule();
-        $response = $client->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
+        $response = $gapicClient->patchRule($project, $securityPolicy, $securityPolicyRuleResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1068,7 +1068,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1086,7 +1086,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->removeRule($project, $securityPolicy);
+        $response = $gapicClient->removeRule($project, $securityPolicy);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1130,7 +1130,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1154,7 +1154,7 @@ class SecurityPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $securityPolicy = 'securityPolicy1781695249';
-        $response = $client->removeRule($project, $securityPolicy);
+        $response = $gapicClient->removeRule($project, $securityPolicy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

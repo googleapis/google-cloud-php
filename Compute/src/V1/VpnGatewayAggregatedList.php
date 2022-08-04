@@ -73,7 +73,7 @@ class VpnGatewayAggregatedList extends \Google\Protobuf\Internal\Message
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachables
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachables
      *           [Output Only] Unreachable resources.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning message.
@@ -269,7 +269,7 @@ class VpnGatewayAggregatedList extends \Google\Protobuf\Internal\Message
      * [Output Only] Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachables = 243372063;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachables($var)

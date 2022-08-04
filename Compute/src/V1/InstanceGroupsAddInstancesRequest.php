@@ -27,7 +27,7 @@ class InstanceGroupsAddInstancesRequest extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of instances to add to the instance group.
      * }
      */
@@ -51,7 +51,7 @@ class InstanceGroupsAddInstancesRequest extends \Google\Protobuf\Internal\Messag
      * The list of instances to add to the instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceReference instances = 29097598;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

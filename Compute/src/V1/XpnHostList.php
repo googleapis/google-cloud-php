@@ -59,7 +59,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\Project[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\Project>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of shared VPC host project URLs.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#xpnHostList for lists of shared VPC hosts.
@@ -127,7 +127,7 @@ class XpnHostList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of shared VPC host project URLs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Project items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\Project[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Project>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

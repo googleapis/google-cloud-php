@@ -31,7 +31,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\HealthStatus[]|\Google\Protobuf\Internal\RepeatedField $health_status
+     *     @type array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $health_status
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#targetPoolInstanceHealth when checking the health of an instance.
      * }
@@ -52,7 +52,7 @@ class TargetPoolInstanceHealth extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
-     * @param \Google\Cloud\Compute\V1\HealthStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthStatus($var)

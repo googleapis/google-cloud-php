@@ -33,7 +33,7 @@ class ServiceAttachmentsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ServiceAttachment[]|\Google\Protobuf\Internal\RepeatedField $service_attachments
+     *     @type array<\Google\Cloud\Compute\V1\ServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $service_attachments
      *           A list of ServiceAttachments contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of service attachments when the list is empty.
@@ -59,7 +59,7 @@ class ServiceAttachmentsScopedList extends \Google\Protobuf\Internal\Message
      * A list of ServiceAttachments contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ServiceAttachment service_attachments = 307136806;</code>
-     * @param \Google\Cloud\Compute\V1\ServiceAttachment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ServiceAttachment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAttachments($var)

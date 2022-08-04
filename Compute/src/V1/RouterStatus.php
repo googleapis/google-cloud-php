@@ -47,12 +47,12 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $best_routes
+     *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $best_routes
      *           Best routes for this router's network.
-     *     @type \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $best_routes_for_router
+     *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $best_routes_for_router
      *           Best routes learned by this router.
-     *     @type \Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus[]|\Google\Protobuf\Internal\RepeatedField $bgp_peer_status
-     *     @type \Google\Cloud\Compute\V1\RouterStatusNatStatus[]|\Google\Protobuf\Internal\RepeatedField $nat_status
+     *     @type array<\Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus>|\Google\Protobuf\Internal\RepeatedField $bgp_peer_status
+     *     @type array<\Google\Cloud\Compute\V1\RouterStatusNatStatus>|\Google\Protobuf\Internal\RepeatedField $nat_status
      *     @type string $network
      *           URI of the network to which this router belongs.
      * }
@@ -77,7 +77,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      * Best routes for this router's network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes = 395826693;</code>
-     * @param \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBestRoutes($var)
@@ -103,7 +103,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
      * Best routes learned by this router.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route best_routes_for_router = 119389689;</code>
-     * @param \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBestRoutesForRouter($var)
@@ -125,7 +125,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusBgpPeerStatus bgp_peer_status = 218459131;</code>
-     * @param \Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterStatusBgpPeerStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBgpPeerStatus($var)
@@ -147,7 +147,7 @@ class RouterStatus extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterStatusNatStatus nat_status = 63098064;</code>
-     * @param \Google\Cloud\Compute\V1\RouterStatusNatStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterStatusNatStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNatStatus($var)

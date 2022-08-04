@@ -33,7 +33,7 @@ class DiskTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\DiskType[]|\Google\Protobuf\Internal\RepeatedField $disk_types
+     *     @type array<\Google\Cloud\Compute\V1\DiskType>|\Google\Protobuf\Internal\RepeatedField $disk_types
      *           [Output Only] A list of disk types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of disk types when the list is empty.
@@ -59,7 +59,7 @@ class DiskTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of disk types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.DiskType disk_types = 198926167;</code>
-     * @param \Google\Cloud\Compute\V1\DiskType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\DiskType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDiskTypes($var)

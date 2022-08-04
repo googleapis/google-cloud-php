@@ -83,7 +83,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -101,7 +101,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
-        $response = $client->delete($project, $targetGrpcProxy);
+        $response = $gapicClient->delete($project, $targetGrpcProxy);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -145,7 +145,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -169,7 +169,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
-        $response = $client->delete($project, $targetGrpcProxy);
+        $response = $gapicClient->delete($project, $targetGrpcProxy);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -195,7 +195,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -225,7 +225,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
-        $response = $client->get($project, $targetGrpcProxy);
+        $response = $gapicClient->get($project, $targetGrpcProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,7 +245,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,8 +263,8 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
         try {
-            $client->get($project, $targetGrpcProxy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $targetGrpcProxy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -287,7 +287,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -305,7 +305,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetGrpcProxyResource = new TargetGrpcProxy();
-        $response = $client->insert($project, $targetGrpcProxyResource);
+        $response = $gapicClient->insert($project, $targetGrpcProxyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -349,7 +349,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -373,7 +373,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $targetGrpcProxyResource = new TargetGrpcProxy();
-        $response = $client->insert($project, $targetGrpcProxyResource);
+        $response = $gapicClient->insert($project, $targetGrpcProxyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -399,7 +399,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,7 +421,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -442,7 +442,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -459,8 +459,8 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -483,7 +483,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -502,7 +502,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
         $targetGrpcProxyResource = new TargetGrpcProxy();
-        $response = $client->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+        $response = $gapicClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -548,7 +548,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -573,7 +573,7 @@ class TargetGrpcProxiesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $targetGrpcProxy = 'targetGrpcProxy-1605592453';
         $targetGrpcProxyResource = new TargetGrpcProxy();
-        $response = $client->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
+        $response = $gapicClient->patch($project, $targetGrpcProxy, $targetGrpcProxyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
