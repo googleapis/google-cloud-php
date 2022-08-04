@@ -28,7 +28,7 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\TextToSpeech\V1\Voice[]|\Google\Protobuf\Internal\RepeatedField $voices
+     *     @type array<\Google\Cloud\TextToSpeech\V1\Voice>|\Google\Protobuf\Internal\RepeatedField $voices
      *           The list of voices.
      * }
      */
@@ -52,7 +52,7 @@ class ListVoicesResponse extends \Google\Protobuf\Internal\Message
      * The list of voices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.texttospeech.v1.Voice voices = 1;</code>
-     * @param \Google\Cloud\TextToSpeech\V1\Voice[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\TextToSpeech\V1\Voice>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVoices($var)

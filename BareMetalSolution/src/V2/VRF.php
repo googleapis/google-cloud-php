@@ -52,7 +52,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      *           The possible state of VRF.
      *     @type \Google\Cloud\BareMetalSolution\V2\VRF\QosPolicy $qos_policy
      *           The QOS policy applied to this VRF.
-     *     @type \Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment[]|\Google\Protobuf\Internal\RepeatedField $vlan_attachments
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>|\Google\Protobuf\Internal\RepeatedField $vlan_attachments
      *           The list of VLAN attachments for the VRF.
      * }
      */
@@ -164,7 +164,7 @@ class VRF extends \Google\Protobuf\Internal\Message
      * The list of VLAN attachments for the VRF.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.VRF.VlanAttachment vlan_attachments = 7;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\VRF\VlanAttachment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVlanAttachments($var)

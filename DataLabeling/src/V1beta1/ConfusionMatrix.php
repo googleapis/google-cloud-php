@@ -28,7 +28,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $row
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $row
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +47,7 @@ class ConfusionMatrix extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.ConfusionMatrix.Row row = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\ConfusionMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRow($var)

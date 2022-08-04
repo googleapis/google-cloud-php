@@ -40,7 +40,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      *
      *     @type string $entity_id
      *           ID of the requested entity.
-     *     @type \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data[]|\Google\Protobuf\Internal\RepeatedField $data
+     *     @type array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data>|\Google\Protobuf\Internal\RepeatedField $data
      *           Each piece of data holds the k
      *           requested values for one requested Feature. If no values
      *           for the requested Feature exist, the corresponding cell will be empty.
@@ -102,7 +102,7 @@ class EntityView extends \Google\Protobuf\Internal\Message
      * header [ReadFeatureValuesResponse.header][google.cloud.aiplatform.v1.ReadFeatureValuesResponse.header].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ReadFeatureValuesResponse.EntityView.Data data = 2;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ReadFeatureValuesResponse\EntityView\Data>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setData($var)

@@ -29,7 +29,7 @@ class ListDeviceConfigVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iot\V1\DeviceConfig[]|\Google\Protobuf\Internal\RepeatedField $device_configs
+     *     @type array<\Google\Cloud\Iot\V1\DeviceConfig>|\Google\Protobuf\Internal\RepeatedField $device_configs
      *           The device configuration for the last few versions. Versions are listed
      *           in decreasing order, starting from the most recent one.
      * }
@@ -56,7 +56,7 @@ class ListDeviceConfigVersionsResponse extends \Google\Protobuf\Internal\Message
      * in decreasing order, starting from the most recent one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.DeviceConfig device_configs = 1;</code>
-     * @param \Google\Cloud\Iot\V1\DeviceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\DeviceConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeviceConfigs($var)

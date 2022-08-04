@@ -37,7 +37,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *
      *     @type float $au_prc
      *           Output only. The Area under precision recall curve metric.
-     *     @type \Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
+     *     @type array<\Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
      *           Output only. Metrics that have confidence thresholds.
      *           Precision-recall curve can be derived from it.
      * }
@@ -90,7 +90,7 @@ class TextExtractionEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Precision-recall curve can be derived from it.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.TextExtractionEvaluationMetrics.ConfidenceMetricsEntry confidence_metrics_entries = 2;</code>
-     * @param \Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1\TextExtractionEvaluationMetrics\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConfidenceMetricsEntries($var)

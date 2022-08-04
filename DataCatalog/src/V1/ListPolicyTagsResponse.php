@@ -36,7 +36,7 @@ class ListPolicyTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\PolicyTag[]|\Google\Protobuf\Internal\RepeatedField $policy_tags
+     *     @type array<\Google\Cloud\DataCatalog\V1\PolicyTag>|\Google\Protobuf\Internal\RepeatedField $policy_tags
      *           The policy tags that belong to the taxonomy.
      *     @type string $next_page_token
      *           Pagination token of the next results page. Empty if there are no
@@ -63,7 +63,7 @@ class ListPolicyTagsResponse extends \Google\Protobuf\Internal\Message
      * The policy tags that belong to the taxonomy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.PolicyTag policy_tags = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\PolicyTag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\PolicyTag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPolicyTags($var)

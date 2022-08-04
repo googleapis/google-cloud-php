@@ -328,10 +328,9 @@ class BetaAnalyticsDataGapicClient
      *           Individual requests. Each request has a separate pivot report response.
      *           Each batch request is allowed up to 5 requests.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse
@@ -398,10 +397,9 @@ class BetaAnalyticsDataGapicClient
      *           Individual requests. Each request has a separate report response. Each
      *           batch request is allowed up to 5 requests.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\BatchRunReportsResponse
@@ -491,10 +489,9 @@ class BetaAnalyticsDataGapicClient
      *           to only return compatible dimensions & metrics.
      *           For allowed values, use constants defined on {@see \Google\Analytics\Data\V1beta\Compatibility}
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\CheckCompatibilityResponse
@@ -586,10 +583,9 @@ class BetaAnalyticsDataGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\Metadata
@@ -686,10 +682,9 @@ class BetaAnalyticsDataGapicClient
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\RunPivotReportResponse
@@ -825,10 +820,9 @@ class BetaAnalyticsDataGapicClient
      *           If two minute ranges overlap, the event data for the overlapping minutes is
      *           included in the response rows for both minute ranges.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\RunRealtimeReportResponse
@@ -992,10 +986,9 @@ class BetaAnalyticsDataGapicClient
      *           Toggles whether to return the current state of this Analytics Property's
      *           quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Analytics\Data\V1beta\RunReportResponse

@@ -74,17 +74,17 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      *     @type string $main_class
      *           The name of the driver's main class. The jar file that contains the class
      *           must be in the default CLASSPATH or specified in `jar_file_uris`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver. Do not include arguments,
      *           such as `--conf`, that can be set as job properties, since a collision may
      *           occur that causes an incorrect job submission.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      *           Spark driver and tasks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
      *           Optional. HCFS URIs of files to be placed in the working directory of
      *           each executor. Useful for naively parallel tasks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
      *           Optional. HCFS URIs of archives to be extracted into the working directory
      *           of each executor. Supported file types:
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
@@ -185,7 +185,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * occur that causes an incorrect job submission.
      *
      * Generated from protobuf field <code>repeated string args = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -213,7 +213,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * Spark driver and tasks.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)
@@ -241,7 +241,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * each executor. Useful for naively parallel tasks.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileUris($var)
@@ -271,7 +271,7 @@ class SparkJob extends \Google\Protobuf\Internal\Message
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArchiveUris($var)

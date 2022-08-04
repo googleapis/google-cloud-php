@@ -114,19 +114,19 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      *           inclusively. If the field is unspecified or its value is set 0, server will
      *           default to 15. Other values outside of [5, 20] range will be rejected with
      *           INVALID_ARGUMENT error.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $starting_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $starting_urls
      *           Required. The starting URLs from which the scanner finds site pages.
      *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Authentication $authentication
      *           The authentication configuration. If specified, service will use the
      *           authentication configuration during scanning.
      *     @type int $user_agent
      *           The user agent used during scanning.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blacklist_patterns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blacklist_patterns
      *           The blacklist URL patterns as described in
      *           https://cloud.google.com/security-scanner/docs/excluded-urls
      *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig\Schedule $schedule
      *           The schedule of the ScanConfig.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $target_platforms
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $target_platforms
      *           Set of Cloud Platforms targeted by the scan. If empty, APP_ENGINE will be
      *           used as a default.
      *     @type int $export_to_security_command_center
@@ -246,7 +246,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * Required. The starting URLs from which the scanner finds site pages.
      *
      * Generated from protobuf field <code>repeated string starting_urls = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStartingUrls($var)
@@ -338,7 +338,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/security-scanner/docs/excluded-urls
      *
      * Generated from protobuf field <code>repeated string blacklist_patterns = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlacklistPatterns($var)
@@ -402,7 +402,7 @@ class ScanConfig extends \Google\Protobuf\Internal\Message
      * used as a default.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.ScanConfig.TargetPlatform target_platforms = 9;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetPlatforms($var)

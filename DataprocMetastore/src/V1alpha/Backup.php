@@ -78,7 +78,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The revision of the service at the time of backup.
      *     @type string $description
      *           The description of the backup.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restoring_services
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restoring_services
      *           Output only. Services that are restoring from the backup.
      * }
      */
@@ -290,7 +290,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. Services that are restoring from the backup.
      *
      * Generated from protobuf field <code>repeated string restoring_services = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestoringServices($var)

@@ -104,7 +104,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      *           Output only. Number of policy tags in this taxonomy.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $taxonomy_timestamps
      *           Output only. Creation and modification timestamps of this taxonomy.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $activated_policy_types
      *           Optional. A list of policy types that are activated for this taxonomy. If not set,
      *           defaults to an empty list.
      * }
@@ -287,7 +287,7 @@ class Taxonomy extends \Google\Protobuf\Internal\Message
      * defaults to an empty list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy.PolicyType activated_policy_types = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActivatedPolicyTypes($var)

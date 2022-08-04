@@ -149,7 +149,7 @@ class Batch extends \Google\Protobuf\Internal\Message
      *           Optional. Environment configuration for the batch execution.
      *     @type string $operation
      *           Output only. The resource name of the operation associated with this batch.
-     *     @type \Google\Cloud\Dataproc\V1\Batch\StateHistory[]|\Google\Protobuf\Internal\RepeatedField $state_history
+     *     @type array<\Google\Cloud\Dataproc\V1\Batch\StateHistory>|\Google\Protobuf\Internal\RepeatedField $state_history
      *           Output only. Historical state information for the batch.
      * }
      */
@@ -675,7 +675,7 @@ class Batch extends \Google\Protobuf\Internal\Message
      * Output only. Historical state information for the batch.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Batch.StateHistory state_history = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataproc\V1\Batch\StateHistory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\Batch\StateHistory>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStateHistory($var)

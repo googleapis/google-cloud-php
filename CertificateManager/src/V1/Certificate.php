@@ -96,7 +96,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           If set, defines data of a self-managed certificate.
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate $managed
      *           If set, contains configuration and state of a managed certificate.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $san_dnsnames
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $san_dnsnames
      *           Output only. The list of Subject Alternative Names of dnsName type defined in the
      *           certificate (see RFC 5280 4.2.1.6).
      *           Managed certificates that haven't been provisioned yet have this field
@@ -349,7 +349,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * populated with a value of the managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSanDnsnames($var)

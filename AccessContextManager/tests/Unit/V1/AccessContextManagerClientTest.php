@@ -97,7 +97,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -117,8 +117,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->commitServicePerimeters($formattedParent);
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->commitServicePerimeters($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -161,7 +161,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -183,8 +183,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->commitServicePerimeters($formattedParent);
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->commitServicePerimeters($formattedParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -218,7 +218,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -244,9 +244,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevel = new AccessLevel();
-        $response = $client->createAccessLevel($formattedParent, $accessLevel);
+        $response = $gapicClient->createAccessLevel($formattedParent, $accessLevel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -291,7 +291,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -313,9 +313,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevel = new AccessLevel();
-        $response = $client->createAccessLevel($formattedParent, $accessLevel);
+        $response = $gapicClient->createAccessLevel($formattedParent, $accessLevel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -349,7 +349,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -376,7 +376,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->createAccessPolicy();
+        $response = $gapicClient->createAccessPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -417,7 +417,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -438,7 +438,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->createAccessPolicy();
+        $response = $gapicClient->createAccessPolicy();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -472,7 +472,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -496,15 +496,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
         $gcpUserAccessBindingAccessLevels = [
-            $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
+            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
         ];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
-        $response = $client->createGcpUserAccessBinding($formattedParent, $gcpUserAccessBinding);
+        $response = $gapicClient->createGcpUserAccessBinding($formattedParent, $gcpUserAccessBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -549,7 +549,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -571,15 +571,15 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
         $gcpUserAccessBinding = new GcpUserAccessBinding();
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
         $gcpUserAccessBindingAccessLevels = [
-            $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
+            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
         ];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
-        $response = $client->createGcpUserAccessBinding($formattedParent, $gcpUserAccessBinding);
+        $response = $gapicClient->createGcpUserAccessBinding($formattedParent, $gcpUserAccessBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -613,7 +613,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -641,9 +641,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $servicePerimeter = new ServicePerimeter();
-        $response = $client->createServicePerimeter($formattedParent, $servicePerimeter);
+        $response = $gapicClient->createServicePerimeter($formattedParent, $servicePerimeter);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -688,7 +688,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -710,9 +710,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $servicePerimeter = new ServicePerimeter();
-        $response = $client->createServicePerimeter($formattedParent, $servicePerimeter);
+        $response = $gapicClient->createServicePerimeter($formattedParent, $servicePerimeter);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -746,7 +746,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -766,8 +766,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $response = $client->deleteAccessLevel($formattedName);
+        $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
+        $response = $gapicClient->deleteAccessLevel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -810,7 +810,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -832,8 +832,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $response = $client->deleteAccessLevel($formattedName);
+        $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
+        $response = $gapicClient->deleteAccessLevel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -867,7 +867,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -887,8 +887,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->deleteAccessPolicy($formattedName);
+        $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->deleteAccessPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -931,7 +931,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -953,8 +953,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->deleteAccessPolicy($formattedName);
+        $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->deleteAccessPolicy($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -988,7 +988,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1008,8 +1008,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $response = $client->deleteGcpUserAccessBinding($formattedName);
+        $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
+        $response = $gapicClient->deleteGcpUserAccessBinding($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1052,7 +1052,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1074,8 +1074,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $response = $client->deleteGcpUserAccessBinding($formattedName);
+        $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
+        $response = $gapicClient->deleteGcpUserAccessBinding($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1109,7 +1109,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1129,8 +1129,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $response = $client->deleteServicePerimeter($formattedName);
+        $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
+        $response = $gapicClient->deleteServicePerimeter($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1173,7 +1173,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1195,8 +1195,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $response = $client->deleteServicePerimeter($formattedName);
+        $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
+        $response = $gapicClient->deleteServicePerimeter($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1224,7 +1224,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getAccessLevelTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1238,8 +1238,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
-        $response = $client->getAccessLevel($formattedName);
+        $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
+        $response = $gapicClient->getAccessLevel($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1257,7 +1257,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getAccessLevelExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1272,10 +1272,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
+        $formattedName = $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]');
         try {
-            $client->getAccessLevel($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAccessLevel($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1292,7 +1292,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getAccessPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1308,8 +1308,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->getAccessPolicy($formattedName);
+        $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->getAccessPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1327,7 +1327,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getAccessPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1342,10 +1342,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedName = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         try {
-            $client->getAccessPolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAccessPolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1362,7 +1362,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getGcpUserAccessBindingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1374,8 +1374,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setGroupKey($groupKey);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
-        $response = $client->getGcpUserAccessBinding($formattedName);
+        $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
+        $response = $gapicClient->getGcpUserAccessBinding($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1393,7 +1393,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getGcpUserAccessBindingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1408,10 +1408,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
+        $formattedName = $gapicClient->gcpUserAccessBindingName('[ORGANIZATION]', '[GCP_USER_ACCESS_BINDING]');
         try {
-            $client->getGcpUserAccessBinding($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGcpUserAccessBinding($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1428,7 +1428,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getServicePerimeterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1444,8 +1444,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setUseExplicitDryRunSpec($useExplicitDryRunSpec);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
-        $response = $client->getServicePerimeter($formattedName);
+        $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
+        $response = $gapicClient->getServicePerimeter($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1463,7 +1463,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function getServicePerimeterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1478,10 +1478,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
+        $formattedName = $gapicClient->servicePerimeterName('[ACCESS_POLICY]', '[SERVICE_PERIMETER]');
         try {
-            $client->getServicePerimeter($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getServicePerimeter($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1498,7 +1498,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listAccessLevelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1513,8 +1513,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setAccessLevels($accessLevels);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->listAccessLevels($formattedParent);
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->listAccessLevels($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1535,7 +1535,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listAccessLevelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1550,10 +1550,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         try {
-            $client->listAccessLevels($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAccessLevels($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1570,7 +1570,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listAccessPoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1585,8 +1585,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setAccessPolicies($accessPolicies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
-        $response = $client->listAccessPolicies($formattedParent);
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $response = $gapicClient->listAccessPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1607,7 +1607,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listAccessPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1622,10 +1622,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
         try {
-            $client->listAccessPolicies($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAccessPolicies($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1642,7 +1642,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listGcpUserAccessBindingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1657,8 +1657,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setGcpUserAccessBindings($gcpUserAccessBindings);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
-        $response = $client->listGcpUserAccessBindings($formattedParent);
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $response = $gapicClient->listGcpUserAccessBindings($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1679,7 +1679,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listGcpUserAccessBindingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1694,10 +1694,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
         try {
-            $client->listGcpUserAccessBindings($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGcpUserAccessBindings($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1714,7 +1714,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listServicePerimetersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1729,8 +1729,8 @@ class AccessContextManagerClientTest extends GeneratedTest
         $expectedResponse->setServicePerimeters($servicePerimeters);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
-        $response = $client->listServicePerimeters($formattedParent);
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
+        $response = $gapicClient->listServicePerimeters($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1751,7 +1751,7 @@ class AccessContextManagerClientTest extends GeneratedTest
     public function listServicePerimetersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1766,10 +1766,10 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         try {
-            $client->listServicePerimeters($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listServicePerimeters($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1792,7 +1792,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1812,9 +1812,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevels = [];
-        $response = $client->replaceAccessLevels($formattedParent, $accessLevels);
+        $response = $gapicClient->replaceAccessLevels($formattedParent, $accessLevels);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1859,7 +1859,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1881,9 +1881,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $accessLevels = [];
-        $response = $client->replaceAccessLevels($formattedParent, $accessLevels);
+        $response = $gapicClient->replaceAccessLevels($formattedParent, $accessLevels);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1917,7 +1917,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1937,9 +1937,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $servicePerimeters = [];
-        $response = $client->replaceServicePerimeters($formattedParent, $servicePerimeters);
+        $response = $gapicClient->replaceServicePerimeters($formattedParent, $servicePerimeters);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1984,7 +1984,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2006,9 +2006,9 @@ class AccessContextManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->accessPolicyName('[ACCESS_POLICY]');
+        $formattedParent = $gapicClient->accessPolicyName('[ACCESS_POLICY]');
         $servicePerimeters = [];
-        $response = $client->replaceServicePerimeters($formattedParent, $servicePerimeters);
+        $response = $gapicClient->replaceServicePerimeters($formattedParent, $servicePerimeters);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2042,7 +2042,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2070,7 +2070,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $accessLevel = new AccessLevel();
         $updateMask = new FieldMask();
-        $response = $client->updateAccessLevel($accessLevel, $updateMask);
+        $response = $gapicClient->updateAccessLevel($accessLevel, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2115,7 +2115,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2139,7 +2139,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $accessLevel = new AccessLevel();
         $updateMask = new FieldMask();
-        $response = $client->updateAccessLevel($accessLevel, $updateMask);
+        $response = $gapicClient->updateAccessLevel($accessLevel, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2173,7 +2173,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2203,7 +2203,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $policy = new AccessPolicy();
         $updateMask = new FieldMask();
-        $response = $client->updateAccessPolicy($policy, $updateMask);
+        $response = $gapicClient->updateAccessPolicy($policy, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2248,7 +2248,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2272,7 +2272,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $policy = new AccessPolicy();
         $updateMask = new FieldMask();
-        $response = $client->updateAccessPolicy($policy, $updateMask);
+        $response = $gapicClient->updateAccessPolicy($policy, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2306,7 +2306,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2334,11 +2334,11 @@ class AccessContextManagerClientTest extends GeneratedTest
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
         $gcpUserAccessBindingAccessLevels = [
-            $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
+            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
         ];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $updateMask = new FieldMask();
-        $response = $client->updateGcpUserAccessBinding($gcpUserAccessBinding, $updateMask);
+        $response = $gapicClient->updateGcpUserAccessBinding($gcpUserAccessBinding, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2383,7 +2383,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2409,11 +2409,11 @@ class AccessContextManagerClientTest extends GeneratedTest
         $gcpUserAccessBindingGroupKey = 'gcpUserAccessBindingGroupKey-1338087614';
         $gcpUserAccessBinding->setGroupKey($gcpUserAccessBindingGroupKey);
         $gcpUserAccessBindingAccessLevels = [
-            $client->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
+            $gapicClient->accessLevelName('[ACCESS_POLICY]', '[ACCESS_LEVEL]'),
         ];
         $gcpUserAccessBinding->setAccessLevels($gcpUserAccessBindingAccessLevels);
         $updateMask = new FieldMask();
-        $response = $client->updateGcpUserAccessBinding($gcpUserAccessBinding, $updateMask);
+        $response = $gapicClient->updateGcpUserAccessBinding($gcpUserAccessBinding, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2447,7 +2447,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2477,7 +2477,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $servicePerimeter = new ServicePerimeter();
         $updateMask = new FieldMask();
-        $response = $client->updateServicePerimeter($servicePerimeter, $updateMask);
+        $response = $gapicClient->updateServicePerimeter($servicePerimeter, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2522,7 +2522,7 @@ class AccessContextManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2546,7 +2546,7 @@ class AccessContextManagerClientTest extends GeneratedTest
         // Mock request
         $servicePerimeter = new ServicePerimeter();
         $updateMask = new FieldMask();
-        $response = $client->updateServicePerimeter($servicePerimeter, $updateMask);
+        $response = $gapicClient->updateServicePerimeter($servicePerimeter, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

@@ -68,10 +68,10 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Optional. User-provided description of the annotation specification set.
      *           The description can be up to 10,000 characters long.
-     *     @type \Google\Cloud\DataLabeling\V1beta1\AnnotationSpec[]|\Google\Protobuf\Internal\RepeatedField $annotation_specs
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\AnnotationSpec>|\Google\Protobuf\Internal\RepeatedField $annotation_specs
      *           Required. The array of AnnotationSpecs that you define when you create the
      *           AnnotationSpecSet. These are the possible labels for the labeling task.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the annotation spec set.
      * }
@@ -182,7 +182,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * AnnotationSpecSet. These are the possible labels for the labeling task.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.AnnotationSpec annotation_specs = 4;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\AnnotationSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\AnnotationSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotationSpecs($var)
@@ -210,7 +210,7 @@ class AnnotationSpecSet extends \Google\Protobuf\Internal\Message
      * to the annotation spec set.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockingResources($var)

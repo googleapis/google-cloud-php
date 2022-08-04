@@ -29,7 +29,7 @@ class OperationGroup extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Recommender\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\Cloud\Recommender\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           List of operations across one or more resources that belong to this group.
      *           Loosely based on RFC6902 and should be performed in the order they appear.
      * }
@@ -56,7 +56,7 @@ class OperationGroup extends \Google\Protobuf\Internal\Message
      * Loosely based on RFC6902 and should be performed in the order they appear.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Operation operations = 1;</code>
-     * @param \Google\Cloud\Recommender\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

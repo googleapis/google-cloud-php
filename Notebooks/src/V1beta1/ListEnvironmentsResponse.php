@@ -41,12 +41,12 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Notebooks\V1beta1\Environment[]|\Google\Protobuf\Internal\RepeatedField $environments
+     *     @type array<\Google\Cloud\Notebooks\V1beta1\Environment>|\Google\Protobuf\Internal\RepeatedField $environments
      *           A list of returned environments.
      *     @type string $next_page_token
      *           A page token that can be used to continue listing from the last result
      *           in the next list call.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * A list of returned environments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1beta1.Environment environments = 1;</code>
-     * @param \Google\Cloud\Notebooks\V1beta1\Environment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Notebooks\V1beta1\Environment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnvironments($var)
@@ -124,7 +124,7 @@ class ListEnvironmentsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

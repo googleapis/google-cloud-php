@@ -42,7 +42,7 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Parent resource that identifies admin project and location e.g.,
      *            `projects/myproject/locations/us`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $capacity_commitment_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $capacity_commitment_ids
      *           Ids of capacity commitments to merge.
      *           These capacity commitments must exist under admin project and location
      *           specified in the parent.
@@ -106,7 +106,7 @@ class MergeCapacityCommitmentsRequest extends \Google\Protobuf\Internal\Message
      * projects/myproject/locations/US/capacityCommitments/abc
      *
      * Generated from protobuf field <code>repeated string capacity_commitment_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCapacityCommitmentIds($var)

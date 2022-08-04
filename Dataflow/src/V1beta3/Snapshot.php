@@ -95,7 +95,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The time after which this snapshot will be automatically deleted.
      *     @type int $state
      *           State of the snapshot.
-     *     @type \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
      *           Pub/Sub snapshot metadata.
      *     @type string $description
      *           User specified description of the snapshot. Maybe empty.
@@ -302,7 +302,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPubsubMetadata($var)

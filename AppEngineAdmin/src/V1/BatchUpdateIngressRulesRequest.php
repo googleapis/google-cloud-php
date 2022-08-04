@@ -38,7 +38,7 @@ class BatchUpdateIngressRulesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the Firewall collection to set.
      *           Example: `apps/myapp/firewall/ingressRules`.
-     *     @type \Google\Cloud\AppEngine\V1\FirewallRule[]|\Google\Protobuf\Internal\RepeatedField $ingress_rules
+     *     @type array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $ingress_rules
      *           A list of FirewallRules to replace the existing set.
      * }
      */
@@ -90,7 +90,7 @@ class BatchUpdateIngressRulesRequest extends \Google\Protobuf\Internal\Message
      * A list of FirewallRules to replace the existing set.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.FirewallRule ingress_rules = 2;</code>
-     * @param \Google\Cloud\AppEngine\V1\FirewallRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\FirewallRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIngressRules($var)

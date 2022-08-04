@@ -304,7 +304,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. Only populated when the job's state is JOB_STATE_FAILED or
      *           JOB_STATE_CANCELLED.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
      *           Output only. Partial failures encountered.
      *           For example, single files that can't be read.
      *           This field never exceeds 20 entries.
@@ -935,7 +935,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      * Status details fields contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialFailures($var)

@@ -28,7 +28,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\SerializedTaxonomy[]|\Google\Protobuf\Internal\RepeatedField $taxonomies
+     *     @type array<\Google\Cloud\DataCatalog\V1\SerializedTaxonomy>|\Google\Protobuf\Internal\RepeatedField $taxonomies
      *           Required. Taxonomies to import.
      * }
      */
@@ -52,7 +52,7 @@ class InlineSource extends \Google\Protobuf\Internal\Message
      * Required. Taxonomies to import.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SerializedTaxonomy taxonomies = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\DataCatalog\V1\SerializedTaxonomy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\SerializedTaxonomy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaxonomies($var)

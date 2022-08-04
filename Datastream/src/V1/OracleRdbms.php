@@ -28,7 +28,7 @@ class OracleRdbms extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Datastream\V1\OracleSchema[]|\Google\Protobuf\Internal\RepeatedField $oracle_schemas
+     *     @type array<\Google\Cloud\Datastream\V1\OracleSchema>|\Google\Protobuf\Internal\RepeatedField $oracle_schemas
      *           Oracle schemas/databases in the database server.
      * }
      */
@@ -52,7 +52,7 @@ class OracleRdbms extends \Google\Protobuf\Internal\Message
      * Oracle schemas/databases in the database server.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.OracleSchema oracle_schemas = 1;</code>
-     * @param \Google\Cloud\Datastream\V1\OracleSchema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastream\V1\OracleSchema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOracleSchemas($var)

@@ -36,7 +36,7 @@ class ListFeaturesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\AIPlatform\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           The Features matching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as [ListFeaturesRequest.page_token][google.cloud.aiplatform.v1.ListFeaturesRequest.page_token] to
@@ -64,7 +64,7 @@ class ListFeaturesResponse extends \Google\Protobuf\Internal\Message
      * The Features matching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature features = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)

@@ -144,12 +144,12 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeMultiCloud\V1\AwsSshConfig $ssh_config
      *           Optional. SSH configuration for how to access the underlying control plane
      *           machines.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subnet_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnet_ids
      *           Required. The list of subnets where control plane replicas will run.
      *           A replica will be provisioned on each subnet and up to three values
      *           can be provided.
      *           Each subnet must be in a different AWS Availability Zone (AZ).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $security_group_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $security_group_ids
      *           Optional. The IDs of additional security groups to add to control plane
      *           replicas. The Anthos Multi-Cloud API will automatically create and manage
      *           security groups with the minimum rules needed for a functioning cluster.
@@ -314,7 +314,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * Each subnet must be in a different AWS Availability Zone (AZ).
      *
      * Generated from protobuf field <code>repeated string subnet_ids = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubnetIds($var)
@@ -344,7 +344,7 @@ class AwsControlPlane extends \Google\Protobuf\Internal\Message
      * security groups with the minimum rules needed for a functioning cluster.
      *
      * Generated from protobuf field <code>repeated string security_group_ids = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecurityGroupIds($var)

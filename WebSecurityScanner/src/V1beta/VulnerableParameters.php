@@ -28,7 +28,7 @@ class VulnerableParameters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $parameter_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parameter_names
      *           The vulnerable parameter names.
      * }
      */
@@ -52,7 +52,7 @@ class VulnerableParameters extends \Google\Protobuf\Internal\Message
      * The vulnerable parameter names.
      *
      * Generated from protobuf field <code>repeated string parameter_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameterNames($var)

@@ -40,11 +40,11 @@ class TailLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           A list of log entries. Each response in the stream will order entries with
      *           increasing values of `LogEntry.timestamp`. Ordering is not guaranteed
      *           between separate responses.
-     *     @type \Google\Cloud\Logging\V2\TailLogEntriesResponse\SuppressionInfo[]|\Google\Protobuf\Internal\RepeatedField $suppression_info
+     *     @type array<\Google\Cloud\Logging\V2\TailLogEntriesResponse\SuppressionInfo>|\Google\Protobuf\Internal\RepeatedField $suppression_info
      *           If entries that otherwise would have been included in the session were not
      *           sent back to the client, counts of relevant entries omitted from the
      *           session with the reason that they were not included. There will be at most
@@ -76,7 +76,7 @@ class TailLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * between separate responses.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogEntry entries = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)
@@ -110,7 +110,7 @@ class TailLogEntriesResponse extends \Google\Protobuf\Internal\Message
      * suppressed entries since the last streamed response.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.TailLogEntriesResponse.SuppressionInfo suppression_info = 2;</code>
-     * @param \Google\Cloud\Logging\V2\TailLogEntriesResponse\SuppressionInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\TailLogEntriesResponse\SuppressionInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSuppressionInfo($var)

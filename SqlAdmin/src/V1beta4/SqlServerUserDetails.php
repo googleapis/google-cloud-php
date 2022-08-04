@@ -36,7 +36,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $disabled
      *           If the user has been disabled
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $server_roles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $server_roles
      *           The server roles for this user
      * }
      */
@@ -86,7 +86,7 @@ class SqlServerUserDetails extends \Google\Protobuf\Internal\Message
      * The server roles for this user
      *
      * Generated from protobuf field <code>repeated string server_roles = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServerRoles($var)

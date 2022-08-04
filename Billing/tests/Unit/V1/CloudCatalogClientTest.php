@@ -75,7 +75,7 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listServicesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,7 +89,7 @@ class CloudCatalogClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setServices($services);
         $transport->addResponse($expectedResponse);
-        $response = $client->listServices();
+        $response = $gapicClient->listServices();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -108,7 +108,7 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -123,8 +123,8 @@ class CloudCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listServices();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listServices();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -141,7 +141,7 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listSkusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -156,8 +156,8 @@ class CloudCatalogClientTest extends GeneratedTest
         $expectedResponse->setSkus($skus);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->serviceName('[SERVICE]');
-        $response = $client->listSkus($formattedParent);
+        $formattedParent = $gapicClient->serviceName('[SERVICE]');
+        $response = $gapicClient->listSkus($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -178,7 +178,7 @@ class CloudCatalogClientTest extends GeneratedTest
     public function listSkusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -193,10 +193,10 @@ class CloudCatalogClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->serviceName('[SERVICE]');
+        $formattedParent = $gapicClient->serviceName('[SERVICE]');
         try {
-            $client->listSkus($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSkus($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

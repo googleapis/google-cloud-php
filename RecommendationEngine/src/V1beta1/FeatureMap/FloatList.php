@@ -28,7 +28,7 @@ class FloatList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $value
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $value
      *           Float feature value.
      * }
      */
@@ -52,7 +52,7 @@ class FloatList extends \Google\Protobuf\Internal\Message
      * Float feature value.
      *
      * Generated from protobuf field <code>repeated float value = 1;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValue($var)

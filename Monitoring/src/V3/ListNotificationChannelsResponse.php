@@ -44,7 +44,7 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\NotificationChannel[]|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *     @type array<\Google\Cloud\Monitoring\V3\NotificationChannel>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           The notification channels defined for the specified project.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more results that match
@@ -76,7 +76,7 @@ class ListNotificationChannelsResponse extends \Google\Protobuf\Internal\Message
      * The notification channels defined for the specified project.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.NotificationChannel notification_channels = 3;</code>
-     * @param \Google\Cloud\Monitoring\V3\NotificationChannel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\NotificationChannel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationChannels($var)

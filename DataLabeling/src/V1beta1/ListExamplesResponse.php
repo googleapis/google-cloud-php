@@ -34,7 +34,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\Example[]|\Google\Protobuf\Internal\RepeatedField $examples
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $examples
      *           The list of examples to return.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class ListExamplesResponse extends \Google\Protobuf\Internal\Message
      * The list of examples to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Example examples = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\Example[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExamples($var)

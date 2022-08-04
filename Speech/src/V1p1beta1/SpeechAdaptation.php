@@ -45,13 +45,13 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1p1beta1\PhraseSet[]|\Google\Protobuf\Internal\RepeatedField $phrase_sets
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $phrase_sets
      *           A collection of phrase sets. To specify the hints inline, leave the
      *           phrase set's `name` blank and fill in the rest of its fields. Any
      *           phrase set can use any custom class.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_set_references
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_set_references
      *           A collection of phrase set resource names to use.
-     *     @type \Google\Cloud\Speech\V1p1beta1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $custom_classes
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\CustomClass>|\Google\Protobuf\Internal\RepeatedField $custom_classes
      *           A collection of custom classes. To specify the classes inline, leave the
      *           class' `name` blank and fill in the rest of its fields, giving it a unique
      *           `custom_class_id`. Refer to the inline defined class in phrase hints by its
@@ -82,7 +82,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * phrase set can use any custom class.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.PhraseSet phrase_sets = 1;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\PhraseSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\PhraseSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhraseSets($var)
@@ -108,7 +108,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * A collection of phrase set resource names to use.
      *
      * Generated from protobuf field <code>repeated string phrase_set_references = 2 [(.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhraseSetReferences($var)
@@ -140,7 +140,7 @@ class SpeechAdaptation extends \Google\Protobuf\Internal\Message
      * `custom_class_id`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass custom_classes = 3;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\CustomClass>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomClasses($var)

@@ -70,4 +70,6 @@ class NamespacedResourceRestoreMode
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(NamespacedResourceRestoreMode::class, \Google\Cloud\GkeBackup\V1\RestoreConfig_NamespacedResourceRestoreMode::class);
 

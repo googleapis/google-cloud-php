@@ -35,7 +35,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $completion_results
+     *     @type array<\Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $completion_results
      *           Results of the matching job/company candidates.
      *     @type \Google\Cloud\Talent\V4\ResponseMetadata $metadata
      *           Additional information for the API invocation, such as the request
@@ -62,7 +62,7 @@ class CompleteQueryResponse extends \Google\Protobuf\Internal\Message
      * Results of the matching job/company candidates.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4.CompleteQueryResponse.CompletionResult completion_results = 1;</code>
-     * @param \Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4\CompleteQueryResponse\CompletionResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompletionResults($var)

@@ -77,7 +77,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function createPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -87,9 +87,9 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $policy = new Policy();
-        $response = $client->createPolicy($formattedParent, $policy);
+        $response = $gapicClient->createPolicy($formattedParent, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -109,7 +109,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function createPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -124,11 +124,11 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $policy = new Policy();
         try {
-            $client->createPolicy($formattedParent, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPolicy($formattedParent, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -145,7 +145,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function deletePolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -153,8 +153,8 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
-        $client->deletePolicy($formattedName);
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
+        $gapicClient->deletePolicy($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -171,7 +171,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function deletePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -186,10 +186,10 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
         try {
-            $client->deletePolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -206,7 +206,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function getEffectivePolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -216,8 +216,8 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
-        $response = $client->getEffectivePolicy($formattedName);
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
+        $response = $gapicClient->getEffectivePolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -235,7 +235,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function getEffectivePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -250,10 +250,10 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
         try {
-            $client->getEffectivePolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEffectivePolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -270,7 +270,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function getPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -280,8 +280,8 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
-        $response = $client->getPolicy($formattedName);
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
+        $response = $gapicClient->getPolicy($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -299,7 +299,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function getPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -314,10 +314,10 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->policyName('[PROJECT]', '[POLICY]');
+        $formattedName = $gapicClient->policyName('[PROJECT]', '[POLICY]');
         try {
-            $client->getPolicy($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPolicy($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -334,7 +334,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function listConstraintsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -349,8 +349,8 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setConstraints($constraints);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listConstraints($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listConstraints($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -371,7 +371,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function listConstraintsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -386,10 +386,10 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listConstraints($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConstraints($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -406,7 +406,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function listPoliciesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,8 +421,8 @@ class OrgPolicyClientTest extends GeneratedTest
         $expectedResponse->setPolicies($policies);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listPolicies($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listPolicies($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -443,7 +443,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function listPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -458,10 +458,10 @@ class OrgPolicyClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listPolicies($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPolicies($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -478,7 +478,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function updatePolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -489,7 +489,7 @@ class OrgPolicyClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $policy = new Policy();
-        $response = $client->updatePolicy($policy);
+        $response = $gapicClient->updatePolicy($policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -507,7 +507,7 @@ class OrgPolicyClientTest extends GeneratedTest
     public function updatePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -524,8 +524,8 @@ class OrgPolicyClientTest extends GeneratedTest
         // Mock request
         $policy = new Policy();
         try {
-            $client->updatePolicy($policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePolicy($policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

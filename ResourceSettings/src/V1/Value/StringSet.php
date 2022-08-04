@@ -30,7 +30,7 @@ class StringSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           The strings in the set
      * }
      */
@@ -54,7 +54,7 @@ class StringSet extends \Google\Protobuf\Internal\Message
      * The strings in the set
      *
      * Generated from protobuf field <code>repeated string values = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

@@ -34,7 +34,7 @@ class ListConnectorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VpcAccess\V1\Connector[]|\Google\Protobuf\Internal\RepeatedField $connectors
+     *     @type array<\Google\Cloud\VpcAccess\V1\Connector>|\Google\Protobuf\Internal\RepeatedField $connectors
      *           List of Serverless VPC Access connectors.
      *     @type string $next_page_token
      *           Continuation token.
@@ -60,7 +60,7 @@ class ListConnectorsResponse extends \Google\Protobuf\Internal\Message
      * List of Serverless VPC Access connectors.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vpcaccess.v1.Connector connectors = 1;</code>
-     * @param \Google\Cloud\VpcAccess\V1\Connector[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VpcAccess\V1\Connector>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnectors($var)

@@ -155,16 +155,22 @@ class AwsClustersGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/aws_clusters_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/aws_clusters_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/aws_clusters_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/aws_clusters_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/aws_clusters_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/aws_clusters_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/aws_clusters_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/aws_clusters_rest_client_config.php',
                 ],
             ],
         ];
@@ -173,7 +179,9 @@ class AwsClustersGapicClient
     private static function getAwsClusterNameTemplate()
     {
         if (self::$awsClusterNameTemplate == null) {
-            self::$awsClusterNameTemplate = new PathTemplate('projects/{project}/locations/{location}/awsClusters/{aws_cluster}');
+            self::$awsClusterNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/awsClusters/{aws_cluster}'
+            );
         }
 
         return self::$awsClusterNameTemplate;
@@ -182,7 +190,9 @@ class AwsClustersGapicClient
     private static function getAwsNodePoolNameTemplate()
     {
         if (self::$awsNodePoolNameTemplate == null) {
-            self::$awsNodePoolNameTemplate = new PathTemplate('projects/{project}/locations/{location}/awsClusters/{aws_cluster}/awsNodePools/{aws_node_pool}');
+            self::$awsNodePoolNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/awsClusters/{aws_cluster}/awsNodePools/{aws_node_pool}'
+            );
         }
 
         return self::$awsNodePoolNameTemplate;
@@ -191,7 +201,9 @@ class AwsClustersGapicClient
     private static function getAwsServerConfigNameTemplate()
     {
         if (self::$awsServerConfigNameTemplate == null) {
-            self::$awsServerConfigNameTemplate = new PathTemplate('projects/{project}/locations/{location}/awsServerConfig');
+            self::$awsServerConfigNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/awsServerConfig'
+            );
         }
 
         return self::$awsServerConfigNameTemplate;
@@ -200,7 +212,9 @@ class AwsClustersGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -250,8 +264,12 @@ class AwsClustersGapicClient
      *
      * @return string The formatted aws_node_pool resource.
      */
-    public static function awsNodePoolName($project, $location, $awsCluster, $awsNodePool)
-    {
+    public static function awsNodePoolName(
+        $project,
+        $location,
+        $awsCluster,
+        $awsNodePool
+    ) {
         return self::getAwsNodePoolNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -321,7 +339,9 @@ class AwsClustersGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -335,7 +355,9 @@ class AwsClustersGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -361,8 +383,14 @@ class AwsClustersGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -498,18 +526,21 @@ class AwsClustersGapicClient
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually create the cluster.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAwsCluster($parent, $awsCluster, $awsClusterId, array $optionalArgs = [])
-    {
+    public function createAwsCluster(
+        $parent,
+        $awsCluster,
+        $awsClusterId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateAwsClusterRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -520,9 +551,18 @@ class AwsClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('CreateAwsCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateAwsCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -593,18 +633,21 @@ class AwsClustersGapicClient
      *           If set, only validate the request, but do not actually create the node
      *           pool.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function createAwsNodePool($parent, $awsNodePool, $awsNodePoolId, array $optionalArgs = [])
-    {
+    public function createAwsNodePool(
+        $parent,
+        $awsNodePool,
+        $awsNodePoolId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateAwsNodePoolRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -615,9 +658,18 @@ class AwsClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('CreateAwsNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateAwsNodePool',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -690,10 +742,9 @@ class AwsClustersGapicClient
      *           If the provided etag does not match the current etag of the cluster,
      *           the request will fail and an ABORTED error will be returned.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -718,9 +769,18 @@ class AwsClustersGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteAwsCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteAwsCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -791,10 +851,9 @@ class AwsClustersGapicClient
      *           If the provided ETag does not match the current etag of the node pool,
      *           the request will fail and an ABORTED error will be returned.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -819,9 +878,18 @@ class AwsClustersGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteAwsNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteAwsNodePool',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -850,25 +918,35 @@ class AwsClustersGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\GenerateAwsAccessTokenResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function generateAwsAccessToken($awsCluster, array $optionalArgs = [])
-    {
+    public function generateAwsAccessToken(
+        $awsCluster,
+        array $optionalArgs = []
+    ) {
         $request = new GenerateAwsAccessTokenRequest();
         $requestParamHeaders = [];
         $request->setAwsCluster($awsCluster);
         $requestParamHeaders['aws_cluster'] = $awsCluster;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GenerateAwsAccessToken', GenerateAwsAccessTokenResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GenerateAwsAccessToken',
+            GenerateAwsAccessTokenResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -896,10 +974,9 @@ class AwsClustersGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\AwsCluster
@@ -912,9 +989,18 @@ class AwsClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetAwsCluster', AwsCluster::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAwsCluster',
+            AwsCluster::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -942,10 +1028,9 @@ class AwsClustersGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\AwsNodePool
@@ -958,9 +1043,18 @@ class AwsClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetAwsNodePool', AwsNodePool::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAwsNodePool',
+            AwsNodePool::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -989,10 +1083,9 @@ class AwsClustersGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\GkeMultiCloud\V1\AwsServerConfig
@@ -1005,9 +1098,18 @@ class AwsClustersGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetAwsServerConfig', AwsServerConfig::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetAwsServerConfig',
+            AwsServerConfig::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1057,10 +1159,9 @@ class AwsClustersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1081,9 +1182,18 @@ class AwsClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListAwsClusters', $optionalArgs, ListAwsClustersResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAwsClusters',
+            $optionalArgs,
+            ListAwsClustersResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1133,10 +1243,9 @@ class AwsClustersGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1157,9 +1266,18 @@ class AwsClustersGapicClient
             $request->setPageToken($optionalArgs['pageToken']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListAwsNodePools', $optionalArgs, ListAwsNodePoolsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListAwsNodePools',
+            $optionalArgs,
+            ListAwsNodePoolsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1233,18 +1351,20 @@ class AwsClustersGapicClient
      *     @type bool $validateOnly
      *           If set, only validate the request, but do not actually update the cluster.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAwsCluster($awsCluster, $updateMask, array $optionalArgs = [])
-    {
+    public function updateAwsCluster(
+        $awsCluster,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateAwsClusterRequest();
         $requestParamHeaders = [];
         $request->setAwsCluster($awsCluster);
@@ -1254,9 +1374,18 @@ class AwsClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateAwsCluster', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateAwsCluster',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -1325,18 +1454,20 @@ class AwsClustersGapicClient
      *     @type bool $validateOnly
      *           If set, only validate the request, but don't actually update the node pool.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function updateAwsNodePool($awsNodePool, $updateMask, array $optionalArgs = [])
-    {
+    public function updateAwsNodePool(
+        $awsNodePool,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
         $request = new UpdateAwsNodePoolRequest();
         $requestParamHeaders = [];
         $request->setAwsNodePool($awsNodePool);
@@ -1346,8 +1477,17 @@ class AwsClustersGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateAwsNodePool', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateAwsNodePool',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }

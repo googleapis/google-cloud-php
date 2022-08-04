@@ -26,7 +26,7 @@ class ListFeedsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\Feed[]|\Google\Protobuf\Internal\RepeatedField $feeds
+     *     @type array<\Google\Cloud\Asset\V1\Feed>|\Google\Protobuf\Internal\RepeatedField $feeds
      *           A list of feeds.
      * }
      */
@@ -50,7 +50,7 @@ class ListFeedsResponse extends \Google\Protobuf\Internal\Message
      * A list of feeds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.Feed feeds = 1;</code>
-     * @param \Google\Cloud\Asset\V1\Feed[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\Feed>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeeds($var)

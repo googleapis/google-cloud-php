@@ -36,7 +36,7 @@ class ListEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\EntityType[]|\Google\Protobuf\Internal\RepeatedField $entity_types
+     *     @type array<\Google\Cloud\AIPlatform\V1\EntityType>|\Google\Protobuf\Internal\RepeatedField $entity_types
      *           The EntityTypes matching the request.
      *     @type string $next_page_token
      *           A token, which can be sent as [ListEntityTypesRequest.page_token][google.cloud.aiplatform.v1.ListEntityTypesRequest.page_token] to
@@ -64,7 +64,7 @@ class ListEntityTypesResponse extends \Google\Protobuf\Internal\Message
      * The EntityTypes matching the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.EntityType entity_types = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\EntityType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\EntityType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityTypes($var)

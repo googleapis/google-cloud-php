@@ -156,7 +156,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           User friendly data source description string.
      *     @type string $client_id
      *           Data source client id which should be used to receive refresh token.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
      *           Api auth scopes for which refresh token needs to be obtained. These are
      *           scopes needed by a data source to prepare data and ingest them into
      *           BigQuery, e.g., https://www.googleapis.com/auth/bigquery
@@ -177,7 +177,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      *           Specifies whether the data source supports a user defined schedule, or
      *           operates on the default schedule.
      *           When set to `true`, user can override default schedule.
-     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Data source parameters.
      *     @type string $help_url
      *           Url for the help document for this data source.
@@ -352,7 +352,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * BigQuery, e.g., https://www.googleapis.com/auth/bigquery
      *
      * Generated from protobuf field <code>repeated string scopes = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScopes($var)
@@ -530,7 +530,7 @@ class DataSource extends \Google\Protobuf\Internal\Message
      * Data source parameters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.DataSourceParameter parameters = 12;</code>
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

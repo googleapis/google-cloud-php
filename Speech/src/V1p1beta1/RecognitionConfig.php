@@ -335,7 +335,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           See [Language
      *           Support](https://cloud.google.com/speech-to-text/docs/languages) for a list
      *           of the currently supported language codes.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $alternative_language_codes
      *           A list of up to 3 additional
      *           [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags,
      *           listing possible alternative languages of the supplied audio.
@@ -371,7 +371,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      *           transcript with phrases of your choosing. For StreamingRecognize, this
      *           normalization only applies to stable partial transcripts (stability > 0.8)
      *           and final transcripts.
-     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Array of [SpeechContext][google.cloud.speech.v1p1beta1.SpeechContext].
      *           A means to provide context to assist the speech recognition. For more
      *           information, see
@@ -711,7 +711,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * transcription).
      *
      * Generated from protobuf field <code>repeated string alternative_language_codes = 18;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAlternativeLanguageCodes($var)
@@ -899,7 +899,7 @@ class RecognitionConfig extends \Google\Protobuf\Internal\Message
      * adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechContext speech_contexts = 6;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpeechContexts($var)

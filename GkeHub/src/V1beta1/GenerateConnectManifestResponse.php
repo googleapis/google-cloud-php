@@ -30,7 +30,7 @@ class GenerateConnectManifestResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeHub\V1beta1\ConnectAgentResource[]|\Google\Protobuf\Internal\RepeatedField $manifest
+     *     @type array<\Google\Cloud\GkeHub\V1beta1\ConnectAgentResource>|\Google\Protobuf\Internal\RepeatedField $manifest
      *           The ordered list of Kubernetes resources that need to be applied to the
      *           cluster for GKE Connect agent installation/upgrade.
      * }
@@ -57,7 +57,7 @@ class GenerateConnectManifestResponse extends \Google\Protobuf\Internal\Message
      * cluster for GKE Connect agent installation/upgrade.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1beta1.ConnectAgentResource manifest = 1;</code>
-     * @param \Google\Cloud\GkeHub\V1beta1\ConnectAgentResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeHub\V1beta1\ConnectAgentResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setManifest($var)

@@ -28,7 +28,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeBackup\V1\NamespacedName[]|\Google\Protobuf\Internal\RepeatedField $namespaced_names
+     *     @type array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $namespaced_names
      *           A list of namespaced Kubernetes resources.
      * }
      */
@@ -52,7 +52,7 @@ class NamespacedNames extends \Google\Protobuf\Internal\Message
      * A list of namespaced Kubernetes resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.NamespacedName namespaced_names = 1;</code>
-     * @param \Google\Cloud\GkeBackup\V1\NamespacedName[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\NamespacedName>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNamespacedNames($var)

@@ -55,7 +55,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $usages
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $usages
      *           Required. Usages when this configuration should be applied.
      *     @type \Google\Cloud\Deploy\V1\DefaultPool $default_pool
      *           Optional. Use default Cloud Build pool.
@@ -97,7 +97,7 @@ class ExecutionConfig extends \Google\Protobuf\Internal\Message
      * Required. Usages when this configuration should be applied.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig.ExecutionEnvironmentUsage usages = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsages($var)

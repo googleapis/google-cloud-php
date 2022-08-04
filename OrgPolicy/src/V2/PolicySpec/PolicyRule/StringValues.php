@@ -48,9 +48,9 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_values
      *           List of values allowed at this resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $denied_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $denied_values
      *           List of values denied at this resource.
      * }
      */
@@ -74,7 +74,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values allowed at this resource.
      *
      * Generated from protobuf field <code>repeated string allowed_values = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedValues($var)
@@ -100,7 +100,7 @@ class StringValues extends \Google\Protobuf\Internal\Message
      * List of values denied at this resource.
      *
      * Generated from protobuf field <code>repeated string denied_values = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeniedValues($var)

@@ -40,7 +40,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the TensorboardTimeSeries to list Blobs.
      *           Format:
      *           'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}'
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blob_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blob_ids
      *           IDs of the blobs to read.
      * }
      */
@@ -94,7 +94,7 @@ class ReadTensorboardBlobDataRequest extends \Google\Protobuf\Internal\Message
      * IDs of the blobs to read.
      *
      * Generated from protobuf field <code>repeated string blob_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlobIds($var)

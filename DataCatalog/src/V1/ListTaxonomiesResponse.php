@@ -36,7 +36,7 @@ class ListTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\Taxonomy[]|\Google\Protobuf\Internal\RepeatedField $taxonomies
+     *     @type array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $taxonomies
      *           Taxonomies that the project contains.
      *     @type string $next_page_token
      *           Pagination token of the next results page. Empty if there are no
@@ -63,7 +63,7 @@ class ListTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * Taxonomies that the project contains.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy taxonomies = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\Taxonomy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaxonomies($var)

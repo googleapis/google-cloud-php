@@ -38,7 +38,7 @@ class ThreatEntryAdditions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebRisk\V1\RawHashes[]|\Google\Protobuf\Internal\RepeatedField $raw_hashes
+     *     @type array<\Google\Cloud\WebRisk\V1\RawHashes>|\Google\Protobuf\Internal\RepeatedField $raw_hashes
      *           The raw SHA256-formatted entries.
      *           Repeated to allow returning sets of hashes with different prefix sizes.
      *     @type \Google\Cloud\WebRisk\V1\RiceDeltaEncoding $rice_hashes
@@ -69,7 +69,7 @@ class ThreatEntryAdditions extends \Google\Protobuf\Internal\Message
      * Repeated to allow returning sets of hashes with different prefix sizes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.RawHashes raw_hashes = 1;</code>
-     * @param \Google\Cloud\WebRisk\V1\RawHashes[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebRisk\V1\RawHashes>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRawHashes($var)

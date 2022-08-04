@@ -90,7 +90,7 @@ class SpeechClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -114,7 +114,7 @@ class SpeechClientTest extends GeneratedTest
         $configLanguageCode = 'configLanguageCode-537965113';
         $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
-        $response = $client->longRunningRecognize($config, $audio);
+        $response = $gapicClient->longRunningRecognize($config, $audio);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -159,7 +159,7 @@ class SpeechClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -185,7 +185,7 @@ class SpeechClientTest extends GeneratedTest
         $configLanguageCode = 'configLanguageCode-537965113';
         $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
-        $response = $client->longRunningRecognize($config, $audio);
+        $response = $gapicClient->longRunningRecognize($config, $audio);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -213,7 +213,7 @@ class SpeechClientTest extends GeneratedTest
     public function recognizeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -225,7 +225,7 @@ class SpeechClientTest extends GeneratedTest
         $configLanguageCode = 'configLanguageCode-537965113';
         $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
-        $response = $client->recognize($config, $audio);
+        $response = $gapicClient->recognize($config, $audio);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,7 +245,7 @@ class SpeechClientTest extends GeneratedTest
     public function recognizeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -265,8 +265,8 @@ class SpeechClientTest extends GeneratedTest
         $config->setLanguageCode($configLanguageCode);
         $audio = new RecognitionAudio();
         try {
-            $client->recognize($config, $audio);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->recognize($config, $audio);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -283,7 +283,7 @@ class SpeechClientTest extends GeneratedTest
     public function streamingRecognizeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -298,7 +298,7 @@ class SpeechClientTest extends GeneratedTest
         $request = new StreamingRecognizeRequest();
         $request2 = new StreamingRecognizeRequest();
         $request3 = new StreamingRecognizeRequest();
-        $bidi = $client->streamingRecognize();
+        $bidi = $gapicClient->streamingRecognize();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -340,7 +340,7 @@ class SpeechClientTest extends GeneratedTest
     public function streamingRecognizeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -354,7 +354,7 @@ class SpeechClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->streamingRecognize();
+        $bidi = $gapicClient->streamingRecognize();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);

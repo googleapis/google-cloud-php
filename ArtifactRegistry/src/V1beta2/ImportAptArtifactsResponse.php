@@ -34,9 +34,9 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\AptArtifact[]|\Google\Protobuf\Internal\RepeatedField $apt_artifacts
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\AptArtifact>|\Google\Protobuf\Internal\RepeatedField $apt_artifacts
      *           The Apt artifacts imported.
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsErrorInfo[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Detailed error info for artifacts that were not imported.
      * }
      */
@@ -60,7 +60,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * The Apt artifacts imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.AptArtifact apt_artifacts = 1;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\AptArtifact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\AptArtifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAptArtifacts($var)
@@ -86,7 +86,7 @@ class ImportAptArtifactsResponse extends \Google\Protobuf\Internal\Message
      * Detailed error info for artifacts that were not imported.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.ImportAptArtifactsErrorInfo errors = 2;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsErrorInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\ImportAptArtifactsErrorInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

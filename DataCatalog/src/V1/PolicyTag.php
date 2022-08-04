@@ -90,7 +90,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      *           For example, for the "LatLong" policy tag in the example above, this field
      *           contains the resource name of the "Geolocation" policy tag, and, for
      *           "Geolocation", this field is empty.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_policy_tags
      *           Output only. Resource names of child policy tags of this policy tag.
      * }
      */
@@ -240,7 +240,7 @@ class PolicyTag extends \Google\Protobuf\Internal\Message
      * Output only. Resource names of child policy tags of this policy tag.
      *
      * Generated from protobuf field <code>repeated string child_policy_tags = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildPolicyTags($var)

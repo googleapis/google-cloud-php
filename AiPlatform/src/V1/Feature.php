@@ -134,7 +134,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      *           INT64 can enable monitoring.
      *           If set to true, all types of data monitoring are disabled despite the
      *           config on EntityType.
-     *     @type \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[]|\Google\Protobuf\Internal\RepeatedField $monitoring_stats_anomalies
+     *     @type array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $monitoring_stats_anomalies
      *           Output only. The list of historical stats and anomalies with specified objectives.
      * }
      */
@@ -426,7 +426,7 @@ class Feature extends \Google\Protobuf\Internal\Message
      * Output only. The list of historical stats and anomalies with specified objectives.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Feature.MonitoringStatsAnomaly monitoring_stats_anomalies = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Feature\MonitoringStatsAnomaly>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMonitoringStatsAnomalies($var)

@@ -341,7 +341,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           * use a field query. Example: `project:12345`
      *           * use a free text query. Example: `12345`
      *           * specify the `scope` field as this project in your search request.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $folders
      *           The folder(s) that this resource belongs to, in the form of
      *           folders/{FOLDER_NUMBER}. This field is available when the resource
      *           belongs to one or more folders.
@@ -388,7 +388,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - query by a given label. Example: `labels.env:prod`
      *               - query by a given label's existence. Example: `labels.env:*`
      *           * use a free text query. Example: `prod`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Network tags associated with this resource. Like labels, network tags are a
      *           type of annotations used to group GCP resources. See [Labelling GCP
      *           resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources)
@@ -470,14 +470,14 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `parentFullResourceName:"project-name"`
      *           * use a free text query. Example:
      *           `project-name`
-     *     @type \Google\Cloud\Asset\V1\VersionedResource[]|\Google\Protobuf\Internal\RepeatedField $versioned_resources
+     *     @type array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $versioned_resources
      *           Versioned resource representations of this resource. This is repeated
      *           because there could be multiple versions of resource representations during
      *           version migration.
      *           This `versioned_resources` field is not searchable. Some attributes of the
      *           resource representations are exposed in `additional_attributes` field, so
      *           as to allow users to search on them.
-     *     @type \Google\Cloud\Asset\V1\AttachedResource[]|\Google\Protobuf\Internal\RepeatedField $attached_resources
+     *     @type array<\Google\Cloud\Asset\V1\AttachedResource>|\Google\Protobuf\Internal\RepeatedField $attached_resources
      *           Attached resources of this resource. For example, an OSConfig
      *           Inventory is an attached resource of a Compute Instance. This field is
      *           repeated because a resource could have multiple attached resources.
@@ -491,7 +491,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *           `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`.
      *           See [supported relationship
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_keys
      *           TagKey namespaced names, in the format of {ORG_ID}/{TAG_KEY_SHORT_NAME}.
      *           To search against the `tagKeys`:
      *           * use a field query. Example:
@@ -500,7 +500,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagKeys:"env"`
      *           * use a free text query. Example:
      *               - `env`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_values
      *           TagValue namespaced names, in the format of
      *           {ORG_ID}/{TAG_KEY_SHORT_NAME}/{TAG_VALUE_SHORT_NAME}.
      *           To search against the `tagValues`:
@@ -511,7 +511,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *               - `tagValues="123456789/env/prod"`
      *           * use a free text query. Example:
      *               - `prod`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tag_value_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tag_value_ids
      *           TagValue IDs, in the format of tagValues/{TAG_VALUE_ID}.
      *           To search against the `tagValueIds`:
      *           * use a field query. Example:
@@ -668,7 +668,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * specify the `scope` field as this folder in your search request.
      *
      * Generated from protobuf field <code>repeated string folders = 17;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFolders($var)
@@ -896,7 +896,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * * use a free text query. Example: `internal`
      *
      * Generated from protobuf field <code>repeated string network_tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -1240,7 +1240,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.VersionedResource versioned_resources = 16;</code>
-     * @param \Google\Cloud\Asset\V1\VersionedResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\VersionedResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersionedResources($var)
@@ -1276,7 +1276,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      * as to allow users to search on them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AttachedResource attached_resources = 20;</code>
-     * @param \Google\Cloud\Asset\V1\AttachedResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\AttachedResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAttachedResources($var)
@@ -1352,7 +1352,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `env`
      *
      * Generated from protobuf field <code>repeated string tag_keys = 23;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTagKeys($var)
@@ -1396,7 +1396,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `prod`
      *
      * Generated from protobuf field <code>repeated string tag_values = 25;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTagValues($var)
@@ -1434,7 +1434,7 @@ class ResourceSearchResult extends \Google\Protobuf\Internal\Message
      *     - `456`
      *
      * Generated from protobuf field <code>repeated string tag_value_ids = 26;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTagValueIds($var)

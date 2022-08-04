@@ -35,7 +35,7 @@ class ListPredictionApiKeyRegistrationsResponse extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration[]|\Google\Protobuf\Internal\RepeatedField $prediction_api_key_registrations
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration>|\Google\Protobuf\Internal\RepeatedField $prediction_api_key_registrations
      *           The list of registered API keys.
      *     @type string $next_page_token
      *           If empty, the list is complete. If nonempty, pass the token to the next
@@ -62,7 +62,7 @@ class ListPredictionApiKeyRegistrationsResponse extends \Google\Protobuf\Interna
      * The list of registered API keys.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.PredictionApiKeyRegistration prediction_api_key_registrations = 1;</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\PredictionApiKeyRegistration>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPredictionApiKeyRegistrations($var)

@@ -75,7 +75,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function generateAccessTokenTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -85,9 +85,9 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setAccessToken($accessToken);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $scope = [];
-        $response = $client->generateAccessToken($formattedName, $scope);
+        $response = $gapicClient->generateAccessToken($formattedName, $scope);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -107,7 +107,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function generateAccessTokenExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -122,11 +122,11 @@ class IAMCredentialsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $scope = [];
         try {
-            $client->generateAccessToken($formattedName, $scope);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateAccessToken($formattedName, $scope);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -143,7 +143,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function generateIdTokenTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -153,9 +153,9 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setToken($token);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $audience = 'audience975628804';
-        $response = $client->generateIdToken($formattedName, $audience);
+        $response = $gapicClient->generateIdToken($formattedName, $audience);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -175,7 +175,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function generateIdTokenExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -190,11 +190,11 @@ class IAMCredentialsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $audience = 'audience975628804';
         try {
-            $client->generateIdToken($formattedName, $audience);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateIdToken($formattedName, $audience);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -211,7 +211,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function signBlobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,9 +223,9 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setSignedBlob($signedBlob);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = '-114';
-        $response = $client->signBlob($formattedName, $payload);
+        $response = $gapicClient->signBlob($formattedName, $payload);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,7 +245,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function signBlobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,11 +260,11 @@ class IAMCredentialsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = '-114';
         try {
-            $client->signBlob($formattedName, $payload);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->signBlob($formattedName, $payload);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -281,7 +281,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function signJwtTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -293,9 +293,9 @@ class IAMCredentialsClientTest extends GeneratedTest
         $expectedResponse->setSignedJwt($signedJwt);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = 'payload-786701938';
-        $response = $client->signJwt($formattedName, $payload);
+        $response = $gapicClient->signJwt($formattedName, $payload);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -315,7 +315,7 @@ class IAMCredentialsClientTest extends GeneratedTest
     public function signJwtExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -330,11 +330,11 @@ class IAMCredentialsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
+        $formattedName = $gapicClient->serviceAccountName('[PROJECT]', '[SERVICE_ACCOUNT]');
         $payload = 'payload-786701938';
         try {
-            $client->signJwt($formattedName, $payload);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->signJwt($formattedName, $payload);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

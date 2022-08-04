@@ -198,7 +198,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      *           call to this method. `page_token` must be the value of `next_page_token`
      *           from the previous response. The values of all other method parameters must
      *           be identical to those in the previous call.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           Optional. A list of asset types that the IAM policies are attached to. If
      *           empty, it will search the IAM policies that are attached to all the
      *           [searchable asset
@@ -486,7 +486,7 @@ class SearchAllIamPoliciesRequest extends \Google\Protobuf\Internal\Message
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>repeated string asset_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)

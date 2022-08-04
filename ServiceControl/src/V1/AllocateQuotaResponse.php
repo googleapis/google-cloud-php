@@ -57,9 +57,9 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *     @type string $operation_id
      *           The same operation_id value used in the AllocateQuotaRequest. Used for
      *           logging and diagnostics purposes.
-     *     @type \Google\Cloud\ServiceControl\V1\QuotaError[]|\Google\Protobuf\Internal\RepeatedField $allocate_errors
+     *     @type array<\Google\Cloud\ServiceControl\V1\QuotaError>|\Google\Protobuf\Internal\RepeatedField $allocate_errors
      *           Indicates the decision of the allocate.
-     *     @type \Google\Cloud\ServiceControl\V1\MetricValueSet[]|\Google\Protobuf\Internal\RepeatedField $quota_metrics
+     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $quota_metrics
      *           Quota metrics to indicate the result of allocation. Depending on the
      *           request, one or more of the following metrics will be included:
      *           1. Per quota group or per quota metric incremental usage will be specified
@@ -120,7 +120,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      * Indicates the decision of the allocate.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.QuotaError allocate_errors = 2;</code>
-     * @param \Google\Cloud\ServiceControl\V1\QuotaError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\QuotaError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllocateErrors($var)
@@ -160,7 +160,7 @@ class AllocateQuotaResponse extends \Google\Protobuf\Internal\Message
      *   "serviceruntime.googleapis.com/quota/exceeded"
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet quota_metrics = 3;</code>
-     * @param \Google\Cloud\ServiceControl\V1\MetricValueSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuotaMetrics($var)

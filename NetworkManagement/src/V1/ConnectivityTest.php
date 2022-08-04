@@ -163,7 +163,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           intend to test.
      *     @type string $protocol
      *           IP Protocol of the test. When not provided, "TCP" is assumed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $related_projects
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_projects
      *           Other projects that may be relevant for reachability analysis.
      *           This is applicable to scenarios where a test can cross project boundaries.
      *     @type string $display_name
@@ -414,7 +414,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * This is applicable to scenarios where a test can cross project boundaries.
      *
      * Generated from protobuf field <code>repeated string related_projects = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedProjects($var)

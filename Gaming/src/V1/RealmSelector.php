@@ -28,7 +28,7 @@ class RealmSelector extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $realms
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $realms
      *           List of realms to match.
      * }
      */
@@ -52,7 +52,7 @@ class RealmSelector extends \Google\Protobuf\Internal\Message
      * List of realms to match.
      *
      * Generated from protobuf field <code>repeated string realms = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRealms($var)

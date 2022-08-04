@@ -94,7 +94,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     @type string $subject
      *           Output only. The subject distinguished name in RFC 2253 format. Only
      *           present if [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subject_alternative_dns_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alternative_dns_names
      *           Output only. The subject Alternative DNS names. Only present if
      *           [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *     @type \Google\Protobuf\Timestamp $not_before_time
@@ -241,7 +241,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * [parsed][google.cloud.kms.v1.Certificate.parsed] is true.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_dns_names = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubjectAlternativeDnsNames($var)

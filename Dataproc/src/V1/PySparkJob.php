@@ -87,20 +87,20 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      *     @type string $main_python_file_uri
      *           Required. The HCFS URI of the main Python file to use as the driver. Must
      *           be a .py file.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Optional. The arguments to pass to the driver.  Do not include arguments,
      *           such as `--conf`, that can be set as job properties, since a collision may
      *           occur that causes an incorrect job submission.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $python_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $python_file_uris
      *           Optional. HCFS file URIs of Python files to pass to the PySpark
      *           framework. Supported file types: .py, .egg, and .zip.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATHs of the
      *           Python driver and tasks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $file_uris
      *           Optional. HCFS URIs of files to be placed in the working directory of
      *           each executor. Useful for naively parallel tasks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $archive_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $archive_uris
      *           Optional. HCFS URIs of archives to be extracted into the working directory
      *           of each executor. Supported file types:
      *           .jar, .tar, .tar.gz, .tgz, and .zip.
@@ -165,7 +165,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * occur that causes an incorrect job submission.
      *
      * Generated from protobuf field <code>repeated string args = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -193,7 +193,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * framework. Supported file types: .py, .egg, and .zip.
      *
      * Generated from protobuf field <code>repeated string python_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPythonFileUris($var)
@@ -221,7 +221,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * Python driver and tasks.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)
@@ -249,7 +249,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * each executor. Useful for naively parallel tasks.
      *
      * Generated from protobuf field <code>repeated string file_uris = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileUris($var)
@@ -279,7 +279,7 @@ class PySparkJob extends \Google\Protobuf\Internal\Message
      * .jar, .tar, .tar.gz, .tgz, and .zip.
      *
      * Generated from protobuf field <code>repeated string archive_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArchiveUris($var)

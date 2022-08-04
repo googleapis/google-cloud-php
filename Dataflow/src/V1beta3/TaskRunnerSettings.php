@@ -162,7 +162,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      *     @type string $task_group
      *           The UNIX group ID on the worker VM to use for tasks launched by
      *           taskrunner; e.g. "wheel".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           The OAuth2 scopes to be requested by the taskrunner in order to
      *           access the Cloud Dataflow API.
      *     @type string $base_url
@@ -294,7 +294,7 @@ class TaskRunnerSettings extends \Google\Protobuf\Internal\Message
      * access the Cloud Dataflow API.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)

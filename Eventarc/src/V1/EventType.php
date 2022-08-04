@@ -64,7 +64,7 @@ class EventType extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Output only. Human friendly description of what the event type is about.
      *           For example "Bucket created in Cloud Storage".
-     *     @type \Google\Cloud\Eventarc\V1\FilteringAttribute[]|\Google\Protobuf\Internal\RepeatedField $filtering_attributes
+     *     @type array<\Google\Cloud\Eventarc\V1\FilteringAttribute>|\Google\Protobuf\Internal\RepeatedField $filtering_attributes
      *           Output only. Filtering attributes for the event type.
      *     @type string $event_schema_uri
      *           Output only. URI for the event schema.
@@ -156,7 +156,7 @@ class EventType extends \Google\Protobuf\Internal\Message
      * Output only. Filtering attributes for the event type.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.FilteringAttribute filtering_attributes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Eventarc\V1\FilteringAttribute[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Eventarc\V1\FilteringAttribute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilteringAttributes($var)

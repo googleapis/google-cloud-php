@@ -180,7 +180,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      *           of alerting policies on the channel at some point in the future.
      *     @type \Google\Cloud\Monitoring\V3\MutationRecord $creation_record
      *           Record of the creation of this channel.
-     *     @type \Google\Cloud\Monitoring\V3\MutationRecord[]|\Google\Protobuf\Internal\RepeatedField $mutation_records
+     *     @type array<\Google\Cloud\Monitoring\V3\MutationRecord>|\Google\Protobuf\Internal\RepeatedField $mutation_records
      *           Records of the modification of this channel.
      * }
      */
@@ -571,7 +571,7 @@ class NotificationChannel extends \Google\Protobuf\Internal\Message
      * Records of the modification of this channel.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.MutationRecord mutation_records = 13;</code>
-     * @param \Google\Cloud\Monitoring\V3\MutationRecord[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\MutationRecord>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMutationRecords($var)

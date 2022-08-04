@@ -77,7 +77,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      *           Properties that conflict with values set by the Dataproc API may be
      *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      *           /etc/pig/conf/pig.properties, and classes in user code.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATH of
      *           the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      *     @type \Google\Cloud\Dataproc\V1\LoggingConfig $logging_config
@@ -258,7 +258,7 @@ class PigJob extends \Google\Protobuf\Internal\Message
      * the Pig Client and Hadoop MapReduce (MR) tasks. Can contain Pig UDFs.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)

@@ -34,7 +34,7 @@ class ListServiceConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Api\Service[]|\Google\Protobuf\Internal\RepeatedField $service_configs
+     *     @type array<\Google\Api\Service>|\Google\Protobuf\Internal\RepeatedField $service_configs
      *           The list of service configuration resources.
      *     @type string $next_page_token
      *           The token of the next page of results.
@@ -60,7 +60,7 @@ class ListServiceConfigsResponse extends \Google\Protobuf\Internal\Message
      * The list of service configuration resources.
      *
      * Generated from protobuf field <code>repeated .google.api.Service service_configs = 1;</code>
-     * @param \Google\Api\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceConfigs($var)

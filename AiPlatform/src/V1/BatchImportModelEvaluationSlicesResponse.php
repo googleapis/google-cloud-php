@@ -28,7 +28,7 @@ class BatchImportModelEvaluationSlicesResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $imported_model_evaluation_slices
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $imported_model_evaluation_slices
      *           Output only. List of imported [ModelEvaluationSlice.name][google.cloud.aiplatform.v1.ModelEvaluationSlice.name].
      * }
      */
@@ -52,7 +52,7 @@ class BatchImportModelEvaluationSlicesResponse extends \Google\Protobuf\Internal
      * Output only. List of imported [ModelEvaluationSlice.name][google.cloud.aiplatform.v1.ModelEvaluationSlice.name].
      *
      * Generated from protobuf field <code>repeated string imported_model_evaluation_slices = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImportedModelEvaluationSlices($var)

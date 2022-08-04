@@ -96,7 +96,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -120,9 +120,9 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureContactSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureContactSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -167,7 +167,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -189,9 +189,9 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureContactSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureContactSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -225,7 +225,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -249,9 +249,9 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureDnsSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureDnsSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -296,7 +296,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -318,9 +318,9 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureDnsSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureDnsSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -354,7 +354,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -378,9 +378,9 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureManagementSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureManagementSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -425,7 +425,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -447,9 +447,9 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         $updateMask = new FieldMask();
-        $response = $client->configureManagementSettings($formattedRegistration, $updateMask);
+        $response = $gapicClient->configureManagementSettings($formattedRegistration, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -483,7 +483,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -503,8 +503,8 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->deleteRegistration($formattedName);
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->deleteRegistration($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -547,7 +547,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -569,8 +569,8 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->deleteRegistration($formattedName);
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->deleteRegistration($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -604,7 +604,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -628,8 +628,8 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->exportRegistration($formattedName);
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->exportRegistration($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -672,7 +672,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -694,8 +694,8 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->exportRegistration($formattedName);
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->exportRegistration($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -723,7 +723,7 @@ class DomainsClientTest extends GeneratedTest
     public function getRegistrationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -735,8 +735,8 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setDomainName($domainName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->getRegistration($formattedName);
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->getRegistration($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -754,7 +754,7 @@ class DomainsClientTest extends GeneratedTest
     public function getRegistrationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -769,10 +769,10 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedName = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         try {
-            $client->getRegistration($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRegistration($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -789,7 +789,7 @@ class DomainsClientTest extends GeneratedTest
     public function listRegistrationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -804,8 +804,8 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setRegistrations($registrations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listRegistrations($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listRegistrations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -826,7 +826,7 @@ class DomainsClientTest extends GeneratedTest
     public function listRegistrationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -841,10 +841,10 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listRegistrations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRegistrations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -867,7 +867,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -891,7 +891,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $registration = new Registration();
         $registrationDomainName = 'registrationDomainName1873916680';
         $registration->setDomainName($registrationDomainName);
@@ -924,7 +924,7 @@ class DomainsClientTest extends GeneratedTest
         $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
         $registration->setContactSettings($registrationContactSettings);
         $yearlyPrice = new Money();
-        $response = $client->registerDomain($formattedParent, $registration, $yearlyPrice);
+        $response = $gapicClient->registerDomain($formattedParent, $registration, $yearlyPrice);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -971,7 +971,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -993,7 +993,7 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $registration = new Registration();
         $registrationDomainName = 'registrationDomainName1873916680';
         $registration->setDomainName($registrationDomainName);
@@ -1026,7 +1026,7 @@ class DomainsClientTest extends GeneratedTest
         $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
         $registration->setContactSettings($registrationContactSettings);
         $yearlyPrice = new Money();
-        $response = $client->registerDomain($formattedParent, $registration, $yearlyPrice);
+        $response = $gapicClient->registerDomain($formattedParent, $registration, $yearlyPrice);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1054,7 +1054,7 @@ class DomainsClientTest extends GeneratedTest
     public function resetAuthorizationCodeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1064,8 +1064,8 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setCode($code);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->resetAuthorizationCode($formattedRegistration);
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->resetAuthorizationCode($formattedRegistration);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1083,7 +1083,7 @@ class DomainsClientTest extends GeneratedTest
     public function resetAuthorizationCodeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1098,10 +1098,10 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         try {
-            $client->resetAuthorizationCode($formattedRegistration);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resetAuthorizationCode($formattedRegistration);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1118,7 +1118,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveAuthorizationCodeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1128,8 +1128,8 @@ class DomainsClientTest extends GeneratedTest
         $expectedResponse->setCode($code);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
-        $response = $client->retrieveAuthorizationCode($formattedRegistration);
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $response = $gapicClient->retrieveAuthorizationCode($formattedRegistration);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1147,7 +1147,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveAuthorizationCodeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1162,10 +1162,10 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedRegistration = $client->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
+        $formattedRegistration = $gapicClient->registrationName('[PROJECT]', '[LOCATION]', '[REGISTRATION]');
         try {
-            $client->retrieveAuthorizationCode($formattedRegistration);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->retrieveAuthorizationCode($formattedRegistration);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1182,7 +1182,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveRegisterParametersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1191,8 +1191,8 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $domainName = 'domainName104118566';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->retrieveRegisterParameters($domainName, $formattedLocation);
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->retrieveRegisterParameters($domainName, $formattedLocation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1212,7 +1212,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveRegisterParametersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1228,10 +1228,10 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $domainName = 'domainName104118566';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->retrieveRegisterParameters($domainName, $formattedLocation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->retrieveRegisterParameters($domainName, $formattedLocation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1248,7 +1248,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveTransferParametersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1257,8 +1257,8 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $domainName = 'domainName104118566';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->retrieveTransferParameters($domainName, $formattedLocation);
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->retrieveTransferParameters($domainName, $formattedLocation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1278,7 +1278,7 @@ class DomainsClientTest extends GeneratedTest
     public function retrieveTransferParametersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1294,10 +1294,10 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $domainName = 'domainName104118566';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->retrieveTransferParameters($domainName, $formattedLocation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->retrieveTransferParameters($domainName, $formattedLocation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1314,7 +1314,7 @@ class DomainsClientTest extends GeneratedTest
     public function searchDomainsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1323,8 +1323,8 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $query = 'query107944136';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->searchDomains($query, $formattedLocation);
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->searchDomains($query, $formattedLocation);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1344,7 +1344,7 @@ class DomainsClientTest extends GeneratedTest
     public function searchDomainsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1360,10 +1360,10 @@ class DomainsClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $query = 'query107944136';
-        $formattedLocation = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedLocation = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->searchDomains($query, $formattedLocation);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchDomains($query, $formattedLocation);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1386,7 +1386,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1410,7 +1410,7 @@ class DomainsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $registration = new Registration();
         $registrationDomainName = 'registrationDomainName1873916680';
         $registration->setDomainName($registrationDomainName);
@@ -1443,7 +1443,7 @@ class DomainsClientTest extends GeneratedTest
         $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
         $registration->setContactSettings($registrationContactSettings);
         $yearlyPrice = new Money();
-        $response = $client->transferDomain($formattedParent, $registration, $yearlyPrice);
+        $response = $gapicClient->transferDomain($formattedParent, $registration, $yearlyPrice);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1490,7 +1490,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1512,7 +1512,7 @@ class DomainsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $registration = new Registration();
         $registrationDomainName = 'registrationDomainName1873916680';
         $registration->setDomainName($registrationDomainName);
@@ -1545,7 +1545,7 @@ class DomainsClientTest extends GeneratedTest
         $registrationContactSettings->setTechnicalContact($contactSettingsTechnicalContact);
         $registration->setContactSettings($registrationContactSettings);
         $yearlyPrice = new Money();
-        $response = $client->transferDomain($formattedParent, $registration, $yearlyPrice);
+        $response = $gapicClient->transferDomain($formattedParent, $registration, $yearlyPrice);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1579,7 +1579,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1604,7 +1604,7 @@ class DomainsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $updateMask = new FieldMask();
-        $response = $client->updateRegistration($updateMask);
+        $response = $gapicClient->updateRegistration($updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1647,7 +1647,7 @@ class DomainsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1670,7 +1670,7 @@ class DomainsClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $updateMask = new FieldMask();
-        $response = $client->updateRegistration($updateMask);
+        $response = $gapicClient->updateRegistration($updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

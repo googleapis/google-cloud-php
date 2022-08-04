@@ -34,9 +34,9 @@ class FetchDeploymentStateResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Gaming\V1\FetchDeploymentStateResponse\DeployedClusterState[]|\Google\Protobuf\Internal\RepeatedField $cluster_state
+     *     @type array<\Google\Cloud\Gaming\V1\FetchDeploymentStateResponse\DeployedClusterState>|\Google\Protobuf\Internal\RepeatedField $cluster_state
      *           The state of the game server deployment in each game server cluster.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unavailable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unavailable
      *           List of locations that could not be reached.
      * }
      */
@@ -60,7 +60,7 @@ class FetchDeploymentStateResponse extends \Google\Protobuf\Internal\Message
      * The state of the game server deployment in each game server cluster.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.FetchDeploymentStateResponse.DeployedClusterState cluster_state = 1;</code>
-     * @param \Google\Cloud\Gaming\V1\FetchDeploymentStateResponse\DeployedClusterState[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\FetchDeploymentStateResponse\DeployedClusterState>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setClusterState($var)
@@ -86,7 +86,7 @@ class FetchDeploymentStateResponse extends \Google\Protobuf\Internal\Message
      * List of locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unavailable = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnavailable($var)

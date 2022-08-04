@@ -103,10 +103,10 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      *     @type string $network_uri
      *           The URI of the VPC network that the firewall rule is associated with.
      *           This field is not applicable to hierarchical firewall policy rules.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_tags
      *           The target tags defined by the VPC firewall rule. This field is not
      *           applicable to hierarchical firewall policy rules.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
      *           The target service accounts specified by the firewall rule.
      *     @type string $policy
      *           The hierarchical firewall policy that this rule is associated with.
@@ -299,7 +299,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * applicable to hierarchical firewall policy rules.
      *
      * Generated from protobuf field <code>repeated string target_tags = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetTags($var)
@@ -325,7 +325,7 @@ class FirewallInfo extends \Google\Protobuf\Internal\Message
      * The target service accounts specified by the firewall rule.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetServiceAccounts($var)

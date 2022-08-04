@@ -37,7 +37,7 @@ class ListProjectBillingInfoResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Billing\V1\ProjectBillingInfo[]|\Google\Protobuf\Internal\RepeatedField $project_billing_info
+     *     @type array<\Google\Cloud\Billing\V1\ProjectBillingInfo>|\Google\Protobuf\Internal\RepeatedField $project_billing_info
      *           A list of `ProjectBillingInfo` resources representing the projects
      *           associated with the billing account.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class ListProjectBillingInfoResponse extends \Google\Protobuf\Internal\Message
      * associated with the billing account.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.v1.ProjectBillingInfo project_billing_info = 1;</code>
-     * @param \Google\Cloud\Billing\V1\ProjectBillingInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\V1\ProjectBillingInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProjectBillingInfo($var)

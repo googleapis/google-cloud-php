@@ -36,7 +36,7 @@ class AuditUserLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\AuditUserLink[]|\Google\Protobuf\Internal\RepeatedField $user_links
+     *     @type array<\Google\Analytics\Admin\V1alpha\AuditUserLink>|\Google\Protobuf\Internal\RepeatedField $user_links
      *           List of AuditUserLinks. These will be ordered stably, but in an arbitrary
      *           order.
      *     @type string $next_page_token
@@ -66,7 +66,7 @@ class AuditUserLinksResponse extends \Google\Protobuf\Internal\Message
      * order.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AuditUserLink user_links = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\AuditUserLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\AuditUserLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUserLinks($var)

@@ -72,9 +72,9 @@ class FormField extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $field_value
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for the
      *           [FormField][google.cloud.documentai.v1.Document.Page.FormField] value.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $name_detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $name_detected_languages
      *           A list of detected languages for name together with confidence.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $value_detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $value_detected_languages
      *           A list of detected languages for value together with confidence.
      *     @type string $value_type
      *           If the value is non-textual, this field represents the type. Current
@@ -184,7 +184,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      * A list of detected languages for name together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage name_detected_languages = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNameDetectedLanguages($var)
@@ -210,7 +210,7 @@ class FormField extends \Google\Protobuf\Internal\Message
      * A list of detected languages for value together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage value_detected_languages = 4;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValueDetectedLanguages($var)

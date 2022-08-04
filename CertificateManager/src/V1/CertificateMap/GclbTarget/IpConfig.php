@@ -36,7 +36,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $ip_address
      *           An external IP address.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
      *           Ports.
      * }
      */
@@ -86,7 +86,7 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      * Ports.
      *
      * Generated from protobuf field <code>repeated uint32 ports = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPorts($var)

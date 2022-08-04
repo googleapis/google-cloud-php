@@ -56,7 +56,7 @@ class StreamingReadFeatureValuesRequest extends \Google\Protobuf\Internal\Messag
      *           For example,
      *           for a machine learning model predicting user clicks on a website, an
      *           EntityType ID could be `user`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_ids
      *           Required. IDs of entities to read Feature values of. The maximum number of IDs is
      *           100. For example, for a machine learning model predicting user clicks on a
      *           website, an entity ID could be `user_123`.
@@ -125,7 +125,7 @@ class StreamingReadFeatureValuesRequest extends \Google\Protobuf\Internal\Messag
      * website, an entity ID could be `user_123`.
      *
      * Generated from protobuf field <code>repeated string entity_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityIds($var)

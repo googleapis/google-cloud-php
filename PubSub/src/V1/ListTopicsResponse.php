@@ -35,7 +35,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PubSub\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $topics
+     *     @type array<\Google\Cloud\PubSub\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
      *           The resulting topics.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more topics that match the
@@ -62,7 +62,7 @@ class ListTopicsResponse extends \Google\Protobuf\Internal\Message
      * The resulting topics.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Topic topics = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopics($var)

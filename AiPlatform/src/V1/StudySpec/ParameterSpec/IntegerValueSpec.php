@@ -32,7 +32,7 @@ class IntegerValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
      * Currently only supported by the Vertex AI Vizier service. Not supported
-     * by HyperparamterTuningJob or TrainingPipeline.
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional int64 default_value = 4;</code>
      */
@@ -53,7 +53,7 @@ class IntegerValueSpec extends \Google\Protobuf\Internal\Message
      *           relatively good starting point.  Unset value signals that there is no
      *           offered starting point.
      *           Currently only supported by the Vertex AI Vizier service. Not supported
-     *           by HyperparamterTuningJob or TrainingPipeline.
+     *           by HyperparameterTuningJob or TrainingPipeline.
      * }
      */
     public function __construct($data = NULL) {
@@ -118,7 +118,7 @@ class IntegerValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
      * Currently only supported by the Vertex AI Vizier service. Not supported
-     * by HyperparamterTuningJob or TrainingPipeline.
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional int64 default_value = 4;</code>
      * @return int|string
@@ -143,7 +143,7 @@ class IntegerValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
      * Currently only supported by the Vertex AI Vizier service. Not supported
-     * by HyperparamterTuningJob or TrainingPipeline.
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional int64 default_value = 4;</code>
      * @param int|string $var

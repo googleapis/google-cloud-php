@@ -36,7 +36,7 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[]|\Google\Protobuf\Internal\RepeatedField $time_series_data_points
+     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $time_series_data_points
      *           The returned time series data points.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -64,7 +64,7 @@ class ExportTensorboardTimeSeriesDataResponse extends \Google\Protobuf\Internal\
      * The returned time series data points.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesDataPoint time_series_data_points = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeriesDataPoints($var)

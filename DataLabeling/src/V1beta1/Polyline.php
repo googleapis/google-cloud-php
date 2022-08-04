@@ -28,7 +28,7 @@ class Polyline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\Vertex[]|\Google\Protobuf\Internal\RepeatedField $vertices
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Vertex>|\Google\Protobuf\Internal\RepeatedField $vertices
      *           The polyline vertices.
      * }
      */
@@ -52,7 +52,7 @@ class Polyline extends \Google\Protobuf\Internal\Message
      * The polyline vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Vertex vertices = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\Vertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\Vertex>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVertices($var)

@@ -60,7 +60,7 @@ class ZypperRepository extends \Google\Protobuf\Internal\Message
      *           The display name of the repository.
      *     @type string $base_url
      *           Required. The location of the repository directory.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $gpg_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $gpg_keys
      *           URIs of GPG keys.
      * }
      */
@@ -168,7 +168,7 @@ class ZypperRepository extends \Google\Protobuf\Internal\Message
      * URIs of GPG keys.
      *
      * Generated from protobuf field <code>repeated string gpg_keys = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGpgKeys($var)

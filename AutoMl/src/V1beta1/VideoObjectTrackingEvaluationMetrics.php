@@ -58,7 +58,7 @@ class VideoObjectTrackingEvaluationMetrics extends \Google\Protobuf\Internal\Mes
      *     @type int $evaluated_bounding_box_count
      *           Output only. The total number of bounding boxes (i.e. summed over all
      *           frames) the ground truth used to create this evaluation had.
-     *     @type \Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $bounding_box_metrics_entries
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $bounding_box_metrics_entries
      *           Output only. The bounding boxes match metrics for each
      *           Intersection-over-union threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
      *           and each label confidence threshold 0.05,0.10,...,0.95,0.96,0.97,0.98,0.99
@@ -148,7 +148,7 @@ class VideoObjectTrackingEvaluationMetrics extends \Google\Protobuf\Internal\Mes
      * pair.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.BoundingBoxMetricsEntry bounding_box_metrics_entries = 4;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBoundingBoxMetricsEntries($var)

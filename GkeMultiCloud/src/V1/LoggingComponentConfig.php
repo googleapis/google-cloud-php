@@ -28,7 +28,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $enable_components
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $enable_components
      *           The components to be enabled.
      * }
      */
@@ -52,7 +52,7 @@ class LoggingComponentConfig extends \Google\Protobuf\Internal\Message
      * The components to be enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.LoggingComponentConfig.Component enable_components = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnableComponents($var)

@@ -55,7 +55,7 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
      *           Optional. If set, then email the new users notifying them that they've been granted
      *           permissions to the resource. Regardless of whether this is set or not,
      *           notify_new_user field inside each individual request is ignored.
-     *     @type \Google\Analytics\Admin\V1alpha\CreateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $requests
+     *     @type array<\Google\Analytics\Admin\V1alpha\CreateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $requests
      *           Required. The requests specifying the user links to create.
      *           A maximum of 1000 user links can be created in a batch.
      * }
@@ -144,7 +144,7 @@ class BatchCreateUserLinksRequest extends \Google\Protobuf\Internal\Message
      * A maximum of 1000 user links can be created in a batch.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CreateUserLinkRequest requests = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Analytics\Admin\V1alpha\CreateUserLinkRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\CreateUserLinkRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequests($var)

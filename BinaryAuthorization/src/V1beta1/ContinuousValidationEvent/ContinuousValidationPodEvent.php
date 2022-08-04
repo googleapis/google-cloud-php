@@ -68,7 +68,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      *           Termination time of the Pod from k8s, or nothing if still running.
      *     @type int $verdict
      *           Auditing verdict for this Pod.
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails>|\Google\Protobuf\Internal\RepeatedField $images
      *           List of images with auditing details.
      * }
      */
@@ -242,7 +242,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      * List of images with auditing details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails images = 5;</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)

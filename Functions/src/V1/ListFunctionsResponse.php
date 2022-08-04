@@ -44,14 +44,14 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Functions\V1\CloudFunction[]|\Google\Protobuf\Internal\RepeatedField $functions
+     *     @type array<\Google\Cloud\Functions\V1\CloudFunction>|\Google\Protobuf\Internal\RepeatedField $functions
      *           The functions that match the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more functions that match
      *           the request; this value should be passed in a new
      *           [google.cloud.functions.v1.ListFunctionsRequest][google.cloud.functions.v1.ListFunctionsRequest]
      *           to get more functions.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached. The response does not include any
      *           functions from these locations.
      * }
@@ -76,7 +76,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * The functions that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.functions.v1.CloudFunction functions = 1;</code>
-     * @param \Google\Cloud\Functions\V1\CloudFunction[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Functions\V1\CloudFunction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFunctions($var)
@@ -136,7 +136,7 @@ class ListFunctionsResponse extends \Google\Protobuf\Internal\Message
      * functions from these locations.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)
