@@ -72,6 +72,4 @@ class VolumeDataRestorePolicy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VolumeDataRestorePolicy::class, \Google\Cloud\GkeBackup\V1\RestoreConfig_VolumeDataRestorePolicy::class);
 

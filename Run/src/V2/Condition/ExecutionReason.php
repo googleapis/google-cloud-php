@@ -60,6 +60,4 @@ class ExecutionReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExecutionReason::class, \Google\Cloud\Run\V2\Condition_ExecutionReason::class);
 

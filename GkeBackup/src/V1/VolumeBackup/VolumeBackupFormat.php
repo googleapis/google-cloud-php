@@ -52,6 +52,4 @@ class VolumeBackupFormat
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VolumeBackupFormat::class, \Google\Cloud\GkeBackup\V1\VolumeBackup_VolumeBackupFormat::class);
 

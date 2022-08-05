@@ -77,6 +77,4 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ClusterResourceRestoreScope::class, \Google\Cloud\GkeBackup\V1\RestoreConfig_ClusterResourceRestoreScope::class);
 

@@ -59,6 +59,4 @@ class VpcEgress
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VpcEgress::class, \Google\Cloud\Run\V2\VpcAccess_VpcEgress::class);
 

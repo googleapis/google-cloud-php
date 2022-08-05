@@ -283,6 +283,4 @@ class BackupConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BackupConfig::class, \Google\Cloud\GkeBackup\V1\BackupPlan_BackupConfig::class);
 

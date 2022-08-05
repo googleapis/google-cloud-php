@@ -143,6 +143,4 @@ class CommonReason
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CommonReason::class, \Google\Cloud\Run\V2\Condition_CommonReason::class);
 
