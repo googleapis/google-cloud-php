@@ -79,7 +79,7 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
      *           option only if you are sure that the domain's current DNS service
      *           does not cease upon transfer, as is often the case for DNS services
      *           provided for free by the registrar.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $contact_notices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $contact_notices
      *           The list of contact notices that you acknowledge. The notices
      *           needed here depend on the values specified in
      *           `registration.contact_settings`.
@@ -192,7 +192,7 @@ class TransferDomainRequest extends \Google\Protobuf\Internal\Message
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContactNotices($var)

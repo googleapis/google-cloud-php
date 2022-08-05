@@ -72,7 +72,7 @@ class QuotaControllerClientTest extends GeneratedTest
     public function allocateQuotaTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,7 +83,7 @@ class QuotaControllerClientTest extends GeneratedTest
         $expectedResponse->setOperationId($operationId);
         $expectedResponse->setServiceConfigId($serviceConfigId2);
         $transport->addResponse($expectedResponse);
-        $response = $client->allocateQuota();
+        $response = $gapicClient->allocateQuota();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -99,7 +99,7 @@ class QuotaControllerClientTest extends GeneratedTest
     public function allocateQuotaExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,8 +114,8 @@ class QuotaControllerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->allocateQuota();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->allocateQuota();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

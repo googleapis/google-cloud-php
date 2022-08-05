@@ -56,7 +56,7 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      *           Type of the load balancer.
      *     @type string $health_check_uri
      *           URI of the health check for the load balancer.
-     *     @type \Google\Cloud\NetworkManagement\V1\LoadBalancerBackend[]|\Google\Protobuf\Internal\RepeatedField $backends
+     *     @type array<\Google\Cloud\NetworkManagement\V1\LoadBalancerBackend>|\Google\Protobuf\Internal\RepeatedField $backends
      *           Information for the loadbalancer backends.
      *     @type int $backend_type
      *           Type of load balancer's backend configuration.
@@ -136,7 +136,7 @@ class LoadBalancerInfo extends \Google\Protobuf\Internal\Message
      * Information for the loadbalancer backends.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.LoadBalancerBackend backends = 3;</code>
-     * @param \Google\Cloud\NetworkManagement\V1\LoadBalancerBackend[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkManagement\V1\LoadBalancerBackend>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackends($var)

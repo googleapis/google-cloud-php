@@ -28,7 +28,7 @@ class BatchCreateUserLinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\UserLink[]|\Google\Protobuf\Internal\RepeatedField $user_links
+     *     @type array<\Google\Analytics\Admin\V1alpha\UserLink>|\Google\Protobuf\Internal\RepeatedField $user_links
      *           The user links created.
      * }
      */
@@ -52,7 +52,7 @@ class BatchCreateUserLinksResponse extends \Google\Protobuf\Internal\Message
      * The user links created.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.UserLink user_links = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\UserLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\UserLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUserLinks($var)

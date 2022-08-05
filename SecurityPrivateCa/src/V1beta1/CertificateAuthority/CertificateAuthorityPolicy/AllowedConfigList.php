@@ -29,7 +29,7 @@ class AllowedConfigList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper[]|\Google\Protobuf\Internal\RepeatedField $allowed_config_values
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper>|\Google\Protobuf\Internal\RepeatedField $allowed_config_values
      *           Required. All [Certificates][google.cloud.security.privateca.v1beta1.Certificate] issued by the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]
      *           must match at least one listed [ReusableConfigWrapper][google.cloud.security.privateca.v1beta1.ReusableConfigWrapper]. If a
      *           [ReusableConfigWrapper][google.cloud.security.privateca.v1beta1.ReusableConfigWrapper] has an empty field, any value will be
@@ -62,7 +62,7 @@ class AllowedConfigList extends \Google\Protobuf\Internal\Message
      * allowed for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.ReusableConfigWrapper allowed_config_values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigWrapper>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedConfigValues($var)

@@ -29,7 +29,7 @@ class ListDeviceStatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iot\V1\DeviceState[]|\Google\Protobuf\Internal\RepeatedField $device_states
+     *     @type array<\Google\Cloud\Iot\V1\DeviceState>|\Google\Protobuf\Internal\RepeatedField $device_states
      *           The last few device states. States are listed in descending order of server
      *           update time, starting from the most recent one.
      * }
@@ -56,7 +56,7 @@ class ListDeviceStatesResponse extends \Google\Protobuf\Internal\Message
      * update time, starting from the most recent one.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.DeviceState device_states = 1;</code>
-     * @param \Google\Cloud\Iot\V1\DeviceState[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\DeviceState>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeviceStates($var)

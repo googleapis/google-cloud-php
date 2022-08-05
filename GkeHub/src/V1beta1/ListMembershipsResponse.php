@@ -42,13 +42,13 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeHub\V1beta1\Membership[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\GkeHub\V1beta1\Membership>|\Google\Protobuf\Internal\RepeatedField $resources
      *           The list of matching Memberships.
      *     @type string $next_page_token
      *           A token to request the next page of resources from the
      *           `ListMemberships` method. The value of an empty string means that
      *           there are no more resources to return.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           List of locations that could not be reached while fetching this list.
      * }
      */
@@ -72,7 +72,7 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * The list of matching Memberships.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkehub.v1beta1.Membership resources = 1;</code>
-     * @param \Google\Cloud\GkeHub\V1beta1\Membership[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeHub\V1beta1\Membership>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -128,7 +128,7 @@ class ListMembershipsResponse extends \Google\Protobuf\Internal\Message
      * List of locations that could not be reached while fetching this list.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

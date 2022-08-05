@@ -40,7 +40,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesResponse extends \Google\Prot
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies[]|\Google\Protobuf\Internal\RepeatedField $monitoring_stats
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies>|\Google\Protobuf\Internal\RepeatedField $monitoring_stats
      *           Stats retrieved for requested objectives.
      *           There are at most 1000
      *           [ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.prediction_stats][google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies.FeatureHistoricStatsAnomalies.prediction_stats]
@@ -77,7 +77,7 @@ class SearchModelDeploymentMonitoringStatsAnomaliesResponse extends \Google\Prot
      * in the response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelMonitoringStatsAnomalies monitoring_stats = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelMonitoringStatsAnomalies>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMonitoringStats($var)

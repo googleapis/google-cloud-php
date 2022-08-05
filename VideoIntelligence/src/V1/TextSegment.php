@@ -46,7 +46,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      *     @type float $confidence
      *           Confidence for the track of detected text. It is calculated as the highest
      *           over all frames where OCR detected text appears.
-     *     @type \Google\Cloud\VideoIntelligence\V1\TextFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\TextFrame>|\Google\Protobuf\Internal\RepeatedField $frames
      *           Information related to the frames where OCR detected text appears.
      * }
      */
@@ -134,7 +134,7 @@ class TextSegment extends \Google\Protobuf\Internal\Message
      * Information related to the frames where OCR detected text appears.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.TextFrame frames = 3;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\TextFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\TextFrame>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrames($var)

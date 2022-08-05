@@ -65,12 +65,12 @@ class Pivot extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $field_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $field_names
      *           Dimension names for visible columns in the report response. Including
      *           "dateRange" produces a date range column; for each row in the response,
      *           dimension values in the date range column will indicate the corresponding
      *           date range from the request.
-     *     @type \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $order_bys
+     *     @type array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $order_bys
      *           Specifies how dimensions are ordered in the pivot. In the first Pivot, the
      *           OrderBys determine Row and PivotDimensionHeader ordering; in subsequent
      *           Pivots, the OrderBys determine only PivotDimensionHeader ordering.
@@ -85,7 +85,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      *           The product of the `limit` for each `pivot` in a `RunPivotReportRequest`
      *           must not exceed 100,000. For example, a two pivot request with `limit:
      *           1000` in each pivot will fail because the product is `1,000,000`.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $metric_aggregations
      *           Aggregate the metrics by dimensions in this pivot using the specified
      *           metric_aggregations.
      * }
@@ -116,7 +116,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      * date range from the request.
      *
      * Generated from protobuf field <code>repeated string field_names = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldNames($var)
@@ -150,7 +150,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      * Pivot.field_names.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.OrderBy order_bys = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\OrderBy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\OrderBy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrderBys($var)
@@ -240,7 +240,7 @@ class Pivot extends \Google\Protobuf\Internal\Message
      * metric_aggregations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricAggregation metric_aggregations = 5;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricAggregations($var)

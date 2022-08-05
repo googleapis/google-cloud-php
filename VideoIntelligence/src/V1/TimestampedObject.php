@@ -54,9 +54,9 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $time_offset
      *           Time-offset, relative to the beginning of the video,
      *           corresponding to the video frame for this object.
-     *     @type \Google\Cloud\VideoIntelligence\V1\DetectedAttribute[]|\Google\Protobuf\Internal\RepeatedField $attributes
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\DetectedAttribute>|\Google\Protobuf\Internal\RepeatedField $attributes
      *           Optional. The attributes of the object in the bounding box.
-     *     @type \Google\Cloud\VideoIntelligence\V1\DetectedLandmark[]|\Google\Protobuf\Internal\RepeatedField $landmarks
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\DetectedLandmark>|\Google\Protobuf\Internal\RepeatedField $landmarks
      *           Optional. The detected landmarks.
      * }
      */
@@ -154,7 +154,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      * Optional. The attributes of the object in the bounding box.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.DetectedAttribute attributes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\DetectedAttribute[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\DetectedAttribute>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAttributes($var)
@@ -180,7 +180,7 @@ class TimestampedObject extends \Google\Protobuf\Internal\Message
      * Optional. The detected landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.DetectedLandmark landmarks = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\DetectedLandmark[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\DetectedLandmark>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLandmarks($var)

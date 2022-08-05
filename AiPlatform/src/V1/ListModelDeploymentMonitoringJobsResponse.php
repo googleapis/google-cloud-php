@@ -36,7 +36,7 @@ class ListModelDeploymentMonitoringJobsResponse extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob[]|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_jobs
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob>|\Google\Protobuf\Internal\RepeatedField $model_deployment_monitoring_jobs
      *           A list of ModelDeploymentMonitoringJobs that matches the specified filter
      *           in the request.
      *     @type string $next_page_token
@@ -65,7 +65,7 @@ class ListModelDeploymentMonitoringJobsResponse extends \Google\Protobuf\Interna
      * in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelDeploymentMonitoringJob model_deployment_monitoring_jobs = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelDeploymentMonitoringJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModelDeploymentMonitoringJobs($var)

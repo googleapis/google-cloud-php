@@ -143,7 +143,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           increases the size of the data by 33-36%) when using JSON on the wire.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\DataProvider $data_provider
      *           Optional. The details of the Data Provider who owns the source data.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $categories
      *           Optional. Categories of the Listing. Up to two categories are allowed.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Publisher $publisher
      *           Optional. The details of the Publisher who owns the listing and has rights to share
@@ -453,7 +453,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      * Optional. Categories of the Listing. Up to two categories are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.common.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)

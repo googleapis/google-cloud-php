@@ -52,7 +52,7 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      *           Number of records in this file that were successfully processed.
      *     @type int|string $invalid_record_count
      *           Number of records in this file we skipped due to validate errors.
-     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError[]|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError>|\Google\Protobuf\Internal\RepeatedField $partial_errors
      *           The detail information of the partial failures encountered for those
      *           invalid records that couldn't be parsed.
      *           Up to 50 partial errors will be reported.
@@ -160,7 +160,7 @@ class ContentValidationStats extends \Google\Protobuf\Internal\Message
      * Up to 50 partial errors will be reported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.RecordError partial_errors = 4;</code>
-     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\RecordError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialErrors($var)

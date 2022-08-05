@@ -96,7 +96,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the package.
-     *     @type \Grafeas\V1\Distribution[]|\Google\Protobuf\Internal\RepeatedField $distribution
+     *     @type array<\Grafeas\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $distribution
      *           Deprecated.
      *           The various channels by which a package is distributed.
      *     @type string $package_type
@@ -119,7 +119,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      *           The description of this package.
      *     @type \Grafeas\V1\License $license
      *           Licenses that have been declared by the authors of the package.
-     *     @type \Grafeas\V1\Digest[]|\Google\Protobuf\Internal\RepeatedField $digest
+     *     @type array<\Grafeas\V1\Digest>|\Google\Protobuf\Internal\RepeatedField $digest
      *           Hash value, typically a file digest, that allows unique
      *           identification a specific package.
      * }
@@ -172,7 +172,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * The various channels by which a package is distributed.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Distribution distribution = 10;</code>
-     * @param \Grafeas\V1\Distribution[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Distribution>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDistribution($var)
@@ -436,7 +436,7 @@ class PackageNote extends \Google\Protobuf\Internal\Message
      * identification a specific package.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Digest digest = 19;</code>
-     * @param \Grafeas\V1\Digest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Digest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDigest($var)

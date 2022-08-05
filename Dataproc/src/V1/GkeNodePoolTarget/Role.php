@@ -50,7 +50,7 @@ class Role
 
     private static $valueToName = [
         self::ROLE_UNSPECIFIED => 'ROLE_UNSPECIFIED',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
         self::CONTROLLER => 'CONTROLLER',
         self::SPARK_DRIVER => 'SPARK_DRIVER',
         self::SPARK_EXECUTOR => 'SPARK_EXECUTOR',
@@ -70,8 +70,12 @@ class Role
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

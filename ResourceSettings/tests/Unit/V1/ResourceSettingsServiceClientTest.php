@@ -73,7 +73,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function getSettingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -85,8 +85,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
-        $response = $client->getSetting($formattedName);
+        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
+        $response = $gapicClient->getSetting($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,7 +104,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function getSettingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -119,10 +119,10 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
+        $formattedName = $gapicClient->settingName('[PROJECT_NUMBER]', '[SETTING_NAME]');
         try {
-            $client->getSetting($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSetting($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -139,7 +139,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function listSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -155,7 +155,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listSettings($parent);
+        $response = $gapicClient->listSettings($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -176,7 +176,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function listSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -193,8 +193,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listSettings($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSettings($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -211,7 +211,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function updateSettingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -224,7 +224,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $setting = new Setting();
-        $response = $client->updateSetting($setting);
+        $response = $gapicClient->updateSetting($setting);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -242,7 +242,7 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
     public function updateSettingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -259,8 +259,8 @@ class ResourceSettingsServiceClientTest extends GeneratedTest
         // Mock request
         $setting = new Setting();
         try {
-            $client->updateSetting($setting);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSetting($setting);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

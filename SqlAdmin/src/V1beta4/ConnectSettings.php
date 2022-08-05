@@ -76,7 +76,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      *           This is always `sql#connectSettings`.
      *     @type \Google\Cloud\Sql\V1beta4\SslCert $server_ca_cert
      *           SSL configuration.
-     *     @type \Google\Cloud\Sql\V1beta4\IpMapping[]|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type array<\Google\Cloud\Sql\V1beta4\IpMapping>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           The assigned IP addresses for the instance.
      *     @type string $region
      *           The cloud region for the instance. e.g. `us-central1`, `europe-west1`.
@@ -182,7 +182,7 @@ class ConnectSettings extends \Google\Protobuf\Internal\Message
      * The assigned IP addresses for the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.IpMapping ip_addresses = 3;</code>
-     * @param \Google\Cloud\Sql\V1beta4\IpMapping[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\IpMapping>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpAddresses($var)

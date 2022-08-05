@@ -36,7 +36,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplate[]|\Google\Protobuf\Internal\RepeatedField $templates
+     *     @type array<\Google\Cloud\Dataproc\V1\WorkflowTemplate>|\Google\Protobuf\Internal\RepeatedField $templates
      *           Output only. WorkflowTemplates list.
      *     @type string $next_page_token
      *           Output only. This token is included in the response if there are more
@@ -64,7 +64,7 @@ class ListWorkflowTemplatesResponse extends \Google\Protobuf\Internal\Message
      * Output only. WorkflowTemplates list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.WorkflowTemplate templates = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataproc\V1\WorkflowTemplate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\WorkflowTemplate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTemplates($var)

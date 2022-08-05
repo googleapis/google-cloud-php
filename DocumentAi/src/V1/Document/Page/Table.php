@@ -50,11 +50,11 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
      *           [Table][google.cloud.documentai.v1.Document.Page.Table].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow[]|\Google\Protobuf\Internal\RepeatedField $header_rows
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow>|\Google\Protobuf\Internal\RepeatedField $header_rows
      *           Header rows of the table.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow[]|\Google\Protobuf\Internal\RepeatedField $body_rows
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow>|\Google\Protobuf\Internal\RepeatedField $body_rows
      *           Body rows of the table.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      * }
      */
@@ -116,7 +116,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Header rows of the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Table.TableRow header_rows = 2;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaderRows($var)
@@ -142,7 +142,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Body rows of the table.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Table.TableRow body_rows = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableRow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBodyRows($var)
@@ -168,7 +168,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 4;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetectedLanguages($var)

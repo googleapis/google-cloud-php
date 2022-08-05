@@ -34,9 +34,9 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $headers
      *           List of vulnerable headers.
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header[]|\Google\Protobuf\Internal\RepeatedField $missing_headers
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $missing_headers
      *           List of missing headers.
      * }
      */
@@ -60,7 +60,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of vulnerable headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.VulnerableHeaders.Header headers = 1;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)
@@ -86,7 +86,7 @@ class VulnerableHeaders extends \Google\Protobuf\Internal\Message
      * List of missing headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.VulnerableHeaders.Header missing_headers = 2;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\VulnerableHeaders\Header>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMissingHeaders($var)

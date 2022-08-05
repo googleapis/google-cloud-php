@@ -119,7 +119,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $question_duration
      *           Optional. Maximum duration for contributors to answer a question. Maximum
      *           is 3600 seconds. Default is 3600 seconds.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $contributor_emails
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $contributor_emails
      *           Optional. If you want your own labeling contributors to manage and work on
      *           this labeling request, you can set these contributors here. We will give
      *           them access to the question types in crowdcompute. Note that these
@@ -374,7 +374,7 @@ class HumanAnnotationConfig extends \Google\Protobuf\Internal\Message
      * https://crowd-compute.appspot.com/
      *
      * Generated from protobuf field <code>repeated string contributor_emails = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContributorEmails($var)

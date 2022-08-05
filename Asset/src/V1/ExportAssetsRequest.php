@@ -105,7 +105,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           If not specified, the current time will be used. Due to delays in resource
      *           data collection and indexing, there is a volatile window during which
      *           running the same query may get different results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of asset types to take a snapshot for. For example:
      *           "compute.googleapis.com/Disk".
      *           Regular expressions are also supported. For example:
@@ -126,7 +126,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
      *           Required. Output configuration indicating where the results will be output
      *           to.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
      *           A list of relationship types to export, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
      *           content_type=RELATIONSHIP.
@@ -266,7 +266,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -386,7 +386,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelationshipTypes($var)

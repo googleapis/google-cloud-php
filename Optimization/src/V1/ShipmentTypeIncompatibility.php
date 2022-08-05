@@ -37,7 +37,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $types
      *           List of incompatible types. Two shipments having different `shipment_types`
      *           among those listed are "incompatible".
      *     @type int $incompatibility_mode
@@ -66,7 +66,7 @@ class ShipmentTypeIncompatibility extends \Google\Protobuf\Internal\Message
      * among those listed are "incompatible".
      *
      * Generated from protobuf field <code>repeated string types = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTypes($var)

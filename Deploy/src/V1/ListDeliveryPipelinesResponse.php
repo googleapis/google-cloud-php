@@ -41,12 +41,12 @@ class ListDeliveryPipelinesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline[]|\Google\Protobuf\Internal\RepeatedField $delivery_pipelines
+     *     @type array<\Google\Cloud\Deploy\V1\DeliveryPipeline>|\Google\Protobuf\Internal\RepeatedField $delivery_pipelines
      *           The `DeliveryPipeline` objects.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListDeliveryPipelinesResponse extends \Google\Protobuf\Internal\Message
      * The `DeliveryPipeline` objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.DeliveryPipeline delivery_pipelines = 1;</code>
-     * @param \Google\Cloud\Deploy\V1\DeliveryPipeline[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\DeliveryPipeline>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeliveryPipelines($var)
@@ -124,7 +124,7 @@ class ListDeliveryPipelinesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

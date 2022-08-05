@@ -51,7 +51,7 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
      *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaInvocation $invocation
      *     @type \Google\Protobuf\Struct $build_config
      *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMetadata $metadata
-     *     @type \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial[]|\Google\Protobuf\Internal\RepeatedField $materials
+     *     @type array<\Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial>|\Google\Protobuf\Internal\RepeatedField $materials
      * }
      */
     public function __construct($data = NULL) {
@@ -220,7 +220,7 @@ class SlsaProvenanceZeroTwo extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.SlsaProvenanceZeroTwo.SlsaMaterial materials = 6;</code>
-     * @param \Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\SlsaProvenanceZeroTwo\SlsaMaterial>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMaterials($var)

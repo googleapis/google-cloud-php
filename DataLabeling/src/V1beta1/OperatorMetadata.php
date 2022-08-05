@@ -56,7 +56,7 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      *           The total number of contributors that answer this question.
      *     @type int $label_votes
      *           The total number of contributors that choose this label.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $comments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $comments
      *           Comments from contributors.
      * }
      */
@@ -162,7 +162,7 @@ class OperatorMetadata extends \Google\Protobuf\Internal\Message
      * Comments from contributors.
      *
      * Generated from protobuf field <code>repeated string comments = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setComments($var)

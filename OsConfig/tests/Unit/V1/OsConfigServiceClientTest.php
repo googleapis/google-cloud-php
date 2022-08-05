@@ -82,7 +82,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function cancelPatchJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -104,8 +104,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $response = $client->cancelPatchJob($formattedName);
+        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $response = $gapicClient->cancelPatchJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -123,7 +123,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function cancelPatchJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -138,10 +138,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
         try {
-            $client->cancelPatchJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelPatchJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -158,7 +158,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function createPatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -170,7 +170,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $patchDeploymentId = 'patchDeploymentId-1817061090';
         $patchDeployment = new PatchDeployment();
         $patchDeploymentInstanceFilter = new PatchInstanceFilter();
@@ -179,7 +179,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $response = $client->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
+        $response = $gapicClient->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -201,7 +201,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function createPatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -216,7 +216,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $patchDeploymentId = 'patchDeploymentId-1817061090';
         $patchDeployment = new PatchDeployment();
         $patchDeploymentInstanceFilter = new PatchInstanceFilter();
@@ -226,8 +226,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
         try {
-            $client->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createPatchDeployment($formattedParent, $patchDeploymentId, $patchDeployment);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -244,7 +244,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function deletePatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -252,8 +252,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $client->deletePatchDeployment($formattedName);
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $gapicClient->deletePatchDeployment($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -270,7 +270,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function deletePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -285,10 +285,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
         try {
-            $client->deletePatchDeployment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deletePatchDeployment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -305,7 +305,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function executePatchJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -327,9 +327,9 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instanceFilter = new PatchInstanceFilter();
-        $response = $client->executePatchJob($formattedParent, $instanceFilter);
+        $response = $gapicClient->executePatchJob($formattedParent, $instanceFilter);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -349,7 +349,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function executePatchJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -364,11 +364,11 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $instanceFilter = new PatchInstanceFilter();
         try {
-            $client->executePatchJob($formattedParent, $instanceFilter);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->executePatchJob($formattedParent, $instanceFilter);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -385,7 +385,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function getPatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -397,8 +397,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $response = $client->getPatchDeployment($formattedName);
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $response = $gapicClient->getPatchDeployment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -416,7 +416,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function getPatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -431,10 +431,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
         try {
-            $client->getPatchDeployment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPatchDeployment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -451,7 +451,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function getPatchJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -473,8 +473,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchDeployment($patchDeployment);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $response = $client->getPatchJob($formattedName);
+        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $response = $gapicClient->getPatchJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -492,7 +492,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function getPatchJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -507,10 +507,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $formattedName = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
         try {
-            $client->getPatchJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPatchJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -527,7 +527,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchDeploymentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -542,8 +542,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchDeployments($patchDeployments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listPatchDeployments($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listPatchDeployments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -564,7 +564,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -579,10 +579,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listPatchDeployments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPatchDeployments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -599,7 +599,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchJobInstanceDetailsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -614,8 +614,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchJobInstanceDetails($patchJobInstanceDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
-        $response = $client->listPatchJobInstanceDetails($formattedParent);
+        $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $response = $gapicClient->listPatchJobInstanceDetails($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -636,7 +636,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchJobInstanceDetailsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -651,10 +651,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->patchJobName('[PROJECT]', '[PATCH_JOB]');
+        $formattedParent = $gapicClient->patchJobName('[PROJECT]', '[PATCH_JOB]');
         try {
-            $client->listPatchJobInstanceDetails($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPatchJobInstanceDetails($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -671,7 +671,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -686,8 +686,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setPatchJobs($patchJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listPatchJobs($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listPatchJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -708,7 +708,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function listPatchJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -723,10 +723,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listPatchJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPatchJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -743,7 +743,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function pausePatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -755,8 +755,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $response = $client->pausePatchDeployment($formattedName);
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $response = $gapicClient->pausePatchDeployment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -774,7 +774,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function pausePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -789,10 +789,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
         try {
-            $client->pausePatchDeployment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->pausePatchDeployment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -809,7 +809,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function resumePatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -821,8 +821,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
-        $response = $client->resumePatchDeployment($formattedName);
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $response = $gapicClient->resumePatchDeployment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -840,7 +840,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function resumePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -855,10 +855,10 @@ class OsConfigServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
+        $formattedName = $gapicClient->patchDeploymentName('[PROJECT]', '[PATCH_DEPLOYMENT]');
         try {
-            $client->resumePatchDeployment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resumePatchDeployment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -875,7 +875,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function updatePatchDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -894,7 +894,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $oneTimeScheduleExecuteTime = new Timestamp();
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
-        $response = $client->updatePatchDeployment($patchDeployment);
+        $response = $gapicClient->updatePatchDeployment($patchDeployment);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -912,7 +912,7 @@ class OsConfigServiceClientTest extends GeneratedTest
     public function updatePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -935,8 +935,8 @@ class OsConfigServiceClientTest extends GeneratedTest
         $patchDeploymentOneTimeSchedule->setExecuteTime($oneTimeScheduleExecuteTime);
         $patchDeployment->setOneTimeSchedule($patchDeploymentOneTimeSchedule);
         try {
-            $client->updatePatchDeployment($patchDeployment);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updatePatchDeployment($patchDeployment);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

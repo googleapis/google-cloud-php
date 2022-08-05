@@ -130,7 +130,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           [metrics_schema_uri][google.cloud.aiplatform.v1.ModelEvaluation.metrics_schema_uri]
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Timestamp when this ModelEvaluation was created.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $slice_dimensions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $slice_dimensions
      *           All possible [dimensions][ModelEvaluationSlice.slice.dimension] of
      *           ModelEvaluationSlices. The dimensions can be used as the filter of the
      *           [ModelService.ListModelEvaluationSlices][google.cloud.aiplatform.v1.ModelService.ListModelEvaluationSlices] request, in the form of
@@ -157,7 +157,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      *           Aggregated explanation metrics for the Model's prediction output over the
      *           data this ModelEvaluation uses. This field is populated only if the Model
      *           is evaluated with explanations, and only for AutoML tabular Models.
-     *     @type \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec[]|\Google\Protobuf\Internal\RepeatedField $explanation_specs
+     *     @type array<\Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec>|\Google\Protobuf\Internal\RepeatedField $explanation_specs
      *           Describes the values of [ExplanationSpec][google.cloud.aiplatform.v1.ExplanationSpec] that are used for explaining
      *           the predicted values on the evaluated data.
      *     @type \Google\Protobuf\Value $metadata
@@ -351,7 +351,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * `slice.dimension = <dimension>`.
      *
      * Generated from protobuf field <code>repeated string slice_dimensions = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSliceDimensions($var)
@@ -499,7 +499,7 @@ class ModelEvaluation extends \Google\Protobuf\Internal\Message
      * the predicted values on the evaluated data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ModelEvaluation.ModelEvaluationExplanationSpec explanation_specs = 9;</code>
-     * @param \Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ModelEvaluation\ModelEvaluationExplanationSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExplanationSpecs($var)

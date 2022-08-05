@@ -31,7 +31,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Grafeas\V1\NonCompliantFile[]|\Google\Protobuf\Internal\RepeatedField $non_compliant_files
+     *     @type array<\Grafeas\V1\NonCompliantFile>|\Google\Protobuf\Internal\RepeatedField $non_compliant_files
      *     @type string $non_compliance_reason
      * }
      */
@@ -51,7 +51,7 @@ class ComplianceOccurrence extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.NonCompliantFile non_compliant_files = 2;</code>
-     * @param \Grafeas\V1\NonCompliantFile[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\NonCompliantFile>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNonCompliantFiles($var)

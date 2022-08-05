@@ -29,7 +29,7 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pem_certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificates
      *           Required. Expected to be in leaf-to-root order according to RFC 5246.
      * }
      */
@@ -53,7 +53,7 @@ class SubordinateConfigChain extends \Google\Protobuf\Internal\Message
      * Required. Expected to be in leaf-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificates = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPemCertificates($var)

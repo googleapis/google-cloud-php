@@ -34,7 +34,7 @@ class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $tracks
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $tracks
      *           The detected tracks of a person.
      *     @type string $version
      *           Feature version.
@@ -60,7 +60,7 @@ class PersonDetectionAnnotation extends \Google\Protobuf\Internal\Message
      * The detected tracks of a person.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.Track tracks = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\Track[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\Track>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTracks($var)

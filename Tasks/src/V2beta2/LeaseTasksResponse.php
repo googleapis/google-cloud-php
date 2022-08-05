@@ -28,7 +28,7 @@ class LeaseTasksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Tasks\V2beta2\Task[]|\Google\Protobuf\Internal\RepeatedField $tasks
+     *     @type array<\Google\Cloud\Tasks\V2beta2\Task>|\Google\Protobuf\Internal\RepeatedField $tasks
      *           The leased tasks.
      * }
      */
@@ -52,7 +52,7 @@ class LeaseTasksResponse extends \Google\Protobuf\Internal\Message
      * The leased tasks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tasks.v2beta2.Task tasks = 1;</code>
-     * @param \Google\Cloud\Tasks\V2beta2\Task[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Tasks\V2beta2\Task>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTasks($var)

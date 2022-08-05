@@ -35,7 +35,7 @@ class ListInsightsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Recommender\V1\Insight[]|\Google\Protobuf\Internal\RepeatedField $insights
+     *     @type array<\Google\Cloud\Recommender\V1\Insight>|\Google\Protobuf\Internal\RepeatedField $insights
      *           The set of insights for the `parent` resource.
      *     @type string $next_page_token
      *           A token that can be used to request the next page of results. This field is
@@ -62,7 +62,7 @@ class ListInsightsResponse extends \Google\Protobuf\Internal\Message
      * The set of insights for the `parent` resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Insight insights = 1;</code>
-     * @param \Google\Cloud\Recommender\V1\Insight[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Insight>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInsights($var)

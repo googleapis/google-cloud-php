@@ -46,7 +46,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the Memcached instance for which parameter group updates
      *           should be applied.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $node_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $node_ids
      *           Nodes to which we should apply the instance-level parameter group.
      *     @type bool $apply_all
      *           Whether to apply instance-level parameter group to all nodes. If set to
@@ -102,7 +102,7 @@ class ApplyParametersRequest extends \Google\Protobuf\Internal\Message
      * Nodes to which we should apply the instance-level parameter group.
      *
      * Generated from protobuf field <code>repeated string node_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeIds($var)

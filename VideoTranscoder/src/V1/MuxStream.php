@@ -82,7 +82,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           See also:
      *           [Supported input and output
      *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats)
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of `ElementaryStream.key`s multiplexed in this stream.
      *     @type \Google\Cloud\Video\Transcoder\V1\SegmentSettings $segment_settings
      *           Segment settings for `ts`, `fmp4` and `vtt`.
@@ -210,7 +210,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * List of `ElementaryStream.key`s multiplexed in this stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setElementaryStreams($var)

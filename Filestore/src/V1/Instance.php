@@ -107,10 +107,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The service tier of the instance.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Resource labels to represent user provided metadata.
-     *     @type \Google\Cloud\Filestore\V1\FileShareConfig[]|\Google\Protobuf\Internal\RepeatedField $file_shares
+     *     @type array<\Google\Cloud\Filestore\V1\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $file_shares
      *           File system shares on the instance.
      *           For this version, only a single file share is supported.
-     *     @type \Google\Cloud\Filestore\V1\NetworkConfig[]|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type array<\Google\Cloud\Filestore\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $networks
      *           VPC networks to which the instance is connected.
      *           For this version, only a single network is supported.
      *     @type string $etag
@@ -336,7 +336,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single file share is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.FileShareConfig file_shares = 10;</code>
-     * @param \Google\Cloud\Filestore\V1\FileShareConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Filestore\V1\FileShareConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileShares($var)
@@ -364,7 +364,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * For this version, only a single network is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig networks = 11;</code>
-     * @param \Google\Cloud\Filestore\V1\NetworkConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Filestore\V1\NetworkConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworks($var)

@@ -87,7 +87,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      *     @type string $canonical_product_uri
      *           Optional. Canonical URL directly linking to the item detail page with a
      *           length limit of 5 KiB..
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\Image[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $images
      *           Optional. Product images for the catalog item.
      * }
      */
@@ -317,7 +317,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Product images for the catalog item.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.Image images = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\Image[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)

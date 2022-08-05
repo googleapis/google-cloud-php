@@ -39,7 +39,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\OsConfig\V1\OSPolicy\Resource\File $source
      *           Required. The MSI package.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Additional properties to use during installation.
      *           This should be in the format of Property=Setting.
      *           Appended to the defaults of `ACTION=INSTALL
@@ -108,7 +108,7 @@ class MSI extends \Google\Protobuf\Internal\Message
      * REBOOT=ReallySuppress`.
      *
      * Generated from protobuf field <code>repeated string properties = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProperties($var)

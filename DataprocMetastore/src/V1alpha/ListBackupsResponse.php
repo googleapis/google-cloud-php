@@ -41,12 +41,12 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Metastore\V1alpha\Backup[]|\Google\Protobuf\Internal\RepeatedField $backups
+     *     @type array<\Google\Cloud\Metastore\V1alpha\Backup>|\Google\Protobuf\Internal\RepeatedField $backups
      *           The backups of the specified service.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page. If this
      *           field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * The backups of the specified service.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.Backup backups = 1;</code>
-     * @param \Google\Cloud\Metastore\V1alpha\Backup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Metastore\V1alpha\Backup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBackups($var)
@@ -124,7 +124,7 @@ class ListBackupsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

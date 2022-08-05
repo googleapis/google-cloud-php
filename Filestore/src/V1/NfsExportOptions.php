@@ -69,7 +69,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_ranges
      *           List of either an IPv4 addresses in the format
      *           `{octet1}.{octet2}.{octet3}.{octet4}` or CIDR ranges in the format
      *           `{octet1}.{octet2}.{octet3}.{octet4}/{mask size}` which may mount the
@@ -132,7 +132,7 @@ class NfsExportOptions extends \Google\Protobuf\Internal\Message
      * NfsExportOptions.
      *
      * Generated from protobuf field <code>repeated string ip_ranges = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpRanges($var)

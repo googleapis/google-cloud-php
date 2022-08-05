@@ -66,7 +66,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Required. The entity kind to which this index applies.
      *     @type int $ancestor
      *           Required. The index's ancestor mode.  Must not be ANCESTOR_MODE_UNSPECIFIED.
-     *     @type \Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Required. An ordered sequence of property names and their index attributes.
      *     @type int $state
      *           Output only. The state of the index.
@@ -196,7 +196,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * Required. An ordered sequence of property names and their index attributes.
      *
      * Generated from protobuf field <code>repeated .google.datastore.admin.v1.Index.IndexedProperty properties = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\Admin\V1\Index\IndexedProperty>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProperties($var)

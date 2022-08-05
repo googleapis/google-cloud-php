@@ -38,7 +38,7 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $channel
      *           The full name of the channel to publish to. For example:
      *           `projects/{project}/locations/{location}/channels/{channel-id}`.
-     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
      * }
      */
@@ -90,7 +90,7 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
      * The CloudEvents v1.0 events to publish. No other types are allowed.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
-     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)

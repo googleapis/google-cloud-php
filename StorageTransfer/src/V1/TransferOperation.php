@@ -98,7 +98,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      *           Status of the transfer operation.
      *     @type \Google\Cloud\StorageTransfer\V1\TransferCounters $counters
      *           Information about the progress of the transfer operation.
-     *     @type \Google\Cloud\StorageTransfer\V1\ErrorSummary[]|\Google\Protobuf\Internal\RepeatedField $error_breakdowns
+     *     @type array<\Google\Cloud\StorageTransfer\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $error_breakdowns
      *           Summarizes errors encountered with sample error log entries.
      *     @type string $transfer_job_name
      *           The name of the transfer job that triggers this transfer operation.
@@ -382,7 +382,7 @@ class TransferOperation extends \Google\Protobuf\Internal\Message
      * Summarizes errors encountered with sample error log entries.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.ErrorSummary error_breakdowns = 8;</code>
-     * @param \Google\Cloud\StorageTransfer\V1\ErrorSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\StorageTransfer\V1\ErrorSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrorBreakdowns($var)

@@ -72,7 +72,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           manifests are added to the channel, each must have a unique file name.
      *     @type int $type
      *           Required. Type of the manifest, can be `HLS` or `DASH`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
      *           Required. List of `MuxStream` [key][google.cloud.video.livestream.v1.MuxStream.key]s that should appear in this
      *           manifest.
      *           - For HLS, either `fmp4` or `ts` mux streams can be specified but not
@@ -176,7 +176,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * - For DASH, only `fmp4` mux streams can be specified.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMuxStreams($var)

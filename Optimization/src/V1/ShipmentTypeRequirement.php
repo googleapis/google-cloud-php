@@ -46,10 +46,10 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $required_shipment_type_alternatives
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $required_shipment_type_alternatives
      *           List of alternative shipment types required by the
      *           `dependent_shipment_types`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $dependent_shipment_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $dependent_shipment_types
      *           All shipments with a type in the `dependent_shipment_types` field require
      *           at least one shipment of type `required_shipment_type_alternatives` to be
      *           visited on the same route.
@@ -81,7 +81,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * `dependent_shipment_types`.
      *
      * Generated from protobuf field <code>repeated string required_shipment_type_alternatives = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRequiredShipmentTypeAlternatives($var)
@@ -115,7 +115,7 @@ class ShipmentTypeRequirement extends \Google\Protobuf\Internal\Message
      * are not allowed.
      *
      * Generated from protobuf field <code>repeated string dependent_shipment_types = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDependentShipmentTypes($var)

@@ -148,9 +148,9 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a template.
      *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement $placement
      *           Required. WorkflowTemplate scheduling information.
-     *     @type \Google\Cloud\Dataproc\V1\OrderedJob[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The Directed Acyclic Graph of Jobs to submit.
-     *     @type \Google\Cloud\Dataproc\V1\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Optional. Template parameters whose values are substituted into the
      *           template. Values for parameters must be provided when the template is
      *           instantiated.
@@ -439,7 +439,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. The Directed Acyclic Graph of Jobs to submit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.OrderedJob jobs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dataproc\V1\OrderedJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)
@@ -469,7 +469,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * instantiated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

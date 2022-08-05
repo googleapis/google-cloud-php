@@ -35,7 +35,7 @@ class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsNodePool[]|\Google\Protobuf\Internal\RepeatedField $aws_node_pools
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePool>|\Google\Protobuf\Internal\RepeatedField $aws_node_pools
      *           A list of [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources in the specified `AwsCluster`.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListAwsNodePoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources in the specified `AwsCluster`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsNodePool aws_node_pools = 1;</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\AwsNodePool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsNodePool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAwsNodePools($var)

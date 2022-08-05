@@ -60,9 +60,9 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      *           Indicates whether the domain is available for registration. This value is
      *           accurate when obtained by calling `RetrieveRegisterParameters`, but is
      *           approximate when obtained by calling `SearchDomains`.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
      *           Contact privacy options that the domain supports.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $domain_notices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $domain_notices
      *           Notices about special properties of the domain.
      *     @type \Google\Type\Money $yearly_price
      *           Price to register or renew the domain for one year.
@@ -144,7 +144,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Contact privacy options that the domain supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.ContactPrivacy supported_privacy = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedPrivacy($var)
@@ -170,7 +170,7 @@ class RegisterParameters extends \Google\Protobuf\Internal\Message
      * Notices about special properties of the domain.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.DomainNotice domain_notices = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomainNotices($var)

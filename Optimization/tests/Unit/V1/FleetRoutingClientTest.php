@@ -85,7 +85,7 @@ class FleetRoutingClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -107,7 +107,7 @@ class FleetRoutingClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $modelConfigs = [];
-        $response = $client->batchOptimizeTours($parent, $modelConfigs);
+        $response = $gapicClient->batchOptimizeTours($parent, $modelConfigs);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -152,7 +152,7 @@ class FleetRoutingClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -176,7 +176,7 @@ class FleetRoutingClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $modelConfigs = [];
-        $response = $client->batchOptimizeTours($parent, $modelConfigs);
+        $response = $gapicClient->batchOptimizeTours($parent, $modelConfigs);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -204,7 +204,7 @@ class FleetRoutingClientTest extends GeneratedTest
     public function optimizeToursTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -217,7 +217,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->optimizeTours($parent);
+        $response = $gapicClient->optimizeTours($parent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -235,7 +235,7 @@ class FleetRoutingClientTest extends GeneratedTest
     public function optimizeToursExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -252,8 +252,8 @@ class FleetRoutingClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->optimizeTours($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->optimizeTours($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

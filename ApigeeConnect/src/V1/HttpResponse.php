@@ -69,7 +69,7 @@ class HttpResponse extends \Google\Protobuf\Internal\Message
      *           Status code of http response, e.g. 200.
      *     @type string $body
      *           The HTTP 1.1 response body.
-     *     @type \Google\Cloud\ApigeeConnect\V1\Header[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $headers
      *           The HTTP response headers.
      *     @type int|string $content_length
      *           Content length records the length of the associated content. The
@@ -202,7 +202,7 @@ class HttpResponse extends \Google\Protobuf\Internal\Message
      * The HTTP response headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeconnect.v1.Header headers = 5;</code>
-     * @param \Google\Cloud\ApigeeConnect\V1\Header[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)

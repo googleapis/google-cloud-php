@@ -28,7 +28,7 @@ class SearchDomainsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Domains\V1beta1\RegisterParameters[]|\Google\Protobuf\Internal\RepeatedField $register_parameters
+     *     @type array<\Google\Cloud\Domains\V1beta1\RegisterParameters>|\Google\Protobuf\Internal\RepeatedField $register_parameters
      *           Results of the domain name search.
      * }
      */
@@ -52,7 +52,7 @@ class SearchDomainsResponse extends \Google\Protobuf\Internal\Message
      * Results of the domain name search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.RegisterParameters register_parameters = 1;</code>
-     * @param \Google\Cloud\Domains\V1beta1\RegisterParameters[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Domains\V1beta1\RegisterParameters>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegisterParameters($var)

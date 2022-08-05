@@ -28,7 +28,7 @@ class ListNetworkUsageResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BareMetalSolution\V2\NetworkUsage[]|\Google\Protobuf\Internal\RepeatedField $networks
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\NetworkUsage>|\Google\Protobuf\Internal\RepeatedField $networks
      *           Networks with IPs.
      * }
      */
@@ -52,7 +52,7 @@ class ListNetworkUsageResponse extends \Google\Protobuf\Internal\Message
      * Networks with IPs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NetworkUsage networks = 1;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\NetworkUsage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\NetworkUsage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworks($var)

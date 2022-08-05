@@ -62,7 +62,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           The name of the Google Compute Engine
      *           [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the
      *           instance is connected.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $modes
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $modes
      *           Internet protocol versions for which the instance has IP addresses
      *           assigned. For this version, only MODE_IPV4 is supported.
      *     @type string $reserved_ip_range
@@ -73,7 +73,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *           example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap
      *           with either existing subnets or assigned IP address ranges for other Cloud
      *           Filestore instances in the selected VPC network.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           Output only. IPv4 addresses in the format
      *           IPv4 addresses in the format `{octet1}.{octet2}.{octet3}.{octet4}` or
      *           IPv6 addresses in the format
@@ -132,7 +132,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * assigned. For this version, only MODE_IPV4 is supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.filestore.v1.NetworkConfig.AddressMode modes = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModes($var)
@@ -202,7 +202,7 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * `{block1}:{block2}:{block3}:{block4}:{block5}:{block6}:{block7}:{block8}`.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpAddresses($var)

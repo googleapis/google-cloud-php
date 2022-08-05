@@ -98,7 +98,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a given job.
      *     @type \Google\Cloud\Dataproc\V1\JobScheduling $scheduling
      *           Optional. Job scheduling configuration.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prerequisite_step_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prerequisite_step_ids
      *           Optional. The optional list of prerequisite job step_ids.
      *           If not specified, the job will start at the beginning of workflow.
      * }
@@ -489,7 +489,7 @@ class OrderedJob extends \Google\Protobuf\Internal\Message
      * If not specified, the job will start at the beginning of workflow.
      *
      * Generated from protobuf field <code>repeated string prerequisite_step_ids = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrerequisiteStepIds($var)

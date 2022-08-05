@@ -75,7 +75,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1p1beta1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $alternatives
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $alternatives
      *           May contain one or more recognition hypotheses (up to the
      *           maximum specified in `max_alternatives`).
      *           These alternatives are ordered in terms of accuracy, with the top (first)
@@ -131,7 +131,7 @@ class StreamingRecognitionResult extends \Google\Protobuf\Internal\Message
      * alternative being the most probable, as ranked by the recognizer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.SpeechRecognitionAlternative alternatives = 1;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\SpeechRecognitionAlternative[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\SpeechRecognitionAlternative>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAlternatives($var)

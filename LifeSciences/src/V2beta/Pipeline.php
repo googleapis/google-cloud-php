@@ -52,7 +52,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\LifeSciences\V2beta\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Action>|\Google\Protobuf\Internal\RepeatedField $actions
      *           The list of actions to execute, in the order they are specified.
      *     @type \Google\Cloud\LifeSciences\V2beta\Resources $resources
      *           The resources required for execution.
@@ -88,7 +88,7 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      * The list of actions to execute, in the order they are specified.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Action actions = 1;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Action[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Action>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActions($var)

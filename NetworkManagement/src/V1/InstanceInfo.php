@@ -83,7 +83,7 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      *           Internal IP address of the network interface.
      *     @type string $external_ip
      *           External IP address of the network interface.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           Network tags configured on the instance.
      *     @type string $service_account
      *           Service account authorized for the instance.
@@ -265,7 +265,7 @@ class InstanceInfo extends \Google\Protobuf\Internal\Message
      * Network tags configured on the instance.
      *
      * Generated from protobuf field <code>repeated string network_tags = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)

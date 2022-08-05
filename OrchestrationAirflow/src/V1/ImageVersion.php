@@ -67,7 +67,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
      *     @type bool $is_default
      *           Whether this is the default ImageVersion used by Composer during
      *           environment creation if no input ImageVersion is specified.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_python_versions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_python_versions
      *           supported python versions
      *     @type \Google\Type\Date $release_date
      *           The date of the version release.
@@ -154,7 +154,7 @@ class ImageVersion extends \Google\Protobuf\Internal\Message
      * supported python versions
      *
      * Generated from protobuf field <code>repeated string supported_python_versions = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedPythonVersions($var)

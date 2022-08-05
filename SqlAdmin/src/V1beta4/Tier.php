@@ -62,7 +62,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      *           This is always `sql#tier`.
      *     @type int|string $Disk_Quota
      *           The maximum disk size of this tier in bytes.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $region
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region
      *           The applicable regions for this tier.
      * }
      */
@@ -192,7 +192,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      * The applicable regions for this tier.
      *
      * Generated from protobuf field <code>repeated string region = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegion($var)

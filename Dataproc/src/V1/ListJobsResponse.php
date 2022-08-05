@@ -36,7 +36,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataproc\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Dataproc\V1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Output only. Jobs list.
      *     @type string $next_page_token
      *           Optional. This token is included in the response if there are more results
@@ -64,7 +64,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Jobs list.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Job jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataproc\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)

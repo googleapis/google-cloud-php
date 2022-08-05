@@ -34,7 +34,7 @@ class ListPatchJobInstanceDetailsResponse extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\OsConfig\V1\PatchJobInstanceDetails[]|\Google\Protobuf\Internal\RepeatedField $patch_job_instance_details
+     *     @type array<\Google\Cloud\OsConfig\V1\PatchJobInstanceDetails>|\Google\Protobuf\Internal\RepeatedField $patch_job_instance_details
      *           A list of instance status.
      *     @type string $next_page_token
      *           A pagination token that can be used to get the next page of results.
@@ -60,7 +60,7 @@ class ListPatchJobInstanceDetailsResponse extends \Google\Protobuf\Internal\Mess
      * A list of instance status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchJobInstanceDetails patch_job_instance_details = 1;</code>
-     * @param \Google\Cloud\OsConfig\V1\PatchJobInstanceDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\PatchJobInstanceDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPatchJobInstanceDetails($var)

@@ -81,7 +81,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createMetricDescriptorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -101,7 +101,7 @@ class MetricServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         $metricDescriptor = new MetricDescriptor();
-        $response = $client->createMetricDescriptor($name, $metricDescriptor);
+        $response = $gapicClient->createMetricDescriptor($name, $metricDescriptor);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -121,7 +121,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -139,8 +139,8 @@ class MetricServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $metricDescriptor = new MetricDescriptor();
         try {
-            $client->createMetricDescriptor($name, $metricDescriptor);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createMetricDescriptor($name, $metricDescriptor);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -157,7 +157,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createServiceTimeSeriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -165,9 +165,9 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $timeSeries = [];
-        $client->createServiceTimeSeries($formattedName, $timeSeries);
+        $gapicClient->createServiceTimeSeries($formattedName, $timeSeries);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -186,7 +186,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createServiceTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -201,11 +201,11 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $timeSeries = [];
         try {
-            $client->createServiceTimeSeries($formattedName, $timeSeries);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createServiceTimeSeries($formattedName, $timeSeries);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -222,7 +222,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createTimeSeriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -230,9 +230,9 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $timeSeries = [];
-        $client->createTimeSeries($formattedName, $timeSeries);
+        $gapicClient->createTimeSeries($formattedName, $timeSeries);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -251,7 +251,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function createTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,11 +266,11 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $timeSeries = [];
         try {
-            $client->createTimeSeries($formattedName, $timeSeries);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTimeSeries($formattedName, $timeSeries);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -287,7 +287,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function deleteMetricDescriptorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -295,8 +295,8 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-        $client->deleteMetricDescriptor($formattedName);
+        $formattedName = $gapicClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $gapicClient->deleteMetricDescriptor($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -313,7 +313,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function deleteMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -328,10 +328,10 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $gapicClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
         try {
-            $client->deleteMetricDescriptor($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteMetricDescriptor($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -348,7 +348,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function getMetricDescriptorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -366,8 +366,8 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
-        $response = $client->getMetricDescriptor($formattedName);
+        $formattedName = $gapicClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $response = $gapicClient->getMetricDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -385,7 +385,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function getMetricDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -400,10 +400,10 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
+        $formattedName = $gapicClient->metricDescriptorName('[PROJECT]', '[METRIC_DESCRIPTOR]');
         try {
-            $client->getMetricDescriptor($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMetricDescriptor($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -420,7 +420,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function getMonitoredResourceDescriptorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -436,8 +436,8 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
-        $response = $client->getMonitoredResourceDescriptor($formattedName);
+        $formattedName = $gapicClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $response = $gapicClient->getMonitoredResourceDescriptor($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -455,7 +455,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function getMonitoredResourceDescriptorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -470,10 +470,10 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
+        $formattedName = $gapicClient->monitoredResourceDescriptorName('[PROJECT]', '[MONITORED_RESOURCE_DESCRIPTOR]');
         try {
-            $client->getMonitoredResourceDescriptor($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMonitoredResourceDescriptor($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -490,7 +490,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listMetricDescriptorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -506,7 +506,7 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->listMetricDescriptors($name);
+        $response = $gapicClient->listMetricDescriptors($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -527,7 +527,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listMetricDescriptorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -544,8 +544,8 @@ class MetricServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->listMetricDescriptors($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMetricDescriptors($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -562,7 +562,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listMonitoredResourceDescriptorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -578,7 +578,7 @@ class MetricServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->listMonitoredResourceDescriptors($name);
+        $response = $gapicClient->listMonitoredResourceDescriptors($name);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -599,7 +599,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listMonitoredResourceDescriptorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -616,8 +616,8 @@ class MetricServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->listMonitoredResourceDescriptors($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMonitoredResourceDescriptors($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -634,7 +634,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listTimeSeriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -651,11 +651,11 @@ class MetricServiceClientTest extends GeneratedTest
         $expectedResponse->setTimeSeries($timeSeries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->workspaceName('[PROJECT]');
+        $formattedName = $gapicClient->workspaceName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
         $view = TimeSeriesView::FULL;
-        $response = $client->listTimeSeries($formattedName, $filter, $interval, $view);
+        $response = $gapicClient->listTimeSeries($formattedName, $filter, $interval, $view);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -682,7 +682,7 @@ class MetricServiceClientTest extends GeneratedTest
     public function listTimeSeriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -697,13 +697,13 @@ class MetricServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->workspaceName('[PROJECT]');
+        $formattedName = $gapicClient->workspaceName('[PROJECT]');
         $filter = 'filter-1274492040';
         $interval = new TimeInterval();
         $view = TimeSeriesView::FULL;
         try {
-            $client->listTimeSeries($formattedName, $filter, $interval, $view);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTimeSeries($formattedName, $filter, $interval, $view);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

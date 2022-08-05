@@ -109,7 +109,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      *           The trust authentication type, which decides whether the trusted side has
      *           forest/domain wide access or selective access to an approved set of
      *           resources.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
      *           The target DNS server IP addresses which can resolve the remote domain
      *           involved in the trust.
      *     @type string $trust_handshake_secret
@@ -263,7 +263,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * involved in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetDnsIpAddresses($var)

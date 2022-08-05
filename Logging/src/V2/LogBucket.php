@@ -124,7 +124,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      *           may only be deleted if they are empty.
      *     @type int $lifecycle_state
      *           Output only. The bucket lifecycle state.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restricted_fields
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restricted_fields
      *           Log entry field paths that are denied access in this bucket.
      *           The following fields and their children are eligible: `textPayload`,
      *           `jsonPayload`, `protoPayload`, `httpRequest`, `labels`, `sourceLocation`.
@@ -394,7 +394,7 @@ class LogBucket extends \Google\Protobuf\Internal\Message
      * block all child fields. (e.g. `foo.bar` will block `foo.bar.baz`)
      *
      * Generated from protobuf field <code>repeated string restricted_fields = 15;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedFields($var)

@@ -40,11 +40,11 @@ class ListNfsSharesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BareMetalSolution\V2\NfsShare[]|\Google\Protobuf\Internal\RepeatedField $nfs_shares
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\NfsShare>|\Google\Protobuf\Internal\RepeatedField $nfs_shares
      *           The list of NFS shares.
      *     @type string $next_page_token
      *           A token identifying a page of results from the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListNfsSharesResponse extends \Google\Protobuf\Internal\Message
      * The list of NFS shares.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NfsShare nfs_shares = 1;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\NfsShare[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\NfsShare>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNfsShares($var)
@@ -120,7 +120,7 @@ class ListNfsSharesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

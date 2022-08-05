@@ -41,7 +41,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4beta1\Company[]|\Google\Protobuf\Internal\RepeatedField $companies
+     *     @type array<\Google\Cloud\Talent\V4beta1\Company>|\Google\Protobuf\Internal\RepeatedField $companies
      *           Companies for the current client.
      *     @type string $next_page_token
      *           A token to retrieve the next page of results.
@@ -70,7 +70,7 @@ class ListCompaniesResponse extends \Google\Protobuf\Internal\Message
      * Companies for the current client.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Company companies = 1;</code>
-     * @param \Google\Cloud\Talent\V4beta1\Company[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\Company>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompanies($var)

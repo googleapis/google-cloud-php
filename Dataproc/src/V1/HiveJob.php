@@ -72,7 +72,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      *           Properties that conflict with values set by the Dataproc API may be
      *           overwritten. Can include properties set in /etc/hadoop/conf/&#42;-site.xml,
      *           /etc/hive/conf/hive-site.xml, and classes in user code.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to add to the CLASSPATH of the
      *           Hive server and Hadoop MapReduce (MR) tasks. Can contain Hive SerDes
      *           and UDFs.
@@ -254,7 +254,7 @@ class HiveJob extends \Google\Protobuf\Internal\Message
      * and UDFs.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)

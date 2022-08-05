@@ -54,11 +54,11 @@ class ScalingConfig extends \Google\Protobuf\Internal\Message
      *     @type string $fleet_autoscaler_spec
      *           Required. Agones fleet autoscaler spec. Example spec:
      *           https://agones.dev/site/docs/reference/fleetautoscaler/
-     *     @type \Google\Cloud\Gaming\V1\LabelSelector[]|\Google\Protobuf\Internal\RepeatedField $selectors
+     *     @type array<\Google\Cloud\Gaming\V1\LabelSelector>|\Google\Protobuf\Internal\RepeatedField $selectors
      *           Labels used to identify the game server clusters to which this Agones
      *           scaling config applies. A game server cluster is subject to this Agones
      *           scaling config if its labels match any of the selector entries.
-     *     @type \Google\Cloud\Gaming\V1\Schedule[]|\Google\Protobuf\Internal\RepeatedField $schedules
+     *     @type array<\Google\Cloud\Gaming\V1\Schedule>|\Google\Protobuf\Internal\RepeatedField $schedules
      *           The schedules to which this Scaling Config applies.
      * }
      */
@@ -140,7 +140,7 @@ class ScalingConfig extends \Google\Protobuf\Internal\Message
      * scaling config if its labels match any of the selector entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.LabelSelector selectors = 4;</code>
-     * @param \Google\Cloud\Gaming\V1\LabelSelector[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\LabelSelector>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSelectors($var)
@@ -166,7 +166,7 @@ class ScalingConfig extends \Google\Protobuf\Internal\Message
      * The schedules to which this Scaling Config applies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.Schedule schedules = 5;</code>
-     * @param \Google\Cloud\Gaming\V1\Schedule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\Schedule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSchedules($var)

@@ -74,7 +74,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
     public function reportErrorEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -82,13 +82,13 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         $expectedResponse = new ReportErrorEventResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProjectName = $client->projectName('[PROJECT]');
+        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
         $eventServiceContext = new ServiceContext();
         $event->setServiceContext($eventServiceContext);
         $eventMessage = 'eventMessage1863181325';
         $event->setMessage($eventMessage);
-        $response = $client->reportErrorEvent($formattedProjectName, $event);
+        $response = $gapicClient->reportErrorEvent($formattedProjectName, $event);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -108,7 +108,7 @@ class ReportErrorsServiceClientTest extends GeneratedTest
     public function reportErrorEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -123,15 +123,15 @@ class ReportErrorsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProjectName = $client->projectName('[PROJECT]');
+        $formattedProjectName = $gapicClient->projectName('[PROJECT]');
         $event = new ReportedErrorEvent();
         $eventServiceContext = new ServiceContext();
         $event->setServiceContext($eventServiceContext);
         $eventMessage = 'eventMessage1863181325';
         $event->setMessage($eventMessage);
         try {
-            $client->reportErrorEvent($formattedProjectName, $event);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->reportErrorEvent($formattedProjectName, $event);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

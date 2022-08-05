@@ -90,7 +90,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,10 +116,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $apiId = 'apiId-1411282592';
         $api = new Api();
-        $response = $client->createApi($formattedParent, $apiId, $api);
+        $response = $gapicClient->createApi($formattedParent, $apiId, $api);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,7 +166,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,10 +188,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $apiId = 'apiId-1411282592';
         $api = new Api();
-        $response = $client->createApi($formattedParent, $apiId, $api);
+        $response = $gapicClient->createApi($formattedParent, $apiId, $api);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -225,7 +225,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -253,10 +253,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->apiName('[PROJECT]', '[API]');
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
         $apiConfigId = 'apiConfigId1182346067';
         $apiConfig = new ApiConfig();
-        $response = $client->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+        $response = $gapicClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -303,7 +303,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -325,10 +325,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->apiName('[PROJECT]', '[API]');
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
         $apiConfigId = 'apiConfigId1182346067';
         $apiConfig = new ApiConfig();
-        $response = $client->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
+        $response = $gapicClient->createApiConfig($formattedParent, $apiConfigId, $apiConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -362,7 +362,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -390,12 +390,12 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $gatewayId = 'gatewayId955798774';
         $gateway = new Gateway();
-        $gatewayApiConfig = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $response = $client->createGateway($formattedParent, $gatewayId, $gateway);
+        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -442,7 +442,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -464,12 +464,12 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $gatewayId = 'gatewayId955798774';
         $gateway = new Gateway();
-        $gatewayApiConfig = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $response = $client->createGateway($formattedParent, $gatewayId, $gateway);
+        $response = $gapicClient->createGateway($formattedParent, $gatewayId, $gateway);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -503,7 +503,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -523,8 +523,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->apiName('[PROJECT]', '[API]');
-        $response = $client->deleteApi($formattedName);
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
+        $response = $gapicClient->deleteApi($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -567,7 +567,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -589,8 +589,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->apiName('[PROJECT]', '[API]');
-        $response = $client->deleteApi($formattedName);
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
+        $response = $gapicClient->deleteApi($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -624,7 +624,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -644,8 +644,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $client->deleteApiConfig($formattedName);
+        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $response = $gapicClient->deleteApiConfig($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -688,7 +688,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -710,8 +710,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $client->deleteApiConfig($formattedName);
+        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $response = $gapicClient->deleteApiConfig($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -745,7 +745,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -765,8 +765,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $client->deleteGateway($formattedName);
+        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $response = $gapicClient->deleteGateway($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -809,7 +809,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -831,8 +831,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $client->deleteGateway($formattedName);
+        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $response = $gapicClient->deleteGateway($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -860,7 +860,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getApiTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -874,8 +874,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setManagedService($managedService);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->apiName('[PROJECT]', '[API]');
-        $response = $client->getApi($formattedName);
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
+        $response = $gapicClient->getApi($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -893,7 +893,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getApiExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -908,10 +908,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->apiName('[PROJECT]', '[API]');
+        $formattedName = $gapicClient->apiName('[PROJECT]', '[API]');
         try {
-            $client->getApi($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getApi($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -928,7 +928,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getApiConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -944,8 +944,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setServiceConfigId($serviceConfigId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
-        $response = $client->getApiConfig($formattedName);
+        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $response = $gapicClient->getApiConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -963,7 +963,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getApiConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -978,10 +978,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $formattedName = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         try {
-            $client->getApiConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getApiConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -998,7 +998,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getGatewayTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1014,8 +1014,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setDefaultHostname($defaultHostname);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
-        $response = $client->getGateway($formattedName);
+        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $response = $gapicClient->getGateway($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1033,7 +1033,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function getGatewayExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1048,10 +1048,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
+        $formattedName = $gapicClient->gatewayName('[PROJECT]', '[LOCATION]', '[GATEWAY]');
         try {
-            $client->getGateway($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGateway($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1068,7 +1068,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listApiConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1083,8 +1083,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setApiConfigs($apiConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->apiName('[PROJECT]', '[API]');
-        $response = $client->listApiConfigs($formattedParent);
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
+        $response = $gapicClient->listApiConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1105,7 +1105,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listApiConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1120,10 +1120,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->apiName('[PROJECT]', '[API]');
+        $formattedParent = $gapicClient->apiName('[PROJECT]', '[API]');
         try {
-            $client->listApiConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listApiConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1140,7 +1140,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listApisTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1155,8 +1155,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setApis($apis);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listApis($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listApis($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1177,7 +1177,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listApisExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1192,10 +1192,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listApis($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listApis($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1212,7 +1212,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listGatewaysTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1227,8 +1227,8 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $expectedResponse->setGateways($gateways);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listGateways($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listGateways($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1249,7 +1249,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
     public function listGatewaysExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1264,10 +1264,10 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listGateways($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGateways($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1290,7 +1290,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1317,7 +1317,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $api = new Api();
-        $response = $client->updateApi($api);
+        $response = $gapicClient->updateApi($api);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1360,7 +1360,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1383,7 +1383,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $api = new Api();
-        $response = $client->updateApi($api);
+        $response = $gapicClient->updateApi($api);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1417,7 +1417,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1446,7 +1446,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $apiConfig = new ApiConfig();
-        $response = $client->updateApiConfig($apiConfig);
+        $response = $gapicClient->updateApiConfig($apiConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1489,7 +1489,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1512,7 +1512,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $apiConfig = new ApiConfig();
-        $response = $client->updateApiConfig($apiConfig);
+        $response = $gapicClient->updateApiConfig($apiConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1546,7 +1546,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1575,9 +1575,9 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $gateway = new Gateway();
-        $gatewayApiConfig = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $response = $client->updateGateway($gateway);
+        $response = $gapicClient->updateGateway($gateway);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1620,7 +1620,7 @@ class ApiGatewayServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1643,9 +1643,9 @@ class ApiGatewayServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $gateway = new Gateway();
-        $gatewayApiConfig = $client->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
+        $gatewayApiConfig = $gapicClient->apiConfigName('[PROJECT]', '[API]', '[API_CONFIG]');
         $gateway->setApiConfig($gatewayApiConfig);
-        $response = $client->updateGateway($gateway);
+        $response = $gapicClient->updateGateway($gateway);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

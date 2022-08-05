@@ -103,7 +103,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -127,12 +127,12 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $response = $client->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -179,7 +179,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -201,12 +201,12 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectionProfileId = 'connectionProfileId1179884402';
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $response = $client->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
+        $response = $gapicClient->createConnectionProfile($formattedParent, $connectionProfileId, $connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -240,7 +240,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -264,12 +264,12 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $privateConnectionId = 'privateConnectionId-1948601248';
         $privateConnection = new PrivateConnection();
         $privateConnectionDisplayName = 'privateConnectionDisplayName1030451948';
         $privateConnection->setDisplayName($privateConnectionDisplayName);
-        $response = $client->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -316,7 +316,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -338,12 +338,12 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $privateConnectionId = 'privateConnectionId-1948601248';
         $privateConnection = new PrivateConnection();
         $privateConnectionDisplayName = 'privateConnectionDisplayName1030451948';
         $privateConnection->setDisplayName($privateConnectionDisplayName);
-        $response = $client->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
+        $response = $gapicClient->createPrivateConnection($formattedParent, $privateConnectionId, $privateConnection);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -377,7 +377,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -405,14 +405,14 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         $routeId = 'routeId5418705';
         $route = new Route();
         $routeDisplayName = 'routeDisplayName-1988119452';
         $route->setDisplayName($routeDisplayName);
         $routeDestinationAddress = 'routeDestinationAddress248623663';
         $route->setDestinationAddress($routeDestinationAddress);
-        $response = $client->createRoute($formattedParent, $routeId, $route);
+        $response = $gapicClient->createRoute($formattedParent, $routeId, $route);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -459,7 +459,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -481,14 +481,14 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         $routeId = 'routeId5418705';
         $route = new Route();
         $routeDisplayName = 'routeDisplayName-1988119452';
         $route->setDisplayName($routeDisplayName);
         $routeDestinationAddress = 'routeDestinationAddress248623663';
         $route->setDestinationAddress($routeDestinationAddress);
-        $response = $client->createRoute($formattedParent, $routeId, $route);
+        $response = $gapicClient->createRoute($formattedParent, $routeId, $route);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -522,7 +522,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -548,20 +548,20 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $streamId = 'streamId-315624902';
         $stream = new Stream();
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $response = $client->createStream($formattedParent, $streamId, $stream);
+        $response = $gapicClient->createStream($formattedParent, $streamId, $stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -608,7 +608,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -630,20 +630,20 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $streamId = 'streamId-315624902';
         $stream = new Stream();
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $response = $client->createStream($formattedParent, $streamId, $stream);
+        $response = $gapicClient->createStream($formattedParent, $streamId, $stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -677,7 +677,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -697,8 +697,8 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->deleteConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -741,7 +741,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -763,8 +763,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->deleteConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->deleteConnectionProfile($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -798,7 +798,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -818,8 +818,8 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $client->deletePrivateConnection($formattedName);
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -862,7 +862,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -884,8 +884,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $client->deletePrivateConnection($formattedName);
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->deletePrivateConnection($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -919,7 +919,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -939,8 +939,8 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $response = $client->deleteRoute($formattedName);
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->deleteRoute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -983,7 +983,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1005,8 +1005,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $response = $client->deleteRoute($formattedName);
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->deleteRoute($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1040,7 +1040,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1060,8 +1060,8 @@ class DatastreamClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $response = $client->deleteStream($formattedName);
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->deleteStream($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1104,7 +1104,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1126,8 +1126,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $response = $client->deleteStream($formattedName);
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->deleteStream($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1155,7 +1155,7 @@ class DatastreamClientTest extends GeneratedTest
     public function discoverConnectionProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1163,8 +1163,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse = new DiscoverConnectionProfileResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->discoverConnectionProfile($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->discoverConnectionProfile($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1182,7 +1182,7 @@ class DatastreamClientTest extends GeneratedTest
     public function discoverConnectionProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1197,10 +1197,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->discoverConnectionProfile($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->discoverConnectionProfile($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1217,7 +1217,7 @@ class DatastreamClientTest extends GeneratedTest
     public function fetchStaticIpsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1232,8 +1232,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setStaticIps($staticIps);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->fetchStaticIps($formattedName);
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->fetchStaticIps($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1254,7 +1254,7 @@ class DatastreamClientTest extends GeneratedTest
     public function fetchStaticIpsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1269,10 +1269,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedName = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->fetchStaticIps($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->fetchStaticIps($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1289,7 +1289,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getConnectionProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1301,8 +1301,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
-        $response = $client->getConnectionProfile($formattedName);
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $response = $gapicClient->getConnectionProfile($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1320,7 +1320,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getConnectionProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1335,10 +1335,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $formattedName = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         try {
-            $client->getConnectionProfile($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConnectionProfile($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1355,7 +1355,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getPrivateConnectionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1367,8 +1367,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $client->getPrivateConnection($formattedName);
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->getPrivateConnection($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1386,7 +1386,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getPrivateConnectionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1401,10 +1401,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $formattedName = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         try {
-            $client->getPrivateConnection($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getPrivateConnection($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1421,7 +1421,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getRouteTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1437,8 +1437,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDestinationPort($destinationPort);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
-        $response = $client->getRoute($formattedName);
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $response = $gapicClient->getRoute($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1456,7 +1456,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getRouteExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1471,10 +1471,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
+        $formattedName = $gapicClient->routeName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]', '[ROUTE]');
         try {
-            $client->getRoute($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRoute($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1491,7 +1491,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getStreamTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1505,8 +1505,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setCustomerManagedEncryptionKey($customerManagedEncryptionKey);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $response = $client->getStream($formattedName);
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->getStream($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1524,7 +1524,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getStreamExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1539,10 +1539,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $formattedName = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         try {
-            $client->getStream($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getStream($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1559,7 +1559,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getStreamObjectTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1571,8 +1571,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $response = $client->getStreamObject($formattedName);
+        $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->getStreamObject($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1590,7 +1590,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getStreamObjectExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1605,10 +1605,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $formattedName = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $client->getStreamObject($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getStreamObject($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1625,7 +1625,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listConnectionProfilesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1640,8 +1640,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setConnectionProfiles($connectionProfiles);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listConnectionProfiles($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listConnectionProfiles($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1662,7 +1662,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listConnectionProfilesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1677,10 +1677,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listConnectionProfiles($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConnectionProfiles($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1697,7 +1697,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listPrivateConnectionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1712,8 +1712,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setPrivateConnections($privateConnections);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listPrivateConnections($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listPrivateConnections($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1734,7 +1734,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listPrivateConnectionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1749,10 +1749,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listPrivateConnections($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listPrivateConnections($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1769,7 +1769,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listRoutesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1784,8 +1784,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setRoutes($routes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
-        $response = $client->listRoutes($formattedParent);
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $response = $gapicClient->listRoutes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1806,7 +1806,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listRoutesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1821,10 +1821,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
+        $formattedParent = $gapicClient->privateConnectionName('[PROJECT]', '[LOCATION]', '[PRIVATE_CONNECTION]');
         try {
-            $client->listRoutes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRoutes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1841,7 +1841,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listStreamObjectsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1856,8 +1856,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setStreamObjects($streamObjects);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
-        $response = $client->listStreamObjects($formattedParent);
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $response = $gapicClient->listStreamObjects($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1878,7 +1878,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listStreamObjectsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1893,10 +1893,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         try {
-            $client->listStreamObjects($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listStreamObjects($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1913,7 +1913,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listStreamsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1928,8 +1928,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setStreams($streams);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listStreams($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listStreams($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1950,7 +1950,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listStreamsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1965,10 +1965,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listStreams($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listStreams($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1985,7 +1985,7 @@ class DatastreamClientTest extends GeneratedTest
     public function lookupStreamObjectTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1997,9 +1997,9 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         $sourceObjectIdentifier = new SourceObjectIdentifier();
-        $response = $client->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
+        $response = $gapicClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2019,7 +2019,7 @@ class DatastreamClientTest extends GeneratedTest
     public function lookupStreamObjectExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2034,11 +2034,11 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
+        $formattedParent = $gapicClient->streamName('[PROJECT]', '[LOCATION]', '[STREAM]');
         $sourceObjectIdentifier = new SourceObjectIdentifier();
         try {
-            $client->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->lookupStreamObject($formattedParent, $sourceObjectIdentifier);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2055,7 +2055,7 @@ class DatastreamClientTest extends GeneratedTest
     public function startBackfillJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2063,8 +2063,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse = new StartBackfillJobResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedObject = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $response = $client->startBackfillJob($formattedObject);
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->startBackfillJob($formattedObject);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2082,7 +2082,7 @@ class DatastreamClientTest extends GeneratedTest
     public function startBackfillJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2097,10 +2097,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedObject = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $client->startBackfillJob($formattedObject);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->startBackfillJob($formattedObject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2117,7 +2117,7 @@ class DatastreamClientTest extends GeneratedTest
     public function stopBackfillJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2125,8 +2125,8 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse = new StopBackfillJobResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedObject = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
-        $response = $client->stopBackfillJob($formattedObject);
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $response = $gapicClient->stopBackfillJob($formattedObject);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2144,7 +2144,7 @@ class DatastreamClientTest extends GeneratedTest
     public function stopBackfillJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2159,10 +2159,10 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedObject = $client->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
+        $formattedObject = $gapicClient->streamObjectName('[PROJECT]', '[LOCATION]', '[STREAM]', '[OBJECT]');
         try {
-            $client->stopBackfillJob($formattedObject);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->stopBackfillJob($formattedObject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2185,7 +2185,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2212,7 +2212,7 @@ class DatastreamClientTest extends GeneratedTest
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $response = $client->updateConnectionProfile($connectionProfile);
+        $response = $gapicClient->updateConnectionProfile($connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2255,7 +2255,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2280,7 +2280,7 @@ class DatastreamClientTest extends GeneratedTest
         $connectionProfile = new ConnectionProfile();
         $connectionProfileDisplayName = 'connectionProfileDisplayName-1452081022';
         $connectionProfile->setDisplayName($connectionProfileDisplayName);
-        $response = $client->updateConnectionProfile($connectionProfile);
+        $response = $gapicClient->updateConnectionProfile($connectionProfile);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2314,7 +2314,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2344,14 +2344,14 @@ class DatastreamClientTest extends GeneratedTest
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $response = $client->updateStream($stream);
+        $response = $gapicClient->updateStream($stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2394,7 +2394,7 @@ class DatastreamClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2420,14 +2420,14 @@ class DatastreamClientTest extends GeneratedTest
         $streamDisplayName = 'streamDisplayName41647821';
         $stream->setDisplayName($streamDisplayName);
         $streamSourceConfig = new SourceConfig();
-        $sourceConfigSourceConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $sourceConfigSourceConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamSourceConfig->setSourceConnectionProfile($sourceConfigSourceConnectionProfile);
         $stream->setSourceConfig($streamSourceConfig);
         $streamDestinationConfig = new DestinationConfig();
-        $destinationConfigDestinationConnectionProfile = $client->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
+        $destinationConfigDestinationConnectionProfile = $gapicClient->connectionProfileName('[PROJECT]', '[LOCATION]', '[CONNECTION_PROFILE]');
         $streamDestinationConfig->setDestinationConnectionProfile($destinationConfigDestinationConnectionProfile);
         $stream->setDestinationConfig($streamDestinationConfig);
-        $response = $client->updateStream($stream);
+        $response = $gapicClient->updateStream($stream);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2455,7 +2455,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getLocationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2468,7 +2468,7 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setLocationId($locationId);
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getLocation();
+        $response = $gapicClient->getLocation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2484,7 +2484,7 @@ class DatastreamClientTest extends GeneratedTest
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2499,8 +2499,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getLocation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2517,7 +2517,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2531,7 +2531,7 @@ class DatastreamClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setLocations($locations);
         $transport->addResponse($expectedResponse);
-        $response = $client->listLocations();
+        $response = $gapicClient->listLocations();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -2550,7 +2550,7 @@ class DatastreamClientTest extends GeneratedTest
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2565,8 +2565,8 @@ class DatastreamClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listLocations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

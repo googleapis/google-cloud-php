@@ -132,16 +132,22 @@ class RevisionsGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/revisions_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/revisions_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/revisions_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/revisions_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/revisions_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/revisions_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/revisions_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/revisions_rest_client_config.php',
                 ],
             ],
         ];
@@ -150,7 +156,9 @@ class RevisionsGapicClient
     private static function getRevisionNameTemplate()
     {
         if (self::$revisionNameTemplate == null) {
-            self::$revisionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}/revisions/{revision}');
+            self::$revisionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}/revisions/{revision}'
+            );
         }
 
         return self::$revisionNameTemplate;
@@ -159,7 +167,9 @@ class RevisionsGapicClient
     private static function getServiceNameTemplate()
     {
         if (self::$serviceNameTemplate == null) {
-            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
         }
 
         return self::$serviceNameTemplate;
@@ -188,8 +198,12 @@ class RevisionsGapicClient
      *
      * @return string The formatted revision resource.
      */
-    public static function revisionName($project, $location, $service, $revision)
-    {
+    public static function revisionName(
+        $project,
+        $location,
+        $service,
+        $revision
+    ) {
         return self::getRevisionNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -242,7 +256,9 @@ class RevisionsGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -256,7 +272,9 @@ class RevisionsGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -282,8 +300,14 @@ class RevisionsGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -404,10 +428,9 @@ class RevisionsGapicClient
      *           A system-generated fingerprint for this version of the
      *           resource. This may be used to detect modification conflict during updates.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -428,9 +451,18 @@ class RevisionsGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteRevision', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteRevision',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -454,10 +486,9 @@ class RevisionsGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Run\V2\Revision
@@ -470,9 +501,18 @@ class RevisionsGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['location'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetRevision', Revision::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetRevision',
+            Revision::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -520,10 +560,9 @@ class RevisionsGapicClient
      *     @type bool $showDeleted
      *           If true, returns deleted (but unexpired) resources along with active ones.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -548,8 +587,17 @@ class RevisionsGapicClient
             $request->setShowDeleted($optionalArgs['showDeleted']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListRevisions', $optionalArgs, ListRevisionsResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListRevisions',
+            $optionalArgs,
+            ListRevisionsResponse::class,
+            $request
+        );
     }
 }

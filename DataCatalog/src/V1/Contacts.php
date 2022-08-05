@@ -28,7 +28,7 @@ class Contacts extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\Contacts\Person[]|\Google\Protobuf\Internal\RepeatedField $people
+     *     @type array<\Google\Cloud\DataCatalog\V1\Contacts\Person>|\Google\Protobuf\Internal\RepeatedField $people
      *           The list of contact people for the entry.
      * }
      */
@@ -52,7 +52,7 @@ class Contacts extends \Google\Protobuf\Internal\Message
      * The list of contact people for the entry.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Contacts.Person people = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\Contacts\Person[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\Contacts\Person>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPeople($var)

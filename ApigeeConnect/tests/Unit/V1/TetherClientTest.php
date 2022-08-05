@@ -75,7 +75,7 @@ class TetherClientTest extends GeneratedTest
     public function egressTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -108,7 +108,7 @@ class TetherClientTest extends GeneratedTest
         $request = new EgressResponse();
         $request2 = new EgressResponse();
         $request3 = new EgressResponse();
-        $bidi = $client->egress();
+        $bidi = $gapicClient->egress();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -150,7 +150,7 @@ class TetherClientTest extends GeneratedTest
     public function egressExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -164,7 +164,7 @@ class TetherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->egress();
+        $bidi = $gapicClient->egress();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);

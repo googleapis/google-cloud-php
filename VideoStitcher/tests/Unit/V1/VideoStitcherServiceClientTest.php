@@ -86,7 +86,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createCdnKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -98,10 +98,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setHostname($hostname);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $cdnKey = new CdnKey();
         $cdnKeyId = 'cdnKeyId1672586061';
-        $response = $client->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+        $response = $gapicClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -123,7 +123,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -138,12 +138,12 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $cdnKey = new CdnKey();
         $cdnKeyId = 'cdnKeyId1672586061';
         try {
-            $client->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCdnKey($formattedParent, $cdnKey, $cdnKeyId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -160,7 +160,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createLiveSessionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -182,9 +182,9 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setStreamId($streamId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
         $liveSession = new LiveSession();
-        $response = $client->createLiveSession($formattedParent, $liveSession);
+        $response = $gapicClient->createLiveSession($formattedParent, $liveSession);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -204,7 +204,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createLiveSessionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -219,11 +219,11 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
         $liveSession = new LiveSession();
         try {
-            $client->createLiveSession($formattedParent, $liveSession);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createLiveSession($formattedParent, $liveSession);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -240,7 +240,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createSlateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -252,10 +252,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $slateId = 'slateId-1486865023';
         $slate = new Slate();
-        $response = $client->createSlate($formattedParent, $slateId, $slate);
+        $response = $gapicClient->createSlate($formattedParent, $slateId, $slate);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -277,7 +277,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createSlateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -292,12 +292,12 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $slateId = 'slateId-1486865023';
         $slate = new Slate();
         try {
-            $client->createSlate($formattedParent, $slateId, $slate);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSlate($formattedParent, $slateId, $slate);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -314,7 +314,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createVodSessionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -334,13 +334,13 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setAssetId($assetId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vodSession = new VodSession();
         $vodSessionSourceUri = 'vodSessionSourceUri2085185606';
         $vodSession->setSourceUri($vodSessionSourceUri);
         $vodSessionAdTagUri = 'vodSessionAdTagUri-600567328';
         $vodSession->setAdTagUri($vodSessionAdTagUri);
-        $response = $client->createVodSession($formattedParent, $vodSession);
+        $response = $gapicClient->createVodSession($formattedParent, $vodSession);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -360,7 +360,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function createVodSessionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -375,15 +375,15 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $vodSession = new VodSession();
         $vodSessionSourceUri = 'vodSessionSourceUri2085185606';
         $vodSession->setSourceUri($vodSessionSourceUri);
         $vodSessionAdTagUri = 'vodSessionAdTagUri-600567328';
         $vodSession->setAdTagUri($vodSessionAdTagUri);
         try {
-            $client->createVodSession($formattedParent, $vodSession);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createVodSession($formattedParent, $vodSession);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -400,7 +400,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function deleteCdnKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -408,8 +408,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $client->deleteCdnKey($formattedName);
+        $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
+        $gapicClient->deleteCdnKey($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -426,7 +426,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function deleteCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -441,10 +441,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
+        $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
         try {
-            $client->deleteCdnKey($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCdnKey($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -461,7 +461,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function deleteSlateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -469,8 +469,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $client->deleteSlate($formattedName);
+        $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
+        $gapicClient->deleteSlate($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -487,7 +487,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function deleteSlateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -502,10 +502,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
+        $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
         try {
-            $client->deleteSlate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSlate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -522,7 +522,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getCdnKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -534,8 +534,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setHostname($hostname);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
-        $response = $client->getCdnKey($formattedName);
+        $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
+        $response = $gapicClient->getCdnKey($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -553,7 +553,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -568,10 +568,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
+        $formattedName = $gapicClient->cdnKeyName('[PROJECT]', '[LOCATION]', '[CDN_KEY]');
         try {
-            $client->getCdnKey($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCdnKey($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -588,7 +588,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getLiveAdTagDetailTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -598,8 +598,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
-        $response = $client->getLiveAdTagDetail($formattedName);
+        $formattedName = $gapicClient->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
+        $response = $gapicClient->getLiveAdTagDetail($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -617,7 +617,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getLiveAdTagDetailExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -632,10 +632,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
+        $formattedName = $gapicClient->liveAdTagDetailName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]', '[LIVE_AD_TAG_DETAIL]');
         try {
-            $client->getLiveAdTagDetail($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLiveAdTagDetail($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -652,7 +652,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getLiveSessionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -674,8 +674,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setStreamId($streamId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $response = $client->getLiveSession($formattedName);
+        $formattedName = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $response = $gapicClient->getLiveSession($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -693,7 +693,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getLiveSessionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -708,10 +708,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedName = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
         try {
-            $client->getLiveSession($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getLiveSession($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -728,7 +728,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getSlateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -740,8 +740,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
-        $response = $client->getSlate($formattedName);
+        $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
+        $response = $gapicClient->getSlate($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -759,7 +759,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getSlateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -774,10 +774,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
+        $formattedName = $gapicClient->slateName('[PROJECT]', '[LOCATION]', '[SLATE]');
         try {
-            $client->getSlate($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSlate($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -794,7 +794,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodAdTagDetailTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -804,8 +804,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
-        $response = $client->getVodAdTagDetail($formattedName);
+        $formattedName = $gapicClient->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
+        $response = $gapicClient->getVodAdTagDetail($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -823,7 +823,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodAdTagDetailExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -838,10 +838,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
+        $formattedName = $gapicClient->vodAdTagDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_AD_TAG_DETAIL]');
         try {
-            $client->getVodAdTagDetail($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVodAdTagDetail($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -858,7 +858,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodSessionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -878,8 +878,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setAssetId($assetId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $response = $client->getVodSession($formattedName);
+        $formattedName = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $response = $gapicClient->getVodSession($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -897,7 +897,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodSessionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -912,10 +912,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $formattedName = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
         try {
-            $client->getVodSession($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVodSession($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -932,7 +932,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodStitchDetailTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -942,8 +942,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
-        $response = $client->getVodStitchDetail($formattedName);
+        $formattedName = $gapicClient->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
+        $response = $gapicClient->getVodStitchDetail($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -961,7 +961,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function getVodStitchDetailExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -976,10 +976,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
+        $formattedName = $gapicClient->vodStitchDetailName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]', '[VOD_STITCH_DETAIL]');
         try {
-            $client->getVodStitchDetail($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVodStitchDetail($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -996,7 +996,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listCdnKeysTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1011,8 +1011,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setCdnKeys($cdnKeys);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCdnKeys($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCdnKeys($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1033,7 +1033,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listCdnKeysExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1048,10 +1048,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCdnKeys($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCdnKeys($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1068,7 +1068,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listLiveAdTagDetailsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1083,8 +1083,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setLiveAdTagDetails($liveAdTagDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
-        $response = $client->listLiveAdTagDetails($formattedParent);
+        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $response = $gapicClient->listLiveAdTagDetails($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1105,7 +1105,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listLiveAdTagDetailsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1120,10 +1120,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
+        $formattedParent = $gapicClient->liveSessionName('[PROJECT]', '[LOCATION]', '[LIVE_SESSION]');
         try {
-            $client->listLiveAdTagDetails($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listLiveAdTagDetails($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1140,7 +1140,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listSlatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1155,8 +1155,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setSlates($slates);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listSlates($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listSlates($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1177,7 +1177,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listSlatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1192,10 +1192,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listSlates($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSlates($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1212,7 +1212,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listVodAdTagDetailsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1227,8 +1227,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setVodAdTagDetails($vodAdTagDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $response = $client->listVodAdTagDetails($formattedParent);
+        $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $response = $gapicClient->listVodAdTagDetails($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1249,7 +1249,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listVodAdTagDetailsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1264,10 +1264,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
         try {
-            $client->listVodAdTagDetails($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVodAdTagDetails($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1284,7 +1284,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listVodStitchDetailsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1299,8 +1299,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $expectedResponse->setVodStitchDetails($vodStitchDetails);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
-        $response = $client->listVodStitchDetails($formattedParent);
+        $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $response = $gapicClient->listVodStitchDetails($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1321,7 +1321,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function listVodStitchDetailsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1336,10 +1336,10 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
+        $formattedParent = $gapicClient->vodSessionName('[PROJECT]', '[LOCATION]', '[VOD_SESSION]');
         try {
-            $client->listVodStitchDetails($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVodStitchDetails($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1356,7 +1356,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function updateCdnKeyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1370,7 +1370,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock request
         $cdnKey = new CdnKey();
         $updateMask = new FieldMask();
-        $response = $client->updateCdnKey($cdnKey, $updateMask);
+        $response = $gapicClient->updateCdnKey($cdnKey, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1390,7 +1390,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function updateCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1408,8 +1408,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $cdnKey = new CdnKey();
         $updateMask = new FieldMask();
         try {
-            $client->updateCdnKey($cdnKey, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCdnKey($cdnKey, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1426,7 +1426,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function updateSlateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1440,7 +1440,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         // Mock request
         $slate = new Slate();
         $updateMask = new FieldMask();
-        $response = $client->updateSlate($slate, $updateMask);
+        $response = $gapicClient->updateSlate($slate, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1460,7 +1460,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
     public function updateSlateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1478,8 +1478,8 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $slate = new Slate();
         $updateMask = new FieldMask();
         try {
-            $client->updateSlate($slate, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSlate($slate, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -34,7 +34,7 @@ class SearchExampleComparisonsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison[]|\Google\Protobuf\Internal\RepeatedField $example_comparisons
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison>|\Google\Protobuf\Internal\RepeatedField $example_comparisons
      *           A list of example comparisons matching the search criteria.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class SearchExampleComparisonsResponse extends \Google\Protobuf\Internal\Message
      * A list of example comparisons matching the search criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.SearchExampleComparisonsResponse.ExampleComparison example_comparisons = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\SearchExampleComparisonsResponse\ExampleComparison>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExampleComparisons($var)

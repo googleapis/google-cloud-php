@@ -253,10 +253,10 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Email address of the IAM service account associated with the revision of
      *           the service. The service account represents the identity of the running
      *           revision, and determines what permissions the revision has.
-     *     @type \Google\Cloud\Run\V2\Container[]|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Holds the single container that defines the unit of execution for this
      *           Revision.
-     *     @type \Google\Cloud\Run\V2\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           A list of Volumes to make available to containers.
      *     @type int $execution_environment
      *           The execution environment being used to host this Revision.
@@ -268,7 +268,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           Output only. Indicates whether the resource's reconciliation is still in progress.
      *           See comments in `Service.reconciling` for additional information on
      *           reconciliation process in Cloud Run.
-     *     @type \Google\Cloud\Run\V2\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Output only. The Condition of this Revision, containing its readiness status, and
      *           detailed error information in case it did not reach a serving state.
      *     @type int|string $observed_generation
@@ -828,7 +828,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 17;</code>
-     * @param \Google\Cloud\Run\V2\Container[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContainers($var)
@@ -854,7 +854,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 18;</code>
-     * @param \Google\Cloud\Run\V2\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)
@@ -968,7 +968,7 @@ class Revision extends \Google\Protobuf\Internal\Message
      * detailed error information in case it did not reach a serving state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Run\V2\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)

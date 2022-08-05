@@ -38,7 +38,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats[]|\Google\Protobuf\Internal\RepeatedField $content_validation_stats
+     *     @type array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>|\Google\Protobuf\Internal\RepeatedField $content_validation_stats
      *           The validation stats of the content (per file) to be inserted or
      *           updated on the Matching Engine Index resource. Populated if
      *           contentsDeltaUri is provided as part of [Index.metadata][google.cloud.aiplatform.v1.Index.metadata]. Please note
@@ -76,7 +76,7 @@ class NearestNeighborSearchOperationMetadata extends \Google\Protobuf\Internal\M
      * format, we will not have the stats for those files.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.NearestNeighborSearchOperationMetadata.ContentValidationStats content_validation_stats = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\NearestNeighborSearchOperationMetadata\ContentValidationStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContentValidationStats($var)

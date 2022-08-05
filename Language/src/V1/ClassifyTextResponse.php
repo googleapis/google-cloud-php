@@ -28,7 +28,7 @@ class ClassifyTextResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Language\V1\ClassificationCategory[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $categories
      *           Categories representing the input document.
      * }
      */
@@ -52,7 +52,7 @@ class ClassifyTextResponse extends \Google\Protobuf\Internal\Message
      * Categories representing the input document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.language.v1.ClassificationCategory categories = 1;</code>
-     * @param \Google\Cloud\Language\V1\ClassificationCategory[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Language\V1\ClassificationCategory>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)

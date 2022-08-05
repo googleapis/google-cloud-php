@@ -138,13 +138,13 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $timeout
      *           The maximum amount of time to wait for the request to complete (must be
      *           between 1 and 60 seconds). Required.
-     *     @type \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher[]|\Google\Protobuf\Internal\RepeatedField $content_matchers
+     *     @type array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher>|\Google\Protobuf\Internal\RepeatedField $content_matchers
      *           The content that is expected to appear in the data returned by the target
      *           server against which the check is run.  Currently, only the first entry
      *           in the `content_matchers` list is supported, and additional entries will
      *           be ignored. This field is optional and should only be specified if a
      *           content match is required as part of the/ Uptime check.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $selected_regions
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $selected_regions
      *           The list of regions from which the check will be run.
      *           Some regions contain one location, and others contain more than one.
      *           If this field is specified, enough regions must be provided to include a
@@ -155,7 +155,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      *           If it is `false`, then checks are made only from the 'selected_regions'.
      *           It is an error to provide 'selected_regions' when is_internal is `true`,
      *           or to provide 'internal_checkers' when is_internal is `false`.
-     *     @type \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $internal_checkers
+     *     @type array<\Google\Cloud\Monitoring\V3\InternalChecker>|\Google\Protobuf\Internal\RepeatedField $internal_checkers
      *           The internal checkers that this check will egress from. If `is_internal` is
      *           `true` and this list is empty, the check will egress from all the
      *           InternalCheckers configured for the project that owns this
@@ -480,7 +480,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * content match is required as part of the/ Uptime check.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckConfig.ContentMatcher content_matchers = 9;</code>
-     * @param \Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\UptimeCheckConfig\ContentMatcher>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContentMatchers($var)
@@ -514,7 +514,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * checks running from all available regions.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.UptimeCheckRegion selected_regions = 10;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSelectedRegions($var)
@@ -584,7 +584,7 @@ class UptimeCheckConfig extends \Google\Protobuf\Internal\Message
      * `UptimeCheckConfig`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.InternalChecker internal_checkers = 14 [deprecated = true];</code>
-     * @param \Google\Cloud\Monitoring\V3\InternalChecker[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\InternalChecker>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

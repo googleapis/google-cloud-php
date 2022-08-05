@@ -36,7 +36,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $snapshots
      *           The names of the snapshots that match the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more snapshots that match
@@ -64,7 +64,7 @@ class ListTopicSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * The names of the snapshots that match the request.
      *
      * Generated from protobuf field <code>repeated string snapshots = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSnapshots($var)
