@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/routerstatusbgppeerstatus\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\RouterStatusBgpPeerStatus\\Status","name":"Status","description":"<p>Status of the BGP peer: {UP, DOWN}<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.RouterStatusBgpPeerStatus.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

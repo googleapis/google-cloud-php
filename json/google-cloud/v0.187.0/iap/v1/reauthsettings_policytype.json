@@ -1,0 +1,1 @@
+{"id":"iap\/v1\/reauthsettings_policytype","type":"","title":"Google\\Cloud\\Iap\\V1\\ReauthSettings_PolicyType","name":"ReauthSettings_PolicyType","description":"<p>This class is deprecated. Use Google\\Cloud\\Iap\\V1\\ReauthSettings\\PolicyType instead.<\/p>","examples":[],"resources":[],"methods":[]}

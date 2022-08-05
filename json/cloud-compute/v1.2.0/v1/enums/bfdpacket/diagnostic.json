@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/bfdpacket\/diagnostic","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\BfdPacket\\Diagnostic","name":"Diagnostic","description":"<p>Diagnostic contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.BfdPacket.Diagnostic descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

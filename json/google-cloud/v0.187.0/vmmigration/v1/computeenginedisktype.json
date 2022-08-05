@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/computeenginedisktype","type":"","title":"Google\\Cloud\\VMMigration\\V1\\ComputeEngineDiskType","name":"ComputeEngineDiskType","description":"<p>Types of disks supported for Compute Engine VM.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.ComputeEngineDiskType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

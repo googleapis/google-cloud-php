@@ -1,0 +1,1 @@
+{"id":"bigqueryconnection\/v1\/cloudsqlproperties_databasetype","type":"","title":"Google\\Cloud\\BigQuery\\Connection\\V1\\CloudSqlProperties_DatabaseType","name":"CloudSqlProperties_DatabaseType","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\Connection\\V1\\CloudSqlProperties\\DatabaseType instead.<\/p>","examples":[],"resources":[],"methods":[]}

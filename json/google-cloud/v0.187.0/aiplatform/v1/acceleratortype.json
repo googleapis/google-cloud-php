@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/acceleratortype","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\AcceleratorType","name":"AcceleratorType","description":"<p>Represents a hardware accelerator type.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.AcceleratorType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

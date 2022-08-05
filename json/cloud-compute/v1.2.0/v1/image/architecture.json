@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/image\/architecture","type":"","title":"Google\\Cloud\\Compute\\V1\\Image\\Architecture","name":"Architecture","description":"<p>The architecture of the image. Valid values are ARM64 or X86_64.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Image.Architecture<\/code><\/p>","examples":[],"resources":[],"methods":[]}

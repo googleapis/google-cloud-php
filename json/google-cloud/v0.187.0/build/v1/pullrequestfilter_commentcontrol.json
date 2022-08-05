@@ -1,0 +1,1 @@
+{"id":"build\/v1\/pullrequestfilter_commentcontrol","type":"","title":"Google\\Cloud\\Build\\V1\\PullRequestFilter_CommentControl","name":"PullRequestFilter_CommentControl","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\PullRequestFilter\\CommentControl instead.<\/p>","examples":[],"resources":[],"methods":[]}

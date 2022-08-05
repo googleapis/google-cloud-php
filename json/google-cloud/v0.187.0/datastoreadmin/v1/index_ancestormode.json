@@ -1,0 +1,1 @@
+{"id":"datastoreadmin\/v1\/index_ancestormode","type":"","title":"Google\\Cloud\\Datastore\\Admin\\V1\\Index_AncestorMode","name":"Index_AncestorMode","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\Admin\\V1\\Index\\AncestorMode instead.<\/p>","examples":[],"resources":[],"methods":[]}

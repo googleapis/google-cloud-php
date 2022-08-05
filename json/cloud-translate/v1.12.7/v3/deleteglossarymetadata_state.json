@@ -1,0 +1,1 @@
+{"id":"translate\/v3\/deleteglossarymetadata_state","type":"","title":"Google\\Cloud\\Translate\\V3\\DeleteGlossaryMetadata_State","name":"DeleteGlossaryMetadata_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Translate\\V3\\DeleteGlossaryMetadata\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

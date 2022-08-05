@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/address\/networktier","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Address\\NetworkTier","name":"NetworkTier","description":"<p>NetworkTier contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Address.NetworkTier descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

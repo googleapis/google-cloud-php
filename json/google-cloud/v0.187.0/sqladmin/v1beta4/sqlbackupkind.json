@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqlbackupkind","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlBackupKind","name":"SqlBackupKind","description":"<p>Defines the supported backup kinds<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlBackupKind<\/code><\/p>","examples":[],"resources":[],"methods":[]}

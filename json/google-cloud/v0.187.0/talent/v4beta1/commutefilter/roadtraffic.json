@@ -1,0 +1,1 @@
+{"id":"talent\/v4beta1\/commutefilter\/roadtraffic","type":"","title":"Google\\Cloud\\Talent\\V4beta1\\CommuteFilter\\RoadTraffic","name":"RoadTraffic","description":"<p>The traffic density to use when calculating commute time.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4beta1.CommuteFilter.RoadTraffic<\/code><\/p>","examples":[],"resources":[],"methods":[]}

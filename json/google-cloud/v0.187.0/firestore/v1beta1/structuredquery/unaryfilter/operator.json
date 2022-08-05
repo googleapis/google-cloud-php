@@ -1,0 +1,1 @@
+{"id":"firestore\/v1beta1\/structuredquery\/unaryfilter\/operator","type":"","title":"Google\\Cloud\\Firestore\\V1beta1\\StructuredQuery\\UnaryFilter\\Operator","name":"Operator","description":"<p>A unary operator.<\/p>\n<p>Protobuf type <code>google.firestore.v1beta1.StructuredQuery.UnaryFilter.Operator<\/code><\/p>","examples":[],"resources":[],"methods":[]}

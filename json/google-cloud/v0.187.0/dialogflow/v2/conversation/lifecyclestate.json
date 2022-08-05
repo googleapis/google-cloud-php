@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/conversation\/lifecyclestate","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Conversation\\LifecycleState","name":"LifecycleState","description":"<p>Enumeration of the completion status of the conversation.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.Conversation.LifecycleState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

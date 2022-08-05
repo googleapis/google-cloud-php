@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/location\/locationtype","type":"","title":"Google\\Cloud\\Talent\\V4\\Location\\LocationType","name":"LocationType","description":"<p>An enum which represents the type of a location.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.Location.LocationType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

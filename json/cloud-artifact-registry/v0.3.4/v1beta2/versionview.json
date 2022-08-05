@@ -1,0 +1,1 @@
+{"id":"artifactregistry\/v1beta2\/versionview","type":"","title":"Google\\Cloud\\ArtifactRegistry\\V1beta2\\VersionView","name":"VersionView","description":"<p>The view, which determines what version information is returned in a\nresponse.<\/p>\n<p>Protobuf type <code>google.devtools.artifactregistry.v1beta2.VersionView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

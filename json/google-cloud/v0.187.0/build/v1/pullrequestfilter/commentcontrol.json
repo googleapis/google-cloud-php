@@ -1,0 +1,1 @@
+{"id":"build\/v1\/pullrequestfilter\/commentcontrol","type":"","title":"Google\\Cloud\\Build\\V1\\PullRequestFilter\\CommentControl","name":"CommentControl","description":"<p>Controls behavior of Pull Request comments.<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.PullRequestFilter.CommentControl<\/code><\/p>","examples":[],"resources":[],"methods":[]}

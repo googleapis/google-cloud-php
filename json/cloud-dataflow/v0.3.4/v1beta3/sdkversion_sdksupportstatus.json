@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/sdkversion_sdksupportstatus","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\SdkVersion_SdkSupportStatus","name":"SdkVersion_SdkSupportStatus","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataflow\\V1beta3\\SdkVersion\\SdkSupportStatus instead.<\/p>","examples":[],"resources":[],"methods":[]}

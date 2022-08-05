@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/pipelinestate","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\PipelineState","name":"PipelineState","description":"<p>Describes the state of a pipeline.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.PipelineState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

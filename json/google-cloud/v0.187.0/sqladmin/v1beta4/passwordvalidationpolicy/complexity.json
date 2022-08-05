@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/passwordvalidationpolicy\/complexity","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\PasswordValidationPolicy\\Complexity","name":"Complexity","description":"<p>The complexity choices of the password.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.PasswordValidationPolicy.Complexity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

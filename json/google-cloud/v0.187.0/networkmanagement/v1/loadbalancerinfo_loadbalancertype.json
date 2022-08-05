@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/loadbalancerinfo_loadbalancertype","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\LoadBalancerInfo_LoadBalancerType","name":"LoadBalancerInfo_LoadBalancerType","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkManagement\\V1\\LoadBalancerInfo\\LoadBalancerType instead.<\/p>","examples":[],"resources":[],"methods":[]}

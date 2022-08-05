@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/lifecyclestate","type":"","title":"Google\\Cloud\\Logging\\V2\\LifecycleState","name":"LifecycleState","description":"<p>LogBucket lifecycle states.<\/p>\n<p>Protobuf type <code>google.logging.v2.LifecycleState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

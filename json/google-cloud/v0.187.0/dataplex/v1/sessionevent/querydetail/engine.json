@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/sessionevent\/querydetail\/engine","type":"","title":"Google\\Cloud\\Dataplex\\V1\\SessionEvent\\QueryDetail\\Engine","name":"Engine","description":"<p>Query Execution engine.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.SessionEvent.QueryDetail.Engine<\/code><\/p>","examples":[],"resources":[],"methods":[]}

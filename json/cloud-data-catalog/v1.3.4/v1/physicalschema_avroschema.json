@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/physicalschema_avroschema","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema_AvroSchema","name":"PhysicalSchema_AvroSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema\\AvroSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

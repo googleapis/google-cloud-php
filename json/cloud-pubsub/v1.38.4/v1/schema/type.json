@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/schema\/type","type":"","title":"Google\\Cloud\\PubSub\\V1\\Schema\\Type","name":"Type","description":"<p>Possible schema definition types.<\/p>\n<p>Protobuf type <code>google.pubsub.v1.Schema.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

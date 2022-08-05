@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqlsuspensionreason","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlSuspensionReason","name":"SqlSuspensionReason","description":"<p>The suspension reason of the database instance if the state is SUSPENDED.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlSuspensionReason<\/code><\/p>","examples":[],"resources":[],"methods":[]}

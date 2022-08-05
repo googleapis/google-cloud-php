@@ -1,0 +1,1 @@
+{"id":"filestore\/v1\/nfsexportoptions_accessmode","type":"","title":"Google\\Cloud\\Filestore\\V1\\NfsExportOptions_AccessMode","name":"NfsExportOptions_AccessMode","description":"<p>This class is deprecated. Use Google\\Cloud\\Filestore\\V1\\NfsExportOptions\\AccessMode instead.<\/p>","examples":[],"resources":[],"methods":[]}

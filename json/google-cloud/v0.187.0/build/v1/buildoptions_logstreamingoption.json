@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildoptions_logstreamingoption","type":"","title":"Google\\Cloud\\Build\\V1\\BuildOptions_LogStreamingOption","name":"BuildOptions_LogStreamingOption","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildOptions\\LogStreamingOption instead.<\/p>","examples":[],"resources":[],"methods":[]}

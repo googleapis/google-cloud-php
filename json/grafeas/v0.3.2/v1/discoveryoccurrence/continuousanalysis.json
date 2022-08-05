@@ -1,0 +1,1 @@
+{"id":"grafeas\/v1\/discoveryoccurrence\/continuousanalysis","type":"","title":"Grafeas\\V1\\DiscoveryOccurrence\\ContinuousAnalysis","name":"ContinuousAnalysis","description":"<p>Whether the resource is continuously analyzed.<\/p>\n<p>Protobuf type <code>grafeas.v1.DiscoveryOccurrence.ContinuousAnalysis<\/code><\/p>","examples":[],"resources":[],"methods":[]}

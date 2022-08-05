@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/listjobsrequest_jobstatematcher","type":"","title":"Google\\Cloud\\Dataproc\\V1\\ListJobsRequest_JobStateMatcher","name":"ListJobsRequest_JobStateMatcher","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\ListJobsRequest\\JobStateMatcher instead.<\/p>","examples":[],"resources":[],"methods":[]}

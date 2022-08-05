@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/fieldtype_enumtype_enumvalue","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\FieldType_EnumType_EnumValue","name":"FieldType_EnumType_EnumValue","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\FieldType\\EnumType\\EnumValue instead.<\/p>","examples":[],"resources":[],"methods":[]}

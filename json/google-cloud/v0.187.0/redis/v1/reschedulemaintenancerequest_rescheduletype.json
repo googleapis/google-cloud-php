@@ -1,0 +1,1 @@
+{"id":"redis\/v1\/reschedulemaintenancerequest_rescheduletype","type":"","title":"Google\\Cloud\\Redis\\V1\\RescheduleMaintenanceRequest_RescheduleType","name":"RescheduleMaintenanceRequest_RescheduleType","description":"<p>This class is deprecated. Use Google\\Cloud\\Redis\\V1\\RescheduleMaintenanceRequest\\RescheduleType instead.<\/p>","examples":[],"resources":[],"methods":[]}
