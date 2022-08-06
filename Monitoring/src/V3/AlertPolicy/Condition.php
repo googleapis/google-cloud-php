@@ -21,12 +21,12 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Required if the condition exists. The unique resource name for this
      * condition. Its format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
-     * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
+     * `[CONDITION_ID]` is assigned by Cloud Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the conditions of the
-     * requested alerting policy. Stackdriver Monitoring creates the
+     * requested alerting policy. Cloud Monitoring creates the
      * condition identifiers and includes them in the new policy.
      * When calling the
      * [alertPolicies.update][google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]
@@ -62,12 +62,12 @@ class Condition extends \Google\Protobuf\Internal\Message
      *           Required if the condition exists. The unique resource name for this
      *           condition. Its format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
-     *           `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
+     *           `[CONDITION_ID]` is assigned by Cloud Monitoring when the
      *           condition is created as part of a new or updated alerting policy.
      *           When calling the
      *           [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      *           method, do not include the `name` field in the conditions of the
-     *           requested alerting policy. Stackdriver Monitoring creates the
+     *           requested alerting policy. Cloud Monitoring creates the
      *           condition identifiers and includes them in the new policy.
      *           When calling the
      *           [alertPolicies.update][google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]
@@ -105,12 +105,12 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Required if the condition exists. The unique resource name for this
      * condition. Its format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
-     * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
+     * `[CONDITION_ID]` is assigned by Cloud Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the conditions of the
-     * requested alerting policy. Stackdriver Monitoring creates the
+     * requested alerting policy. Cloud Monitoring creates the
      * condition identifiers and includes them in the new policy.
      * When calling the
      * [alertPolicies.update][google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]
@@ -135,12 +135,12 @@ class Condition extends \Google\Protobuf\Internal\Message
      * Required if the condition exists. The unique resource name for this
      * condition. Its format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[POLICY_ID]/conditions/[CONDITION_ID]
-     * `[CONDITION_ID]` is assigned by Stackdriver Monitoring when the
+     * `[CONDITION_ID]` is assigned by Cloud Monitoring when the
      * condition is created as part of a new or updated alerting policy.
      * When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the conditions of the
-     * requested alerting policy. Stackdriver Monitoring creates the
+     * requested alerting policy. Cloud Monitoring creates the
      * condition identifiers and includes them in the new policy.
      * When calling the
      * [alertPolicies.update][google.monitoring.v3.AlertPolicyService.UpdateAlertPolicy]
