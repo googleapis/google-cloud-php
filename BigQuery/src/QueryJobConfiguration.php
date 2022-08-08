@@ -64,7 +64,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * Sets whether or not the query can produce arbitrarily large result
      * tables at a slight cost in performance. Only applies to queries
      * performed with legacy SQL dialect and requires a
-     * {@see Google\Cloud\BigQuery\QueryJobConfiguration::destinationTable()} to
+     * {@see QueryJobConfiguration::destinationTable()} to
      * be set.
      *
      * Example:
@@ -193,7 +193,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
     /**
      * Sets whether or not to flatten all nested and repeated fields in the
      * query results. Only applies to queries performed with legacy SQL dialect.
-     * {@see Google\Cloud\BigQuery\QueryJobConfiguration::allowLargeResults()}
+     * {@see QueryJobConfiguration::allowLargeResults()}
      * must be true if this is set to false.
      *
      * Example:
@@ -257,7 +257,7 @@ class QueryJobConfiguration implements JobConfigurationInterface
      * queries.
      *
      * For examples of usage please see
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
+     * {@see BigQueryClient::runQuery()}.
      *
      * @param array $parameters Parameters to use on the query. When providing
      *        a non-associative array positional parameters (`?`) will be used.

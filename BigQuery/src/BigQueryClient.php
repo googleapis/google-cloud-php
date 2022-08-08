@@ -106,7 +106,7 @@ class BigQueryClient
      *     @type string $quotaProject Specifies a user project to bill for
      *           access charges associated with the request.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
-     *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *           returned as a {@see Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
      *     @type string $location If provided, determines the default geographic
      *           location used when creating datasets and managing jobs. Please
@@ -114,7 +114,7 @@ class BigQueryClient
      *           and EU regions. Also, if location metadata has already been
      *           fetched over the network it will take precedent over this
      *           setting (by calling
-     *           {@see Google\Cloud\BigQuery\Table::reload()}, for example).
+     *           {@see Table::reload()}, for example).
      * }
      */
     public function __construct(array $config = [])
@@ -146,8 +146,8 @@ class BigQueryClient
 
     /**
      * Returns a job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}. A
+     * {@see BigQueryClient::runQuery()} or
+     * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -217,8 +217,8 @@ class BigQueryClient
 
     /**
      * Returns a job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}. A
+     * {@see BigQueryClient::runQuery()} or
+     * {@see BigQueryClient::startQuery()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -228,7 +228,7 @@ class BigQueryClient
      * in this client.
      *
      * As this method is an alias, please see
-     * {@see Google\Cloud\BigQuery\BigQueryClient::query()} for usage examples.
+     * {@see BigQueryClient::query()} for usage examples.
      *
      * @param string $query A BigQuery SQL query.
      * @param array $options [optional] {
@@ -252,7 +252,7 @@ class BigQueryClient
      * Runs a BigQuery SQL query in a synchronous fashion.
      *
      * This method is ideal for queries which return results quickly - otherwise
-     * we highly recommend utilizing {@see Google\Cloud\BigQuery\BigQueryClient::startQuery()}
+     * we highly recommend utilizing {@see BigQueryClient::startQuery()}
      * as it provides better mechanisms for fine grained control over result polling.
      *
      * Unless `$options.maxRetries` is specified, this method will block until
@@ -268,11 +268,11 @@ class BigQueryClient
      * | **PHP Type**                               | **BigQuery Data Type**               |
      * |--------------------------------------------|--------------------------------------|
      * | `\DateTimeInterface`                       | `DATETIME`                           |
-     * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
-     * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
-     * | {@see Google\Cloud\Core\Int64}             | `INT64`                              |
-     * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
-     * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
+     * | {@see Bytes}                               | `BYTES`                              |
+     * | {@see Date}                                | `DATE`                               |
+     * | {@see Int64}                               | `INT64`                              |
+     * | {@see Time}                                | `TIME`                               |
+     * | {@see Timestamp}                           | `TIMESTAMP`                          |
      * | Associative Array                          | `STRUCT`                             |
      * | Non-Associative Array                      | `ARRAY`                              |
      * | `float`                                    | `FLOAT64`                            |
@@ -373,7 +373,7 @@ class BigQueryClient
      * Queries constructed using
      * [standard SQL](https://cloud.google.com/bigquery/docs/reference/standard-sql/)
      * can take advantage of parameterization. For more details and examples
-     * please see {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
+     * please see {@see BigQueryClient::runQuery()}.
      *
      * Example:
      * ```
@@ -402,7 +402,7 @@ class BigQueryClient
     /**
      * Lazily instantiates a job. There are no network requests made at this
      * point. To see the operations that can be performed on a job please
-     * see {@see Google\Cloud\BigQuery\Job}.
+     * see {@see Job}.
      *
      * Example:
      * ```
@@ -499,7 +499,7 @@ class BigQueryClient
     /**
      * Lazily instantiates a dataset. There are no network requests made at this
      * point. To see the operations that can be performed on a dataset please
-     * see {@see Google\Cloud\BigQuery\Dataset}.
+     * see {@see Dataset}.
      *
      * If the dataset is owned by a different project than the project used to authenticate the client,
      * provide the project ID as the second argument.
@@ -876,8 +876,8 @@ class BigQueryClient
 
     /**
      * Returns a copy job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -913,8 +913,8 @@ class BigQueryClient
 
     /**
      * Returns an extract job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
@@ -950,8 +950,8 @@ class BigQueryClient
 
     /**
      * Returns a load job configuration to be passed to either
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runJob()} or
-     * {@see Google\Cloud\BigQuery\BigQueryClient::startJob()}. A
+     * {@see BigQueryClient::runJob()} or
+     * {@see BigQueryClient::startJob()}. A
      * configuration can be built using fluent setters or by providing a full
      * set of options at once.
      *
