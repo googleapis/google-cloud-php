@@ -88,16 +88,6 @@ class Subscription
 
     const MAX_MESSAGES = 1000;
 
-    // The Error Info reason that is used to identify a subscription
-    // with EOD enabled or not
-    const EXACTLY_ONCE_FAILURE_REASON = 'EXACTLY_ONCE_ACKID_FAILURE';
-    const EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX = 'TRANSIENT_FAILURE';
-    // The max time an exponential retry should delay for(in microseconds)
-    // set to 10 mins.
-    const EXACTLY_ONCE_MAX_RETRY_TIME = 600000000;
-    // Max num of retries for an EOD enabled sub's ack operation.
-    const EXACTLY_ONCE_MAX_RETRIES = 10;
-
     /**
      * @var ConnectionInterface
      */
@@ -135,8 +125,31 @@ class Subscription
 
     /**
      * @var int
+     *
+     * The max time an exponential retry should delay for(in microseconds)
+     * set to 10 mins.
      */
-    private $eodMaxRetryTime;
+    private $exactlyOnceDeliveryMaxRetryTime;
+
+    /**
+     * @var string
+     *
+     * The Error Info reason that is used to identify a subscription
+     * with Exactly Once Delivery enabled or not.
+     */
+    private static $exactlyOnceDeliveryFailureReason = 'EXACTLY_ONCE_ACKID_FAILURE';
+
+    /**
+     * @var string
+     */
+    private static $exactlyOnceDeliveryTransientFailurePrefix = 'TRANSIENT_FAILURE';
+
+    /**
+     * @var int
+     *
+     * Max num of retries for an Exactly Once Delivery enabled sub's ack operation.
+     */
+    private static $exactlyOnceDeliveryMaxRetries = 10;
 
     /**
      * Create a Subscription.
@@ -163,7 +176,7 @@ class Subscription
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
-        $this->eodMaxRetryTime = self::EXACTLY_ONCE_MAX_RETRY_TIME;
+        $this->exactlyOnceDeliveryMaxRetryTime = 600000000;
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('subscription', $name)) {
@@ -976,7 +989,7 @@ class Subscription
         $delayFunc = function ($attempt) {
             $delay = min(
                 (pow(2, $attempt) * 1000000),
-                $this->eodMaxRetryTime
+                $this->exactlyOnceDeliveryMaxRetryTime
             );
             return $delay;
         };
@@ -997,7 +1010,7 @@ class Subscription
             $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed, $attempt) {
                 // A message will only be retried if it's ackId is in the list of retryable ackIds
                 // and the retry attempt isn't the last allowed attempt.
-                if ($attempt < self::EXACTLY_ONCE_MAX_RETRIES && in_array($message->ackId(), $retryAckIds)) {
+                if ($attempt < self::$exactlyOnceDeliveryMaxRetries && in_array($message->ackId(), $retryAckIds)) {
                     return true;
                 }
 
@@ -1014,13 +1027,16 @@ class Subscription
         
         // We use 10 retries as the 11th retry will cross 10 minutes
         // and that is our intended break point.
-        $backoff = new ExponentialBackoff(self::EXACTLY_ONCE_MAX_RETRIES, $retryFunc);
+        $backoff = new ExponentialBackoff(self::$exactlyOnceDeliveryMaxRetries, $retryFunc);
         $backoff->setCalcDelayFunction($delayFunc);
 
         // Try to ack the messages with an ExponentialBackoff
         try {
             $backoff->execute($actionFunc, [&$messages, $options]);
         } catch (BadRequestException $e) {
+            // When an exception is thrown in the action func
+            // and retry function returns false
+            // the exception is passed here
         }
 
         // We don't return anything if EOD is disabled
@@ -1263,7 +1279,7 @@ class Subscription
     {
         $reason = $e->getReason();
 
-        return $reason === self::EXACTLY_ONCE_FAILURE_REASON;
+        return $reason === self::$exactlyOnceDeliveryFailureReason;
     }
 
     /**
@@ -1299,7 +1315,7 @@ class Subscription
             foreach ($metadata as $ackId => $failureReason) {
                 // check if the prefix of the failure reason is same as
                 // the transient failure for EOD enabled subscriptions
-                if (strpos($failureReason, self::EXACTLY_ONCE_TRANSIENT_FAILURE_PREFIX) === 0) {
+                if (strpos($failureReason, self::$exactlyOnceDeliveryTransientFailurePrefix) === 0) {
                     $ackIds[] = $ackId;
                 }
             }
@@ -1316,6 +1332,6 @@ class Subscription
      */
     public function setMaxEodRetryTime($maxTime)
     {
-        $this->eodMaxRetryTime = $maxTime;
+        $this->exactlyOnceDeliveryMaxRetryTime = $maxTime;
     }
 }
