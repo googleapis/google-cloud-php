@@ -30,6 +30,8 @@ use GuzzleHttp\Psr7\Utils;
 /**
  * Implementation of the
  * [Google BigQuery JSON API](https://cloud.google.com/bigquery/docs/reference/v2/).
+ *
+ * @internal
  */
 class Rest implements ConnectionInterface
 {
