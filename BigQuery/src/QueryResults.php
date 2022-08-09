@@ -28,8 +28,8 @@ use Google\Cloud\Core\Iterator\PageIterator;
  * [Query Response API Documentation](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#response-body)
  *
  * This class should be not instantiated directly, but as a result of
- * calling {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
- * {@see Google\Cloud\BigQuery\Job::queryResults()}.
+ * calling {@see BigQueryClient::runQuery()} or
+ * {@see Job::queryResults()}.
  */
 class QueryResults implements \IteratorAggregate
 {
@@ -107,20 +107,20 @@ class QueryResults implements \IteratorAggregate
      * Refer to the table below for a guide on how BigQuery types are mapped as
      * they come back from the API.
      *
-     * | **PHP Type**                               | **BigQuery Data Type**               |
-     * |--------------------------------------------|--------------------------------------|
-     * | `\DateTimeInterface`                       | `DATETIME`                           |
-     * | {@see Google\Cloud\BigQuery\Bytes}         | `BYTES`                              |
-     * | {@see Google\Cloud\BigQuery\Date}          | `DATE`                               |
-     * | {@see Google\Cloud\Core\Int64}             | `INTEGER`                            |
-     * | {@see Google\Cloud\BigQuery\Time}          | `TIME`                               |
-     * | {@see Google\Cloud\BigQuery\Timestamp}     | `TIMESTAMP`                          |
-     * | Associative Array                          | `RECORD`                             |
-     * | Non-Associative Array                      | `RECORD` (Repeated)                  |
-     * | `float`                                    | `FLOAT`                              |
-     * | `int`                                      | `INTEGER`                            |
-     * | `string`                                   | `STRING`                             |
-     * | `bool`                                     | `BOOLEAN`                            |
+     * | **PHP Type**                    | **BigQuery Data Type**               |
+     * |---------------------------------|--------------------------------------|
+     * | `\DateTimeInterface`            | `DATETIME`                           |
+     * | {@see Bytes}                    | `BYTES`                              |
+     * | {@see Date}                     | `DATE`                               |
+     * | {@see \Google\Cloud\Core\Int64} | `INTEGER`                            |
+     * | {@see Time}                     | `TIME`                               |
+     * | {@see Timestamp}                | `TIMESTAMP`                          |
+     * | Associative Array               | `RECORD`                             |
+     * | Non-Associative Array           | `RECORD` (Repeated)                  |
+     * | `float`                         | `FLOAT`                              |
+     * | `int`                           | `INTEGER`                            |
+     * | `string`                        | `STRING`                             |
+     * | `bool`                          | `BOOLEAN`                            |
      *
      * Example:
      * ```
@@ -134,8 +134,8 @@ class QueryResults implements \IteratorAggregate
      * @param array $options [optional] {
      *     Configuration options. Please note, these options will inherit the
      *     values set by either
-     *     {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
-     *     {@see Google\Cloud\BigQuery\Job::queryResults()}.
+     *     {@see BigQueryClient::runQuery()} or
+     *     {@see Job::queryResults()}.
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
@@ -206,8 +206,8 @@ class QueryResults implements \IteratorAggregate
      * @param array $options [optional] {
      *     Configuration options. Please note, these options will inherit the
      *     values set by either
-     *     {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()} or
-     *     {@see Google\Cloud\BigQuery\Job::queryResults()}.
+     *     {@see BigQueryClient::runQuery()} or
+     *     {@see Job::queryResults()}.
      *
      *     @type int $maxResults Maximum number of results to read per page.
      *     @type int $startIndex Zero-based index of the starting row.
@@ -304,7 +304,7 @@ class QueryResults implements \IteratorAggregate
 
     /**
      * Checks the job's completeness. Useful in combination with
-     * {@see Google\Cloud\BigQuery\QueryResults::reload()} to poll for query
+     * {@see QueryResults::reload()} to poll for query
      * status.
      *
      * Example:
@@ -328,10 +328,10 @@ class QueryResults implements \IteratorAggregate
     }
 
     /**
-     * Returns a reference to the {@see Google\Cloud\BigQuery\Job} instance used
+     * Returns a reference to the {@see Job} instance used
      * to fetch the query results. This is especially useful when attempting to
      * access job statistics after calling
-     * {@see Google\Cloud\BigQuery\BigQueryClient::runQuery()}.
+     * {@see BigQueryClient::runQuery()}.
      *
      * Example:
      * ```

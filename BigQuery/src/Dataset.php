@@ -179,7 +179,7 @@ class Dataset
     /**
      * Lazily instantiates a table. There are no network requests made at this
      * point. To see the operations that can be performed on a dataset please
-     * see {@see Google\Cloud\BigQuery\Table}.
+     * see {@see Table}.
      *
      * Example:
      * ```
@@ -307,7 +307,7 @@ class Dataset
     /**
      * Lazily instantiates a machine learning model in the dataset. There are no
      * network requests made at this point. To see the operations that can be performed on a
-     * model, please see {@see Google\Cloud\BigQuery\Model}.
+     * model, please see {@see Model}.
      *
      * Example:
      * ```
@@ -340,7 +340,7 @@ class Dataset
      * subset of the resource representation. Fields returned include
      * `modelReference`, `modelType`, `creationTime`, `lastModifiedTime` and
      * `labels`. To obtain a full representation, call
-     * {@see Google\Cloud\BigQuery\Model::reload()}.
+     * {@see Model::reload()}.
      *
      * Example:
      * ```
@@ -390,7 +390,7 @@ class Dataset
      *
      * There are no network requests made at this point. To see the operations
      * that can be performed on a routine, please see
-     * {@see Google\Cloud\BigQuery\Routine}.
+     * {@see Routine}.
      *
      * Example:
      * ```
@@ -420,7 +420,7 @@ class Dataset
      * subset of the resource representation. Fields returned include `etag`,
      * `projectId`, `datasetId`, `routineId`, `routineType`, `creationTime`,
      * `lastModifiedTime` and `language`. To obtain a full representation, call
-     * {@see Google\Cloud\BigQuery\Routine::reload()}.
+     * {@see Routine::reload()}.
      *
      * Example:
      * ```

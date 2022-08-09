@@ -97,7 +97,7 @@ class Routine
      *
      * If the value is not already cached, a service call will be made. To force
      * a refresh of the cached value, use
-     * {@see Google\Cloud\BigQuery\Routine::reload()}.
+     * {@see Routine::reload()}.
      *
      * Example:
      * ```
@@ -118,7 +118,7 @@ class Routine
      *
      * This method will always trigger a service request. To make use of a
      * cached representation of the resource, see
-     * {@see Google\Cloud\BigQuery\Routine::info()}.
+     * {@see Routine::info()}.
      *
      * Example:
      * ```
