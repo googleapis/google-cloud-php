@@ -86,7 +86,7 @@ class JsonStreamDecoder
      *
      * @experimental
      */
-    public function __construct(StreamInterface $stream, $decodeType, $options = [])
+    public function __construct(StreamInterface $stream, string $decodeType, array $options = [])
     {
         $this->stream = $stream;
         $this->decodeType = $decodeType;

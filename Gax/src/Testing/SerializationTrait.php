@@ -38,6 +38,10 @@ use Google\Protobuf\Internal\Message;
  */
 trait SerializationTrait
 {
+    /**
+     * @param mixed $message
+     * @param mixed $deserialize
+     */
     protected function deserializeMessage($message, $deserialize)
     {
         if ($message === null) {

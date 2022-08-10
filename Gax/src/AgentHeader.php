@@ -59,7 +59,7 @@ class AgentHeader
      * }
      * @return array Agent header array
      */
-    public static function buildAgentHeader($headerInfo)
+    public static function buildAgentHeader(array $headerInfo)
     {
         $metricsHeaders = [];
 
@@ -138,7 +138,7 @@ class AgentHeader
      * @return string the gapic version
      * @throws \ReflectionException
      */
-    public static function readGapicVersionFromFile($callingClass)
+    public static function readGapicVersionFromFile(string $callingClass)
     {
         $callingClassFile = (new \ReflectionClass($callingClass))->getFileName();
         $versionFile = substr(

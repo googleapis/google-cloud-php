@@ -61,7 +61,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @param callable $httpHandler A handler used to deliver PSR-7 requests.
      */
     public function __construct(
-        $baseUri,
+        string $baseUri,
         callable $httpHandler
     ) {
         $this->baseUri = $baseUri;
@@ -82,7 +82,7 @@ class GrpcFallbackTransport implements TransportInterface
      * @return GrpcFallbackTransport
      * @throws ValidationException
      */
-    public static function build($apiEndpoint, array $config = [])
+    public static function build(string $apiEndpoint, array $config = [])
     {
         $config += [
             'httpHandler'  => null,

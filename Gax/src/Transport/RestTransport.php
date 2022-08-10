@@ -91,7 +91,7 @@ class RestTransport implements TransportInterface
      * @return RestTransport
      * @throws ValidationException
      */
-    public static function build($apiEndpoint, $restConfigPath, array $config = [])
+    public static function build(string $apiEndpoint, string $restConfigPath, array $config = [])
     {
         $config += [
             'httpHandler'  => null,

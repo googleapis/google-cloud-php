@@ -41,7 +41,7 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public static function validate($arr, $requiredKeys)
+    public static function validate(array $arr, array $requiredKeys)
     {
         return self::validateImpl($arr, $requiredKeys, true);
     }
@@ -51,7 +51,7 @@ trait ValidationTrait
      * @param array $requiredKeys List of keys to check for in $arr
      * @return array Returns $arr for fluent use
      */
-    public static function validateNotNull($arr, $requiredKeys)
+    public static function validateNotNull(array $arr, array $requiredKeys)
     {
         return self::validateImpl($arr, $requiredKeys, false);
     }
@@ -72,7 +72,7 @@ trait ValidationTrait
      * @param string $filePath
      * @throws ValidationException
      */
-    private static function validateFileExists($filePath)
+    private static function validateFileExists(string $filePath)
     {
         if (!file_exists($filePath)) {
             throw new ValidationException("Could not find specified file: $filePath");

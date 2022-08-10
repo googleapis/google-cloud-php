@@ -50,9 +50,9 @@ class FixedSizeCollection implements IteratorAggregate
     /**
      * FixedSizeCollection constructor.
      * @param Page $initialPage
-     * @param integer $collectionSize
+     * @param int $collectionSize
      */
-    public function __construct($initialPage, $collectionSize)
+    public function __construct(Page $initialPage, int $collectionSize)
     {
         if ($collectionSize <= 0) {
             throw new InvalidArgumentException(
@@ -165,10 +165,10 @@ class FixedSizeCollection implements IteratorAggregate
 
     /**
      * @param Page $initialPage
-     * @param integer $collectionSize
+     * @param int $collectionSize
      * @return Page[]
      */
-    private static function createPageArray($initialPage, $collectionSize)
+    private static function createPageArray(Page $initialPage, int $collectionSize)
     {
         $pageList = [$initialPage];
         $currentPage = $initialPage;

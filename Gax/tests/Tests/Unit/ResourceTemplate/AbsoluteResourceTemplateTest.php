@@ -85,7 +85,6 @@ class AbsoluteResourceTemplateTest extends TestCase
     public function invalidPathProvider()
     {
         return [
-            [null],                     // Null path
             [""],                       // Empty path
             ["foo"],                    // No leading '/'
             ["/foo:bar/baz"],           // Action containing '/'

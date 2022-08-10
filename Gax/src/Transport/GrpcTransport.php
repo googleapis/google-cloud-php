@@ -77,7 +77,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      *        extends {@see Grpc\Interceptor}.
      * @throws Exception
      */
-    public function __construct($hostname, $opts, Channel $channel = null, array $interceptors = [])
+    public function __construct(string $hostname, array $opts, Channel $channel = null, array $interceptors = [])
     {
         if ($interceptors) {
             $channel = Interceptor::intercept(
@@ -113,7 +113,7 @@ class GrpcTransport extends BaseStub implements TransportInterface
      * @return GrpcTransport
      * @throws ValidationException
      */
-    public static function build($apiEndpoint, array $config = [])
+    public static function build(string $apiEndpoint, array $config = [])
     {
         self::validateGrpcSupport();
         $config += [

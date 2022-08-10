@@ -44,11 +44,11 @@ class Parser
     /**
      * Parses a path into an array of segments.
      *
-     * @param string $path
+     * @param string|null $path
      * @return array
      * @throws ValidationException
      */
-    public static function parseSegments($path)
+    public static function parseSegments(string $path = null)
     {
         if (empty($path)) {
             throw new ValidationException("Cannot parse empty path");
@@ -74,7 +74,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseSegmentFromPath($path, &$nextLiteral, &$index)
+    private static function parseSegmentFromPath(string $path, string &$nextLiteral, int &$index)
     {
         if ($index >= strlen($path)) {
             // A trailing '/' has caused the index to exceed the bounds
@@ -133,7 +133,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parse($segmentString, $path, $index)
+    private static function parse(string $segmentString, string $path, int $index)
     {
         if ($segmentString === '*') {
             return new Segment(Segment::WILDCARD_SEGMENT);
@@ -158,7 +158,7 @@ class Parser
      * @return Segment
      * @throws ValidationException
      */
-    private static function parseVariableSegment($segmentStringWithoutBraces, $separatorLiteral)
+    private static function parseVariableSegment(string $segmentStringWithoutBraces, string $separatorLiteral)
     {
         // Validate there are no nested braces
         $nestedOpenBracket = strpos($segmentStringWithoutBraces, '{');
@@ -194,7 +194,7 @@ class Parser
      * @return string
      * @throws ValidationException
      */
-    private static function parseLiteralFromPath($literal, $path, &$index)
+    private static function parseLiteralFromPath(string $literal, string $path, int &$index)
     {
         $literalLength = strlen($literal);
         if (strlen($path) < ($index + $literalLength)) {
@@ -208,7 +208,7 @@ class Parser
         return $consumedLiteral;
     }
 
-    private static function parseError($path, $index, $reason)
+    private static function parseError(string $path, int $index, string $reason)
     {
         return new ValidationException("Error parsing '$path' at index $index: $reason");
     }
@@ -220,7 +220,7 @@ class Parser
      * @param string $literal
      * @return bool
      */
-    private static function isValidLiteral($literal)
+    private static function isValidLiteral(string $literal)
     {
         return preg_match("/^[0-9a-zA-Z\\.\\-~_]+$/", $literal) === 1;
     }

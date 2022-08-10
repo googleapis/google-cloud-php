@@ -93,7 +93,7 @@ class MockTransport implements TransportInterface
         return new ServerStream($response, $call->getDescriptor());
     }
 
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         $call = $arguments[0];
         $options = $arguments[1];

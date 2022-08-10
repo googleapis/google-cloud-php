@@ -45,8 +45,11 @@ class FixedHeaderMiddleware
     private $headers;
     private $overrideUserHeaders;
 
-    public function __construct(callable $nextHandler, array $headers, $overrideUserHeaders = false)
-    {
+    public function __construct(
+        callable $nextHandler,
+        array $headers,
+        bool $overrideUserHeaders = false
+    ) {
         $this->nextHandler = $nextHandler;
         $this->headers = $headers;
         $this->overrideUserHeaders = $overrideUserHeaders;
