@@ -530,6 +530,91 @@ trait GapicClientTrait
 
     /**
      * @param string $methodName
+     * @param string $interfaceName
+     * @param Message $request
+     * @param array $optionalArgs {
+     *     Call Options
+     *
+     *     @type array $headers [optional] key-value array containing headers
+     *     @type int $timeoutMillis [optional] the timeout in milliseconds for the call
+     *     @type array $transportOptions [optional] transport-specific call options
+     *     @type RetrySettings|array $retrySettings [optional] A retry settings
+     *           override for the call.
+     * }
+     *
+     * @experimental
+     *
+     * @return PromiseInterface|PagedListResponse|BidiStream|ClientStream|ServerStream
+     */
+    private function startApiCall(
+        string $methodName,
+        string $interfaceName = null,
+        Message $request = null,
+        array $optionalArgs = []
+    ) {
+        // Ensure a method descriptor exists for the target method.
+        if (!isset($this->descriptors[$methodName])) {
+            throw new ValidationException("Requested method '$methodName' does not exist in descriptor configuration.");
+        }
+        $method = $this->descriptors[$methodName];
+        
+        // Prepare request-based headers, merge with user-provided headers,
+        // which take precedence.
+        $headerParams = $method['headerParams'] ?? [];
+        $requestHeaders = $this->buildRequestParamsHeader($headerParams, $request);
+        $optionalArgs['headers'] = array_merge($requestHeaders, $optionalArgs['headers'] ?? []);
+
+        // Default the interface name, if not set, to the client's protobuf service name.
+        $interfaceName = $interfaceName ?: $this->serviceName;
+
+        // Handle call based on call type configured in the method descriptor config.
+        if (!isset($method['callType'])) {
+            throw new ValidationException("Requested method '$methodName' does not have a callType " .
+                "in descriptor configuration.");
+        }
+        $callType = $method['callType'];
+        
+        if ($callType == Call::LONGRUNNING_CALL) {
+            if (!isset($method['longRunning'])) {
+                throw new ValidationException("Requested method '$methodName' does not have a longRunning config " .
+                    "in descriptor configuration.");
+            }
+            // @TODO: check if the client implements `OperationsClientInterface` instead
+            if (!method_exists($this, 'getOperationsClient')) {
+                throw new ValidationException("Client missing required getOperationsClient " .
+                    "for longrunning call '$methodName'");
+            }
+            return $this->startOperationsCall(
+                $methodName,
+                $optionalArgs,
+                $request,
+                $this->getOperationsClient(),
+                $interfaceName
+            );
+        }
+
+        // Fully-qualified name of the response message PHP class.
+        if (!isset($method['responseType'])) {
+            throw new ValidationException("Requested method '$methodName' does not have a responseType " .
+                "in descriptor configuration.");
+        }
+        $decodeType = $method['responseType'];
+
+        if ($callType == Call::PAGINATED_CALL) {
+            if (!isset($method['pageStreaming'])) {
+                throw new ValidationException("Requested method '$methodName' with callType PAGINATED_CALL does not " .
+                    "have a pageStreaming in descriptor configuration.");
+            }
+
+            return $this->getPagedListResponse($methodName, $optionalArgs, $decodeType, $request, $interfaceName);
+        }
+
+        // Unary, and all Streaming types handled by startCall.
+        return $this->startCall($methodName, $decodeType, $optionalArgs, $request, $callType, $interfaceName);
+    }
+
+    /**
+     * @param string $methodName
      * @param string $decodeType
      * @param array $optionalArgs {
      *     Call Options
@@ -760,6 +845,65 @@ trait GapicClientTrait
             $interfaceName ?: $this->serviceName,
             $methodName
         );
+    }
+
+    /**
+     * @param array $headerParams
+     * @param Message|null $request
+     *
+     * @return array
+     */
+    private function buildRequestParamsHeader(array $headerParams, Message $request = null)
+    {
+        $headers = [];
+        
+        // No request message means no request-based headers.
+        if (!$request) {
+            return $headers;
+        }
+        
+        foreach ($headerParams as $headerParam) {
+            $msg = $request;
+            $value = null;
+            foreach ($headerParam['fieldAccessors'] as $accessor) {
+                $value = $msg->$accessor();
+                
+                // In case the field in question is nested in another message,
+                // skip the header param when the nested message field is unset.
+                $msg = $value;
+                if (is_null($msg)) {
+                    break;
+                }
+            }
+
+            $keyName = $headerParam['keyName'];
+            
+            // If there are value pattern matchers configured and the target
+            // field was set, evaluate the matchers in the order that they were
+            // annotated in with last one matching wins.
+            $original = $value;
+            $matchers = isset($headerParam['matchers']) && !is_null($value) ?
+                $headerParam['matchers'] :
+                [];
+            foreach ($matchers as $matcher) {
+                $matches = [];
+                if (preg_match($matcher, $original, $matches)) {
+                    $value = $matches[$keyName];
+                }
+            }
+
+            // If there are no matches or the target field was unset, skip this
+            // header param.
+            if (!$value) {
+                continue;
+            }
+
+            $headers[$keyName] = $value;
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($headers);
+
+        return $requestParams->getHeader();
     }
 
     /**

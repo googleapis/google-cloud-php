@@ -43,6 +43,8 @@ class Call
     const BIDI_STREAMING_CALL = 1;
     const CLIENT_STREAMING_CALL = 2;
     const SERVER_STREAMING_CALL = 3;
+    const LONGRUNNING_CALL = 4;
+    const PAGINATED_CALL = 5;
 
     private $method;
     private $callType;

@@ -17,3 +17,6 @@ src/Jison/Parser.js
 # Vim
 *.sw*
 *.vim
+
+# VS Code
+.vscode
