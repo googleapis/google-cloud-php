@@ -24,8 +24,8 @@ function downloadDoctum() {
   # https://doctum.long-term.support/releases/5.1/VERSION
   rm -f "${DOCTUM_EXECUTABLE}"
   rm -f "${DOCTUM_EXECUTABLE}.sha256"
-  curl -# https://doctum.long-term.support/releases/5.1/doctum.phar -o "${DOCTUM_EXECUTABLE}"
-  curl -# https://doctum.long-term.support/releases/5.1/doctum.phar.sha256  -o "${DOCTUM_EXECUTABLE}.sha256"
+  curl -# https://doctum.long-term.support/releases/5.5/doctum.phar -o "${DOCTUM_EXECUTABLE}"
+  curl -# https://doctum.long-term.support/releases/5.5/doctum.phar.sha256  -o "${DOCTUM_EXECUTABLE}.sha256"
   sha256sum --strict --check "${DOCTUM_EXECUTABLE}.sha256"
   rm -f "${DOCTUM_EXECUTABLE}.sha256"
 }

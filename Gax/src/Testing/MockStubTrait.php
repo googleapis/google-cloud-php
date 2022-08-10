@@ -33,8 +33,8 @@
 namespace Google\ApiCore\Testing;
 
 use Google\Protobuf\Internal\Message;
-use Google\Rpc\Status;
 use UnderflowException;
+use stdClass;
 
 /**
  * The MockStubTrait is used by generated mock stub classes which extent \Grpc\BaseStub
@@ -194,9 +194,9 @@ trait MockStubTrait
      * Add a response object, and an optional status, to the list of responses to be returned via
      * _simpleRequest.
      * @param \Google\Protobuf\Internal\Message $response
-     * @param Status $status
+     * @param stdClass $status
      */
-    public function addResponse($response, $status = null)
+    public function addResponse($response, stdClass $status = null)
     {
         if (!$this->deserialize && $response) {
             $this->deserialize = [get_class($response), 'decode'];
@@ -211,9 +211,9 @@ trait MockStubTrait
     /**
      * Set the status object to be used when creating streaming calls.
      *
-     * @param Status $status
+     * @param stdClass $status
      */
-    public function setStreamingStatus(Status $status)
+    public function setStreamingStatus(stdClass $status)
     {
         $this->serverStreamingStatus = $status;
     }
@@ -259,11 +259,11 @@ trait MockStubTrait
 
     /**
      * @param mixed $responseObject
-     * @param Status|null $status
+     * @param stdClass|null $status
      * @param callable $deserialize
      * @return static An instance of the current class type.
      */
-    public static function create($responseObject, Status $status = null, callable $deserialize = null)
+    public static function create($responseObject, stdClass $status = null, callable $deserialize = null)
     {
         $stub = new static($deserialize); // @phpstan-ignore-line
         $stub->addResponse($responseObject, $status);
@@ -274,10 +274,10 @@ trait MockStubTrait
      * Creates a sequence such that the responses are returned in order.
      * @param mixed[] $sequence
      * @param callable $deserialize
-     * @param Status $finalStatus
+     * @param stdClass $finalStatus
      * @return static An instance of the current class type.
      */
-    public static function createWithResponseSequence(array $sequence, callable $deserialize = null, Status $finalStatus = null)
+    public static function createWithResponseSequence(array $sequence, callable $deserialize = null, stdClass $finalStatus = null)
     {
         $stub = new static($deserialize); // @phpstan-ignore-line
         foreach ($sequence as $elem) {

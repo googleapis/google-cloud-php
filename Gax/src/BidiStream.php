@@ -79,11 +79,11 @@ class BidiStream
     /**
      * Write all requests in $requests.
      *
-     * @param mixed[] $requests An Iterable of request objects to write to the server
+     * @param iterable $requests An Iterable of request objects to write to the server
      *
      * @throws ValidationException
      */
-    public function writeAll(array $requests = [])
+    public function writeAll($requests = [])
     {
         foreach ($requests as $request) {
             $this->write($request);

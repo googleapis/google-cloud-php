@@ -33,6 +33,7 @@ class GrpcSupportTraitTest extends TestCase
     {
         self::$hasGrpc = true;
         self::validateGrpcSupport();
+        $this->assertTrue(true);
     }
 
     public function testValidateGrpcSupportFailure()
