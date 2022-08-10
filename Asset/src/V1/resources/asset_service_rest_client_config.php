@@ -177,6 +177,18 @@ return [
                     ],
                 ],
             ],
+            'QueryAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}:queryAssets',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'SearchAllIamPolicies' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{scope=*/*}:searchAllIamPolicies',
