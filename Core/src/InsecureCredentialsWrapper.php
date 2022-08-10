@@ -29,7 +29,7 @@ class InsecureCredentialsWrapper extends CredentialsWrapper
     {
     }
 
-    public function getAuthorizationHeaderCallback($audience = null)
+    public function getAuthorizationHeaderCallback(string $audience = null)
     {
         return null;
     }
