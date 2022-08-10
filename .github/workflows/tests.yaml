@@ -12,12 +12,10 @@ jobs:
         platform: [ubuntu-latest, windows-latest]
         php: [ "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
         phpunit-filename: [phpunit]
-        grpc-version: [grpc]
         include:
           - platform: ubuntu-latest
             php: "5.6"
             phpunit-filename: phpunit-php5
-            grpc-version: grpc
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
@@ -26,7 +24,7 @@ jobs:
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: ${{ matrix.grpc-version }}
+        extensions: grpc
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
@@ -40,6 +38,19 @@ jobs:
       name: Run Snippet Test Suite
       run: |
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
+
+  test_package:
+    name: Package Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: '8.0'
+        extensions: grpc
+    - name: Run Unit Test Suites
+      run: bash .github/run-package-tests.sh
 
   style:
     runs-on: ubuntu-latest
