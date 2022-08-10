@@ -509,39 +509,28 @@ class GrpcTransportTest extends TestCase
             null,
             [$interceptor]
         );
+
+        $mockCallInvoker = new MockCallInvoker($this->buildMockCallForInterceptor($callType));
+
         $r = new \ReflectionProperty(BaseStub::class, 'call_invoker');
         $r->setAccessible(true);
         $r->setValue(
             $transport,
-            new MockCallInvoker(
-                $this->buildMockCallForInterceptor($callType)
-            )
-        );
-        $call = new Call(
-            'method1',
-            '',
-            new MockRequest()
+            $mockCallInvoker
         );
 
-        if ($callType === UnaryCall::class) {
-            $transport->startUnaryCall($call, [
-                'transportOptions' => [
-                    'grpcOptions' => [
-                        'call-option' => 'call-option-value'
-                    ]
-                ]
-            ]);
+        $call = new Call('method1', '', new MockRequest());
 
-            return;
-        }
-
-        $transport->startServerStreamingCall($call, [
+        $callMethod = $callType == UnaryCall::class ? 'startUnaryCall' : 'startServerStreamingCall';
+        $transport->$callMethod($call, [
             'transportOptions' => [
                 'grpcOptions' => [
                     'call-option' => 'call-option-value'
                 ]
             ]
         ]);
+
+        $this->assertTrue($mockCallInvoker->wasCalled());
     }
 
     public function interceptorDataProvider()
@@ -591,6 +580,8 @@ class GrpcTransportTest extends TestCase
 
 class MockCallInvoker implements CallInvoker
 {
+    private $called = false;
+
     public function __construct($mockCall)
     {
         $this->mockCall = $mockCall;
@@ -603,11 +594,13 @@ class MockCallInvoker implements CallInvoker
 
     public function UnaryCall($channel, $method, $deserialize, $options)
     {
+        $this->called = true;
         return $this->mockCall;
     }
 
     public function ServerStreamingCall($channel, $method, $deserialize, $options)
     {
+        $this->called = true;
         return $this->mockCall;
     }
 
@@ -619,6 +612,11 @@ class MockCallInvoker implements CallInvoker
     public function BidiStreamingCall($channel, $method, $deserialize, $options)
     {
         // no-op
+    }
+
+    public function wasCalled()
+    {
+        return $this->called;
     }
 }
 
