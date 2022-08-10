@@ -1339,7 +1339,8 @@ class Subscription
      * Getter for the private static variable
      * @return int
      */
-    public static function getMaxRetries() {
+    public static function getMaxRetries()
+    {
         return self::$exactlyOnceDeliveryMaxRetries;
     }
 }
