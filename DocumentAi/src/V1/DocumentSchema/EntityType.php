@@ -31,7 +31,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * - name matching is case-insensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
-     * - Allowed characters: ASCII letters [a-z0-9_-].  (For backward
+     * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
      *   character)
      * - The '/' is sometimes used to denote a property of a type.  For example
@@ -78,7 +78,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      *           - name matching is case-insensitive
      *           - Maximum 64 characters.
      *           - Must start with a letter.
-     *           - Allowed characters: ASCII letters [a-z0-9_-].  (For backward
+     *           - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *             compatibility internal infrastructure and tooling can handle any ascii
      *             character)
      *           - The '/' is sometimes used to denote a property of a type.  For example
@@ -169,7 +169,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * - name matching is case-insensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
-     * - Allowed characters: ASCII letters [a-z0-9_-].  (For backward
+     * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
      *   character)
      * - The '/' is sometimes used to denote a property of a type.  For example
@@ -192,7 +192,7 @@ class EntityType extends \Google\Protobuf\Internal\Message
      * - name matching is case-insensitive
      * - Maximum 64 characters.
      * - Must start with a letter.
-     * - Allowed characters: ASCII letters [a-z0-9_-].  (For backward
+     * - Allowed characters: ASCII letters `[a-z0-9_-]`.  (For backward
      *   compatibility internal infrastructure and tooling can handle any ascii
      *   character)
      * - The '/' is sometimes used to denote a property of a type.  For example
