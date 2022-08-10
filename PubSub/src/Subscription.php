@@ -1334,4 +1334,12 @@ class Subscription
     {
         $this->exactlyOnceDeliveryMaxRetryTime = $maxTime;
     }
+
+    /**
+     * Getter for the private static variable
+     * @return int
+     */
+    public static function getMaxRetries() {
+        return self::$exactlyOnceDeliveryMaxRetries;
+    }
 }

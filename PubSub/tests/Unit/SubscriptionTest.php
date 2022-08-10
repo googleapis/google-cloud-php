@@ -558,7 +558,7 @@ class SubscriptionTest extends TestCase
         $ex = $this->generateEodException($metadata);
         
         // num of retries + 1 original call
-        $numCalls = Subscription::EXACTLY_ONCE_MAX_RETRIES + 1;
+        $numCalls = Subscription::getMaxRetries() + 1;
 
         // An exception containing at least one transient failure
         // should be called a maximum of $numCalls times
@@ -834,7 +834,7 @@ class SubscriptionTest extends TestCase
         $ex = $this->generateEodException($metadata);
         
         // num of retries + 1 original call
-        $numCalls = Subscription::EXACTLY_ONCE_MAX_RETRIES + 1;
+        $numCalls = Subscription::getMaxRetries() + 1;
 
         // An exception containing at least one transient failure
         // should be called a maximum of $numCalls times
