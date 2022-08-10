@@ -32,6 +32,7 @@
 
 namespace Google\ApiCore\Tests\Unit;
 
+use GapicClientStub;
 use Google\ApiCore\AgentHeader;
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
@@ -40,9 +41,11 @@ use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\ServerStream;
 use Google\ApiCore\Testing\MockRequest;
+use Google\ApiCore\Testing\MockRequestBody;
 use Google\ApiCore\Transport\GrpcFallbackTransport;
 use Google\ApiCore\Transport\GrpcTransport;
 use Google\ApiCore\Transport\RestTransport;
@@ -71,6 +74,17 @@ class GapicClientTraitTest extends TestCase
 
     public function testHeadersOverwriteBehavior()
     {
+        $unaryDescriptors = [
+            'callType' => Call::UNARY_CALL,
+            'responseType' => 'decodeType',
+            'headerParams' => [
+                [
+                    'fieldAccessors' => ['getName'],
+                    'keyName' => 'name'
+                ]
+            ]
+        ];
+        $request = new MockRequestBody(['name' => 'foos/123/bars/456']);
         $header = AgentHeader::buildAgentHeader([
             'libName' => 'gccl',
             'libVersion' => '0.0.0',
@@ -87,6 +101,7 @@ class GapicClientTraitTest extends TestCase
         $expectedHeaders = [
             'x-goog-api-client' => ['gl-php/5.5.0 gccl/0.0.0 gapic/0.9.0 gax/1.0.0 grpc/1.0.1 rest/1.0.0 pb/6.6.6'],
             'new-header' => ['this-should-be-used'],
+            'x-goog-request-params' => ['name=foos%2F123%2Fbars%2F456']
         ];
         $transport = $this->getMockBuilder(TransportInterface::class)->disableOriginalConstructor()->getMock();
         $credentialsWrapper = CredentialsWrapper::build([
@@ -111,9 +126,11 @@ class GapicClientTraitTest extends TestCase
         );
         $client->set('transport', $transport);
         $client->set('credentialsWrapper', $credentialsWrapper);
-        $client->call('startCall', [
+        $client->set('descriptors', ['method' => $unaryDescriptors]);
+        $client->call('startApiCall', [
             'method',
-            'decodeType',
+            null,
+            $request,
             ['headers' => $headers]
         ]);
     }
@@ -200,6 +217,188 @@ class GapicClientTraitTest extends TestCase
         );
 
         $this->assertEquals($expectedResponse, $response);
+    }
+
+    public function testStartApiCallOperation()
+    {
+        $header = AgentHeader::buildAgentHeader([]);
+        $retrySettings = $this->getMockBuilder(RetrySettings::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $longRunningDescriptors = [
+            'callType' => Call::LONGRUNNING_CALL,
+            'longRunning' => [
+                'operationReturnType' => 'operationType',
+                'metadataReturnType' => 'metadataType',
+                'initialPollDelayMillis' => 100,
+                'pollDelayMultiplier' => 1.0,
+                'maxPollDelayMillis' => 200,
+                'totalPollTimeoutMillis' => 300,
+            ]
+        ];
+        $expectedPromise = new FulfilledPromise(new Operation());
+        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
+        $transport->expects($this->once())
+             ->method('startUnaryCall')
+             ->will($this->returnValue($expectedPromise));
+        $credentialsWrapper = CredentialsWrapper::build([]);
+        $client = new GapicClientTraitOperationsStub();
+        $client->set('transport', $transport);
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('agentHeader', $header);
+        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('descriptors', ['method' => $longRunningDescriptors]);
+        $operationsClient = $this->getMockBuilder(OperationsClient::class)
+            ->disableOriginalConstructor()
+            ->setMethodsExcept(['validate'])
+            ->getMock();
+        $client->set('operationsClient', $operationsClient);
+
+        $request = new MockRequest();
+        $response = $client->call('startApiCall', [
+            'method',
+            /* interfaceName */ null,
+            $request
+        ])->wait();
+
+        $expectedResponse = new OperationResponse(
+            '',
+            $operationsClient,
+            $longRunningDescriptors['longRunning'] + ['lastProtoResponse' => new Operation()]
+        );
+
+        $this->assertEquals($expectedResponse, $response);
+    }
+
+    /**
+     * @dataProvider startApiCallExceptions
+     */
+    public function testStartApiCallException($descriptor, $expected)
+    {
+        $client = new GapicClientTraitStub();
+        $client->set('descriptors', $descriptor);
+
+        // All descriptor config checks throw Validation exceptions
+        $this->expectException(ValidationException::class);
+        // Check that the proper exception is being thrown for the given descriptor.
+        $this->expectExceptionMessage($expected);
+
+        $client->call('startApiCall', [
+            'method',
+            /* interfaceName */ null,
+            new MockRequest()
+        ])->wait();
+    }
+
+    public function startApiCallExceptions()
+    {
+        return [
+            [
+                [],
+                'does not exist'
+            ],
+            [
+                [
+                    'method' => []
+                ],
+                'does not have a callType' 
+            ],
+            [
+                [
+                    'method' => ['callType' => Call::LONGRUNNING_CALL]
+                ],
+                'does not have a longRunning config' 
+            ],
+            [
+                [
+                    'method' => ['callType' => Call::LONGRUNNING_CALL, 'longRunning' => []]
+                ],
+                'missing required getOperationsClient'
+            ],
+            [
+                [
+                    'method'=> ['callType' => Call::UNARY_CALL]
+                ],
+                'does not have a responseType'
+            ],
+            [
+                [
+                    'method'=> ['callType' => Call::PAGINATED_CALL, 'responseType' => 'foo']
+                ],
+                'does not have a pageStreaming'
+            ],
+        ];
+    }
+
+    public function testStartApiCallUnary()
+    {
+        $header = AgentHeader::buildAgentHeader([]);
+        $retrySettings = $this->getMockBuilder(RetrySettings::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $unaryDescriptors = [
+            'callType' => Call::UNARY_CALL,
+            'responseType' => 'Google\Longrunning\Operation::class'
+        ];
+        $expectedPromise = new FulfilledPromise(new Operation());
+        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
+        $transport->expects($this->once())
+             ->method('startUnaryCall')
+             ->will($this->returnValue($expectedPromise));
+        $credentialsWrapper = CredentialsWrapper::build([]);
+        $client = new GapicClientTraitStub();
+        $client->set('transport', $transport);
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('agentHeader', $header);
+        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('descriptors', ['method' => $unaryDescriptors]);
+
+        $request = new MockRequest();
+        $client->call('startApiCall', [
+            'method',
+            /* interfaceName */ null,
+            $request
+        ])->wait();
+    }
+
+    public function testStartApiCallPaged()
+    {
+        $header = AgentHeader::buildAgentHeader([]);
+        $retrySettings = $this->getMockBuilder(RetrySettings::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $pagedDescriptors = [
+            'callType' => Call::PAGINATED_CALL,
+            'responseType' => 'Google\Longrunning\ListOperationsResponse::class',
+            'pageStreaming' => [
+                'requestPageTokenGetMethod' => 'getPageToken',
+                'requestPageTokenSetMethod' => 'setPageToken',
+                'requestPageSizeGetMethod' => 'getPageSize',
+                'requestPageSizeSetMethod' => 'setPageSize',
+                'responsePageTokenGetMethod' => 'getNextPageToken',
+                'resourcesGetMethod' => 'getOperations',
+            ],
+        ];
+        $expectedPromise = new FulfilledPromise(new Operation());
+        $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
+        $transport->expects($this->once())
+             ->method('startUnaryCall')
+             ->will($this->returnValue($expectedPromise));
+        $credentialsWrapper = CredentialsWrapper::build([]);
+        $client = new GapicClientTraitStub();
+        $client->set('transport', $transport);
+        $client->set('credentialsWrapper', $credentialsWrapper);
+        $client->set('agentHeader', $header);
+        $client->set('retrySettings', ['method' => $retrySettings]);
+        $client->set('descriptors', ['method' => $pagedDescriptors]);
+
+        $request = new MockRequest();
+        $client->call('startApiCall', [
+            'method',
+            /* interfaceName */ null,
+            $request
+        ]);
     }
 
     public function testGetGapicVersionWithVersionFile()
@@ -634,6 +833,89 @@ class GapicClientTraitTest extends TestCase
                         ]
                     ]
                 ], $fakeTransportConfigOptions
+            ],
+        ];
+    }
+
+    /**
+     * @dataProvider buildRequestHeaderParams
+     */
+    public function testBuildRequestHeaders($headerParams, $request, $expected)
+    {
+        $client = new GapicClientTraitStub();
+        $actual = $client->call('buildRequestParamsHeader', [$headerParams, $request]);
+        $this->assertEquals($actual[RequestParamsHeaderDescriptor::HEADER_KEY], $expected);
+    }
+
+    public function buildRequestHeaderParams()
+    {
+        $simple = new MockRequestBody([
+            'name' => 'foos/123/bars/456'
+        ]);
+        $simpleNull = new MockRequestBody();
+        $nested = new MockRequestBody([
+            'nested_message' => new MockRequestBody([
+                'name' => 'foos/123/bars/456'
+            ])
+        ]);
+        $unsetNested = new MockRequestBody([]);
+        $nestedNull = new MockRequestBody([
+            'nested_message' => new MockRequestBody()
+        ]);
+
+        return [
+            [
+                /* $headerParams */ [
+                    [
+                        'fieldAccessors' => ['getName'],
+                        'keyName' => 'name_field'
+                    ],
+                ],
+                /* $request */ $simple,
+                /* $expected */ ['name_field=foos%2F123%2Fbars%2F456']
+            ],
+            [
+                /* $headerParams */ [
+                    [
+                        'fieldAccessors' => ['getName'],
+                        'keyName' => 'name_field'
+                    ],
+                ],
+                /* $request */ $simpleNull,
+
+                // For some reason RequestParamsHeaderDescriptor creates an array
+                // with an empty string if there are no headers set in it.
+                /* $expected */ ['']
+            ],
+            [
+                /* $headerParams */ [
+                    [
+                        'fieldAccessors' => ['getNestedMessage','getName'],
+                        'keyName' => 'name_field'
+                    ],
+                ],
+                /* $request */ $nested,
+                /* $expected */ ['name_field=foos%2F123%2Fbars%2F456']
+            ],
+            [
+                /* $headerParams */ [
+                    [
+                        'fieldAccessors' => ['getNestedMessage','getName'],
+                        'keyName' => 'name_field'
+                    ],
+                ],
+                /* $request */ $unsetNested,
+                /* $expected */ ['']
+            ],
+            [
+                /* $headerParams */ [
+                    [
+                        'fieldAccessors' => ['getNestedMessage','getName'],
+                        'keyName' => 'name_field'
+                    ],
+                ],
+                /* $request */ $nestedNull,
+                /* $expected */ ['']
             ],
         ];
     }
@@ -1405,6 +1687,16 @@ class GapicClientTraitRestOnly
     private static function defaultTransport()
     {
         return 'rest';
+    }
+}
+
+class GapicClientTraitOperationsStub extends GapicClientTraitStub
+{
+    public $operationsClient;
+
+    public function getOperationsClient()
+    {
+        return $this->operationsClient;
     }
 }
 
