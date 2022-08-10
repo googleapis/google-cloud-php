@@ -33,7 +33,7 @@ class VpnTunnelsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\VpnTunnel[]|\Google\Protobuf\Internal\RepeatedField $vpn_tunnels
+     *     @type array<\Google\Cloud\Compute\V1\VpnTunnel>|\Google\Protobuf\Internal\RepeatedField $vpn_tunnels
      *           A list of VPN tunnels contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when the list is empty.
@@ -59,7 +59,7 @@ class VpnTunnelsScopedList extends \Google\Protobuf\Internal\Message
      * A list of VPN tunnels contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnTunnel vpn_tunnels = 163494080;</code>
-     * @param \Google\Cloud\Compute\V1\VpnTunnel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VpnTunnel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVpnTunnels($var)

@@ -49,7 +49,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Database to import into. Should be of the form:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           Which collection ids to import. Unspecified means all collections included
      *           in the import.
      *     @type string $input_uri_prefix
@@ -110,7 +110,7 @@ class ImportDocumentsRequest extends \Google\Protobuf\Internal\Message
      * in the import.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCollectionIds($var)

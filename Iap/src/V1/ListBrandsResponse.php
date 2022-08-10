@@ -28,7 +28,7 @@ class ListBrandsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Iap\V1\Brand[]|\Google\Protobuf\Internal\RepeatedField $brands
+     *     @type array<\Google\Cloud\Iap\V1\Brand>|\Google\Protobuf\Internal\RepeatedField $brands
      *           Brands existing in the project.
      * }
      */
@@ -52,7 +52,7 @@ class ListBrandsResponse extends \Google\Protobuf\Internal\Message
      * Brands existing in the project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iap.v1.Brand brands = 1;</code>
-     * @param \Google\Cloud\Iap\V1\Brand[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iap\V1\Brand>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBrands($var)

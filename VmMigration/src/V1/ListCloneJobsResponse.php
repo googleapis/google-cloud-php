@@ -22,8 +22,8 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
      */
     private $clone_jobs;
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -41,12 +41,12 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VMMigration\V1\CloneJob[]|\Google\Protobuf\Internal\RepeatedField $clone_jobs
+     *     @type array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $clone_jobs
      *           Output only. The list of clone jobs response.
      *     @type string $next_page_token
-     *           Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     *           If this field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Output only. A token, which can be sent as `page_token` to retrieve the
+     *           next page. If this field is omitted, there are no subsequent pages.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Output only. Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The list of clone jobs response.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneJob clone_jobs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\VMMigration\V1\CloneJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCloneJobs($var)
@@ -82,8 +82,8 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -94,8 +94,8 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A token, which can be sent as `page_token` to retrieve the next page.
-     * If this field is omitted, there are no subsequent pages.
+     * Output only. A token, which can be sent as `page_token` to retrieve the
+     * next page. If this field is omitted, there are no subsequent pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -124,7 +124,7 @@ class ListCloneJobsResponse extends \Google\Protobuf\Internal\Message
      * Output only. Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

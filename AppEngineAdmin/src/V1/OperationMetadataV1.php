@@ -94,7 +94,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      *     @type string $ephemeral_message
      *           Ephemeral message that may change every time the operation is polled.
      *           &#64;OutputOnly
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $warning
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warning
      *           Durable messages that persist on every operation poll.
      *           &#64;OutputOnly
      *     @type \Google\Cloud\AppEngine\V1\CreateVersionMetadataV1 $create_version_metadata
@@ -314,7 +314,7 @@ class OperationMetadataV1 extends \Google\Protobuf\Internal\Message
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>repeated string warning = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarning($var)

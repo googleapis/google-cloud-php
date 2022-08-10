@@ -15,7 +15,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Preference for a given location.
+     * Constraints that the caller requires on the result distribution in this zone.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
+     */
+    private $constraints = null;
+    /**
+     * Preference for a given location. Set to either ALLOW or DENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -28,8 +34,10 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints $constraints
+     *           Constraints that the caller requires on the result distribution in this zone.
      *     @type string $preference
-     *           Preference for a given location.
+     *           Preference for a given location. Set to either ALLOW or DENY.
      *           Check the Preference enum for the list of possible values.
      * }
      */
@@ -39,7 +47,43 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location.
+     * Constraints that the caller requires on the result distribution in this zone.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
+     * @return \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints|null
+     */
+    public function getConstraints()
+    {
+        return $this->constraints;
+    }
+
+    public function hasConstraints()
+    {
+        return isset($this->constraints);
+    }
+
+    public function clearConstraints()
+    {
+        unset($this->constraints);
+    }
+
+    /**
+     * Constraints that the caller requires on the result distribution in this zone.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocationPolicyLocationConstraints constraints = 3909174;</code>
+     * @param \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints $var
+     * @return $this
+     */
+    public function setConstraints($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\LocationPolicyLocationConstraints::class);
+        $this->constraints = $var;
+
+        return $this;
+    }
+
+    /**
+     * Preference for a given location. Set to either ALLOW or DENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>
@@ -61,7 +105,7 @@ class LocationPolicyLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Preference for a given location.
+     * Preference for a given location. Set to either ALLOW or DENY.
      * Check the Preference enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string preference = 150781147;</code>

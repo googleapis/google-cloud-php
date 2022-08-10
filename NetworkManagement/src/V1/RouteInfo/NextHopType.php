@@ -83,6 +83,14 @@ class NextHopType
      * Generated from protobuf enum <code>NEXT_HOP_ILB = 10;</code>
      */
     const NEXT_HOP_ILB = 10;
+    /**
+     * Next hop is a
+     * [router appliance
+     * instance](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/ra-overview).
+     *
+     * Generated from protobuf enum <code>NEXT_HOP_ROUTER_APPLIANCE = 11;</code>
+     */
+    const NEXT_HOP_ROUTER_APPLIANCE = 11;
 
     private static $valueToName = [
         self::NEXT_HOP_TYPE_UNSPECIFIED => 'NEXT_HOP_TYPE_UNSPECIFIED',
@@ -96,6 +104,7 @@ class NextHopType
         self::NEXT_HOP_INTERNET_GATEWAY => 'NEXT_HOP_INTERNET_GATEWAY',
         self::NEXT_HOP_BLACKHOLE => 'NEXT_HOP_BLACKHOLE',
         self::NEXT_HOP_ILB => 'NEXT_HOP_ILB',
+        self::NEXT_HOP_ROUTER_APPLIANCE => 'NEXT_HOP_ROUTER_APPLIANCE',
     ];
 
     public static function name($value)

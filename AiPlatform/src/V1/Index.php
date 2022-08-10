@@ -127,7 +127,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Value $metadata
      *           An additional information about the Index; the schema of the metadata can
      *           be found in [metadata_schema][google.cloud.aiplatform.v1.Index.metadata_schema_uri].
-     *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexRef[]|\Google\Protobuf\Internal\RepeatedField $deployed_indexes
+     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedIndexRef>|\Google\Protobuf\Internal\RepeatedField $deployed_indexes
      *           Output only. The pointers to DeployedIndexes created from this Index.
      *           An Index can be only deleted if all its DeployedIndexes had been undeployed
      *           first.
@@ -337,7 +337,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * first.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedIndexRef deployed_indexes = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\DeployedIndexRef[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DeployedIndexRef>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeployedIndexes($var)

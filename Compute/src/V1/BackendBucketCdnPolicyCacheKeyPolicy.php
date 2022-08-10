@@ -34,9 +34,9 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_http_headers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_http_headers
      *           Allows HTTP request headers (by name) to be used in the cache key.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $query_string_whitelist
      *           Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      * }
      */
@@ -60,7 +60,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
      * Allows HTTP request headers (by name) to be used in the cache key.
      *
      * Generated from protobuf field <code>repeated string include_http_headers = 2489606;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludeHttpHeaders($var)
@@ -86,7 +86,7 @@ class BackendBucketCdnPolicyCacheKeyPolicy extends \Google\Protobuf\Internal\Mes
      * Names of query string parameters to include in cache keys. Default parameters are always included. '&' and '=' will be percent encoded and not treated as delimiters.
      *
      * Generated from protobuf field <code>repeated string query_string_whitelist = 52456496;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQueryStringWhitelist($var)

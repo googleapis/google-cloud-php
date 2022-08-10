@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\TargetInstance;
 use UnexpectedValueException;
 
 /**
- * NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+ * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetInstance.NatPolicy</code>
  */

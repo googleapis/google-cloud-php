@@ -151,7 +151,7 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Optional. This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
-     *     @type \Google\Cloud\Deploy\V1\ExecutionConfig[]|\Google\Protobuf\Internal\RepeatedField $execution_configs
+     *     @type array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $execution_configs
      *           Configurations for all execution that relates to this `Target`.
      *           Each `ExecutionEnvironmentUsage` value may only be used in a single
      *           configuration; using the same value multiple times is an error.
@@ -565,7 +565,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * specified in `DefaultPool`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16;</code>
-     * @param \Google\Cloud\Deploy\V1\ExecutionConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExecutionConfigs($var)

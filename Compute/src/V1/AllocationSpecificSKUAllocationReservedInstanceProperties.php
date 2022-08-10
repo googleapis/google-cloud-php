@@ -52,9 +52,9 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
      *           Specifies accelerator type and count.
-     *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[]|\Google\Protobuf\Internal\RepeatedField $local_ssds
+     *     @type array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $local_ssds
      *           Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
      *     @type string $location_hint
      *           An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
@@ -84,7 +84,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      * Specifies accelerator type and count.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestAccelerators($var)
@@ -110,7 +110,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      * Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk local_ssds = 229951299;</code>
-     * @param \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocalSsds($var)

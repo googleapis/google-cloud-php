@@ -43,9 +43,9 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           URL for the subnetwork resource that will use NAT.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $secondary_ip_range_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_range_names
      *           A list of the secondary ranges of the Subnetwork that are allowed to use NAT. This can be populated only if "LIST_OF_SECONDARY_IP_RANGES" is one of the values in source_ip_ranges_to_nat.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges_to_nat
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ip_ranges_to_nat
      *           Specify the options for NAT ranges in the Subnetwork. All options of a single value are valid except NAT_IP_RANGE_OPTION_UNSPECIFIED. The only valid option with multiple values is: ["PRIMARY_IP_RANGE", "LIST_OF_SECONDARY_IP_RANGES"] Default: [ALL_IP_RANGES]
      *           Check the SourceIpRangesToNat enum for the list of possible values.
      * }
@@ -106,7 +106,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * A list of the secondary ranges of the Subnetwork that are allowed to use NAT. This can be populated only if "LIST_OF_SECONDARY_IP_RANGES" is one of the values in source_ip_ranges_to_nat.
      *
      * Generated from protobuf field <code>repeated string secondary_ip_range_names = 264315097;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecondaryIpRangeNames($var)
@@ -134,7 +134,7 @@ class RouterNatSubnetworkToNat extends \Google\Protobuf\Internal\Message
      * Check the SourceIpRangesToNat enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string source_ip_ranges_to_nat = 388310386;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceIpRangesToNat($var)

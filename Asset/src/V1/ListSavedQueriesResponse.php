@@ -35,7 +35,7 @@ class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\SavedQuery[]|\Google\Protobuf\Internal\RepeatedField $saved_queries
+     *     @type array<\Google\Cloud\Asset\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
      *           A list of savedQueries.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
      * A list of savedQueries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.SavedQuery saved_queries = 1;</code>
-     * @param \Google\Cloud\Asset\V1\SavedQuery[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSavedQueries($var)

@@ -15,6 +15,8 @@
  * limitations under the License.
  */
 
+namespace Google\Cloud\Core\Testing;
+
 use PHPUnit\Framework\TestListener;
 use Yoast\PHPUnitPolyfills\TestListeners\TestListenerDefaultImplementation;
 

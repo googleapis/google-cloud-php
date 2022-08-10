@@ -118,7 +118,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      *           Required. The type of this phrase matcher.
      *     @type bool $active
      *           Applies the phrase matcher only when it is active.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup[]|\Google\Protobuf\Internal\RepeatedField $phrase_match_rule_groups
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup>|\Google\Protobuf\Internal\RepeatedField $phrase_match_rule_groups
      *           A list of phase match rule groups that are included in this matcher.
      *     @type \Google\Protobuf\Timestamp $activation_update_time
      *           Output only. The most recent time at which the activation status was updated.
@@ -356,7 +356,7 @@ class PhraseMatcher extends \Google\Protobuf\Internal\Message
      * A list of phase match rule groups that are included in this matcher.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.PhraseMatchRuleGroup phrase_match_rule_groups = 8;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhraseMatchRuleGroups($var)

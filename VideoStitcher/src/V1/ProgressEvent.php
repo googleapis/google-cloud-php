@@ -42,7 +42,7 @@ class ProgressEvent extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Duration $time_offset
      *           The time when the following tracking events occurs. The time is in
      *           seconds relative to the start of the VOD asset.
-     *     @type \Google\Cloud\Video\Stitcher\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
      *           The list of progress tracking events for the ad break. These can be of
      *           the following IAB types: `BREAK_START`, `BREAK_END`, `IMPRESSION`,
      *           `CREATIVE_VIEW`, `START`, `FIRST_QUARTILE`, `MIDPOINT`, `THIRD_QUARTILE`,
@@ -113,7 +113,7 @@ class ProgressEvent extends \Google\Protobuf\Internal\Message
      * `COMPLETE`, `PROGRESS`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Event events = 2;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)

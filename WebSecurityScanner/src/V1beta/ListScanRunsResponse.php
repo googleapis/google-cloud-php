@@ -35,7 +35,7 @@ class ListScanRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\ScanRun[]|\Google\Protobuf\Internal\RepeatedField $scan_runs
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\ScanRun>|\Google\Protobuf\Internal\RepeatedField $scan_runs
      *           The list of ScanRuns returned.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -62,7 +62,7 @@ class ListScanRunsResponse extends \Google\Protobuf\Internal\Message
      * The list of ScanRuns returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.ScanRun scan_runs = 1;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\ScanRun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\ScanRun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScanRuns($var)

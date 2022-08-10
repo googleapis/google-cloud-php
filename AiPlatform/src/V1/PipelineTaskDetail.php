@@ -127,7 +127,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $error
      *           Output only. The error that occurred during task execution.
      *           Only populated when the task's state is FAILED or CANCELLED.
-     *     @type \Google\Cloud\AIPlatform\V1\PipelineTaskDetail\PipelineTaskStatus[]|\Google\Protobuf\Internal\RepeatedField $pipeline_task_status
+     *     @type array<\Google\Cloud\AIPlatform\V1\PipelineTaskDetail\PipelineTaskStatus>|\Google\Protobuf\Internal\RepeatedField $pipeline_task_status
      *           Output only. A list of task status. This field keeps a record of task status evolving
      *           over time.
      *     @type array|\Google\Protobuf\Internal\MapField $inputs
@@ -484,7 +484,7 @@ class PipelineTaskDetail extends \Google\Protobuf\Internal\Message
      * over time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.PipelineTaskDetail.PipelineTaskStatus pipeline_task_status = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\PipelineTaskDetail\PipelineTaskStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\PipelineTaskDetail\PipelineTaskStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPipelineTaskStatus($var)

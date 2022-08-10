@@ -29,8 +29,8 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.  It automatically rounds to the
      * nearest feasible discrete point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional double default_value = 3;</code>
      */
@@ -42,7 +42,7 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. A list of possible values.
      *           The list should be in increasing order and at least 1e-10 apart.
      *           For instance, this parameter might have possible settings of 1.5, 2.5,
@@ -52,8 +52,8 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      *           relatively good starting point.  Unset value signals that there is no
      *           offered starting point.  It automatically rounds to the
      *           nearest feasible discrete point.
-     *           Currently only supported by the Vizier service. Not supported by
-     *           HyperparamterTuningJob or TrainingPipeline.
+     *           Currently only supported by the Vertex AI Vizier service. Not supported
+     *           by HyperparameterTuningJob or TrainingPipeline.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      * and 4.0. This list should not contain more than 1,000 values.
      *
      * Generated from protobuf field <code>repeated double values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)
@@ -98,8 +98,8 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.  It automatically rounds to the
      * nearest feasible discrete point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional double default_value = 3;</code>
      * @return float
@@ -124,8 +124,8 @@ class DiscreteValueSpec extends \Google\Protobuf\Internal\Message
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.  It automatically rounds to the
      * nearest feasible discrete point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional double default_value = 3;</code>
      * @param float $var

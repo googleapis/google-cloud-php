@@ -72,6 +72,8 @@ class Connection extends \Google\Protobuf\Internal\Message
      *           Cloud SQL properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\AwsProperties $aws
      *           Amazon Web Services (AWS) properties.
+     *     @type \Google\Cloud\BigQuery\Connection\V1\AzureProperties $azure
+     *           Azure properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\CloudSpannerProperties $cloud_spanner
      *           Cloud Spanner properties.
      *     @type \Google\Cloud\BigQuery\Connection\V1\CloudResourceProperties $cloud_resource
@@ -227,6 +229,37 @@ class Connection extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\AwsProperties::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Azure properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AzureProperties azure = 11;</code>
+     * @return \Google\Cloud\BigQuery\Connection\V1\AzureProperties|null
+     */
+    public function getAzure()
+    {
+        return $this->readOneof(11);
+    }
+
+    public function hasAzure()
+    {
+        return $this->hasOneof(11);
+    }
+
+    /**
+     * Azure properties.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.connection.v1.AzureProperties azure = 11;</code>
+     * @param \Google\Cloud\BigQuery\Connection\V1\AzureProperties $var
+     * @return $this
+     */
+    public function setAzure($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\Connection\V1\AzureProperties::class);
+        $this->writeOneof(11, $var);
 
         return $this;
     }

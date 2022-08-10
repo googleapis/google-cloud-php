@@ -41,12 +41,12 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkConnectivity\V1\Spoke[]|\Google\Protobuf\Internal\RepeatedField $spokes
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $spokes
      *           The requested spokes.
      *     @type string $next_page_token
      *           The next pagination token in the List response. It should be used as
      *           page_token for the following request. An empty value means no more result.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * The requested spokes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.Spoke spokes = 1;</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\Spoke[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\Spoke>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpokes($var)
@@ -124,7 +124,7 @@ class ListSpokesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

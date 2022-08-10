@@ -123,11 +123,11 @@ class Trial extends \Google\Protobuf\Internal\Message
      *           Output only. The identifier of the Trial assigned by the service.
      *     @type int $state
      *           Output only. The detailed state of the Trial.
-     *     @type \Google\Cloud\AIPlatform\V1\Trial\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Output only. The parameters of the Trial.
      *     @type \Google\Cloud\AIPlatform\V1\Measurement $final_measurement
      *           Output only. The final measurement containing the objective value.
-     *     @type \Google\Cloud\AIPlatform\V1\Measurement[]|\Google\Protobuf\Internal\RepeatedField $measurements
+     *     @type array<\Google\Cloud\AIPlatform\V1\Measurement>|\Google\Protobuf\Internal\RepeatedField $measurements
      *           Output only. A list of measurements that are strictly lexicographically
      *           ordered by their induced tuples (steps, elapsed_duration).
      *           These are used for early stopping computations.
@@ -262,7 +262,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * Output only. The parameters of the Trial.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Trial.Parameter parameters = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Trial\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Trial\Parameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
@@ -328,7 +328,7 @@ class Trial extends \Google\Protobuf\Internal\Message
      * These are used for early stopping computations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement measurements = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Measurement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Measurement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMeasurements($var)

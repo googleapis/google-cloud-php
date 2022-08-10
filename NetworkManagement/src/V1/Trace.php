@@ -55,7 +55,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      *           user request, and validated by the data plane model.
      *           If there are multiple traces starting from different source locations, then
      *           the endpoint_info may be different between traces.
-     *     @type \Google\Cloud\NetworkManagement\V1\Step[]|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type array<\Google\Cloud\NetworkManagement\V1\Step>|\Google\Protobuf\Internal\RepeatedField $steps
      *           A trace of a test contains multiple steps from the initial state to the
      *           final state (delivered, dropped, forwarded, or aborted).
      *           The steps are ordered by the processing sequence within the simulated
@@ -133,7 +133,7 @@ class Trace extends \Google\Protobuf\Internal\Message
      * and avoid reordering or sorting them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.Step steps = 2;</code>
-     * @param \Google\Cloud\NetworkManagement\V1\Step[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkManagement\V1\Step>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSteps($var)

@@ -29,7 +29,7 @@ class ImportTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\Taxonomy[]|\Google\Protobuf\Internal\RepeatedField $taxonomies
+     *     @type array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $taxonomies
      *           Imported taxonomies.
      * }
      */
@@ -53,7 +53,7 @@ class ImportTaxonomiesResponse extends \Google\Protobuf\Internal\Message
      * Imported taxonomies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Taxonomy taxonomies = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\Taxonomy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\Taxonomy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaxonomies($var)

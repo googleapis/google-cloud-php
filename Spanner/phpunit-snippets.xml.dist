@@ -4,7 +4,7 @@
   colors="true"
   >
   <testsuites>
-    <testsuite>
+    <testsuite name="Snippets Test Suite">
       <directory>tests/Snippet</directory>
     </testsuite>
   </testsuites>

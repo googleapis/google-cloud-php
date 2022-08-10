@@ -35,7 +35,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $indexes
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $indexes
      *           The requested indexes.
      *     @type string $next_page_token
      *           A page token that may be used to request another page of results. If blank,
@@ -62,7 +62,7 @@ class ListIndexesResponse extends \Google\Protobuf\Internal\Message
      * The requested indexes.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index indexes = 1;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\Index[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\Index>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexes($var)

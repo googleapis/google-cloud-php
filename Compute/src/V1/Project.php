@@ -113,7 +113,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           [Output Only] Default service account used by VMs running in this project.
      *     @type string $description
      *           An optional textual description of the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           Restricted features enabled for use on this project.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server. This is *not* the project ID, and is just a unique ID used by Compute Engine to identify resources.
@@ -121,7 +121,7 @@ class Project extends \Google\Protobuf\Internal\Message
      *           [Output Only] Type of the resource. Always compute#project for projects.
      *     @type string $name
      *           The project ID. For example: my-example-project. Use the project ID to make requests to Compute Engine.
-     *     @type \Google\Cloud\Compute\V1\Quota[]|\Google\Protobuf\Internal\RepeatedField $quotas
+     *     @type array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $quotas
      *           [Output Only] Quotas assigned to this project.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -334,7 +334,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * Restricted features enabled for use on this project.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnabledFeatures($var)
@@ -468,7 +468,7 @@ class Project extends \Google\Protobuf\Internal\Message
      * [Output Only] Quotas assigned to this project.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Quota quotas = 125341947;</code>
-     * @param \Google\Cloud\Compute\V1\Quota[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Quota>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuotas($var)

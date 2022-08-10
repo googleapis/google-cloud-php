@@ -51,12 +51,12 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $keys
      *           A list of specific keys. Entries in `keys` should have exactly as
      *           many elements as there are columns in the primary or index key
      *           with which this `KeySet` is used.  Individual key values are
      *           encoded as described [here][google.spanner.v1.TypeCode].
-     *     @type \Google\Cloud\Spanner\V1\KeyRange[]|\Google\Protobuf\Internal\RepeatedField $ranges
+     *     @type array<\Google\Cloud\Spanner\V1\KeyRange>|\Google\Protobuf\Internal\RepeatedField $ranges
      *           A list of key ranges. See [KeyRange][google.spanner.v1.KeyRange] for more information about
      *           key range specifications.
      *     @type bool $all
@@ -91,7 +91,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue keys = 1;</code>
-     * @param \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)
@@ -119,7 +119,7 @@ class KeySet extends \Google\Protobuf\Internal\Message
      * key range specifications.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.KeyRange ranges = 2;</code>
-     * @param \Google\Cloud\Spanner\V1\KeyRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\KeyRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRanges($var)

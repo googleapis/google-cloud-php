@@ -35,7 +35,7 @@ class ListNotificationConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\NotificationConfig[]|\Google\Protobuf\Internal\RepeatedField $notification_configs
+     *     @type array<\Google\Cloud\SecurityCenter\V1\NotificationConfig>|\Google\Protobuf\Internal\RepeatedField $notification_configs
      *           Notification configs belonging to the requested parent.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -62,7 +62,7 @@ class ListNotificationConfigsResponse extends \Google\Protobuf\Internal\Message
      * Notification configs belonging to the requested parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.NotificationConfig notification_configs = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\NotificationConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\NotificationConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationConfigs($var)

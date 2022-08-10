@@ -281,7 +281,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      *           Authorization to begin a Partitioned DML transaction requires
      *           `spanner.databases.beginPartitionedDmlTransaction` permission
      *           on the `session` resource.
-     *     @type \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly $read_only
+     *     @type \Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly $read_only
      *           Transaction will not write.
      *           Authorization to begin a read-only transaction requires
      *           `spanner.databases.beginReadOnlyTransaction` permission
@@ -374,7 +374,7 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * on the `session` resource.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @return \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly|null
+     * @return \Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly|null
      */
     public function getReadOnly()
     {
@@ -393,12 +393,12 @@ class TransactionOptions extends \Google\Protobuf\Internal\Message
      * on the `session` resource.
      *
      * Generated from protobuf field <code>.google.spanner.v1.TransactionOptions.ReadOnly read_only = 2;</code>
-     * @param \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly $var
+     * @param \Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly $var
      * @return $this
      */
     public function setReadOnly($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\ReadOnly::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\TransactionOptions\PBReadOnly::class);
         $this->writeOneof(2, $var);
 
         return $this;

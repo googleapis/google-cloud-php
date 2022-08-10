@@ -17,8 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ConfidentialNodes extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether Confidential Nodes feature is enabled for all nodes in this
-     * cluster.
+     * Whether Confidential Nodes feature is enabled.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
@@ -31,8 +30,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether Confidential Nodes feature is enabled for all nodes in this
-     *           cluster.
+     *           Whether Confidential Nodes feature is enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -41,8 +39,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Confidential Nodes feature is enabled for all nodes in this
-     * cluster.
+     * Whether Confidential Nodes feature is enabled.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @return bool
@@ -53,8 +50,7 @@ class ConfidentialNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Confidential Nodes feature is enabled for all nodes in this
-     * cluster.
+     * Whether Confidential Nodes feature is enabled.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @param bool $var

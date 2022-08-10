@@ -85,13 +85,13 @@ class Filter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $projects
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $projects
      *           Optional. A set of projects of the form `projects/{project}`,
      *           specifying that usage from only this set of projects should be
      *           included in the budget. If omitted, the report will include all usage for
      *           the billing account, regardless of which project the usage occurred on.
      *           Only zero or one project can be specified currently.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $credit_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $credit_types
      *           Optional. If [Filter.credit_types_treatment][google.cloud.billing.budgets.v1beta1.Filter.credit_types_treatment] is INCLUDE_SPECIFIED_CREDITS, this is
      *           a list of credit types to be subtracted from gross cost to determine the
      *           spend for threshold calculations. See
@@ -101,14 +101,14 @@ class Filter extends \Google\Protobuf\Internal\Message
      *           this field must be empty.
      *     @type int $credit_types_treatment
      *           Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $services
      *           Optional. A set of services of the form `services/{service_id}`,
      *           specifying that usage from only this set of services should be
      *           included in the budget. If omitted, the report will include usage for
      *           all the services.
      *           The service names are available through the Catalog API:
      *           https://cloud.google.com/billing/v1/how-tos/catalog-api.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subaccounts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subaccounts
      *           Optional. A set of subaccounts of the form `billingAccounts/{account_id}`, specifying
      *           that usage from only this set of subaccounts should be included in the
      *           budget. If a subaccount is set to the name of the parent account,
@@ -163,7 +163,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * Only zero or one project can be specified currently.
      *
      * Generated from protobuf field <code>repeated string projects = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProjects($var)
@@ -201,7 +201,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * this field must be empty.
      *
      * Generated from protobuf field <code>repeated string credit_types = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCreditTypes($var)
@@ -263,7 +263,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/billing/v1/how-tos/catalog-api.
      *
      * Generated from protobuf field <code>repeated string services = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)
@@ -299,7 +299,7 @@ class Filter extends \Google\Protobuf\Internal\Message
      * subaccounts, if they exist.
      *
      * Generated from protobuf field <code>repeated string subaccounts = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubaccounts($var)

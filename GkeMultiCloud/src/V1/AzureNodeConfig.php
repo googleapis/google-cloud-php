@@ -117,7 +117,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Proxy configuration for outbound HTTP(S) traffic.
      *     @type \Google\Cloud\GkeMultiCloud\V1\AzureConfigEncryption $config_encryption
      *           Optional. Configuration related to vm config encryption.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           Optional. The initial taints assigned to nodes of this node pool.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. The initial labels assigned to nodes of this node pool. An object
@@ -391,7 +391,7 @@ class AzureNodeConfig extends \Google\Protobuf\Internal\Message
      * Optional. The initial taints assigned to nodes of this node pool.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.NodeTaint taints = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)

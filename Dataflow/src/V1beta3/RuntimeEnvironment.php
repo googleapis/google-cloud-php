@@ -169,7 +169,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      *     @type string $machine_type
      *           The machine type to use for the job. Defaults to the value from the
      *           template if not specified.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $additional_experiments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_experiments
      *           Additional experiment flags for the job, specified with the
      *           `--experiments` option.
      *     @type string $network
@@ -430,7 +430,7 @@ class RuntimeEnvironment extends \Google\Protobuf\Internal\Message
      * `--experiments` option.
      *
      * Generated from protobuf field <code>repeated string additional_experiments = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalExperiments($var)

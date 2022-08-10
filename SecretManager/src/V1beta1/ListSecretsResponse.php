@@ -42,7 +42,7 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecretManager\V1beta1\Secret[]|\Google\Protobuf\Internal\RepeatedField $secrets
+     *     @type array<\Google\Cloud\SecretManager\V1beta1\Secret>|\Google\Protobuf\Internal\RepeatedField $secrets
      *           The list of [Secrets][google.cloud.secrets.v1beta1.Secret] sorted in reverse by create_time (newest
      *           first).
      *     @type string $next_page_token
@@ -74,7 +74,7 @@ class ListSecretsResponse extends \Google\Protobuf\Internal\Message
      * first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secrets.v1beta1.Secret secrets = 1;</code>
-     * @param \Google\Cloud\SecretManager\V1beta1\Secret[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecretManager\V1beta1\Secret>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecrets($var)

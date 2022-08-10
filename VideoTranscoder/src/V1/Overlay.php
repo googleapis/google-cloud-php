@@ -37,7 +37,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Video\Transcoder\V1\Overlay\Image $image
      *           Image overlay.
-     *     @type \Google\Cloud\Video\Transcoder\V1\Overlay\Animation[]|\Google\Protobuf\Internal\RepeatedField $animations
+     *     @type array<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>|\Google\Protobuf\Internal\RepeatedField $animations
      *           List of Animations. The list should be chronological, without any time
      *           overlap.
      * }
@@ -100,7 +100,7 @@ class Overlay extends \Google\Protobuf\Internal\Message
      * overlap.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Overlay.Animation animations = 2;</code>
-     * @param \Google\Cloud\Video\Transcoder\V1\Overlay\Animation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Transcoder\V1\Overlay\Animation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnimations($var)

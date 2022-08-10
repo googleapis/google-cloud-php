@@ -67,7 +67,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      *           https://cloud.google.com/service-directory/docs/reference/rpc/google.cloud.servicedirectory.v1#resolveservicerequest.
      *     @type string $hostname
      *           Required. The hostname of the EKM replica used at TLS and HTTP layers.
-     *     @type \Google\Cloud\Kms\V1\Certificate[]|\Google\Protobuf\Internal\RepeatedField $server_certificates
+     *     @type array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $server_certificates
      *           Required. A list of leaf server certificates used to authenticate HTTPS
      *           connections to the EKM replica.
      * }
@@ -184,7 +184,7 @@ class ServiceResolver extends \Google\Protobuf\Internal\Message
      * connections to the EKM replica.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.Certificate server_certificates = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Kms\V1\Certificate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Kms\V1\Certificate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServerCertificates($var)

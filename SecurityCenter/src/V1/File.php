@@ -30,7 +30,7 @@ class File extends \Google\Protobuf\Internal\Message
     private $size = 0;
     /**
      * SHA256 hash of the first hashed_size bytes of the file encoded as a
-     * hex string.  If hashed_size == size, hash_sha256 represents the SHA256 hash
+     * hex string.  If hashed_size == size, sha256 represents the SHA256 hash
      * of the entire file.
      *
      * Generated from protobuf field <code>string sha256 = 3;</code>
@@ -70,7 +70,7 @@ class File extends \Google\Protobuf\Internal\Message
      *           Size of the file in bytes.
      *     @type string $sha256
      *           SHA256 hash of the first hashed_size bytes of the file encoded as a
-     *           hex string.  If hashed_size == size, hash_sha256 represents the SHA256 hash
+     *           hex string.  If hashed_size == size, sha256 represents the SHA256 hash
      *           of the entire file.
      *     @type int|string $hashed_size
      *           The length in bytes of the file prefix that was hashed.  If
@@ -142,7 +142,7 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * SHA256 hash of the first hashed_size bytes of the file encoded as a
-     * hex string.  If hashed_size == size, hash_sha256 represents the SHA256 hash
+     * hex string.  If hashed_size == size, sha256 represents the SHA256 hash
      * of the entire file.
      *
      * Generated from protobuf field <code>string sha256 = 3;</code>
@@ -155,7 +155,7 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * SHA256 hash of the first hashed_size bytes of the file encoded as a
-     * hex string.  If hashed_size == size, hash_sha256 represents the SHA256 hash
+     * hex string.  If hashed_size == size, sha256 represents the SHA256 hash
      * of the entire file.
      *
      * Generated from protobuf field <code>string sha256 = 3;</code>

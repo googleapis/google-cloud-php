@@ -36,7 +36,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\BareMetalSolution\V2\Network $network
      *           Network.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $used_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $used_ips
      *           All used IP addresses in this network.
      * }
      */
@@ -96,7 +96,7 @@ class NetworkUsage extends \Google\Protobuf\Internal\Message
      * All used IP addresses in this network.
      *
      * Generated from protobuf field <code>repeated string used_ips = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUsedIps($var)

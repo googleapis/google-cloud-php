@@ -38,7 +38,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      *
      *     @type int $op
      *           The operator for combining multiple filters.
-     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Filter[]|\Google\Protobuf\Internal\RepeatedField $filters
+     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $filters
      *           The list of filters to combine.
      *           Requires:
      *           * At least one filter is present.
@@ -94,7 +94,7 @@ class CompositeFilter extends \Google\Protobuf\Internal\Message
      * * At least one filter is present.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Filter filters = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\StructuredQuery\Filter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\Filter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilters($var)

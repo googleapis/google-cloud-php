@@ -75,7 +75,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function createJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,9 +91,9 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
-        $response = $client->createJob($formattedParent, $job);
+        $response = $gapicClient->createJob($formattedParent, $job);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -113,7 +113,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function createJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,11 +128,11 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $job = new Job();
         try {
-            $client->createJob($formattedParent, $job);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createJob($formattedParent, $job);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,7 +149,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function deleteJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -157,8 +157,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $client->deleteJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $gapicClient->deleteJob($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -175,7 +175,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function deleteJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -190,10 +190,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->deleteJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -210,7 +210,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function getJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -226,8 +226,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $client->getJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->getJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -245,7 +245,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -260,10 +260,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->getJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -280,7 +280,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function listJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -295,8 +295,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setJobs($jobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listJobs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listJobs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -317,7 +317,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -332,10 +332,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listJobs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listJobs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -352,7 +352,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function pauseJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -368,8 +368,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $client->pauseJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->pauseJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -387,7 +387,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function pauseJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -402,10 +402,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->pauseJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->pauseJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function resumeJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -438,8 +438,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $client->resumeJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->resumeJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -457,7 +457,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function resumeJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -472,10 +472,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->resumeJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resumeJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -492,7 +492,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function runJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -508,8 +508,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         $expectedResponse->setTimeZone($timeZone);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
-        $response = $client->runJob($formattedName);
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $response = $gapicClient->runJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -527,7 +527,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function runJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -542,10 +542,10 @@ class CloudSchedulerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
+        $formattedName = $gapicClient->jobName('[PROJECT]', '[LOCATION]', '[JOB]');
         try {
-            $client->runJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->runJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -562,7 +562,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function updateJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -579,7 +579,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $job = new Job();
-        $response = $client->updateJob($job);
+        $response = $gapicClient->updateJob($job);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -597,7 +597,7 @@ class CloudSchedulerClientTest extends GeneratedTest
     public function updateJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -614,8 +614,8 @@ class CloudSchedulerClientTest extends GeneratedTest
         // Mock request
         $job = new Job();
         try {
-            $client->updateJob($job);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateJob($job);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

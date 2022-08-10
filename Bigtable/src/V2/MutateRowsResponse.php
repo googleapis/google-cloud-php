@@ -28,7 +28,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           One or more results for Entries from the batch request.
      * }
      */
@@ -52,7 +52,7 @@ class MutateRowsResponse extends \Google\Protobuf\Internal\Message
      * One or more results for Entries from the batch request.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.MutateRowsResponse.Entry entries = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\MutateRowsResponse\Entry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

@@ -44,9 +44,9 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\Admin\V2\Cluster[]|\Google\Protobuf\Internal\RepeatedField $clusters
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\Cluster>|\Google\Protobuf\Internal\RepeatedField $clusters
      *           The list of requested clusters.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $failed_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_locations
      *           Locations from which Cluster information could not be retrieved,
      *           due to an outage or some other transient condition.
      *           Clusters from these locations may be missing from `clusters`,
@@ -76,7 +76,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of requested clusters.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.Cluster clusters = 1;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\Cluster[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\Cluster>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setClusters($var)
@@ -110,7 +110,7 @@ class ListClustersResponse extends \Google\Protobuf\Internal\Message
      * Values are of the form `projects/<project>/locations/<zone_id>`
      *
      * Generated from protobuf field <code>repeated string failed_locations = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFailedLocations($var)

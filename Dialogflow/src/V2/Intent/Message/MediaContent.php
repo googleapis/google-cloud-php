@@ -36,7 +36,7 @@ class MediaContent extends \Google\Protobuf\Internal\Message
      *
      *     @type int $media_type
      *           Optional. What type of media is the content (ie "audio").
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent\ResponseMediaObject[]|\Google\Protobuf\Internal\RepeatedField $media_objects
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent\ResponseMediaObject>|\Google\Protobuf\Internal\RepeatedField $media_objects
      *           Required. List of media objects.
      * }
      */
@@ -86,7 +86,7 @@ class MediaContent extends \Google\Protobuf\Internal\Message
      * Required. List of media objects.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.MediaContent.ResponseMediaObject media_objects = 2;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent\ResponseMediaObject[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\MediaContent\ResponseMediaObject>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMediaObjects($var)

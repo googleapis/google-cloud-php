@@ -105,6 +105,17 @@ return [
                     ],
                 ],
             ],
+            'ListSavedQueries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/datasets/*}/savedQueries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDataset' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{dataset.name=projects/*/locations/*/datasets/*}',

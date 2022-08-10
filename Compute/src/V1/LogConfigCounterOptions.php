@@ -40,7 +40,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField[]|\Google\Protobuf\Internal\RepeatedField $custom_fields
+     *     @type array<\Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField>|\Google\Protobuf\Internal\RepeatedField $custom_fields
      *           This is deprecated and has no effect. Do not use.
      *     @type string $field
      *           This is deprecated and has no effect. Do not use.
@@ -68,7 +68,7 @@ class LogConfigCounterOptions extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfigCounterOptionsCustomField custom_fields = 249651015;</code>
-     * @param \Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LogConfigCounterOptionsCustomField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomFields($var)

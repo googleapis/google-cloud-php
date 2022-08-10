@@ -27,7 +27,7 @@ class ModelService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ð5
+½:
 .google/cloud/aiplatform/v1/model_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto#google/cloud/aiplatform/v1/io.proto&google/cloud/aiplatform/v1/model.proto1google/cloud/aiplatform/v1/model_evaluation.proto7google/cloud/aiplatform/v1/model_evaluation_slice.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"¸
 UploadModelRequest9
 parent (	B)àAúA#
@@ -99,7 +99,13 @@ OutputInfo
 ImportModelEvaluationRequest7
 parent (	B\'àAúA!
 aiplatform.googleapis.com/ModelJ
-model_evaluation (2+.google.cloud.aiplatform.v1.ModelEvaluationBàA"\\
+model_evaluation (2+.google.cloud.aiplatform.v1.ModelEvaluationBàA"Ä
+\'BatchImportModelEvaluationSlicesRequestA
+parent (	B1àAúA+
+)aiplatform.googleapis.com/ModelEvaluationV
+model_evaluation_slices (20.google.cloud.aiplatform.v1.ModelEvaluationSliceBàA"Y
+(BatchImportModelEvaluationSlicesResponse-
+ imported_model_evaluation_slices (	BàA"\\
 GetModelEvaluationRequest?
 name (	B1àAúA+
 )aiplatform.googleapis.com/ModelEvaluation"¼
@@ -127,7 +133,7 @@ page_token (	-
 	read_mask (2.google.protobuf.FieldMask"
 !ListModelEvaluationSlicesResponseQ
 model_evaluation_slices (20.google.cloud.aiplatform.v1.ModelEvaluationSlice
-next_page_token (	2Ç
+next_page_token (	2ò
 ModelServiceà
 UploadModel..google.cloud.aiplatform.v1.UploadModelRequest.google.longrunning.Operation"‚Óä“6"1/v1/{parent=projects/*/locations/*}/models:upload:*ÚAparent,modelÊA3
 UploadModelResponseUploadModelOperationMetadata•
@@ -143,7 +149,8 @@ ListModels-.google.cloud.aiplatform.v1.ListModelsRequest..google.cloud.aiplatf
 MergeVersionAliases6.google.cloud.aiplatform.v1.MergeVersionAliasesRequest!.google.cloud.aiplatform.v1.Model"`‚Óä“C">/v1/{name=projects/*/locations/*/models/*}:mergeVersionAliases:*ÚAname,version_aliasesæ
 ExportModel..google.cloud.aiplatform.v1.ExportModelRequest.google.longrunning.Operation"‡‚Óä“6"1/v1/{name=projects/*/locations/*/models/*}:export:*ÚAname,output_configÊA3
 ExportModelResponseExportModelOperationMetadataä
-ImportModelEvaluation8.google.cloud.aiplatform.v1.ImportModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"d‚Óä“D"?/v1/{parent=projects/*/locations/*/models/*}/evaluations:import:*ÚAparent,model_evaluationÁ
+ImportModelEvaluation8.google.cloud.aiplatform.v1.ImportModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"d‚Óä“D"?/v1/{parent=projects/*/locations/*/models/*}/evaluations:import:*ÚAparent,model_evaluation¨
+ BatchImportModelEvaluationSlicesC.google.cloud.aiplatform.v1.BatchImportModelEvaluationSlicesRequestD.google.cloud.aiplatform.v1.BatchImportModelEvaluationSlicesResponse"y‚Óä“R"M/v1/{parent=projects/*/locations/*/models/*/evaluations/*}/slices:batchImport:*ÚAparent,model_evaluation_slicesÁ
 GetModelEvaluation5.google.cloud.aiplatform.v1.GetModelEvaluationRequest+.google.cloud.aiplatform.v1.ModelEvaluation"G‚Óä“:8/v1/{name=projects/*/locations/*/models/*/evaluations/*}ÚAnameÔ
 ListModelEvaluations7.google.cloud.aiplatform.v1.ListModelEvaluationsRequest8.google.cloud.aiplatform.v1.ListModelEvaluationsResponse"I‚Óä“:8/v1/{parent=projects/*/locations/*/models/*}/evaluationsÚAparentÙ
 GetModelEvaluationSlice:.google.cloud.aiplatform.v1.GetModelEvaluationSliceRequest0.google.cloud.aiplatform.v1.ModelEvaluationSlice"P‚Óä“CA/v1/{name=projects/*/locations/*/models/*/evaluations/*/slices/*}ÚAnameì

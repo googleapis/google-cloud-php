@@ -94,7 +94,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           Cloud CDN configuration for this BackendBucket.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
      *           Headers that the HTTP/S load balancer should add to proxied responses.
      *     @type string $description
      *           An optional textual description of the resource; provided by the client when the resource is created.
@@ -240,7 +240,7 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      * Headers that the HTTP/S load balancer should add to proxied responses.
      *
      * Generated from protobuf field <code>repeated string custom_response_headers = 387539094;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomResponseHeaders($var)

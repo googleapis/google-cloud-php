@@ -215,11 +215,15 @@ class DatastoreGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\AllocateIdsResponse
@@ -233,6 +237,10 @@ class DatastoreGapicClient
         $request->setProjectId($projectId);
         $request->setKeys($keys);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('AllocateIds', AllocateIdsResponse::class, $optionalArgs, $request)->wait();
@@ -256,13 +264,17 @@ class DatastoreGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type TransactionOptions $transactionOptions
      *           Options for a new transaction.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\BeginTransactionResponse
@@ -275,6 +287,10 @@ class DatastoreGapicClient
         $requestParamHeaders = [];
         $request->setProjectId($projectId);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         if (isset($optionalArgs['transactionOptions'])) {
             $request->setTransactionOptions($optionalArgs['transactionOptions']);
         }
@@ -320,15 +336,19 @@ class DatastoreGapicClient
      * @param array      $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type string $transaction
      *           The identifier of the transaction associated with the commit. A
      *           transaction identifier is returned by a call to
      *           [Datastore.BeginTransaction][google.datastore.v1.Datastore.BeginTransaction].
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\CommitResponse
@@ -343,6 +363,10 @@ class DatastoreGapicClient
         $request->setMode($mode);
         $request->setMutations($mutations);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         if (isset($optionalArgs['transaction'])) {
             $request->setTransaction($optionalArgs['transaction']);
         }
@@ -372,13 +396,17 @@ class DatastoreGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type ReadOptions $readOptions
      *           The options for this lookup request.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\LookupResponse
@@ -392,6 +420,10 @@ class DatastoreGapicClient
         $request->setProjectId($projectId);
         $request->setKeys($keys);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         if (isset($optionalArgs['readOptions'])) {
             $request->setReadOptions($optionalArgs['readOptions']);
         }
@@ -424,12 +456,14 @@ class DatastoreGapicClient
      *     Optional.
      *
      *     @type string $databaseId
-     *           If not empty, the ID of the database against which to make the request.
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\ReserveIdsResponse
@@ -473,11 +507,15 @@ class DatastoreGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\RollbackResponse
@@ -491,6 +529,10 @@ class DatastoreGapicClient
         $request->setProjectId($projectId);
         $request->setTransaction($transaction);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Rollback', RollbackResponse::class, $optionalArgs, $request)->wait();
@@ -519,17 +561,21 @@ class DatastoreGapicClient
      * @param array       $optionalArgs {
      *     Optional.
      *
+     *     @type string $databaseId
+     *           The ID of the database against which to make the request.
+     *
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type ReadOptions $readOptions
      *           The options for this query.
      *     @type Query $query
      *           The query to run.
      *     @type GqlQuery $gqlQuery
-     *           The GQL query to run.
+     *           The GQL query to run. This query must be a non-aggregation query.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Datastore\V1\RunQueryResponse
@@ -543,6 +589,10 @@ class DatastoreGapicClient
         $request->setProjectId($projectId);
         $request->setPartitionId($partitionId);
         $requestParamHeaders['project_id'] = $projectId;
+        if (isset($optionalArgs['databaseId'])) {
+            $request->setDatabaseId($optionalArgs['databaseId']);
+        }
+
         if (isset($optionalArgs['readOptions'])) {
             $request->setReadOptions($optionalArgs['readOptions']);
         }

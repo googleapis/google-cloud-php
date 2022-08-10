@@ -21,6 +21,26 @@ class FacetValue extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 count = 3;</code>
      */
     private $count = 0;
+    /**
+     * The minimum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double min_value = 5;</code>
+     */
+    private $min_value = 0.0;
+    /**
+     * The maximum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double max_value = 6;</code>
+     */
+    private $max_value = 0.0;
     protected $facet_value;
 
     /**
@@ -35,6 +55,18 @@ class FacetValue extends \Google\Protobuf\Internal\Message
      *           Interval value for a facet, such as [10, 20) for facet "price".
      *     @type int|string $count
      *           Number of items that have this facet value.
+     *     @type float $min_value
+     *           The minimum value in the
+     *           [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     *           Only supported on numerical facets and returned if
+     *           [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     *           is true.
+     *     @type float $max_value
+     *           The maximum value in the
+     *           [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     *           Only supported on numerical facets and returned if
+     *           [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     *           is true.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +158,74 @@ class FacetValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The minimum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double min_value = 5;</code>
+     * @return float
+     */
+    public function getMinValue()
+    {
+        return $this->min_value;
+    }
+
+    /**
+     * The minimum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double min_value = 5;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMinValue($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->min_value = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maximum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double max_value = 6;</code>
+     * @return float
+     */
+    public function getMaxValue()
+    {
+        return $this->max_value;
+    }
+
+    /**
+     * The maximum value in the
+     * [FacetValue.interval][google.cloud.retail.v2.SearchResponse.Facet.FacetValue.interval].
+     * Only supported on numerical facets and returned if
+     * [SearchRequest.FacetSpec.FacetKey.return_min_max][google.cloud.retail.v2.SearchRequest.FacetSpec.FacetKey.return_min_max]
+     * is true.
+     *
+     * Generated from protobuf field <code>double max_value = 6;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setMaxValue($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->max_value = $var;
 
         return $this;
     }

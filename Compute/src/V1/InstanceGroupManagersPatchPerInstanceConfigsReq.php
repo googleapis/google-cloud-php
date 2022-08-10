@@ -28,7 +28,7 @@ class InstanceGroupManagersPatchPerInstanceConfigsReq extends \Google\Protobuf\I
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $per_instance_configs
+     *     @type array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $per_instance_configs
      *           The list of per-instance configurations to insert or patch on this managed instance group.
      * }
      */
@@ -52,7 +52,7 @@ class InstanceGroupManagersPatchPerInstanceConfigsReq extends \Google\Protobuf\I
      * The list of per-instance configurations to insert or patch on this managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig per_instance_configs = 526265001;</code>
-     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPerInstanceConfigs($var)

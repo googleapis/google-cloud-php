@@ -89,7 +89,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           The full resource name of resource's parent.
      *     @type string $parent_display_name
      *           The human readable name of resource's parent.
-     *     @type \Google\Cloud\SecurityCenter\V1\Folder[]|\Google\Protobuf\Internal\RepeatedField $folders
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
      *           Contains a Folder message for each folder in the assets ancestry.
      *           The first folder is the deepest nested folder, and the last folder is
      *           the folder directly under the Organization.
@@ -303,7 +303,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * the folder directly under the Organization.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Folder folders = 7;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Folder[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Folder>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFolders($var)

@@ -36,7 +36,7 @@ class CompanionAds extends \Google\Protobuf\Internal\Message
      *
      *     @type int $display_requirement
      *           Indicates how many of the companions should be displayed with the ad.
-     *     @type \Google\Cloud\Video\Stitcher\V1\Companion[]|\Google\Protobuf\Internal\RepeatedField $companions
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\Companion>|\Google\Protobuf\Internal\RepeatedField $companions
      *           List of companion ads.
      * }
      */
@@ -86,7 +86,7 @@ class CompanionAds extends \Google\Protobuf\Internal\Message
      * List of companion ads.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Companion companions = 2;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\Companion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\Companion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompanions($var)

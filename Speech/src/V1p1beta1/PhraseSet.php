@@ -51,7 +51,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the phrase set.
-     *     @type \Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase[]|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $phrases
      *           A list of word and phrases.
      *     @type float $boost
      *           Hint Boost. Positive value will increase the probability that a specific
@@ -111,7 +111,7 @@ class PhraseSet extends \Google\Protobuf\Internal\Message
      * A list of word and phrases.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.PhraseSet.Phrase phrases = 2;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\PhraseSet\Phrase>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhrases($var)

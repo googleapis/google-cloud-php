@@ -76,7 +76,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $table_reference
      *           Complete BigQuery table reference.
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $identifying_fields
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $identifying_fields
      *           Table fields that may uniquely identify a row within the table. When
      *           `actions.saveFindings.outputConfig.table` is specified, the values of
      *           columns specified here are available in the output table under
@@ -94,10 +94,10 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      *           rows_limit_percent can be specified. Cannot be used in conjunction with
      *           TimespanConfig.
      *     @type int $sample_method
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $excluded_fields
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $excluded_fields
      *           References to fields excluded from scanning. This allows you to skip
      *           inspection of entire columns which you know have no findings.
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $included_fields
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $included_fields
      *           Limit scanning only to these fields.
      * }
      */
@@ -165,7 +165,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * fields such as `person.birthdate.year` are allowed.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId identifying_fields = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIdentifyingFields($var)
@@ -281,7 +281,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * inspection of entire columns which you know have no findings.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId excluded_fields = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludedFields($var)
@@ -307,7 +307,7 @@ class BigQueryOptions extends \Google\Protobuf\Internal\Message
      * Limit scanning only to these fields.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId included_fields = 7;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludedFields($var)

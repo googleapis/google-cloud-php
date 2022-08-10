@@ -202,7 +202,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *           Output only. The time when the node was created.
      *     @type \Google\Cloud\Tpu\V1\SchedulingConfig $scheduling_config
      *           The scheduling options for this node.
-     *     @type \Google\Cloud\Tpu\V1\NetworkEndpoint[]|\Google\Protobuf\Internal\RepeatedField $network_endpoints
+     *     @type array<\Google\Cloud\Tpu\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $network_endpoints
      *           Output only. The network endpoints where TPU workers can be accessed and
      *           sent work. It is recommended that Tensorflow clients of the node reach out
      *           to the 0th entry in this map first.
@@ -218,7 +218,7 @@ class Node extends \Google\Protobuf\Internal\Message
      *           the node must be created with this this field enabled.
      *     @type int $api_version
      *           Output only. The API version that created this Node.
-     *     @type \Google\Cloud\Tpu\V1\Symptom[]|\Google\Protobuf\Internal\RepeatedField $symptoms
+     *     @type array<\Google\Cloud\Tpu\V1\Symptom>|\Google\Protobuf\Internal\RepeatedField $symptoms
      *           Output only. The Symptoms that have occurred to the TPU Node.
      * }
      */
@@ -644,7 +644,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * to the 0th entry in this map first.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v1.NetworkEndpoint network_endpoints = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Tpu\V1\NetworkEndpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Tpu\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkEndpoints($var)
@@ -782,7 +782,7 @@ class Node extends \Google\Protobuf\Internal\Message
      * Output only. The Symptoms that have occurred to the TPU Node.
      *
      * Generated from protobuf field <code>repeated .google.cloud.tpu.v1.Symptom symptoms = 39 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Tpu\V1\Symptom[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Tpu\V1\Symptom>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSymptoms($var)

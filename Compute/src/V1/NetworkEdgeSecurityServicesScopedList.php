@@ -33,7 +33,7 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\NetworkEdgeSecurityService[]|\Google\Protobuf\Internal\RepeatedField $network_edge_security_services
+     *     @type array<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>|\Google\Protobuf\Internal\RepeatedField $network_edge_security_services
      *           A list of NetworkEdgeSecurityServices contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of security policies when the list is empty.
@@ -59,7 +59,7 @@ class NetworkEdgeSecurityServicesScopedList extends \Google\Protobuf\Internal\Me
      * A list of NetworkEdgeSecurityServices contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEdgeSecurityService network_edge_security_services = 35530156;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkEdgeSecurityService[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkEdgeSecurityService>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkEdgeSecurityServices($var)

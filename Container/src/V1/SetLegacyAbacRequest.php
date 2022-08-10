@@ -18,7 +18,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -50,8 +50,8 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      */
     private $enabled = false;
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * The name (project, location, cluster name) of the cluster to set legacy
+     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      */
@@ -65,7 +65,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -78,8 +78,8 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
      *     @type bool $enabled
      *           Required. Whether ABAC authorization will be enabled in the cluster.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set legacy abac.
-     *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     *           The name (project, location, cluster name) of the cluster to set legacy
+     *           abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +89,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -104,7 +104,7 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the name field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -216,8 +216,8 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * The name (project, location, cluster name) of the cluster to set legacy
+     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @return string
@@ -228,8 +228,8 @@ class SetLegacyAbacRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac.
-     * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
+     * The name (project, location, cluster name) of the cluster to set legacy
+     * abac. Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 6;</code>
      * @param string $var

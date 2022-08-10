@@ -17,7 +17,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -44,8 +44,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      */
     private $maintenance_policy = null;
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance
-     * policy.
+     * The name (project, location, cluster name) of the cluster to set
+     * maintenance policy.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
@@ -60,7 +60,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Required. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *     @type string $zone
      *           Required. The name of the Google Compute Engine
      *           [zone](https://cloud.google.com/compute/docs/zones#available) in which the
@@ -71,8 +71,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
      *           Required. The maintenance policy to be set for the cluster. An empty field
      *           clears the existing maintenance policy.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set maintenance
-     *           policy.
+     *           The name (project, location, cluster name) of the cluster to set
+     *           maintenance policy.
      *           Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
      */
@@ -83,7 +83,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -95,7 +95,7 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The Google Developers Console [project ID or project
-     * number](https://support.google.com/cloud/answer/6158840).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *
      * Generated from protobuf field <code>string project_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -204,8 +204,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance
-     * policy.
+     * The name (project, location, cluster name) of the cluster to set
+     * maintenance policy.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>
@@ -217,8 +217,8 @@ class SetMaintenancePolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance
-     * policy.
+     * The name (project, location, cluster name) of the cluster to set
+     * maintenance policy.
      * Specified in the format `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
      * Generated from protobuf field <code>string name = 5;</code>

@@ -92,7 +92,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $advertised_routes
+     *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $advertised_routes
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
      *     @type string $ip_address
@@ -138,7 +138,7 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Routes that were advertised to the remote BGP peer
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Route advertised_routes = 333393068;</code>
-     * @param \Google\Cloud\Compute\V1\Route[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedRoutes($var)

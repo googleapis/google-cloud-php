@@ -130,7 +130,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
      *           Check the Status enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\AutoscalerStatusDetails[]|\Google\Protobuf\Internal\RepeatedField $status_details
+     *     @type array<\Google\Cloud\Compute\V1\AutoscalerStatusDetails>|\Google\Protobuf\Internal\RepeatedField $status_details
      *           [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *     @type string $target
      *           URL of the managed instance group that this autoscaler will scale. This field is required when creating an autoscaler.
@@ -546,7 +546,7 @@ class Autoscaler extends \Google\Protobuf\Internal\Message
      * [Output Only] Human-readable details about the current state of the autoscaler. Read the documentation for Commonly returned status messages for examples of status messages you might encounter.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AutoscalerStatusDetails status_details = 363353845;</code>
-     * @param \Google\Cloud\Compute\V1\AutoscalerStatusDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AutoscalerStatusDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatusDetails($var)

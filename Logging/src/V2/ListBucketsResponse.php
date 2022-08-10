@@ -36,7 +36,7 @@ class ListBucketsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Logging\V2\LogBucket[]|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type array<\Google\Cloud\Logging\V2\LogBucket>|\Google\Protobuf\Internal\RepeatedField $buckets
      *           A list of buckets.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -64,7 +64,7 @@ class ListBucketsResponse extends \Google\Protobuf\Internal\Message
      * A list of buckets.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogBucket buckets = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogBucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogBucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuckets($var)

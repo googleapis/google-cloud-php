@@ -35,7 +35,7 @@ class ListMeasurementProtocolSecretsResponse extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret[]|\Google\Protobuf\Internal\RepeatedField $measurement_protocol_secrets
+     *     @type array<\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret>|\Google\Protobuf\Internal\RepeatedField $measurement_protocol_secrets
      *           A list of secrets for the parent stream specified in the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListMeasurementProtocolSecretsResponse extends \Google\Protobuf\Internal\M
      * A list of secrets for the parent stream specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.MeasurementProtocolSecret measurement_protocol_secrets = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\MeasurementProtocolSecret>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMeasurementProtocolSecrets($var)

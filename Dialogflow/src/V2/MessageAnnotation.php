@@ -36,7 +36,7 @@ class MessageAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\AnnotatedMessagePart[]|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type array<\Google\Cloud\Dialogflow\V2\AnnotatedMessagePart>|\Google\Protobuf\Internal\RepeatedField $parts
      *           The collection of annotated message parts ordered by their
      *           position in the message. You can recover the annotated message by
      *           concatenating [AnnotatedMessagePart.text].
@@ -68,7 +68,7 @@ class MessageAnnotation extends \Google\Protobuf\Internal\Message
      * concatenating [AnnotatedMessagePart.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.AnnotatedMessagePart parts = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\AnnotatedMessagePart[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\AnnotatedMessagePart>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParts($var)

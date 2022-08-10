@@ -193,4 +193,68 @@ class RecommenderGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Gets the requested Recommender Config. There is only one instance of the
+     * config for each Recommender.
+     * @param \Google\Cloud\Recommender\V1\GetRecommenderConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetRecommenderConfig(\Google\Cloud\Recommender\V1\GetRecommenderConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recommender.v1.Recommender/GetRecommenderConfig',
+        $argument,
+        ['\Google\Cloud\Recommender\V1\RecommenderConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates a Recommender Config. This will create a new revision of the
+     * config.
+     * @param \Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateRecommenderConfig(\Google\Cloud\Recommender\V1\UpdateRecommenderConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recommender.v1.Recommender/UpdateRecommenderConfig',
+        $argument,
+        ['\Google\Cloud\Recommender\V1\RecommenderConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the requested InsightTypeConfig. There is only one instance of the
+     * config for each InsightType.
+     * @param \Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetInsightTypeConfig(\Google\Cloud\Recommender\V1\GetInsightTypeConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recommender.v1.Recommender/GetInsightTypeConfig',
+        $argument,
+        ['\Google\Cloud\Recommender\V1\InsightTypeConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates an InsightTypeConfig change. This will create a new revision of the
+     * config.
+     * @param \Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateInsightTypeConfig(\Google\Cloud\Recommender\V1\UpdateInsightTypeConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.recommender.v1.Recommender/UpdateInsightTypeConfig',
+        $argument,
+        ['\Google\Cloud\Recommender\V1\InsightTypeConfig', 'decode'],
+        $metadata, $options);
+    }
+
 }

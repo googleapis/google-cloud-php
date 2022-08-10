@@ -17,7 +17,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://developers.google.com/console/help/new/#projectnumber).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -49,7 +49,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      */
     private $node_pool = null;
     /**
-     * The parent (project, location, cluster id) where the node pool will be
+     * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
      * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
@@ -65,7 +65,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -78,7 +78,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NodePool $node_pool
      *           Required. The node pool to create.
      *     @type string $parent
-     *           The parent (project, location, cluster id) where the node pool will be
+     *           The parent (project, location, cluster name) where the node pool will be
      *           created. Specified in the format
      *           `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      * }
@@ -90,7 +90,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://developers.google.com/console/help/new/#projectnumber).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -105,7 +105,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Deprecated. The Google Developers Console [project ID or project
-     * number](https://developers.google.com/console/help/new/#projectnumber).
+     * number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * This field has been deprecated and replaced by the parent field.
      *
      * Generated from protobuf field <code>string project_id = 1 [deprecated = true];</code>
@@ -227,7 +227,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent (project, location, cluster id) where the node pool will be
+     * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
      * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *
@@ -240,7 +240,7 @@ class CreateNodePoolRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent (project, location, cluster id) where the node pool will be
+     * The parent (project, location, cluster name) where the node pool will be
      * created. Specified in the format
      * `projects/&#42;&#47;locations/&#42;&#47;clusters/&#42;`.
      *

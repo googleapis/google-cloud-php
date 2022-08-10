@@ -172,7 +172,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. Size of the backup in bytes.
      *     @type int $state
      *           Output only. The current state of the backup.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $referencing_databases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_databases
      *           Output only. The names of the restored databases that reference the backup.
      *           The database names are of
      *           the form `projects/<project>/instances/<instance>/databases/<database>`.
@@ -184,7 +184,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The encryption information for the backup.
      *     @type int $database_dialect
      *           Output only. The database dialect information for the backup.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $referencing_backups
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $referencing_backups
      *           Output only. The names of the destination backups being created by copying
      *           this source backup. The backup names are of the form
      *           `projects/<project>/instances/<instance>/backups/<backup>`.
@@ -492,7 +492,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_databases = 7 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReferencingDatabases($var)
@@ -592,7 +592,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * destination backup is deleted), the reference to the backup is removed.
      *
      * Generated from protobuf field <code>repeated string referencing_backups = 11 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReferencingBackups($var)

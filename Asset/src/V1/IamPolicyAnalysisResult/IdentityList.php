@@ -46,12 +46,12 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity[]|\Google\Protobuf\Internal\RepeatedField $identities
+     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity>|\Google\Protobuf\Internal\RepeatedField $identities
      *           Only the identities that match one of the following conditions will be
      *           presented:
      *           - The identity_selector, if it is specified in request;
      *           - Otherwise, identities reachable from the policy binding's members.
-     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge[]|\Google\Protobuf\Internal\RepeatedField $group_edges
+     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>|\Google\Protobuf\Internal\RepeatedField $group_edges
      *           Group identity edges of the graph starting from the binding's
      *           group members to any node of the
      *           [identities][google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList.identities].
@@ -90,7 +90,7 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * - Otherwise, identities reachable from the policy binding's members.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Identity identities = 1;</code>
-     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Identity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIdentities($var)
@@ -134,7 +134,7 @@ class IdentityList extends \Google\Protobuf\Internal\Message
      * output_group_edges option is enabled in request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.Edge group_edges = 2;</code>
-     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGroupEdges($var)

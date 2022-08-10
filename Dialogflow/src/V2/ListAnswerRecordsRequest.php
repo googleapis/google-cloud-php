@@ -24,15 +24,15 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. Filters to restrict results to specific answer records.
-     * Filter on answer record type. Currently predicates on `type` is supported,
-     * valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`.
+     * Optional. Filters to restrict results to specific answer records.
+     * Marked deprecated as it hasn't been, and isn't currently, supported.
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
+     * @deprecated
      */
-    private $filter = '';
+    protected $filter = '';
     /**
      * Optional. The maximum number of records to return in a single page.
      * The server may return fewer records than this. If unspecified, we use 10.
@@ -62,9 +62,8 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
      *           chronological order. Format: `projects/<Project ID>/locations/<Location
      *           ID>`.
      *     @type string $filter
-     *           Required. Filters to restrict results to specific answer records.
-     *           Filter on answer record type. Currently predicates on `type` is supported,
-     *           valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`.
+     *           Optional. Filters to restrict results to specific answer records.
+     *           Marked deprecated as it hasn't been, and isn't currently, supported.
      *           For more information about filtering, see
      *           [API Filtering](https://aip.dev/160).
      *     @type int $page_size
@@ -114,33 +113,35 @@ class ListAnswerRecordsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Filters to restrict results to specific answer records.
-     * Filter on answer record type. Currently predicates on `type` is supported,
-     * valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`.
+     * Optional. Filters to restrict results to specific answer records.
+     * Marked deprecated as it hasn't been, and isn't currently, supported.
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
+     * @deprecated
      */
     public function getFilter()
     {
+        @trigger_error('filter is deprecated.', E_USER_DEPRECATED);
         return $this->filter;
     }
 
     /**
-     * Required. Filters to restrict results to specific answer records.
-     * Filter on answer record type. Currently predicates on `type` is supported,
-     * valid values are `ARTICLE_ANSWER`, `FAQ_ANSWER`.
+     * Optional. Filters to restrict results to specific answer records.
+     * Marked deprecated as it hasn't been, and isn't currently, supported.
      * For more information about filtering, see
      * [API Filtering](https://aip.dev/160).
      *
-     * Generated from protobuf field <code>string filter = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string filter = 2 [deprecated = true, (.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setFilter($var)
     {
+        @trigger_error('filter is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->filter = $var;
 

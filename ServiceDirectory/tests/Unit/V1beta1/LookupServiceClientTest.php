@@ -72,7 +72,7 @@ class LookupServiceClientTest extends GeneratedTest
     public function resolveServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -80,8 +80,8 @@ class LookupServiceClientTest extends GeneratedTest
         $expectedResponse = new ResolveServiceResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
-        $response = $client->resolveService($formattedName);
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
+        $response = $gapicClient->resolveService($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -99,7 +99,7 @@ class LookupServiceClientTest extends GeneratedTest
     public function resolveServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,10 +114,10 @@ class LookupServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
+        $formattedName = $gapicClient->serviceName('[PROJECT]', '[LOCATION]', '[NAMESPACE]', '[SERVICE]');
         try {
-            $client->resolveService($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resolveService($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

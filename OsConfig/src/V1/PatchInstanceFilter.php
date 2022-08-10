@@ -66,18 +66,18 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      *     @type bool $all
      *           Target all VM instances in the project. If true, no other criteria is
      *           permitted.
-     *     @type \Google\Cloud\OsConfig\V1\PatchInstanceFilter\GroupLabel[]|\Google\Protobuf\Internal\RepeatedField $group_labels
+     *     @type array<\Google\Cloud\OsConfig\V1\PatchInstanceFilter\GroupLabel>|\Google\Protobuf\Internal\RepeatedField $group_labels
      *           Targets VM instances matching ANY of these GroupLabels. This allows
      *           targeting of disparate groups of VM instances.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $zones
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $zones
      *           Targets VM instances in ANY of these zones. Leave empty to target VM
      *           instances in any zone.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           Targets any of the VM instances specified. Instances are specified by their
      *           URI in the form `zones/[ZONE]/instances/[INSTANCE_NAME]`,
      *           `projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`, or
      *           `https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_name_prefixes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_name_prefixes
      *           Targets VMs whose name starts with one of these prefixes. Similar to
      *           labels, this is another way to group VMs when targeting configs, for
      *           example prefix="prod-".
@@ -133,7 +133,7 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      * targeting of disparate groups of VM instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.PatchInstanceFilter.GroupLabel group_labels = 2;</code>
-     * @param \Google\Cloud\OsConfig\V1\PatchInstanceFilter\GroupLabel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\PatchInstanceFilter\GroupLabel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGroupLabels($var)
@@ -161,7 +161,7 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      * instances in any zone.
      *
      * Generated from protobuf field <code>repeated string zones = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setZones($var)
@@ -193,7 +193,7 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      * `https://www.googleapis.com/compute/v1/projects/[PROJECT_ID]/zones/[ZONE]/instances/[INSTANCE_NAME]`
      *
      * Generated from protobuf field <code>repeated string instances = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -223,7 +223,7 @@ class PatchInstanceFilter extends \Google\Protobuf\Internal\Message
      * example prefix="prod-".
      *
      * Generated from protobuf field <code>repeated string instance_name_prefixes = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceNamePrefixes($var)

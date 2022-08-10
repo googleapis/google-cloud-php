@@ -49,7 +49,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      *           extension suffix corresponding to the `Manifest.type`.
      *     @type int $type
      *           Required. Type of the manifest, can be `HLS` or `DASH`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $mux_streams
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mux_streams
      *           Required. List of user given `MuxStream.key`s that should appear in this manifest.
      *           When `Manifest.type` is `HLS`, a media manifest with name `MuxStream.key`
      *           and `.m3u8` extension is generated for each element of the
@@ -136,7 +136,7 @@ class Manifest extends \Google\Protobuf\Internal\Message
      * `Manifest.mux_streams`.
      *
      * Generated from protobuf field <code>repeated string mux_streams = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMuxStreams($var)

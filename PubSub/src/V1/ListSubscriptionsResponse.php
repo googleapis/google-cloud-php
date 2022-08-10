@@ -36,7 +36,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\PubSub\V1\Subscription[]|\Google\Protobuf\Internal\RepeatedField $subscriptions
+     *     @type array<\Google\Cloud\PubSub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $subscriptions
      *           The subscriptions that match the request.
      *     @type string $next_page_token
      *           If not empty, indicates that there may be more subscriptions that match
@@ -64,7 +64,7 @@ class ListSubscriptionsResponse extends \Google\Protobuf\Internal\Message
      * The subscriptions that match the request.
      *
      * Generated from protobuf field <code>repeated .google.pubsub.v1.Subscription subscriptions = 1;</code>
-     * @param \Google\Cloud\PubSub\V1\Subscription[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PubSub\V1\Subscription>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubscriptions($var)

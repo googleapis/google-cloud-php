@@ -77,7 +77,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           Which collection ids are being exported.
      *     @type string $output_uri_prefix
      *           Where the entities are being exported to.
@@ -275,7 +275,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection ids are being exported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCollectionIds($var)

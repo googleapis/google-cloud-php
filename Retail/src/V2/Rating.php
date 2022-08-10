@@ -59,7 +59,7 @@ class Rating extends \Google\Protobuf\Internal\Message
      *           The average rating of the [Product][google.cloud.retail.v2.Product].
      *           The rating is scaled at 1-5. Otherwise, an INVALID_ARGUMENT error is
      *           returned.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $rating_histogram
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $rating_histogram
      *           List of rating counts per rating value (index = rating - 1). The list is
      *           empty if there is no rating. If the list is non-empty, its size is
      *           always 5. Otherwise, an INVALID_ARGUMENT error is returned.
@@ -160,7 +160,7 @@ class Rating extends \Google\Protobuf\Internal\Message
      * ratings with 2 star, and so on.
      *
      * Generated from protobuf field <code>repeated int32 rating_histogram = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRatingHistogram($var)

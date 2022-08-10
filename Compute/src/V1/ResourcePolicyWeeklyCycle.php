@@ -28,7 +28,7 @@ class ResourcePolicyWeeklyCycle extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek[]|\Google\Protobuf\Internal\RepeatedField $day_of_weeks
+     *     @type array<\Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek>|\Google\Protobuf\Internal\RepeatedField $day_of_weeks
      *           Up to 7 intervals/windows, one for each day of the week.
      * }
      */
@@ -52,7 +52,7 @@ class ResourcePolicyWeeklyCycle extends \Google\Protobuf\Internal\Message
      * Up to 7 intervals/windows, one for each day of the week.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourcePolicyWeeklyCycleDayOfWeek day_of_weeks = 257871834;</code>
-     * @param \Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ResourcePolicyWeeklyCycleDayOfWeek>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDayOfWeeks($var)

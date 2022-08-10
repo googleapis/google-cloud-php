@@ -26,7 +26,7 @@ namespace Google\Cloud\Core;
  * $int64 = new Int64('9223372036854775807');
  * ```
  */
-class Int64
+class Int64 implements \JsonSerializable
 {
     /**
      * @var string
@@ -62,6 +62,18 @@ class Int64
      * @access private
      */
     public function __toString()
+    {
+        return $this->value;
+    }
+
+    /**
+     * Implement JsonSerializable by returning the 64 bit integer as a string
+     *
+     * @return string
+     * @access private
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
     {
         return $this->value;
     }

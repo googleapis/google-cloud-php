@@ -78,7 +78,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function deleteBreakpointTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,7 +89,7 @@ class Debugger2ClientTest extends GeneratedTest
         $debuggeeId = 'debuggeeId-997255898';
         $breakpointId = 'breakpointId498424873';
         $clientVersion = 'clientVersion-1506231196';
-        $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $gapicClient->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -110,7 +110,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function deleteBreakpointExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,8 +129,8 @@ class Debugger2ClientTest extends GeneratedTest
         $breakpointId = 'breakpointId498424873';
         $clientVersion = 'clientVersion-1506231196';
         try {
-            $client->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -147,7 +147,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function getBreakpointTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -158,7 +158,7 @@ class Debugger2ClientTest extends GeneratedTest
         $debuggeeId = 'debuggeeId-997255898';
         $breakpointId = 'breakpointId498424873';
         $clientVersion = 'clientVersion-1506231196';
-        $response = $client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+        $response = $gapicClient->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,7 +180,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function getBreakpointExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -199,8 +199,8 @@ class Debugger2ClientTest extends GeneratedTest
         $breakpointId = 'breakpointId498424873';
         $clientVersion = 'clientVersion-1506231196';
         try {
-            $client->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBreakpoint($debuggeeId, $breakpointId, $clientVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -217,7 +217,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function listBreakpointsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -229,7 +229,7 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock request
         $debuggeeId = 'debuggeeId-997255898';
         $clientVersion = 'clientVersion-1506231196';
-        $response = $client->listBreakpoints($debuggeeId, $clientVersion);
+        $response = $gapicClient->listBreakpoints($debuggeeId, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -249,7 +249,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function listBreakpointsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -267,8 +267,8 @@ class Debugger2ClientTest extends GeneratedTest
         $debuggeeId = 'debuggeeId-997255898';
         $clientVersion = 'clientVersion-1506231196';
         try {
-            $client->listBreakpoints($debuggeeId, $clientVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBreakpoints($debuggeeId, $clientVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -285,7 +285,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function listDebuggeesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -295,7 +295,7 @@ class Debugger2ClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $clientVersion = 'clientVersion-1506231196';
-        $response = $client->listDebuggees($project, $clientVersion);
+        $response = $gapicClient->listDebuggees($project, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -315,7 +315,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function listDebuggeesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -333,8 +333,8 @@ class Debugger2ClientTest extends GeneratedTest
         $project = 'project-309310695';
         $clientVersion = 'clientVersion-1506231196';
         try {
-            $client->listDebuggees($project, $clientVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDebuggees($project, $clientVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -351,7 +351,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function setBreakpointTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -362,7 +362,7 @@ class Debugger2ClientTest extends GeneratedTest
         $debuggeeId = 'debuggeeId-997255898';
         $breakpoint = new Breakpoint();
         $clientVersion = 'clientVersion-1506231196';
-        $response = $client->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+        $response = $gapicClient->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -384,7 +384,7 @@ class Debugger2ClientTest extends GeneratedTest
     public function setBreakpointExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -403,8 +403,8 @@ class Debugger2ClientTest extends GeneratedTest
         $breakpoint = new Breakpoint();
         $clientVersion = 'clientVersion-1506231196';
         try {
-            $client->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setBreakpoint($debuggeeId, $breakpoint, $clientVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

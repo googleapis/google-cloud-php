@@ -23,8 +23,8 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
      */
     private $username = '';
     /**
-     * Input only. The credentials password. This is write only and can not be read in a GET
-     * operation.
+     * Input only. The credentials password. This is write only and can not be
+     * read in a GET operation.
      *
      * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -51,8 +51,8 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
      *     @type string $username
      *           The credentials username.
      *     @type string $password
-     *           Input only. The credentials password. This is write only and can not be read in a GET
-     *           operation.
+     *           Input only. The credentials password. This is write only and can not be
+     *           read in a GET operation.
      *     @type string $vcenter_ip
      *           The ip address of the vcenter this Source represents.
      *     @type string $thumbprint
@@ -91,8 +91,8 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The credentials password. This is write only and can not be read in a GET
-     * operation.
+     * Input only. The credentials password. This is write only and can not be
+     * read in a GET operation.
      *
      * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -103,8 +103,8 @@ class VmwareSourceDetails extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. The credentials password. This is write only and can not be read in a GET
-     * operation.
+     * Input only. The credentials password. This is write only and can not be
+     * read in a GET operation.
      *
      * Generated from protobuf field <code>string password = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var

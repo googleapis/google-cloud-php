@@ -91,7 +91,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *     @type string $job_trigger_name
      *           If created by a job trigger, the resource name of the trigger that
      *           instantiated the job.
-     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           A stream of errors encountered running the job.
      * }
      */
@@ -391,7 +391,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * A stream of errors encountered running the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
-     * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

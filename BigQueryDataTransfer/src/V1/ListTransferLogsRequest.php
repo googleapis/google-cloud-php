@@ -65,7 +65,7 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      *           `page_token` value to request the next page of list results.
      *     @type int $page_size
      *           Page size. The default page size is the maximum value of 1000 results.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $message_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $message_types
      *           Message types to return. If not populated - INFO, WARNING and ERROR
      *           messages are returned.
      * }
@@ -182,7 +182,7 @@ class ListTransferLogsRequest extends \Google\Protobuf\Internal\Message
      * messages are returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferMessage.MessageSeverity message_types = 6;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMessageTypes($var)

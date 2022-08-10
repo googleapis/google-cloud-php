@@ -35,7 +35,7 @@ class ListBigQueryExportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\BigQueryExport[]|\Google\Protobuf\Internal\RepeatedField $big_query_exports
+     *     @type array<\Google\Cloud\SecurityCenter\V1\BigQueryExport>|\Google\Protobuf\Internal\RepeatedField $big_query_exports
      *           The BigQuery exports from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListBigQueryExportsResponse extends \Google\Protobuf\Internal\Message
      * The BigQuery exports from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.BigQueryExport big_query_exports = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\BigQueryExport[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\BigQueryExport>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBigQueryExports($var)

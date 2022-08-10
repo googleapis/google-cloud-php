@@ -87,7 +87,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      *           when the agent or VM unexpectedly restarts while applying OS policies.
      *           * `internal-service-errors`: Internal service errors were encountered
      *           while attempting to apply the policy.
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance[]|\Google\Protobuf\Internal\RepeatedField $os_policy_resource_compliances
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance>|\Google\Protobuf\Internal\RepeatedField $os_policy_resource_compliances
      *           Compliance data for each resource within the policy that is applied to
      *           the VM.
      * }
@@ -226,7 +226,7 @@ class OSPolicyCompliance extends \Google\Protobuf\Internal\Message
      * the VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance os_policy_resource_compliances = 4;</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOsPolicyResourceCompliances($var)

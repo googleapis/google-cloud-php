@@ -200,7 +200,7 @@ class InstanceAdminGrpcClient extends \Grpc\BaseStub {
      * [Instance][google.spanner.admin.instance.v1.Instance], if successful.
      *
      * Authorization requires `spanner.instances.update` permission on
-     * resource [name][google.spanner.admin.instance.v1.Instance.name].
+     * the resource [name][google.spanner.admin.instance.v1.Instance.name].
      * @param \Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

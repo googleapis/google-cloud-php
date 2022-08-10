@@ -52,7 +52,7 @@ class Card extends \Google\Protobuf\Internal\Message
      *           Optional. The subtitle of the card.
      *     @type string $image_uri
      *           Optional. The public URI to an image file for the card.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button[]|\Google\Protobuf\Internal\RepeatedField $buttons
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button>|\Google\Protobuf\Internal\RepeatedField $buttons
      *           Optional. The collection of card buttons.
      * }
      */
@@ -154,7 +154,7 @@ class Card extends \Google\Protobuf\Internal\Message
      * Optional. The collection of card buttons.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Card.Button buttons = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\Card\Button>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setButtons($var)

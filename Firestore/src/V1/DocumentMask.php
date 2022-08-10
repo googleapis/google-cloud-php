@@ -33,7 +33,7 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $field_paths
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $field_paths
      *           The list of field paths in the mask. See [Document.fields][google.firestore.v1.Document.fields] for a field
      *           path syntax reference.
      * }
@@ -60,7 +60,7 @@ class DocumentMask extends \Google\Protobuf\Internal\Message
      * path syntax reference.
      *
      * Generated from protobuf field <code>repeated string field_paths = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldPaths($var)

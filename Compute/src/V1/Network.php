@@ -46,6 +46,12 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $enable_ula_internal_ipv6 = null;
     /**
+     * [Output Only] URL of the firewall policy the network is associated with.
+     *
+     * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
+     */
+    private $firewall_policy = null;
+    /**
      * [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *
      * Generated from protobuf field <code>optional string gateway_i_pv4 = 178678877;</code>
@@ -135,6 +141,8 @@ class Network extends \Google\Protobuf\Internal\Message
      *           An optional description of this resource. Provide this field when you create the resource.
      *     @type bool $enable_ula_internal_ipv6
      *           Enable ULA internal ipv6 on this network. Enabling this feature will assign a /48 from google defined ULA prefix fd20::/20. .
+     *     @type string $firewall_policy
+     *           [Output Only] URL of the firewall policy the network is associated with.
      *     @type string $gateway_i_pv4
      *           [Output Only] The gateway address for default routing out of the network, selected by GCP.
      *     @type int|string $id
@@ -150,7 +158,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $network_firewall_policy_enforcement_order
      *           The network firewall policy enforcement order. Can be either AFTER_CLASSIC_FIREWALL or BEFORE_CLASSIC_FIREWALL. Defaults to AFTER_CLASSIC_FIREWALL if the field is not specified.
      *           Check the NetworkFirewallPolicyEnforcementOrder enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $peerings
+     *     @type array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $peerings
      *           [Output Only] A list of network peerings for the resource.
      *     @type \Google\Cloud\Compute\V1\NetworkRoutingConfig $routing_config
      *           The network-level routing configuration for this network. Used by Cloud Router to determine what type of network-wide routing behavior to enforce.
@@ -158,7 +166,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $self_link_with_id
      *           [Output Only] Server-defined URL for this resource with the resource id.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subnetworks
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subnetworks
      *           [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      * }
      */
@@ -343,6 +351,42 @@ class Network extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_ula_internal_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the firewall policy the network is associated with.
+     *
+     * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
+     * @return string
+     */
+    public function getFirewallPolicy()
+    {
+        return isset($this->firewall_policy) ? $this->firewall_policy : '';
+    }
+
+    public function hasFirewallPolicy()
+    {
+        return isset($this->firewall_policy);
+    }
+
+    public function clearFirewallPolicy()
+    {
+        unset($this->firewall_policy);
+    }
+
+    /**
+     * [Output Only] URL of the firewall policy the network is associated with.
+     *
+     * Generated from protobuf field <code>optional string firewall_policy = 498173265;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFirewallPolicy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->firewall_policy = $var;
 
         return $this;
     }
@@ -616,7 +660,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of network peerings for the resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkPeering peerings = 69883187;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkPeering[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkPeering>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPeerings($var)
@@ -750,7 +794,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * [Output Only] Server-defined fully-qualified URLs for all subnetworks in this VPC network.
      *
      * Generated from protobuf field <code>repeated string subnetworks = 415853125;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubnetworks($var)

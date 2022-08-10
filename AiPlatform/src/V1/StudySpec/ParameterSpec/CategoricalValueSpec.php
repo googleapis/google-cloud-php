@@ -25,8 +25,8 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * A default value for a `CATEGORICAL` parameter that is assumed to be a
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional string default_value = 3;</code>
      */
@@ -38,14 +38,14 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. The list of possible categories.
      *     @type string $default_value
      *           A default value for a `CATEGORICAL` parameter that is assumed to be a
      *           relatively good starting point.  Unset value signals that there is no
      *           offered starting point.
-     *           Currently only supported by the Vizier service. Not supported by
-     *           HyperparamterTuningJob or TrainingPipeline.
+     *           Currently only supported by the Vertex AI Vizier service. Not supported
+     *           by HyperparameterTuningJob or TrainingPipeline.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,7 +68,7 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * Required. The list of possible categories.
      *
      * Generated from protobuf field <code>repeated string values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)
@@ -83,8 +83,8 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * A default value for a `CATEGORICAL` parameter that is assumed to be a
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional string default_value = 3;</code>
      * @return string
@@ -108,8 +108,8 @@ class CategoricalValueSpec extends \Google\Protobuf\Internal\Message
      * A default value for a `CATEGORICAL` parameter that is assumed to be a
      * relatively good starting point.  Unset value signals that there is no
      * offered starting point.
-     * Currently only supported by the Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * Currently only supported by the Vertex AI Vizier service. Not supported
+     * by HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>optional string default_value = 3;</code>
      * @param string $var

@@ -36,7 +36,7 @@ class KMapEstimationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $k_map_estimation_histogram
+     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $k_map_estimation_histogram
      *           The intervals [min_anonymity, max_anonymity] do not overlap. If a value
      *           doesn't correspond to any such interval, the associated frequency is
      *           zero. For example, the following records:
@@ -81,7 +81,7 @@ class KMapEstimationResult extends \Google\Protobuf\Internal\Message
      * larger than 10.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationHistogramBucket k_map_estimation_histogram = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKMapEstimationHistogram($var)

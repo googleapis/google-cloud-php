@@ -58,9 +58,9 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      *           URI of a Compute Engine instance or network endpoint.
      *     @type int $health_check_firewall_state
      *           State of the health check firewall configuration.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $health_check_allowing_firewall_rules
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_check_allowing_firewall_rules
      *           A list of firewall rule URIs allowing probes from health check IP ranges.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $health_check_blocking_firewall_rules
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $health_check_blocking_firewall_rules
      *           A list of firewall rule URIs blocking probes from health check IP ranges.
      * }
      */
@@ -162,7 +162,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs allowing probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_allowing_firewall_rules = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthCheckAllowingFirewallRules($var)
@@ -188,7 +188,7 @@ class LoadBalancerBackend extends \Google\Protobuf\Internal\Message
      * A list of firewall rule URIs blocking probes from health check IP ranges.
      *
      * Generated from protobuf field <code>repeated string health_check_blocking_firewall_rules = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthCheckBlockingFirewallRules($var)

@@ -83,6 +83,16 @@ return [
                     'resourcesGetMethod' => 'getOperations',
                 ],
             ],
+            'ListDatabaseRoles' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabaseRoles',
+                ],
+            ],
             'ListDatabases' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

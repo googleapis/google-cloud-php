@@ -85,7 +85,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -106,7 +106,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $pipeline = new Pipeline();
-        $response = $client->runPipeline($pipeline);
+        $response = $gapicClient->runPipeline($pipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -149,7 +149,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -172,7 +172,7 @@ class WorkflowsServiceV2BetaClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $pipeline = new Pipeline();
-        $response = $client->runPipeline($pipeline);
+        $response = $gapicClient->runPipeline($pipeline);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

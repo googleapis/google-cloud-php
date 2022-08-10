@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
 {
     /**
-     * GCFS (Google Container File System, a.k.a Riptide) options.
+     * GCFS (Google Container File System, also known as Riptide) options.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 1;</code>
      */
@@ -29,7 +29,7 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
-     *           GCFS (Google Container File System, a.k.a Riptide) options.
+     *           GCFS (Google Container File System, also known as Riptide) options.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCFS (Google Container File System, a.k.a Riptide) options.
+     * GCFS (Google Container File System, also known as Riptide) options.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 1;</code>
      * @return \Google\Cloud\Container\V1\GcfsConfig|null
@@ -59,7 +59,7 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * GCFS (Google Container File System, a.k.a Riptide) options.
+     * GCFS (Google Container File System, also known as Riptide) options.
      *
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 1;</code>
      * @param \Google\Cloud\Container\V1\GcfsConfig $var

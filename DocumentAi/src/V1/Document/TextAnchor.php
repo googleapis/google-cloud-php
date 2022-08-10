@@ -38,7 +38,7 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $text_segments
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $text_segments
      *           The text segments from the
      *           [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type string $content
@@ -69,7 +69,7 @@ class TextAnchor extends \Google\Protobuf\Internal\Message
      * [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextAnchor.TextSegment text_segments = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\TextAnchor\TextSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTextSegments($var)

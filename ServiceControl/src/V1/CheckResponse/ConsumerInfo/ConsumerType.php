@@ -76,6 +76,4 @@ class ConsumerType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConsumerType::class, \Google\Cloud\ServiceControl\V1\CheckResponse_ConsumerInfo_ConsumerType::class);
 

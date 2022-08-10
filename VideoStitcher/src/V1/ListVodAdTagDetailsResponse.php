@@ -34,7 +34,7 @@ class ListVodAdTagDetailsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Video\Stitcher\V1\VodAdTagDetail[]|\Google\Protobuf\Internal\RepeatedField $vod_ad_tag_details
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\VodAdTagDetail>|\Google\Protobuf\Internal\RepeatedField $vod_ad_tag_details
      *           A List of ad tag details.
      *     @type string $next_page_token
      *           The pagination token.
@@ -60,7 +60,7 @@ class ListVodAdTagDetailsResponse extends \Google\Protobuf\Internal\Message
      * A List of ad tag details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.VodAdTagDetail vod_ad_tag_details = 1;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\VodAdTagDetail[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\VodAdTagDetail>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVodAdTagDetails($var)

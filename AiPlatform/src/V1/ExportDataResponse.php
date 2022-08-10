@@ -28,7 +28,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exported_files
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exported_files
      *           All of the files that are exported in this export operation.
      * }
      */
@@ -52,7 +52,7 @@ class ExportDataResponse extends \Google\Protobuf\Internal\Message
      * All of the files that are exported in this export operation.
      *
      * Generated from protobuf field <code>repeated string exported_files = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExportedFiles($var)

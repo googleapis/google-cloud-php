@@ -36,7 +36,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
     /**
      * The observation noise level of the study.
      * Currently only supported by the Vertex AI Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ObservationNoise observation_noise = 6;</code>
      */
@@ -61,16 +61,16 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      *           The automated early stopping spec using median rule.
      *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ConvexAutomatedStoppingSpec $convex_automated_stopping_spec
      *           The automated early stopping spec using convex stopping rule.
-     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Required. Metric specs for the Study.
-     *     @type \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Required. The set of parameters to tune.
      *     @type int $algorithm
      *           The search algorithm specified for the Study.
      *     @type int $observation_noise
      *           The observation noise level of the study.
      *           Currently only supported by the Vertex AI Vizier service. Not supported by
-     *           HyperparamterTuningJob or TrainingPipeline.
+     *           HyperparameterTuningJob or TrainingPipeline.
      *     @type int $measurement_selection_type
      *           Describe which measurement selection type will be used
      * }
@@ -188,7 +188,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. Metric specs for the Study.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.MetricSpec metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\StudySpec\MetricSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)
@@ -214,7 +214,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
      * Required. The set of parameters to tune.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.StudySpec.ParameterSpec parameters = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\StudySpec\ParameterSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
@@ -254,7 +254,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
     /**
      * The observation noise level of the study.
      * Currently only supported by the Vertex AI Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ObservationNoise observation_noise = 6;</code>
      * @return int
@@ -267,7 +267,7 @@ class StudySpec extends \Google\Protobuf\Internal\Message
     /**
      * The observation noise level of the study.
      * Currently only supported by the Vertex AI Vizier service. Not supported by
-     * HyperparamterTuningJob or TrainingPipeline.
+     * HyperparameterTuningJob or TrainingPipeline.
      *
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.StudySpec.ObservationNoise observation_noise = 6;</code>
      * @param int $var

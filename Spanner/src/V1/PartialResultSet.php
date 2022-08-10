@@ -127,7 +127,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\V1\ResultSetMetadata $metadata
      *           Metadata about the result set, such as row type information.
      *           Only present in the first response.
-     *     @type \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $values
      *           A streamed result set consists of a stream of values, which might
      *           be split into many `PartialResultSet` messages to accommodate
      *           large rows and/or large values. Every N complete values defines a
@@ -380,7 +380,7 @@ class PartialResultSet extends \Google\Protobuf\Internal\Message
      * field value `"World" = "W" + "orl" + "d"`.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Value values = 2;</code>
-     * @param \Google\Protobuf\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

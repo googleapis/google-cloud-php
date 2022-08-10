@@ -34,7 +34,7 @@ class ListOSPolicyAssignmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignment[]|\Google\Protobuf\Internal\RepeatedField $os_policy_assignments
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment>|\Google\Protobuf\Internal\RepeatedField $os_policy_assignments
      *           The list of assignments
      *     @type string $next_page_token
      *           The pagination token to retrieve the next page of OS policy assignments.
@@ -60,7 +60,7 @@ class ListOSPolicyAssignmentsResponse extends \Google\Protobuf\Internal\Message
      * The list of assignments
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignment os_policy_assignments = 1;</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOsPolicyAssignments($var)

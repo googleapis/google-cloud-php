@@ -10,6 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Parameters that describe the nodes in a cluster.
+ * GKE Autopilot clusters do not
+ * recognize parameters in `NodeConfig`. Use
+ * [AutoprovisioningNodePoolDefaults][google.container.v1.AutoprovisioningNodePoolDefaults]
+ * instead.
  *
  * Generated from protobuf message <code>google.container.v1.NodeConfig</code>
  */
@@ -249,6 +253,20 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.VirtualNIC gvnic = 29;</code>
      */
     private $gvnic = null;
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     */
+    private $spot = false;
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     */
+    private $confidential_nodes = null;
 
     /**
      * Constructor.
@@ -264,7 +282,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Size of the disk attached to each node, specified in GB.
      *           The smallest allowed disk size is 10GB.
      *           If unspecified, the default disk size is 100GB.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $oauth_scopes
      *           The set of Google API scopes to be made available on all of the
      *           node VMs under the "default" service account.
      *           The following scopes are recommended, but not required, and by default are
@@ -328,7 +346,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           disks available on a machine per zone. See:
      *           https://cloud.google.com/compute/docs/disks/local-ssd
      *           for more information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The list of instance tags applied to all nodes. Tags are used to identify
      *           valid sources or targets for network firewalls and are specified by
      *           the client during cluster or node pool creation. Each tag within the list
@@ -337,7 +355,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Whether the nodes are created as preemptible VM instances. See:
      *           https://cloud.google.com/compute/docs/instances/preemptible for more
      *           information about preemptible VM instances.
-     *     @type \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           A list of hardware accelerators to be attached to each node.
      *           See https://cloud.google.com/compute/docs/gpus for more information about
      *           support for GPUs.
@@ -355,7 +373,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      *     @type \Google\Cloud\Container\V1\WorkloadMetadataConfig $workload_metadata_config
      *           The workload metadata configuration for this node.
-     *     @type \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $taints
+     *     @type array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $taints
      *           List of kubernetes taints to be applied to each node.
      *           For more information, including usage and the valid values, see:
      *           https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
@@ -390,6 +408,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *           Advanced features for the Compute Engine VM.
      *     @type \Google\Cloud\Container\V1\VirtualNIC $gvnic
      *           Enable or disable gvnic in the node pool.
+     *     @type bool $spot
+     *           Spot flag for enabling Spot VM, which is a rebrand of
+     *           the existing preemptible flag.
+     *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
+     *           Confidential nodes config.
+     *           All the nodes in the node pool will be Confidential VM once enabled.
      * }
      */
     public function __construct($data = NULL) {
@@ -494,7 +518,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Monitoring are enabled, in which case their required scopes will be added.
      *
      * Generated from protobuf field <code>repeated string oauth_scopes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOauthScopes($var)
@@ -738,7 +762,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * must comply with RFC1035.
      *
      * Generated from protobuf field <code>repeated string tags = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -798,7 +822,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * support for GPUs.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.AcceleratorConfig accelerators = 11;</code>
-     * @param \Google\Cloud\Container\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)
@@ -932,7 +956,7 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
      *
      * Generated from protobuf field <code>repeated .google.container.v1.NodeTaint taints = 15;</code>
-     * @param \Google\Cloud\Container\V1\NodeTaint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\NodeTaint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTaints($var)
@@ -1301,6 +1325,72 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\VirtualNIC::class);
         $this->gvnic = $var;
+
+        return $this;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @return bool
+     */
+    public function getSpot()
+    {
+        return $this->spot;
+    }
+
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of
+     * the existing preemptible flag.
+     *
+     * Generated from protobuf field <code>bool spot = 32;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSpot($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->spot = $var;
+
+        return $this;
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @return \Google\Cloud\Container\V1\ConfidentialNodes|null
+     */
+    public function getConfidentialNodes()
+    {
+        return $this->confidential_nodes;
+    }
+
+    public function hasConfidentialNodes()
+    {
+        return isset($this->confidential_nodes);
+    }
+
+    public function clearConfidentialNodes()
+    {
+        unset($this->confidential_nodes);
+    }
+
+    /**
+     * Confidential nodes config.
+     * All the nodes in the node pool will be Confidential VM once enabled.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
+     * @param \Google\Cloud\Container\V1\ConfidentialNodes $var
+     * @return $this
+     */
+    public function setConfidentialNodes($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
+        $this->confidential_nodes = $var;
 
         return $this;
     }

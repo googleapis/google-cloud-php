@@ -81,7 +81,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      *           The default game server config is applied to all realms unless overridden
      *           in the rollout. For example,
      *           `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
-     *     @type \Google\Cloud\Gaming\V1\GameServerConfigOverride[]|\Google\Protobuf\Internal\RepeatedField $game_server_config_overrides
+     *     @type array<\Google\Cloud\Gaming\V1\GameServerConfigOverride>|\Google\Protobuf\Internal\RepeatedField $game_server_config_overrides
      *           Contains the game server config rollout overrides. Overrides are processed
      *           in the order they are listed. Once a match is found for a realm, the rest
      *           of the list is not processed.
@@ -249,7 +249,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      * of the list is not processed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.GameServerConfigOverride game_server_config_overrides = 5;</code>
-     * @param \Google\Cloud\Gaming\V1\GameServerConfigOverride[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\GameServerConfigOverride>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGameServerConfigOverrides($var)

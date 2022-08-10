@@ -39,7 +39,7 @@ class ListCatalogsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\Catalog[]|\Google\Protobuf\Internal\RepeatedField $catalogs
+     *     @type array<\Google\Cloud\Retail\V2\Catalog>|\Google\Protobuf\Internal\RepeatedField $catalogs
      *           All the customer's [Catalog][google.cloud.retail.v2.Catalog]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -68,7 +68,7 @@ class ListCatalogsResponse extends \Google\Protobuf\Internal\Message
      * All the customer's [Catalog][google.cloud.retail.v2.Catalog]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Catalog catalogs = 1;</code>
-     * @param \Google\Cloud\Retail\V2\Catalog[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Catalog>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCatalogs($var)

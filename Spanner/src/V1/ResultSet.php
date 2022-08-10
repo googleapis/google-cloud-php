@@ -55,7 +55,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\V1\ResultSetMetadata $metadata
      *           Metadata about the result set, such as row type information.
-     *     @type \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Each element in `rows` is a row whose format is defined by
      *           [metadata.row_type][google.spanner.v1.ResultSetMetadata.row_type]. The ith element
      *           in each row matches the ith field in
@@ -139,7 +139,7 @@ class ResultSet extends \Google\Protobuf\Internal\Message
      * [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue rows = 2;</code>
-     * @param \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)

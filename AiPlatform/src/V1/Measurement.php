@@ -49,7 +49,7 @@ class Measurement extends \Google\Protobuf\Internal\Message
      *     @type int|string $step_count
      *           Output only. The number of steps the machine learning model has been trained for.
      *           Must be non-negative.
-     *     @type \Google\Cloud\AIPlatform\V1\Measurement\Metric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Output only. A list of metrics got by evaluating the objective functions using suggested
      *           Parameter values.
      * }
@@ -140,7 +140,7 @@ class Measurement extends \Google\Protobuf\Internal\Message
      * Parameter values.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Measurement.Metric metrics = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Measurement\Metric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Measurement\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

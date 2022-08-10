@@ -26,7 +26,7 @@ class CertChain extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $certificates
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $certificates
      *           The certificates that form the CA chain, from leaf to root order.
      * }
      */
@@ -50,7 +50,7 @@ class CertChain extends \Google\Protobuf\Internal\Message
      * The certificates that form the CA chain, from leaf to root order.
      *
      * Generated from protobuf field <code>repeated string certificates = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCertificates($var)

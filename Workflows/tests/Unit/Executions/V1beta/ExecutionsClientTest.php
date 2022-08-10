@@ -73,7 +73,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function cancelExecutionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -89,8 +89,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setWorkflowRevisionId($workflowRevisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
-        $response = $client->cancelExecution($formattedName);
+        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
+        $response = $gapicClient->cancelExecution($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -108,7 +108,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function cancelExecutionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -123,10 +123,10 @@ class ExecutionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
+        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
         try {
-            $client->cancelExecution($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelExecution($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -143,7 +143,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function createExecutionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -159,9 +159,9 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setWorkflowRevisionId($workflowRevisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $formattedParent = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         $execution = new Execution();
-        $response = $client->createExecution($formattedParent, $execution);
+        $response = $gapicClient->createExecution($formattedParent, $execution);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -181,7 +181,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function createExecutionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -196,11 +196,11 @@ class ExecutionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $formattedParent = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         $execution = new Execution();
         try {
-            $client->createExecution($formattedParent, $execution);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createExecution($formattedParent, $execution);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -217,7 +217,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function getExecutionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -233,8 +233,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setWorkflowRevisionId($workflowRevisionId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
-        $response = $client->getExecution($formattedName);
+        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
+        $response = $gapicClient->getExecution($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -252,7 +252,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function getExecutionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -267,10 +267,10 @@ class ExecutionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
+        $formattedName = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[WORKFLOW]', '[EXECUTION]');
         try {
-            $client->getExecution($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getExecution($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -287,7 +287,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function listExecutionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -302,8 +302,8 @@ class ExecutionsClientTest extends GeneratedTest
         $expectedResponse->setExecutions($executions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
-        $response = $client->listExecutions($formattedParent);
+        $formattedParent = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $response = $gapicClient->listExecutions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -324,7 +324,7 @@ class ExecutionsClientTest extends GeneratedTest
     public function listExecutionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -339,10 +339,10 @@ class ExecutionsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
+        $formattedParent = $gapicClient->workflowName('[PROJECT]', '[LOCATION]', '[WORKFLOW]');
         try {
-            $client->listExecutions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listExecutions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

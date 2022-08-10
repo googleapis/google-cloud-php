@@ -22,6 +22,14 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      */
     private $project_id = '';
     /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     */
+    private $database_id = '';
+    /**
      * The options for this lookup request.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
@@ -42,9 +50,13 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           Required. The ID of the project against which to make the request.
+     *     @type string $database_id
+     *           The ID of the database against which to make the request.
+     *           '(default)' is not allowed; please use empty string '' to refer the default
+     *           database.
      *     @type \Google\Cloud\Datastore\V1\ReadOptions $read_options
      *           The options for this lookup request.
-     *     @type \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $keys
+     *     @type array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $keys
      *           Required. Keys of entities to look up.
      * }
      */
@@ -75,6 +87,36 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     * @return string
+     */
+    public function getDatabaseId()
+    {
+        return $this->database_id;
+    }
+
+    /**
+     * The ID of the database against which to make the request.
+     * '(default)' is not allowed; please use empty string '' to refer the default
+     * database.
+     *
+     * Generated from protobuf field <code>string database_id = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_id = $var;
 
         return $this;
     }
@@ -130,7 +172,7 @@ class LookupRequest extends \Google\Protobuf\Internal\Message
      * Required. Keys of entities to look up.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.Key keys = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Datastore\V1\Key[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\Key>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeys($var)

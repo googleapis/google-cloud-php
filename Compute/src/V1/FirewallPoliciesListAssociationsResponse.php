@@ -33,7 +33,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\FirewallPolicyAssociation[]|\Google\Protobuf\Internal\RepeatedField $associations
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $associations
      *           A list of associations.
      *     @type string $kind
      *           [Output Only] Type of firewallPolicy associations. Always compute#FirewallPoliciesListAssociations for lists of firewallPolicy associations.
@@ -59,7 +59,7 @@ class FirewallPoliciesListAssociationsResponse extends \Google\Protobuf\Internal
      * A list of associations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyAssociation associations = 508736530;</code>
-     * @param \Google\Cloud\Compute\V1\FirewallPolicyAssociation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyAssociation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssociations($var)

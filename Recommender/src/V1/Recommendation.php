@@ -131,7 +131,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Recommender\V1\Impact $primary_impact
      *           The primary impact that this recommendation can have while trying to
      *           optimize for one category.
-     *     @type \Google\Cloud\Recommender\V1\Impact[]|\Google\Protobuf\Internal\RepeatedField $additional_impact
+     *     @type array<\Google\Cloud\Recommender\V1\Impact>|\Google\Protobuf\Internal\RepeatedField $additional_impact
      *           Optional set of additional impact that this recommendation may have when
      *           trying to optimize for the primary category. These may be positive
      *           or negative.
@@ -144,7 +144,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Fingerprint of the Recommendation. Provides optimistic locking when
      *           updating states.
-     *     @type \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $associated_insights
+     *     @type array<\Google\Cloud\Recommender\V1\Recommendation\InsightReference>|\Google\Protobuf\Internal\RepeatedField $associated_insights
      *           Insights that led to this recommendation.
      *     @type string $xor_group_id
      *           Corresponds to a mutually exclusive group ID within a recommender.
@@ -347,7 +347,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * or negative.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Impact additional_impact = 6;</code>
-     * @param \Google\Cloud\Recommender\V1\Impact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Impact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalImpact($var)
@@ -499,7 +499,7 @@ class Recommendation extends \Google\Protobuf\Internal\Message
      * Insights that led to this recommendation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Recommendation.InsightReference associated_insights = 14;</code>
-     * @param \Google\Cloud\Recommender\V1\Recommendation\InsightReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Recommendation\InsightReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssociatedInsights($var)

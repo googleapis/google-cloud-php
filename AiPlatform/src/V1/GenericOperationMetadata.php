@@ -45,7 +45,7 @@ class GenericOperationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
      *           Output only. Partial failures encountered.
      *           E.g. single files that couldn't be read.
      *           This field should never exceed 20 entries.
@@ -84,7 +84,7 @@ class GenericOperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialFailures($var)

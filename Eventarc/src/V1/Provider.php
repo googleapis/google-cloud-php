@@ -46,7 +46,7 @@ class Provider extends \Google\Protobuf\Internal\Message
      *           format.
      *     @type string $display_name
      *           Output only. Human friendly name for the Provider. For example "Cloud Storage".
-     *     @type \Google\Cloud\Eventarc\V1\EventType[]|\Google\Protobuf\Internal\RepeatedField $event_types
+     *     @type array<\Google\Cloud\Eventarc\V1\EventType>|\Google\Protobuf\Internal\RepeatedField $event_types
      *           Output only. Event types for this provider.
      * }
      */
@@ -124,7 +124,7 @@ class Provider extends \Google\Protobuf\Internal\Message
      * Output only. Event types for this provider.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventType event_types = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Eventarc\V1\EventType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Eventarc\V1\EventType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEventTypes($var)

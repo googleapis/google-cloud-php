@@ -25,9 +25,9 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Free-text description of the resource.
+     * Free-text description of the resource.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      */
     private $description = '';
     /**
@@ -43,37 +43,40 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Set of label tags associated with the resource.
+     * Set of label tags associated with the resource.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
     private $labels;
     /**
-     * Optional. Determines if server allows plaintext connections. If set to true, server
+     * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
-     * is not exclusive of other encryption modes. For example, if allow_open and
-     * mtls_policy are set, server allows both plain text and mTLS connections.
-     * See documentation of other encryption modes to confirm compatibility.
+     * is not exclusive of other encryption modes. For example, if `allow_open`
+     * and `mtls_policy` are set, server allows both plain text and mTLS
+     * connections. See documentation of other encryption modes to confirm
+     * compatibility.
+     * Consider using it if you wish to upgrade in place your deployment to TLS
+     * while having mixed TLS and non-TLS traffic reaching port :80.
      *
-     * Generated from protobuf field <code>bool allow_open = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool allow_open = 6;</code>
      */
     private $allow_open = false;
     /**
-     * Optional. Defines a mechanism to provision server identity (public and private keys).
-     * Cannot be combined with allow_open as a permissive mode that allows both
+     * Defines a mechanism to provision server identity (public and private keys).
+     * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7;</code>
      */
     private $server_certificate = null;
     /**
-     * Optional. Defines a mechanism to provision peer validation certificates for peer to
+     * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not
-     * mTLS. If allow_open and mtls_policy are set, server allows both plain text
-     * and mTLS connections.
+     * mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain
+     * text and mTLS connections.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8;</code>
      */
     private $mtls_policy = null;
 
@@ -87,29 +90,32 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
      *           Required. Name of the ServerTlsPolicy resource. It matches the pattern
      *           `projects/&#42;&#47;locations/{location}/serverTlsPolicies/{server_tls_policy}`
      *     @type string $description
-     *           Optional. Free-text description of the resource.
+     *           Free-text description of the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The timestamp when the resource was created.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the resource was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. Set of label tags associated with the resource.
+     *           Set of label tags associated with the resource.
      *     @type bool $allow_open
-     *           Optional. Determines if server allows plaintext connections. If set to true, server
+     *           Determines if server allows plaintext connections. If set to true, server
      *           allows plain text connections. By default, it is set to false. This setting
-     *           is not exclusive of other encryption modes. For example, if allow_open and
-     *           mtls_policy are set, server allows both plain text and mTLS connections.
-     *           See documentation of other encryption modes to confirm compatibility.
+     *           is not exclusive of other encryption modes. For example, if `allow_open`
+     *           and `mtls_policy` are set, server allows both plain text and mTLS
+     *           connections. See documentation of other encryption modes to confirm
+     *           compatibility.
+     *           Consider using it if you wish to upgrade in place your deployment to TLS
+     *           while having mixed TLS and non-TLS traffic reaching port :80.
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\CertificateProvider $server_certificate
-     *           Optional. Defines a mechanism to provision server identity (public and private keys).
-     *           Cannot be combined with allow_open as a permissive mode that allows both
+     *           Defines a mechanism to provision server identity (public and private keys).
+     *           Cannot be combined with `allow_open` as a permissive mode that allows both
      *           plain text and TLS is not supported.
      *     @type \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy\MTLSPolicy $mtls_policy
-     *           Optional. Defines a mechanism to provision peer validation certificates for peer to
+     *           Defines a mechanism to provision peer validation certificates for peer to
      *           peer authentication (Mutual TLS - mTLS). If not specified, client
      *           certificate will not be requested. The connection is treated as TLS and not
-     *           mTLS. If allow_open and mtls_policy are set, server allows both plain text
-     *           and mTLS connections.
+     *           mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain
+     *           text and mTLS connections.
      * }
      */
     public function __construct($data = NULL) {
@@ -146,9 +152,9 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Free-text description of the resource.
+     * Free-text description of the resource.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      * @return string
      */
     public function getDescription()
@@ -157,9 +163,9 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Free-text description of the resource.
+     * Free-text description of the resource.
      *
-     * Generated from protobuf field <code>string description = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 2;</code>
      * @param string $var
      * @return $this
      */
@@ -244,9 +250,9 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set of label tags associated with the resource.
+     * Set of label tags associated with the resource.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -255,9 +261,9 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set of label tags associated with the resource.
+     * Set of label tags associated with the resource.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -270,13 +276,16 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Determines if server allows plaintext connections. If set to true, server
+     * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
-     * is not exclusive of other encryption modes. For example, if allow_open and
-     * mtls_policy are set, server allows both plain text and mTLS connections.
-     * See documentation of other encryption modes to confirm compatibility.
+     * is not exclusive of other encryption modes. For example, if `allow_open`
+     * and `mtls_policy` are set, server allows both plain text and mTLS
+     * connections. See documentation of other encryption modes to confirm
+     * compatibility.
+     * Consider using it if you wish to upgrade in place your deployment to TLS
+     * while having mixed TLS and non-TLS traffic reaching port :80.
      *
-     * Generated from protobuf field <code>bool allow_open = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool allow_open = 6;</code>
      * @return bool
      */
     public function getAllowOpen()
@@ -285,13 +294,16 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Determines if server allows plaintext connections. If set to true, server
+     * Determines if server allows plaintext connections. If set to true, server
      * allows plain text connections. By default, it is set to false. This setting
-     * is not exclusive of other encryption modes. For example, if allow_open and
-     * mtls_policy are set, server allows both plain text and mTLS connections.
-     * See documentation of other encryption modes to confirm compatibility.
+     * is not exclusive of other encryption modes. For example, if `allow_open`
+     * and `mtls_policy` are set, server allows both plain text and mTLS
+     * connections. See documentation of other encryption modes to confirm
+     * compatibility.
+     * Consider using it if you wish to upgrade in place your deployment to TLS
+     * while having mixed TLS and non-TLS traffic reaching port :80.
      *
-     * Generated from protobuf field <code>bool allow_open = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>bool allow_open = 6;</code>
      * @param bool $var
      * @return $this
      */
@@ -304,11 +316,11 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision server identity (public and private keys).
-     * Cannot be combined with allow_open as a permissive mode that allows both
+     * Defines a mechanism to provision server identity (public and private keys).
+     * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7;</code>
      * @return \Google\Cloud\NetworkSecurity\V1beta1\CertificateProvider|null
      */
     public function getServerCertificate()
@@ -327,11 +339,11 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision server identity (public and private keys).
-     * Cannot be combined with allow_open as a permissive mode that allows both
+     * Defines a mechanism to provision server identity (public and private keys).
+     * Cannot be combined with `allow_open` as a permissive mode that allows both
      * plain text and TLS is not supported.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.CertificateProvider server_certificate = 7;</code>
      * @param \Google\Cloud\NetworkSecurity\V1beta1\CertificateProvider $var
      * @return $this
      */
@@ -344,13 +356,13 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision peer validation certificates for peer to
+     * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not
-     * mTLS. If allow_open and mtls_policy are set, server allows both plain text
-     * and mTLS connections.
+     * mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain
+     * text and mTLS connections.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8;</code>
      * @return \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy\MTLSPolicy|null
      */
     public function getMtlsPolicy()
@@ -369,13 +381,13 @@ class ServerTlsPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Defines a mechanism to provision peer validation certificates for peer to
+     * Defines a mechanism to provision peer validation certificates for peer to
      * peer authentication (Mutual TLS - mTLS). If not specified, client
      * certificate will not be requested. The connection is treated as TLS and not
-     * mTLS. If allow_open and mtls_policy are set, server allows both plain text
-     * and mTLS connections.
+     * mTLS. If `allow_open` and `mtls_policy` are set, server allows both plain
+     * text and mTLS connections.
      *
-     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.networksecurity.v1beta1.ServerTlsPolicy.MTLSPolicy mtls_policy = 8;</code>
      * @param \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy\MTLSPolicy $var
      * @return $this
      */

@@ -98,7 +98,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      *           URI of a Compute Engine network.
      *     @type int $priority
      *           Priority of the route.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_tags
      *           Instance tags of the route.
      * }
      */
@@ -336,7 +336,7 @@ class RouteInfo extends \Google\Protobuf\Internal\Message
      * Instance tags of the route.
      *
      * Generated from protobuf field <code>repeated string instance_tags = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceTags($var)

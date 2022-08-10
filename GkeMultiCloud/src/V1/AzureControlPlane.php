@@ -162,7 +162,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      *           Optional. Configuration related to vm config encryption.
      *     @type array|\Google\Protobuf\Internal\MapField $tags
      *           Optional. A set of tags to apply to all underlying control plane Azure resources.
-     *     @type \Google\Cloud\GkeMultiCloud\V1\ReplicaPlacement[]|\Google\Protobuf\Internal\RepeatedField $replica_placements
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\ReplicaPlacement>|\Google\Protobuf\Internal\RepeatedField $replica_placements
      *           Optional. Configuration for where to place the control plane replicas.
      *           Up to three replica placement instances can be specified. If
      *           replica_placements is set, the replica placement instances will be applied
@@ -562,7 +562,7 @@ class AzureControlPlane extends \Google\Protobuf\Internal\Message
      * to the three control plane replicas as evenly as possible.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.ReplicaPlacement replica_placements = 13 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\ReplicaPlacement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\ReplicaPlacement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicaPlacements($var)

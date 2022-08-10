@@ -83,7 +83,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function accessSecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -93,8 +93,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $client->accessSecretVersion($formattedName);
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $response = $gapicClient->accessSecretVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -112,7 +112,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function accessSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -127,10 +127,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $client->accessSecretVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->accessSecretVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -147,7 +147,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function addSecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -161,9 +161,9 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->secretName('[PROJECT]', '[SECRET]');
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         $payload = new SecretPayload();
-        $response = $client->addSecretVersion($formattedParent, $payload);
+        $response = $gapicClient->addSecretVersion($formattedParent, $payload);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -183,7 +183,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function addSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -198,11 +198,11 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->secretName('[PROJECT]', '[SECRET]');
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         $payload = new SecretPayload();
         try {
-            $client->addSecretVersion($formattedParent, $payload);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->addSecretVersion($formattedParent, $payload);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -219,7 +219,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function createSecretTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -231,12 +231,12 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
         $secretReplication = new Replication();
         $secret->setReplication($secretReplication);
-        $response = $client->createSecret($formattedParent, $secretId, $secret);
+        $response = $gapicClient->createSecret($formattedParent, $secretId, $secret);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -258,7 +258,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function createSecretExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -273,14 +273,14 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $secretId = 'secretId-739547894';
         $secret = new Secret();
         $secretReplication = new Replication();
         $secret->setReplication($secretReplication);
         try {
-            $client->createSecret($formattedParent, $secretId, $secret);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSecret($formattedParent, $secretId, $secret);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -297,7 +297,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function deleteSecretTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -305,8 +305,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretName('[PROJECT]', '[SECRET]');
-        $client->deleteSecret($formattedName);
+        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $gapicClient->deleteSecret($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -323,7 +323,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function deleteSecretExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -338,10 +338,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretName('[PROJECT]', '[SECRET]');
+        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $client->deleteSecret($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSecret($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -358,7 +358,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function destroySecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -372,8 +372,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $client->destroySecretVersion($formattedName);
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $response = $gapicClient->destroySecretVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -391,7 +391,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function destroySecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -406,10 +406,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $client->destroySecretVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->destroySecretVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -426,7 +426,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function disableSecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -440,8 +440,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $client->disableSecretVersion($formattedName);
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $response = $gapicClient->disableSecretVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -459,7 +459,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function disableSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -474,10 +474,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $client->disableSecretVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->disableSecretVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -494,7 +494,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function enableSecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -508,8 +508,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $client->enableSecretVersion($formattedName);
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $response = $gapicClient->enableSecretVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -527,7 +527,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function enableSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -542,10 +542,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $client->enableSecretVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->enableSecretVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -562,7 +562,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -575,7 +575,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -593,7 +593,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -610,8 +610,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -628,7 +628,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getSecretTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -640,8 +640,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretName('[PROJECT]', '[SECRET]');
-        $response = $client->getSecret($formattedName);
+        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $response = $gapicClient->getSecret($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -659,7 +659,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getSecretExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -674,10 +674,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretName('[PROJECT]', '[SECRET]');
+        $formattedName = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $client->getSecret($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSecret($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -694,7 +694,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getSecretVersionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -708,8 +708,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setClientSpecifiedPayloadChecksum($clientSpecifiedPayloadChecksum);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
-        $response = $client->getSecretVersion($formattedName);
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $response = $gapicClient->getSecretVersion($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -727,7 +727,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function getSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -742,10 +742,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
+        $formattedName = $gapicClient->secretVersionName('[PROJECT]', '[SECRET]', '[SECRET_VERSION]');
         try {
-            $client->getSecretVersion($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSecretVersion($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -762,7 +762,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function listSecretVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -779,8 +779,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setVersions($versions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->secretName('[PROJECT]', '[SECRET]');
-        $response = $client->listSecretVersions($formattedParent);
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
+        $response = $gapicClient->listSecretVersions($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -801,7 +801,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function listSecretVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -816,10 +816,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->secretName('[PROJECT]', '[SECRET]');
+        $formattedParent = $gapicClient->secretName('[PROJECT]', '[SECRET]');
         try {
-            $client->listSecretVersions($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSecretVersions($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -836,7 +836,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function listSecretsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -853,8 +853,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $expectedResponse->setSecrets($secrets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listSecrets($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listSecrets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -875,7 +875,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function listSecretsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -890,10 +890,10 @@ class SecretManagerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listSecrets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSecrets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -910,7 +910,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -924,7 +924,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -944,7 +944,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -962,8 +962,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -980,7 +980,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -990,7 +990,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1010,7 +1010,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1028,8 +1028,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1046,7 +1046,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function updateSecretTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1062,7 +1062,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $secretReplication = new Replication();
         $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
-        $response = $client->updateSecret($secret, $updateMask);
+        $response = $gapicClient->updateSecret($secret, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1082,7 +1082,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
     public function updateSecretExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1102,8 +1102,8 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $secret->setReplication($secretReplication);
         $updateMask = new FieldMask();
         try {
-            $client->updateSecret($secret, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSecret($secret, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

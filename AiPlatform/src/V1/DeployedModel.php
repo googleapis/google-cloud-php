@@ -33,6 +33,12 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      */
     private $model = '';
     /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_version_id = '';
+    /**
      * The display name of the DeployedModel. If not provided upon creation,
      * the Model's display_name is used.
      *
@@ -121,6 +127,8 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
      *           the Model may be in a different location than the DeployedModel's Endpoint.
      *           The resource name may contain version id or version alias to specify the
      *           version, if no version is specified, the default version will be deployed.
+     *     @type string $model_version_id
+     *           Output only. The version ID of the model that is deployed.
      *     @type string $display_name
      *           The display name of the DeployedModel. If not provided upon creation,
      *           the Model's display_name is used.
@@ -290,6 +298,32 @@ class DeployedModel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->model = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getModelVersionId()
+    {
+        return $this->model_version_id;
+    }
+
+    /**
+     * Output only. The version ID of the model that is deployed.
+     *
+     * Generated from protobuf field <code>string model_version_id = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModelVersionId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model_version_id = $var;
 
         return $this;
     }

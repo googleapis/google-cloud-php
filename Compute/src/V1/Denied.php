@@ -35,7 +35,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      *
      *     @type string $I_p_protocol
      *           The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp) or the IP protocol number.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ports
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ports
      *           An optional list of ports to which this rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      * }
      */
@@ -95,7 +95,7 @@ class Denied extends \Google\Protobuf\Internal\Message
      * An optional list of ports to which this rule applies. This field is only applicable for the UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: ["22"], ["80","443"], and ["12345-12349"].
      *
      * Generated from protobuf field <code>repeated string ports = 106854418;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPorts($var)

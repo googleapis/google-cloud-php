@@ -17,9 +17,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class Group extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Group name.
+     * Output only. The Group name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $name = '';
     /**
@@ -54,7 +54,7 @@ class Group extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The Group name.
+     *           Output only. The Group name.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The create time timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -71,9 +71,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Group name.
+     * Output only. The Group name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getName()
@@ -82,9 +82,9 @@ class Group extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Group name.
+     * Output only. The Group name.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

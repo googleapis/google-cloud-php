@@ -229,6 +229,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_monitoring_config = null;
     /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     */
+    private $desired_identity_service_config = null;
+    /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with
      * ExternalIPs field.
      *
@@ -254,6 +260,13 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig desired_gcfs_config = 109;</code>
      */
     private $desired_gcfs_config = null;
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     */
+    private $desired_node_pool_auto_config_network_tags = null;
 
     /**
      * Constructor.
@@ -307,7 +320,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           desired_node_pool_id. If there is only one pool in the
      *           cluster and desired_node_pool_id is not provided then
      *           the change applies to that single node pool.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $desired_locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           cluster's nodes should be located.
@@ -356,6 +369,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           The desired logging configuration.
      *     @type \Google\Cloud\Container\V1\MonitoringConfig $desired_monitoring_config
      *           The desired monitoring configuration.
+     *     @type \Google\Cloud\Container\V1\IdentityServiceConfig $desired_identity_service_config
+     *           The desired Identity Service component configuration.
      *     @type \Google\Cloud\Container\V1\ServiceExternalIPsConfig $desired_service_external_ips_config
      *           ServiceExternalIPsConfig specifies the config for the use of Services with
      *           ExternalIPs field.
@@ -370,6 +385,9 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           - "-": picks the default Kubernetes version
      *     @type \Google\Cloud\Container\V1\GcfsConfig $desired_gcfs_config
      *           The desired GCFS config for the cluster
+     *     @type \Google\Cloud\Container\V1\NetworkTags $desired_node_pool_auto_config_network_tags
+     *           The desired network tags that apply to all auto-provisioned node pools
+     *           in autopilot clusters and node auto-provisioning enabled clusters.
      * }
      */
     public function __construct($data = NULL) {
@@ -806,7 +824,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDesiredLocations($var)
@@ -1416,6 +1434,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     * @return \Google\Cloud\Container\V1\IdentityServiceConfig|null
+     */
+    public function getDesiredIdentityServiceConfig()
+    {
+        return $this->desired_identity_service_config;
+    }
+
+    public function hasDesiredIdentityServiceConfig()
+    {
+        return isset($this->desired_identity_service_config);
+    }
+
+    public function clearDesiredIdentityServiceConfig()
+    {
+        unset($this->desired_identity_service_config);
+    }
+
+    /**
+     * The desired Identity Service component configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.IdentityServiceConfig desired_identity_service_config = 66;</code>
+     * @param \Google\Cloud\Container\V1\IdentityServiceConfig $var
+     * @return $this
+     */
+    public function setDesiredIdentityServiceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\IdentityServiceConfig::class);
+        $this->desired_identity_service_config = $var;
+
+        return $this;
+    }
+
+    /**
      * ServiceExternalIPsConfig specifies the config for the use of Services with
      * ExternalIPs field.
      *
@@ -1525,6 +1579,44 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
         $this->desired_gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     * @return \Google\Cloud\Container\V1\NetworkTags|null
+     */
+    public function getDesiredNodePoolAutoConfigNetworkTags()
+    {
+        return $this->desired_node_pool_auto_config_network_tags;
+    }
+
+    public function hasDesiredNodePoolAutoConfigNetworkTags()
+    {
+        return isset($this->desired_node_pool_auto_config_network_tags);
+    }
+
+    public function clearDesiredNodePoolAutoConfigNetworkTags()
+    {
+        unset($this->desired_node_pool_auto_config_network_tags);
+    }
+
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools
+     * in autopilot clusters and node auto-provisioning enabled clusters.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
+     * @param \Google\Cloud\Container\V1\NetworkTags $var
+     * @return $this
+     */
+    public function setDesiredNodePoolAutoConfigNetworkTags($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
+        $this->desired_node_pool_auto_config_network_tags = $var;
 
         return $this;
     }

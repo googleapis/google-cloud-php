@@ -86,7 +86,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -110,10 +110,10 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $formattedParent = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $configId = 'configId-804450504';
         $gameServerConfig = new GameServerConfig();
-        $response = $client->createGameServerConfig($formattedParent, $configId, $gameServerConfig);
+        $response = $gapicClient->createGameServerConfig($formattedParent, $configId, $gameServerConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -160,7 +160,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -182,10 +182,10 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $formattedParent = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         $configId = 'configId-804450504';
         $gameServerConfig = new GameServerConfig();
-        $response = $client->createGameServerConfig($formattedParent, $configId, $gameServerConfig);
+        $response = $gapicClient->createGameServerConfig($formattedParent, $configId, $gameServerConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -219,7 +219,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -239,8 +239,8 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
-        $response = $client->deleteGameServerConfig($formattedName);
+        $formattedName = $gapicClient->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
+        $response = $gapicClient->deleteGameServerConfig($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -283,7 +283,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -305,8 +305,8 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
-        $response = $client->deleteGameServerConfig($formattedName);
+        $formattedName = $gapicClient->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
+        $response = $gapicClient->deleteGameServerConfig($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -334,7 +334,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
     public function getGameServerConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -346,8 +346,8 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
-        $response = $client->getGameServerConfig($formattedName);
+        $formattedName = $gapicClient->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
+        $response = $gapicClient->getGameServerConfig($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -365,7 +365,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
     public function getGameServerConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -380,10 +380,10 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
+        $formattedName = $gapicClient->gameServerConfigName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]', '[CONFIG]');
         try {
-            $client->getGameServerConfig($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGameServerConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -400,7 +400,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
     public function listGameServerConfigsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -415,8 +415,8 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         $expectedResponse->setGameServerConfigs($gameServerConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $response = $client->listGameServerConfigs($formattedParent);
+        $formattedParent = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $response = $gapicClient->listGameServerConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -437,7 +437,7 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
     public function listGameServerConfigsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -452,10 +452,10 @@ class GameServerConfigsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $formattedParent = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         try {
-            $client->listGameServerConfigs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGameServerConfigs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

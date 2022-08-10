@@ -47,7 +47,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      *           For an example test.proto file, the following command would put the value
      *           in a new file named out.pb.
      *           $ protoc --include_imports --include_source_info test.proto -o out.pb
-     *     @type \Google\Cloud\ApiGateway\V1\ApiConfig\File[]|\Google\Protobuf\Internal\RepeatedField $source
+     *     @type array<\Google\Cloud\ApiGateway\V1\ApiConfig\File>|\Google\Protobuf\Internal\RepeatedField $source
      *           Optional. Uncompiled proto files associated with the descriptor set, used for
      *           display purposes (server-side compilation is not supported). These
      *           should match the inputs to 'protoc' command used to generate
@@ -124,7 +124,7 @@ class GrpcServiceDefinition extends \Google\Protobuf\Internal\Message
      * file_descriptor_set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigateway.v1.ApiConfig.File source = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\ApiGateway\V1\ApiConfig\File[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApiGateway\V1\ApiConfig\File>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSource($var)

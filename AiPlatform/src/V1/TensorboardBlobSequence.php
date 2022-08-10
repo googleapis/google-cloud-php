@@ -29,7 +29,7 @@ class TensorboardBlobSequence extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TensorboardBlob[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $values
      *           List of blobs contained within the sequence.
      * }
      */
@@ -53,7 +53,7 @@ class TensorboardBlobSequence extends \Google\Protobuf\Internal\Message
      * List of blobs contained within the sequence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardBlob values = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TensorboardBlob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardBlob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

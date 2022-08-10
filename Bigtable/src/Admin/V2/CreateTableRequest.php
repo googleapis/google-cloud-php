@@ -72,7 +72,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *           Maximum 50 characters.
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $table
      *           Required. The Table to create.
-     *     @type \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split[]|\Google\Protobuf\Internal\RepeatedField $initial_splits
+     *     @type array<\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split>|\Google\Protobuf\Internal\RepeatedField $initial_splits
      *           The optional list of row keys that will be used to initially split the
      *           table into several tablets (tablets are similar to HBase regions).
      *           Given two split keys, `s1` and `s2`, three tablets will be created,
@@ -229,7 +229,7 @@ class CreateTableRequest extends \Google\Protobuf\Internal\Message
      *     - Tablet 5 `[other, )                => {"other", "zz"}.`
      *
      * Generated from protobuf field <code>repeated .google.bigtable.admin.v2.CreateTableRequest.Split initial_splits = 4;</code>
-     * @param \Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\Admin\V2\CreateTableRequest\Split>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInitialSplits($var)

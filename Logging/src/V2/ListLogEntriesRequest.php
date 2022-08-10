@@ -80,7 +80,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           Required. Names of one or more parent resources from which to
      *           retrieve log entries:
      *           *  `projects/[PROJECT_ID]`
@@ -162,7 +162,7 @@ class ListLogEntriesRequest extends \Google\Protobuf\Internal\Message
      * Projects listed in the `project_ids` field are added to this list.
      *
      * Generated from protobuf field <code>repeated string resource_names = 8 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceNames($var)

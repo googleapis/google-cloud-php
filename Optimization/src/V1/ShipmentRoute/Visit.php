@@ -163,7 +163,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           Copy of the corresponding
      *           [VisitRequest.label][google.cloud.optimization.v1.Shipment.VisitRequest.label],
      *           if specified in the `VisitRequest`.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $arrival_loads
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $arrival_loads
      *           Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      *           Vehicle loads upon arrival at the visit location, for each
      *           type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
@@ -172,7 +172,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      *           and that don't have any non-zero demand on the route.
      *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Delay $delay_before_start
      *           Deprecated: Use [ShipmentRoute.Transition.delay_duration][] instead.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $demands
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
      *           Deprecated: Use [Visit.load_demands][] instead.
      * }
      */
@@ -486,7 +486,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * and that don't have any non-zero demand on the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity arrival_loads = 9 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -558,7 +558,7 @@ class Visit extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Visit.load_demands][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 5 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

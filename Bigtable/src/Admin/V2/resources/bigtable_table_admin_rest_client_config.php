@@ -270,6 +270,18 @@ return [
                     ],
                 ],
             ],
+            'UndeleteTable' => [
+                'method' => 'post',
+                'uriTemplate' => '/v2/{name=projects/*/instances/*/tables/*}:undelete',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateBackup' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v2/{backup.name=projects/*/instances/*/clusters/*/backups/*}',

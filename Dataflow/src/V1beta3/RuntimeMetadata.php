@@ -36,7 +36,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataflow\V1beta3\SDKInfo $sdk_info
      *           SDK Info for the template.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           The parameters for the template.
      * }
      */
@@ -96,7 +96,7 @@ class RuntimeMetadata extends \Google\Protobuf\Internal\Message
      * The parameters for the template.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadata parameters = 2;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

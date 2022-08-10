@@ -36,7 +36,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Spanner\Admin\Instance\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of requested instances.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
@@ -64,7 +64,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The list of requested instances.
      *
      * Generated from protobuf field <code>repeated .google.spanner.admin.instance.v1.Instance instances = 1;</code>
-     * @param \Google\Cloud\Spanner\Admin\Instance\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\Admin\Instance\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

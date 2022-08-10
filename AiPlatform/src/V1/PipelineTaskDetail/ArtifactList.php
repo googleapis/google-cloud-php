@@ -28,7 +28,7 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Artifact[]|\Google\Protobuf\Internal\RepeatedField $artifacts
+     *     @type array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $artifacts
      *           Output only. A list of artifact metadata.
      * }
      */
@@ -52,7 +52,7 @@ class ArtifactList extends \Google\Protobuf\Internal\Message
      * Output only. A list of artifact metadata.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Artifact artifacts = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Artifact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Artifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArtifacts($var)

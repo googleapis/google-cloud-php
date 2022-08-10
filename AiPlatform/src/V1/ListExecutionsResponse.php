@@ -36,7 +36,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\Execution[]|\Google\Protobuf\Internal\RepeatedField $executions
+     *     @type array<\Google\Cloud\AIPlatform\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $executions
      *           The Executions retrieved from the MetadataStore.
      *     @type string $next_page_token
      *           A token, which can be sent as [ListExecutionsRequest.page_token][google.cloud.aiplatform.v1.ListExecutionsRequest.page_token]
@@ -64,7 +64,7 @@ class ListExecutionsResponse extends \Google\Protobuf\Internal\Message
      * The Executions retrieved from the MetadataStore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Execution executions = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\Execution[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Execution>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExecutions($var)

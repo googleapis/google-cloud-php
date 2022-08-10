@@ -90,7 +90,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      *           budget's time period, as well as other filters.
      *     @type \Google\Cloud\Billing\Budgets\V1\BudgetAmount $amount
      *           Required. Budgeted amount.
-     *     @type \Google\Cloud\Billing\Budgets\V1\ThresholdRule[]|\Google\Protobuf\Internal\RepeatedField $threshold_rules
+     *     @type array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $threshold_rules
      *           Optional. Rules that trigger alerts (notifications of thresholds
      *           being crossed) when spend exceeds the specified percentages of the budget.
      *     @type \Google\Cloud\Billing\Budgets\V1\NotificationsRule $notifications_rule
@@ -258,7 +258,7 @@ class Budget extends \Google\Protobuf\Internal\Message
      * being crossed) when spend exceeds the specified percentages of the budget.
      *
      * Generated from protobuf field <code>repeated .google.cloud.billing.budgets.v1.ThresholdRule threshold_rules = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Billing\Budgets\V1\ThresholdRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Billing\Budgets\V1\ThresholdRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setThresholdRules($var)

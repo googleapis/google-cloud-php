@@ -30,7 +30,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\FieldReference>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The fields to return.
      *           If empty, all fields are returned. To only return the name
      *           of the document, use `['__name__']`.
@@ -60,7 +60,7 @@ class Projection extends \Google\Protobuf\Internal\Message
      * of the document, use `['__name__']`.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.FieldReference fields = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\StructuredQuery\FieldReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\FieldReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

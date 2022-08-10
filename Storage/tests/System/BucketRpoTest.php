@@ -36,7 +36,7 @@ class BucketRpoTest extends StorageTestCase
             [
                 'locationType' => 'dual-region',
                 'location' => 'nam4',
-                'rpo' => 'ASYNC_TURBO'
+                'rpo' => 'ASYNC_TURBO',
             ]
         );
 
@@ -63,13 +63,13 @@ class BucketRpoTest extends StorageTestCase
     public function testGetRpoOnNonDualRegionBucket()
     {
         // self::$bucket is already created in StorageTestCase::setUp
-        $this->assertNull(self::$bucket->info()['rpo']);
+        $this->assertArrayNotHasKey('rpo', self::$bucket->info());
 
         $bucketMulti = self::createBucket(
             self::$client,
             uniqid(self::TESTING_PREFIX),
             [
-                'locationType' => 'multi-region'
+                'locationType' => 'multi-region',
             ]
         );
 

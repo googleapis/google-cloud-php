@@ -135,7 +135,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      *           Support](https://cloud.google.com/dialogflow/docs/reference/language)
      *           for a list of the currently supported language codes. This field cannot be
      *           set by the `Update` method.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_language_codes
      *           Optional. The list of all languages supported by this agent (except for the
      *           `default_language_code`).
      *     @type string $time_zone
@@ -282,7 +282,7 @@ class Agent extends \Google\Protobuf\Internal\Message
      * `default_language_code`).
      *
      * Generated from protobuf field <code>repeated string supported_language_codes = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedLanguageCodes($var)

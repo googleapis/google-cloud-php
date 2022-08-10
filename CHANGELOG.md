@@ -1,5 +1,2523 @@
 # Changelog
 
+## 0.187.0
+
+<details><summary>google/cloud-access-approval 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/access-context-manager 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/analytics-admin 0.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/analytics-data 0.8.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.1.0</summary>
+
+
+
+### Features
+
+* introduce apigee registry ([#5429](https://github.com/googleapis/google-cloud-php/issues/5429)) ([beaca17](https://github.com/googleapis/google-cloud-php/commit/beaca170190cb6136a5f6d70382c649f932013e9))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-asset 1.7.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+* remove old baremetal protos ([#5434](https://github.com/googleapis/google-cloud-php/issues/5434)) ([976fd24](https://github.com/googleapis/google-cloud-php/commit/976fd24336c42cb17a7ac90507fe9dbe73311fef))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.8.0</summary>
+
+
+
+### Features
+
+* Add service_account_id output field to CloudSQL properties ([#5407](https://github.com/googleapis/google-cloud-php/issues/5407)) ([417199f](https://github.com/googleapis/google-cloud-php/commit/417199f88712d50330ea15a9f9a588b983403a4e))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.17.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Publish new fields ([#5406](https://github.com/googleapis/google-cloud-php/issues/5406)) ([dcd120c](https://github.com/googleapis/google-cloud-php/commit/dcd120c5f741fb273b9ef716edb292b9276877d7))
+
+</details>
+
+<details><summary>google/cloud-billing 1.4.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-compute 1.2.0</summary>
+
+
+
+### Features
+
+* Update Compute Engine API to revision 20220720 ([#723](https://github.com/googleapis/google-cloud-php/issues/723)) ([#5436](https://github.com/googleapis/google-cloud-php/issues/5436)) ([eb82d82](https://github.com/googleapis/google-cloud-php/commit/eb82d821501c802799fedac5f514546080d4adb9))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.7</summary>
+
+
+
+### Documentation
+
+* [ContactCenterInsights] Updating comments ([#5413](https://github.com/googleapis/google-cloud-php/issues/5413)) ([affff87](https://github.com/googleapis/google-cloud-php/commit/affff875ea49b95ac033bf197ea8bbdb365f2a03))
+
+</details>
+
+<details><summary>google/cloud-container 1.7.1</summary>
+
+
+
+### Documentation
+
+* [Container] BinaryAuthorization.enabled field is marked as deprecated ([#5426](https://github.com/googleapis/google-cloud-php/issues/5426)) ([6c787ad](https://github.com/googleapis/google-cloud-php/commit/6c787ade5fafa832ecc7fe3514aea69dc843a8f5))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-core 1.47.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add attribute to suppress php 8 notice ([#5437](https://github.com/googleapis/google-cloud-php/issues/5437)) ([ce35335](https://github.com/googleapis/google-cloud-php/commit/ce35335c0bf84034889a217018511b52360b97dd))
+* fix owlbot configuration and GcTestListener autoloading ([#5435](https://github.com/googleapis/google-cloud-php/issues/5435)) ([ee5feef](https://github.com/googleapis/google-cloud-php/commit/ee5feef41fa5a3c8eac1c8a4cb0b9fd00cdded28))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.16.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* readonly fix in owlbot ([#5430](https://github.com/googleapis/google-cloud-php/issues/5430)) ([8389959](https://github.com/googleapis/google-cloud-php/commit/8389959cf55f595d54ad2914f1671430f687c996))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-datastream 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+* fix owlbot configuration and GcTestListener autoloading ([#5435](https://github.com/googleapis/google-cloud-php/issues/5435)) ([ee5feef](https://github.com/googleapis/google-cloud-php/commit/ee5feef41fa5a3c8eac1c8a4cb0b9fd00cdded28))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+* **deps:** update dependency google/cloud-tools to ^0.13.0 ([#5432](https://github.com/googleapis/google-cloud-php/issues/5432)) ([7c1cf2d](https://github.com/googleapis/google-cloud-php/commit/7c1cf2da5f2a65bc0cd6b4048f0950d75a83b195))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.28.1</summary>
+
+
+
+### Documentation
+
+* [Dialogflow] added an explicit note that DetectIntentRequest's text input is limited by 256 characters ([#5405](https://github.com/googleapis/google-cloud-php/issues/5405)) ([a39f01b](https://github.com/googleapis/google-cloud-php/commit/a39f01be3a53cff2783fd6ba4e900fa4b237eb1e))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.6.0</summary>
+
+
+
+### Features
+
+* [Dlp] InfoType categories were added to built-in infoTypes ([#5388](https://github.com/googleapis/google-cloud-php/issues/5388)) ([5736540](https://github.com/googleapis/google-cloud-php/commit/57365402deb0563c17e2ab37a4c2779095fcad4b))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.25.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+* readonly fix in owlbot ([#5430](https://github.com/googleapis/google-cloud-php/issues/5430)) ([8389959](https://github.com/googleapis/google-cloud-php/commit/8389959cf55f595d54ad2914f1671430f687c996))
+
+</details>
+
+<details><summary>google/cloud-functions 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.4.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.5.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/grafeas 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-iap 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-kms 1.13.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/longrunning 0.2.0</summary>
+
+
+
+### Features
+
+* add waitOperation and update protos ([#5414](https://github.com/googleapis/google-cloud-php/issues/5414)) ([e713017](https://github.com/googleapis/google-cloud-php/commit/e71301796210ae5a90123bc54d5544557884c377))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* fix annotation of parent in Create*Request (#5398)
+
+### Bug Fixes
+
+* fix annotation of parent in Create*Request ([#5398](https://github.com/googleapis/google-cloud-php/issues/5398)) ([8fc8485](https://github.com/googleapis/google-cloud-php/commit/8fc8485bbe6f01f981153175bd469fc54b1db69d))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+* fix owlbot configuration and GcTestListener autoloading ([#5435](https://github.com/googleapis/google-cloud-php/issues/5435)) ([ee5feef](https://github.com/googleapis/google-cloud-php/commit/ee5feef41fa5a3c8eac1c8a4cb0b9fd00cdded28))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.5.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.38.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-retail 0.6.0</summary>
+
+
+
+### Features
+
+* [Retail] support case insensitive match on search facets ([#5424](https://github.com/googleapis/google-cloud-php/issues/5424)) ([6a8ac25](https://github.com/googleapis/google-cloud-php/commit/6a8ac25bddca93234a479e1a9e1b953323527efe))
+
+</details>
+
+<details><summary>google/cloud-run 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.9.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Added container field to findings attributes ([#5397](https://github.com/googleapis/google-cloud-php/issues/5397)) ([f09ba79](https://github.com/googleapis/google-cloud-php/commit/f09ba79e1f5fa6fd6713c0f7a7b428ee3fadd1df))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.7.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-shell 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.51.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* readonly fix in owlbot ([#5430](https://github.com/googleapis/google-cloud-php/issues/5430)) ([8389959](https://github.com/googleapis/google-cloud-php/commit/8389959cf55f595d54ad2914f1671430f687c996))
+
+</details>
+
+<details><summary>google/cloud-speech 1.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-talent 0.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.4.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.10</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.4.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.2.0</summary>
+
+
+
+### Features
+
+* [VmMigration] introduce upgrade appliance rpc ([#5394](https://github.com/googleapis/google-cloud-php/issues/5394)) ([a71eb95](https://github.com/googleapis/google-cloud-php/commit/a71eb9504e120cf0a63beb7fc0910f273adb42d6))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* **bazel:** [Many APIs] update gapic-generator-php to v1.5.0 ([#5408](https://github.com/googleapis/google-cloud-php/issues/5408)) ([49f9c2b](https://github.com/googleapis/google-cloud-php/commit/49f9c2b68ab617c40cc9591e573310b71db85931))
+
+</details>
+
+## 0.186.0
+
+<details><summary>google/access-context-manager 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.7.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add ListSavedQueries rpc to aiplatform v1 dataset_service.proto ([#5358](https://github.com/googleapis/google-cloud-php/issues/5358)) ([f581e7a](https://github.com/googleapis/google-cloud-php/commit/f581e7a4b0f61bf24d18d33200cebb025d031b0c))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/analytics-admin 0.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/analytics-data 0.8.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-asset 1.7.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.7.0</summary>
+
+
+
+### Features
+
+* [AssuredWorkloads] ITAR June Preview Launch ([#5371](https://github.com/googleapis/google-cloud-php/issues/5371)) ([2e61e68](https://github.com/googleapis/google-cloud-php/commit/2e61e684b798c0e27dd191b6302fb7bd25c9d25d))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 0.7.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 0.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.16.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Cloud Bigtable Undelete Table service and message proto files ([#5365](https://github.com/googleapis/google-cloud-php/issues/5365)) ([77fe750](https://github.com/googleapis/google-cloud-php/commit/77fe750d925fb98d5add6f37cbc8ef8dbf587cab))
+* [Bigtable] introduce response params ([#5380](https://github.com/googleapis/google-cloud-php/issues/5380)) ([eef0ccb](https://github.com/googleapis/google-cloud-php/commit/eef0ccbe1e9d10880262b59ec4f1c450f8e474b9))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-billing 1.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.2.0</summary>
+
+
+
+### Features
+
+* [CertificateManager] introduce location RPCs ([#5379](https://github.com/googleapis/google-cloud-php/issues/5379)) ([a1618a8](https://github.com/googleapis/google-cloud-php/commit/a1618a88f6257c72426454c647ffe637a9dc9ed4))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-channel 0.6.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-compute 1.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-container 1.7.0</summary>
+
+
+
+### Features
+
+* [Container] add support to modify kubelet pod pid limit in node system configuration ([#5372](https://github.com/googleapis/google-cloud-php/issues/5372)) ([c11d70b](https://github.com/googleapis/google-cloud-php/commit/c11d70b6e08fd02ca4aca77c0949aea87630354e))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-core 1.47.0</summary>
+
+
+
+### Features
+
+* **Core:** implement JsonSerializable ([#4297](https://github.com/googleapis/google-cloud-php/issues/4297)) ([7802ecf](https://github.com/googleapis/google-cloud-php/commit/7802ecf8b508cf831c51add89ffbe1aa5544a38c))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+* drop support for php 5.5 ([#5409](https://github.com/googleapis/google-cloud-php/issues/5409)) ([dc0e21b](https://github.com/googleapis/google-cloud-php/commit/dc0e21b099a7c43c9947a16190e133930f07a09c))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.3</summary>
+
+
+
+### Documentation
+
+* [Dataflow] corrected the Dataflow job name regex ([#5369](https://github.com/googleapis/google-cloud-php/issues/5369)) ([9b30ff1](https://github.com/googleapis/google-cloud-php/commit/9b30ff1ce612975cb1e42e32954eb9d6fa89bd1f))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.16.0</summary>
+
+
+
+### Features
+
+* [Datastore] add database_id, add "or" query support ([#5402](https://github.com/googleapis/google-cloud-php/issues/5402)) ([d00cff9](https://github.com/googleapis/google-cloud-php/commit/d00cff9c19e46edad95f0640406ae27b4184a713))
+
+
+### Bug Fixes
+
+* ensure InsecureCredentialsWrapper is utilized for datastore emulator ([#5411](https://github.com/googleapis/google-cloud-php/issues/5411)) ([72b9bb6](https://github.com/googleapis/google-cloud-php/commit/72b9bb6798af8e42e5fcc4156c863f4256b7641e))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-datastream 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 0.28.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] deprecated the filter field and add resource_definition ([#5374](https://github.com/googleapis/google-cloud-php/issues/5374)) ([13a0d6e](https://github.com/googleapis/google-cloud-php/commit/13a0d6ee0abbb5238fd573729deda687c1714c3a))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-eventarc 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.25.0</summary>
+
+
+
+### Features
+
+* [Firestore] add readonly compatibility ([#5410](https://github.com/googleapis/google-cloud-php/issues/5410)) ([9e93f2a](https://github.com/googleapis/google-cloud-php/commit/9e93f2a54c2c8626aa546660e6c1e340390c3e4f))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-functions 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-game-servers 0.4.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.1.0</summary>
+
+
+
+### Features
+
+* introduce gke backup ([#5386](https://github.com/googleapis/google-cloud-php/issues/5386)) ([3b52f7b](https://github.com/googleapis/google-cloud-php/commit/3b52f7b8dde8c28a2c2c284a333825d4cdf74240))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.1.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/grafeas 0.3.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-iap 0.3.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-kms 1.13.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/longrunning 0.1.0</summary>
+
+
+
+### Features
+
+* add LongRunning operation client ([#5390](https://github.com/googleapis/google-cloud-php/issues/5390)) ([18c9610](https://github.com/googleapis/google-cloud-php/commit/18c9610d246fa54495f46d1ead6cbea09f92a607))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-memcache 0.5.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+* fix monitoring owlbot excluse ([#5417](https://github.com/googleapis/google-cloud-php/issues/5417)) ([d648186](https://github.com/googleapis/google-cloud-php/commit/d648186aa1478fd7eb7c250940205aa5f7b098f5))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.2.0</summary>
+
+
+
+### Features
+
+* [NetworkManagement] add new abort cause and new route next hop type ([#5385](https://github.com/googleapis/google-cloud-php/issues/5385)) ([8391169](https://github.com/googleapis/google-cloud-php/commit/839116918de44192a2444b9bd55338100e14913f))
+* [NetworkManagement] introduce a projects_missing_permissions field in the AbortInfo structure ([#5362](https://github.com/googleapis/google-cloud-php/issues/5362)) ([d84cd9a](https://github.com/googleapis/google-cloud-php/commit/d84cd9af4e3a02b9ae29f4e071fa1eca63be1532))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.1.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-osconfig 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-profiler 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.38.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+* add PHP 8.1 to github actions ([#5416](https://github.com/googleapis/google-cloud-php/issues/5416)) ([388fdfc](https://github.com/googleapis/google-cloud-php/commit/388fdfc1088cafd1a19f6642bcbfdde05426de2c))
+
+</details>
+
+<details><summary>google/cloud-recaptcha-enterprise 1.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.7.0</summary>
+
+
+
+### Features
+
+* [Recommender] Implement configurable recommenders and  update .bazel files ([#5363](https://github.com/googleapis/google-cloud-php/issues/5363)) ([bdba0f5](https://github.com/googleapis/google-cloud-php/commit/bdba0f58b8fe5333a54becfe224d57c55d653eb5))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-retail 0.5.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.8.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Added contacts field to findings attributes, specifying Essential Contacts defined at org, folder or project level within a GCP org ([#5375](https://github.com/googleapis/google-cloud-php/issues/5375)) ([54095e3](https://github.com/googleapis/google-cloud-php/commit/54095e319f828c5c55f06417c109a3dd9d031b6f))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* [SecurityPrivateCa] update gapic-generator-php to v1.4.8 ([#5359](https://github.com/googleapis/google-cloud-php/issues/5359)) ([c5bc2eb](https://github.com/googleapis/google-cloud-php/commit/c5bc2eb31d9b2bd2cb25d764c9c313a3a04d67b7))
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.7.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.3.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-shell 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.51.0</summary>
+
+
+
+### Features
+
+* [Spanner] add ListDatabaseRoles API, Instance create_time and update_time ([#5377](https://github.com/googleapis/google-cloud-php/issues/5377)) ([18fd75e](https://github.com/googleapis/google-cloud-php/commit/18fd75e7e01d5815a3a686e8931714f5324d5670))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-speech 1.6.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-storage 1.28.0</summary>
+
+
+
+### Features
+
+* adding support for dual region gcs buckets ([#5392](https://github.com/googleapis/google-cloud-php/issues/5392)) ([43614f2](https://github.com/googleapis/google-cloud-php/commit/43614f2f07cbdb885e73a1a1eea8c148a4a36e1f))
+* **Storage:** Add OLM matchesPrefix and matchesSuffix ([#5353](https://github.com/googleapis/google-cloud-php/issues/5353)) ([2be59e3](https://github.com/googleapis/google-cloud-php/commit/2be59e3ed91d5b12af1ea01b43f2c86b79b5857c))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+* update storage service discovery ([#5399](https://github.com/googleapis/google-cloud-php/issues/5399)) ([68cc292](https://github.com/googleapis/google-cloud-php/commit/68cc2928163388051051e80c872e05caf7824b3d))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-talent 0.19.0</summary>
+
+
+
+### Features
+
+* [Talent] library of v4 jobs onboarded to SAM ([#5366](https://github.com/googleapis/google-cloud-php/issues/5366)) ([669f8df](https://github.com/googleapis/google-cloud-php/commit/669f8dfc6cf8b59a510b8b55181178171ac1193b))
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-tpu 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.2.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.4.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+* fix references in phpdoc ([#5367](https://github.com/googleapis/google-cloud-php/issues/5367)) ([fe32394](https://github.com/googleapis/google-cloud-php/commit/fe32394a3945873560ccefaff18e30fa6eb4e3e0))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.1.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* add name attr to testsuite for phpunit config ([#5383](https://github.com/googleapis/google-cloud-php/issues/5383)) ([b40c58a](https://github.com/googleapis/google-cloud-php/commit/b40c58ac08da0d78953249ed6f6d91d13540511b))
+
+</details>
+
 ## 0.185.0
 
 <details><summary>google/cloud-ai-platform 0.6.0</summary>

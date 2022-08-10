@@ -73,7 +73,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,7 +91,7 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEvent->setEventType($userEventEventType);
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
-        $response = $client->predict($placement, $userEvent);
+        $response = $gapicClient->predict($placement, $userEvent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -111,7 +111,7 @@ class PredictionServiceClientTest extends GeneratedTest
     public function predictExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -133,8 +133,8 @@ class PredictionServiceClientTest extends GeneratedTest
         $userEventVisitorId = 'userEventVisitorId-2104193702';
         $userEvent->setVisitorId($userEventVisitorId);
         try {
-            $client->predict($placement, $userEvent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->predict($placement, $userEvent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -89,7 +89,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $available_cpu_platforms
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_cpu_platforms
      *           [Output Only] Available cpu/platform selections for the zone.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
@@ -134,7 +134,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      * [Output Only] Available cpu/platform selections for the zone.
      *
      * Generated from protobuf field <code>repeated string available_cpu_platforms = 175536531;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAvailableCpuPlatforms($var)

@@ -42,9 +42,9 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *
      *     @type string $thumbnail
      *           Thumbnail of a representative face view (in JPEG format).
-     *     @type \Google\Cloud\VideoIntelligence\V1\FaceSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceSegment>|\Google\Protobuf\Internal\RepeatedField $segments
      *           All video segments where a face was detected.
-     *     @type \Google\Cloud\VideoIntelligence\V1\FaceFrame[]|\Google\Protobuf\Internal\RepeatedField $frames
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\FaceFrame>|\Google\Protobuf\Internal\RepeatedField $frames
      *           All video frames where a face was detected.
      * }
      */
@@ -94,7 +94,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video segments where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceSegment segments = 2;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\FaceSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegments($var)
@@ -120,7 +120,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * All video frames where a face was detected.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.FaceFrame frames = 3;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\FaceFrame[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\FaceFrame>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrames($var)

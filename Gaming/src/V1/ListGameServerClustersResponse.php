@@ -41,12 +41,12 @@ class ListGameServerClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Gaming\V1\GameServerCluster[]|\Google\Protobuf\Internal\RepeatedField $game_server_clusters
+     *     @type array<\Google\Cloud\Gaming\V1\GameServerCluster>|\Google\Protobuf\Internal\RepeatedField $game_server_clusters
      *           The list of game server clusters.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           List of locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListGameServerClustersResponse extends \Google\Protobuf\Internal\Message
      * The list of game server clusters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.GameServerCluster game_server_clusters = 1;</code>
-     * @param \Google\Cloud\Gaming\V1\GameServerCluster[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\GameServerCluster>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGameServerClusters($var)
@@ -124,7 +124,7 @@ class ListGameServerClustersResponse extends \Google\Protobuf\Internal\Message
      * List of locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -30,7 +30,7 @@ class ReplaceAccessLevelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Identity\AccessContextManager\V1\AccessLevel[]|\Google\Protobuf\Internal\RepeatedField $access_levels
+     *     @type array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $access_levels
      *           List of the [Access Level]
      *           [google.identity.accesscontextmanager.v1.AccessLevel] instances.
      * }
@@ -57,7 +57,7 @@ class ReplaceAccessLevelsResponse extends \Google\Protobuf\Internal\Message
      * [google.identity.accesscontextmanager.v1.AccessLevel] instances.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.AccessLevel access_levels = 1;</code>
-     * @param \Google\Identity\AccessContextManager\V1\AccessLevel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\AccessLevel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessLevels($var)

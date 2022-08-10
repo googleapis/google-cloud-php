@@ -61,16 +61,16 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      *
      *     @type int $primary_tactic
      *           The MITRE ATT&CK tactic most closely represented by this finding, if any.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $primary_techniques
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $primary_techniques
      *           The MITRE ATT&CK technique most closely represented by this finding, if
      *           any. primary_techniques is a repeated field because there are multiple
      *           levels of MITRE ATT&CK techniques.  If the technique most closely
      *           represented by this finding is a sub-technique (e.g. `SCANNING_IP_BLOCKS`),
      *           both the sub-technique and its parent technique(s) will be listed (e.g.
      *           `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $additional_tactics
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $additional_tactics
      *           Additional MITRE ATT&CK tactics related to this finding, if any.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $additional_techniques
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $additional_techniques
      *           Additional MITRE ATT&CK techniques related to this finding, if any, along
      *           with any of their respective parent techniques.
      *     @type string $version
@@ -133,7 +133,7 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      * `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.MitreAttack.Technique primary_techniques = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrimaryTechniques($var)
@@ -159,7 +159,7 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      * Additional MITRE ATT&CK tactics related to this finding, if any.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.MitreAttack.Tactic additional_tactics = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalTactics($var)
@@ -187,7 +187,7 @@ class MitreAttack extends \Google\Protobuf\Internal\Message
      * with any of their respective parent techniques.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.MitreAttack.Technique additional_techniques = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalTechniques($var)

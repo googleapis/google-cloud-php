@@ -38,14 +38,16 @@ use Google\Cloud\Container\V1\CancelOperationRequest;
 use Google\Cloud\Container\V1\Cluster;
 use Google\Cloud\Container\V1\ClusterUpdate;
 use Google\Cloud\Container\V1\CompleteIPRotationRequest;
+use Google\Cloud\Container\V1\CompleteNodePoolUpgradeRequest;
+use Google\Cloud\Container\V1\ConfidentialNodes;
 use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
 use Google\Cloud\Container\V1\DeleteNodePoolRequest;
 use Google\Cloud\Container\V1\GcfsConfig;
 use Google\Cloud\Container\V1\GetClusterRequest;
-use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
 
+use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysResponse;
 use Google\Cloud\Container\V1\GetNodePoolRequest;
 use Google\Cloud\Container\V1\GetOperationRequest;
@@ -62,11 +64,15 @@ use Google\Cloud\Container\V1\ListUsableSubnetworksResponse;
 use Google\Cloud\Container\V1\MaintenancePolicy;
 use Google\Cloud\Container\V1\MasterAuth;
 use Google\Cloud\Container\V1\NetworkPolicy;
+use Google\Cloud\Container\V1\NetworkTags;
 use Google\Cloud\Container\V1\NodeKubeletConfig;
+use Google\Cloud\Container\V1\NodeLabels;
 use Google\Cloud\Container\V1\NodeManagement;
+use Google\Cloud\Container\V1\NodeNetworkConfig;
 use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
+use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
@@ -237,7 +243,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -251,10 +257,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, operation id) of the operation to cancel.
      *           Specified in the format `projects/&#42;/locations/&#42;/operations/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @throws ApiException if the remote call fails
@@ -306,7 +311,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -317,13 +322,12 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to complete IP
+     *           The name (project, location, cluster name) of the cluster to complete IP
      *           rotation. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -360,6 +364,49 @@ class ClusterManagerGapicClient
     }
 
     /**
+     * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to
+     * complete.
+     *
+     * Sample code:
+     * ```
+     * $clusterManagerClient = new Google\Cloud\Container\V1\ClusterManagerClient();
+     * try {
+     *     $clusterManagerClient->completeNodePoolUpgrade();
+     * } finally {
+     *     $clusterManagerClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The name (project, location, cluster, node pool id) of the node pool to
+     *           complete upgrade.
+     *           Specified in the format `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function completeNodePoolUpgrade(array $optionalArgs = [])
+    {
+        $request = new CompleteNodePoolUpgradeRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('CompleteNodePoolUpgrade', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a cluster, consisting of the specified number and type of Google
      * Compute Engine instances.
      *
@@ -393,7 +440,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -404,10 +451,9 @@ class ClusterManagerGapicClient
      *           The parent (project and location) where the cluster will be created.
      *           Specified in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -459,7 +505,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -470,14 +516,13 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $parent
-     *           The parent (project, location, cluster id) where the node pool will be
+     *           The parent (project, location, cluster name) where the node pool will be
      *           created. Specified in the format
      *           `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -540,7 +585,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -554,10 +599,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to delete.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -611,7 +655,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -629,10 +673,9 @@ class ClusterManagerGapicClient
      *           delete. Specified in the format
      *           `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -691,7 +734,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -705,10 +748,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to retrieve.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Cluster
@@ -764,13 +806,12 @@ class ClusterManagerGapicClient
      *     Optional.
      *
      *     @type string $parent
-     *           The cluster (project, location, cluster id) to get keys for. Specified in
+     *           The cluster (project, location, cluster name) to get keys for. Specified in
      *           the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\GetJSONWebKeysResponse
@@ -809,7 +850,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -827,10 +868,9 @@ class ClusterManagerGapicClient
      *           get. Specified in the format
      *           `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\NodePool
@@ -889,7 +929,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -903,10 +943,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, operation id) of the operation to get.
      *           Specified in the format `projects/&#42;/locations/&#42;/operations/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -960,7 +999,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -971,10 +1010,9 @@ class ClusterManagerGapicClient
      *           The name (project and location) of the server config to get,
      *           specified in the format `projects/&#42;/locations/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\ServerConfig
@@ -1024,7 +1062,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1036,10 +1074,9 @@ class ClusterManagerGapicClient
      *           Specified in the format `projects/&#42;/locations/*`.
      *           Location "-" matches all zones and all regions.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\ListClustersResponse
@@ -1088,7 +1125,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1099,13 +1136,12 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $parent
-     *           The parent (project, location, cluster id) where the node pools will be
+     *           The parent (project, location, cluster name) where the node pools will be
      *           listed. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\ListNodePoolsResponse
@@ -1159,7 +1195,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the parent field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1171,10 +1207,9 @@ class ClusterManagerGapicClient
      *           Specified in the format `projects/&#42;/locations/*`.
      *           Location "-" matches all zones and all regions.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\ListOperationsResponse
@@ -1251,10 +1286,9 @@ class ClusterManagerGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1306,7 +1340,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1323,11 +1357,13 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster, node pool id) of the node poll to
      *           rollback upgrade.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
+     *     @type bool $respectPdb
+     *           Option for rollback to ignore the PodDisruptionBudget.
+     *           Default value is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1363,6 +1399,10 @@ class ClusterManagerGapicClient
             $requestParamHeaders['name'] = $optionalArgs['name'];
         }
 
+        if (isset($optionalArgs['respectPdb'])) {
+            $request->setRespectPdb($optionalArgs['respectPdb']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('RollbackNodePoolUpgrade', Operation::class, $optionalArgs, $request)->wait();
@@ -1389,7 +1429,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1403,10 +1443,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to set addons.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1470,7 +1509,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1481,13 +1520,12 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set labels.
+     *           The name (project, location, cluster name) of the cluster to set labels.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1545,7 +1583,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1556,13 +1594,12 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster to update.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set legacy abac.
-     *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
+     *           The name (project, location, cluster name) of the cluster to set legacy
+     *           abac. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1628,7 +1665,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1642,10 +1679,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to set locations.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1714,7 +1750,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1728,10 +1764,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to set logging.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1786,7 +1821,7 @@ class ClusterManagerGapicClient
      * ```
      *
      * @param string            $projectId         Required. The Google Developers Console [project ID or project
-     *                                             number](https://support.google.com/cloud/answer/6158840).
+     *                                             number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      * @param string            $zone              Required. The name of the Google Compute Engine
      *                                             [zone](https://cloud.google.com/compute/docs/zones#available) in which the
      *                                             cluster resides.
@@ -1797,14 +1832,13 @@ class ClusterManagerGapicClient
      *     Optional.
      *
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set maintenance
-     *           policy.
+     *           The name (project, location, cluster name) of the cluster to set
+     *           maintenance policy.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1857,7 +1891,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1871,10 +1905,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to set auth.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -1942,7 +1975,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -1956,10 +1989,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to set monitoring.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2016,7 +2048,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2027,13 +2059,12 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to set networking
+     *           The name (project, location, cluster name) of the cluster to set networking
      *           policy. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2090,7 +2121,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2108,10 +2139,9 @@ class ClusterManagerGapicClient
      *           autoscaler settings. Specified in the format
      *           `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2173,7 +2203,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2191,10 +2221,9 @@ class ClusterManagerGapicClient
      *           management properties. Specified in the format
      *           `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2258,7 +2287,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2276,10 +2305,9 @@ class ClusterManagerGapicClient
      *           size.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/&#42;/nodePools/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2339,7 +2367,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://developers.google.com/console/help/new/#projectnumber).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2350,15 +2378,14 @@ class ClusterManagerGapicClient
      *           Deprecated. The name of the cluster.
      *           This field has been deprecated and replaced by the name field.
      *     @type string $name
-     *           The name (project, location, cluster id) of the cluster to start IP
+     *           The name (project, location, cluster name) of the cluster to start IP
      *           rotation. Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type bool $rotateCredentials
      *           Whether to rotate credentials during IP rotation.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2418,7 +2445,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2432,10 +2459,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to update.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2501,7 +2527,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2515,10 +2541,9 @@ class ClusterManagerGapicClient
      *           The name (project, location, cluster) of the cluster to update.
      *           Specified in the format `projects/&#42;/locations/&#42;/clusters/*`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2587,7 +2612,7 @@ class ClusterManagerGapicClient
      *
      *     @type string $projectId
      *           Deprecated. The Google Developers Console [project ID or project
-     *           number](https://support.google.com/cloud/answer/6158840).
+     *           number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
      *           This field has been deprecated and replaced by the name field.
      *     @type string $zone
      *           Deprecated. The name of the Google Compute Engine
@@ -2614,19 +2639,35 @@ class ClusterManagerGapicClient
      *           The desired workload metadata config for the node pool.
      *     @type UpgradeSettings $upgradeSettings
      *           Upgrade settings control disruption and speed of the upgrade.
+     *     @type NetworkTags $tags
+     *           The desired network tags to be applied to all nodes in the node pool.
+     *           If this field is not present, the tags will not be changed. Otherwise,
+     *           the existing network tags will be *replaced* with the provided tags.
+     *     @type NodeTaints $taints
+     *           The desired node taints to be applied to all nodes in the node pool.
+     *           If this field is not present, the taints will not be changed. Otherwise,
+     *           the existing node taints will be *replaced* with the provided taints.
+     *     @type NodeLabels $labels
+     *           The desired node labels to be applied to all nodes in the node pool.
+     *           If this field is not present, the labels will not be changed. Otherwise,
+     *           the existing node labels will be *replaced* with the provided labels.
      *     @type LinuxNodeConfig $linuxNodeConfig
      *           Parameters that can be configured on Linux nodes.
      *     @type NodeKubeletConfig $kubeletConfig
      *           Node kubelet configs.
+     *     @type NodeNetworkConfig $nodeNetworkConfig
+     *           Node network config.
      *     @type GcfsConfig $gcfsConfig
      *           GCFS config.
+     *     @type ConfidentialNodes $confidentialNodes
+     *           Confidential nodes config.
+     *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Container\V1\Operation
@@ -2676,6 +2717,18 @@ class ClusterManagerGapicClient
             $request->setUpgradeSettings($optionalArgs['upgradeSettings']);
         }
 
+        if (isset($optionalArgs['tags'])) {
+            $request->setTags($optionalArgs['tags']);
+        }
+
+        if (isset($optionalArgs['taints'])) {
+            $request->setTaints($optionalArgs['taints']);
+        }
+
+        if (isset($optionalArgs['labels'])) {
+            $request->setLabels($optionalArgs['labels']);
+        }
+
         if (isset($optionalArgs['linuxNodeConfig'])) {
             $request->setLinuxNodeConfig($optionalArgs['linuxNodeConfig']);
         }
@@ -2684,8 +2737,16 @@ class ClusterManagerGapicClient
             $request->setKubeletConfig($optionalArgs['kubeletConfig']);
         }
 
+        if (isset($optionalArgs['nodeNetworkConfig'])) {
+            $request->setNodeNetworkConfig($optionalArgs['nodeNetworkConfig']);
+        }
+
         if (isset($optionalArgs['gcfsConfig'])) {
             $request->setGcfsConfig($optionalArgs['gcfsConfig']);
+        }
+
+        if (isset($optionalArgs['confidentialNodes'])) {
+            $request->setConfidentialNodes($optionalArgs['confidentialNodes']);
         }
 
         if (isset($optionalArgs['gvnic'])) {

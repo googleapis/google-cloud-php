@@ -89,11 +89,11 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Projection $select
      *           The projection to return.
-     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector[]|\Google\Protobuf\Internal\RepeatedField $from
+     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>|\Google\Protobuf\Internal\RepeatedField $from
      *           The collections to query.
      *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Filter $where
      *           The filter to apply.
-     *     @type \Google\Cloud\Firestore\V1\StructuredQuery\Order[]|\Google\Protobuf\Internal\RepeatedField $order_by
+     *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $order_by
      *           The order to apply to the query results.
      *           Firestore guarantees a stable ordering through the following rules:
      *            * Any field required to appear in `order_by`, that is not already
@@ -178,7 +178,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      * The collections to query.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.CollectionSelector from = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\CollectionSelector>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFrom($var)
@@ -266,7 +266,7 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *    `SELECT * FROM Foo WHERE A > 1 ORDER BY A, __name__`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
-     * @param \Google\Cloud\Firestore\V1\StructuredQuery\Order[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrderBy($var)

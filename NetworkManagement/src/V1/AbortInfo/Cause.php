@@ -118,6 +118,12 @@ class Cause
      * Generated from protobuf enum <code>MISMATCHED_DESTINATION_NETWORK = 14;</code>
      */
     const MISMATCHED_DESTINATION_NETWORK = 14;
+    /**
+     * Aborted because the test scenario is not supported.
+     *
+     * Generated from protobuf enum <code>UNSUPPORTED = 15;</code>
+     */
+    const UNSUPPORTED = 15;
 
     private static $valueToName = [
         self::CAUSE_UNSPECIFIED => 'CAUSE_UNSPECIFIED',
@@ -135,6 +141,7 @@ class Cause
         self::MISMATCHED_SOURCE_NETWORK => 'MISMATCHED_SOURCE_NETWORK',
         self::DESTINATION_ENDPOINT_NOT_FOUND => 'DESTINATION_ENDPOINT_NOT_FOUND',
         self::MISMATCHED_DESTINATION_NETWORK => 'MISMATCHED_DESTINATION_NETWORK',
+        self::UNSUPPORTED => 'UNSUPPORTED',
     ];
 
     public static function name($value)

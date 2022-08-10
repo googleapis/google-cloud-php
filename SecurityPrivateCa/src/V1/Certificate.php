@@ -142,7 +142,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *           Output only. The pem-encoded, signed X.509 certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription $certificate_description
      *           Output only. A structured description of the issued X.509 certificate.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $pem_certificate_chain
      *           Output only. The chain that may be used to verify the X.509 certificate. Expected to be
      *           in issuer-to-root order according to RFC 5246.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -501,7 +501,7 @@ class Certificate extends \Google\Protobuf\Internal\Message
      * in issuer-to-root order according to RFC 5246.
      *
      * Generated from protobuf field <code>repeated string pem_certificate_chain = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPemCertificateChain($var)

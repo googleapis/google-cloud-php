@@ -36,7 +36,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#flagsList`.
-     *     @type \Google\Cloud\Sql\V1beta4\Flag[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Sql\V1beta4\Flag>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of flags.
      * }
      */
@@ -86,7 +86,7 @@ class FlagsListResponse extends \Google\Protobuf\Internal\Message
      * List of flags.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.Flag items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\Flag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\Flag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

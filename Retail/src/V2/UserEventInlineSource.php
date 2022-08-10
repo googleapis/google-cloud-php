@@ -28,7 +28,7 @@ class UserEventInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\UserEvent[]|\Google\Protobuf\Internal\RepeatedField $user_events
+     *     @type array<\Google\Cloud\Retail\V2\UserEvent>|\Google\Protobuf\Internal\RepeatedField $user_events
      *           Required. A list of user events to import. Recommended max of 10k items.
      * }
      */
@@ -52,7 +52,7 @@ class UserEventInlineSource extends \Google\Protobuf\Internal\Message
      * Required. A list of user events to import. Recommended max of 10k items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.UserEvent user_events = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Retail\V2\UserEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\UserEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUserEvents($var)

@@ -193,6 +193,21 @@ class ModelServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Imports a list of externally generated ModelEvaluationSlice.
+     * @param \Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function BatchImportModelEvaluationSlices(\Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.ModelService/BatchImportModelEvaluationSlices',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\BatchImportModelEvaluationSlicesResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets a ModelEvaluation.
      * @param \Google\Cloud\AIPlatform\V1\GetModelEvaluationRequest $argument input argument
      * @param array $metadata metadata
