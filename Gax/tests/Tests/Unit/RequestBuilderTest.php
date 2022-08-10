@@ -306,14 +306,7 @@ class RequestBuilderTest extends TestCase
 
 
         $this->assertSame('XDAwMA==', $query['bytesValue']);
-        // @todo (dwsupplee) Investigate differences in native protobuf implementation
-        // between v3.7.0 and v3.9.0 - this passed previously with the value
-        // "9001.000500000s".
-        if (extension_loaded('protobuf')) {
-            $this->assertSame('9001.000500000s', $query['durationValue']);
-        } else {
-            $this->assertSame('9001.000500s', $query['durationValue']);
-        }
+        $this->assertSame('9001.000500s', $query['durationValue']);
         $this->assertSame('path1,path2', $query['fieldMask']);
         $this->assertEquals(100, $query['int64Value']);
         $this->assertEquals(['val1', 'val2'], $query['listValue']);

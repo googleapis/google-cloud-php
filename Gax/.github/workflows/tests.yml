@@ -9,15 +9,15 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: [ 5.6, "7.0", 7.1, 7.2, 7.3, 7.4, "8.0", 8.1 ]
+                php: [ "7.0", 7.1, 7.2, 7.3, 7.4, "8.0", 8.1 ]
                 extensions: [""]
                 tools: [""]
                 include:
-                  - php: 5.6
-                    extensions: "protobuf-3.12.2,grpc"
+                  - php: "7.0"
+                    extensions: "protobuf,grpc"
                     tools: "pecl"
-                  - php: 7.3
-                    extensions: "protobuf-3.12.2,grpc"
+                  - php: 8.1
+                    extensions: "protobuf,grpc"
                     tools: "pecl"
         name: "PHP ${{ matrix.php }} Unit Test ${{ matrix.extensions }}"
         steps:
