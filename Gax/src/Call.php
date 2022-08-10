@@ -54,15 +54,15 @@ class Call
      * @param string $method
      * @param string $decodeType
      * @param mixed|Message $message
-     * @param array $descriptor
+     * @param array|null $descriptor
      * @param int $callType
      */
     public function __construct(
-        $method,
-        $decodeType,
+        string $method,
+        string $decodeType = null,
         $message = null,
         $descriptor = [],
-        $callType = Call::UNARY_CALL
+        int $callType = Call::UNARY_CALL
     ) {
         $this->method = $method;
         $this->decodeType = $decodeType;

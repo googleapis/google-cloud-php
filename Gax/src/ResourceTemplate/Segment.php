@@ -75,11 +75,11 @@ class Segment
      * @throws ValidationException
      */
     public function __construct(
-        $segmentType,
-        $value = null,
-        $key = null,
+        int $segmentType,
+        string $value = null,
+        string $key = null,
         RelativeResourceTemplate $template = null,
-        $separator = '/'
+        string $separator = '/'
     ) {
         $this->segmentType = $segmentType;
         $this->value = $value;
@@ -122,7 +122,7 @@ class Segment
      * @return bool
      * @throws ValidationException
      */
-    public function matches($value)
+    public function matches(string $value)
     {
         switch ($this->segmentType) {
             case Segment::LITERAL_SEGMENT:
@@ -187,7 +187,7 @@ class Segment
      * @param string $binding
      * @return bool
      */
-    private static function isValidBinding($binding)
+    private static function isValidBinding(string $binding)
     {
         return preg_match("-^[^/]+$-", $binding) === 1;
     }
@@ -199,7 +199,7 @@ class Segment
      * @param string $binding
      * @return bool
      */
-    private static function isValidDoubleWildcardBinding($binding)
+    private static function isValidDoubleWildcardBinding(string $binding)
     {
         return preg_match("-^.+$-", $binding) === 1;
     }

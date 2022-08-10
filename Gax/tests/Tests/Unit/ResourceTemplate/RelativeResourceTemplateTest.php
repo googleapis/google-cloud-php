@@ -89,10 +89,6 @@ class RelativeResourceTemplateTest extends TestCase
     {
         return [
             [
-                null,                  // Null path
-                "Cannot construct RelativeResourceTemplate from null string"
-            ],
-            [
                 "",                    // Empty path
                 "Cannot construct RelativeResourceTemplate from empty string"
             ],

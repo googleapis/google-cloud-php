@@ -60,7 +60,7 @@ class Version
      * @param string $file
      * @return string
      */
-    public static function readVersionFile($file)
+    public static function readVersionFile(string $file)
     {
         $versionString = file_exists($file)
             ? (string) file_get_contents($file)

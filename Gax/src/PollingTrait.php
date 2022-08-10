@@ -90,7 +90,7 @@ trait PollingTrait
      *
      * @param int $millis
      */
-    protected function sleepMillis($millis)
+    protected function sleepMillis(int $millis)
     {
         usleep($millis * 1000);
     }

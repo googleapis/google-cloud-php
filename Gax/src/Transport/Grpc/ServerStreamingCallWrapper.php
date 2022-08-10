@@ -42,6 +42,9 @@ use Grpc\ServerStreamingCall;
  */
 class ServerStreamingCallWrapper implements ServerStreamingCallInterface
 {
+    /**
+     * @var ServerStreamingCall|GCPServerStreamCall
+     */
     private $stream;
 
     /**

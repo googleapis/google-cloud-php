@@ -50,7 +50,7 @@ class RequestParamsHeaderDescriptor
      * @param array $requestParams An associative array which contains request params header data in
      * a form ['field_name.subfield_name' => value].
      */
-    public function __construct($requestParams)
+    public function __construct(array $requestParams)
     {
         $headerKey = self::HEADER_KEY;
 

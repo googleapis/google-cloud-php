@@ -48,7 +48,7 @@ trait ServiceAddressTrait
      * @return array
      * @throws ValidationException
      */
-    private static function normalizeServiceAddress($apiEndpoint)
+    private static function normalizeServiceAddress(string $apiEndpoint)
     {
         $components = explode(':', $apiEndpoint);
         if (count($components) == 2) {

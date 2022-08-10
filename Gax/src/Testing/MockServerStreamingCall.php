@@ -34,6 +34,7 @@ namespace Google\ApiCore\Testing;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\ApiStatus;
+use Google\ApiCore\ServerStreamingCallInterface;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -43,7 +44,7 @@ use stdClass;
  *
  * @internal
  */
-class MockServerStreamingCall extends \Grpc\ServerStreamingCall
+class MockServerStreamingCall extends \Grpc\ServerStreamingCall implements ServerStreamingCallInterface
 {
     use SerializationTrait;
 
@@ -53,10 +54,10 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
     /**
      * MockServerStreamingCall constructor.
      * @param mixed[] $responses A list of response objects.
-     * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param MockStatus|stdClass|null $status An optional status object. If set to null, a status of OK is used.
+     * @param callable|array|null $deserialize An optional deserialize method for the response object.
+     * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct($responses, $deserialize = null, $status = null)
+    public function __construct(array $responses, $deserialize = null, stdClass $status = null)
     {
         $this->responses = $responses;
         $this->deserialize = $deserialize;
@@ -80,7 +81,7 @@ class MockServerStreamingCall extends \Grpc\ServerStreamingCall
     }
 
     /**
-     * @return MockStatus|null|\stdClass
+     * @return stdClass|null
      * @throws ApiException
      */
     public function getStatus()

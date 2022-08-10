@@ -308,7 +308,6 @@ class ParserTest extends TestCase
     public function invalidLiterals()
     {
         return [
-            [null],
             [""],
             ["fo\$o"],
             ["fo{o"],
@@ -366,7 +365,6 @@ class ParserTest extends TestCase
     public function invalidBindings()
     {
         return [
-            [null],
             [""],
             ["fo/o"],
         ];
@@ -403,7 +401,6 @@ class ParserTest extends TestCase
     public function invalidDoubleWildcardBindings()
     {
         return [
-            [null],
             [""],
         ];
     }

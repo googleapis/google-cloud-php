@@ -285,9 +285,9 @@ class RetrySettings
      * @return RetrySettings[] $retrySettings
      */
     public static function load(
-        $serviceName,
-        $clientConfig,
-        $disableRetries = false
+        string $serviceName,
+        array $clientConfig,
+        bool $disableRetries = false
     ) {
         $serviceRetrySettings = [];
 
@@ -386,7 +386,7 @@ class RetrySettings
      * @param int $timeout The timeout in milliseconds to be used as a logical call timeout.
      * @return array
      */
-    public static function logicalTimeout($timeout)
+    public static function logicalTimeout(int $timeout)
     {
         return [
             'initialRpcTimeoutMillis' => $timeout,
@@ -489,7 +489,7 @@ class RetrySettings
         return $this->totalTimeoutMillis;
     }
 
-    private static function convertArrayFromSnakeCase($settings)
+    private static function convertArrayFromSnakeCase(array $settings)
     {
         $camelCaseSettings = [];
         foreach ($settings as $key => $value) {

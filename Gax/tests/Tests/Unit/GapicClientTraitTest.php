@@ -469,8 +469,7 @@ class GapicClientTraitTest extends TestCase
         $clientDefaults = GapicClientTraitStub::getClientDefaults();
         $expectedRetrySettings = RetrySettings::load(
             $clientDefaults['serviceName'],
-            json_decode(file_get_contents($clientDefaults['clientConfig']), true),
-            []
+            json_decode(file_get_contents($clientDefaults['clientConfig']), true)
         );
         $disabledRetrySettings = [];
         foreach ($expectedRetrySettings as $method => $retrySettingsItem) {

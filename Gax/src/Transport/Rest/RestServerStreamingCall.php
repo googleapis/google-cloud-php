@@ -88,7 +88,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * @param string $decodeType
      * @param array<mixed> $decoderOptions
      */
-    public function __construct($httpHandler, $decodeType, array $decoderOptions)
+    public function __construct(callable $httpHandler, string $decodeType, array $decoderOptions)
     {
         $this->httpHandler = $httpHandler;
         $this->decodeType = $decodeType;
@@ -130,7 +130,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * @param array<mixed> $headers
      * @return RequestInterface
      */
-    private function appendHeaders($request, $headers)
+    private function appendHeaders(RequestInterface $request, array $headers)
     {
         foreach ($headers as $key => $value) {
             $request = $request->hasHeader($key) ?
@@ -166,7 +166,7 @@ class RestServerStreamingCall implements ServerStreamingCallInterface
      * Return the status of the server stream. If the call has not been started
      * this will be null.
      *
-     * @return \stdClass The status, with integer $code, string
+     * @return stdClass The status, with integer $code, string
      *                   $details, and array $metadata members
      */
     public function getStatus()

@@ -37,6 +37,7 @@ use Google\ApiCore\ApiStatus;
 use Google\Protobuf\Internal\Message;
 use Google\Rpc\Code;
 use Grpc;
+use stdClass;
 
 /**
  * The MockClientStreamingCall class is used to mock out the \Grpc\ClientStreamingCall class
@@ -57,11 +58,11 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
 
     /**
      * MockClientStreamingCall constructor.
-     * @param Message $response The response object.
-     * @param callable|null $deserialize An optional deserialize method for the response object.
-     * @param MockStatus|null $status An optional status object. If set to null, a status of OK is used.
+     * @param Message|string $response The response object.
+     * @param callable|array|null $deserialize An optional deserialize method for the response object.
+     * @param stdClass|null $status An optional status object. If set to null, a status of OK is used.
      */
-    public function __construct($response, $deserialize = null, $status = null)
+    public function __construct($response, $deserialize = null, stdClass $status = null)
     {
         $this->mockUnaryCall = new MockUnaryCall($response, $deserialize, $status);
     }
@@ -78,7 +79,7 @@ class MockClientStreamingCall extends Grpc\ClientStreamingCall
 
     /**
      * Save the request object, to be retrieved via getReceivedCalls()
-     * @param \Google\Protobuf\Internal\Message|mixed $request The request object
+     * @param Message|mixed $request The request object
      * @param array $options An array of options
      * @throws ApiException
      */

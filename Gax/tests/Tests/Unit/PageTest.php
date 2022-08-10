@@ -66,7 +66,7 @@ class PageTest extends TestCase
             });
         };
 
-        $call = new Call('method', [], $mockRequest);
+        $call = new Call('method', null, $mockRequest);
         $options = [];
 
         $response = $callable($call, $options)->wait();

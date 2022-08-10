@@ -42,6 +42,10 @@ use PHPUnit\Framework\TestCase;
  */
 abstract class GeneratedTest extends TestCase
 {
+    /**
+     * @param mixed $expected
+     * @param mixed $actual
+     */
     public function assertProtobufEquals(&$expected, &$actual)
     {
         if ($expected === $actual) {
@@ -84,6 +88,9 @@ abstract class GeneratedTest extends TestCase
         }
     }
 
+    /**
+     * @param iterable $field
+     */
     private function getValues($field)
     {
         return array_values(
