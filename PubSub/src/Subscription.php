@@ -919,7 +919,7 @@ class Subscription
      * }
      * @return void|array
      */
-    public function modifyAckDeadlineBatch(array $messages, int $seconds, array $options = [])
+    public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
     {
         $this->validateBatch($messages, Message::class);
 
@@ -957,7 +957,7 @@ class Subscription
      *
      * @return array
      */
-    private function modifyAckDeadlineBatchWithRetries(array $messages, int $seconds, array $options)
+    private function modifyAckDeadlineBatchWithRetries(array $messages, $seconds, array $options)
     {
         $actionFunc = function (&$messages, $options) use ($seconds) {
             $this->connection->modifyAckDeadline($options + [
