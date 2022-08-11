@@ -127,9 +127,9 @@ class Subscription
      * @var int
      *
      * The max time an exponential retry should delay for(in microseconds)
-     * set to 10 mins.
+     * set to 64 secs.
      */
-    private $exactlyOnceDeliveryMaxRetryTime;
+    private static $exactlyOnceDeliveryMaxRetryTime = 64000000;
 
     /**
      * @var string
@@ -149,7 +149,7 @@ class Subscription
      *
      * Max num of retries for an Exactly Once Delivery enabled sub's ack operation.
      */
-    private static $exactlyOnceDeliveryMaxRetries = 10;
+    private static $exactlyOnceDeliveryMaxRetries = 15;
 
     /**
      * Create a Subscription.
@@ -176,7 +176,6 @@ class Subscription
         $this->projectId = $projectId;
         $this->encode = (bool) $encode;
         $this->info = $info;
-        $this->exactlyOnceDeliveryMaxRetryTime = 600000000;
 
         // Accept either a simple name or a fully-qualified name.
         if ($this->isFullyQualifiedName('subscription', $name)) {
@@ -972,7 +971,7 @@ class Subscription
     }
 
     /**
-     * Helper function to retry an action for an EOD enabled subscription
+     * Helper function to retry an action for an `Exactly Once Delivery` enabled subscription
      * with an ExponentionBackOff.
      *
      * @param callable $actionFunc The function to be retried
@@ -983,19 +982,30 @@ class Subscription
     {
         $failed = [];
         $eodEnabled = true;
+        $startTime = time();
+        $maxAttemptTime = 10 * 60;  // 10 minutes
         
-        // min delay of 1 sec, max delay of 10 minutes
+        // min delay of 1 sec, max delay of 64 secs
         // doubles on every attempt
         $delayFunc = function ($attempt) {
             $delay = min(
-                (pow(2, $attempt) * 1000000),
-                $this->exactlyOnceDeliveryMaxRetryTime
+                mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+                self::$exactlyOnceDeliveryMaxRetryTime
             );
             return $delay;
         };
 
         // Func that decides if we need to retry again or not
-        $retryFunc = function (BadRequestException $e, $attempt) use (&$messages, &$failed, &$eodEnabled) {
+        $retryFunc = function (
+            BadRequestException $e,
+            $attempt
+        ) use (
+            &$messages,
+            &$failed,
+            &$eodEnabled,
+            $startTime,
+            $maxAttemptTime
+        ) {
             // If the subscription isn't EOD enabled, the method behaves as the acknowledge method.
             // Info from the exception is used instead of $subscription->info() to avoid
             // the need of `pubsub.subscriptions.get` permission.
@@ -1007,10 +1017,18 @@ class Subscription
             $retryAckIds = $this->getRetryableAckIds($e);
 
             // Find the messages which can be retried
-            $messages = array_filter($messages, function ($message) use ($retryAckIds, &$failed, $attempt) {
-                // A message will only be retried if it's ackId is in the list of retryable ackIds
-                // and the retry attempt isn't the last allowed attempt.
-                if ($attempt < self::$exactlyOnceDeliveryMaxRetries && in_array($message->ackId(), $retryAckIds)) {
+            $messages = array_filter($messages, function ($message) use (
+                $retryAckIds,
+                &$failed,
+                $startTime,
+                $maxAttemptTime
+            ) {
+                // A message will only be retried if
+                // 1. It's ackId is in the list of retryable ackIds
+                // 2. The total time elapsed hasn't crossed $maxAttemptTime seconds
+                if (in_array($message->ackId(), $retryAckIds)
+                    && time() - $startTime < $maxAttemptTime
+                ) {
                     return true;
                 }
 
@@ -1025,8 +1043,8 @@ class Subscription
             return count($messages) > 0;
         };
         
-        // We use 10 retries as the 11th retry will cross 10 minutes
-        // and that is our intended break point.
+        // We use 15 retries as the number of retries should be high enough to have a total delay
+        // of 10 minutes($maxAttemptTime)
         $backoff = new ExponentialBackoff(self::$exactlyOnceDeliveryMaxRetries, $retryFunc);
         $backoff->setCalcDelayFunction($delayFunc);
 
@@ -1325,14 +1343,14 @@ class Subscription
     }
 
     /**
-     * Func to change the maximum delay time for an EOD enabled subscription's
+     * Func to change the maximum delay time for an `Exactly Once Delivery` enabled subscription's
      * retry attempt.
      *
      * @internal
      */
-    public function setMaxEodRetryTime($maxTime)
+    public static function setMaxEodRetryTime($maxTime)
     {
-        $this->exactlyOnceDeliveryMaxRetryTime = $maxTime;
+        self::$exactlyOnceDeliveryMaxRetryTime = $maxTime;
     }
 
     /**
