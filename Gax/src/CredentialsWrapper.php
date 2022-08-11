@@ -193,7 +193,7 @@ class CredentialsWrapper
      * @param string $audience optional audience for self-signed JWTs.
      * @return callable Callable function that returns an authorization header.
      */
-    public function getAuthorizationHeaderCallback(string $audience = null)
+    public function getAuthorizationHeaderCallback($audience = null)
     {
         $credentialsFetcher = $this->credentialsFetcher;
         $authHttpHandler = $this->authHttpHandler;
