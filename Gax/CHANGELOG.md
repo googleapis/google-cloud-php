@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.1](https://github.com/googleapis/gax-php/compare/v1.16.0...v1.16.1) (2022-08-11)
+
+
+### Bug Fixes
+
+* remove typehint from extended method ([#411](https://github.com/googleapis/gax-php/issues/411)) ([fb37f73](https://github.com/googleapis/gax-php/commit/fb37f7365e888465d84fca304ca83360ddbae6c3))
+
 ## [1.16.0](https://github.com/googleapis/gax-php/compare/v1.15.0...v1.16.0) (2022-08-10)
 
 
