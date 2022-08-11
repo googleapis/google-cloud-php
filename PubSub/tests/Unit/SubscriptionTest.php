@@ -60,7 +60,7 @@ class SubscriptionTest extends TestCase
             true
         ], ['connection', 'info']);
         // make sure the ExponentialBackOff retries don't delay for our test.
-        $this->subscription::setMaxEodRetryTime(0);
+        Subscription::setMaxEodRetryTime(0);
 
         $this->ackIds = [
             'foobar',
@@ -547,33 +547,6 @@ class SubscriptionTest extends TestCase
         $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
     }
 
-    public function testAcknowledgeBatchRetryMax()
-    {
-        // We simulate the first msg sent to be failed temporarily
-        $metadata = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        $ex = $this->generateEodException($metadata);
-        
-        // num of retries + 1 original call
-        $numCalls = Subscription::getMaxRetries() + 1;
-
-        // An exception containing at least one transient failure
-        // should be called a maximum of $numCalls times
-        $this->connection->acknowledge(Argument::allOf(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription')
-        ))->shouldBeCalledTimes($numCalls)->willThrow($ex);
-
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->acknowledgeBatch($this->messages, ['returnFailures' => true]);
-
-        // since both msgs never returned a success, both msgs should be returned as a failure.
-        $this->assertEquals(count($failedMsgs), count($this->ackIds));
-    }
-
     public function testAcknowledgeBatchRetryPartial()
     {
         // Exception with first msg as a temporary failure
@@ -821,34 +794,6 @@ class SubscriptionTest extends TestCase
 
         $this->subscription->___setProperty('connection', $this->connection->reveal());
         $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
-    }
-
-    public function testModifyAckDeadlineBatchRetryMax()
-    {
-        // We simulate the first msg sent to be failed temporarily
-        $metadata = [
-            'foobar' => 'TRANSIENT_FAILURE_SERVICE_UNAVAILABLE',
-            'otherAckId' => 'PERMANENT_FAILURE_INVALID_ACK_ID'
-        ];
-
-        $ex = $this->generateEodException($metadata);
-        
-        // num of retries + 1 original call
-        $numCalls = Subscription::getMaxRetries() + 1;
-
-        // An exception containing at least one transient failure
-        // should be called a maximum of $numCalls times
-        $this->connection->modifyAckDeadline(Argument::allOf(
-            Argument::withKey('ackIds'),
-            Argument::withKey('subscription'),
-            Argument::withKey('ackDeadlineSeconds')
-        ))->shouldBeCalledTimes($numCalls)->willThrow($ex);
-
-        $this->subscription->___setProperty('connection', $this->connection->reveal());
-        $failedMsgs = $this->subscription->modifyAckDeadlineBatch($this->messages, 10, ['returnFailures' => true]);
-
-        // since both msgs never returned a success, both msgs should be returned as a failure.
-        $this->assertEquals(count($failedMsgs), count($this->ackIds));
     }
 
     public function testModifyAckDeadlineBatchRetryPartial()
