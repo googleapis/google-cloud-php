@@ -40,7 +40,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the parent Context.
      *           Format:
      *           `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $child_contexts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $child_contexts
      *           The resource names of the child Contexts.
      * }
      */
@@ -94,7 +94,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      * The resource names of the child Contexts.
      *
      * Generated from protobuf field <code>repeated string child_contexts = 2 [(.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildContexts($var)

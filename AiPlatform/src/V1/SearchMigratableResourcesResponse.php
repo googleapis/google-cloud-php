@@ -37,7 +37,7 @@ class SearchMigratableResourcesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\MigratableResource[]|\Google\Protobuf\Internal\RepeatedField $migratable_resources
+     *     @type array<\Google\Cloud\AIPlatform\V1\MigratableResource>|\Google\Protobuf\Internal\RepeatedField $migratable_resources
      *           All migratable resources that can be migrated to the
      *           location specified in the request.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class SearchMigratableResourcesResponse extends \Google\Protobuf\Internal\Messag
      * location specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigratableResource migratable_resources = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\MigratableResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\MigratableResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMigratableResources($var)

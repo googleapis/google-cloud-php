@@ -202,9 +202,9 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The sensitivity score of this table.
      *     @type \Google\Cloud\Dlp\V2\DataRiskLevel $data_risk_level
      *           The data risk level of this table.
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeSummary[]|\Google\Protobuf\Internal\RepeatedField $predicted_info_types
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $predicted_info_types
      *           The infoTypes predicted from this table's data.
-     *     @type \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[]|\Google\Protobuf\Internal\RepeatedField $other_info_types
+     *     @type array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $other_info_types
      *           Other infoTypes found in this table's data.
      *     @type \Google\Cloud\Dlp\V2\DataProfileConfigSnapshot $config_snapshot
      *           The snapshot of the configurations used to generate the profile.
@@ -576,7 +576,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * The infoTypes predicted from this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeSummary predicted_info_types = 27;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPredictedInfoTypes($var)
@@ -602,7 +602,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      * Other infoTypes found in this table's data.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.OtherInfoTypeSummary other_info_types = 28;</code>
-     * @param \Google\Cloud\Dlp\V2\OtherInfoTypeSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\OtherInfoTypeSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOtherInfoTypes($var)

@@ -30,7 +30,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           Required. Google Cloud Storage URI(-s) to the input file(s). May contain
      *           wildcards. For more information on wildcards, see
      *           https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
@@ -60,7 +60,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * https://cloud.google.com/storage/docs/gsutil/addlhelp/WildcardNames.
      *
      * Generated from protobuf field <code>repeated string uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUris($var)

@@ -90,7 +90,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,10 +116,10 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deploymentId = 'deploymentId51250389';
         $gameServerDeployment = new GameServerDeployment();
-        $response = $client->createGameServerDeployment($formattedParent, $deploymentId, $gameServerDeployment);
+        $response = $gapicClient->createGameServerDeployment($formattedParent, $deploymentId, $gameServerDeployment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,7 +166,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,10 +188,10 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deploymentId = 'deploymentId51250389';
         $gameServerDeployment = new GameServerDeployment();
-        $response = $client->createGameServerDeployment($formattedParent, $deploymentId, $gameServerDeployment);
+        $response = $gapicClient->createGameServerDeployment($formattedParent, $deploymentId, $gameServerDeployment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -225,7 +225,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -245,8 +245,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $response = $client->deleteGameServerDeployment($formattedName);
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $response = $gapicClient->deleteGameServerDeployment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -289,7 +289,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -311,8 +311,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $response = $client->deleteGameServerDeployment($formattedName);
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $response = $gapicClient->deleteGameServerDeployment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -340,7 +340,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function fetchDeploymentStateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -349,7 +349,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->fetchDeploymentState($name);
+        $response = $gapicClient->fetchDeploymentState($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -367,7 +367,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function fetchDeploymentStateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -384,8 +384,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->fetchDeploymentState($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->fetchDeploymentState($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -402,7 +402,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function getGameServerDeploymentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -416,8 +416,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $response = $client->getGameServerDeployment($formattedName);
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $response = $gapicClient->getGameServerDeployment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -435,7 +435,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function getGameServerDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -450,10 +450,10 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         try {
-            $client->getGameServerDeployment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGameServerDeployment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -470,7 +470,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function getGameServerDeploymentRolloutTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -484,8 +484,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
-        $response = $client->getGameServerDeploymentRollout($formattedName);
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $response = $gapicClient->getGameServerDeploymentRollout($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -503,7 +503,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function getGameServerDeploymentRolloutExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -518,10 +518,10 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
+        $formattedName = $gapicClient->gameServerDeploymentName('[PROJECT]', '[LOCATION]', '[DEPLOYMENT]');
         try {
-            $client->getGameServerDeploymentRollout($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGameServerDeploymentRollout($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -538,7 +538,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function listGameServerDeploymentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -553,8 +553,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $expectedResponse->setGameServerDeployments($gameServerDeployments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listGameServerDeployments($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listGameServerDeployments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -575,7 +575,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function listGameServerDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -590,10 +590,10 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listGameServerDeployments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGameServerDeployments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -610,7 +610,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function previewGameServerDeploymentRolloutTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -621,7 +621,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $rollout = new GameServerDeploymentRollout();
-        $response = $client->previewGameServerDeploymentRollout($rollout);
+        $response = $gapicClient->previewGameServerDeploymentRollout($rollout);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -639,7 +639,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
     public function previewGameServerDeploymentRolloutExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -656,8 +656,8 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $rollout = new GameServerDeploymentRollout();
         try {
-            $client->previewGameServerDeploymentRollout($rollout);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->previewGameServerDeploymentRollout($rollout);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -680,7 +680,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -708,7 +708,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $gameServerDeployment = new GameServerDeployment();
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerDeployment($gameServerDeployment, $updateMask);
+        $response = $gapicClient->updateGameServerDeployment($gameServerDeployment, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -753,7 +753,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -777,7 +777,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $gameServerDeployment = new GameServerDeployment();
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerDeployment($gameServerDeployment, $updateMask);
+        $response = $gapicClient->updateGameServerDeployment($gameServerDeployment, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -811,7 +811,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -839,7 +839,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $rollout = new GameServerDeploymentRollout();
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerDeploymentRollout($rollout, $updateMask);
+        $response = $gapicClient->updateGameServerDeploymentRollout($rollout, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -884,7 +884,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -908,7 +908,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         // Mock request
         $rollout = new GameServerDeploymentRollout();
         $updateMask = new FieldMask();
-        $response = $client->updateGameServerDeploymentRollout($rollout, $updateMask);
+        $response = $gapicClient->updateGameServerDeploymentRollout($rollout, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

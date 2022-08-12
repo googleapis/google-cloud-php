@@ -48,7 +48,7 @@ class TargetDetails extends \Google\Protobuf\Internal\Message
      *     @type string $game_server_deployment_name
      *           The game server deployment name. Uses the form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.
-     *     @type \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails[]|\Google\Protobuf\Internal\RepeatedField $fleet_details
+     *     @type array<\Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails>|\Google\Protobuf\Internal\RepeatedField $fleet_details
      *           Agones fleet details for game server clusters and game server deployments.
      * }
      */
@@ -128,7 +128,7 @@ class TargetDetails extends \Google\Protobuf\Internal\Message
      * Agones fleet details for game server clusters and game server deployments.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.TargetDetails.TargetFleetDetails fleet_details = 3;</code>
-     * @param \Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\TargetDetails\TargetFleetDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFleetDetails($var)

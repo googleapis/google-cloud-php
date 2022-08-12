@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class Mode
 {
     /**
-     * Unspecified spell correction mode. This defaults to
+     * Unspecified spell correction mode. In this case, server behavior
+     * defaults to
      * [Mode.AUTO][google.cloud.retail.v2.SearchRequest.SpellCorrectionSpec.Mode.AUTO].
      *
      * Generated from protobuf enum <code>MODE_UNSPECIFIED = 0;</code>

@@ -72,7 +72,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function createOfflineProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -83,7 +83,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setProfileBytes($profileBytes);
         $transport->addResponse($expectedResponse);
-        $response = $client->createOfflineProfile();
+        $response = $gapicClient->createOfflineProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -99,7 +99,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function createOfflineProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,8 +114,8 @@ class ProfilerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createOfflineProfile();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createOfflineProfile();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -132,7 +132,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function createProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -143,7 +143,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setProfileBytes($profileBytes);
         $transport->addResponse($expectedResponse);
-        $response = $client->createProfile();
+        $response = $gapicClient->createProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -159,7 +159,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function createProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -174,8 +174,8 @@ class ProfilerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createProfile();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createProfile();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -192,7 +192,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function updateProfileTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,7 +203,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setProfileBytes($profileBytes);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateProfile();
+        $response = $gapicClient->updateProfile();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -219,7 +219,7 @@ class ProfilerServiceClientTest extends GeneratedTest
     public function updateProfileExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -234,8 +234,8 @@ class ProfilerServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateProfile();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateProfile();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

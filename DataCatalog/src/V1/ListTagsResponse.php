@@ -36,7 +36,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\Tag[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
      *           [Tag][google.cloud.datacatalog.v1.Tag] details.
      *     @type string $next_page_token
      *           Pagination token of the next results page. Empty if there are
@@ -63,7 +63,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * [Tag][google.cloud.datacatalog.v1.Tag] details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.Tag tags = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\Tag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\Tag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)

@@ -56,7 +56,7 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      *           Video format.
      *     @type string $video_uri
      *           Video uri from the user bucket.
-     *     @type \Google\Cloud\DataLabeling\V1beta1\VideoThumbnail[]|\Google\Protobuf\Internal\RepeatedField $video_thumbnails
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\VideoThumbnail>|\Google\Protobuf\Internal\RepeatedField $video_thumbnails
      *           The list of video thumbnails.
      *     @type float $frame_rate
      *           FPS of the video.
@@ -136,7 +136,7 @@ class VideoPayload extends \Google\Protobuf\Internal\Message
      * The list of video thumbnails.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoThumbnail video_thumbnails = 3;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\VideoThumbnail[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\VideoThumbnail>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVideoThumbnails($var)

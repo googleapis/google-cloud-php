@@ -28,7 +28,7 @@ class ListIssueModelsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ContactCenterInsights\V1\IssueModel[]|\Google\Protobuf\Internal\RepeatedField $issue_models
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\IssueModel>|\Google\Protobuf\Internal\RepeatedField $issue_models
      *           The issue models that match the request.
      * }
      */
@@ -52,7 +52,7 @@ class ListIssueModelsResponse extends \Google\Protobuf\Internal\Message
      * The issue models that match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.IssueModel issue_models = 1;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\IssueModel[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\IssueModel>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIssueModels($var)

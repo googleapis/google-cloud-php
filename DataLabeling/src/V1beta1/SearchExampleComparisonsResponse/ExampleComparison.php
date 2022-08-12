@@ -37,7 +37,7 @@ class ExampleComparison extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DataLabeling\V1beta1\Example $ground_truth_example
      *           The ground truth output for the input.
-     *     @type \Google\Cloud\DataLabeling\V1beta1\Example[]|\Google\Protobuf\Internal\RepeatedField $model_created_examples
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $model_created_examples
      *           Predictions by the model for the input.
      * }
      */
@@ -97,7 +97,7 @@ class ExampleComparison extends \Google\Protobuf\Internal\Message
      * Predictions by the model for the input.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Example model_created_examples = 2;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\Example[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\Example>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModelCreatedExamples($var)

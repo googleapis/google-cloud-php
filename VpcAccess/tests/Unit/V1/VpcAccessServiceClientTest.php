@@ -86,7 +86,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -116,10 +116,10 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectorId = 'connectorId1928724045';
         $connector = new Connector();
-        $response = $client->createConnector($formattedParent, $connectorId, $connector);
+        $response = $gapicClient->createConnector($formattedParent, $connectorId, $connector);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -166,7 +166,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,10 +188,10 @@ class VpcAccessServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $connectorId = 'connectorId1928724045';
         $connector = new Connector();
-        $response = $client->createConnector($formattedParent, $connectorId, $connector);
+        $response = $gapicClient->createConnector($formattedParent, $connectorId, $connector);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -225,7 +225,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -245,8 +245,8 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $response = $client->deleteConnector($formattedName);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
+        $response = $gapicClient->deleteConnector($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -289,7 +289,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -311,8 +311,8 @@ class VpcAccessServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $response = $client->deleteConnector($formattedName);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
+        $response = $gapicClient->deleteConnector($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -340,7 +340,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
     public function getConnectorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -358,8 +358,8 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $expectedResponse->setMaxThroughput($maxThroughput);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
-        $response = $client->getConnector($formattedName);
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
+        $response = $gapicClient->getConnector($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -377,7 +377,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
     public function getConnectorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -392,10 +392,10 @@ class VpcAccessServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
+        $formattedName = $gapicClient->connectorName('[PROJECT]', '[LOCATION]', '[CONNECTOR]');
         try {
-            $client->getConnector($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConnector($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -412,7 +412,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
     public function listConnectorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -427,8 +427,8 @@ class VpcAccessServiceClientTest extends GeneratedTest
         $expectedResponse->setConnectors($connectors);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listConnectors($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listConnectors($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -449,7 +449,7 @@ class VpcAccessServiceClientTest extends GeneratedTest
     public function listConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -464,10 +464,10 @@ class VpcAccessServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listConnectors($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listConnectors($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

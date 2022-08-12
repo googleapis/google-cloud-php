@@ -30,9 +30,13 @@ dest = Path().resolve()
 # Added so that we can pass copy_excludes in the owlbot_main() call
 _tracked_paths.add(src)
 
-php.owlbot_main(src=src, dest=dest)
-
-
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "src/V1/TransactionOptions/ReadOnly.php"
+    ]
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
@@ -67,6 +71,15 @@ for version in ['V1']:
             pathExpr,
             search,
             replace)
+
+# remove ReadOnly class_alias code
+s.replace(
+    "src/V*/**/PBReadOnly.php",
+    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
+    + "\n"
+    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
+    + "\n",
+    '')
 
 ### [START] protoc backwards compatibility fixes
 

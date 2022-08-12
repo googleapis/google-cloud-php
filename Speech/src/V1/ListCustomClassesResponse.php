@@ -35,7 +35,7 @@ class ListCustomClassesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $custom_classes
+     *     @type array<\Google\Cloud\Speech\V1\CustomClass>|\Google\Protobuf\Internal\RepeatedField $custom_classes
      *           The custom classes.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListCustomClassesResponse extends \Google\Protobuf\Internal\Message
      * The custom classes.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.CustomClass custom_classes = 1;</code>
-     * @param \Google\Cloud\Speech\V1\CustomClass[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\CustomClass>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomClasses($var)

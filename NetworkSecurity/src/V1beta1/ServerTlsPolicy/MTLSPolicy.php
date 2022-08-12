@@ -16,10 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class MTLSPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Defines the mechanism to obtain the Certificate Authority certificate to
+     * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1;</code>
      */
     private $client_validation_ca;
 
@@ -29,8 +29,8 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkSecurity\V1beta1\ValidationCA[]|\Google\Protobuf\Internal\RepeatedField $client_validation_ca
-     *           Required. Defines the mechanism to obtain the Certificate Authority certificate to
+     *     @type array<\Google\Cloud\NetworkSecurity\V1beta1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $client_validation_ca
+     *           Defines the mechanism to obtain the Certificate Authority certificate to
      *           validate the client certificate.
      * }
      */
@@ -40,10 +40,10 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Defines the mechanism to obtain the Certificate Authority certificate to
+     * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getClientValidationCa()
@@ -52,11 +52,11 @@ class MTLSPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Defines the mechanism to obtain the Certificate Authority certificate to
+     * Defines the mechanism to obtain the Certificate Authority certificate to
      * validate the client certificate.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\NetworkSecurity\V1beta1\ValidationCA[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ValidationCA client_validation_ca = 1;</code>
+     * @param array<\Google\Cloud\NetworkSecurity\V1beta1\ValidationCA>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setClientValidationCa($var)

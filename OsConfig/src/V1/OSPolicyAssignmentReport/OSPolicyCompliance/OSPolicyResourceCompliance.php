@@ -61,7 +61,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      *
      *     @type string $os_policy_resource_id
      *           The ID of the OS policy resource.
-     *     @type \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep[]|\Google\Protobuf\Internal\RepeatedField $config_steps
+     *     @type array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep>|\Google\Protobuf\Internal\RepeatedField $config_steps
      *           Ordered list of configuration completed by the agent for the OS policy
      *           resource.
      *     @type int $compliance_state
@@ -131,7 +131,7 @@ class OSPolicyResourceCompliance extends \Google\Protobuf\Internal\Message
      * resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.osconfig.v1.OSPolicyAssignmentReport.OSPolicyCompliance.OSPolicyResourceCompliance.OSPolicyResourceConfigStep config_steps = 2;</code>
-     * @param \Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport\OSPolicyCompliance\OSPolicyResourceCompliance\OSPolicyResourceConfigStep>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConfigSteps($var)

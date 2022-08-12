@@ -7,6 +7,13 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:search',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v2/{placement=projects/*/locations/*/catalogs/*/servingConfigs/*}:search',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'placement' => [
                         'getters' => [

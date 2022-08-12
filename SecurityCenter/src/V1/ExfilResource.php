@@ -39,7 +39,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Resource's URI (https://google.aip.dev/122#full-resource-names)
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $components
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $components
      *           Subcomponents of the asset that is exfiltrated - these could be
      *           URIs used during exfiltration, table names, databases, filenames, etc.
      *           For example, multiple tables may be exfiltrated from the same CloudSQL
@@ -98,7 +98,7 @@ class ExfilResource extends \Google\Protobuf\Internal\Message
      * instance, or multiple files from the same Cloud Storage bucket.
      *
      * Generated from protobuf field <code>repeated string components = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setComponents($var)

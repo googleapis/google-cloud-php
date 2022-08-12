@@ -19,7 +19,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * The server-assigned name, which is only unique within the same service that
      * originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * `name` should be a resource name ending with `operations/{unique_id}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -35,7 +35,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $metadata = null;
     /**
      * If the value is `false`, it means the operation is still in progress.
-     * If true, the operation is completed, and either `error` or `response` is
+     * If `true`, the operation is completed, and either `error` or `response` is
      * available.
      *
      * Generated from protobuf field <code>bool done = 3;</code>
@@ -52,7 +52,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The server-assigned name, which is only unique within the same service that
      *           originally returns it. If you use the default HTTP mapping, the
-     *           `name` should have the format of `operations/some/unique/name`.
+     *           `name` should be a resource name ending with `operations/{unique_id}`.
      *     @type \Google\Protobuf\Any $metadata
      *           Service-specific metadata associated with the operation.  It typically
      *           contains progress information and common metadata such as create time.
@@ -60,7 +60,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           long-running operation should document the metadata type, if any.
      *     @type bool $done
      *           If the value is `false`, it means the operation is still in progress.
-     *           If true, the operation is completed, and either `error` or `response` is
+     *           If `true`, the operation is completed, and either `error` or `response` is
      *           available.
      *     @type \Google\Rpc\Status $error
      *           The error result of the operation in case of failure or cancellation.
@@ -83,7 +83,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * The server-assigned name, which is only unique within the same service that
      * originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * `name` should be a resource name ending with `operations/{unique_id}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -96,7 +96,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     /**
      * The server-assigned name, which is only unique within the same service that
      * originally returns it. If you use the default HTTP mapping, the
-     * `name` should have the format of `operations/some/unique/name`.
+     * `name` should be a resource name ending with `operations/{unique_id}`.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -117,11 +117,21 @@ class Operation extends \Google\Protobuf\Internal\Message
      * long-running operation should document the metadata type, if any.
      *
      * Generated from protobuf field <code>.google.protobuf.Any metadata = 2;</code>
-     * @return \Google\Protobuf\Any
+     * @return \Google\Protobuf\Any|null
      */
     public function getMetadata()
     {
         return $this->metadata;
+    }
+
+    public function hasMetadata()
+    {
+        return isset($this->metadata);
+    }
+
+    public function clearMetadata()
+    {
+        unset($this->metadata);
     }
 
     /**
@@ -144,7 +154,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * If the value is `false`, it means the operation is still in progress.
-     * If true, the operation is completed, and either `error` or `response` is
+     * If `true`, the operation is completed, and either `error` or `response` is
      * available.
      *
      * Generated from protobuf field <code>bool done = 3;</code>
@@ -157,7 +167,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * If the value is `false`, it means the operation is still in progress.
-     * If true, the operation is completed, and either `error` or `response` is
+     * If `true`, the operation is completed, and either `error` or `response` is
      * available.
      *
      * Generated from protobuf field <code>bool done = 3;</code>
@@ -176,11 +186,16 @@ class Operation extends \Google\Protobuf\Internal\Message
      * The error result of the operation in case of failure or cancellation.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 4;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getError()
     {
         return $this->readOneof(4);
+    }
+
+    public function hasError()
+    {
+        return $this->hasOneof(4);
     }
 
     /**
@@ -209,11 +224,16 @@ class Operation extends \Google\Protobuf\Internal\Message
      * `TakeSnapshotResponse`.
      *
      * Generated from protobuf field <code>.google.protobuf.Any response = 5;</code>
-     * @return \Google\Protobuf\Any
+     * @return \Google\Protobuf\Any|null
      */
     public function getResponse()
     {
         return $this->readOneof(5);
+    }
+
+    public function hasResponse()
+    {
+        return $this->hasOneof(5);
     }
 
     /**

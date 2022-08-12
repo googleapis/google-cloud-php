@@ -52,14 +52,14 @@ class ValueMapper
 
     /**
      * @var bool $returnInt64AsObject If true, 64 bit integers will be returned
-     *      as a {@see Google\Cloud\Core\Int64} object for 32 bit platform
+     *      as a {@see Int64} object for 32 bit platform
      *      compatibility.
      */
     private $returnInt64AsObject;
 
     /**
      * @param bool $returnInt64AsObject If true, 64 bit integers will be
-     *        returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
+     *        returned as a {@see Int64} object for 32 bit
      *        platform compatibility.
      */
     public function __construct($returnInt64AsObject)
@@ -334,7 +334,7 @@ class ValueMapper
 
     /**
      * Converts a timestamp in string format received from BigQuery to a
-     * {@see Google\Cloud\BigQuery\Timestamp}.
+     * {@see Timestamp}.
      *
      * @param string $value The timestamp.
      * @return Timestamp

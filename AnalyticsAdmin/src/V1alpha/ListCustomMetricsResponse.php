@@ -35,7 +35,7 @@ class ListCustomMetricsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\CustomMetric[]|\Google\Protobuf\Internal\RepeatedField $custom_metrics
+     *     @type array<\Google\Analytics\Admin\V1alpha\CustomMetric>|\Google\Protobuf\Internal\RepeatedField $custom_metrics
      *           List of CustomMetrics.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListCustomMetricsResponse extends \Google\Protobuf\Internal\Message
      * List of CustomMetrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.CustomMetric custom_metrics = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\CustomMetric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\CustomMetric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomMetrics($var)

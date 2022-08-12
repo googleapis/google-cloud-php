@@ -40,11 +40,11 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BareMetalSolution\V2\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of servers.
      *     @type string $next_page_token
      *           A token identifying a page of results from the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * The list of servers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.Instance instances = 1;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -120,7 +120,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

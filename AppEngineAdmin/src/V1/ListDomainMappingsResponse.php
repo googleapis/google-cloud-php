@@ -34,7 +34,7 @@ class ListDomainMappingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AppEngine\V1\DomainMapping[]|\Google\Protobuf\Internal\RepeatedField $domain_mappings
+     *     @type array<\Google\Cloud\AppEngine\V1\DomainMapping>|\Google\Protobuf\Internal\RepeatedField $domain_mappings
      *           The domain mappings for the application.
      *     @type string $next_page_token
      *           Continuation token for fetching the next page of results.
@@ -60,7 +60,7 @@ class ListDomainMappingsResponse extends \Google\Protobuf\Internal\Message
      * The domain mappings for the application.
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.DomainMapping domain_mappings = 1;</code>
-     * @param \Google\Cloud\AppEngine\V1\DomainMapping[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\DomainMapping>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomainMappings($var)

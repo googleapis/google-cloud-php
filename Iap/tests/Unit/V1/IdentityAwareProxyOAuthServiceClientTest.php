@@ -77,7 +77,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function createBrandTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -95,7 +95,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $brand = new Brand();
-        $response = $client->createBrand($parent, $brand);
+        $response = $gapicClient->createBrand($parent, $brand);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -115,7 +115,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function createBrandExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -133,8 +133,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $brand = new Brand();
         try {
-            $client->createBrand($parent, $brand);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createBrand($parent, $brand);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -151,7 +151,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function createIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -167,7 +167,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         $identityAwareProxyClient = new IdentityAwareProxyClient();
-        $response = $client->createIdentityAwareProxyClient($parent, $identityAwareProxyClient);
+        $response = $gapicClient->createIdentityAwareProxyClient($parent, $identityAwareProxyClient);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -187,7 +187,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function createIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -205,8 +205,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $parent = 'parent-995424086';
         $identityAwareProxyClient = new IdentityAwareProxyClient();
         try {
-            $client->createIdentityAwareProxyClient($parent, $identityAwareProxyClient);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createIdentityAwareProxyClient($parent, $identityAwareProxyClient);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -223,7 +223,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function deleteIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -232,7 +232,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $client->deleteIdentityAwareProxyClient($name);
+        $gapicClient->deleteIdentityAwareProxyClient($name);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -249,7 +249,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function deleteIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,8 +266,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->deleteIdentityAwareProxyClient($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteIdentityAwareProxyClient($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -284,7 +284,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function getBrandTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -301,7 +301,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getBrand($name);
+        $response = $gapicClient->getBrand($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -319,7 +319,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function getBrandExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -336,8 +336,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getBrand($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBrand($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -354,7 +354,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function getIdentityAwareProxyClientTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -369,7 +369,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->getIdentityAwareProxyClient($name);
+        $response = $gapicClient->getIdentityAwareProxyClient($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -387,7 +387,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function getIdentityAwareProxyClientExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -404,8 +404,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->getIdentityAwareProxyClient($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIdentityAwareProxyClient($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function listBrandsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -431,7 +431,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listBrands($parent);
+        $response = $gapicClient->listBrands($parent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -449,7 +449,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function listBrandsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -466,8 +466,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listBrands($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBrands($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -484,7 +484,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function listIdentityAwareProxyClientsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -500,7 +500,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listIdentityAwareProxyClients($parent);
+        $response = $gapicClient->listIdentityAwareProxyClients($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -521,7 +521,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function listIdentityAwareProxyClientsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -538,8 +538,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listIdentityAwareProxyClients($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIdentityAwareProxyClients($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -556,7 +556,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function resetIdentityAwareProxyClientSecretTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -571,7 +571,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->resetIdentityAwareProxyClientSecret($name);
+        $response = $gapicClient->resetIdentityAwareProxyClientSecret($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -589,7 +589,7 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
     public function resetIdentityAwareProxyClientSecretExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -606,8 +606,8 @@ class IdentityAwareProxyOAuthServiceClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->resetIdentityAwareProxyClientSecret($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->resetIdentityAwareProxyClientSecret($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -87,7 +87,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -112,7 +112,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->createIndex();
+        $response = $gapicClient->createIndex();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -153,7 +153,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -174,7 +174,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->createIndex();
+        $response = $gapicClient->createIndex();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -208,7 +208,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -233,7 +233,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->deleteIndex();
+        $response = $gapicClient->deleteIndex();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -274,7 +274,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -295,7 +295,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->deleteIndex();
+        $response = $gapicClient->deleteIndex();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -329,7 +329,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -353,7 +353,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $outputUrlPrefix = 'outputUrlPrefix1058210144';
-        $response = $client->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -398,7 +398,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -422,7 +422,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $outputUrlPrefix = 'outputUrlPrefix1058210144';
-        $response = $client->exportEntities($projectId, $outputUrlPrefix);
+        $response = $gapicClient->exportEntities($projectId, $outputUrlPrefix);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -450,7 +450,7 @@ class DatastoreAdminClientTest extends GeneratedTest
     public function getIndexTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -463,7 +463,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $expectedResponse->setIndexId($indexId2);
         $expectedResponse->setKind($kind);
         $transport->addResponse($expectedResponse);
-        $response = $client->getIndex();
+        $response = $gapicClient->getIndex();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -479,7 +479,7 @@ class DatastoreAdminClientTest extends GeneratedTest
     public function getIndexExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -494,8 +494,8 @@ class DatastoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getIndex();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIndex();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -518,7 +518,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -540,7 +540,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $inputUrl = 'inputUrl1707300730';
-        $response = $client->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities($projectId, $inputUrl);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -585,7 +585,7 @@ class DatastoreAdminClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -609,7 +609,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $inputUrl = 'inputUrl1707300730';
-        $response = $client->importEntities($projectId, $inputUrl);
+        $response = $gapicClient->importEntities($projectId, $inputUrl);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -637,7 +637,7 @@ class DatastoreAdminClientTest extends GeneratedTest
     public function listIndexesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -651,7 +651,7 @@ class DatastoreAdminClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIndexes($indexes);
         $transport->addResponse($expectedResponse);
-        $response = $client->listIndexes();
+        $response = $gapicClient->listIndexes();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -670,7 +670,7 @@ class DatastoreAdminClientTest extends GeneratedTest
     public function listIndexesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -685,8 +685,8 @@ class DatastoreAdminClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listIndexes();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIndexes();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

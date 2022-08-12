@@ -86,7 +86,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      *           processed). The filter must specify the metric type and the resource
      *           type. Optionally, it can specify resource labels and metric labels.
      *           This field must not exceed 2048 Unicode characters in length.
-     *     @type \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $aggregations
+     *     @type array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $aggregations
      *           Specifies the alignment of data points in individual time series as
      *           well as how to combine the retrieved time series together (such as
      *           when aggregating multiple streams on each resource to a single
@@ -192,7 +192,7 @@ class MetricAbsence extends \Google\Protobuf\Internal\Message
      * field.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Aggregation aggregations = 5;</code>
-     * @param \Google\Cloud\Monitoring\V3\Aggregation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\Aggregation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAggregations($var)

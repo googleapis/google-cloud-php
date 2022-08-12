@@ -36,9 +36,9 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $field_transformations
+     *     @type array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $field_transformations
      *           Transform the record by applying various field transformations.
-     *     @type \Google\Cloud\Dlp\V2\RecordSuppression[]|\Google\Protobuf\Internal\RepeatedField $record_suppressions
+     *     @type array<\Google\Cloud\Dlp\V2\RecordSuppression>|\Google\Protobuf\Internal\RepeatedField $record_suppressions
      *           Configuration defining which records get suppressed entirely. Records that
      *           match any suppression rule are omitted from the output.
      * }
@@ -63,7 +63,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
      * Transform the record by applying various field transformations.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldTransformation field_transformations = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldTransformations($var)
@@ -91,7 +91,7 @@ class RecordTransformations extends \Google\Protobuf\Internal\Message
      * match any suppression rule are omitted from the output.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.RecordSuppression record_suppressions = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\RecordSuppression[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\RecordSuppression>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRecordSuppressions($var)

@@ -47,7 +47,7 @@ class Fingerprint extends \Google\Protobuf\Internal\Message
      *     @type string $v1_name
      *           Required. The layer ID of the final layer in the Docker image's v1
      *           representation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $v2_blob
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $v2_blob
      *           Required. The ordered list of v2 blobs that represent a given image.
      *     @type string $v2_name
      *           Output only. The name of the image's v2 blobs computed via:
@@ -104,7 +104,7 @@ class Fingerprint extends \Google\Protobuf\Internal\Message
      * Required. The ordered list of v2 blobs that represent a given image.
      *
      * Generated from protobuf field <code>repeated string v2_blob = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setV2Blob($var)

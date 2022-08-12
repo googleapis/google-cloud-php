@@ -166,7 +166,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      *           values can contain only lowercase letters, numerals, underscores, and
      *           dashes. Keys must begin with a letter.
-     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           A list of conditions for the policy. The conditions are combined by AND or
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
@@ -187,7 +187,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $validity
      *           Read-only description of how the alert policy is invalid. OK if the alert
      *           policy is valid. If not OK, the alert policy will not generate incidents.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
      *           an already opened incident. Each element of this array corresponds to
@@ -389,7 +389,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
-     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -580,7 +580,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationChannels($var)

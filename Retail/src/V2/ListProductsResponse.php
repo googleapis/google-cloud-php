@@ -39,7 +39,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $products
      *           The [Product][google.cloud.retail.v2.Product]s.
      *     @type string $next_page_token
      *           A token that can be sent as
@@ -68,7 +68,7 @@ class ListProductsResponse extends \Google\Protobuf\Internal\Message
      * The [Product][google.cloud.retail.v2.Product]s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1;</code>
-     * @param \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProducts($var)

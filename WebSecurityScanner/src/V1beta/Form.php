@@ -36,7 +36,7 @@ class Form extends \Google\Protobuf\Internal\Message
      *
      *     @type string $action_uri
      *           ! The URI where to send the form when it's submitted.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $fields
      *           ! The names of form fields related to the vulnerability.
      * }
      */
@@ -86,7 +86,7 @@ class Form extends \Google\Protobuf\Internal\Message
      * ! The names of form fields related to the vulnerability.
      *
      * Generated from protobuf field <code>repeated string fields = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

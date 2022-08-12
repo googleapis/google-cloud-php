@@ -42,7 +42,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Api\MonitoredResource[]|\Google\Protobuf\Internal\RepeatedField $members
+     *     @type array<\Google\Api\MonitoredResource>|\Google\Protobuf\Internal\RepeatedField $members
      *           A set of monitored resources in the group.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is
@@ -72,7 +72,7 @@ class ListGroupMembersResponse extends \Google\Protobuf\Internal\Message
      * A set of monitored resources in the group.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResource members = 1;</code>
-     * @param \Google\Api\MonitoredResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\MonitoredResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMembers($var)

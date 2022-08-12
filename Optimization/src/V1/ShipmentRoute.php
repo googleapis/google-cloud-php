@@ -253,11 +253,11 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           Time at which the vehicle starts its route.
      *     @type \Google\Protobuf\Timestamp $vehicle_end_time
      *           Time at which the vehicle finishes its route.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Visit[]|\Google\Protobuf\Internal\RepeatedField $visits
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute\Visit>|\Google\Protobuf\Internal\RepeatedField $visits
      *           Ordered sequence of visits representing a route.
      *           visits[i] is the i-th visit in the route.
      *           If this field is empty, the vehicle is considered as unused.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Transition[]|\Google\Protobuf\Internal\RepeatedField $transitions
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute\Transition>|\Google\Protobuf\Internal\RepeatedField $transitions
      *           Ordered list of transitions for the route.
      *     @type bool $has_traffic_infeasibilities
      *           When
@@ -279,7 +279,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           This field is only populated if
      *           [OptimizeToursRequest.populate_polylines][google.cloud.optimization.v1.OptimizeToursRequest.populate_polylines]
      *           is set to true.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\PBBreak[]|\Google\Protobuf\Internal\RepeatedField $breaks
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute\PBBreak>|\Google\Protobuf\Internal\RepeatedField $breaks
      *           Breaks scheduled for the vehicle performing this route.
      *           The `breaks` sequence represents time intervals, each starting at the
      *           corresponding `start_time` and lasting `duration` seconds.
@@ -298,14 +298,14 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      *           that are only reported in an aggregated way as of 2022/01.
      *     @type float $route_total_cost
      *           Total cost of the route. The sum of all costs in the cost map.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $end_loads
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $end_loads
      *           Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      *           Vehicle loads upon arrival at its end location, for each
      *           type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
      *           `start_load_intervals`, `end_load_intervals` or demands. Exception: we omit
      *           loads for quantity types unconstrained by intervals and that don't have any
      *           non-zero demand on the route.
-     *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep[]|\Google\Protobuf\Internal\RepeatedField $travel_steps
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep>|\Google\Protobuf\Internal\RepeatedField $travel_steps
      *           Deprecated: Use [ShipmentRoute.Transition][] instead.
      *           Ordered list of travel steps for the route.
      *     @type \Google\Protobuf\Duration $vehicle_detour
@@ -473,7 +473,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * If this field is empty, the vehicle is considered as unused.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.Visit visits = 7;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute\Visit[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute\Visit>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVisits($var)
@@ -499,7 +499,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Ordered list of transitions for the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.Transition transitions = 8;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute\Transition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute\Transition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransitions($var)
@@ -623,7 +623,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * corresponding `start_time` and lasting `duration` seconds.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.Break breaks = 11;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute\PBBreak[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute\PBBreak>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBreaks($var)
@@ -767,7 +767,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * non-zero demand on the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity end_loads = 13 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -799,7 +799,7 @@ class ShipmentRoute extends \Google\Protobuf\Internal\Message
      * Ordered list of travel steps for the route.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentRoute.TravelStep travel_steps = 14 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentRoute\TravelStep>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

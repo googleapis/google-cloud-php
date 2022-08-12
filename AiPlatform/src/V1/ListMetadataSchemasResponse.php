@@ -36,7 +36,7 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\MetadataSchema[]|\Google\Protobuf\Internal\RepeatedField $metadata_schemas
+     *     @type array<\Google\Cloud\AIPlatform\V1\MetadataSchema>|\Google\Protobuf\Internal\RepeatedField $metadata_schemas
      *           The MetadataSchemas found for the MetadataStore.
      *     @type string $next_page_token
      *           A token, which can be sent as
@@ -64,7 +64,7 @@ class ListMetadataSchemasResponse extends \Google\Protobuf\Internal\Message
      * The MetadataSchemas found for the MetadataStore.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MetadataSchema metadata_schemas = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\MetadataSchema[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\MetadataSchema>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetadataSchemas($var)

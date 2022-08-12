@@ -36,7 +36,7 @@ class ListAwsClustersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeMultiCloud\V1\AwsCluster[]|\Google\Protobuf\Internal\RepeatedField $aws_clusters
+     *     @type array<\Google\Cloud\GkeMultiCloud\V1\AwsCluster>|\Google\Protobuf\Internal\RepeatedField $aws_clusters
      *           A list of [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources in the specified GCP
      *           project and region region.
      *     @type string $next_page_token
@@ -66,7 +66,7 @@ class ListAwsClustersResponse extends \Google\Protobuf\Internal\Message
      * project and region region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkemulticloud.v1.AwsCluster aws_clusters = 1;</code>
-     * @param \Google\Cloud\GkeMultiCloud\V1\AwsCluster[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeMultiCloud\V1\AwsCluster>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAwsClusters($var)

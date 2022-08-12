@@ -89,7 +89,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -108,7 +108,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $signedUrlKeyResource = new SignedUrlKey();
-        $response = $client->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -154,7 +154,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -179,7 +179,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $signedUrlKeyResource = new SignedUrlKey();
-        $response = $client->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
+        $response = $gapicClient->addSignedUrlKey($backendService, $project, $signedUrlKeyResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -205,7 +205,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -226,7 +226,7 @@ class BackendServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -249,7 +249,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -266,8 +266,8 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -290,7 +290,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -308,7 +308,7 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
-        $response = $client->delete($backendService, $project);
+        $response = $gapicClient->delete($backendService, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -352,7 +352,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -376,7 +376,7 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
-        $response = $client->delete($backendService, $project);
+        $response = $gapicClient->delete($backendService, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -408,7 +408,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -427,7 +427,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $keyName = 'keyName500938859';
         $project = 'project-309310695';
-        $response = $client->deleteSignedUrlKey($backendService, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey($backendService, $keyName, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -473,7 +473,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -498,7 +498,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $keyName = 'keyName500938859';
         $project = 'project-309310695';
-        $response = $client->deleteSignedUrlKey($backendService, $keyName, $project);
+        $response = $gapicClient->deleteSignedUrlKey($backendService, $keyName, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -524,7 +524,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -574,7 +574,7 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
-        $response = $client->get($backendService, $project);
+        $response = $gapicClient->get($backendService, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -594,7 +594,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -612,8 +612,8 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         try {
-            $client->get($backendService, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($backendService, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -630,7 +630,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function getHealthTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -643,7 +643,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $resourceGroupReferenceResource = new ResourceGroupReference();
-        $response = $client->getHealth($backendService, $project, $resourceGroupReferenceResource);
+        $response = $gapicClient->getHealth($backendService, $project, $resourceGroupReferenceResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -665,7 +665,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function getHealthExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -684,8 +684,8 @@ class BackendServicesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $resourceGroupReferenceResource = new ResourceGroupReference();
         try {
-            $client->getHealth($backendService, $project, $resourceGroupReferenceResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getHealth($backendService, $project, $resourceGroupReferenceResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -708,7 +708,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -726,7 +726,7 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->insert($backendServiceResource, $project);
+        $response = $gapicClient->insert($backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -770,7 +770,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -794,7 +794,7 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->insert($backendServiceResource, $project);
+        $response = $gapicClient->insert($backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -820,7 +820,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -842,7 +842,7 @@ class BackendServicesClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -863,7 +863,7 @@ class BackendServicesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -880,8 +880,8 @@ class BackendServicesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -904,7 +904,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -923,7 +923,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->patch($backendService, $backendServiceResource, $project);
+        $response = $gapicClient->patch($backendService, $backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -969,7 +969,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -994,7 +994,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->patch($backendService, $backendServiceResource, $project);
+        $response = $gapicClient->patch($backendService, $backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1026,7 +1026,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1045,7 +1045,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $client->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1091,7 +1091,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1116,7 +1116,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $client->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setEdgeSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1148,7 +1148,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1167,7 +1167,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $client->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1213,7 +1213,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1238,7 +1238,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $securityPolicyReferenceResource = new SecurityPolicyReference();
-        $response = $client->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
+        $response = $gapicClient->setSecurityPolicy($backendService, $project, $securityPolicyReferenceResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1270,7 +1270,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1289,7 +1289,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->update($backendService, $backendServiceResource, $project);
+        $response = $gapicClient->update($backendService, $backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1335,7 +1335,7 @@ class BackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1360,7 +1360,7 @@ class BackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
-        $response = $client->update($backendService, $backendServiceResource, $project);
+        $response = $gapicClient->update($backendService, $backendServiceResource, $project);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

@@ -115,15 +115,15 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AccessConfig[]|\Google\Protobuf\Internal\RepeatedField $access_configs
+     *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $access_configs
      *           An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
-     *     @type \Google\Cloud\Compute\V1\AliasIpRange[]|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
+     *     @type array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $alias_ip_ranges
      *           An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
      *     @type string $fingerprint
      *           Fingerprint hash of contents stored in this network interface. This field will be ignored when inserting an Instance or adding a NetworkInterface. An up-to-date fingerprint must be provided in order to update the NetworkInterface. The request will fail with error 400 Bad Request if the fingerprint is not provided, or 412 Precondition Failed if the fingerprint is out of date.
      *     @type int $internal_ipv6_prefix_length
      *           The prefix length of the primary internal IPv6 range.
-     *     @type \Google\Cloud\Compute\V1\AccessConfig[]|\Google\Protobuf\Internal\RepeatedField $ipv6_access_configs
+     *     @type array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $ipv6_access_configs
      *           An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
      *     @type string $ipv6_access_type
      *           [Output Only] One of EXTERNAL, INTERNAL to indicate whether the IP can be accessed from the Internet. This field is always inherited from its subnetwork. Valid only if stackType is IPV4_IPV6.
@@ -170,7 +170,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If there are no accessConfigs specified, then this instance will have no external internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig access_configs = 111058326;</code>
-     * @param \Google\Cloud\Compute\V1\AccessConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccessConfigs($var)
@@ -196,7 +196,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * An array of alias IP ranges for this network interface. You can only specify this field for network interfaces in VPC networks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AliasIpRange alias_ip_ranges = 165085631;</code>
-     * @param \Google\Cloud\Compute\V1\AliasIpRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AliasIpRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAliasIpRanges($var)
@@ -294,7 +294,7 @@ class NetworkInterface extends \Google\Protobuf\Internal\Message
      * An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config, DIRECT_IPV6, is supported. If there is no ipv6AccessConfig specified, then this instance will have no external IPv6 Internet access.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AccessConfig ipv6_access_configs = 483472110;</code>
-     * @param \Google\Cloud\Compute\V1\AccessConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AccessConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpv6AccessConfigs($var)

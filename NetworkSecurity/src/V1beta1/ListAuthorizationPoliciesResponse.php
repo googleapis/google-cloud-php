@@ -36,7 +36,7 @@ class ListAuthorizationPoliciesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy[]|\Google\Protobuf\Internal\RepeatedField $authorization_policies
+     *     @type array<\Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy>|\Google\Protobuf\Internal\RepeatedField $authorization_policies
      *           List of AuthorizationPolicies resources.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
@@ -64,7 +64,7 @@ class ListAuthorizationPoliciesResponse extends \Google\Protobuf\Internal\Messag
      * List of AuthorizationPolicies resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy authorization_policies = 1;</code>
-     * @param \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuthorizationPolicies($var)

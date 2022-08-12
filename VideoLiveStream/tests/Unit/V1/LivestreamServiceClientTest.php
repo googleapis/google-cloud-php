@@ -93,7 +93,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -117,12 +117,12 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $channel = new Channel();
         $channelOutput = new Output();
         $channel->setOutput($channelOutput);
         $channelId = 'channelId-1930808873';
-        $response = $client->createChannel($formattedParent, $channel, $channelId);
+        $response = $gapicClient->createChannel($formattedParent, $channel, $channelId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -169,7 +169,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -191,12 +191,12 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $channel = new Channel();
         $channelOutput = new Output();
         $channel->setOutput($channelOutput);
         $channelId = 'channelId-1930808873';
-        $response = $client->createChannel($formattedParent, $channel, $channelId);
+        $response = $gapicClient->createChannel($formattedParent, $channel, $channelId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -224,7 +224,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function createEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -236,12 +236,12 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setExecuteNow($executeNow);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $event = new Event();
         $eventAdBreak = new AdBreakTask();
         $event->setAdBreak($eventAdBreak);
         $eventId = 'eventId278118624';
-        $response = $client->createEvent($formattedParent, $event, $eventId);
+        $response = $gapicClient->createEvent($formattedParent, $event, $eventId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -263,7 +263,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function createEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -278,14 +278,14 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         $event = new Event();
         $eventAdBreak = new AdBreakTask();
         $event->setAdBreak($eventAdBreak);
         $eventId = 'eventId278118624';
         try {
-            $client->createEvent($formattedParent, $event, $eventId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createEvent($formattedParent, $event, $eventId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -308,7 +308,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -332,10 +332,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $input = new Input();
         $inputId = 'inputId470715824';
-        $response = $client->createInput($formattedParent, $input, $inputId);
+        $response = $gapicClient->createInput($formattedParent, $input, $inputId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -382,7 +382,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -404,10 +404,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $input = new Input();
         $inputId = 'inputId470715824';
-        $response = $client->createInput($formattedParent, $input, $inputId);
+        $response = $gapicClient->createInput($formattedParent, $input, $inputId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -441,7 +441,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -461,8 +461,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->deleteChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->deleteChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -505,7 +505,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -527,8 +527,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->deleteChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->deleteChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -556,7 +556,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function deleteEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -564,8 +564,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
-        $client->deleteEvent($formattedName);
+        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
+        $gapicClient->deleteEvent($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -582,7 +582,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function deleteEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -597,10 +597,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
+        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
         try {
-            $client->deleteEvent($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteEvent($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -623,7 +623,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -643,8 +643,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
-        $response = $client->deleteInput($formattedName);
+        $formattedName = $gapicClient->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
+        $response = $gapicClient->deleteInput($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -687,7 +687,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -709,8 +709,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
-        $response = $client->deleteInput($formattedName);
+        $formattedName = $gapicClient->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
+        $response = $gapicClient->deleteInput($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -738,7 +738,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getChannelTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -750,8 +750,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setActiveInput($activeInput);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->getChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->getChannel($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -769,7 +769,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getChannelExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -784,10 +784,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         try {
-            $client->getChannel($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getChannel($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -804,7 +804,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getEventTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -816,8 +816,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setExecuteNow($executeNow);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
-        $response = $client->getEvent($formattedName);
+        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
+        $response = $gapicClient->getEvent($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -835,7 +835,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getEventExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -850,10 +850,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
+        $formattedName = $gapicClient->eventName('[PROJECT]', '[LOCATION]', '[CHANNEL]', '[EVENT]');
         try {
-            $client->getEvent($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEvent($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -870,7 +870,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getInputTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -882,8 +882,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setUri($uri);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
-        $response = $client->getInput($formattedName);
+        $formattedName = $gapicClient->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
+        $response = $gapicClient->getInput($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -901,7 +901,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function getInputExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -916,10 +916,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
+        $formattedName = $gapicClient->inputName('[PROJECT]', '[LOCATION]', '[INPUT]');
         try {
-            $client->getInput($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInput($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -936,7 +936,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listChannelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -951,8 +951,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setChannels($channels);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listChannels($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listChannels($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -973,7 +973,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listChannelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -988,10 +988,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listChannels($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listChannels($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1008,7 +1008,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listEventsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1023,8 +1023,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setEvents($events);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->listEvents($formattedParent);
+        $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->listEvents($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1045,7 +1045,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listEventsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1060,10 +1060,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $formattedParent = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
         try {
-            $client->listEvents($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEvents($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1080,7 +1080,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listInputsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1095,8 +1095,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $expectedResponse->setInputs($inputs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listInputs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listInputs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1117,7 +1117,7 @@ class LivestreamServiceClientTest extends GeneratedTest
     public function listInputsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1132,10 +1132,10 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listInputs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInputs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1158,7 +1158,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1178,8 +1178,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->startChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->startChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1222,7 +1222,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1244,8 +1244,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->startChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->startChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1279,7 +1279,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1299,8 +1299,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->stopChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->stopChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1343,7 +1343,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1365,8 +1365,8 @@ class LivestreamServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
-        $response = $client->stopChannel($formattedName);
+        $formattedName = $gapicClient->channelName('[PROJECT]', '[LOCATION]', '[CHANNEL]');
+        $response = $gapicClient->stopChannel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1400,7 +1400,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1427,7 +1427,7 @@ class LivestreamServiceClientTest extends GeneratedTest
         $channel = new Channel();
         $channelOutput = new Output();
         $channel->setOutput($channelOutput);
-        $response = $client->updateChannel($channel);
+        $response = $gapicClient->updateChannel($channel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1470,7 +1470,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1495,7 +1495,7 @@ class LivestreamServiceClientTest extends GeneratedTest
         $channel = new Channel();
         $channelOutput = new Output();
         $channel->setOutput($channelOutput);
-        $response = $client->updateChannel($channel);
+        $response = $gapicClient->updateChannel($channel);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1529,7 +1529,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1554,7 +1554,7 @@ class LivestreamServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $input = new Input();
-        $response = $client->updateInput($input);
+        $response = $gapicClient->updateInput($input);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1597,7 +1597,7 @@ class LivestreamServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1620,7 +1620,7 @@ class LivestreamServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $input = new Input();
-        $response = $client->updateInput($input);
+        $response = $gapicClient->updateInput($input);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

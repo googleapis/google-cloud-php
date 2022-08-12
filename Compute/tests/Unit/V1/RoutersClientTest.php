@@ -83,7 +83,7 @@ class RoutersClientTest extends GeneratedTest
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -104,7 +104,7 @@ class RoutersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->aggregatedList($project);
+        $response = $gapicClient->aggregatedList($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -127,7 +127,7 @@ class RoutersClientTest extends GeneratedTest
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -144,8 +144,8 @@ class RoutersClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->aggregatedList($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->aggregatedList($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -168,7 +168,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -187,7 +187,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $router = 'router-925132983';
-        $response = $client->delete($project, $region, $router);
+        $response = $gapicClient->delete($project, $region, $router);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -234,7 +234,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -259,7 +259,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $router = 'router-925132983';
-        $response = $client->delete($project, $region, $router);
+        $response = $gapicClient->delete($project, $region, $router);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -285,7 +285,7 @@ class RoutersClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -314,7 +314,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $router = 'router-925132983';
-        $response = $client->get($project, $region, $router);
+        $response = $gapicClient->get($project, $region, $router);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -336,7 +336,7 @@ class RoutersClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -355,8 +355,8 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         try {
-            $client->get($project, $region, $router);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $region, $router);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -373,7 +373,7 @@ class RoutersClientTest extends GeneratedTest
     public function getNatMappingInfoTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -397,7 +397,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $router = 'router-925132983';
-        $response = $client->getNatMappingInfo($project, $region, $router);
+        $response = $gapicClient->getNatMappingInfo($project, $region, $router);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -422,7 +422,7 @@ class RoutersClientTest extends GeneratedTest
     public function getNatMappingInfoExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -441,8 +441,8 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         try {
-            $client->getNatMappingInfo($project, $region, $router);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getNatMappingInfo($project, $region, $router);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -459,7 +459,7 @@ class RoutersClientTest extends GeneratedTest
     public function getRouterStatusTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -472,7 +472,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $router = 'router-925132983';
-        $response = $client->getRouterStatus($project, $region, $router);
+        $response = $gapicClient->getRouterStatus($project, $region, $router);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -494,7 +494,7 @@ class RoutersClientTest extends GeneratedTest
     public function getRouterStatusExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -513,8 +513,8 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         try {
-            $client->getRouterStatus($project, $region, $router);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRouterStatus($project, $region, $router);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -537,7 +537,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -556,7 +556,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $routerResource = new Router();
-        $response = $client->insert($project, $region, $routerResource);
+        $response = $gapicClient->insert($project, $region, $routerResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -603,7 +603,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -628,7 +628,7 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $routerResource = new Router();
-        $response = $client->insert($project, $region, $routerResource);
+        $response = $gapicClient->insert($project, $region, $routerResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -654,7 +654,7 @@ class RoutersClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -677,7 +677,7 @@ class RoutersClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -700,7 +700,7 @@ class RoutersClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -718,8 +718,8 @@ class RoutersClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -742,7 +742,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -762,7 +762,7 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         $routerResource = new Router();
-        $response = $client->patch($project, $region, $router, $routerResource);
+        $response = $gapicClient->patch($project, $region, $router, $routerResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -811,7 +811,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -837,7 +837,7 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         $routerResource = new Router();
-        $response = $client->patch($project, $region, $router, $routerResource);
+        $response = $gapicClient->patch($project, $region, $router, $routerResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -863,7 +863,7 @@ class RoutersClientTest extends GeneratedTest
     public function previewTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -875,7 +875,7 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         $routerResource = new Router();
-        $response = $client->preview($project, $region, $router, $routerResource);
+        $response = $gapicClient->preview($project, $region, $router, $routerResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -899,7 +899,7 @@ class RoutersClientTest extends GeneratedTest
     public function previewExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -919,8 +919,8 @@ class RoutersClientTest extends GeneratedTest
         $router = 'router-925132983';
         $routerResource = new Router();
         try {
-            $client->preview($project, $region, $router, $routerResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->preview($project, $region, $router, $routerResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -943,7 +943,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -963,7 +963,7 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         $routerResource = new Router();
-        $response = $client->update($project, $region, $router, $routerResource);
+        $response = $gapicClient->update($project, $region, $router, $routerResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1012,7 +1012,7 @@ class RoutersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1038,7 +1038,7 @@ class RoutersClientTest extends GeneratedTest
         $region = 'region-934795532';
         $router = 'router-925132983';
         $routerResource = new Router();
-        $response = $client->update($project, $region, $router, $routerResource);
+        $response = $gapicClient->update($project, $region, $router, $routerResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

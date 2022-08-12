@@ -40,9 +40,9 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AuditLogConfig[]|\Google\Protobuf\Internal\RepeatedField $audit_log_configs
+     *     @type array<\Google\Cloud\Compute\V1\AuditLogConfig>|\Google\Protobuf\Internal\RepeatedField $audit_log_configs
      *           The configuration for logging of each type of permission.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exempted_members
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exempted_members
      *           This is deprecated and has no effect. Do not use.
      *     @type string $service
      *           Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
@@ -68,7 +68,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * The configuration for logging of each type of permission.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AuditLogConfig audit_log_configs = 488420626;</code>
-     * @param \Google\Cloud\Compute\V1\AuditLogConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AuditLogConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuditLogConfigs($var)
@@ -94,7 +94,7 @@ class AuditConfig extends \Google\Protobuf\Internal\Message
      * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExemptedMembers($var)

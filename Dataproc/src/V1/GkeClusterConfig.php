@@ -44,7 +44,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. A target GKE cluster to deploy to. It must be in the same project and
      *           region as the Dataproc cluster (the GKE cluster can be zonal or regional).
      *           Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}'
-     *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolTarget[]|\Google\Protobuf\Internal\RepeatedField $node_pool_target
+     *     @type array<\Google\Cloud\Dataproc\V1\GkeNodePoolTarget>|\Google\Protobuf\Internal\RepeatedField $node_pool_target
      *           Optional. GKE NodePools where workloads will be scheduled. At least one node pool
      *           must be assigned the 'default' role. Each role can be given to only a
      *           single NodePoolTarget. All NodePools must have the same location settings.
@@ -110,7 +110,7 @@ class GkeClusterConfig extends \Google\Protobuf\Internal\Message
      * nodePoolTarget.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget node_pool_target = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\GkeNodePoolTarget[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\GkeNodePoolTarget>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodePoolTarget($var)

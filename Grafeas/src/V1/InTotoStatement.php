@@ -44,7 +44,7 @@ class InTotoStatement extends \Google\Protobuf\Internal\Message
      *
      *     @type string $type
      *           Always `https://in-toto.io/Statement/v0.1`.
-     *     @type \Grafeas\V1\Subject[]|\Google\Protobuf\Internal\RepeatedField $subject
+     *     @type array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $subject
      *     @type string $predicate_type
      *           `https://slsa.dev/provenance/v0.1` for SlsaProvenance.
      *     @type \Grafeas\V1\InTotoProvenance $provenance
@@ -94,7 +94,7 @@ class InTotoStatement extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .grafeas.v1.Subject subject = 2;</code>
-     * @param \Grafeas\V1\Subject[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Subject>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubject($var)

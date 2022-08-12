@@ -76,7 +76,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function computeThreatListDiffTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -88,7 +88,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         // Mock request
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
         $constraints = new Constraints();
-        $response = $client->computeThreatListDiff($threatType, $constraints);
+        $response = $gapicClient->computeThreatListDiff($threatType, $constraints);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -108,7 +108,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function computeThreatListDiffExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -126,8 +126,8 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $threatType = ThreatType::THREAT_TYPE_UNSPECIFIED;
         $constraints = new Constraints();
         try {
-            $client->computeThreatListDiff($threatType, $constraints);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->computeThreatListDiff($threatType, $constraints);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -144,7 +144,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function searchHashesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -153,7 +153,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $threatTypes = [];
-        $response = $client->searchHashes($threatTypes);
+        $response = $gapicClient->searchHashes($threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -171,7 +171,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function searchHashesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -188,8 +188,8 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         // Mock request
         $threatTypes = [];
         try {
-            $client->searchHashes($threatTypes);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchHashes($threatTypes);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -206,7 +206,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function searchUrisTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -216,7 +216,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         // Mock request
         $uri = 'uri116076';
         $threatTypes = [];
-        $response = $client->searchUris($uri, $threatTypes);
+        $response = $gapicClient->searchUris($uri, $threatTypes);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -236,7 +236,7 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
     public function searchUrisExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -254,8 +254,8 @@ class WebRiskServiceV1Beta1ClientTest extends GeneratedTest
         $uri = 'uri116076';
         $threatTypes = [];
         try {
-            $client->searchUris($uri, $threatTypes);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchUris($uri, $threatTypes);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

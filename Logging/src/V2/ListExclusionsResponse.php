@@ -36,7 +36,7 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Logging\V2\LogExclusion[]|\Google\Protobuf\Internal\RepeatedField $exclusions
+     *     @type array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $exclusions
      *           A list of exclusions.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -64,7 +64,7 @@ class ListExclusionsResponse extends \Google\Protobuf\Internal\Message
      * A list of exclusions.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogExclusion exclusions = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogExclusion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExclusions($var)

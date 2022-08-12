@@ -74,9 +74,9 @@ class WindowsUpdate extends \Google\Protobuf\Internal\Message
      *           The localized title of the update.
      *     @type string $description
      *           The localized description of the update.
-     *     @type \Grafeas\V1\WindowsUpdate\Category[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<\Grafeas\V1\WindowsUpdate\Category>|\Google\Protobuf\Internal\RepeatedField $categories
      *           The list of categories to which the update belongs.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $kb_article_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kb_article_ids
      *           The Microsoft Knowledge Base article IDs that are associated with the
      *           update.
      *     @type string $support_url
@@ -193,7 +193,7 @@ class WindowsUpdate extends \Google\Protobuf\Internal\Message
      * The list of categories to which the update belongs.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.WindowsUpdate.Category categories = 4;</code>
-     * @param \Grafeas\V1\WindowsUpdate\Category[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\WindowsUpdate\Category>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)
@@ -221,7 +221,7 @@ class WindowsUpdate extends \Google\Protobuf\Internal\Message
      * update.
      *
      * Generated from protobuf field <code>repeated string kb_article_ids = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKbArticleIds($var)

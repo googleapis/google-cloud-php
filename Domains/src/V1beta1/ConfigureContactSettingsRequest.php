@@ -65,7 +65,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      *           Required. The field mask describing which fields to update as a comma-separated list.
      *           For example, if only the registrant contact is being updated, the
      *           `update_mask` is `"registrant_contact"`.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $contact_notices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $contact_notices
      *           The list of contact notices that the caller acknowledges. The notices
      *           needed here depend on the values specified in `contact_settings`.
      *     @type bool $validate_only
@@ -198,7 +198,7 @@ class ConfigureContactSettingsRequest extends \Google\Protobuf\Internal\Message
      * needed here depend on the values specified in `contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactNotice contact_notices = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContactNotices($var)

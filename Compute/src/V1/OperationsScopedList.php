@@ -33,7 +33,7 @@ class OperationsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           [Output Only] A list of operations contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of operations when the list is empty.
@@ -59,7 +59,7 @@ class OperationsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of operations contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Operation operations = 4184044;</code>
-     * @param \Google\Cloud\Compute\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

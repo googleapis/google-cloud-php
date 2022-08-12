@@ -63,7 +63,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AppEngine\V1\SslSettings $ssl_settings
      *           SSL configuration for this domain. If unconfigured, this domain will not
      *           serve with SSL.
-     *     @type \Google\Cloud\AppEngine\V1\ResourceRecord[]|\Google\Protobuf\Internal\RepeatedField $resource_records
+     *     @type array<\Google\Cloud\AppEngine\V1\ResourceRecord>|\Google\Protobuf\Internal\RepeatedField $resource_records
      *           The resource records required to configure this domain mapping. These
      *           records must be added to the domain's DNS configuration in order to
      *           serve the application via this domain mapping.
@@ -192,7 +192,7 @@ class DomainMapping extends \Google\Protobuf\Internal\Message
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>repeated .google.appengine.v1.ResourceRecord resource_records = 4;</code>
-     * @param \Google\Cloud\AppEngine\V1\ResourceRecord[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AppEngine\V1\ResourceRecord>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceRecords($var)

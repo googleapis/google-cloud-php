@@ -44,7 +44,7 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Kms\V1\KeyRing[]|\Google\Protobuf\Internal\RepeatedField $key_rings
+     *     @type array<\Google\Cloud\Kms\V1\KeyRing>|\Google\Protobuf\Internal\RepeatedField $key_rings
      *           The list of [KeyRings][google.cloud.kms.v1.KeyRing].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
@@ -75,7 +75,7 @@ class ListKeyRingsResponse extends \Google\Protobuf\Internal\Message
      * The list of [KeyRings][google.cloud.kms.v1.KeyRing].
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.KeyRing key_rings = 1;</code>
-     * @param \Google\Cloud\Kms\V1\KeyRing[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Kms\V1\KeyRing>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKeyRings($var)

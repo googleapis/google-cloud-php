@@ -42,13 +42,13 @@ class ListCertificateMapEntriesResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\CertificateManager\V1\CertificateMapEntry[]|\Google\Protobuf\Internal\RepeatedField $certificate_map_entries
+     *     @type array<\Google\Cloud\CertificateManager\V1\CertificateMapEntry>|\Google\Protobuf\Internal\RepeatedField $certificate_map_entries
      *           A list of certificate map entries for the parent resource.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
      *           `next_page_token` is included. To get the next set of results, call this
      *           method again using the value of `next_page_token` as `page_token`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -72,7 +72,7 @@ class ListCertificateMapEntriesResponse extends \Google\Protobuf\Internal\Messag
      * A list of certificate map entries for the parent resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.certificatemanager.v1.CertificateMapEntry certificate_map_entries = 1;</code>
-     * @param \Google\Cloud\CertificateManager\V1\CertificateMapEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\CertificateManager\V1\CertificateMapEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCertificateMapEntries($var)
@@ -128,7 +128,7 @@ class ListCertificateMapEntriesResponse extends \Google\Protobuf\Internal\Messag
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -56,10 +56,10 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      *     @type string $advertise_mode
      *           User-specified flag to indicate which mode to use for advertisement. The options are DEFAULT or CUSTOM.
      *           Check the AdvertiseMode enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $advertised_groups
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
      *           User-specified list of prefix groups to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These groups will be advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
+     *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *     @type int $asn
      *           Local BGP Autonomous System Number (ASN). Must be an RFC6996 private ASN, either 16-bit or 32-bit. The value will be fixed for this router resource. All VPN tunnels that link to this router will have the same local ASN.
@@ -127,7 +127,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedGroups($var)
@@ -153,7 +153,7 @@ class RouterBgp extends \Google\Protobuf\Internal\Message
      * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and is advertised to all peers of the router. These IP ranges will be advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @param \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedIpRanges($var)

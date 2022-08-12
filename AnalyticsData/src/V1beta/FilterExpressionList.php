@@ -28,7 +28,7 @@ class FilterExpressionList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\FilterExpression[]|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type array<\Google\Analytics\Data\V1beta\FilterExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
      *           A list of filter expressions.
      * }
      */
@@ -52,7 +52,7 @@ class FilterExpressionList extends \Google\Protobuf\Internal\Message
      * A list of filter expressions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.FilterExpression expressions = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\FilterExpression[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\FilterExpression>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExpressions($var)

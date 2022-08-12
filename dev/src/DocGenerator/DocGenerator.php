@@ -92,8 +92,8 @@ class DocGenerator
         foreach ($project->getFiles() as $file) {
             $filePath = $file->getPath();
             $currentFileArr = $this->isComponent
-                ? explode("/$basePath/", $filePath)
-                : explode("$rootPath", $filePath);
+                ? explode("/$basePath/", $filePath, 2)
+                : explode("$rootPath", $filePath, 2);
 
             if (isset($currentFileArr[1])) {
                 $currentFile = str_replace('src/', '', $currentFileArr[1]);

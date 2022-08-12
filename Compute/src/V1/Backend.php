@@ -83,7 +83,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      */
     private $max_rate_per_instance = null;
     /**
-     * Optional parameter to define a target capacity for the UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
+     * Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
      *
      * Generated from protobuf field <code>optional float max_utilization = 148192199;</code>
      */
@@ -119,7 +119,7 @@ class Backend extends \Google\Protobuf\Internal\Message
      *     @type float $max_rate_per_instance
      *           Defines a maximum target for requests per second (RPS). For usage guidelines, see Rate balancing mode and Utilization balancing mode. Not available if the backend's balancingMode is CONNECTION.
      *     @type float $max_utilization
-     *           Optional parameter to define a target capacity for the UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
+     *           Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
      * }
      */
     public function __construct($data = NULL) {
@@ -526,7 +526,7 @@ class Backend extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional parameter to define a target capacity for the UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
+     * Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
      *
      * Generated from protobuf field <code>optional float max_utilization = 148192199;</code>
      * @return float
@@ -547,7 +547,7 @@ class Backend extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional parameter to define a target capacity for the UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
+     * Optional parameter to define a target capacity for the UTILIZATION balancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.
      *
      * Generated from protobuf field <code>optional float max_utilization = 148192199;</code>
      * @param float $var

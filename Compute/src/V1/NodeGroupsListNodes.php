@@ -59,7 +59,7 @@ class NodeGroupsListNodes extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\NodeGroupNode[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\NodeGroupNode>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of Node resources.
      *     @type string $kind
      *           [Output Only] The resource type, which is always compute.nodeGroupsListNodes for the list of nodes in the specified node group.
@@ -127,7 +127,7 @@ class NodeGroupsListNodes extends \Google\Protobuf\Internal\Message
      * A list of Node resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeGroupNode items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\NodeGroupNode[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NodeGroupNode>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

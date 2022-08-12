@@ -35,7 +35,7 @@ class ListDataStreamsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\DataStream[]|\Google\Protobuf\Internal\RepeatedField $data_streams
+     *     @type array<\Google\Analytics\Admin\V1alpha\DataStream>|\Google\Protobuf\Internal\RepeatedField $data_streams
      *           List of DataStreams.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListDataStreamsResponse extends \Google\Protobuf\Internal\Message
      * List of DataStreams.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.DataStream data_streams = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\DataStream[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\DataStream>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataStreams($var)

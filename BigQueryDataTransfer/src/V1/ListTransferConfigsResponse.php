@@ -37,7 +37,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[]|\Google\Protobuf\Internal\RepeatedField $transfer_configs
+     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig>|\Google\Protobuf\Internal\RepeatedField $transfer_configs
      *           Output only. The stored pipeline transfer configurations.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -66,7 +66,7 @@ class ListTransferConfigsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer configurations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferConfig transfer_configs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferConfigs($var)

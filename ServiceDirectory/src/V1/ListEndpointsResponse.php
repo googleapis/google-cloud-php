@@ -36,7 +36,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceDirectory\V1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           The list of endpoints.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -63,7 +63,7 @@ class ListEndpointsResponse extends \Google\Protobuf\Internal\Message
      * The list of endpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 1;</code>
-     * @param \Google\Cloud\ServiceDirectory\V1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndpoints($var)

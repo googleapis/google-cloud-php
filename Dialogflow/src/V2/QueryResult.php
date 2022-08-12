@@ -228,7 +228,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type string $fulfillment_text
      *           The text to be pronounced to the user or shown on the screen.
      *           Note: This is a legacy field, `fulfillment_messages` should be preferred.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $fulfillment_messages
      *           The collection of rich messages to present to the user.
      *     @type string $webhook_source
      *           If the query was fulfilled by a webhook call, this field is set to the
@@ -236,7 +236,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Struct $webhook_payload
      *           If the query was fulfilled by a webhook call, this field is set to the
      *           value of the `payload` field returned in the webhook response.
-     *     @type \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $output_contexts
+     *     @type array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $output_contexts
      *           The collection of output contexts. If applicable,
      *           `output_contexts.parameters` contains entries with name
      *           `<parameter name>.original` containing the original parameter values
@@ -578,7 +578,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * The collection of rich messages to present to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message fulfillment_messages = 7;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFulfillmentMessages($var)
@@ -676,7 +676,7 @@ class QueryResult extends \Google\Protobuf\Internal\Message
      * before the query.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Context output_contexts = 10;</code>
-     * @param \Google\Cloud\Dialogflow\V2\Context[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Context>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputContexts($var)

@@ -218,6 +218,7 @@ class GeoPoint implements \JsonSerializable
      * @return object
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return (object) $this->point();

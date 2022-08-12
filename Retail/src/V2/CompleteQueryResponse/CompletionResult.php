@@ -26,8 +26,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      * * For "user-data", the attributes are additional custom attributes
      * ingested through BigQuery.
      * * For "cloud-retail", the attributes are product attributes generated
-     * by Cloud Retail. This is an experimental feature. Contact Retail Search
-     * support team if you are interested in enabling it.
+     * by Cloud Retail. It requires
+     * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
+     * is imported properly.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      */
@@ -46,8 +47,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      *           * For "user-data", the attributes are additional custom attributes
      *           ingested through BigQuery.
      *           * For "cloud-retail", the attributes are product attributes generated
-     *           by Cloud Retail. This is an experimental feature. Contact Retail Search
-     *           support team if you are interested in enabling it.
+     *           by Cloud Retail. It requires
+     *           [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
+     *           is imported properly.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,8 +88,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      * * For "user-data", the attributes are additional custom attributes
      * ingested through BigQuery.
      * * For "cloud-retail", the attributes are product attributes generated
-     * by Cloud Retail. This is an experimental feature. Contact Retail Search
-     * support team if you are interested in enabling it.
+     * by Cloud Retail. It requires
+     * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
+     * is imported properly.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -102,8 +105,9 @@ class CompletionResult extends \Google\Protobuf\Internal\Message
      * * For "user-data", the attributes are additional custom attributes
      * ingested through BigQuery.
      * * For "cloud-retail", the attributes are product attributes generated
-     * by Cloud Retail. This is an experimental feature. Contact Retail Search
-     * support team if you are interested in enabling it.
+     * by Cloud Retail. It requires
+     * [UserEvent.product_details][google.cloud.retail.v2.UserEvent.product_details]
+     * is imported properly.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.retail.v2.CustomAttribute> attributes = 2;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

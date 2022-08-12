@@ -33,7 +33,7 @@ class PacketMirroringsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\PacketMirroring[]|\Google\Protobuf\Internal\RepeatedField $packet_mirrorings
+     *     @type array<\Google\Cloud\Compute\V1\PacketMirroring>|\Google\Protobuf\Internal\RepeatedField $packet_mirrorings
      *           A list of packetMirrorings contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of packetMirrorings when the list is empty.
@@ -59,7 +59,7 @@ class PacketMirroringsScopedList extends \Google\Protobuf\Internal\Message
      * A list of packetMirrorings contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketMirroring packet_mirrorings = 154615079;</code>
-     * @param \Google\Cloud\Compute\V1\PacketMirroring[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PacketMirroring>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPacketMirrorings($var)

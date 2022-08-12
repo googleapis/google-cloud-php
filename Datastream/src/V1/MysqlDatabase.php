@@ -36,7 +36,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      *
      *     @type string $database
      *           Database name.
-     *     @type \Google\Cloud\Datastream\V1\MysqlTable[]|\Google\Protobuf\Internal\RepeatedField $mysql_tables
+     *     @type array<\Google\Cloud\Datastream\V1\MysqlTable>|\Google\Protobuf\Internal\RepeatedField $mysql_tables
      *           Tables in the database.
      * }
      */
@@ -86,7 +86,7 @@ class MysqlDatabase extends \Google\Protobuf\Internal\Message
      * Tables in the database.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlTable mysql_tables = 2;</code>
-     * @param \Google\Cloud\Datastream\V1\MysqlTable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastream\V1\MysqlTable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMysqlTables($var)

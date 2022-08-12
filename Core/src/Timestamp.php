@@ -154,6 +154,7 @@ class Timestamp implements \JsonSerializable
      * @return string
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->formatAsString();

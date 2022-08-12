@@ -43,7 +43,7 @@ class RebootConfig
 
     private static $valueToName = [
         self::REBOOT_CONFIG_UNSPECIFIED => 'REBOOT_CONFIG_UNSPECIFIED',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
         self::ALWAYS => 'ALWAYS',
         self::NEVER => 'NEVER',
     ];
@@ -62,8 +62,12 @@ class RebootConfig
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

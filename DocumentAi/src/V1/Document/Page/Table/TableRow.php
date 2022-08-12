@@ -28,7 +28,7 @@ class TableRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell[]|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell>|\Google\Protobuf\Internal\RepeatedField $cells
      *           Cells that make up this row.
      * }
      */
@@ -52,7 +52,7 @@ class TableRow extends \Google\Protobuf\Internal\Message
      * Cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.Table.TableCell cells = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\Table\TableCell>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCells($var)

@@ -38,7 +38,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Identity\AccessContextManager\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Identity\AccessContextManager\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Required. A list of requirements for the `AccessLevel` to be granted.
      *     @type int $combining_function
      *           How the `conditions` list should be combined to determine if a request is
@@ -68,7 +68,7 @@ class BasicLevel extends \Google\Protobuf\Internal\Message
      * Required. A list of requirements for the `AccessLevel` to be granted.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.Condition conditions = 1;</code>
-     * @param \Google\Identity\AccessContextManager\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)

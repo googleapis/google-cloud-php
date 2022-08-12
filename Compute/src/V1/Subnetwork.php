@@ -216,7 +216,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      *     @type string $role
      *           The role of subnetwork. Currently, this field is only used when purpose = INTERNAL_HTTPS_LOAD_BALANCER. The value can be set to ACTIVE or BACKUP. An ACTIVE subnetwork is one that is currently being used for Internal HTTP(S) Load Balancing. A BACKUP subnetwork is one that is ready to be promoted to ACTIVE or is currently draining. This field can be updated with a patch request.
      *           Check the Role enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\SubnetworkSecondaryRange[]|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
+     *     @type array<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $secondary_ip_ranges
      *           An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field can be updated with a patch request.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -976,7 +976,7 @@ class Subnetwork extends \Google\Protobuf\Internal\Message
      * An array of configurations for secondary IP ranges for VM instances contained in this subnetwork. The primary IP of such VM must belong to the primary ipCidrRange of the subnetwork. The alias IPs may belong to either primary or secondary ranges. This field can be updated with a patch request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SubnetworkSecondaryRange secondary_ip_ranges = 136658915;</code>
-     * @param \Google\Cloud\Compute\V1\SubnetworkSecondaryRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\SubnetworkSecondaryRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSecondaryIpRanges($var)

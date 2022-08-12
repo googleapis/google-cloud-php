@@ -54,6 +54,7 @@ use Google\Cloud\VMMigration\V1\ResumeMigrationResponse;
 use Google\Cloud\VMMigration\V1\Source;
 use Google\Cloud\VMMigration\V1\StartMigrationResponse;
 use Google\Cloud\VMMigration\V1\TargetProject;
+use Google\Cloud\VMMigration\V1\UpgradeApplianceResponse;
 use Google\Cloud\VMMigration\V1\UtilizationReport;
 use Google\Cloud\VMMigration\V1\VmMigrationClient;
 use Google\LongRunning\GetOperationRequest;
@@ -109,7 +110,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -129,8 +130,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedGroup = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->addGroupMigration($formattedGroup);
+        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->addGroupMigration($formattedGroup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -173,7 +174,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -195,8 +196,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedGroup = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->addGroupMigration($formattedGroup);
+        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->addGroupMigration($formattedGroup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -230,7 +231,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,8 +251,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
-        $response = $client->cancelCloneJob($formattedName);
+        $formattedName = $gapicClient->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
+        $response = $gapicClient->cancelCloneJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -294,7 +295,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -316,8 +317,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
-        $response = $client->cancelCloneJob($formattedName);
+        $formattedName = $gapicClient->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
+        $response = $gapicClient->cancelCloneJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -351,7 +352,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -371,8 +372,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
-        $response = $client->cancelCutoverJob($formattedName);
+        $formattedName = $gapicClient->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
+        $response = $gapicClient->cancelCutoverJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -415,7 +416,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -437,8 +438,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
-        $response = $client->cancelCutoverJob($formattedName);
+        $formattedName = $gapicClient->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
+        $response = $gapicClient->cancelCutoverJob($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -472,7 +473,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -494,10 +495,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $cloneJobId = 'cloneJobId-1008685569';
         $cloneJob = new CloneJob();
-        $response = $client->createCloneJob($formattedParent, $cloneJobId, $cloneJob);
+        $response = $gapicClient->createCloneJob($formattedParent, $cloneJobId, $cloneJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -544,7 +545,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -566,10 +567,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $cloneJobId = 'cloneJobId-1008685569';
         $cloneJob = new CloneJob();
-        $response = $client->createCloneJob($formattedParent, $cloneJobId, $cloneJob);
+        $response = $gapicClient->createCloneJob($formattedParent, $cloneJobId, $cloneJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -603,7 +604,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -629,10 +630,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $cutoverJobId = 'cutoverJobId504048422';
         $cutoverJob = new CutoverJob();
-        $response = $client->createCutoverJob($formattedParent, $cutoverJobId, $cutoverJob);
+        $response = $gapicClient->createCutoverJob($formattedParent, $cutoverJobId, $cutoverJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -679,7 +680,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -701,10 +702,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $cutoverJobId = 'cutoverJobId504048422';
         $cutoverJob = new CutoverJob();
-        $response = $client->createCutoverJob($formattedParent, $cutoverJobId, $cutoverJob);
+        $response = $gapicClient->createCutoverJob($formattedParent, $cutoverJobId, $cutoverJob);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -738,7 +739,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -754,12 +755,16 @@ class VmMigrationClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $version = 'version351608024';
         $bucket = 'bucket-1378203158';
+        $applianceInfrastructureVersion = 'applianceInfrastructureVersion662625550';
+        $applianceSoftwareVersion = 'applianceSoftwareVersion-641402222';
         $expectedResponse = new DatacenterConnector();
         $expectedResponse->setName($name);
         $expectedResponse->setRegistrationId($registrationId);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setVersion($version);
         $expectedResponse->setBucket($bucket);
+        $expectedResponse->setApplianceInfrastructureVersion($applianceInfrastructureVersion);
+        $expectedResponse->setApplianceSoftwareVersion($applianceSoftwareVersion);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -768,10 +773,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $datacenterConnectorId = 'datacenterConnectorId1629428237';
         $datacenterConnector = new DatacenterConnector();
-        $response = $client->createDatacenterConnector($formattedParent, $datacenterConnectorId, $datacenterConnector);
+        $response = $gapicClient->createDatacenterConnector($formattedParent, $datacenterConnectorId, $datacenterConnector);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -818,7 +823,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -840,10 +845,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $datacenterConnectorId = 'datacenterConnectorId1629428237';
         $datacenterConnector = new DatacenterConnector();
-        $response = $client->createDatacenterConnector($formattedParent, $datacenterConnectorId, $datacenterConnector);
+        $response = $gapicClient->createDatacenterConnector($formattedParent, $datacenterConnectorId, $datacenterConnector);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -877,7 +882,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -903,10 +908,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $groupId = 'groupId506361563';
         $group = new Group();
-        $response = $client->createGroup($formattedParent, $groupId, $group);
+        $response = $gapicClient->createGroup($formattedParent, $groupId, $group);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -953,7 +958,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -975,10 +980,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $groupId = 'groupId506361563';
         $group = new Group();
-        $response = $client->createGroup($formattedParent, $groupId, $group);
+        $response = $gapicClient->createGroup($formattedParent, $groupId, $group);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1012,7 +1017,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1042,10 +1047,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $migratingVmId = 'migratingVmId-899085236';
         $migratingVm = new MigratingVm();
-        $response = $client->createMigratingVm($formattedParent, $migratingVmId, $migratingVm);
+        $response = $gapicClient->createMigratingVm($formattedParent, $migratingVmId, $migratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1092,7 +1097,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1114,10 +1119,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $migratingVmId = 'migratingVmId-899085236';
         $migratingVm = new MigratingVm();
-        $response = $client->createMigratingVm($formattedParent, $migratingVmId, $migratingVm);
+        $response = $gapicClient->createMigratingVm($formattedParent, $migratingVmId, $migratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1151,7 +1156,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1175,10 +1180,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceId = 'sourceId-1698410561';
         $source = new Source();
-        $response = $client->createSource($formattedParent, $sourceId, $source);
+        $response = $gapicClient->createSource($formattedParent, $sourceId, $source);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1225,7 +1230,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1247,10 +1252,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $sourceId = 'sourceId-1698410561';
         $source = new Source();
-        $response = $client->createSource($formattedParent, $sourceId, $source);
+        $response = $gapicClient->createSource($formattedParent, $sourceId, $source);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1284,7 +1289,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1310,10 +1315,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetProjectId = 'targetProjectId1255314287';
         $targetProject = new TargetProject();
-        $response = $client->createTargetProject($formattedParent, $targetProjectId, $targetProject);
+        $response = $gapicClient->createTargetProject($formattedParent, $targetProjectId, $targetProject);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1360,7 +1365,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1382,10 +1387,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $targetProjectId = 'targetProjectId1255314287';
         $targetProject = new TargetProject();
-        $response = $client->createTargetProject($formattedParent, $targetProjectId, $targetProject);
+        $response = $gapicClient->createTargetProject($formattedParent, $targetProjectId, $targetProject);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1419,7 +1424,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1445,10 +1450,10 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $utilizationReport = new UtilizationReport();
         $utilizationReportId = 'utilizationReportId-1346894295';
-        $response = $client->createUtilizationReport($formattedParent, $utilizationReport, $utilizationReportId);
+        $response = $gapicClient->createUtilizationReport($formattedParent, $utilizationReport, $utilizationReportId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1495,7 +1500,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1517,10 +1522,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $utilizationReport = new UtilizationReport();
         $utilizationReportId = 'utilizationReportId-1346894295';
-        $response = $client->createUtilizationReport($formattedParent, $utilizationReport, $utilizationReportId);
+        $response = $gapicClient->createUtilizationReport($formattedParent, $utilizationReport, $utilizationReportId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1554,7 +1559,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1574,8 +1579,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
-        $response = $client->deleteDatacenterConnector($formattedName);
+        $formattedName = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $response = $gapicClient->deleteDatacenterConnector($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1618,7 +1623,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1640,8 +1645,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
-        $response = $client->deleteDatacenterConnector($formattedName);
+        $formattedName = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $response = $gapicClient->deleteDatacenterConnector($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1675,7 +1680,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1695,8 +1700,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->deleteGroup($formattedName);
+        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->deleteGroup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1739,7 +1744,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1761,8 +1766,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->deleteGroup($formattedName);
+        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->deleteGroup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1796,7 +1801,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1816,8 +1821,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->deleteMigratingVm($formattedName);
+        $formattedName = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->deleteMigratingVm($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1860,7 +1865,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1882,8 +1887,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->deleteMigratingVm($formattedName);
+        $formattedName = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->deleteMigratingVm($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1917,7 +1922,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1937,8 +1942,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $response = $client->deleteSource($formattedName);
+        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $response = $gapicClient->deleteSource($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1981,7 +1986,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2003,8 +2008,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $response = $client->deleteSource($formattedName);
+        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $response = $gapicClient->deleteSource($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2038,7 +2043,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2058,8 +2063,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
-        $response = $client->deleteTargetProject($formattedName);
+        $formattedName = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $response = $gapicClient->deleteTargetProject($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2102,7 +2107,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2124,8 +2129,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
-        $response = $client->deleteTargetProject($formattedName);
+        $formattedName = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $response = $gapicClient->deleteTargetProject($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2159,7 +2164,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2179,8 +2184,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
-        $response = $client->deleteUtilizationReport($formattedName);
+        $formattedName = $gapicClient->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
+        $response = $gapicClient->deleteUtilizationReport($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2223,7 +2228,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2245,8 +2250,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
-        $response = $client->deleteUtilizationReport($formattedName);
+        $formattedName = $gapicClient->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
+        $response = $gapicClient->deleteUtilizationReport($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2274,7 +2279,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function fetchInventoryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2282,8 +2287,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse = new FetchInventoryResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSource = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $response = $client->fetchInventory($formattedSource);
+        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $response = $gapicClient->fetchInventory($formattedSource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2301,7 +2306,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function fetchInventoryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2316,10 +2321,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSource = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedSource = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         try {
-            $client->fetchInventory($formattedSource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->fetchInventory($formattedSource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2342,7 +2347,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2362,8 +2367,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->finalizeMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->finalizeMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2406,7 +2411,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2428,8 +2433,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->finalizeMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->finalizeMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2457,7 +2462,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getCloneJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2467,8 +2472,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
-        $response = $client->getCloneJob($formattedName);
+        $formattedName = $gapicClient->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
+        $response = $gapicClient->getCloneJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2486,7 +2491,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getCloneJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2501,10 +2506,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
+        $formattedName = $gapicClient->cloneJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CLONE_JOB]');
         try {
-            $client->getCloneJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCloneJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2521,7 +2526,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getCutoverJobTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2535,8 +2540,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setStateMessage($stateMessage);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
-        $response = $client->getCutoverJob($formattedName);
+        $formattedName = $gapicClient->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
+        $response = $gapicClient->getCutoverJob($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2554,7 +2559,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getCutoverJobExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2569,10 +2574,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
+        $formattedName = $gapicClient->cutoverJobName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]', '[CUTOVER_JOB]');
         try {
-            $client->getCutoverJob($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCutoverJob($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2589,7 +2594,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getDatacenterConnectorTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2599,16 +2604,20 @@ class VmMigrationClientTest extends GeneratedTest
         $serviceAccount = 'serviceAccount-1948028253';
         $version = 'version351608024';
         $bucket = 'bucket-1378203158';
+        $applianceInfrastructureVersion = 'applianceInfrastructureVersion662625550';
+        $applianceSoftwareVersion = 'applianceSoftwareVersion-641402222';
         $expectedResponse = new DatacenterConnector();
         $expectedResponse->setName($name2);
         $expectedResponse->setRegistrationId($registrationId);
         $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setVersion($version);
         $expectedResponse->setBucket($bucket);
+        $expectedResponse->setApplianceInfrastructureVersion($applianceInfrastructureVersion);
+        $expectedResponse->setApplianceSoftwareVersion($applianceSoftwareVersion);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
-        $response = $client->getDatacenterConnector($formattedName);
+        $formattedName = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $response = $gapicClient->getDatacenterConnector($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2626,7 +2635,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getDatacenterConnectorExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2641,10 +2650,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $formattedName = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
         try {
-            $client->getDatacenterConnector($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDatacenterConnector($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2661,7 +2670,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getGroupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2675,8 +2684,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setDisplayName($displayName);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->getGroup($formattedName);
+        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->getGroup($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2694,7 +2703,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getGroupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2709,10 +2718,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $formattedName = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
         try {
-            $client->getGroup($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getGroup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2729,7 +2738,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getMigratingVmTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2747,8 +2756,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setGroup($group);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->getMigratingVm($formattedName);
+        $formattedName = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->getMigratingVm($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2766,7 +2775,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getMigratingVmExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2781,10 +2790,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedName = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         try {
-            $client->getMigratingVm($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getMigratingVm($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2801,7 +2810,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getSourceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2813,8 +2822,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
-        $response = $client->getSource($formattedName);
+        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $response = $gapicClient->getSource($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2832,7 +2841,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getSourceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2847,10 +2856,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedName = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         try {
-            $client->getSource($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSource($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2867,7 +2876,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getTargetProjectTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2881,8 +2890,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
-        $response = $client->getTargetProject($formattedName);
+        $formattedName = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $response = $gapicClient->getTargetProject($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2900,7 +2909,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getTargetProjectExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2915,10 +2924,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
+        $formattedName = $gapicClient->targetProjectName('[PROJECT]', '[LOCATION]', '[TARGET_PROJECT]');
         try {
-            $client->getTargetProject($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTargetProject($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2935,7 +2944,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getUtilizationReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2949,8 +2958,8 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setVmCount($vmCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
-        $response = $client->getUtilizationReport($formattedName);
+        $formattedName = $gapicClient->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
+        $response = $gapicClient->getUtilizationReport($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2968,7 +2977,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function getUtilizationReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2983,10 +2992,10 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
+        $formattedName = $gapicClient->utilizationReportName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[UTILIZATION_REPORT]');
         try {
-            $client->getUtilizationReport($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getUtilizationReport($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3003,7 +3012,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listCloneJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3018,9 +3027,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setCloneJobs($cloneJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listCloneJobs($formattedParent, $pageToken);
+        $response = $gapicClient->listCloneJobs($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3043,7 +3052,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listCloneJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3058,11 +3067,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listCloneJobs($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCloneJobs($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3079,7 +3088,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listCutoverJobsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3094,9 +3103,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setCutoverJobs($cutoverJobs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listCutoverJobs($formattedParent, $pageToken);
+        $response = $gapicClient->listCutoverJobs($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3119,7 +3128,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listCutoverJobsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3134,11 +3143,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $formattedParent = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listCutoverJobs($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCutoverJobs($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3155,7 +3164,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listDatacenterConnectorsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3170,9 +3179,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setDatacenterConnectors($datacenterConnectors);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listDatacenterConnectors($formattedParent, $pageToken);
+        $response = $gapicClient->listDatacenterConnectors($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3195,7 +3204,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listDatacenterConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3210,11 +3219,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listDatacenterConnectors($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDatacenterConnectors($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3231,7 +3240,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listGroupsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3246,9 +3255,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setGroups($groups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listGroups($formattedParent, $pageToken);
+        $response = $gapicClient->listGroups($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3271,7 +3280,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listGroupsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3286,11 +3295,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listGroups($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listGroups($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3307,7 +3316,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listMigratingVmsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3322,9 +3331,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setMigratingVms($migratingVms);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listMigratingVms($formattedParent, $pageToken);
+        $response = $gapicClient->listMigratingVms($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3347,7 +3356,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listMigratingVmsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3362,11 +3371,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listMigratingVms($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listMigratingVms($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3383,7 +3392,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listSourcesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3398,9 +3407,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setSources($sources);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listSources($formattedParent, $pageToken);
+        $response = $gapicClient->listSources($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3423,7 +3432,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listSourcesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3438,11 +3447,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listSources($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSources($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3459,7 +3468,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listTargetProjectsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3474,9 +3483,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setTargetProjects($targetProjects);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listTargetProjects($formattedParent, $pageToken);
+        $response = $gapicClient->listTargetProjects($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3499,7 +3508,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listTargetProjectsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3514,11 +3523,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listTargetProjects($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTargetProjects($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3535,7 +3544,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listUtilizationReportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3550,9 +3559,9 @@ class VmMigrationClientTest extends GeneratedTest
         $expectedResponse->setUtilizationReports($utilizationReports);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
-        $response = $client->listUtilizationReports($formattedParent, $pageToken);
+        $response = $gapicClient->listUtilizationReports($formattedParent, $pageToken);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -3575,7 +3584,7 @@ class VmMigrationClientTest extends GeneratedTest
     public function listUtilizationReportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -3590,11 +3599,11 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
+        $formattedParent = $gapicClient->sourceName('[PROJECT]', '[LOCATION]', '[SOURCE]');
         $pageToken = 'pageToken1630607433';
         try {
-            $client->listUtilizationReports($formattedParent, $pageToken);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listUtilizationReports($formattedParent, $pageToken);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -3617,7 +3626,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3637,8 +3646,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->pauseMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->pauseMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3681,7 +3690,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3703,8 +3712,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->pauseMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->pauseMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3738,7 +3747,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3758,8 +3767,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedGroup = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->removeGroupMigration($formattedGroup);
+        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->removeGroupMigration($formattedGroup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3802,7 +3811,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3824,8 +3833,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedGroup = $client->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
-        $response = $client->removeGroupMigration($formattedGroup);
+        $formattedGroup = $gapicClient->groupName('[PROJECT]', '[LOCATION]', '[GROUP]');
+        $response = $gapicClient->removeGroupMigration($formattedGroup);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3859,7 +3868,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3879,8 +3888,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->resumeMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->resumeMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -3923,7 +3932,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -3945,8 +3954,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->resumeMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->resumeMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -3980,7 +3989,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4000,8 +4009,8 @@ class VmMigrationClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->startMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->startMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4044,7 +4053,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4066,8 +4075,8 @@ class VmMigrationClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedMigratingVm = $client->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
-        $response = $client->startMigration($formattedMigratingVm);
+        $formattedMigratingVm = $gapicClient->migratingVmName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[MIGRATING_VM]');
+        $response = $gapicClient->startMigration($formattedMigratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4101,7 +4110,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4128,7 +4137,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $group = new Group();
-        $response = $client->updateGroup($group);
+        $response = $gapicClient->updateGroup($group);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4171,7 +4180,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4194,7 +4203,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $group = new Group();
-        $response = $client->updateGroup($group);
+        $response = $gapicClient->updateGroup($group);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4228,7 +4237,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4259,7 +4268,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $migratingVm = new MigratingVm();
-        $response = $client->updateMigratingVm($migratingVm);
+        $response = $gapicClient->updateMigratingVm($migratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4302,7 +4311,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4325,7 +4334,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $migratingVm = new MigratingVm();
-        $response = $client->updateMigratingVm($migratingVm);
+        $response = $gapicClient->updateMigratingVm($migratingVm);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4359,7 +4368,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4384,7 +4393,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $source = new Source();
-        $response = $client->updateSource($source);
+        $response = $gapicClient->updateSource($source);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4427,7 +4436,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4450,7 +4459,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $source = new Source();
-        $response = $client->updateSource($source);
+        $response = $gapicClient->updateSource($source);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -4484,7 +4493,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4511,7 +4520,7 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $targetProject = new TargetProject();
-        $response = $client->updateTargetProject($targetProject);
+        $response = $gapicClient->updateTargetProject($targetProject);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -4554,7 +4563,7 @@ class VmMigrationClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -4577,11 +4586,132 @@ class VmMigrationClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $targetProject = new TargetProject();
-        $response = $client->updateTargetProject($targetProject);
+        $response = $gapicClient->updateTargetProject($targetProject);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
         $expectedOperationsRequestObject->setName('operations/updateTargetProjectTest');
+        try {
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stubs are exhausted
+        $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function upgradeApplianceTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/upgradeApplianceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $expectedResponse = new UpgradeApplianceResponse();
+        $anyResponse = new Any();
+        $anyResponse->setValue($expectedResponse->serializeToString());
+        $completeOperation = new Operation();
+        $completeOperation->setName('operations/upgradeApplianceTest');
+        $completeOperation->setDone(true);
+        $completeOperation->setResponse($anyResponse);
+        $operationsTransport->addResponse($completeOperation);
+        // Mock request
+        $formattedDatacenterConnector = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $response = $gapicClient->upgradeAppliance($formattedDatacenterConnector);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.vmmigration.v1.VmMigration/UpgradeAppliance', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getDatacenterConnector();
+        $this->assertProtobufEquals($formattedDatacenterConnector, $actualValue);
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/upgradeApplianceTest');
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $this->assertEquals($expectedResponse, $response->getResult());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.longrunning.Operations/GetOperation', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function upgradeApplianceExceptionTest()
+    {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new OperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('operations/upgradeApplianceTest');
+        $incompleteOperation->setDone(false);
+        $transport->addResponse($incompleteOperation);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $operationsTransport->addResponse(null, $status);
+        // Mock request
+        $formattedDatacenterConnector = $gapicClient->datacenterConnectorName('[PROJECT]', '[LOCATION]', '[SOURCE]', '[DATACENTER_CONNECTOR]');
+        $response = $gapicClient->upgradeAppliance($formattedDatacenterConnector);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
+        $expectedOperationsRequestObject = new GetOperationRequest();
+        $expectedOperationsRequestObject->setName('operations/upgradeApplianceTest');
         try {
             $response->pollUntilComplete([
                 'initialPollDelayMillis' => 1,

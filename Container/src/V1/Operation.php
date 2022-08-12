@@ -161,10 +161,10 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      *     @type \Google\Cloud\Container\V1\OperationProgress $progress
      *           Output only. [Output only] Progress information for an operation.
-     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
+     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $cluster_conditions
      *           Which conditions caused the current cluster state.
      *           Deprecated. Use field error instead.
-     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
+     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $nodepool_conditions
      *           Which conditions caused the current node pool state.
      *           Deprecated. Use field error instead.
      *     @type \Google\Rpc\Status $error
@@ -543,7 +543,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition cluster_conditions = 13 [deprecated = true];</code>
-     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -575,7 +575,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Deprecated. Use field error instead.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition nodepool_conditions = 14 [deprecated = true];</code>
-     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

@@ -78,7 +78,7 @@ class ChangeHistoryEvent extends \Google\Protobuf\Internal\Message
      *     @type bool $changes_filtered
      *           If true, then the list of changes returned was filtered, and does not
      *           represent all changes that occurred in this event.
-     *     @type \Google\Analytics\Admin\V1alpha\ChangeHistoryChange[]|\Google\Protobuf\Internal\RepeatedField $changes
+     *     @type array<\Google\Analytics\Admin\V1alpha\ChangeHistoryChange>|\Google\Protobuf\Internal\RepeatedField $changes
      *           A list of changes made in this change history event that fit the filters
      *           specified in SearchChangeHistoryEventsRequest.
      * }
@@ -251,7 +251,7 @@ class ChangeHistoryEvent extends \Google\Protobuf\Internal\Message
      * specified in SearchChangeHistoryEventsRequest.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.ChangeHistoryChange changes = 6;</code>
-     * @param \Google\Analytics\Admin\V1alpha\ChangeHistoryChange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\ChangeHistoryChange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChanges($var)

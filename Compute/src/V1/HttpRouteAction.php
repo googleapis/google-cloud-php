@@ -83,7 +83,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      *           Specifies the timeout for the selected route. Timeout is computed from the time the request has been fully processed (known as *end-of-stream*) up until the response has been processed. Timeout includes all retries. If not specified, this field uses the largest timeout among all backend services associated with the route. Not supported when the URL map is bound to a target gRPC proxy that has validateForProxyless field set to true.
      *     @type \Google\Cloud\Compute\V1\UrlRewrite $url_rewrite
      *           The spec to modify the URL of the request, before forwarding the request to the matched service. urlRewrite is the only action supported in UrlMaps for external HTTP(S) load balancers. Not supported when the URL map is bound to a target gRPC proxy that has the validateForProxyless field set to true.
-     *     @type \Google\Cloud\Compute\V1\WeightedBackendService[]|\Google\Protobuf\Internal\RepeatedField $weighted_backend_services
+     *     @type array<\Google\Cloud\Compute\V1\WeightedBackendService>|\Google\Protobuf\Internal\RepeatedField $weighted_backend_services
      *           A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one weightedBackendService with weight set to a non-zero number. After a backend service is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
      * }
      */
@@ -359,7 +359,7 @@ class HttpRouteAction extends \Google\Protobuf\Internal\Message
      * A list of weighted backend services to send traffic to when a route match occurs. The weights determine the fraction of traffic that flows to their corresponding backend service. If all traffic needs to go to a single backend service, there must be one weightedBackendService with weight set to a non-zero number. After a backend service is identified and before forwarding the request to the backend service, advanced routing actions such as URL rewrites and header transformations are applied depending on additional settings specified in this HttpRouteAction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WeightedBackendService weighted_backend_services = 337028049;</code>
-     * @param \Google\Cloud\Compute\V1\WeightedBackendService[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\WeightedBackendService>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWeightedBackendServices($var)

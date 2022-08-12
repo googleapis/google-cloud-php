@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Sets the scheduling options for an Instance. NextID: 21
+ * Sets the scheduling options for an Instance.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Scheduling</code>
  */
@@ -82,7 +82,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      *           An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.
      *     @type int $min_node_cpus
      *           The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.
-     *     @type \Google\Cloud\Compute\V1\SchedulingNodeAffinity[]|\Google\Protobuf\Internal\RepeatedField $node_affinities
+     *     @type array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $node_affinities
      *           A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
      *     @type string $on_host_maintenance
      *           Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
@@ -260,7 +260,7 @@ class Scheduling extends \Google\Protobuf\Internal\Message
      * A set of node affinity and anti-affinity configurations. Refer to Configuring node affinity for more information. Overrides reservationAffinity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SchedulingNodeAffinity node_affinities = 461799971;</code>
-     * @param \Google\Cloud\Compute\V1\SchedulingNodeAffinity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\SchedulingNodeAffinity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeAffinities($var)

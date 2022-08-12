@@ -208,7 +208,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      *           Estimate your costs before enabling this option.
      *     @type \Google\Cloud\AIPlatform\V1\DeployedIndexAuthConfig $deployed_index_auth_config
      *           Optional. If set, the authentication is enabled for the private endpoint.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $reserved_ip_ranges
      *           Optional. A list of reserved ip ranges under the VPC network that can be
      *           used for this DeployedIndex.
      *           If set, we will deploy the index within the provided ip ranges. Otherwise,
@@ -662,7 +662,7 @@ class DeployedIndex extends \Google\Protobuf\Internal\Message
      * Example: 'vertex-ai-ip-range'.
      *
      * Generated from protobuf field <code>repeated string reserved_ip_ranges = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservedIpRanges($var)

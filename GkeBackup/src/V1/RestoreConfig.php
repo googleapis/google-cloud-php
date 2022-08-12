@@ -92,7 +92,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      *           A list of selected ProtectedApplications to restore. The listed
      *           ProtectedApplications and all the resources to which they refer will be
      *           restored.
-     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule[]|\Google\Protobuf\Internal\RepeatedField $substitution_rules
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $substitution_rules
      *           A list of transformation rules to be applied against Kubernetes resources
      *           as they are selected for restoration from a Backup. Rules are executed in
      *           order defined - this order matters, as changes made by a rule may impact
@@ -359,7 +359,7 @@ class RestoreConfig extends \Google\Protobuf\Internal\Message
      * substitution will occur.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.SubstitutionRule substitution_rules = 8;</code>
-     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\SubstitutionRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubstitutionRules($var)

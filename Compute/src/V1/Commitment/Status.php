@@ -24,6 +24,10 @@ class Status
      */
     const ACTIVE = 314733318;
     /**
+     * Generated from protobuf enum <code>CANCELLED = 41957681;</code>
+     */
+    const CANCELLED = 41957681;
+    /**
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
@@ -39,6 +43,7 @@ class Status
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
         self::ACTIVE => 'ACTIVE',
+        self::CANCELLED => 'CANCELLED',
         self::CREATING => 'CREATING',
         self::EXPIRED => 'EXPIRED',
         self::NOT_YET_ACTIVE => 'NOT_YET_ACTIVE',

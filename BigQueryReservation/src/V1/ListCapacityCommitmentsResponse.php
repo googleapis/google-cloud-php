@@ -35,7 +35,7 @@ class ListCapacityCommitmentsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment[]|\Google\Protobuf\Internal\RepeatedField $capacity_commitments
+     *     @type array<\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment>|\Google\Protobuf\Internal\RepeatedField $capacity_commitments
      *           List of capacity commitments visible to the user.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no
@@ -62,7 +62,7 @@ class ListCapacityCommitmentsResponse extends \Google\Protobuf\Internal\Message
      * List of capacity commitments visible to the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.reservation.v1.CapacityCommitment capacity_commitments = 1;</code>
-     * @param \Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Reservation\V1\CapacityCommitment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCapacityCommitments($var)

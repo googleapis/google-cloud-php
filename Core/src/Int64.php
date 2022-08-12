@@ -72,6 +72,7 @@ class Int64 implements \JsonSerializable
      * @return string
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->value;

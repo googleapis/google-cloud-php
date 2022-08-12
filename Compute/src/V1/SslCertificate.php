@@ -131,7 +131,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      *           [Output only] Server-defined URL for the resource.
      *     @type \Google\Cloud\Compute\V1\SslCertificateSelfManagedSslCertificate $self_managed
      *           Configuration and status of a self-managed SSL certificate.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $subject_alternative_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $subject_alternative_names
      *           [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *     @type string $type
      *           (Optional) Specifies the type of SSL certificate, either "SELF_MANAGED" or "MANAGED". If not specified, the certificate is self-managed and the fields certificate and private_key are used.
@@ -590,7 +590,7 @@ class SslCertificate extends \Google\Protobuf\Internal\Message
      * [Output Only] Domains associated with the certificate via Subject Alternative Name.
      *
      * Generated from protobuf field <code>repeated string subject_alternative_names = 528807907;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSubjectAlternativeNames($var)

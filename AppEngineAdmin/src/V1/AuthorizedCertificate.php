@@ -116,7 +116,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           The user-specified display name of the certificate. This is not
      *           guaranteed to be unique. Example: `My Certificate`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domain_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domain_names
      *           Topmost applicable domains of this certificate. This certificate
      *           applies to these domains and their subdomains. Example: `example.com`.
      *           &#64;OutputOnly
@@ -134,7 +134,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      *           updated or deleted via the `AuthorizedCertificates` API. If this
      *           certificate is manually administered by the user, this field will be empty.
      *           &#64;OutputOnly
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $visible_domain_mappings
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $visible_domain_mappings
      *           The full paths to user visible Domain Mapping resources that have this
      *           certificate mapped. Example: `apps/myapp/domainMappings/example.com`.
      *           This may not represent the full list of mapped domain mappings if the user
@@ -264,7 +264,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>repeated string domain_names = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomainNames($var)
@@ -428,7 +428,7 @@ class AuthorizedCertificate extends \Google\Protobuf\Internal\Message
      * &#64;OutputOnly
      *
      * Generated from protobuf field <code>repeated string visible_domain_mappings = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVisibleDomainMappings($var)

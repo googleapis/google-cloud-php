@@ -34,9 +34,9 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\DimensionCompatibility[]|\Google\Protobuf\Internal\RepeatedField $dimension_compatibilities
+     *     @type array<\Google\Analytics\Data\V1beta\DimensionCompatibility>|\Google\Protobuf\Internal\RepeatedField $dimension_compatibilities
      *           The compatibility of each dimension.
-     *     @type \Google\Analytics\Data\V1beta\MetricCompatibility[]|\Google\Protobuf\Internal\RepeatedField $metric_compatibilities
+     *     @type array<\Google\Analytics\Data\V1beta\MetricCompatibility>|\Google\Protobuf\Internal\RepeatedField $metric_compatibilities
      *           The compatibility of each metric.
      * }
      */
@@ -60,7 +60,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each dimension.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionCompatibility dimension_compatibilities = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\DimensionCompatibility[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DimensionCompatibility>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensionCompatibilities($var)
@@ -86,7 +86,7 @@ class CheckCompatibilityResponse extends \Google\Protobuf\Internal\Message
      * The compatibility of each metric.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricCompatibility metric_compatibilities = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\MetricCompatibility[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\MetricCompatibility>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricCompatibilities($var)

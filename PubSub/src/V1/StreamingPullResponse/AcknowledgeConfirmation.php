@@ -42,12 +42,12 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
      *           Successfully processed acknowledgement IDs.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $invalid_ack_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $invalid_ack_ids
      *           List of acknowledgement IDs that were malformed or whose acknowledgement
      *           deadline has expired.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unordered_ack_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unordered_ack_ids
      *           List of acknowledgement IDs that were out of order.
      * }
      */
@@ -71,7 +71,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * Successfully processed acknowledgement IDs.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 1 [ctype = CORD];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAckIds($var)
@@ -99,7 +99,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * deadline has expired.
      *
      * Generated from protobuf field <code>repeated string invalid_ack_ids = 2 [ctype = CORD];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInvalidAckIds($var)
@@ -125,7 +125,7 @@ class AcknowledgeConfirmation extends \Google\Protobuf\Internal\Message
      * List of acknowledgement IDs that were out of order.
      *
      * Generated from protobuf field <code>repeated string unordered_ack_ids = 3 [ctype = CORD];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnorderedAckIds($var)

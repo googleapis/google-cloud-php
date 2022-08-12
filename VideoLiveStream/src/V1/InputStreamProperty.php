@@ -44,9 +44,9 @@ class InputStreamProperty extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $last_establish_time
      *           The time that the current input stream is accepted and the connection is
      *           established.
-     *     @type \Google\Cloud\Video\LiveStream\V1\VideoStreamProperty[]|\Google\Protobuf\Internal\RepeatedField $video_streams
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\VideoStreamProperty>|\Google\Protobuf\Internal\RepeatedField $video_streams
      *           Properties of the video streams.
-     *     @type \Google\Cloud\Video\LiveStream\V1\AudioStreamProperty[]|\Google\Protobuf\Internal\RepeatedField $audio_streams
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\AudioStreamProperty>|\Google\Protobuf\Internal\RepeatedField $audio_streams
      *           Properties of the audio streams.
      * }
      */
@@ -108,7 +108,7 @@ class InputStreamProperty extends \Google\Protobuf\Internal\Message
      * Properties of the video streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.VideoStreamProperty video_streams = 2;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\VideoStreamProperty[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\VideoStreamProperty>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVideoStreams($var)
@@ -134,7 +134,7 @@ class InputStreamProperty extends \Google\Protobuf\Internal\Message
      * Properties of the audio streams.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.AudioStreamProperty audio_streams = 3;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\AudioStreamProperty[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\AudioStreamProperty>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAudioStreams($var)

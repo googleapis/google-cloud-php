@@ -39,7 +39,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The name of the agent to delete all entities types for. Format:
      *           `projects/<Project ID>/agent`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $entity_type_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $entity_type_names
      *           Required. The names entity types to delete. All names must point to the
      *           same agent as `parent`.
      * }
@@ -94,7 +94,7 @@ class BatchDeleteEntityTypesRequest extends \Google\Protobuf\Internal\Message
      * same agent as `parent`.
      *
      * Generated from protobuf field <code>repeated string entity_type_names = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityTypeNames($var)

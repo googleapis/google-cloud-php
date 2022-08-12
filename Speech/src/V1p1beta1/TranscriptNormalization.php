@@ -34,7 +34,7 @@ class TranscriptNormalization extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization\Entry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\TranscriptNormalization\Entry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           A list of replacement entries. We will perform replacement with one entry
      *           at a time. For example, the second entry in ["cat" => "dog", "mountain cat"
      *           => "mountain dog"] will never be applied because we will always process the
@@ -67,7 +67,7 @@ class TranscriptNormalization extends \Google\Protobuf\Internal\Message
      * first entry before it. At most 100 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.TranscriptNormalization.Entry entries = 1;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\TranscriptNormalization\Entry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\TranscriptNormalization\Entry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)

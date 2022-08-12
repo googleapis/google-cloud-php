@@ -137,15 +137,15 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Allowed[]|\Google\Protobuf\Internal\RepeatedField $allowed
+     *     @type array<\Google\Cloud\Compute\V1\Allowed>|\Google\Protobuf\Internal\RepeatedField $allowed
      *           The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
-     *     @type \Google\Cloud\Compute\V1\Denied[]|\Google\Protobuf\Internal\RepeatedField $denied
+     *     @type array<\Google\Cloud\Compute\V1\Denied>|\Google\Protobuf\Internal\RepeatedField $denied
      *           The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a denied connection.
      *     @type string $description
      *           An optional description of this resource. Provide this field when you create the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $destination_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $destination_ranges
      *           If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *     @type string $direction
      *           Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
@@ -166,15 +166,15 @@ class Firewall extends \Google\Protobuf\Internal\Message
      *           Priority for this rule. This is an integer between `0` and `65535`, both inclusive. The default value is `1000`. Relative priorities determine which rule takes effect if multiple rules apply. Lower values indicate higher priority. For example, a rule with priority `0` has higher precedence than a rule with priority `1`. DENY rules take precedence over ALLOW rules if they have equal priority. Note that VPC networks have implied rules with a priority of `65535`. To avoid conflicts with the implied rules, use a priority number less than `65535`.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_ranges
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_ranges
      *           If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_service_accounts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_service_accounts
      *           If source service accounts are specified, the firewall rules apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance's external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall applies to traffic that has a source IP address within the sourceRanges OR a source IP that belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both fields for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $source_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $source_tags
      *           If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance's external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both fields are set, the firewall applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the firewall to apply.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_service_accounts
      *           A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_tags
      *           A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
      * }
      */
@@ -198,7 +198,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * The list of ALLOW rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a permitted connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Allowed allowed = 162398632;</code>
-     * @param \Google\Cloud\Compute\V1\Allowed[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Allowed>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowed($var)
@@ -260,7 +260,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * The list of DENY rules specified by this firewall. Each rule specifies a protocol and port-range tuple that describes a denied connection.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Denied denied = 275217307;</code>
-     * @param \Google\Cloud\Compute\V1\Denied[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Denied>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDenied($var)
@@ -322,7 +322,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string destination_ranges = 305699879;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDestinationRanges($var)
@@ -674,7 +674,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.
      *
      * Generated from protobuf field <code>repeated string source_ranges = 200097658;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceRanges($var)
@@ -700,7 +700,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * If source service accounts are specified, the firewall rules apply only to traffic originating from an instance with a service account in this list. Source service accounts cannot be used to control traffic to an instance's external IP address because service accounts are associated with an instance, not an IP address. sourceRanges can be set at the same time as sourceServiceAccounts. If both are set, the firewall applies to traffic that has a source IP address within the sourceRanges OR a source IP that belongs to an instance with service account listed in sourceServiceAccount. The connection does not need to match both fields for the firewall to apply. sourceServiceAccounts cannot be used at the same time as sourceTags or targetTags.
      *
      * Generated from protobuf field <code>repeated string source_service_accounts = 105100756;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceServiceAccounts($var)
@@ -726,7 +726,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * If source tags are specified, the firewall rule applies only to traffic with source IPs that match the primary network interfaces of VM instances that have the tag and are in the same VPC network. Source tags cannot be used to control traffic to an instance's external IP address, it only applies to traffic between instances in the same virtual network. Because tags are associated with instances, not IP addresses. One or both of sourceRanges and sourceTags may be set. If both fields are set, the firewall applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the firewall to apply.
      *
      * Generated from protobuf field <code>repeated string source_tags = 452222397;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSourceTags($var)
@@ -752,7 +752,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * A list of service accounts indicating sets of instances located in the network that may make network connections as specified in allowed[]. targetServiceAccounts cannot be used at the same time as targetTags or sourceTags. If neither targetServiceAccounts nor targetTags are specified, the firewall rule applies to all instances on the specified network.
      *
      * Generated from protobuf field <code>repeated string target_service_accounts = 457639710;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetServiceAccounts($var)
@@ -778,7 +778,7 @@ class Firewall extends \Google\Protobuf\Internal\Message
      * A list of tags that controls which instances the firewall rule applies to. If targetTags are specified, then the firewall rule applies only to instances in the VPC network that have one of those tags. If no targetTags are specified, the firewall rule applies to all instances on the specified network.
      *
      * Generated from protobuf field <code>repeated string target_tags = 62901767;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetTags($var)

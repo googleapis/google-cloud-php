@@ -70,7 +70,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time at which the
      *           [EkmConnection][google.cloud.kms.v1.EkmConnection] was created.
-     *     @type \Google\Cloud\Kms\V1\EkmConnection\ServiceResolver[]|\Google\Protobuf\Internal\RepeatedField $service_resolvers
+     *     @type array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $service_resolvers
      *           A list of
      *           [ServiceResolvers][google.cloud.kms.v1.EkmConnection.ServiceResolver] where
      *           the EKM can be reached. There should be one ServiceResolver per EKM
@@ -181,7 +181,7 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated .google.cloud.kms.v1.EkmConnection.ServiceResolver service_resolvers = 3;</code>
-     * @param \Google\Cloud\Kms\V1\EkmConnection\ServiceResolver[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Kms\V1\EkmConnection\ServiceResolver>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceResolvers($var)

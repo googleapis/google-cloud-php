@@ -62,7 +62,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           The table to which CSV data is imported.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
      *           The columns to which CSV data is imported. If not specified, all columns
      *           of the database table are loaded with CSV data.
      *     @type string $escape_character
@@ -126,7 +126,7 @@ class SqlCsvImportOptions extends \Google\Protobuf\Internal\Message
      * of the database table are loaded with CSV data.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumns($var)

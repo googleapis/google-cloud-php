@@ -36,7 +36,7 @@ class ActiveMetricRestriction extends \Google\Protobuf\Internal\Message
      *
      *     @type string $metric_name
      *           The name of the restricted metric.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $restricted_metric_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $restricted_metric_types
      *           The reason for this metric's restriction.
      * }
      */
@@ -96,7 +96,7 @@ class ActiveMetricRestriction extends \Google\Protobuf\Internal\Message
      * The reason for this metric's restriction.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RestrictedMetricType restricted_metric_types = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestrictedMetricTypes($var)

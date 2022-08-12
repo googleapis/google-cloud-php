@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class SavedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] The architecture of the attached disk.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * [Output Only] Type of the resource. Always compute#savedDisk for attached disks.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -47,6 +54,9 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           [Output Only] The architecture of the attached disk.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#savedDisk for attached disks.
      *     @type string $source_disk
@@ -61,6 +71,44 @@ class SavedDisk extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] The architecture of the attached disk.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * [Output Only] The architecture of the attached disk.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**

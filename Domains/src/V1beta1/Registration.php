@@ -132,7 +132,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           Output only. The expiration timestamp of the `Registration`.
      *     @type int $state
      *           Output only. The state of the `Registration`
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $issues
      *           Output only. The set of issues with the `Registration` that require attention.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with the `Registration`.
@@ -157,7 +157,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           to the `contact_settings` that have not been confirmed. To confirm the
      *           changes, the `registrant_contact` must follow the instructions in the
      *           email they receive.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
      *           Output only. Set of options for the `contact_settings.privacy` field that this
      *           `Registration` supports.
      * }
@@ -334,7 +334,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * Output only. The set of issues with the `Registration` that require attention.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.Registration.Issue issues = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIssues($var)
@@ -558,7 +558,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `Registration` supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactPrivacy supported_privacy = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedPrivacy($var)

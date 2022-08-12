@@ -36,7 +36,7 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $delta_presence_estimation_histogram
+     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $delta_presence_estimation_histogram
      *           The intervals [min_probability, max_probability) do not overlap. If a
      *           value doesn't correspond to any such interval, the associated frequency
      *           is zero. For example, the following records:
@@ -81,7 +81,7 @@ class DeltaPresenceEstimationResult extends \Google\Protobuf\Internal\Message
      * nor larger or equal to 0.4.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.DeltaPresenceEstimationResult.DeltaPresenceEstimationHistogramBucket delta_presence_estimation_histogram = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\DeltaPresenceEstimationResult\DeltaPresenceEstimationHistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeltaPresenceEstimationHistogram($var)

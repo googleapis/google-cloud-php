@@ -65,7 +65,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *           Output only. The unique identifier of this training phrase.
      *     @type int $type
      *           Required. The type of the training phrase.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[]|\Google\Protobuf\Internal\RepeatedField $parts
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $parts
      *           Required. The ordered list of training phrase parts.
      *           The parts are concatenated in order to form the training phrase.
      *           Note: The API does not automatically annotate training phrases like the
@@ -184,7 +184,7 @@ class TrainingPhrase extends \Google\Protobuf\Internal\Message
      *     set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.TrainingPhrase.Part parts = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\TrainingPhrase\Part>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParts($var)

@@ -28,7 +28,7 @@ class RawIndices extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $indices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $indices
      *           The indices to remove from a lexicographically-sorted local list.
      * }
      */
@@ -52,7 +52,7 @@ class RawIndices extends \Google\Protobuf\Internal\Message
      * The indices to remove from a lexicographically-sorted local list.
      *
      * Generated from protobuf field <code>repeated int32 indices = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndices($var)

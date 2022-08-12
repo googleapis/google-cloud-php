@@ -64,7 +64,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      *            `organizations/1234/sources/5678/findings/123456/externalSystems/jira`
      *           `folders/1234/sources/5678/findings/123456/externalSystems/jira`
      *           `projects/1234/sources/5678/findings/123456/externalSystems/jira`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $assignees
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $assignees
      *           References primary/secondary etc assignees in the external system.
      *     @type string $external_uid
      *           Identifier that's used to track the given finding in the external system.
@@ -130,7 +130,7 @@ class ExternalSystem extends \Google\Protobuf\Internal\Message
      * References primary/secondary etc assignees in the external system.
      *
      * Generated from protobuf field <code>repeated string assignees = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssignees($var)

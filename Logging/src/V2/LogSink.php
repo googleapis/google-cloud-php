@@ -173,7 +173,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      *     @type bool $disabled
      *           Optional. If set to true, then this sink is disabled and it does not export any log
      *           entries.
-     *     @type \Google\Cloud\Logging\V2\LogExclusion[]|\Google\Protobuf\Internal\RepeatedField $exclusions
+     *     @type array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $exclusions
      *           Optional. Log entries that match any of these exclusion filters will not be exported.
      *           If a log entry is matched by both `filter` and one of `exclusion_filters`
      *           it will not be exported.
@@ -412,7 +412,7 @@ class LogSink extends \Google\Protobuf\Internal\Message
      * it will not be exported.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogExclusion exclusions = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Logging\V2\LogExclusion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogExclusion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExclusions($var)

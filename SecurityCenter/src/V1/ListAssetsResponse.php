@@ -47,7 +47,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult[]|\Google\Protobuf\Internal\RepeatedField $list_assets_results
+     *     @type array<\Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult>|\Google\Protobuf\Internal\RepeatedField $list_assets_results
      *           Assets matching the list request.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time used for executing the list request.
@@ -78,7 +78,7 @@ class ListAssetsResponse extends \Google\Protobuf\Internal\Message
      * Assets matching the list request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ListAssetsResponse.ListAssetsResult list_assets_results = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\ListAssetsResponse\ListAssetsResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setListAssetsResults($var)

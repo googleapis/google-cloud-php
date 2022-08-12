@@ -35,11 +35,10 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "*/src/V1/SpannerClient.php"
+        src / "*/src/V1/SpannerClient.php",
+        src / "*/src/V1/TransactionOptions/ReadOnly.php",
     ]
 )
-
-
 
 # Spanner Database Admin also lives here
 admin_library = Path(f"../{php.STAGING_DIR}/Spanner/v1/Admin/Database/v1").resolve()
@@ -107,6 +106,15 @@ s.replace(
     'tests/**/Admin/Instance/V1/*Test.php',
     '@group instance',
     '@group spanner-admin-instance')
+
+# remove ReadOnly class_alias code
+s.replace(
+    "src/V*/**/PBReadOnly.php",
+    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
+    + "\n"
+    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
+    + "\n",
+    '')
 
 ## START fixing commit() breaking change
 

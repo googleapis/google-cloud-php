@@ -60,7 +60,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type \Google\Cloud\Compute\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of Operation resources.
      *     @type string $kind
      *           [Output Only] Type of resource. Always `compute#operations` for Operations resource.
@@ -128,7 +128,7 @@ class OperationList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of Operation resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Operation items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

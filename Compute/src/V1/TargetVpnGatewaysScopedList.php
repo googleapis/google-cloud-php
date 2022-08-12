@@ -33,7 +33,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\TargetVpnGateway[]|\Google\Protobuf\Internal\RepeatedField $target_vpn_gateways
+     *     @type array<\Google\Cloud\Compute\V1\TargetVpnGateway>|\Google\Protobuf\Internal\RepeatedField $target_vpn_gateways
      *           [Output Only] A list of target VPN gateways contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of addresses when the list is empty.
@@ -59,7 +59,7 @@ class TargetVpnGatewaysScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of target VPN gateways contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetVpnGateway target_vpn_gateways = 401770888;</code>
-     * @param \Google\Cloud\Compute\V1\TargetVpnGateway[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\TargetVpnGateway>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetVpnGateways($var)

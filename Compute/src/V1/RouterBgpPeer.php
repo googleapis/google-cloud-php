@@ -124,10 +124,10 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      *     @type string $advertise_mode
      *           User-specified flag to indicate which mode to use for advertisement.
      *           Check the AdvertiseMode enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $advertised_groups
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advertised_groups
      *           User-specified list of prefix groups to advertise in custom mode, which can take one of the following options: - ALL_SUBNETS: Advertises all available subnets, including peer VPC subnets. - ALL_VPC_SUBNETS: Advertises the router's own VPC subnets. Note that this field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These groups are advertised in addition to any specified prefixes. Leave this field blank to advertise no custom groups.
      *           Check the AdvertisedGroups enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
+     *     @type array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $advertised_ip_ranges
      *           User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *     @type int $advertised_route_priority
      *           The priority of routes advertised to this BGP peer. Where there is more than one matching route of maximum length, the routes with the lowest priority value win.
@@ -219,7 +219,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * Check the AdvertisedGroups enum for the list of possible values.
      *
      * Generated from protobuf field <code>repeated string advertised_groups = 21065526;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedGroups($var)
@@ -245,7 +245,7 @@ class RouterBgpPeer extends \Google\Protobuf\Internal\Message
      * User-specified list of individual IP ranges to advertise in custom mode. This field can only be populated if advertise_mode is CUSTOM and overrides the list defined for the router (in the "bgp" message). These IP ranges are advertised in addition to any specified groups. Leave this field blank to advertise no custom IP ranges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterAdvertisedIpRange advertised_ip_ranges = 35449932;</code>
-     * @param \Google\Cloud\Compute\V1\RouterAdvertisedIpRange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\RouterAdvertisedIpRange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdvertisedIpRanges($var)

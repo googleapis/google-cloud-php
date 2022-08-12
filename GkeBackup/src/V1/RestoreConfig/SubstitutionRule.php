@@ -80,7 +80,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_namespaces
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_namespaces
      *           (Filtering parameter) Any resource subject to substitution must be
      *           contained within one of the listed Kubernetes Namespace in the Backup.
      *           If this field is not provided, no namespace filtering will be performed
@@ -88,7 +88,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      *           will be candidates for substitution).
      *           To mix cluster-scoped and namespaced resources in the same rule, use an
      *           empty string ("") as one of the target namespaces.
-     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[]|\Google\Protobuf\Internal\RepeatedField $target_group_kinds
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $target_group_kinds
      *           (Filtering parameter) Any resource subject to substitution must belong to
      *           one of the listed "types".
      *           If this field is not provided, no type filtering will be performed (all
@@ -150,7 +150,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * empty string ("") as one of the target namespaces.
      *
      * Generated from protobuf field <code>repeated string target_namespaces = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetNamespaces($var)
@@ -184,7 +184,7 @@ class SubstitutionRule extends \Google\Protobuf\Internal\Message
      * candidates for substitution).
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind target_group_kinds = 2;</code>
-     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetGroupKinds($var)

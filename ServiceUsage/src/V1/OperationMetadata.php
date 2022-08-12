@@ -29,7 +29,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_names
      *           The full name of the resources that this operation is directly
      *           associated with.
      * }
@@ -56,7 +56,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * associated with.
      *
      * Generated from protobuf field <code>repeated string resource_names = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceNames($var)

@@ -31,7 +31,7 @@ class TableOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $identifying_fields
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $identifying_fields
      *           The columns that are the primary keys for table objects included in
      *           ContentItem. A copy of this cell's value will stored alongside alongside
      *           each finding so that the finding can be traced to the specific row it came
@@ -64,7 +64,7 @@ class TableOptions extends \Google\Protobuf\Internal\Message
      * from. No more than 3 may be provided.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId identifying_fields = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIdentifyingFields($var)

@@ -64,9 +64,9 @@ class Command extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the command, as presented on the command line, or if the
      *           command is packaged as a Docker container, as presented to `docker pull`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $env
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $env
      *           Environment variables set before running this command.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $args
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $args
      *           Command-line arguments used when executing this command.
      *     @type string $dir
      *           Working directory (relative to project source root) used when running this
@@ -74,7 +74,7 @@ class Command extends \Google\Protobuf\Internal\Message
      *     @type string $id
      *           Optional unique identifier for this command, used in wait_for to reference
      *           this command as a dependency.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $wait_for
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $wait_for
      *           The ID(s) of the command(s) that this command depends on.
      * }
      */
@@ -126,7 +126,7 @@ class Command extends \Google\Protobuf\Internal\Message
      * Environment variables set before running this command.
      *
      * Generated from protobuf field <code>repeated string env = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnv($var)
@@ -152,7 +152,7 @@ class Command extends \Google\Protobuf\Internal\Message
      * Command-line arguments used when executing this command.
      *
      * Generated from protobuf field <code>repeated string args = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArgs($var)
@@ -234,7 +234,7 @@ class Command extends \Google\Protobuf\Internal\Message
      * The ID(s) of the command(s) that this command depends on.
      *
      * Generated from protobuf field <code>repeated string wait_for = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWaitFor($var)

@@ -17,19 +17,20 @@ class PredictionService
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Retail\V2\UserEvent::initOnce();
         \GPBMetadata\Google\Protobuf\Struct::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Œ
-/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"∞
+¿
+/google/cloud/retail/v2/prediction_service.protogoogle.cloud.retail.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto\'google/cloud/retail/v2/user_event.protogoogle/protobuf/struct.proto"¥
 PredictRequest
 	placement (	B‡A:
 
 user_event (2!.google.cloud.retail.v2.UserEventB‡A
-	page_size (
+	page_size (
 
-page_token (	
+page_token (	B
 filter (	
 validate_only (B
 params (22.google.cloud.retail.v2.PredictRequest.ParamsEntryB
@@ -51,9 +52,9 @@ page_token (	
 metadata (2F.google.cloud.retail.v2.PredictResponse.PredictionResult.MetadataEntryG
 MetadataEntry
 key (	%
-value (2.google.protobuf.Value:82é
-PredictionService≠
-Predict&.google.cloud.retail.v2.PredictRequest\'.google.cloud.retail.v2.PredictResponse"QÇ”‰ìK"F/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:predict:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÀ
+value (2.google.protobuf.Value:82·
+PredictionServiceÄ
+Predict&.google.cloud.retail.v2.PredictRequest\'.google.cloud.retail.v2.PredictResponse"£Ç”‰ìú"F/v2/{placement=projects/*/locations/*/catalogs/*/placements/*}:predict:*ZO"J/v2/{placement=projects/*/locations/*/catalogs/*/servingConfigs/*}:predict:*I Aretail.googleapis.com“A.https://www.googleapis.com/auth/cloud-platformBÀ
 com.google.cloud.retail.v2BPredictionServiceProtoPZ<google.golang.org/genproto/googleapis/cloud/retail/v2;retail¢RETAIL™Google.Cloud.Retail.V2 Google\\Cloud\\Retail\\V2ÍGoogle::Cloud::Retail::V2bproto3'
         , true);
 

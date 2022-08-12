@@ -52,7 +52,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      */
     private $name = null;
     /**
-     * NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
@@ -96,7 +96,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $nat_policy
-     *           NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+     *           Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
      *           Check the NatPolicy enum for the list of possible values.
      *     @type string $network
      *           The URL of the network this target instance uses to forward traffic. If not specified, the traffic will be forwarded to the network that the default network interface belongs to.
@@ -328,7 +328,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>
@@ -350,7 +350,7 @@ class TargetInstance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * NAT option controlling how IPs are NAT'ed to the instance. Currently only NO_NAT (default value) is supported.
+     * Must have a value of NO_NAT. Protocol forwarding delivers packets while preserving the destination IP address of the forwarding rule referencing the target instance.
      * Check the NatPolicy enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string nat_policy = 509780496;</code>

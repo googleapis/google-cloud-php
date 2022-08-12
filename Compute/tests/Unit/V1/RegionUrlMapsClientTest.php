@@ -85,7 +85,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -104,7 +104,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
-        $response = $client->delete($project, $region, $urlMap);
+        $response = $gapicClient->delete($project, $region, $urlMap);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -151,7 +151,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -176,7 +176,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
-        $response = $client->delete($project, $region, $urlMap);
+        $response = $gapicClient->delete($project, $region, $urlMap);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -202,7 +202,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -231,7 +231,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
-        $response = $client->get($project, $region, $urlMap);
+        $response = $gapicClient->get($project, $region, $urlMap);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -253,7 +253,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -272,8 +272,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
         try {
-            $client->get($project, $region, $urlMap);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $region, $urlMap);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -296,7 +296,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -315,7 +315,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $urlMapResource = new UrlMap();
-        $response = $client->insert($project, $region, $urlMapResource);
+        $response = $gapicClient->insert($project, $region, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -362,7 +362,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -387,7 +387,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $urlMapResource = new UrlMap();
-        $response = $client->insert($project, $region, $urlMapResource);
+        $response = $gapicClient->insert($project, $region, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -413,7 +413,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -436,7 +436,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -459,7 +459,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -477,8 +477,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -501,7 +501,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -521,7 +521,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->patch($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch($project, $region, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -570,7 +570,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -596,7 +596,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->patch($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->patch($project, $region, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -628,7 +628,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -648,7 +648,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->update($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->update($project, $region, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -697,7 +697,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -723,7 +723,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $urlMap = 'urlMap-169850228';
         $urlMapResource = new UrlMap();
-        $response = $client->update($project, $region, $urlMap, $urlMapResource);
+        $response = $gapicClient->update($project, $region, $urlMap, $urlMapResource);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -749,7 +749,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function validateTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -761,7 +761,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
         $urlMap = 'urlMap-169850228';
-        $response = $client->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
+        $response = $gapicClient->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -785,7 +785,7 @@ class RegionUrlMapsClientTest extends GeneratedTest
     public function validateExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -805,8 +805,8 @@ class RegionUrlMapsClientTest extends GeneratedTest
         $regionUrlMapsValidateRequestResource = new RegionUrlMapsValidateRequest();
         $urlMap = 'urlMap-169850228';
         try {
-            $client->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->validate($project, $region, $regionUrlMapsValidateRequestResource, $urlMap);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

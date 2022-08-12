@@ -30,7 +30,7 @@ class ProductInlineSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $products
+     *     @type array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $products
      *           Required. A list of products to update/create. Each product must have a
      *           valid [Product.id][google.cloud.retail.v2.Product.id]. Recommended max of
      *           100 items.
@@ -60,7 +60,7 @@ class ProductInlineSource extends \Google\Protobuf\Internal\Message
      * 100 items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product products = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Retail\V2\Product[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Retail\V2\Product>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProducts($var)

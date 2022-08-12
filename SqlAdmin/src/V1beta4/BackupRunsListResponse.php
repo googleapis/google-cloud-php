@@ -43,7 +43,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#backupRunsList`.
-     *     @type \Google\Cloud\Sql\V1beta4\BackupRun[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Sql\V1beta4\BackupRun>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of backup runs in reverse chronological order of the enqueued time.
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -96,7 +96,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      * A list of backup runs in reverse chronological order of the enqueued time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.BackupRun items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\BackupRun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\BackupRun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

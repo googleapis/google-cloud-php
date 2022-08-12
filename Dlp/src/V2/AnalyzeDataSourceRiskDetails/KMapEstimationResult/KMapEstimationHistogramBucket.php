@@ -66,7 +66,7 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
      *           Always greater than or equal to min_anonymity.
      *     @type int|string $bucket_size
      *           Number of records within these anonymity bounds.
-     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationQuasiIdValues[]|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationQuasiIdValues>|\Google\Protobuf\Internal\RepeatedField $bucket_values
      *           Sample of quasi-identifier tuple values in this bucket. The total
      *           number of classes returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -173,7 +173,7 @@ class KMapEstimationHistogramBucket extends \Google\Protobuf\Internal\Message
      * number of classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KMapEstimationResult.KMapEstimationQuasiIdValues bucket_values = 6;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationQuasiIdValues[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KMapEstimationResult\KMapEstimationQuasiIdValues>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBucketValues($var)

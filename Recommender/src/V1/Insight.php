@@ -105,7 +105,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Free-form human readable summary in English. The maximum length is 500
      *           characters.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_resources
      *           Fully qualified resource names that this insight is targeting.
      *     @type string $insight_subtype
      *           Insight subtype. Insight content schema will be stable for a given subtype.
@@ -127,7 +127,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *           Fingerprint of the Insight. Provides optimistic locking when updating
      *           states.
-     *     @type \Google\Cloud\Recommender\V1\Insight\RecommendationReference[]|\Google\Protobuf\Internal\RepeatedField $associated_recommendations
+     *     @type array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $associated_recommendations
      *           Recommendations derived from this insight.
      * }
      */
@@ -205,7 +205,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Fully qualified resource names that this insight is targeting.
      *
      * Generated from protobuf field <code>repeated string target_resources = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetResources($var)
@@ -487,7 +487,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Recommendations derived from this insight.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Insight.RecommendationReference associated_recommendations = 8;</code>
-     * @param \Google\Cloud\Recommender\V1\Insight\RecommendationReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssociatedRecommendations($var)

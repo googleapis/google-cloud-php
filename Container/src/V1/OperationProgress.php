@@ -59,14 +59,14 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *     @type int $status
      *           Status of an operation stage.
      *           Unset for single-stage operations.
-     *     @type \Google\Cloud\Container\V1\OperationProgress\Metric[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\Container\V1\OperationProgress\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Progress metric bundle, for example:
      *             metrics: [{name: "nodes done",     int_value: 15},
      *                       {name: "nodes total",    int_value: 32}]
      *           or
      *             metrics: [{name: "progress",       double_value: 0.56},
      *                       {name: "progress scale", double_value: 1.0}]
-     *     @type \Google\Cloud\Container\V1\OperationProgress[]|\Google\Protobuf\Internal\RepeatedField $stages
+     *     @type array<\Google\Cloud\Container\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $stages
      *           Substages of an operation or a stage.
      * }
      */
@@ -156,7 +156,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      *             {name: "progress scale", double_value: 1.0}]
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress.Metric metrics = 3;</code>
-     * @param \Google\Cloud\Container\V1\OperationProgress\Metric[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\OperationProgress\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)
@@ -182,7 +182,7 @@ class OperationProgress extends \Google\Protobuf\Internal\Message
      * Substages of an operation or a stage.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.OperationProgress stages = 4;</code>
-     * @param \Google\Cloud\Container\V1\OperationProgress[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\OperationProgress>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStages($var)

@@ -28,7 +28,7 @@ class InstanceGroupManagersCreateInstancesRequest extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $instances
      *           [Required] List of specifications of per-instance configs.
      * }
      */
@@ -52,7 +52,7 @@ class InstanceGroupManagersCreateInstancesRequest extends \Google\Protobuf\Inter
      * [Required] List of specifications of per-instance configs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PerInstanceConfig instances = 29097598;</code>
-     * @param \Google\Cloud\Compute\V1\PerInstanceConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PerInstanceConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

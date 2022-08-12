@@ -87,7 +87,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      *           Expected HTTP status code for rule with `urlRedirect` calculated by load balancer
      *     @type string $expected_service
      *           Expected BackendService or BackendBucket resource the given URL should be mapped to.
-     *     @type \Google\Cloud\Compute\V1\UrlMapTestHeader[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\Compute\V1\UrlMapTestHeader>|\Google\Protobuf\Internal\RepeatedField $headers
      *           HTTP headers of the request.
      *     @type string $host
      *           Host portion of the URL.
@@ -331,7 +331,7 @@ class TestFailure extends \Google\Protobuf\Internal\Message
      * HTTP headers of the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UrlMapTestHeader headers = 258436998;</code>
-     * @param \Google\Cloud\Compute\V1\UrlMapTestHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\UrlMapTestHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)

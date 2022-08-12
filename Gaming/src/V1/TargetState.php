@@ -28,7 +28,7 @@ class TargetState extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Gaming\V1\TargetDetails[]|\Google\Protobuf\Internal\RepeatedField $details
+     *     @type array<\Google\Cloud\Gaming\V1\TargetDetails>|\Google\Protobuf\Internal\RepeatedField $details
      *           Details about Agones fleets.
      * }
      */
@@ -52,7 +52,7 @@ class TargetState extends \Google\Protobuf\Internal\Message
      * Details about Agones fleets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.TargetDetails details = 1;</code>
-     * @param \Google\Cloud\Gaming\V1\TargetDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\TargetDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetails($var)

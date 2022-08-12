@@ -36,7 +36,7 @@ class TransformationOverview extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $transformed_bytes
      *           Total size in bytes that were transformed in some way.
-     *     @type \Google\Cloud\Dlp\V2\TransformationSummary[]|\Google\Protobuf\Internal\RepeatedField $transformation_summaries
+     *     @type array<\Google\Cloud\Dlp\V2\TransformationSummary>|\Google\Protobuf\Internal\RepeatedField $transformation_summaries
      *           Transformations applied to the dataset.
      * }
      */
@@ -86,7 +86,7 @@ class TransformationOverview extends \Google\Protobuf\Internal\Message
      * Transformations applied to the dataset.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary transformation_summaries = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\TransformationSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\TransformationSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransformationSummaries($var)

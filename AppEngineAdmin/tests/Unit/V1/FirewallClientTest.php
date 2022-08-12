@@ -76,14 +76,14 @@ class FirewallClientTest extends GeneratedTest
     public function batchUpdateIngressRulesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new BatchUpdateIngressRulesResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->batchUpdateIngressRules();
+        $response = $gapicClient->batchUpdateIngressRules();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -99,7 +99,7 @@ class FirewallClientTest extends GeneratedTest
     public function batchUpdateIngressRulesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -114,8 +114,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->batchUpdateIngressRules();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchUpdateIngressRules();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -132,7 +132,7 @@ class FirewallClientTest extends GeneratedTest
     public function createIngressRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -145,7 +145,7 @@ class FirewallClientTest extends GeneratedTest
         $expectedResponse->setSourceRange($sourceRange);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $client->createIngressRule();
+        $response = $gapicClient->createIngressRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -161,7 +161,7 @@ class FirewallClientTest extends GeneratedTest
     public function createIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -176,8 +176,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->createIngressRule();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createIngressRule();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -194,14 +194,14 @@ class FirewallClientTest extends GeneratedTest
     public function deleteIngressRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->deleteIngressRule();
+        $gapicClient->deleteIngressRule();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -216,7 +216,7 @@ class FirewallClientTest extends GeneratedTest
     public function deleteIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -231,8 +231,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteIngressRule();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteIngressRule();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -249,7 +249,7 @@ class FirewallClientTest extends GeneratedTest
     public function getIngressRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -262,7 +262,7 @@ class FirewallClientTest extends GeneratedTest
         $expectedResponse->setSourceRange($sourceRange);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $client->getIngressRule();
+        $response = $gapicClient->getIngressRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -278,7 +278,7 @@ class FirewallClientTest extends GeneratedTest
     public function getIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -293,8 +293,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getIngressRule();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIngressRule();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -311,7 +311,7 @@ class FirewallClientTest extends GeneratedTest
     public function listIngressRulesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -325,7 +325,7 @@ class FirewallClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setIngressRules($ingressRules);
         $transport->addResponse($expectedResponse);
-        $response = $client->listIngressRules();
+        $response = $gapicClient->listIngressRules();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -344,7 +344,7 @@ class FirewallClientTest extends GeneratedTest
     public function listIngressRulesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -359,8 +359,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listIngressRules();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listIngressRules();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -377,7 +377,7 @@ class FirewallClientTest extends GeneratedTest
     public function updateIngressRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -390,7 +390,7 @@ class FirewallClientTest extends GeneratedTest
         $expectedResponse->setSourceRange($sourceRange);
         $expectedResponse->setDescription($description);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateIngressRule();
+        $response = $gapicClient->updateIngressRule();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -406,7 +406,7 @@ class FirewallClientTest extends GeneratedTest
     public function updateIngressRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,8 +421,8 @@ class FirewallClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateIngressRule();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateIngressRule();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

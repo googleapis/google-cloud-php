@@ -83,7 +83,7 @@ class PublisherClientTest extends GeneratedTest
     public function createTopicTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -98,7 +98,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $response = $client->createTopic($name);
+        $response = $gapicClient->createTopic($name);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -116,7 +116,7 @@ class PublisherClientTest extends GeneratedTest
     public function createTopicExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -133,8 +133,8 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $name = 'name3373707';
         try {
-            $client->createTopic($name);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createTopic($name);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -151,7 +151,7 @@ class PublisherClientTest extends GeneratedTest
     public function deleteTopicTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -159,8 +159,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
-        $client->deleteTopic($formattedTopic);
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $gapicClient->deleteTopic($formattedTopic);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -177,7 +177,7 @@ class PublisherClientTest extends GeneratedTest
     public function deleteTopicExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -192,10 +192,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->deleteTopic($formattedTopic);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteTopic($formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -212,7 +212,7 @@ class PublisherClientTest extends GeneratedTest
     public function detachSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -220,8 +220,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new DetachSubscriptionResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $client->detachSubscription($formattedSubscription);
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->detachSubscription($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -239,7 +239,7 @@ class PublisherClientTest extends GeneratedTest
     public function detachSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -254,10 +254,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->detachSubscription($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->detachSubscription($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -274,7 +274,7 @@ class PublisherClientTest extends GeneratedTest
     public function getTopicTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -288,8 +288,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setSatisfiesPzs($satisfiesPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
-        $response = $client->getTopic($formattedTopic);
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $response = $gapicClient->getTopic($formattedTopic);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -307,7 +307,7 @@ class PublisherClientTest extends GeneratedTest
     public function getTopicExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -322,10 +322,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->getTopic($formattedTopic);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTopic($formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -342,7 +342,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicSnapshotsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -357,8 +357,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
-        $response = $client->listTopicSnapshots($formattedTopic);
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $response = $gapicClient->listTopicSnapshots($formattedTopic);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -379,7 +379,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -394,10 +394,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->listTopicSnapshots($formattedTopic);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTopicSnapshots($formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -414,7 +414,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicSubscriptionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -429,8 +429,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
-        $response = $client->listTopicSubscriptions($formattedTopic);
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $response = $gapicClient->listTopicSubscriptions($formattedTopic);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -451,7 +451,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicSubscriptionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -466,10 +466,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->listTopicSubscriptions($formattedTopic);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTopicSubscriptions($formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -486,7 +486,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -501,8 +501,8 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse->setTopics($topics);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-        $response = $client->listTopics($formattedProject);
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listTopics($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -523,7 +523,7 @@ class PublisherClientTest extends GeneratedTest
     public function listTopicsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -538,10 +538,10 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listTopics($formattedProject);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTopics($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -558,7 +558,7 @@ class PublisherClientTest extends GeneratedTest
     public function publishTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -566,9 +566,9 @@ class PublisherClientTest extends GeneratedTest
         $expectedResponse = new PublishResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $messages = [];
-        $response = $client->publish($formattedTopic, $messages);
+        $response = $gapicClient->publish($formattedTopic, $messages);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -588,7 +588,7 @@ class PublisherClientTest extends GeneratedTest
     public function publishExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -603,11 +603,11 @@ class PublisherClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $messages = [];
         try {
-            $client->publish($formattedTopic, $messages);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->publish($formattedTopic, $messages);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -624,7 +624,7 @@ class PublisherClientTest extends GeneratedTest
     public function updateTopicTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -642,7 +642,7 @@ class PublisherClientTest extends GeneratedTest
         $topicName = 'topicName388205658';
         $topic->setName($topicName);
         $updateMask = new FieldMask();
-        $response = $client->updateTopic($topic, $updateMask);
+        $response = $gapicClient->updateTopic($topic, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -662,7 +662,7 @@ class PublisherClientTest extends GeneratedTest
     public function updateTopicExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -682,8 +682,8 @@ class PublisherClientTest extends GeneratedTest
         $topic->setName($topicName);
         $updateMask = new FieldMask();
         try {
-            $client->updateTopic($topic, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTopic($topic, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -700,7 +700,7 @@ class PublisherClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -713,7 +713,7 @@ class PublisherClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -731,7 +731,7 @@ class PublisherClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -748,8 +748,8 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -766,7 +766,7 @@ class PublisherClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -780,7 +780,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -800,7 +800,7 @@ class PublisherClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -818,8 +818,8 @@ class PublisherClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -836,7 +836,7 @@ class PublisherClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -846,7 +846,7 @@ class PublisherClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -866,7 +866,7 @@ class PublisherClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -884,8 +884,8 @@ class PublisherClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

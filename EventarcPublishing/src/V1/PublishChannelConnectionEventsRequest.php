@@ -38,7 +38,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      *     @type string $channel_connection
      *           The channel_connection that the events are published from. For example:
      *           `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
-     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
      * }
      */
@@ -90,7 +90,7 @@ class PublishChannelConnectionEventsRequest extends \Google\Protobuf\Internal\Me
      * The CloudEvents v1.0 events to publish. No other types are allowed.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
-     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)

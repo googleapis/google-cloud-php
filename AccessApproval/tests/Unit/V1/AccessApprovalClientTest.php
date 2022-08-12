@@ -77,7 +77,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function approveApprovalRequestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -88,7 +88,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setRequestedResourceName($requestedResourceName);
         $transport->addResponse($expectedResponse);
-        $response = $client->approveApprovalRequest();
+        $response = $gapicClient->approveApprovalRequest();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -104,7 +104,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function approveApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -119,8 +119,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->approveApprovalRequest();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->approveApprovalRequest();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -137,14 +137,14 @@ class AccessApprovalClientTest extends GeneratedTest
     public function deleteAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->deleteAccessApprovalSettings();
+        $gapicClient->deleteAccessApprovalSettings();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -159,7 +159,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function deleteAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -174,8 +174,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteAccessApprovalSettings();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAccessApprovalSettings();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -192,7 +192,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function dismissApprovalRequestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,7 +203,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setRequestedResourceName($requestedResourceName);
         $transport->addResponse($expectedResponse);
-        $response = $client->dismissApprovalRequest();
+        $response = $gapicClient->dismissApprovalRequest();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -219,7 +219,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function dismissApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -234,8 +234,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->dismissApprovalRequest();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->dismissApprovalRequest();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -252,7 +252,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getAccessApprovalServiceAccountTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,7 +263,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setAccountEmail($accountEmail);
         $transport->addResponse($expectedResponse);
-        $response = $client->getAccessApprovalServiceAccount();
+        $response = $gapicClient->getAccessApprovalServiceAccount();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -279,7 +279,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getAccessApprovalServiceAccountExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +294,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getAccessApprovalServiceAccount();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAccessApprovalServiceAccount();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -312,7 +312,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -329,7 +329,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setAncestorHasActiveKeyVersion($ancestorHasActiveKeyVersion);
         $expectedResponse->setInvalidKeyVersion($invalidKeyVersion);
         $transport->addResponse($expectedResponse);
-        $response = $client->getAccessApprovalSettings();
+        $response = $gapicClient->getAccessApprovalSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -345,7 +345,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -360,8 +360,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getAccessApprovalSettings();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAccessApprovalSettings();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -378,7 +378,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getApprovalRequestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -389,7 +389,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setRequestedResourceName($requestedResourceName);
         $transport->addResponse($expectedResponse);
-        $response = $client->getApprovalRequest();
+        $response = $gapicClient->getApprovalRequest();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -405,7 +405,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function getApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -420,8 +420,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getApprovalRequest();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getApprovalRequest();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -438,7 +438,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function invalidateApprovalRequestTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -449,7 +449,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $expectedResponse->setRequestedResourceName($requestedResourceName);
         $transport->addResponse($expectedResponse);
-        $response = $client->invalidateApprovalRequest();
+        $response = $gapicClient->invalidateApprovalRequest();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -465,7 +465,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function invalidateApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -480,8 +480,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->invalidateApprovalRequest();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->invalidateApprovalRequest();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -498,7 +498,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function listApprovalRequestsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -512,7 +512,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setApprovalRequests($approvalRequests);
         $transport->addResponse($expectedResponse);
-        $response = $client->listApprovalRequests();
+        $response = $gapicClient->listApprovalRequests();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -531,7 +531,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function listApprovalRequestsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -546,8 +546,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listApprovalRequests();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listApprovalRequests();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -564,7 +564,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function updateAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -581,7 +581,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $expectedResponse->setAncestorHasActiveKeyVersion($ancestorHasActiveKeyVersion);
         $expectedResponse->setInvalidKeyVersion($invalidKeyVersion);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateAccessApprovalSettings();
+        $response = $gapicClient->updateAccessApprovalSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -597,7 +597,7 @@ class AccessApprovalClientTest extends GeneratedTest
     public function updateAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -612,8 +612,8 @@ class AccessApprovalClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateAccessApprovalSettings();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateAccessApprovalSettings();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

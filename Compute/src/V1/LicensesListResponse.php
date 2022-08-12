@@ -53,7 +53,7 @@ class LicensesListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\License[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\License>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of License resources.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
@@ -119,7 +119,7 @@ class LicensesListResponse extends \Google\Protobuf\Internal\Message
      * A list of License resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.License items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\License[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\License>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

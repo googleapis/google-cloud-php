@@ -16,11 +16,10 @@ class Common
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ü
-1google/cloud/networksecurity/v1beta1/common.proto$google.cloud.networksecurity.v1beta1google/protobuf/timestamp.protogoogle/api/annotations.proto"Ä
+é
+1google/cloud/networksecurity/v1beta1/common.proto$google.cloud.networksecurity.v1beta1google/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -28,8 +27,8 @@ class Common
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡AB˘
-(com.google.cloud.networksecurity.v1beta1PZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurity™$Google.Cloud.NetworkSecurity.V1Beta1 $Google\\Cloud\\NetworkSecurity\\V1beta1Í\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
+api_version (	B‡ABÜ
+(com.google.cloud.networksecurity.v1beta1BCommonProtoPZSgoogle.golang.org/genproto/googleapis/cloud/networksecurity/v1beta1;networksecurity™$Google.Cloud.NetworkSecurity.V1Beta1 $Google\\Cloud\\NetworkSecurity\\V1beta1Í\'Google::Cloud::NetworkSecurity::V1beta1bproto3'
         , true);
 
         static::$is_initialized = true;

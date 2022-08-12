@@ -39,6 +39,7 @@ php.owlbot_main(
     copy_excludes=[
         src / '*/src/V1/FirestoreClient.php',
         src / '*/src/Admin/V1/FirestoreAdminClient.php',
+        src / "*/src/V1/TransactionOptions/ReadOnly.php",
     ]
 )
 
@@ -114,6 +115,15 @@ s.replace(
     'tests/**/Admin/V1/*Test.php',
     r'@group admin',
     '@group firestore-admin')
+
+# remove ReadOnly class_alias code
+s.replace(
+    "src/V*/**/PBReadOnly.php",
+    r"^// Adding a class alias for backwards compatibility with the \"readonly\" keyword.$"
+    + "\n"
+    + r"^class_alias\(PBReadOnly::class, __NAMESPACE__ . '\\ReadOnly'\);$"
+    + "\n",
+    '')
 
 ### [START] protoc backwards compatibility fixes
 

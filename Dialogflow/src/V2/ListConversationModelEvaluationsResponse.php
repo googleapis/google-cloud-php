@@ -36,7 +36,7 @@ class ListConversationModelEvaluationsResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\ConversationModelEvaluation[]|\Google\Protobuf\Internal\RepeatedField $conversation_model_evaluations
+     *     @type array<\Google\Cloud\Dialogflow\V2\ConversationModelEvaluation>|\Google\Protobuf\Internal\RepeatedField $conversation_model_evaluations
      *           The list of evaluations to return.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
@@ -63,7 +63,7 @@ class ListConversationModelEvaluationsResponse extends \Google\Protobuf\Internal
      * The list of evaluations to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ConversationModelEvaluation conversation_model_evaluations = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\ConversationModelEvaluation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\ConversationModelEvaluation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConversationModelEvaluations($var)

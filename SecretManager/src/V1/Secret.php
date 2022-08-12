@@ -108,7 +108,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      *           encoding of maximum 128 bytes, and must conform to the following PCRE
      *           regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`
      *           No more than 64 labels can be assigned to a given resource.
-     *     @type \Google\Cloud\SecretManager\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $topics
+     *     @type array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $topics
      *           Optional. A list of up to 10 Pub/Sub topics to which messages are published when
      *           control plane operations are called on the secret or its versions.
      *     @type \Google\Protobuf\Timestamp $expire_time
@@ -295,7 +295,7 @@ class Secret extends \Google\Protobuf\Internal\Message
      * control plane operations are called on the secret or its versions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.Topic topics = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\SecretManager\V1\Topic[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecretManager\V1\Topic>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopics($var)

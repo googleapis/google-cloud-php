@@ -35,7 +35,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\MetadataFilterLabelMatch[]|\Google\Protobuf\Internal\RepeatedField $filter_labels
+     *     @type array<\Google\Cloud\Compute\V1\MetadataFilterLabelMatch>|\Google\Protobuf\Internal\RepeatedField $filter_labels
      *           The list of label value pairs that must match labels in the provided metadata based on filterMatchCriteria This list must not be empty and can have at the most 64 entries.
      *     @type string $filter_match_criteria
      *           Specifies how individual filter label matches within the list of filterLabels and contributes toward the overall metadataFilter match. Supported values are: - MATCH_ANY: at least one of the filterLabels must have a matching label in the provided metadata. - MATCH_ALL: all filterLabels must have matching labels in the provided metadata.
@@ -62,7 +62,7 @@ class MetadataFilter extends \Google\Protobuf\Internal\Message
      * The list of label value pairs that must match labels in the provided metadata based on filterMatchCriteria This list must not be empty and can have at the most 64 entries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MetadataFilterLabelMatch filter_labels = 307903142;</code>
-     * @param \Google\Cloud\Compute\V1\MetadataFilterLabelMatch[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\MetadataFilterLabelMatch>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFilterLabels($var)

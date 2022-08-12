@@ -33,7 +33,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $cluster_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $cluster_ids
      *           The set of clusters to route to. The order is ignored; clusters will be
      *           tried in order of distance. If left empty, all clusters are eligible.
      * }
@@ -60,7 +60,7 @@ class MultiClusterRoutingUseAny extends \Google\Protobuf\Internal\Message
      * tried in order of distance. If left empty, all clusters are eligible.
      *
      * Generated from protobuf field <code>repeated string cluster_ids = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setClusterIds($var)

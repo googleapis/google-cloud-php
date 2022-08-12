@@ -80,7 +80,7 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      *           State of this work item.
      *     @type \Google\Cloud\Dataflow\V1beta3\ProgressTimeseries $progress
      *           Progress of this work item.
-     *     @type \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           Metrics for this work item.
      * }
      */
@@ -294,7 +294,7 @@ class WorkItemDetails extends \Google\Protobuf\Internal\Message
      * Metrics for this work item.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.MetricUpdate metrics = 7;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\MetricUpdate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\MetricUpdate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

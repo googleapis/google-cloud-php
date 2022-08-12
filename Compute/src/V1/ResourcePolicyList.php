@@ -64,7 +64,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      *     @type string $etag
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type \Google\Cloud\Compute\V1\ResourcePolicy[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\ResourcePolicy>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] A list of ResourcePolicy resources.
      *     @type string $kind
      *           [Output Only] Type of resource.Always compute#resourcePoliciesList for listsof resourcePolicies
@@ -164,7 +164,7 @@ class ResourcePolicyList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of ResourcePolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourcePolicy items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\ResourcePolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ResourcePolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

@@ -36,7 +36,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always `sql#tiersList`.
-     *     @type \Google\Cloud\Sql\V1beta4\Tier[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Sql\V1beta4\Tier>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of tiers.
      * }
      */
@@ -86,7 +86,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
      * List of tiers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.Tier items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\Tier[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\Tier>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

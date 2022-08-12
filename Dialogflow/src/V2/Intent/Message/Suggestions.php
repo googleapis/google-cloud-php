@@ -28,7 +28,7 @@ class Suggestions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion[]|\Google\Protobuf\Internal\RepeatedField $suggestions
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion>|\Google\Protobuf\Internal\RepeatedField $suggestions
      *           Required. The list of suggested replies.
      * }
      */
@@ -52,7 +52,7 @@ class Suggestions extends \Google\Protobuf\Internal\Message
      * Required. The list of suggested replies.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.Suggestion suggestions = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\Suggestion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSuggestions($var)

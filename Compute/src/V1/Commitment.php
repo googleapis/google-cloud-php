@@ -158,9 +158,9 @@ class Commitment extends \Google\Protobuf\Internal\Message
      *           Check the Plan enum for the list of possible values.
      *     @type string $region
      *           [Output Only] URL of the region where this commitment may be used.
-     *     @type \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $reservations
+     *     @type array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $reservations
      *           List of reservations in this commitment.
-     *     @type \Google\Cloud\Compute\V1\ResourceCommitment[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
@@ -596,7 +596,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * List of reservations in this commitment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Reservation reservations = 399717927;</code>
-     * @param \Google\Cloud\Compute\V1\Reservation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Reservation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReservations($var)
@@ -622,7 +622,7 @@ class Commitment extends \Google\Protobuf\Internal\Message
      * A list of commitment amounts for particular resources. Note that VCPU and MEMORY resource commitments must occur together.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourceCommitment resources = 164412965;</code>
-     * @param \Google\Cloud\Compute\V1\ResourceCommitment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ResourceCommitment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)

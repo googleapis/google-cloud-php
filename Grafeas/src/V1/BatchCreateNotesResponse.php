@@ -28,7 +28,7 @@ class BatchCreateNotesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Grafeas\V1\Note[]|\Google\Protobuf\Internal\RepeatedField $notes
+     *     @type array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $notes
      *           The notes that were created.
      * }
      */
@@ -52,7 +52,7 @@ class BatchCreateNotesResponse extends \Google\Protobuf\Internal\Message
      * The notes that were created.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.Note notes = 1;</code>
-     * @param \Grafeas\V1\Note[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\Note>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotes($var)

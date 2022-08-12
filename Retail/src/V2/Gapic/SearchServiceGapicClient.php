@@ -324,7 +324,9 @@ class SearchServiceGapicClient
      * }
      * ```
      *
-     * @param string $placement    Required. The resource name of the search engine placement, such as
+     * @param string $placement    Required. The resource name of the Retail Search serving config, such as
+     *                             `projects/&#42;/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config`
+     *                             or the name of the legacy placement resource, such as
      *                             `projects/&#42;/locations/global/catalogs/default_catalog/placements/default_search`.
      *                             This field is used to identify the serving configuration name and the set
      *                             of models that will be used to make the search.
@@ -537,10 +539,9 @@ class SearchServiceGapicClient
      *           The spell correction specification that specifies the mode under
      *           which spell correction will take effect.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse

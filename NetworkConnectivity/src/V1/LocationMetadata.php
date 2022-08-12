@@ -28,7 +28,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $location_features
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $location_features
      *           List of supported features
      * }
      */
@@ -52,7 +52,7 @@ class LocationMetadata extends \Google\Protobuf\Internal\Message
      * List of supported features
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.LocationFeature location_features = 1;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocationFeatures($var)
