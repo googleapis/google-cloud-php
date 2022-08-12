@@ -17,6 +17,7 @@
     <testsuite name="Unit Tests">
       <directory>*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
+      <exclude>./dev/tests/Unit/DocFx</exclude>
     </testsuite>
   </testsuites>
   <php>

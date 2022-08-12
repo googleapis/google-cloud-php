@@ -1,0 +1,120 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Product\KeyValue
+    name: KeyValue
+    id: KeyValue
+    summary: |
+      A product label represented as a key-value pair.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Product.KeyValue</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Product\KeyValue::__construct()'
+      - '\Google\Cloud\Vision\V1\Product\KeyValue::getKey()'
+      - '\Google\Cloud\Vision\V1\Product\KeyValue::setKey()'
+      - '\Google\Cloud\Vision\V1\Product\KeyValue::getValue()'
+      - '\Google\Cloud\Vision\V1\Product\KeyValue::setValue()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Product\KeyValue::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Product\KeyValue
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ key'
+          var_type: string
+          description: 'The key of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.'
+        -
+          id: '↳ value'
+          var_type: string
+          description: 'The value of the label attached to the product. Cannot be empty and cannot exceed 128 bytes.'
+  -
+    uid: '\Google\Cloud\Vision\V1\Product\KeyValue::getKey()'
+    name: getKey
+    id: getKey
+    summary: |
+      The key of the label attached to the product. Cannot be empty and cannot
+      exceed 128 bytes.
+      
+      Generated from protobuf field <code>string key = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Product\KeyValue
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Product\KeyValue::setKey()'
+    name: setKey
+    id: setKey
+    summary: |
+      The key of the label attached to the product. Cannot be empty and cannot
+      exceed 128 bytes.
+      
+      Generated from protobuf field <code>string key = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Product\KeyValue
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Product\KeyValue::getValue()'
+    name: getValue
+    id: getValue
+    summary: |
+      The value of the label attached to the product. Cannot be empty and
+      cannot exceed 128 bytes.
+      
+      Generated from protobuf field <code>string value = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Product\KeyValue
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Product\KeyValue::setValue()'
+    name: setValue
+    id: setValue
+    summary: |
+      The value of the label attached to the product. Cannot be empty and
+      cannot exceed 128 bytes.
+      
+      Generated from protobuf field <code>string value = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Product\KeyValue
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

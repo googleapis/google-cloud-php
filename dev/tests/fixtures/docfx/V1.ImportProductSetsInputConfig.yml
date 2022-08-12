@@ -1,0 +1,98 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    name: ImportProductSetsInputConfig
+    id: ImportProductSetsInputConfig
+    summary: |
+      The input content for the `ImportProductSets` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsInputConfig</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::__construct()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getGcsSource()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::hasGcsSource()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::setGcsSource()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getSource()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ gcs_source'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource">Google\Cloud\Vision\V1\ImportProductSetsGcsSource</xref>'
+          description: 'The Google Cloud Storage location for a csv file which preserves a list of ImportProductSetRequests in each line.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getGcsSource()'
+    name: getGcsSource
+    id: getGcsSource
+    summary: |
+      The Google Cloud Storage location for a csv file which preserves a list
+      of ImportProductSetRequests in each line.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsGcsSource gcs_source = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::hasGcsSource()'
+    name: hasGcsSource
+    id: hasGcsSource
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::setGcsSource()'
+    name: setGcsSource
+    id: setGcsSource
+    summary: |
+      The Google Cloud Storage location for a csv file which preserves a list
+      of ImportProductSetRequests in each line.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsGcsSource gcs_source = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource">Google\Cloud\Vision\V1\ImportProductSetsGcsSource</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getSource()'
+    name: getSource
+    id: getSource
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string

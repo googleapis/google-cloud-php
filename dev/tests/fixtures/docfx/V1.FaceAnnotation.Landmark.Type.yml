@@ -1,0 +1,603 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    name: Type
+    id: Type
+    summary: |
+      Face landmark (feature) type.
+      
+      Left and right are defined from the vantage of the viewer of the image
+      without considering mirror projections typical of photos. So, `LEFT_EYE`,
+      typically, is the person's right eye.
+      
+      Protobuf type <code>google.cloud.vision.v1.FaceAnnotation.Landmark.Type</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::name()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::value()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::UNKNOWN_LANDMARK'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_OF_LEFT_EYEBROW'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_OF_LEFT_EYEBROW'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_OF_RIGHT_EYEBROW'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_OF_RIGHT_EYEBROW'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MIDPOINT_BETWEEN_EYES'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_TIP'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::UPPER_LIP'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LOWER_LIP'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_LEFT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_RIGHT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_CENTER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_RIGHT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_LEFT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_CENTER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_TOP_BOUNDARY'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_RIGHT_CORNER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_BOTTOM_BOUNDARY'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_LEFT_CORNER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_TOP_BOUNDARY'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_RIGHT_CORNER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_BOTTOM_BOUNDARY'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_LEFT_CORNER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYEBROW_UPPER_MIDPOINT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYEBROW_UPPER_MIDPOINT'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EAR_TRAGION'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EAR_TRAGION'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_PUPIL'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_PUPIL'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::FOREHEAD_GLABELLA'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_GNATHION'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_LEFT_GONION'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_RIGHT_GONION'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_CHEEK_CENTER'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_CHEEK_CENTER'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::UNKNOWN_LANDMARK'
+    name: UNKNOWN_LANDMARK
+    id: UNKNOWN_LANDMARK
+    summary: |
+      Unknown face landmark detected. Should not be filled.
+      
+      Generated from protobuf enum <code>UNKNOWN_LANDMARK = 0;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE'
+    name: LEFT_EYE
+    id: LEFT_EYE
+    summary: |
+      Left eye.
+      
+      Generated from protobuf enum <code>LEFT_EYE = 1;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE'
+    name: RIGHT_EYE
+    id: RIGHT_EYE
+    summary: |
+      Right eye.
+      
+      Generated from protobuf enum <code>RIGHT_EYE = 2;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_OF_LEFT_EYEBROW'
+    name: LEFT_OF_LEFT_EYEBROW
+    id: LEFT_OF_LEFT_EYEBROW
+    summary: |
+      Left of left eyebrow.
+      
+      Generated from protobuf enum <code>LEFT_OF_LEFT_EYEBROW = 3;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_OF_LEFT_EYEBROW'
+    name: RIGHT_OF_LEFT_EYEBROW
+    id: RIGHT_OF_LEFT_EYEBROW
+    summary: |
+      Right of left eyebrow.
+      
+      Generated from protobuf enum <code>RIGHT_OF_LEFT_EYEBROW = 4;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_OF_RIGHT_EYEBROW'
+    name: LEFT_OF_RIGHT_EYEBROW
+    id: LEFT_OF_RIGHT_EYEBROW
+    summary: |
+      Left of right eyebrow.
+      
+      Generated from protobuf enum <code>LEFT_OF_RIGHT_EYEBROW = 5;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 5'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_OF_RIGHT_EYEBROW'
+    name: RIGHT_OF_RIGHT_EYEBROW
+    id: RIGHT_OF_RIGHT_EYEBROW
+    summary: |
+      Right of right eyebrow.
+      
+      Generated from protobuf enum <code>RIGHT_OF_RIGHT_EYEBROW = 6;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 6'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MIDPOINT_BETWEEN_EYES'
+    name: MIDPOINT_BETWEEN_EYES
+    id: MIDPOINT_BETWEEN_EYES
+    summary: |
+      Midpoint between eyes.
+      
+      Generated from protobuf enum <code>MIDPOINT_BETWEEN_EYES = 7;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 7'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_TIP'
+    name: NOSE_TIP
+    id: NOSE_TIP
+    summary: |
+      Nose tip.
+      
+      Generated from protobuf enum <code>NOSE_TIP = 8;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 8'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::UPPER_LIP'
+    name: UPPER_LIP
+    id: UPPER_LIP
+    summary: |
+      Upper lip.
+      
+      Generated from protobuf enum <code>UPPER_LIP = 9;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 9'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LOWER_LIP'
+    name: LOWER_LIP
+    id: LOWER_LIP
+    summary: |
+      Lower lip.
+      
+      Generated from protobuf enum <code>LOWER_LIP = 10;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 10'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_LEFT'
+    name: MOUTH_LEFT
+    id: MOUTH_LEFT
+    summary: |
+      Mouth left.
+      
+      Generated from protobuf enum <code>MOUTH_LEFT = 11;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 11'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_RIGHT'
+    name: MOUTH_RIGHT
+    id: MOUTH_RIGHT
+    summary: |
+      Mouth right.
+      
+      Generated from protobuf enum <code>MOUTH_RIGHT = 12;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 12'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::MOUTH_CENTER'
+    name: MOUTH_CENTER
+    id: MOUTH_CENTER
+    summary: |
+      Mouth center.
+      
+      Generated from protobuf enum <code>MOUTH_CENTER = 13;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 13'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_RIGHT'
+    name: NOSE_BOTTOM_RIGHT
+    id: NOSE_BOTTOM_RIGHT
+    summary: |
+      Nose, bottom right.
+      
+      Generated from protobuf enum <code>NOSE_BOTTOM_RIGHT = 14;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 14'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_LEFT'
+    name: NOSE_BOTTOM_LEFT
+    id: NOSE_BOTTOM_LEFT
+    summary: |
+      Nose, bottom left.
+      
+      Generated from protobuf enum <code>NOSE_BOTTOM_LEFT = 15;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 15'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::NOSE_BOTTOM_CENTER'
+    name: NOSE_BOTTOM_CENTER
+    id: NOSE_BOTTOM_CENTER
+    summary: |
+      Nose, bottom center.
+      
+      Generated from protobuf enum <code>NOSE_BOTTOM_CENTER = 16;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 16'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_TOP_BOUNDARY'
+    name: LEFT_EYE_TOP_BOUNDARY
+    id: LEFT_EYE_TOP_BOUNDARY
+    summary: |
+      Left eye, top boundary.
+      
+      Generated from protobuf enum <code>LEFT_EYE_TOP_BOUNDARY = 17;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 17'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_RIGHT_CORNER'
+    name: LEFT_EYE_RIGHT_CORNER
+    id: LEFT_EYE_RIGHT_CORNER
+    summary: |
+      Left eye, right corner.
+      
+      Generated from protobuf enum <code>LEFT_EYE_RIGHT_CORNER = 18;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 18'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_BOTTOM_BOUNDARY'
+    name: LEFT_EYE_BOTTOM_BOUNDARY
+    id: LEFT_EYE_BOTTOM_BOUNDARY
+    summary: |
+      Left eye, bottom boundary.
+      
+      Generated from protobuf enum <code>LEFT_EYE_BOTTOM_BOUNDARY = 19;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 19'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_LEFT_CORNER'
+    name: LEFT_EYE_LEFT_CORNER
+    id: LEFT_EYE_LEFT_CORNER
+    summary: |
+      Left eye, left corner.
+      
+      Generated from protobuf enum <code>LEFT_EYE_LEFT_CORNER = 20;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 20'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_TOP_BOUNDARY'
+    name: RIGHT_EYE_TOP_BOUNDARY
+    id: RIGHT_EYE_TOP_BOUNDARY
+    summary: |
+      Right eye, top boundary.
+      
+      Generated from protobuf enum <code>RIGHT_EYE_TOP_BOUNDARY = 21;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 21'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_RIGHT_CORNER'
+    name: RIGHT_EYE_RIGHT_CORNER
+    id: RIGHT_EYE_RIGHT_CORNER
+    summary: |
+      Right eye, right corner.
+      
+      Generated from protobuf enum <code>RIGHT_EYE_RIGHT_CORNER = 22;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 22'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_BOTTOM_BOUNDARY'
+    name: RIGHT_EYE_BOTTOM_BOUNDARY
+    id: RIGHT_EYE_BOTTOM_BOUNDARY
+    summary: |
+      Right eye, bottom boundary.
+      
+      Generated from protobuf enum <code>RIGHT_EYE_BOTTOM_BOUNDARY = 23;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 23'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_LEFT_CORNER'
+    name: RIGHT_EYE_LEFT_CORNER
+    id: RIGHT_EYE_LEFT_CORNER
+    summary: |
+      Right eye, left corner.
+      
+      Generated from protobuf enum <code>RIGHT_EYE_LEFT_CORNER = 24;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 24'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYEBROW_UPPER_MIDPOINT'
+    name: LEFT_EYEBROW_UPPER_MIDPOINT
+    id: LEFT_EYEBROW_UPPER_MIDPOINT
+    summary: |
+      Left eyebrow, upper midpoint.
+      
+      Generated from protobuf enum <code>LEFT_EYEBROW_UPPER_MIDPOINT = 25;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 25'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYEBROW_UPPER_MIDPOINT'
+    name: RIGHT_EYEBROW_UPPER_MIDPOINT
+    id: RIGHT_EYEBROW_UPPER_MIDPOINT
+    summary: |
+      Right eyebrow, upper midpoint.
+      
+      Generated from protobuf enum <code>RIGHT_EYEBROW_UPPER_MIDPOINT = 26;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 26'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EAR_TRAGION'
+    name: LEFT_EAR_TRAGION
+    id: LEFT_EAR_TRAGION
+    summary: |
+      Left ear tragion.
+      
+      Generated from protobuf enum <code>LEFT_EAR_TRAGION = 27;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 27'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EAR_TRAGION'
+    name: RIGHT_EAR_TRAGION
+    id: RIGHT_EAR_TRAGION
+    summary: |
+      Right ear tragion.
+      
+      Generated from protobuf enum <code>RIGHT_EAR_TRAGION = 28;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 28'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_EYE_PUPIL'
+    name: LEFT_EYE_PUPIL
+    id: LEFT_EYE_PUPIL
+    summary: |
+      Left eye pupil.
+      
+      Generated from protobuf enum <code>LEFT_EYE_PUPIL = 29;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 29'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_EYE_PUPIL'
+    name: RIGHT_EYE_PUPIL
+    id: RIGHT_EYE_PUPIL
+    summary: |
+      Right eye pupil.
+      
+      Generated from protobuf enum <code>RIGHT_EYE_PUPIL = 30;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 30'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::FOREHEAD_GLABELLA'
+    name: FOREHEAD_GLABELLA
+    id: FOREHEAD_GLABELLA
+    summary: |
+      Forehead glabella.
+      
+      Generated from protobuf enum <code>FOREHEAD_GLABELLA = 31;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 31'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_GNATHION'
+    name: CHIN_GNATHION
+    id: CHIN_GNATHION
+    summary: |
+      Chin gnathion.
+      
+      Generated from protobuf enum <code>CHIN_GNATHION = 32;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 32'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_LEFT_GONION'
+    name: CHIN_LEFT_GONION
+    id: CHIN_LEFT_GONION
+    summary: |
+      Chin left gonion.
+      
+      Generated from protobuf enum <code>CHIN_LEFT_GONION = 33;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 33'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::CHIN_RIGHT_GONION'
+    name: CHIN_RIGHT_GONION
+    id: CHIN_RIGHT_GONION
+    summary: |
+      Chin right gonion.
+      
+      Generated from protobuf enum <code>CHIN_RIGHT_GONION = 34;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 34'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::LEFT_CHEEK_CENTER'
+    name: LEFT_CHEEK_CENTER
+    id: LEFT_CHEEK_CENTER
+    summary: |
+      Left cheek center.
+      
+      Generated from protobuf enum <code>LEFT_CHEEK_CENTER = 35;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 35'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type::RIGHT_CHEEK_CENTER'
+    name: RIGHT_CHEEK_CENTER
+    id: RIGHT_CHEEK_CENTER
+    summary: |
+      Right cheek center.
+      
+      Generated from protobuf enum <code>RIGHT_CHEEK_CENTER = 36;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 36'

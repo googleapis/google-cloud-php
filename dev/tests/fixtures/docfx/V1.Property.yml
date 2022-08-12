@@ -1,0 +1,159 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Property
+    name: Property
+    id: Property
+    summary: |
+      A `Property` consists of a user-supplied name/value pair.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Property</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Property::__construct()'
+      - '\Google\Cloud\Vision\V1\Property::getName()'
+      - '\Google\Cloud\Vision\V1\Property::setName()'
+      - '\Google\Cloud\Vision\V1\Property::getValue()'
+      - '\Google\Cloud\Vision\V1\Property::setValue()'
+      - '\Google\Cloud\Vision\V1\Property::getUint64Value()'
+      - '\Google\Cloud\Vision\V1\Property::setUint64Value()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Name of the property.'
+        -
+          id: '↳ value'
+          var_type: string
+          description: 'Value of the property.'
+        -
+          id: '↳ uint64_value'
+          var_type: int|string
+          description: 'Value of numeric properties.'
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Name of the property.
+      
+      Generated from protobuf field <code>string name = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Name of the property.
+      
+      Generated from protobuf field <code>string name = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::getValue()'
+    name: getValue
+    id: getValue
+    summary: |
+      Value of the property.
+      
+      Generated from protobuf field <code>string value = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::setValue()'
+    name: setValue
+    id: setValue
+    summary: |
+      Value of the property.
+      
+      Generated from protobuf field <code>string value = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::getUint64Value()'
+    name: getUint64Value
+    id: getUint64Value
+    summary: |
+      Value of numeric properties.
+      
+      Generated from protobuf field <code>uint64 uint64_value = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int|string
+  -
+    uid: '\Google\Cloud\Vision\V1\Property::setUint64Value()'
+    name: setUint64Value
+    id: setUint64Value
+    summary: |
+      Value of numeric properties.
+      
+      Generated from protobuf field <code>uint64 uint64_value = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Property
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int|string
+          description: ''
+      return:
+        type:
+          - $this

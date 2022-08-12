@@ -1,0 +1,122 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    name: State
+    id: State
+    summary: |
+      Enumerates the possible states that the batch request can be in.
+      
+      Protobuf type <code>google.cloud.vision.v1.BatchOperationMetadata.State</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::name()'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::value()'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::STATE_UNSPECIFIED'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::PROCESSING'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::SUCCESSFUL'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::FAILED'
+      - '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::CANCELLED'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::STATE_UNSPECIFIED'
+    name: STATE_UNSPECIFIED
+    id: STATE_UNSPECIFIED
+    summary: |
+      Invalid.
+      
+      Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::PROCESSING'
+    name: PROCESSING
+    id: PROCESSING
+    summary: |
+      Request is actively being processed.
+      
+      Generated from protobuf enum <code>PROCESSING = 1;</code>
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::SUCCESSFUL'
+    name: SUCCESSFUL
+    id: SUCCESSFUL
+    summary: |
+      The request is done and at least one item has been successfully
+      processed.
+      
+      Generated from protobuf enum <code>SUCCESSFUL = 2;</code>
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::FAILED'
+    name: FAILED
+    id: FAILED
+    summary: |
+      The request is done and no item has been successfully processed.
+      
+      Generated from protobuf enum <code>FAILED = 3;</code>
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata\State::CANCELLED'
+    name: CANCELLED
+    id: CANCELLED
+    summary: |
+      The request is done after the longrunning.Operations.CancelOperation has
+      been called by the user.  Any records that were processed before the
+      cancel command are output as specified in the request.
+      
+      Generated from protobuf enum <code>CANCELLED = 4;</code>
+    parent: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'

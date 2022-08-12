@@ -1,0 +1,118 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Vertex
+    name: Vertex
+    id: Vertex
+    summary: |
+      A vertex represents a 2D point in the image.
+      
+      NOTE: the vertex coordinates are in the same scale as the original image.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Vertex</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Vertex::__construct()'
+      - '\Google\Cloud\Vision\V1\Vertex::getX()'
+      - '\Google\Cloud\Vision\V1\Vertex::setX()'
+      - '\Google\Cloud\Vision\V1\Vertex::getY()'
+      - '\Google\Cloud\Vision\V1\Vertex::setY()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Vertex::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Vertex
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ x'
+          var_type: int
+          description: 'X coordinate.'
+        -
+          id: '↳ y'
+          var_type: int
+          description: 'Y coordinate.'
+  -
+    uid: '\Google\Cloud\Vision\V1\Vertex::getX()'
+    name: getX
+    id: getX
+    summary: |
+      X coordinate.
+      
+      Generated from protobuf field <code>int32 x = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Vertex
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\Vertex::setX()'
+    name: setX
+    id: setX
+    summary: |
+      X coordinate.
+      
+      Generated from protobuf field <code>int32 x = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Vertex
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Vertex::getY()'
+    name: getY
+    id: getY
+    summary: |
+      Y coordinate.
+      
+      Generated from protobuf field <code>int32 y = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Vertex
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\Vertex::setY()'
+    name: setY
+    id: setY
+    summary: |
+      Y coordinate.
+      
+      Generated from protobuf field <code>int32 y = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Vertex
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this

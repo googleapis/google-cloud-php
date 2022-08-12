@@ -1,0 +1,122 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    name: WebLabel
+    id: WebLabel
+    summary: |
+      Label to provide extra metadata for the web detection.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebLabel</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\WebDetection\WebLabel::__construct()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebLabel::getLabel()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebLabel::setLabel()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebLabel::getLanguageCode()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebLabel::setLanguageCode()'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ label'
+          var_type: string
+          description: 'Label for extra metadata.'
+        -
+          id: '↳ language_code'
+          var_type: string
+          description: 'The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::getLabel()'
+    name: getLabel
+    id: getLabel
+    summary: |
+      Label for extra metadata.
+      
+      Generated from protobuf field <code>string label = 1;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::setLabel()'
+    name: setLabel
+    id: setLabel
+    summary: |
+      Label for extra metadata.
+      
+      Generated from protobuf field <code>string label = 1;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::getLanguageCode()'
+    name: getLanguageCode
+    id: getLanguageCode
+    summary: |
+      The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+      
+      For more information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebLabel::setLanguageCode()'
+    name: setLanguageCode
+    id: setLanguageCode
+    summary: |
+      The BCP-47 language code for `label`, such as "en-US" or "sr-Latn".
+      
+      For more information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

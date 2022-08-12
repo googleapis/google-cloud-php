@@ -1,0 +1,159 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    name: ListReferenceImagesResponse
+    id: ListReferenceImagesResponse
+    summary: |
+      Response message for the `ListReferenceImages` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ListReferenceImagesResponse</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getReferenceImages()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setReferenceImages()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getPageSize()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setPageSize()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getNextPageToken()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setNextPageToken()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ reference_images'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          description: 'The list of reference images.'
+        -
+          id: '↳ page_size'
+          var_type: int
+          description: 'The maximum number of items to return. Default 10, maximum 100.'
+        -
+          id: '↳ next_page_token'
+          var_type: string
+          description: 'The next_page_token returned from a previous List request, if any.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getReferenceImages()'
+    name: getReferenceImages
+    id: getReferenceImages
+    summary: |
+      The list of reference images.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ReferenceImage reference_images = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setReferenceImages()'
+    name: setReferenceImages
+    id: setReferenceImages
+    summary: |
+      The list of reference images.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ReferenceImage reference_images = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getPageSize()'
+    name: getPageSize
+    id: getPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setPageSize()'
+    name: setPageSize
+    id: setPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getNextPageToken()'
+    name: getNextPageToken
+    id: getNextPageToken
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string next_page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setNextPageToken()'
+    name: setNextPageToken
+    id: setNextPageToken
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string next_page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

@@ -1,0 +1,313 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Block
+    name: Block
+    id: Block
+    summary: |
+      Logical element on the page.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Block</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Block::__construct()'
+      - '\Google\Cloud\Vision\V1\Block::getProperty()'
+      - '\Google\Cloud\Vision\V1\Block::hasProperty()'
+      - '\Google\Cloud\Vision\V1\Block::clearProperty()'
+      - '\Google\Cloud\Vision\V1\Block::setProperty()'
+      - '\Google\Cloud\Vision\V1\Block::getBoundingBox()'
+      - '\Google\Cloud\Vision\V1\Block::hasBoundingBox()'
+      - '\Google\Cloud\Vision\V1\Block::clearBoundingBox()'
+      - '\Google\Cloud\Vision\V1\Block::setBoundingBox()'
+      - '\Google\Cloud\Vision\V1\Block::getParagraphs()'
+      - '\Google\Cloud\Vision\V1\Block::setParagraphs()'
+      - '\Google\Cloud\Vision\V1\Block::getBlockType()'
+      - '\Google\Cloud\Vision\V1\Block::setBlockType()'
+      - '\Google\Cloud\Vision\V1\Block::getConfidence()'
+      - '\Google\Cloud\Vision\V1\Block::setConfidence()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ property'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          description: 'Additional information detected for the block.'
+        -
+          id: '↳ bounding_box'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the ''natural'' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it''s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).'
+        -
+          id: '↳ paragraphs'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Paragraph">Google\Cloud\Vision\V1\Paragraph</xref>&gt;'
+          description: 'List of paragraphs in this block (if this blocks is of type text).'
+        -
+          id: '↳ block_type'
+          var_type: int
+          description: 'Detected block type (text, image etc) for this block.'
+        -
+          id: '↳ confidence'
+          var_type: float
+          description: 'Confidence of the OCR results on the block. Range [0, 1].'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::getProperty()'
+    name: getProperty
+    id: getProperty
+    summary: |
+      Additional information detected for the block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::hasProperty()'
+    name: hasProperty
+    id: hasProperty
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::clearProperty()'
+    name: clearProperty
+    id: clearProperty
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::setProperty()'
+    name: setProperty
+    id: setProperty
+    summary: |
+      Additional information detected for the block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.TextProperty property = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::getBoundingBox()'
+    name: getBoundingBox
+    id: getBoundingBox
+    summary: |
+      The bounding box for the block.
+      
+      The vertices are in the order of top-left, top-right, bottom-right,
+      bottom-left. When a rotation of the bounding box is detected the rotation
+      is represented as around the top-left corner as defined when the text is
+      read in the 'natural' orientation.
+      For example:
+      * when the text is horizontal it might look like:
+              0----1
+              |    |
+              3----2
+      * when it's rotated 180 degrees around the top-left corner it becomes:
+              2----3
+              |    |
+              1----0
+        and the vertex order will still be (0, 1, 2, 3).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::hasBoundingBox()'
+    name: hasBoundingBox
+    id: hasBoundingBox
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::clearBoundingBox()'
+    name: clearBoundingBox
+    id: clearBoundingBox
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::setBoundingBox()'
+    name: setBoundingBox
+    id: setBoundingBox
+    summary: |
+      The bounding box for the block.
+      
+      The vertices are in the order of top-left, top-right, bottom-right,
+      bottom-left. When a rotation of the bounding box is detected the rotation
+      is represented as around the top-left corner as defined when the text is
+      read in the 'natural' orientation.
+      For example:
+      * when the text is horizontal it might look like:
+              0----1
+              |    |
+              3----2
+      * when it's rotated 180 degrees around the top-left corner it becomes:
+              2----3
+              |    |
+              1----0
+        and the vertex order will still be (0, 1, 2, 3).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_box = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::getParagraphs()'
+    name: getParagraphs
+    id: getParagraphs
+    summary: |
+      List of paragraphs in this block (if this blocks is of type text).
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::setParagraphs()'
+    name: setParagraphs
+    id: setParagraphs
+    summary: |
+      List of paragraphs in this block (if this blocks is of type text).
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Paragraph paragraphs = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Paragraph">Google\Cloud\Vision\V1\Paragraph</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::getBlockType()'
+    name: getBlockType
+    id: getBlockType
+    summary: |
+      Detected block type (text, image etc) for this block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::setBlockType()'
+    name: setBlockType
+    id: setBlockType
+    summary: |
+      Detected block type (text, image etc) for this block.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Block.BlockType block_type = 4;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::getConfidence()'
+    name: getConfidence
+    id: getConfidence
+    summary: |
+      Confidence of the OCR results on the block. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\Block::setConfidence()'
+    name: setConfidence
+    id: setConfidence
+    summary: |
+      Confidence of the OCR results on the block. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5;</code>
+    parent: \Google\Cloud\Vision\V1\Block
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this

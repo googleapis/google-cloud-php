@@ -1,0 +1,165 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    name: ListProductsInProductSetRequest
+    id: ListProductsInProductSetRequest
+    summary: |
+      Request message for the `ListProductsInProductSet` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ListProductsInProductSetRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getName()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setName()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getPageSize()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageSize()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getPageToken()'
+      - '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageToken()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Required. The ProductSet resource for which to retrieve Products. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+        -
+          id: '↳ page_size'
+          var_type: int
+          description: 'The maximum number of items to return. Default 10, maximum 100.'
+        -
+          id: '↳ page_token'
+          var_type: string
+          description: 'The next_page_token returned from a previous List request, if any.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Required. The ProductSet resource for which to retrieve Products.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Required. The ProductSet resource for which to retrieve Products.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getPageSize()'
+    name: getPageSize
+    id: getPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageSize()'
+    name: setPageSize
+    id: setPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::getPageToken()'
+    name: getPageToken
+    id: getPageToken
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductsInProductSetRequest::setPageToken()'
+    name: setPageToken
+    id: setPageToken
+    summary: |
+      The next_page_token returned from a previous List request, if any.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

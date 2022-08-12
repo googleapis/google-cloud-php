@@ -1,0 +1,139 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    name: ImportProductSetsRequest
+    id: ImportProductSetsRequest
+    summary: |
+      Request message for the `ImportProductSets` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ImportProductSetsRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getInputConfig()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::hasInputConfig()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::clearInputConfig()'
+      - '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setInputConfig()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. The project in which the ProductSets should be imported. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+        -
+          id: '↳ input_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          description: 'Required. The input content for the list of requests.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |
+      Required. The project in which the ProductSets should be imported.
+      
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |
+      Required. The project in which the ProductSets should be imported.
+      
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::getInputConfig()'
+    name: getInputConfig
+    id: getInputConfig
+    summary: |
+      Required. The input content for the list of requests.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::hasInputConfig()'
+    name: hasInputConfig
+    id: hasInputConfig
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::clearInputConfig()'
+    name: clearInputConfig
+    id: clearInputConfig
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImportProductSetsRequest::setInputConfig()'
+    name: setInputConfig
+    id: setInputConfig
+    summary: |
+      Required. The input content for the list of requests.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImportProductSetsInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsInputConfig">Google\Cloud\Vision\V1\ImportProductSetsInputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this

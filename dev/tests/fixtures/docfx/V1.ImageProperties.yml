@@ -1,0 +1,92 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImageProperties
+    name: ImageProperties
+    id: ImageProperties
+    summary: |
+      Stores image properties, such as dominant colors.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ImageProperties</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImageProperties::__construct()'
+      - '\Google\Cloud\Vision\V1\ImageProperties::getDominantColors()'
+      - '\Google\Cloud\Vision\V1\ImageProperties::hasDominantColors()'
+      - '\Google\Cloud\Vision\V1\ImageProperties::clearDominantColors()'
+      - '\Google\Cloud\Vision\V1\ImageProperties::setDominantColors()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageProperties::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImageProperties
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ dominant_colors'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">Google\Cloud\Vision\V1\DominantColorsAnnotation</xref>'
+          description: 'If present, dominant colors completed successfully.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageProperties::getDominantColors()'
+    name: getDominantColors
+    id: getDominantColors
+    summary: |
+      If present, dominant colors completed successfully.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageProperties
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\DominantColorsAnnotation
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageProperties::hasDominantColors()'
+    name: hasDominantColors
+    id: hasDominantColors
+    parent: \Google\Cloud\Vision\V1\ImageProperties
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageProperties::clearDominantColors()'
+    name: clearDominantColors
+    id: clearDominantColors
+    parent: \Google\Cloud\Vision\V1\ImageProperties
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageProperties::setDominantColors()'
+    name: setDominantColors
+    id: setDominantColors
+    summary: |
+      If present, dominant colors completed successfully.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.DominantColorsAnnotation dominant_colors = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageProperties
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\DominantColorsAnnotation">Google\Cloud\Vision\V1\DominantColorsAnnotation</xref>'
+          description: ''
+      return:
+        type:
+          - $this

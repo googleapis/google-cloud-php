@@ -1,0 +1,75 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\GcsSource
+    name: GcsSource
+    id: GcsSource
+    summary: |
+      The Google Cloud Storage location where the input will be read from.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.GcsSource</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\GcsSource::__construct()'
+      - '\Google\Cloud\Vision\V1\GcsSource::getUri()'
+      - '\Google\Cloud\Vision\V1\GcsSource::setUri()'
+  -
+    uid: '\Google\Cloud\Vision\V1\GcsSource::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\GcsSource
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ uri'
+          var_type: string
+          description: 'Google Cloud Storage URI for the input file. This must only be a Google Cloud Storage object. Wildcards are not currently supported.'
+  -
+    uid: '\Google\Cloud\Vision\V1\GcsSource::getUri()'
+    name: getUri
+    id: getUri
+    summary: |
+      Google Cloud Storage URI for the input file. This must only be a
+      Google Cloud Storage object. Wildcards are not currently supported.
+      
+      Generated from protobuf field <code>string uri = 1;</code>
+    parent: \Google\Cloud\Vision\V1\GcsSource
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\GcsSource::setUri()'
+    name: setUri
+    id: setUri
+    summary: |
+      Google Cloud Storage URI for the input file. This must only be a
+      Google Cloud Storage object. Wildcards are not currently supported.
+      
+      Generated from protobuf field <code>string uri = 1;</code>
+    parent: \Google\Cloud\Vision\V1\GcsSource
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

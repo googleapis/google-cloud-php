@@ -1,0 +1,206 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    name: ObjectAnnotation
+    id: ObjectAnnotation
+    summary: |
+      Prediction for what the object in the bounding box is.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults.ObjectAnnotation</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::__construct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getMid()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setMid()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getLanguageCode()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setLanguageCode()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setName()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getScore()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setScore()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ mid'
+          var_type: string
+          description: 'Object ID that should align with EntityAnnotation mid.'
+        -
+          id: '↳ language_code'
+          var_type: string
+          description: 'The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Object name, expressed in its `language_code` language.'
+        -
+          id: '↳ score'
+          var_type: float
+          description: 'Score of the result. Range [0, 1].'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getMid()'
+    name: getMid
+    id: getMid
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setMid()'
+    name: setMid
+    id: setMid
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getLanguageCode()'
+    name: getLanguageCode
+    id: getLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setLanguageCode()'
+    name: setLanguageCode
+    id: setLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getScore()'
+    name: getScore
+    id: getScore
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setScore()'
+    name: setScore
+    id: setScore
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this

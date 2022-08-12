@@ -1,0 +1,134 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Block\BlockType
+    name: BlockType
+    id: BlockType
+    summary: |
+      Type of a block (text, image etc) as identified by OCR.
+      
+      Protobuf type <code>google.cloud.vision.v1.Block.BlockType</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Block\BlockType::name()'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::value()'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::UNKNOWN'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::TEXT'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::TABLE'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::PICTURE'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::RULER'
+      - '\Google\Cloud\Vision\V1\Block\BlockType::BARCODE'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::UNKNOWN'
+    name: UNKNOWN
+    id: UNKNOWN
+    summary: |
+      Unknown block type.
+      
+      Generated from protobuf enum <code>UNKNOWN = 0;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::TEXT'
+    name: TEXT
+    id: TEXT
+    summary: |
+      Regular text block.
+      
+      Generated from protobuf enum <code>TEXT = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::TABLE'
+    name: TABLE
+    id: TABLE
+    summary: |
+      Table block.
+      
+      Generated from protobuf enum <code>TABLE = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::PICTURE'
+    name: PICTURE
+    id: PICTURE
+    summary: |
+      Image block.
+      
+      Generated from protobuf enum <code>PICTURE = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::RULER'
+    name: RULER
+    id: RULER
+    summary: |
+      Horizontal/vertical line box.
+      
+      Generated from protobuf enum <code>RULER = 4;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'
+  -
+    uid: '\Google\Cloud\Vision\V1\Block\BlockType::BARCODE'
+    name: BARCODE
+    id: BARCODE
+    summary: |
+      Barcode block.
+      
+      Generated from protobuf enum <code>BARCODE = 5;</code>
+    parent: \Google\Cloud\Vision\V1\Block\BlockType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 5'

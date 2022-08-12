@@ -1,0 +1,163 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    name: WebEntity
+    id: WebEntity
+    summary: |
+      Entity deduced from similar images on the Internet.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.WebDetection.WebEntity</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::__construct()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getEntityId()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setEntityId()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getScore()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setScore()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getDescription()'
+      - '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setDescription()'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ entity_id'
+          var_type: string
+          description: 'Opaque entity ID.'
+        -
+          id: '↳ score'
+          var_type: float
+          description: 'Overall relevancy score for the entity. Not normalized and not comparable across different image queries.'
+        -
+          id: '↳ description'
+          var_type: string
+          description: 'Canonical description of the entity, in English.'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getEntityId()'
+    name: getEntityId
+    id: getEntityId
+    summary: |
+      Opaque entity ID.
+      
+      Generated from protobuf field <code>string entity_id = 1;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setEntityId()'
+    name: setEntityId
+    id: setEntityId
+    summary: |
+      Opaque entity ID.
+      
+      Generated from protobuf field <code>string entity_id = 1;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getScore()'
+    name: getScore
+    id: getScore
+    summary: |
+      Overall relevancy score for the entity.
+      
+      Not normalized and not comparable across different image queries.
+      
+      Generated from protobuf field <code>float score = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setScore()'
+    name: setScore
+    id: setScore
+    summary: |
+      Overall relevancy score for the entity.
+      
+      Not normalized and not comparable across different image queries.
+      
+      Generated from protobuf field <code>float score = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::getDescription()'
+    name: getDescription
+    id: getDescription
+    summary: |
+      Canonical description of the entity, in English.
+      
+      Generated from protobuf field <code>string description = 3;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetection\WebEntity::setDescription()'
+    name: setDescription
+    id: setDescription
+    summary: |
+      Canonical description of the entity, in English.
+      
+      Generated from protobuf field <code>string description = 3;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

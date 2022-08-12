@@ -1,0 +1,73 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+    name: BatchAnnotateImagesResponse
+    id: BatchAnnotateImagesResponse
+    summary: |
+      Response to a batch image annotation request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.BatchAnnotateImagesResponse</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::getResponses()'
+      - '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::setResponses()'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ responses'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>&gt;'
+          description: 'Individual responses to image annotation requests within the batch.'
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::getResponses()'
+    name: getResponses
+    id: getResponses
+    summary: |
+      Individual responses to image annotation requests within the batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse::setResponses()'
+    name: setResponses
+    id: setResponses
+    summary: |
+      Individual responses to image annotation requests within the batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 1;</code>
+    parent: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this

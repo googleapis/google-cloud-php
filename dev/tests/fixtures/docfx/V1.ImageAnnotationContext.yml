@@ -1,0 +1,119 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    name: ImageAnnotationContext
+    id: ImageAnnotationContext
+    summary: |
+      If an image was produced from a file (e.g. a PDF), this message gives
+      information about the source of that image.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ImageAnnotationContext</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImageAnnotationContext::__construct()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotationContext::getUri()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotationContext::setUri()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotationContext::getPageNumber()'
+      - '\Google\Cloud\Vision\V1\ImageAnnotationContext::setPageNumber()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ uri'
+          var_type: string
+          description: 'The URI of the file used to produce the image.'
+        -
+          id: '↳ page_number'
+          var_type: int
+          description: 'If the file was a PDF or TIFF, this field gives the page number within the file used to produce the image.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::getUri()'
+    name: getUri
+    id: getUri
+    summary: |
+      The URI of the file used to produce the image.
+      
+      Generated from protobuf field <code>string uri = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setUri()'
+    name: setUri
+    id: setUri
+    summary: |
+      The URI of the file used to produce the image.
+      
+      Generated from protobuf field <code>string uri = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::getPageNumber()'
+    name: getPageNumber
+    id: getPageNumber
+    summary: |
+      If the file was a PDF or TIFF, this field gives the page number within
+      the file used to produce the image.
+      
+      Generated from protobuf field <code>int32 page_number = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setPageNumber()'
+    name: setPageNumber
+    id: setPageNumber
+    summary: |
+      If the file was a PDF or TIFF, this field gives the page number within
+      the file used to produce the image.
+      
+      Generated from protobuf field <code>int32 page_number = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ImageAnnotationContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this

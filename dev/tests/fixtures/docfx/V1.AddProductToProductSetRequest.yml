@@ -1,0 +1,128 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    name: AddProductToProductSetRequest
+    id: AddProductToProductSetRequest
+    summary: |
+      Request message for the `AddProductToProductSet` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AddProductToProductSetRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getName()'
+      - '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setName()'
+      - '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getProduct()'
+      - '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setProduct()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Required. The resource name for the ProductSet to modify. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`'
+        -
+          id: '↳ product'
+          var_type: string
+          description: 'Required. The resource name for the Product to be added to this ProductSet. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`'
+  -
+    uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Required. The resource name for the ProductSet to modify.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Required. The resource name for the ProductSet to modify.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::getProduct()'
+    name: getProduct
+    id: getProduct
+    summary: |
+      Required. The resource name for the Product to be added to this ProductSet.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+      
+      Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\AddProductToProductSetRequest::setProduct()'
+    name: setProduct
+    id: setProduct
+    summary: |
+      Required. The resource name for the Product to be added to this ProductSet.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
+      
+      Generated from protobuf field <code>string product = 2 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

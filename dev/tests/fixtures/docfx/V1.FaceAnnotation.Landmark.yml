@@ -1,0 +1,135 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    name: Landmark
+    id: Landmark
+    summary: |
+      A face-specific landmark (for example, a face feature).
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.FaceAnnotation.Landmark</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::__construct()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getType()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getPosition()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::hasPosition()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::clearPosition()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setPosition()'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ type'
+          var_type: int
+          description: 'Face landmark type.'
+        -
+          id: '↳ position'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Position">Google\Cloud\Vision\V1\Position</xref>'
+          description: 'Face landmark position.'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getType()'
+    name: getType
+    id: getType
+    summary: |
+      Face landmark type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
+    name: setType
+    id: setType
+    summary: |
+      Face landmark type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.FaceAnnotation.Landmark.Type type = 3;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getPosition()'
+    name: getPosition
+    id: getPosition
+    summary: |
+      Face landmark position.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\Position
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::hasPosition()'
+    name: hasPosition
+    id: hasPosition
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::clearPosition()'
+    name: clearPosition
+    id: clearPosition
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setPosition()'
+    name: setPosition
+    id: setPosition
+    summary: |
+      Face landmark position.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Position position = 4;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Position">Google\Cloud\Vision\V1\Position</xref>'
+          description: ''
+      return:
+        type:
+          - $this

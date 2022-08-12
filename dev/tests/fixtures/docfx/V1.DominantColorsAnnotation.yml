@@ -1,0 +1,73 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\DominantColorsAnnotation
+    name: DominantColorsAnnotation
+    id: DominantColorsAnnotation
+    summary: |
+      Set of dominant colors and their corresponding scores.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.DominantColorsAnnotation</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\DominantColorsAnnotation::__construct()'
+      - '\Google\Cloud\Vision\V1\DominantColorsAnnotation::getColors()'
+      - '\Google\Cloud\Vision\V1\DominantColorsAnnotation::setColors()'
+  -
+    uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\DominantColorsAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ colors'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">Google\Cloud\Vision\V1\ColorInfo</xref>&gt;'
+          description: 'RGB color values with their score and pixel fraction.'
+  -
+    uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::getColors()'
+    name: getColors
+    id: getColors
+    summary: |
+      RGB color values with their score and pixel fraction.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+    parent: \Google\Cloud\Vision\V1\DominantColorsAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\DominantColorsAnnotation::setColors()'
+    name: setColors
+    id: setColors
+    summary: |
+      RGB color values with their score and pixel fraction.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ColorInfo colors = 1;</code>
+    parent: \Google\Cloud\Vision\V1\DominantColorsAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ColorInfo">Google\Cloud\Vision\V1\ColorInfo</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this

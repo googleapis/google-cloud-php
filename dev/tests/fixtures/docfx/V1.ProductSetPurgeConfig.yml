@@ -1,0 +1,77 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+    name: ProductSetPurgeConfig
+    id: ProductSetPurgeConfig
+    summary: |
+      Config to control which ProductSet contains the Products to be deleted.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ProductSetPurgeConfig</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::__construct()'
+      - '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::getProductSetId()'
+      - '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::setProductSetId()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ product_set_id'
+          var_type: string
+          description: 'The ProductSet that contains the Products to delete. If a Product is a member of product_set_id in addition to other ProductSets, the Product will still be deleted.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::getProductSetId()'
+    name: getProductSetId
+    id: getProductSetId
+    summary: |
+      The ProductSet that contains the Products to delete. If a Product is a
+      member of product_set_id in addition to other ProductSets, the Product will
+      still be deleted.
+      
+      Generated from protobuf field <code>string product_set_id = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSetPurgeConfig::setProductSetId()'
+    name: setProductSetId
+    id: setProductSetId
+    summary: |
+      The ProductSet that contains the Products to delete. If a Product is a
+      member of product_set_id in addition to other ProductSets, the Product will
+      still be deleted.
+      
+      Generated from protobuf field <code>string product_set_id = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

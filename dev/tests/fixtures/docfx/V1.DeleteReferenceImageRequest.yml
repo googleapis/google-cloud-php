@@ -1,0 +1,79 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+    name: DeleteReferenceImageRequest
+    id: DeleteReferenceImageRequest
+    summary: |
+      Request message for the `DeleteReferenceImage` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.DeleteReferenceImageRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::getName()'
+      - '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::setName()'
+  -
+    uid: '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Required. The resource name of the reference image to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`'
+  -
+    uid: '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Required. The resource name of the reference image to delete.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\DeleteReferenceImageRequest::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Required. The resource name of the reference image to delete.
+      
+      Format is:
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
+      
+      Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

@@ -1,0 +1,171 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    name: ListReferenceImagesRequest
+    id: ListReferenceImagesRequest
+    summary: |
+      Request message for the `ListReferenceImages` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ListReferenceImagesRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageSize()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageSize()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageToken()'
+      - '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageToken()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. Resource name of the product containing the reference images. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.'
+        -
+          id: '↳ page_size'
+          var_type: int
+          description: 'The maximum number of items to return. Default 10, maximum 100.'
+        -
+          id: '↳ page_token'
+          var_type: string
+          description: 'A token identifying a page of results to be returned. This is the value of `nextPageToken` returned in a previous reference image list request. Defaults to the first page if not specified.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |
+      Required. Resource name of the product containing the reference images.
+      
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |
+      Required. Resource name of the product containing the reference images.
+      
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageSize()'
+    name: getPageSize
+    id: getPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageSize()'
+    name: setPageSize
+    id: setPageSize
+    summary: |
+      The maximum number of items to return. Default 10, maximum 100.
+      
+      Generated from protobuf field <code>int32 page_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::getPageToken()'
+    name: getPageToken
+    id: getPageToken
+    summary: |
+      A token identifying a page of results to be returned. This is the value
+      of `nextPageToken` returned in a previous reference image list request.
+      
+      Defaults to the first page if not specified.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListReferenceImagesRequest::setPageToken()'
+    name: setPageToken
+    id: setPageToken
+    summary: |
+      A token identifying a page of results to be returned. This is the value
+      of `nextPageToken` returned in a previous reference image list request.
+      
+      Defaults to the first page if not specified.
+      
+      Generated from protobuf field <code>string page_token = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

@@ -1,0 +1,474 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\EntityAnnotation
+    name: EntityAnnotation
+    id: EntityAnnotation
+    summary: |
+      Set of detected entity features.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.EntityAnnotation</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::__construct()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getMid()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setMid()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getLocale()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setLocale()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getDescription()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setDescription()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getScore()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setScore()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getConfidence()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setConfidence()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getTopicality()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setTopicality()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::hasBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::clearBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getLocations()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setLocations()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::getProperties()'
+      - '\Google\Cloud\Vision\V1\EntityAnnotation::setProperties()'
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ mid'
+          var_type: string
+          description: 'Opaque entity ID. Some IDs may be available in [Google Knowledge Graph Search API](https://developers.google.com/knowledge-graph/).'
+        -
+          id: '↳ locale'
+          var_type: string
+          description: 'The language code for the locale in which the entity textual `description` is expressed.'
+        -
+          id: '↳ description'
+          var_type: string
+          description: 'Entity textual description, expressed in its `locale` language.'
+        -
+          id: '↳ score'
+          var_type: float
+          description: 'Overall score of the result. Range [0, 1].'
+        -
+          id: '↳ confidence'
+          var_type: float
+          description: '**Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].'
+        -
+          id: '↳ topicality'
+          var_type: float
+          description: 'The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].'
+        -
+          id: '↳ bounding_poly'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'Image region to which this entity belongs. Not produced for `LABEL_DETECTION` features.'
+        -
+          id: '↳ locations'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">Google\Cloud\Vision\V1\LocationInfo</xref>&gt;'
+          description: 'The location information for the detected entity. Multiple `LocationInfo` elements can be present because one location may indicate the location of the scene in the image, and another location may indicate the location of the place where the image was taken. Location information is usually present for landmarks.'
+        -
+          id: '↳ properties'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Google\Cloud\Vision\V1\Property</xref>&gt;'
+          description: 'Some entities may have optional user-supplied `Property` (name/value) fields, such a score or string that qualifies the entity.'
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getMid()'
+    name: getMid
+    id: getMid
+    summary: |
+      Opaque entity ID. Some IDs may be available in
+      [Google Knowledge Graph Search
+      API](https://developers.google.com/knowledge-graph/).
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setMid()'
+    name: setMid
+    id: setMid
+    summary: |
+      Opaque entity ID. Some IDs may be available in
+      [Google Knowledge Graph Search
+      API](https://developers.google.com/knowledge-graph/).
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getLocale()'
+    name: getLocale
+    id: getLocale
+    summary: |
+      The language code for the locale in which the entity textual
+      `description` is expressed.
+      
+      Generated from protobuf field <code>string locale = 2;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setLocale()'
+    name: setLocale
+    id: setLocale
+    summary: |
+      The language code for the locale in which the entity textual
+      `description` is expressed.
+      
+      Generated from protobuf field <code>string locale = 2;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getDescription()'
+    name: getDescription
+    id: getDescription
+    summary: |
+      Entity textual description, expressed in its `locale` language.
+      
+      Generated from protobuf field <code>string description = 3;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setDescription()'
+    name: setDescription
+    id: setDescription
+    summary: |
+      Entity textual description, expressed in its `locale` language.
+      
+      Generated from protobuf field <code>string description = 3;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getScore()'
+    name: getScore
+    id: getScore
+    summary: |
+      Overall score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setScore()'
+    name: setScore
+    id: setScore
+    summary: |
+      Overall score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getConfidence()'
+    name: getConfidence
+    id: getConfidence
+    summary: |
+      **Deprecated. Use `score` instead.**
+      The accuracy of the entity detection in an image.
+      
+      For example, for an image in which the "Eiffel Tower" entity is detected,
+      this field represents the confidence that there is a tower in the query
+      image. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setConfidence()'
+    name: setConfidence
+    id: setConfidence
+    summary: |
+      **Deprecated. Use `score` instead.**
+      The accuracy of the entity detection in an image.
+      
+      For example, for an image in which the "Eiffel Tower" entity is detected,
+      this field represents the confidence that there is a tower in the query
+      image. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 5 [deprecated = true];</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getTopicality()'
+    name: getTopicality
+    id: getTopicality
+    summary: |
+      The relevancy of the ICA (Image Content Annotation) label to the
+      image. For example, the relevancy of "tower" is likely higher to an image
+      containing the detected "Eiffel Tower" than to an image containing a
+      detected distant towering building, even though the confidence that
+      there is a tower in each image may be the same. Range [0, 1].
+      
+      Generated from protobuf field <code>float topicality = 6;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setTopicality()'
+    name: setTopicality
+    id: setTopicality
+    summary: |
+      The relevancy of the ICA (Image Content Annotation) label to the
+      image. For example, the relevancy of "tower" is likely higher to an image
+      containing the detected "Eiffel Tower" than to an image containing a
+      detected distant towering building, even though the confidence that
+      there is a tower in each image may be the same. Range [0, 1].
+      
+      Generated from protobuf field <code>float topicality = 6;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getBoundingPoly()'
+    name: getBoundingPoly
+    id: getBoundingPoly
+    summary: |
+      Image region to which this entity belongs. Not produced
+      for `LABEL_DETECTION` features.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::hasBoundingPoly()'
+    name: hasBoundingPoly
+    id: hasBoundingPoly
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::clearBoundingPoly()'
+    name: clearBoundingPoly
+    id: clearBoundingPoly
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setBoundingPoly()'
+    name: setBoundingPoly
+    id: setBoundingPoly
+    summary: |
+      Image region to which this entity belongs. Not produced
+      for `LABEL_DETECTION` features.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 7;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getLocations()'
+    name: getLocations
+    id: getLocations
+    summary: |
+      The location information for the detected entity. Multiple
+      `LocationInfo` elements can be present because one location may
+      indicate the location of the scene in the image, and another location
+      may indicate the location of the place where the image was taken.
+      
+      Location information is usually present for landmarks.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setLocations()'
+    name: setLocations
+    id: setLocations
+    summary: |
+      The location information for the detected entity. Multiple
+      `LocationInfo` elements can be present because one location may
+      indicate the location of the scene in the image, and another location
+      may indicate the location of the place where the image was taken.
+      
+      Location information is usually present for landmarks.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocationInfo">Google\Cloud\Vision\V1\LocationInfo</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::getProperties()'
+    name: getProperties
+    id: getProperties
+    summary: |
+      Some entities may have optional user-supplied `Property` (name/value)
+      fields, such a score or string that qualifies the entity.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\EntityAnnotation::setProperties()'
+    name: setProperties
+    id: setProperties
+    summary: |
+      Some entities may have optional user-supplied `Property` (name/value)
+      fields, such a score or string that qualifies the entity.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
+    parent: \Google\Cloud\Vision\V1\EntityAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Property">Google\Cloud\Vision\V1\Property</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this

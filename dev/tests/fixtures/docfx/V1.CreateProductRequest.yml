@@ -1,0 +1,190 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\CreateProductRequest
+    name: CreateProductRequest
+    id: CreateProductRequest
+    summary: |
+      Request message for the `CreateProduct` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.CreateProductRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::getProduct()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::hasProduct()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::clearProduct()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::setProduct()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::getProductId()'
+      - '\Google\Cloud\Vision\V1\CreateProductRequest::setProductId()'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. The project in which the Product should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+        -
+          id: '↳ product'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          description: 'Required. The product to create.'
+        -
+          id: '↳ product_id'
+          var_type: string
+          description: 'A user-supplied resource id for this Product. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |
+      Required. The project in which the Product should be created.
+      
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |
+      Required. The project in which the Product should be created.
+      
+      Format is
+      `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getProduct()'
+    name: getProduct
+    id: getProduct
+    summary: |
+      Required. The product to create.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\Product
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::hasProduct()'
+    name: hasProduct
+    id: hasProduct
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::clearProduct()'
+    name: clearProduct
+    id: clearProduct
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setProduct()'
+    name: setProduct
+    id: setProduct
+    summary: |
+      Required. The product to create.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::getProductId()'
+    name: getProductId
+    id: getProductId
+    summary: |
+      A user-supplied resource id for this Product. If set, the server will
+      attempt to use this value as the resource id. If it is already in use, an
+      error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+      long. It cannot contain the character `/`.
+      
+      Generated from protobuf field <code>string product_id = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductRequest::setProductId()'
+    name: setProductId
+    id: setProductId
+    summary: |
+      A user-supplied resource id for this Product. If set, the server will
+      attempt to use this value as the resource id. If it is already in use, an
+      error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+      long. It cannot contain the character `/`.
+      
+      Generated from protobuf field <code>string product_id = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

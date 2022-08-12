@@ -1,0 +1,121 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\TextDetectionParams
+    name: TextDetectionParams
+    id: TextDetectionParams
+    summary: |
+      Parameters for text detections. This is used to control TEXT_DETECTION and
+      DOCUMENT_TEXT_DETECTION features.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.TextDetectionParams</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\TextDetectionParams::__construct()'
+      - '\Google\Cloud\Vision\V1\TextDetectionParams::getEnableTextDetectionConfidenceScore()'
+      - '\Google\Cloud\Vision\V1\TextDetectionParams::setEnableTextDetectionConfidenceScore()'
+      - '\Google\Cloud\Vision\V1\TextDetectionParams::getAdvancedOcrOptions()'
+      - '\Google\Cloud\Vision\V1\TextDetectionParams::setAdvancedOcrOptions()'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextDetectionParams::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\TextDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ enable_text_detection_confidence_score'
+          var_type: bool
+          description: 'By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.'
+        -
+          id: '↳ advanced_ocr_options'
+          var_type: array<string>
+          description: 'A list of advanced OCR options to fine-tune OCR behavior.'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getEnableTextDetectionConfidenceScore()'
+    name: getEnableTextDetectionConfidenceScore
+    id: getEnableTextDetectionConfidenceScore
+    summary: |
+      By default, Cloud Vision API only includes confidence score for
+      DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
+      score for TEXT_DETECTION as well.
+      
+      Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
+    parent: \Google\Cloud\Vision\V1\TextDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - bool
+  -
+    uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setEnableTextDetectionConfidenceScore()'
+    name: setEnableTextDetectionConfidenceScore
+    id: setEnableTextDetectionConfidenceScore
+    summary: |
+      By default, Cloud Vision API only includes confidence score for
+      DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
+      score for TEXT_DETECTION as well.
+      
+      Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
+    parent: \Google\Cloud\Vision\V1\TextDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: bool
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getAdvancedOcrOptions()'
+    name: getAdvancedOcrOptions
+    id: getAdvancedOcrOptions
+    summary: |
+      A list of advanced OCR options to fine-tune OCR behavior.
+      
+      Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+    parent: \Google\Cloud\Vision\V1\TextDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setAdvancedOcrOptions()'
+    name: setAdvancedOcrOptions
+    id: setAdvancedOcrOptions
+    summary: |
+      A list of advanced OCR options to fine-tune OCR behavior.
+      
+      Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+    parent: \Google\Cloud\Vision\V1\TextDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'string[]'
+          description: ''
+      return:
+        type:
+          - $this

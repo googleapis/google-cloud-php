@@ -1,0 +1,116 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    name: DetectedBreak
+    id: DetectedBreak
+    summary: |
+      Detected start or end of a structural component.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.DetectedBreak</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::__construct()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getType()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setType()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getIsPrefix()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setIsPrefix()'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ type'
+          var_type: int
+          description: 'Detected break type.'
+        -
+          id: '↳ is_prefix'
+          var_type: bool
+          description: 'True if break prepends the element.'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getType()'
+    name: getType
+    id: getType
+    summary: |
+      Detected break type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setType()'
+    name: setType
+    id: setType
+    summary: |
+      Detected break type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType type = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getIsPrefix()'
+    name: getIsPrefix
+    id: getIsPrefix
+    summary: |
+      True if break prepends the element.
+      
+      Generated from protobuf field <code>bool is_prefix = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - bool
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setIsPrefix()'
+    name: setIsPrefix
+    id: setIsPrefix
+    summary: |
+      True if break prepends the element.
+      
+      Generated from protobuf field <code>bool is_prefix = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: bool
+          description: ''
+      return:
+        type:
+          - $this

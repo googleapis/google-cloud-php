@@ -1,0 +1,153 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\OutputConfig
+    name: OutputConfig
+    id: OutputConfig
+    summary: |
+      The desired output location and metadata.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.OutputConfig</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\OutputConfig::__construct()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::getGcsDestination()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::hasGcsDestination()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::clearGcsDestination()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::setGcsDestination()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::getBatchSize()'
+      - '\Google\Cloud\Vision\V1\OutputConfig::setBatchSize()'
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ gcs_destination'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">Google\Cloud\Vision\V1\GcsDestination</xref>'
+          description: 'The Google Cloud Storage location to write the output(s) to.'
+        -
+          id: '↳ batch_size'
+          var_type: int
+          description: 'The max number of response protos to put into each output JSON file on Google Cloud Storage. The valid range is [1, 100]. If not specified, the default value is 20. For example, for one pdf file with 100 pages, 100 response protos will be generated. If `batch_size` = 20, then 5 json files each containing 20 response protos will be written under the prefix `gcs_destination`.`uri`. Currently, batch_size only applies to GcsDestination, with potential future support for other output configurations.'
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::getGcsDestination()'
+    name: getGcsDestination
+    id: getGcsDestination
+    summary: |
+      The Google Cloud Storage location to write the output(s) to.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.GcsDestination gcs_destination = 1;</code>
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\GcsDestination
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::hasGcsDestination()'
+    name: hasGcsDestination
+    id: hasGcsDestination
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::clearGcsDestination()'
+    name: clearGcsDestination
+    id: clearGcsDestination
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::setGcsDestination()'
+    name: setGcsDestination
+    id: setGcsDestination
+    summary: |
+      The Google Cloud Storage location to write the output(s) to.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.GcsDestination gcs_destination = 1;</code>
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsDestination">Google\Cloud\Vision\V1\GcsDestination</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::getBatchSize()'
+    name: getBatchSize
+    id: getBatchSize
+    summary: |
+      The max number of response protos to put into each output JSON file on
+      Google Cloud Storage.
+      
+      The valid range is [1, 100]. If not specified, the default value is 20.
+      For example, for one pdf file with 100 pages, 100 response protos will
+      be generated. If `batch_size` = 20, then 5 json files each
+      containing 20 response protos will be written under the prefix
+      `gcs_destination`.`uri`.
+      Currently, batch_size only applies to GcsDestination, with potential future
+      support for other output configurations.
+      
+      Generated from protobuf field <code>int32 batch_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\OutputConfig::setBatchSize()'
+    name: setBatchSize
+    id: setBatchSize
+    summary: |
+      The max number of response protos to put into each output JSON file on
+      Google Cloud Storage.
+      
+      The valid range is [1, 100]. If not specified, the default value is 20.
+      For example, for one pdf file with 100 pages, 100 response protos will
+      be generated. If `batch_size` = 20, then 5 json files each
+      containing 20 response protos will be written under the prefix
+      `gcs_destination`.`uri`.
+      Currently, batch_size only applies to GcsDestination, with potential future
+      support for other output configurations.
+      
+      Generated from protobuf field <code>int32 batch_size = 2;</code>
+    parent: \Google\Cloud\Vision\V1\OutputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this

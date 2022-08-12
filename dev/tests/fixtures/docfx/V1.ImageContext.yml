@@ -1,0 +1,397 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ImageContext
+    name: ImageContext
+    id: ImageContext
+    summary: |
+      Image context and/or feature-specific parameters.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ImageContext</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ImageContext::__construct()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getLatLongRect()'
+      - '\Google\Cloud\Vision\V1\ImageContext::hasLatLongRect()'
+      - '\Google\Cloud\Vision\V1\ImageContext::clearLatLongRect()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setLatLongRect()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getLanguageHints()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setLanguageHints()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getCropHintsParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::hasCropHintsParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::clearCropHintsParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setCropHintsParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getProductSearchParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::hasProductSearchParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::clearProductSearchParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setProductSearchParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getWebDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::hasWebDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::clearWebDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setWebDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::getTextDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::hasTextDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::clearTextDetectionParams()'
+      - '\Google\Cloud\Vision\V1\ImageContext::setTextDetectionParams()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ lat_long_rect'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>'
+          description: 'Not used.'
+        -
+          id: '↳ language_hints'
+          var_type: array<string>
+          description: 'List of languages to use for TEXT_DETECTION. In most cases, an empty value yields the best results since it enables automatic language detection. For languages based on the Latin alphabet, setting `language_hints` is not needed. In rare cases, when the language of the text in the image is known, setting a hint will help get better results (although it will be a significant hindrance if the hint is wrong). Text detection returns an error if one or more of the specified languages is not one of the [supported languages](https://cloud.google.com/vision/docs/languages).'
+        -
+          id: '↳ crop_hints_params'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>'
+          description: 'Parameters for crop hints annotation request.'
+        -
+          id: '↳ product_search_params'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          description: 'Parameters for product search.'
+        -
+          id: '↳ web_detection_params'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>'
+          description: 'Parameters for web detection.'
+        -
+          id: '↳ text_detection_params'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>'
+          description: 'Parameters for text detection and document text detection.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getLatLongRect()'
+    name: getLatLongRect
+    id: getLatLongRect
+    summary: |
+      Not used.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\LatLongRect
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::hasLatLongRect()'
+    name: hasLatLongRect
+    id: hasLatLongRect
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::clearLatLongRect()'
+    name: clearLatLongRect
+    id: clearLatLongRect
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setLatLongRect()'
+    name: setLatLongRect
+    id: setLatLongRect
+    summary: |
+      Not used.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.LatLongRect lat_long_rect = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getLanguageHints()'
+    name: getLanguageHints
+    id: getLanguageHints
+    summary: |
+      List of languages to use for TEXT_DETECTION. In most cases, an empty value
+      yields the best results since it enables automatic language detection. For
+      languages based on the Latin alphabet, setting `language_hints` is not
+      needed. In rare cases, when the language of the text in the image is known,
+      setting a hint will help get better results (although it will be a
+      significant hindrance if the hint is wrong). Text detection returns an
+      error if one or more of the specified languages is not one of the
+      [supported languages](https://cloud.google.com/vision/docs/languages).
+      
+      Generated from protobuf field <code>repeated string language_hints = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setLanguageHints()'
+    name: setLanguageHints
+    id: setLanguageHints
+    summary: |
+      List of languages to use for TEXT_DETECTION. In most cases, an empty value
+      yields the best results since it enables automatic language detection. For
+      languages based on the Latin alphabet, setting `language_hints` is not
+      needed. In rare cases, when the language of the text in the image is known,
+      setting a hint will help get better results (although it will be a
+      significant hindrance if the hint is wrong). Text detection returns an
+      error if one or more of the specified languages is not one of the
+      [supported languages](https://cloud.google.com/vision/docs/languages).
+      
+      Generated from protobuf field <code>repeated string language_hints = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'string[]'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getCropHintsParams()'
+    name: getCropHintsParams
+    id: getCropHintsParams
+    summary: |
+      Parameters for crop hints annotation request.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\CropHintsParams
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::hasCropHintsParams()'
+    name: hasCropHintsParams
+    id: hasCropHintsParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::clearCropHintsParams()'
+    name: clearCropHintsParams
+    id: clearCropHintsParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setCropHintsParams()'
+    name: setCropHintsParams
+    id: setCropHintsParams
+    summary: |
+      Parameters for crop hints annotation request.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.CropHintsParams crop_hints_params = 4;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getProductSearchParams()'
+    name: getProductSearchParams
+    id: getProductSearchParams
+    summary: |
+      Parameters for product search.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ProductSearchParams
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::hasProductSearchParams()'
+    name: hasProductSearchParams
+    id: hasProductSearchParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::clearProductSearchParams()'
+    name: clearProductSearchParams
+    id: clearProductSearchParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setProductSearchParams()'
+    name: setProductSearchParams
+    id: setProductSearchParams
+    summary: |
+      Parameters for product search.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSearchParams product_search_params = 5;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getWebDetectionParams()'
+    name: getWebDetectionParams
+    id: getWebDetectionParams
+    summary: |
+      Parameters for web detection.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\WebDetectionParams
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::hasWebDetectionParams()'
+    name: hasWebDetectionParams
+    id: hasWebDetectionParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::clearWebDetectionParams()'
+    name: clearWebDetectionParams
+    id: clearWebDetectionParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setWebDetectionParams()'
+    name: setWebDetectionParams
+    id: setWebDetectionParams
+    summary: |
+      Parameters for web detection.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.WebDetectionParams web_detection_params = 6;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::getTextDetectionParams()'
+    name: getTextDetectionParams
+    id: getTextDetectionParams
+    summary: |
+      Parameters for text detection and document text detection.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\TextDetectionParams
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::hasTextDetectionParams()'
+    name: hasTextDetectionParams
+    id: hasTextDetectionParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::clearTextDetectionParams()'
+    name: clearTextDetectionParams
+    id: clearTextDetectionParams
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ImageContext::setTextDetectionParams()'
+    name: setTextDetectionParams
+    id: setTextDetectionParams
+    summary: |
+      Parameters for text detection and document text detection.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextDetectionParams text_detection_params = 12;</code>
+    parent: \Google\Cloud\Vision\V1\ImageContext
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>'
+          description: ''
+      return:
+        type:
+          - $this

@@ -1,0 +1,92 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    name: AsyncBatchAnnotateImagesResponse
+    id: AsyncBatchAnnotateImagesResponse
+    summary: |
+      Response to an async batch image annotation request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateImagesResponse</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::getOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::hasOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::clearOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::setOutputConfig()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ output_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'The output location and metadata from AsyncBatchAnnotateImagesRequest.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::getOutputConfig()'
+    name: getOutputConfig
+    id: getOutputConfig
+    summary: |
+      The output location and metadata from AsyncBatchAnnotateImagesRequest.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\OutputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::hasOutputConfig()'
+    name: hasOutputConfig
+    id: hasOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::clearOutputConfig()'
+    name: clearOutputConfig
+    id: clearOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::setOutputConfig()'
+    name: setOutputConfig
+    id: setOutputConfig
+    summary: |
+      The output location and metadata from AsyncBatchAnnotateImagesRequest.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this

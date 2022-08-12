@@ -1,0 +1,135 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Likelihood
+    name: Likelihood
+    id: Likelihood
+    summary: |
+      A bucketized representation of likelihood, which is intended to give clients
+      highly stable results across model upgrades.
+      
+      Protobuf type <code>google.cloud.vision.v1.Likelihood</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Likelihood::name()'
+      - '\Google\Cloud\Vision\V1\Likelihood::value()'
+      - '\Google\Cloud\Vision\V1\Likelihood::UNKNOWN'
+      - '\Google\Cloud\Vision\V1\Likelihood::VERY_UNLIKELY'
+      - '\Google\Cloud\Vision\V1\Likelihood::UNLIKELY'
+      - '\Google\Cloud\Vision\V1\Likelihood::POSSIBLE'
+      - '\Google\Cloud\Vision\V1\Likelihood::LIKELY'
+      - '\Google\Cloud\Vision\V1\Likelihood::VERY_LIKELY'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::UNKNOWN'
+    name: UNKNOWN
+    id: UNKNOWN
+    summary: |
+      Unknown likelihood.
+      
+      Generated from protobuf enum <code>UNKNOWN = 0;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::VERY_UNLIKELY'
+    name: VERY_UNLIKELY
+    id: VERY_UNLIKELY
+    summary: |
+      It is very unlikely.
+      
+      Generated from protobuf enum <code>VERY_UNLIKELY = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::UNLIKELY'
+    name: UNLIKELY
+    id: UNLIKELY
+    summary: |
+      It is unlikely.
+      
+      Generated from protobuf enum <code>UNLIKELY = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::POSSIBLE'
+    name: POSSIBLE
+    id: POSSIBLE
+    summary: |
+      It is possible.
+      
+      Generated from protobuf enum <code>POSSIBLE = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::LIKELY'
+    name: LIKELY
+    id: LIKELY
+    summary: |
+      It is likely.
+      
+      Generated from protobuf enum <code>LIKELY = 4;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'
+  -
+    uid: '\Google\Cloud\Vision\V1\Likelihood::VERY_LIKELY'
+    name: VERY_LIKELY
+    id: VERY_LIKELY
+    summary: |
+      It is very likely.
+      
+      Generated from protobuf enum <code>VERY_LIKELY = 5;</code>
+    parent: \Google\Cloud\Vision\V1\Likelihood
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 5'

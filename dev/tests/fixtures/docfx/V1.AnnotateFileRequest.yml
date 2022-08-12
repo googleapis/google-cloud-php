@@ -1,0 +1,260 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    name: AnnotateFileRequest
+    id: AnnotateFileRequest
+    summary: |
+      A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AnnotateFileRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::getInputConfig()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasInputConfig()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::clearInputConfig()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::setInputConfig()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::getFeatures()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::setFeatures()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::getImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::clearImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::setImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::getPages()'
+      - '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ input_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          description: 'Required. Information about the input file.'
+        -
+          id: '↳ features'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: 'Required. Requested features.'
+        -
+          id: '↳ image_context'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: 'Additional context that may accompany the image(s) in the file.'
+        -
+          id: '↳ pages'
+          var_type: array<int>
+          description: 'Pages of the file to perform image annotation. Pages starts from 1, we assume the first page of the file is page 1. At most 5 pages are supported per request. Pages can be negative. Page 1 means the first page. Page 2 means the second page. Page -1 means the last page. Page -2 means the second to the last page. If the file is GIF instead of PDF or TIFF, page refers to GIF frames. If this field is empty, by default the service performs image annotation for the first 5 pages of the file.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getInputConfig()'
+    name: getInputConfig
+    id: getInputConfig
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\InputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasInputConfig()'
+    name: hasInputConfig
+    id: hasInputConfig
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::clearInputConfig()'
+    name: clearInputConfig
+    id: clearInputConfig
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setInputConfig()'
+    name: setInputConfig
+    id: setInputConfig
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getFeatures()'
+    name: getFeatures
+    id: getFeatures
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setFeatures()'
+    name: setFeatures
+    id: setFeatures
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getImageContext()'
+    name: getImageContext
+    id: getImageContext
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImageContext
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasImageContext()'
+    name: hasImageContext
+    id: hasImageContext
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::clearImageContext()'
+    name: clearImageContext
+    id: clearImageContext
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setImageContext()'
+    name: setImageContext
+    id: setImageContext
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getPages()'
+    name: getPages
+    id: getPages
+    summary: |
+      Pages of the file to perform image annotation.
+      
+      Pages starts from 1, we assume the first page of the file is page 1.
+      At most 5 pages are supported per request. Pages can be negative.
+      Page 1 means the first page.
+      Page 2 means the second page.
+      Page -1 means the last page.
+      Page -2 means the second to the last page.
+      If the file is GIF instead of PDF or TIFF, page refers to GIF frames.
+      If this field is empty, by default the service performs image annotation
+      for the first 5 pages of the file.
+      
+      Generated from protobuf field <code>repeated int32 pages = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
+    name: setPages
+    id: setPages
+    summary: |
+      Pages of the file to perform image annotation.
+      
+      Pages starts from 1, we assume the first page of the file is page 1.
+      At most 5 pages are supported per request. Pages can be negative.
+      Page 1 means the first page.
+      Page 2 means the second page.
+      Page -1 means the last page.
+      Page -2 means the second to the last page.
+      If the file is GIF instead of PDF or TIFF, page refers to GIF frames.
+      If this field is empty, by default the service performs image annotation
+      for the first 5 pages of the file.
+      
+      Generated from protobuf field <code>repeated int32 pages = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'int[]'
+          description: ''
+      return:
+        type:
+          - $this

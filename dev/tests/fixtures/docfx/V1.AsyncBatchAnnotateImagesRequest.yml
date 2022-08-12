@@ -1,0 +1,194 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    name: AsyncBatchAnnotateImagesRequest
+    id: AsyncBatchAnnotateImagesRequest
+    summary: |
+      Request for async image annotation for a list of images.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AsyncBatchAnnotateImagesRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getRequests()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setRequests()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::hasOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::clearOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ requests'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          description: 'Required. Individual image annotation requests for this batch.'
+        -
+          id: '↳ output_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'Required. The desired output location and metadata (e.g. format).'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getRequests()'
+    name: getRequests
+    id: getRequests
+    summary: |
+      Required. Individual image annotation requests for this batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setRequests()'
+    name: setRequests
+    id: setRequests
+    summary: |
+      Required. Individual image annotation requests for this batch.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageRequest requests = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getOutputConfig()'
+    name: getOutputConfig
+    id: getOutputConfig
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\OutputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::hasOutputConfig()'
+    name: hasOutputConfig
+    id: hasOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::clearOutputConfig()'
+    name: clearOutputConfig
+    id: clearOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setOutputConfig()'
+    name: setOutputConfig
+    id: setOutputConfig
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |
+      Optional. Target project and location to make a call.
+      
+      Format: `projects/{project-id}/locations/{location-id}`.
+      If no parent is specified, a region will be chosen automatically.
+      Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+      Example: `projects/project-A/locations/eu`.
+      
+      Generated from protobuf field <code>string parent = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |
+      Optional. Target project and location to make a call.
+      
+      Format: `projects/{project-id}/locations/{location-id}`.
+      If no parent is specified, a region will be chosen automatically.
+      Supported location-ids:
+          `us`: USA country only,
+          `asia`: East asia areas, like Japan, Taiwan,
+          `eu`: The European Union.
+      Example: `projects/project-A/locations/eu`.
+      
+      Generated from protobuf field <code>string parent = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

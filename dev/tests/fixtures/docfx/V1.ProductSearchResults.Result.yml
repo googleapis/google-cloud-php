@@ -1,0 +1,182 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    name: Result
+    id: Result
+    summary: |
+      Information about a product.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ProductSearchResults.Result</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::__construct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getProduct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::hasProduct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::clearProduct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setProduct()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getScore()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setScore()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getImage()'
+      - '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setImage()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ product'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          description: 'The Product.'
+        -
+          id: '↳ score'
+          var_type: float
+          description: 'A confidence level on the match, ranging from 0 (no confidence) to 1 (full confidence).'
+        -
+          id: '↳ image'
+          var_type: string
+          description: 'The resource name of the image from the product that is the closest match to the query.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getProduct()'
+    name: getProduct
+    id: getProduct
+    summary: |
+      The Product.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\Product
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::hasProduct()'
+    name: hasProduct
+    id: hasProduct
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::clearProduct()'
+    name: clearProduct
+    id: clearProduct
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setProduct()'
+    name: setProduct
+    id: setProduct
+    summary: |
+      The Product.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Product product = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getScore()'
+    name: getScore
+    id: getScore
+    summary: |
+      A confidence level on the match, ranging from 0 (no confidence) to
+      1 (full confidence).
+      
+      Generated from protobuf field <code>float score = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setScore()'
+    name: setScore
+    id: setScore
+    summary: |
+      A confidence level on the match, ranging from 0 (no confidence) to
+      1 (full confidence).
+      
+      Generated from protobuf field <code>float score = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getImage()'
+    name: getImage
+    id: getImage
+    summary: |
+      The resource name of the image from the product that is the closest match
+      to the query.
+      
+      Generated from protobuf field <code>string image = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setImage()'
+    name: setImage
+    id: setImage
+    summary: |
+      The resource name of the image from the product that is the closest match
+      to the query.
+      
+      Generated from protobuf field <code>string image = 3;</code>
+    parent: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

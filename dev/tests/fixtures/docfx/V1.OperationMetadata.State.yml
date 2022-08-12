@@ -1,0 +1,119 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\OperationMetadata\State
+    name: State
+    id: State
+    summary: |
+      Batch operation states.
+      
+      Protobuf type <code>google.cloud.vision.v1.OperationMetadata.State</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::name()'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::value()'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::STATE_UNSPECIFIED'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::CREATED'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::RUNNING'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::DONE'
+      - '\Google\Cloud\Vision\V1\OperationMetadata\State::CANCELLED'
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::STATE_UNSPECIFIED'
+    name: STATE_UNSPECIFIED
+    id: STATE_UNSPECIFIED
+    summary: |
+      Invalid.
+      
+      Generated from protobuf enum <code>STATE_UNSPECIFIED = 0;</code>
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::CREATED'
+    name: CREATED
+    id: CREATED
+    summary: |
+      Request is received.
+      
+      Generated from protobuf enum <code>CREATED = 1;</code>
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::RUNNING'
+    name: RUNNING
+    id: RUNNING
+    summary: |
+      Request is actively being processed.
+      
+      Generated from protobuf enum <code>RUNNING = 2;</code>
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::DONE'
+    name: DONE
+    id: DONE
+    summary: |
+      The batch processing is done.
+      
+      Generated from protobuf enum <code>DONE = 3;</code>
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\OperationMetadata\State::CANCELLED'
+    name: CANCELLED
+    id: CANCELLED
+    summary: |
+      The batch processing was cancelled.
+      
+      Generated from protobuf enum <code>CANCELLED = 4;</code>
+    parent: \Google\Cloud\Vision\V1\OperationMetadata\State
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'

@@ -1,0 +1,268 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    name: LocalizedObjectAnnotation
+    id: LocalizedObjectAnnotation
+    summary: |
+      Set of detected objects with bounding boxes.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.LocalizedObjectAnnotation</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::__construct()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getMid()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setMid()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getLanguageCode()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setLanguageCode()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getName()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setName()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getScore()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setScore()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::hasBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::clearBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setBoundingPoly()'
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ mid'
+          var_type: string
+          description: 'Object ID that should align with EntityAnnotation mid.'
+        -
+          id: '↳ language_code'
+          var_type: string
+          description: 'The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.'
+        -
+          id: '↳ name'
+          var_type: string
+          description: 'Object name, expressed in its `language_code` language.'
+        -
+          id: '↳ score'
+          var_type: float
+          description: 'Score of the result. Range [0, 1].'
+        -
+          id: '↳ bounding_poly'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'Image region to which this object belongs. This must be populated.'
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getMid()'
+    name: getMid
+    id: getMid
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setMid()'
+    name: setMid
+    id: setMid
+    summary: |
+      Object ID that should align with EntityAnnotation mid.
+      
+      Generated from protobuf field <code>string mid = 1;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getLanguageCode()'
+    name: getLanguageCode
+    id: getLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setLanguageCode()'
+    name: setLanguageCode
+    id: setLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 2;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getName()'
+    name: getName
+    id: getName
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setName()'
+    name: setName
+    id: setName
+    summary: |
+      Object name, expressed in its `language_code` language.
+      
+      Generated from protobuf field <code>string name = 3;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getScore()'
+    name: getScore
+    id: getScore
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setScore()'
+    name: setScore
+    id: setScore
+    summary: |
+      Score of the result. Range [0, 1].
+      
+      Generated from protobuf field <code>float score = 4;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getBoundingPoly()'
+    name: getBoundingPoly
+    id: getBoundingPoly
+    summary: |
+      Image region to which this object belongs. This must be populated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 5;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::hasBoundingPoly()'
+    name: hasBoundingPoly
+    id: hasBoundingPoly
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::clearBoundingPoly()'
+    name: clearBoundingPoly
+    id: clearBoundingPoly
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setBoundingPoly()'
+    name: setBoundingPoly
+    id: setBoundingPoly
+    summary: |
+      Image region to which this object belongs. This must be populated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 5;</code>
+    parent: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this

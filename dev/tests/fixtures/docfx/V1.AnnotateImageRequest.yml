@@ -1,0 +1,198 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    name: AnnotateImageRequest
+    id: AnnotateImageRequest
+    summary: |
+      Request for performing Google Cloud Vision API tasks over a user-provided
+      image, with user-requested features, and with context information.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AnnotateImageRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImage()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImage()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::clearImage()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImage()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::getFeatures()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::setFeatures()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::clearImageContext()'
+      - '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImageContext()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ image'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: 'The image to be processed.'
+        -
+          id: '↳ features'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: 'Requested features.'
+        -
+          id: '↳ image_context'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: 'Additional context that may accompany the image.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImage()'
+    name: getImage
+    id: getImage
+    summary: |
+      The image to be processed.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\Image
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImage()'
+    name: hasImage
+    id: hasImage
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::clearImage()'
+    name: clearImage
+    id: clearImage
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImage()'
+    name: setImage
+    id: setImage
+    summary: |
+      The image to be processed.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Image image = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getFeatures()'
+    name: getFeatures
+    id: getFeatures
+    summary: |
+      Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setFeatures()'
+    name: setFeatures
+    id: setFeatures
+    summary: |
+      Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImageContext()'
+    name: getImageContext
+    id: getImageContext
+    summary: |
+      Additional context that may accompany the image.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImageContext
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImageContext()'
+    name: hasImageContext
+    id: hasImageContext
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::clearImageContext()'
+    name: clearImageContext
+    id: clearImageContext
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setImageContext()'
+    name: setImageContext
+    id: setImageContext
+    summary: |
+      Additional context that may accompany the image.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AnnotateImageRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: ''
+      return:
+        type:
+          - $this

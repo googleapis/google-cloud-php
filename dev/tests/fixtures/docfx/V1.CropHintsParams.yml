@@ -1,0 +1,83 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\CropHintsParams
+    name: CropHintsParams
+    id: CropHintsParams
+    summary: |
+      Parameters for crop hints annotation request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.CropHintsParams</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\CropHintsParams::__construct()'
+      - '\Google\Cloud\Vision\V1\CropHintsParams::getAspectRatios()'
+      - '\Google\Cloud\Vision\V1\CropHintsParams::setAspectRatios()'
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHintsParams::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\CropHintsParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ aspect_ratios'
+          var_type: array<float>
+          description: 'Aspect ratios in floats, representing the ratio of the width to the height of the image. For example, if the desired aspect ratio is 4/3, the corresponding float value should be 1.33333. If not specified, the best possible crop is returned. The number of provided aspect ratios is limited to a maximum of 16; any aspect ratios provided after the 16th are ignored.'
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHintsParams::getAspectRatios()'
+    name: getAspectRatios
+    id: getAspectRatios
+    summary: |
+      Aspect ratios in floats, representing the ratio of the width to the height
+      of the image. For example, if the desired aspect ratio is 4/3, the
+      corresponding float value should be 1.33333.  If not specified, the
+      best possible crop is returned. The number of provided aspect ratios is
+      limited to a maximum of 16; any aspect ratios provided after the 16th are
+      ignored.
+      
+      Generated from protobuf field <code>repeated float aspect_ratios = 1;</code>
+    parent: \Google\Cloud\Vision\V1\CropHintsParams
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHintsParams::setAspectRatios()'
+    name: setAspectRatios
+    id: setAspectRatios
+    summary: |
+      Aspect ratios in floats, representing the ratio of the width to the height
+      of the image. For example, if the desired aspect ratio is 4/3, the
+      corresponding float value should be 1.33333.  If not specified, the
+      best possible crop is returned. The number of provided aspect ratios is
+      limited to a maximum of 16; any aspect ratios provided after the 16th are
+      ignored.
+      
+      Generated from protobuf field <code>repeated float aspect_ratios = 1;</code>
+    parent: \Google\Cloud\Vision\V1\CropHintsParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'float[]'
+          description: ''
+      return:
+        type:
+          - $this

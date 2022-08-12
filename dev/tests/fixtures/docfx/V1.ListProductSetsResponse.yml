@@ -1,0 +1,118 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    name: ListProductSetsResponse
+    id: ListProductSetsResponse
+    summary: |
+      Response message for the `ListProductSets` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.ListProductSetsResponse</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\ListProductSetsResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\ListProductSetsResponse::getProductSets()'
+      - '\Google\Cloud\Vision\V1\ListProductSetsResponse::setProductSets()'
+      - '\Google\Cloud\Vision\V1\ListProductSetsResponse::getNextPageToken()'
+      - '\Google\Cloud\Vision\V1\ListProductSetsResponse::setNextPageToken()'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ product_sets'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>&gt;'
+          description: 'List of ProductSets.'
+        -
+          id: '↳ next_page_token'
+          var_type: string
+          description: 'Token to retrieve the next page of results, or empty if there are no more results in the list.'
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::getProductSets()'
+    name: getProductSets
+    id: getProductSets
+    summary: |
+      List of ProductSets.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSet product_sets = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::setProductSets()'
+    name: setProductSets
+    id: setProductSets
+    summary: |
+      List of ProductSets.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.ProductSet product_sets = 1;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::getNextPageToken()'
+    name: getNextPageToken
+    id: getNextPageToken
+    summary: |
+      Token to retrieve the next page of results, or empty if there are no more
+      results in the list.
+      
+      Generated from protobuf field <code>string next_page_token = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\ListProductSetsResponse::setNextPageToken()'
+    name: setNextPageToken
+    id: setNextPageToken
+    summary: |
+      Token to retrieve the next page of results, or empty if there are no more
+      results in the list.
+      
+      Generated from protobuf field <code>string next_page_token = 2;</code>
+    parent: \Google\Cloud\Vision\V1\ListProductSetsResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

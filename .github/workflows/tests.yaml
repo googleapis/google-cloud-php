@@ -59,9 +59,38 @@ jobs:
     - name: Run PHPCS Code Style Checker
       run: dev/sh/style
 
+  docfx:
+    name: "Run DocFX tests"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.8'
+    - run: pip install gcp-docuploader
+    - name: Setup PHP
+      uses: shivammathur/setup-php@verbose
+      with:
+        php-version: "8.0"
+    - name: Install Dependencies
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: composer --no-interaction --no-ansi --no-progress update
+    - name: Install phpDocumentor
+      run: |
+        wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
+          && chmod +x /usr/local/bin/phpdoc
+    - name: Run DocFX Unit Test Suite
+      run: vendor/bin/phpunit dev/tests/Unit/DocFx/
+    - name: Run Docs Generator
+      run: bash .kokoro/publish-docs.sh
+
   docs:
     runs-on: ubuntu-latest
-    name: Generate Documentation (Dry Run)
+    name: Generate Legacy Documentation (Dry Run)
     steps:
     - uses: actions/checkout@v3
     - name: Setup PHP
@@ -75,4 +104,4 @@ jobs:
         max_attempts: 3
         command: composer --no-interaction --no-ansi --no-progress update
     - name: Run Docs Generator
-      run: php -d 'memory_limit=-1' dev/google-cloud doc
+      run: php -d 'memory_limit=-1' dev/google-cloud docs

@@ -1,0 +1,120 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    name: DetectedLanguage
+    id: DetectedLanguage
+    summary: |
+      Detected language for a structural component.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.DetectedLanguage</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::__construct()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::getLanguageCode()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::setLanguageCode()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::getConfidence()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::setConfidence()'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ language_code'
+          var_type: string
+          description: 'The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.'
+        -
+          id: '↳ confidence'
+          var_type: float
+          description: 'Confidence of detected language. Range [0, 1].'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::getLanguageCode()'
+    name: getLanguageCode
+    id: getLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::setLanguageCode()'
+    name: setLanguageCode
+    id: setLanguageCode
+    summary: |
+      The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+      information, see
+      http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+      
+      Generated from protobuf field <code>string language_code = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::getConfidence()'
+    name: getConfidence
+    id: getConfidence
+    summary: |
+      Confidence of detected language. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage::setConfidence()'
+    name: setConfidence
+    id: setConfidence
+    summary: |
+      Confidence of detected language. Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this

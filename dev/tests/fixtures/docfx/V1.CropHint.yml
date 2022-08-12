@@ -1,0 +1,182 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\CropHint
+    name: CropHint
+    id: CropHint
+    summary: |
+      Single crop hint that is used to generate a new crop when serving an image.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.CropHint</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\CropHint::__construct()'
+      - '\Google\Cloud\Vision\V1\CropHint::getBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\CropHint::hasBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\CropHint::clearBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\CropHint::setBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\CropHint::getConfidence()'
+      - '\Google\Cloud\Vision\V1\CropHint::setConfidence()'
+      - '\Google\Cloud\Vision\V1\CropHint::getImportanceFraction()'
+      - '\Google\Cloud\Vision\V1\CropHint::setImportanceFraction()'
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ bounding_poly'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'The bounding polygon for the crop region. The coordinates of the bounding box are in the original image''s scale.'
+        -
+          id: '↳ confidence'
+          var_type: float
+          description: 'Confidence of this being a salient region. Range [0, 1].'
+        -
+          id: '↳ importance_fraction'
+          var_type: float
+          description: 'Fraction of importance of this salient region with respect to the original image.'
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::getBoundingPoly()'
+    name: getBoundingPoly
+    id: getBoundingPoly
+    summary: |
+      The bounding polygon for the crop region. The coordinates of the bounding
+      box are in the original image's scale.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::hasBoundingPoly()'
+    name: hasBoundingPoly
+    id: hasBoundingPoly
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::clearBoundingPoly()'
+    name: clearBoundingPoly
+    id: clearBoundingPoly
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::setBoundingPoly()'
+    name: setBoundingPoly
+    id: setBoundingPoly
+    summary: |
+      The bounding polygon for the crop region. The coordinates of the bounding
+      box are in the original image's scale.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::getConfidence()'
+    name: getConfidence
+    id: getConfidence
+    summary: |
+      Confidence of this being a salient region.  Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 2;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::setConfidence()'
+    name: setConfidence
+    id: setConfidence
+    summary: |
+      Confidence of this being a salient region.  Range [0, 1].
+      
+      Generated from protobuf field <code>float confidence = 2;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::getImportanceFraction()'
+    name: getImportanceFraction
+    id: getImportanceFraction
+    summary: |
+      Fraction of importance of this salient region with respect to the original
+      image.
+      
+      Generated from protobuf field <code>float importance_fraction = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\CropHint::setImportanceFraction()'
+    name: setImportanceFraction
+    id: setImportanceFraction
+    summary: |
+      Fraction of importance of this salient region with respect to the original
+      image.
+      
+      Generated from protobuf field <code>float importance_fraction = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CropHint
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this

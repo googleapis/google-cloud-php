@@ -1,0 +1,73 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\WebDetectionParams
+    name: WebDetectionParams
+    id: WebDetectionParams
+    summary: |
+      Parameters for web detection request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.WebDetectionParams</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\WebDetectionParams::__construct()'
+      - '\Google\Cloud\Vision\V1\WebDetectionParams::getIncludeGeoResults()'
+      - '\Google\Cloud\Vision\V1\WebDetectionParams::setIncludeGeoResults()'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetectionParams::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\WebDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ include_geo_results'
+          var_type: bool
+          description: 'Whether to include results derived from the geo information in the image.'
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetectionParams::getIncludeGeoResults()'
+    name: getIncludeGeoResults
+    id: getIncludeGeoResults
+    summary: |
+      Whether to include results derived from the geo information in the image.
+      
+      Generated from protobuf field <code>bool include_geo_results = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - bool
+  -
+    uid: '\Google\Cloud\Vision\V1\WebDetectionParams::setIncludeGeoResults()'
+    name: setIncludeGeoResults
+    id: setIncludeGeoResults
+    summary: |
+      Whether to include results derived from the geo information in the image.
+      
+      Generated from protobuf field <code>bool include_geo_results = 2;</code>
+    parent: \Google\Cloud\Vision\V1\WebDetectionParams
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: bool
+          description: ''
+      return:
+        type:
+          - $this

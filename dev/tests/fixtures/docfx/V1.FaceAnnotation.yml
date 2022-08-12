@@ -1,0 +1,747 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\FaceAnnotation
+    name: FaceAnnotation
+    id: FaceAnnotation
+    summary: |
+      A face annotation object contains the results of face detection.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.FaceAnnotation</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::__construct()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::hasBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::clearBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getFdBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::hasFdBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::clearFdBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setFdBoundingPoly()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarks()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarks()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getRollAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setRollAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getPanAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setPanAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getTiltAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setTiltAngle()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getDetectionConfidence()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setDetectionConfidence()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarkingConfidence()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarkingConfidence()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getJoyLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setJoyLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getSorrowLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setSorrowLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getAngerLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setAngerLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getSurpriseLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setSurpriseLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getUnderExposedLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setUnderExposedLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getBlurredLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setBlurredLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::getHeadwearLikelihood()'
+      - '\Google\Cloud\Vision\V1\FaceAnnotation::setHeadwearLikelihood()'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ bounding_poly'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'The bounding polygon around the face. The coordinates of the bounding box are in the original image''s scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.'
+        -
+          id: '↳ fd_bounding_poly'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: 'The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the <code>fd</code> (face detection) prefix.'
+        -
+          id: '↳ landmarks'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">Google\Cloud\Vision\V1\FaceAnnotation\Landmark</xref>&gt;'
+          description: 'Detected face landmarks.'
+        -
+          id: '↳ roll_angle'
+          var_type: float
+          description: 'Roll angle, which indicates the amount of clockwise/anti-clockwise rotation of the face relative to the image vertical about the axis perpendicular to the face. Range [-180,180].'
+        -
+          id: '↳ pan_angle'
+          var_type: float
+          description: 'Yaw angle, which indicates the leftward/rightward angle that the face is pointing relative to the vertical plane perpendicular to the image. Range [-180,180].'
+        -
+          id: '↳ tilt_angle'
+          var_type: float
+          description: 'Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image''s horizontal plane. Range [-180,180].'
+        -
+          id: '↳ detection_confidence'
+          var_type: float
+          description: 'Detection confidence. Range [0, 1].'
+        -
+          id: '↳ landmarking_confidence'
+          var_type: float
+          description: 'Face landmarking confidence. Range [0, 1].'
+        -
+          id: '↳ joy_likelihood'
+          var_type: int
+          description: 'Joy likelihood.'
+        -
+          id: '↳ sorrow_likelihood'
+          var_type: int
+          description: 'Sorrow likelihood.'
+        -
+          id: '↳ anger_likelihood'
+          var_type: int
+          description: 'Anger likelihood.'
+        -
+          id: '↳ surprise_likelihood'
+          var_type: int
+          description: 'Surprise likelihood.'
+        -
+          id: '↳ under_exposed_likelihood'
+          var_type: int
+          description: 'Under-exposed likelihood.'
+        -
+          id: '↳ blurred_likelihood'
+          var_type: int
+          description: 'Blurred likelihood.'
+        -
+          id: '↳ headwear_likelihood'
+          var_type: int
+          description: 'Headwear likelihood.'
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getBoundingPoly()'
+    name: getBoundingPoly
+    id: getBoundingPoly
+    summary: |
+      The bounding polygon around the face. The coordinates of the bounding box
+      are in the original image's scale.
+      
+      The bounding box is computed to "frame" the face in accordance with human
+      expectations. It is based on the landmarker results.
+      Note that one or more x and/or y coordinates may not be generated in the
+      `BoundingPoly` (the polygon will be unbounded) if only a partial face
+      appears in the image to be annotated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasBoundingPoly()'
+    name: hasBoundingPoly
+    id: hasBoundingPoly
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::clearBoundingPoly()'
+    name: clearBoundingPoly
+    id: clearBoundingPoly
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setBoundingPoly()'
+    name: setBoundingPoly
+    id: setBoundingPoly
+    summary: |
+      The bounding polygon around the face. The coordinates of the bounding box
+      are in the original image's scale.
+      
+      The bounding box is computed to "frame" the face in accordance with human
+      expectations. It is based on the landmarker results.
+      Note that one or more x and/or y coordinates may not be generated in the
+      `BoundingPoly` (the polygon will be unbounded) if only a partial face
+      appears in the image to be annotated.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly bounding_poly = 1;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getFdBoundingPoly()'
+    name: getFdBoundingPoly
+    id: getFdBoundingPoly
+    summary: |
+      The `fd_bounding_poly` bounding polygon is tighter than the
+      `boundingPoly`, and encloses only the skin part of the face. Typically, it
+      is used to eliminate the face from any image analysis that detects the
+      "amount of skin" visible in an image. It is not based on the
+      landmarker results, only on the initial face detection, hence
+      the <code>fd</code> (face detection) prefix.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\BoundingPoly
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasFdBoundingPoly()'
+    name: hasFdBoundingPoly
+    id: hasFdBoundingPoly
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::clearFdBoundingPoly()'
+    name: clearFdBoundingPoly
+    id: clearFdBoundingPoly
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setFdBoundingPoly()'
+    name: setFdBoundingPoly
+    id: setFdBoundingPoly
+    summary: |
+      The `fd_bounding_poly` bounding polygon is tighter than the
+      `boundingPoly`, and encloses only the skin part of the face. Typically, it
+      is used to eliminate the face from any image analysis that detects the
+      "amount of skin" visible in an image. It is not based on the
+      landmarker results, only on the initial face detection, hence
+      the <code>fd</code> (face detection) prefix.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.BoundingPoly fd_bounding_poly = 2;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarks()'
+    name: getLandmarks
+    id: getLandmarks
+    summary: |
+      Detected face landmarks.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarks()'
+    name: setLandmarks
+    id: setLandmarks
+    summary: |
+      Detected face landmarks.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">Google\Cloud\Vision\V1\FaceAnnotation\Landmark</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getRollAngle()'
+    name: getRollAngle
+    id: getRollAngle
+    summary: |
+      Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
+      of the face relative to the image vertical about the axis perpendicular to
+      the face. Range [-180,180].
+      
+      Generated from protobuf field <code>float roll_angle = 4;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setRollAngle()'
+    name: setRollAngle
+    id: setRollAngle
+    summary: |
+      Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
+      of the face relative to the image vertical about the axis perpendicular to
+      the face. Range [-180,180].
+      
+      Generated from protobuf field <code>float roll_angle = 4;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getPanAngle()'
+    name: getPanAngle
+    id: getPanAngle
+    summary: |
+      Yaw angle, which indicates the leftward/rightward angle that the face is
+      pointing relative to the vertical plane perpendicular to the image. Range
+      [-180,180].
+      
+      Generated from protobuf field <code>float pan_angle = 5;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setPanAngle()'
+    name: setPanAngle
+    id: setPanAngle
+    summary: |
+      Yaw angle, which indicates the leftward/rightward angle that the face is
+      pointing relative to the vertical plane perpendicular to the image. Range
+      [-180,180].
+      
+      Generated from protobuf field <code>float pan_angle = 5;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getTiltAngle()'
+    name: getTiltAngle
+    id: getTiltAngle
+    summary: |
+      Pitch angle, which indicates the upwards/downwards angle that the face is
+      pointing relative to the image's horizontal plane. Range [-180,180].
+      
+      Generated from protobuf field <code>float tilt_angle = 6;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setTiltAngle()'
+    name: setTiltAngle
+    id: setTiltAngle
+    summary: |
+      Pitch angle, which indicates the upwards/downwards angle that the face is
+      pointing relative to the image's horizontal plane. Range [-180,180].
+      
+      Generated from protobuf field <code>float tilt_angle = 6;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getDetectionConfidence()'
+    name: getDetectionConfidence
+    id: getDetectionConfidence
+    summary: |
+      Detection confidence. Range [0, 1].
+      
+      Generated from protobuf field <code>float detection_confidence = 7;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setDetectionConfidence()'
+    name: setDetectionConfidence
+    id: setDetectionConfidence
+    summary: |
+      Detection confidence. Range [0, 1].
+      
+      Generated from protobuf field <code>float detection_confidence = 7;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarkingConfidence()'
+    name: getLandmarkingConfidence
+    id: getLandmarkingConfidence
+    summary: |
+      Face landmarking confidence. Range [0, 1].
+      
+      Generated from protobuf field <code>float landmarking_confidence = 8;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - float
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarkingConfidence()'
+    name: setLandmarkingConfidence
+    id: setLandmarkingConfidence
+    summary: |
+      Face landmarking confidence. Range [0, 1].
+      
+      Generated from protobuf field <code>float landmarking_confidence = 8;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: float
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getJoyLikelihood()'
+    name: getJoyLikelihood
+    id: getJoyLikelihood
+    summary: |
+      Joy likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setJoyLikelihood()'
+    name: setJoyLikelihood
+    id: setJoyLikelihood
+    summary: |
+      Joy likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood joy_likelihood = 9;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getSorrowLikelihood()'
+    name: getSorrowLikelihood
+    id: getSorrowLikelihood
+    summary: |
+      Sorrow likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSorrowLikelihood()'
+    name: setSorrowLikelihood
+    id: setSorrowLikelihood
+    summary: |
+      Sorrow likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood sorrow_likelihood = 10;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getAngerLikelihood()'
+    name: getAngerLikelihood
+    id: getAngerLikelihood
+    summary: |
+      Anger likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setAngerLikelihood()'
+    name: setAngerLikelihood
+    id: setAngerLikelihood
+    summary: |
+      Anger likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood anger_likelihood = 11;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getSurpriseLikelihood()'
+    name: getSurpriseLikelihood
+    id: getSurpriseLikelihood
+    summary: |
+      Surprise likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSurpriseLikelihood()'
+    name: setSurpriseLikelihood
+    id: setSurpriseLikelihood
+    summary: |
+      Surprise likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood surprise_likelihood = 12;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getUnderExposedLikelihood()'
+    name: getUnderExposedLikelihood
+    id: getUnderExposedLikelihood
+    summary: |
+      Under-exposed likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setUnderExposedLikelihood()'
+    name: setUnderExposedLikelihood
+    id: setUnderExposedLikelihood
+    summary: |
+      Under-exposed likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood under_exposed_likelihood = 13;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getBlurredLikelihood()'
+    name: getBlurredLikelihood
+    id: getBlurredLikelihood
+    summary: |
+      Blurred likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setBlurredLikelihood()'
+    name: setBlurredLikelihood
+    id: setBlurredLikelihood
+    summary: |
+      Blurred likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood blurred_likelihood = 14;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getHeadwearLikelihood()'
+    name: getHeadwearLikelihood
+    id: getHeadwearLikelihood
+    summary: |
+      Headwear likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setHeadwearLikelihood()'
+    name: setHeadwearLikelihood
+    id: setHeadwearLikelihood
+    summary: |
+      Headwear likelihood.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Likelihood headwear_likelihood = 15;</code>
+    parent: \Google\Cloud\Vision\V1\FaceAnnotation
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this

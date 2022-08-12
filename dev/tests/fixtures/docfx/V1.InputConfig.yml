@@ -1,0 +1,190 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\InputConfig
+    name: InputConfig
+    id: InputConfig
+    summary: |
+      The desired input location and metadata.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.InputConfig</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\InputConfig::__construct()'
+      - '\Google\Cloud\Vision\V1\InputConfig::getGcsSource()'
+      - '\Google\Cloud\Vision\V1\InputConfig::hasGcsSource()'
+      - '\Google\Cloud\Vision\V1\InputConfig::clearGcsSource()'
+      - '\Google\Cloud\Vision\V1\InputConfig::setGcsSource()'
+      - '\Google\Cloud\Vision\V1\InputConfig::getContent()'
+      - '\Google\Cloud\Vision\V1\InputConfig::setContent()'
+      - '\Google\Cloud\Vision\V1\InputConfig::getMimeType()'
+      - '\Google\Cloud\Vision\V1\InputConfig::setMimeType()'
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ gcs_source'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">Google\Cloud\Vision\V1\GcsSource</xref>'
+          description: 'The Google Cloud Storage location to read the input from.'
+        -
+          id: '↳ content'
+          var_type: string
+          description: 'File content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64. Currently, this field only works for BatchAnnotateFiles requests. It does not work for AsyncBatchAnnotateFiles requests.'
+        -
+          id: '↳ mime_type'
+          var_type: string
+          description: 'The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.'
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::getGcsSource()'
+    name: getGcsSource
+    id: getGcsSource
+    summary: |
+      The Google Cloud Storage location to read the input from.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.GcsSource gcs_source = 1;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\GcsSource
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::hasGcsSource()'
+    name: hasGcsSource
+    id: hasGcsSource
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::clearGcsSource()'
+    name: clearGcsSource
+    id: clearGcsSource
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::setGcsSource()'
+    name: setGcsSource
+    id: setGcsSource
+    summary: |
+      The Google Cloud Storage location to read the input from.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.GcsSource gcs_source = 1;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\GcsSource">Google\Cloud\Vision\V1\GcsSource</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::getContent()'
+    name: getContent
+    id: getContent
+    summary: |
+      File content, represented as a stream of bytes.
+      
+      Note: As with all `bytes` fields, protobuffers use a pure binary
+      representation, whereas JSON representations use base64.
+      Currently, this field only works for BatchAnnotateFiles requests. It does
+      not work for AsyncBatchAnnotateFiles requests.
+      
+      Generated from protobuf field <code>bytes content = 3;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::setContent()'
+    name: setContent
+    id: setContent
+    summary: |
+      File content, represented as a stream of bytes.
+      
+      Note: As with all `bytes` fields, protobuffers use a pure binary
+      representation, whereas JSON representations use base64.
+      Currently, this field only works for BatchAnnotateFiles requests. It does
+      not work for AsyncBatchAnnotateFiles requests.
+      
+      Generated from protobuf field <code>bytes content = 3;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::getMimeType()'
+    name: getMimeType
+    id: getMimeType
+    summary: |
+      The type of the file. Currently only "application/pdf", "image/tiff" and
+      "image/gif" are supported. Wildcards are not supported.
+      
+      Generated from protobuf field <code>string mime_type = 2;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\InputConfig::setMimeType()'
+    name: setMimeType
+    id: setMimeType
+    summary: |
+      The type of the file. Currently only "application/pdf", "image/tiff" and
+      "image/gif" are supported. Wildcards are not supported.
+      
+      Generated from protobuf field <code>string mime_type = 2;</code>
+    parent: \Google\Cloud\Vision\V1\InputConfig
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

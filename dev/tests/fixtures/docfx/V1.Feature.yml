@@ -1,0 +1,169 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Feature
+    name: Feature
+    id: Feature
+    summary: |
+      The type of Google Cloud Vision API detection to perform, and the maximum
+      number of results to return for that type. Multiple `Feature` objects can
+      be specified in the `features` list.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Feature</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Feature::__construct()'
+      - '\Google\Cloud\Vision\V1\Feature::getType()'
+      - '\Google\Cloud\Vision\V1\Feature::setType()'
+      - '\Google\Cloud\Vision\V1\Feature::getMaxResults()'
+      - '\Google\Cloud\Vision\V1\Feature::setMaxResults()'
+      - '\Google\Cloud\Vision\V1\Feature::getModel()'
+      - '\Google\Cloud\Vision\V1\Feature::setModel()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ type'
+          var_type: int
+          description: 'The feature type.'
+        -
+          id: '↳ max_results'
+          var_type: int
+          description: 'Maximum number of results of this type. Does not apply to `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.'
+        -
+          id: '↳ model'
+          var_type: string
+          description: 'Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".'
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::getType()'
+    name: getType
+    id: getType
+    summary: |
+      The feature type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::setType()'
+    name: setType
+    id: setType
+    summary: |
+      The feature type.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.Feature.Type type = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::getMaxResults()'
+    name: getMaxResults
+    id: getMaxResults
+    summary: |
+      Maximum number of results of this type. Does not apply to
+      `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
+      
+      Generated from protobuf field <code>int32 max_results = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - int
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::setMaxResults()'
+    name: setMaxResults
+    id: setMaxResults
+    summary: |
+      Maximum number of results of this type. Does not apply to
+      `TEXT_DETECTION`, `DOCUMENT_TEXT_DETECTION`, or `CROP_HINTS`.
+      
+      Generated from protobuf field <code>int32 max_results = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: int
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::getModel()'
+    name: getModel
+    id: getModel
+    summary: |
+      Model to use for the feature.
+      
+      Supported values: "builtin/stable" (the default if unset) and
+      "builtin/latest".
+      
+      Generated from protobuf field <code>string model = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Feature::setModel()'
+    name: setModel
+    id: setModel
+    summary: |
+      Model to use for the feature.
+      
+      Supported values: "builtin/stable" (the default if unset) and
+      "builtin/latest".
+      
+      Generated from protobuf field <code>string model = 3;</code>
+    parent: \Google\Cloud\Vision\V1\Feature
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

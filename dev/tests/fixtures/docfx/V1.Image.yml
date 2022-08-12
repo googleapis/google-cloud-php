@@ -1,0 +1,149 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\Image
+    name: Image
+    id: Image
+    summary: |
+      Client image to perform Google Cloud Vision API tasks over.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.Image</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\Image::__construct()'
+      - '\Google\Cloud\Vision\V1\Image::getContent()'
+      - '\Google\Cloud\Vision\V1\Image::setContent()'
+      - '\Google\Cloud\Vision\V1\Image::getSource()'
+      - '\Google\Cloud\Vision\V1\Image::hasSource()'
+      - '\Google\Cloud\Vision\V1\Image::clearSource()'
+      - '\Google\Cloud\Vision\V1\Image::setSource()'
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ content'
+          var_type: string
+          description: 'Image content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64. Currently, this field only works for BatchAnnotateImages requests. It does not work for AsyncBatchAnnotateImages requests.'
+        -
+          id: '↳ source'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">Google\Cloud\Vision\V1\ImageSource</xref>'
+          description: 'Google Cloud Storage image location, or publicly-accessible image URL. If both `content` and `source` are provided for an image, `content` takes precedence and is used to perform the image annotation request.'
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::getContent()'
+    name: getContent
+    id: getContent
+    summary: |
+      Image content, represented as a stream of bytes.
+      
+      Note: As with all `bytes` fields, protobuffers use a pure binary
+      representation, whereas JSON representations use base64.
+      Currently, this field only works for BatchAnnotateImages requests. It does
+      not work for AsyncBatchAnnotateImages requests.
+      
+      Generated from protobuf field <code>bytes content = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::setContent()'
+    name: setContent
+    id: setContent
+    summary: |
+      Image content, represented as a stream of bytes.
+      
+      Note: As with all `bytes` fields, protobuffers use a pure binary
+      representation, whereas JSON representations use base64.
+      Currently, this field only works for BatchAnnotateImages requests. It does
+      not work for AsyncBatchAnnotateImages requests.
+      
+      Generated from protobuf field <code>bytes content = 1;</code>
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::getSource()'
+    name: getSource
+    id: getSource
+    summary: |
+      Google Cloud Storage image location, or publicly-accessible image
+      URL. If both `content` and `source` are provided for an image, `content`
+      takes precedence and is used to perform the image annotation request.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImageSource
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::hasSource()'
+    name: hasSource
+    id: hasSource
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::clearSource()'
+    name: clearSource
+    id: clearSource
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\Image::setSource()'
+    name: setSource
+    id: setSource
+    summary: |
+      Google Cloud Storage image location, or publicly-accessible image
+      URL. If both `content` and `source` are provided for an image, `content`
+      takes precedence and is used to perform the image annotation request.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageSource source = 2;</code>
+    parent: \Google\Cloud\Vision\V1\Image
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageSource">Google\Cloud\Vision\V1\ImageSource</xref>'
+          description: ''
+      return:
+        type:
+          - $this

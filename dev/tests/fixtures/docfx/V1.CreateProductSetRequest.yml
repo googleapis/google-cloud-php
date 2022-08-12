@@ -1,0 +1,188 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    name: CreateProductSetRequest
+    id: CreateProductSetRequest
+    summary: |
+      Request message for the `CreateProductSet` method.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.CreateProductSetRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::getParent()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::setParent()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSet()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::hasProductSet()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::clearProductSet()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSet()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSetId()'
+      - '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSetId()'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ parent'
+          var_type: string
+          description: 'Required. The project in which the ProductSet should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.'
+        -
+          id: '↳ product_set'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          description: 'Required. The ProductSet to create.'
+        -
+          id: '↳ product_set_id'
+          var_type: string
+          description: 'A user-supplied resource id for this ProductSet. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.'
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getParent()'
+    name: getParent
+    id: getParent
+    summary: |
+      Required. The project in which the ProductSet should be created.
+      
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setParent()'
+    name: setParent
+    id: setParent
+    summary: |
+      Required. The project in which the ProductSet should be created.
+      
+      Format is `projects/PROJECT_ID/locations/LOC_ID`.
+      
+      Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSet()'
+    name: getProductSet
+    id: getProductSet
+    summary: |
+      Required. The ProductSet to create.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ProductSet
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::hasProductSet()'
+    name: hasProductSet
+    id: hasProductSet
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::clearProductSet()'
+    name: clearProductSet
+    id: clearProductSet
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSet()'
+    name: setProductSet
+    id: setProductSet
+    summary: |
+      Required. The ProductSet to create.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ProductSet product_set = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSetId()'
+    name: getProductSetId
+    id: getProductSetId
+    summary: |
+      A user-supplied resource id for this ProductSet. If set, the server will
+      attempt to use this value as the resource id. If it is already in use, an
+      error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+      long. It cannot contain the character `/`.
+      
+      Generated from protobuf field <code>string product_set_id = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - string
+  -
+    uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSetId()'
+    name: setProductSetId
+    id: setProductSetId
+    summary: |
+      A user-supplied resource id for this ProductSet. If set, the server will
+      attempt to use this value as the resource id. If it is already in use, an
+      error is returned with code ALREADY_EXISTS. Must be at most 128 characters
+      long. It cannot contain the character `/`.
+      
+      Generated from protobuf field <code>string product_set_id = 3;</code>
+    parent: \Google\Cloud\Vision\V1\CreateProductSetRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: string
+          description: ''
+      return:
+        type:
+          - $this

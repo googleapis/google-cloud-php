@@ -1,0 +1,92 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    name: AsyncAnnotateFileResponse
+    id: AsyncAnnotateFileResponse
+    summary: |
+      The response for a single offline file annotation request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AsyncAnnotateFileResponse</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::__construct()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::getOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::hasOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::clearOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::setOutputConfig()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ output_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'The output location and metadata from AsyncAnnotateFileRequest.'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::getOutputConfig()'
+    name: getOutputConfig
+    id: getOutputConfig
+    summary: |
+      The output location and metadata from AsyncAnnotateFileRequest.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\OutputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::hasOutputConfig()'
+    name: hasOutputConfig
+    id: hasOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::clearOutputConfig()'
+    name: clearOutputConfig
+    id: clearOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse::setOutputConfig()'
+    name: setOutputConfig
+    id: setOutputConfig
+    summary: |
+      The output location and metadata from AsyncAnnotateFileRequest.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this

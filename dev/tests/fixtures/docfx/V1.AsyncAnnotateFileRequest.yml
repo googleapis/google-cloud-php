@@ -1,0 +1,259 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    name: AsyncAnnotateFileRequest
+    id: AsyncAnnotateFileRequest
+    summary: |
+      An offline file annotation request.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.AsyncAnnotateFileRequest</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::__construct()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getInputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasInputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearInputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setInputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getFeatures()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setFeatures()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getImageContext()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasImageContext()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearImageContext()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setImageContext()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearOutputConfig()'
+      - '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setOutputConfig()'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ input_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          description: 'Required. Information about the input file.'
+        -
+          id: '↳ features'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: 'Required. Requested features.'
+        -
+          id: '↳ image_context'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: 'Additional context that may accompany the image(s) in the file.'
+        -
+          id: '↳ output_config'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: 'Required. The desired output location and metadata (e.g. format).'
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getInputConfig()'
+    name: getInputConfig
+    id: getInputConfig
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\InputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasInputConfig()'
+    name: hasInputConfig
+    id: hasInputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearInputConfig()'
+    name: clearInputConfig
+    id: clearInputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setInputConfig()'
+    name: setInputConfig
+    id: setInputConfig
+    summary: |
+      Required. Information about the input file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.InputConfig input_config = 1;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getFeatures()'
+    name: getFeatures
+    id: getFeatures
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setFeatures()'
+    name: setFeatures
+    id: setFeatures
+    summary: |
+      Required. Requested features.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getImageContext()'
+    name: getImageContext
+    id: getImageContext
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\ImageContext
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasImageContext()'
+    name: hasImageContext
+    id: hasImageContext
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearImageContext()'
+    name: clearImageContext
+    id: clearImageContext
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setImageContext()'
+    name: setImageContext
+    id: setImageContext
+    summary: |
+      Additional context that may accompany the image(s) in the file.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.ImageContext image_context = 3;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getOutputConfig()'
+    name: getOutputConfig
+    id: getOutputConfig
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\OutputConfig
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasOutputConfig()'
+    name: hasOutputConfig
+    id: hasOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::clearOutputConfig()'
+    name: clearOutputConfig
+    id: clearOutputConfig
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setOutputConfig()'
+    name: setOutputConfig
+    id: setOutputConfig
+    summary: |
+      Required. The desired output location and metadata (e.g. format).
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.OutputConfig output_config = 4;</code>
+    parent: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
+          description: ''
+      return:
+        type:
+          - $this

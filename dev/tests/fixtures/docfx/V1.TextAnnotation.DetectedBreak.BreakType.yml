@@ -1,0 +1,135 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    name: BreakType
+    id: BreakType
+    summary: |
+      Enum to denote the type of break found. New line, space etc.
+      
+      Protobuf type <code>google.cloud.vision.v1.TextAnnotation.DetectedBreak.BreakType</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::name()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::value()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::UNKNOWN'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SPACE'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SURE_SPACE'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::EOL_SURE_SPACE'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::HYPHEN'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::LINE_BREAK'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::name()'
+    name: name
+    id: name
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: value
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::value()'
+    name: value
+    id: value
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: name
+          var_type: mixed
+          description: ''
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::UNKNOWN'
+    name: UNKNOWN
+    id: UNKNOWN
+    summary: |
+      Unknown break label type.
+      
+      Generated from protobuf enum <code>UNKNOWN = 0;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 0'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SPACE'
+    name: SPACE
+    id: SPACE
+    summary: |
+      Regular space.
+      
+      Generated from protobuf enum <code>SPACE = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 1'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::SURE_SPACE'
+    name: SURE_SPACE
+    id: SURE_SPACE
+    summary: |
+      Sure space (very wide).
+      
+      Generated from protobuf enum <code>SURE_SPACE = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 2'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::EOL_SURE_SPACE'
+    name: EOL_SURE_SPACE
+    id: EOL_SURE_SPACE
+    summary: |
+      Line-wrapping break.
+      
+      Generated from protobuf enum <code>EOL_SURE_SPACE = 3;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 3'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::HYPHEN'
+    name: HYPHEN
+    id: HYPHEN
+    summary: |
+      End-line hyphen that is not present in text; does not co-occur with
+      `SPACE`, `LEADER_SPACE`, or `LINE_BREAK`.
+      
+      Generated from protobuf enum <code>HYPHEN = 4;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 4'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType::LINE_BREAK'
+    name: LINE_BREAK
+    id: LINE_BREAK
+    summary: |
+      Line break that ends a paragraph.
+      
+      Generated from protobuf enum <code>LINE_BREAK = 5;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType
+    type: const
+    langs:
+      - php
+    syntax:
+      content: 'Value: 5'

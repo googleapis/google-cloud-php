@@ -1,0 +1,135 @@
+### YamlMime:UniversalReference
+items:
+  -
+    uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    name: TextProperty
+    id: TextProperty
+    summary: |
+      Additional information detected on the structural component.
+      
+      Generated from protobuf message <code>google.cloud.vision.v1.TextAnnotation.TextProperty</code>
+    type: class
+    langs:
+      - php
+    children:
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::__construct()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedLanguages()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedLanguages()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedBreak()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::hasDetectedBreak()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::clearDetectedBreak()'
+      - '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedBreak()'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::__construct()'
+    name: __construct
+    id: __construct
+    summary: Constructor.
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: data
+          var_type: array
+          description: 'Optional. Data for populating the Message object.'
+        -
+          id: '↳ detected_languages'
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</xref>&gt;'
+          description: 'A list of detected languages together with confidence.'
+        -
+          id: '↳ detected_break'
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>'
+          description: 'Detected start or end of a text segment.'
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedLanguages()'
+    name: getDetectedLanguages
+    id: getDetectedLanguages
+    summary: |
+      A list of detected languages together with confidence.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Protobuf\Internal\RepeatedField
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedLanguages()'
+    name: setDetectedLanguages
+    id: setDetectedLanguages
+    summary: |
+      A list of detected languages together with confidence.
+      
+      Generated from protobuf field <code>repeated .google.cloud.vision.v1.TextAnnotation.DetectedLanguage detected_languages = 1;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</xref>&gt;'
+          description: ''
+      return:
+        type:
+          - $this
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedBreak()'
+    name: getDetectedBreak
+    id: getDetectedBreak
+    summary: |
+      Detected start or end of a text segment.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+    syntax:
+      return:
+        type:
+          - \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+        description: Nullable
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::hasDetectedBreak()'
+    name: hasDetectedBreak
+    id: hasDetectedBreak
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::clearDetectedBreak()'
+    name: clearDetectedBreak
+    id: clearDetectedBreak
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+  -
+    uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedBreak()'
+    name: setDetectedBreak
+    id: setDetectedBreak
+    summary: |
+      Detected start or end of a text segment.
+      
+      Generated from protobuf field <code>.google.cloud.vision.v1.TextAnnotation.DetectedBreak detected_break = 2;</code>
+    parent: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+    type: method
+    langs:
+      - php
+    syntax:
+      parameters:
+        -
+          id: var
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>'
+          description: ''
+      return:
+        type:
+          - $this
