@@ -201,6 +201,10 @@ class TableTest extends TestCase
     public function testMutateRowsApiExceptionThrowsErrorInfo()
     {
         $exMessage = 'unauthenticated';
+        $apiExceptionMetadata = [
+            'service' => 'bigtable.googleapis.com',
+            'consumer' => 'projects\/my-project',
+        ];
         $apiException = new ApiException(
             $exMessage,
             Code::UNAUTHENTICATED,
@@ -210,10 +214,7 @@ class TableTest extends TestCase
                     [
                         'reason' => 'some failure reason',
                         'domain' => 'some failure domain',
-                        'metadata' => [
-                            'service' => 'bigtable.googleapis.com',
-                            'consumer' => 'projects\/my-project',
-                        ],
+                        'metadata' => $apiExceptionMetadata,
                     ],
                 ],
             ]
@@ -228,10 +229,10 @@ class TableTest extends TestCase
             $this->assertEquals($apiException->getCode(), $ex->getCode());
             $this->assertEquals($exMessage, $ex->getMessage());
             $this->assertSame(
-                $apiException->getErrorInfoMetadata(),
+                $apiExceptionMetadata,
                 array_intersect_key(
                     $ex->getMetadata(),
-                    $apiException->getErrorInfoMetadata()
+                    $apiExceptionMetadata
                 )
             );
         } catch (Exception $ex) {

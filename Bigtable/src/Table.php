@@ -549,7 +549,7 @@ class Table
                 $ex->getCode(),
                 $ex->getMessage()
             );
-            if (!is_null($ex->getErrorInfoMetadata())) {
+            if ($ex->getErrorInfoMetadata()) {
                 $rowMutationsFailedResponse = array_merge(
                     $rowMutationsFailedResponse,
                     $ex->getErrorInfoMetadata()
