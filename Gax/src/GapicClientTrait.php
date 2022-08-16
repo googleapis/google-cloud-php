@@ -589,7 +589,10 @@ trait GapicClientTrait
                 $optionalArgs,
                 $request,
                 $this->getOperationsClient(),
-                $interfaceName
+                $interfaceName,
+                // Custom operations will define their own operation response type, whereas standard
+                // LRO defaults to the same type.
+                $method['responseType'] ?? null
             );
         }
 
