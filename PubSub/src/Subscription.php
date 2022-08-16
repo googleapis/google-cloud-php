@@ -732,7 +732,7 @@ class Subscription
      * @param array $options [optional] {
      *      Configuration Options
      *
-     *      @type bool $returnFailures If set, and if a message is failed with a
+     *      @type bool $returnFailures If set, and if an acknowledgement is failed with a
      *            temporary failure code, it will be retried with an exponential delay. This will also make sure
      *            that the permanently failed message is returned to the caller. This is only true for a
      *            subscription with 'Exactly Once Delivery' enabled.
