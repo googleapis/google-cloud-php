@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.2](https://github.com/googleapis/gax-php/compare/v1.16.1...v1.16.2) (2022-08-16)
+
+
+### Bug Fixes
+
+* use responseType for custom operations ([#413](https://github.com/googleapis/gax-php/issues/413)) ([b643adf](https://github.com/googleapis/gax-php/commit/b643adfc44dd9fe82b0919e5b34edd00c7cdbb1f))
+
 ## [1.16.1](https://github.com/googleapis/gax-php/compare/v1.16.0...v1.16.1) (2022-08-11)
 
 
