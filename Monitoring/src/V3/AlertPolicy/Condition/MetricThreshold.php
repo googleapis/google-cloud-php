@@ -114,6 +114,13 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.Trigger trigger = 7;</code>
      */
     private $trigger = null;
+    /**
+     * A condition control that determines how metric-threshold conditions
+     * are evaluated when data stops arriving.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
+     */
+    private $evaluation_missing_data = 0;
 
     /**
      * Constructor.
@@ -187,6 +194,9 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
      *           time series that have been identified by `filter` and `aggregations`,
      *           or by the ratio, if `denominator_filter` and `denominator_aggregations`
      *           are specified.
+     *     @type int $evaluation_missing_data
+     *           A condition control that determines how metric-threshold conditions
+     *           are evaluated when data stops arriving.
      * }
      */
     public function __construct($data = NULL) {
@@ -518,6 +528,34 @@ class MetricThreshold extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\Trigger::class);
         $this->trigger = $var;
+
+        return $this;
+    }
+
+    /**
+     * A condition control that determines how metric-threshold conditions
+     * are evaluated when data stops arriving.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
+     * @return int
+     */
+    public function getEvaluationMissingData()
+    {
+        return $this->evaluation_missing_data;
+    }
+
+    /**
+     * A condition control that determines how metric-threshold conditions
+     * are evaluated when data stops arriving.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Condition.EvaluationMissingData evaluation_missing_data = 11;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEvaluationMissingData($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Condition\EvaluationMissingData::class);
+        $this->evaluation_missing_data = $var;
 
         return $this;
     }
