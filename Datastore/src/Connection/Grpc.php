@@ -132,6 +132,12 @@ class Grpc implements ConnectionInterface
     public function beginTransaction(array $args)
     {
         if (isset($args['transactionOptions'])) {
+            array_walk($args['transactionOptions'], function (&$item) {
+                if ($item instanceof \stdClass) {
+                    $item = [];
+                }
+            });
+
             $args['transactionOptions'] = $this->serializer->decodeMessage(
                 new TransactionOptions,
                 $args['transactionOptions']
