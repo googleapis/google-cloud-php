@@ -34,6 +34,12 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentRequest.Priority priority = 5;</code>
      */
     private $priority = 0;
+    /**
+     * The document schema of the human review task.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 6;</code>
+     */
+    private $document_schema = null;
     protected $source;
 
     /**
@@ -51,6 +57,8 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
      *           Whether the validation should be performed on the ad-hoc review request.
      *     @type int $priority
      *           The priority of the human review task.
+     *     @type \Google\Cloud\DocumentAI\V1\DocumentSchema $document_schema
+     *           The document schema of the human review task.
      * }
      */
     public function __construct($data = NULL) {
@@ -165,6 +173,42 @@ class ReviewDocumentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority::class);
         $this->priority = $var;
+
+        return $this;
+    }
+
+    /**
+     * The document schema of the human review task.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 6;</code>
+     * @return \Google\Cloud\DocumentAI\V1\DocumentSchema|null
+     */
+    public function getDocumentSchema()
+    {
+        return $this->document_schema;
+    }
+
+    public function hasDocumentSchema()
+    {
+        return isset($this->document_schema);
+    }
+
+    public function clearDocumentSchema()
+    {
+        unset($this->document_schema);
+    }
+
+    /**
+     * The document schema of the human review task.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.DocumentSchema document_schema = 6;</code>
+     * @param \Google\Cloud\DocumentAI\V1\DocumentSchema $var
+     * @return $this
+     */
+    public function setDocumentSchema($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\DocumentSchema::class);
+        $this->document_schema = $var;
 
         return $this;
     }

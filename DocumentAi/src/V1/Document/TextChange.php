@@ -17,9 +17,8 @@ class TextChange extends \Google\Protobuf\Internal\Message
 {
     /**
      * Provenance of the correction.
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].  There can
-     * only be a single `TextAnchor.text_segments` element.  If the start and
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].  There can only be a
+     * single `TextAnchor.text_segments` element.  If the start and
      * end index of the text segment are the same, the text change is inserted
      * before that index.
      *
@@ -47,9 +46,8 @@ class TextChange extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor $text_anchor
      *           Provenance of the correction.
-     *           Text anchor indexing into the
-     *           [Document.text][google.cloud.documentai.v1.Document.text].  There can
-     *           only be a single `TextAnchor.text_segments` element.  If the start and
+     *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].  There can only be a
+     *           single `TextAnchor.text_segments` element.  If the start and
      *           end index of the text segment are the same, the text change is inserted
      *           before that index.
      *     @type string $changed_text
@@ -65,9 +63,8 @@ class TextChange extends \Google\Protobuf\Internal\Message
 
     /**
      * Provenance of the correction.
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].  There can
-     * only be a single `TextAnchor.text_segments` element.  If the start and
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].  There can only be a
+     * single `TextAnchor.text_segments` element.  If the start and
      * end index of the text segment are the same, the text change is inserted
      * before that index.
      *
@@ -91,9 +88,8 @@ class TextChange extends \Google\Protobuf\Internal\Message
 
     /**
      * Provenance of the correction.
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].  There can
-     * only be a single `TextAnchor.text_segments` element.  If the start and
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].  There can only be a
+     * single `TextAnchor.text_segments` element.  If the start and
      * end index of the text segment are the same, the text change is inserted
      * before that index.
      *
