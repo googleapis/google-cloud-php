@@ -14,13 +14,12 @@ class Common
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¨
-0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/api/field_behavior.protogoogle/protobuf/timestamp.proto"Ä
+ã
+0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
