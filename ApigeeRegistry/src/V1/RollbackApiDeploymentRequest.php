@@ -24,7 +24,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The revision ID to roll back to.
      * It must be a revision of the same deployment.
-     *   Example: c7cfa2a8
+     *   Example: `c7cfa2a8`
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -41,7 +41,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $revision_id
      *           Required. The revision ID to roll back to.
      *           It must be a revision of the same deployment.
-     *             Example: c7cfa2a8
+     *             Example: `c7cfa2a8`
      * }
      */
     public function __construct($data = NULL) {
@@ -78,7 +78,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The revision ID to roll back to.
      * It must be a revision of the same deployment.
-     *   Example: c7cfa2a8
+     *   Example: `c7cfa2a8`
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -91,7 +91,7 @@ class RollbackApiDeploymentRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The revision ID to roll back to.
      * It must be a revision of the same deployment.
-     *   Example: c7cfa2a8
+     *   Example: `c7cfa2a8`
      *
      * Generated from protobuf field <code>string revision_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
