@@ -14,13 +14,11 @@ class DataPayloads
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
-5google/cloud/datalabeling/v1beta1/data_payloads.proto!google.cloud.datalabeling.v1beta1google/protobuf/duration.protogoogle/protobuf/timestamp.proto"a
+Õ
+5google/cloud/datalabeling/v1beta1/data_payloads.proto!google.cloud.datalabeling.v1beta1"a
 ImagePayload
 	mime_type (	
 image_thumbnail (

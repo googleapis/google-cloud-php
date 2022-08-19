@@ -16,11 +16,10 @@ class TableSpec
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Io::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ƒ
-,google/cloud/automl/v1beta1/table_spec.protogoogle.cloud.automl.v1beta1$google/cloud/automl/v1beta1/io.protogoogle/api/annotations.proto"Á
+å
+,google/cloud/automl/v1beta1/table_spec.protogoogle.cloud.automl.v1beta1$google/cloud/automl/v1beta1/io.proto"Á
 	TableSpec
 name (	
 time_column_spec_id (	

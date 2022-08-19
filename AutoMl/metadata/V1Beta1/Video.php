@@ -15,11 +15,10 @@ class Video
           return;
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
-\'google/cloud/automl/v1beta1/video.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"$
+–
+\'google/cloud/automl/v1beta1/video.protogoogle.cloud.automl.v1beta1"$
 "VideoClassificationDatasetMetadata"$
 "VideoObjectTrackingDatasetMetadata""
  VideoClassificationModelMetadata""
