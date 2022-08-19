@@ -52,6 +52,10 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
      *     @type bool $boolean_value
      *           Boolean value. Can be used for entities with binary values, or for
      *           checkboxes.
+     *     @type int $integer_value
+     *           Integer value.
+     *     @type float $float_value
+     *           Float value.
      *     @type string $text
      *           Optional. An optional field to store a normalized string.
      *           For some entity types, one of respective `structured_value` fields may
@@ -230,6 +234,68 @@ class NormalizedValue extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * Integer value.
+     *
+     * Generated from protobuf field <code>int32 integer_value = 7;</code>
+     * @return int
+     */
+    public function getIntegerValue()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasIntegerValue()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Integer value.
+     *
+     * Generated from protobuf field <code>int32 integer_value = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIntegerValue($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->writeOneof(7, $var);
+
+        return $this;
+    }
+
+    /**
+     * Float value.
+     *
+     * Generated from protobuf field <code>float float_value = 8;</code>
+     * @return float
+     */
+    public function getFloatValue()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasFloatValue()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * Float value.
+     *
+     * Generated from protobuf field <code>float float_value = 8;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setFloatValue($var)
+    {
+        GPBUtil::checkFloat($var);
+        $this->writeOneof(8, $var);
 
         return $this;
     }

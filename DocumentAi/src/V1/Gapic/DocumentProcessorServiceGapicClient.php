@@ -25,11 +25,12 @@
 namespace Google\Cloud\DocumentAI\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
 
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -39,14 +40,40 @@ use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\DocumentAI\V1\BatchDocumentsInputConfig;
 use Google\Cloud\DocumentAI\V1\BatchProcessRequest;
+use Google\Cloud\DocumentAI\V1\CreateProcessorRequest;
+use Google\Cloud\DocumentAI\V1\DeleteProcessorRequest;
+use Google\Cloud\DocumentAI\V1\DeleteProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\DeployProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\DisableProcessorRequest;
 use Google\Cloud\DocumentAI\V1\Document;
 use Google\Cloud\DocumentAI\V1\DocumentOutputConfig;
+use Google\Cloud\DocumentAI\V1\DocumentSchema;
+use Google\Cloud\DocumentAI\V1\EnableProcessorRequest;
+use Google\Cloud\DocumentAI\V1\FetchProcessorTypesRequest;
+use Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse;
+use Google\Cloud\DocumentAI\V1\GetProcessorRequest;
+use Google\Cloud\DocumentAI\V1\GetProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\ListProcessorsRequest;
+use Google\Cloud\DocumentAI\V1\ListProcessorsResponse;
+use Google\Cloud\DocumentAI\V1\ListProcessorTypesRequest;
+use Google\Cloud\DocumentAI\V1\ListProcessorTypesResponse;
+use Google\Cloud\DocumentAI\V1\ListProcessorVersionsRequest;
+use Google\Cloud\DocumentAI\V1\ListProcessorVersionsResponse;
+use Google\Cloud\DocumentAI\V1\Processor;
+use Google\Cloud\DocumentAI\V1\ProcessorVersion;
 use Google\Cloud\DocumentAI\V1\ProcessRequest;
 use Google\Cloud\DocumentAI\V1\ProcessResponse;
 use Google\Cloud\DocumentAI\V1\RawDocument;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest;
 use Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority;
+use Google\Cloud\DocumentAI\V1\SetDefaultProcessorVersionRequest;
+use Google\Cloud\DocumentAI\V1\UndeployProcessorVersionRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: Service to call Cloud DocumentAI to process documents according to the
@@ -60,8 +87,8 @@ use Google\LongRunning\Operation;
  * ```
  * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
  * try {
- *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
- *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($formattedName);
+ *     $name = 'name';
+ *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
  *     $operationResponse->pollUntilComplete();
  *     if ($operationResponse->operationSucceeded()) {
  *         $result = $operationResponse->getResult();
@@ -72,7 +99,7 @@ use Google\LongRunning\Operation;
  *     }
  *     // Alternatively:
  *     // start the operation, keep the operation name, and resume later
- *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($formattedName);
+ *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
  *     $operationName = $operationResponse->getName();
  *     // ... do other work
  *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'batchProcessDocuments');
@@ -130,7 +157,11 @@ class DocumentProcessorServiceGapicClient
 
     private static $humanReviewConfigNameTemplate;
 
+    private static $locationNameTemplate;
+
     private static $processorNameTemplate;
+
+    private static $processorVersionNameTemplate;
 
     private static $pathTemplateMap;
 
@@ -175,6 +206,17 @@ class DocumentProcessorServiceGapicClient
         return self::$humanReviewConfigNameTemplate;
     }
 
+    private static function getLocationNameTemplate()
+    {
+        if (self::$locationNameTemplate == null) {
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
+        }
+
+        return self::$locationNameTemplate;
+    }
+
     private static function getProcessorNameTemplate()
     {
         if (self::$processorNameTemplate == null) {
@@ -186,12 +228,25 @@ class DocumentProcessorServiceGapicClient
         return self::$processorNameTemplate;
     }
 
+    private static function getProcessorVersionNameTemplate()
+    {
+        if (self::$processorVersionNameTemplate == null) {
+            self::$processorVersionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}'
+            );
+        }
+
+        return self::$processorVersionNameTemplate;
+    }
+
     private static function getPathTemplateMap()
     {
         if (self::$pathTemplateMap == null) {
             self::$pathTemplateMap = [
                 'humanReviewConfig' => self::getHumanReviewConfigNameTemplate(),
+                'location' => self::getLocationNameTemplate(),
                 'processor' => self::getProcessorNameTemplate(),
+                'processorVersion' => self::getProcessorVersionNameTemplate(),
             ];
         }
 
@@ -221,6 +276,23 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a location
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     *
+     * @return string The formatted location resource.
+     */
+    public static function locationName($project, $location)
+    {
+        return self::getLocationNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+        ]);
+    }
+
+    /**
      * Formats a string containing the fully-qualified path to represent a processor
      * resource.
      *
@@ -240,11 +312,38 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
+     * Formats a string containing the fully-qualified path to represent a
+     * processor_version resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $processor
+     * @param string $processorVersion
+     *
+     * @return string The formatted processor_version resource.
+     */
+    public static function processorVersionName(
+        $project,
+        $location,
+        $processor,
+        $processorVersion
+    ) {
+        return self::getProcessorVersionNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'processor' => $processor,
+            'processor_version' => $processorVersion,
+        ]);
+    }
+
+    /**
      * Parses a formatted name string and returns an associative array of the components in the name.
      * The following name formats are supported:
      * Template: Pattern
      * - humanReviewConfig: projects/{project}/locations/{location}/processors/{processor}/humanReviewConfig
+     * - location: projects/{project}/locations/{location}
      * - processor: projects/{project}/locations/{location}/processors/{processor}
+     * - processorVersion: projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
@@ -392,8 +491,8 @@ class DocumentProcessorServiceGapicClient
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
-     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($formattedName);
+     *     $name = 'name';
+     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
      *     $operationResponse->pollUntilComplete();
      *     if ($operationResponse->operationSucceeded()) {
      *         $result = $operationResponse->getResult();
@@ -404,7 +503,7 @@ class DocumentProcessorServiceGapicClient
      *     }
      *     // Alternatively:
      *     // start the operation, keep the operation name, and resume later
-     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($formattedName);
+     *     $operationResponse = $documentProcessorServiceClient->batchProcessDocuments($name);
      *     $operationName = $operationResponse->getName();
      *     // ... do other work
      *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'batchProcessDocuments');
@@ -424,7 +523,11 @@ class DocumentProcessorServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The processor resource name.
+     * @param string $name         Required. The resource name of [Processor][google.cloud.documentai.v1.Processor] or
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion].
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`,
+     *                             or
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -480,20 +583,827 @@ class DocumentProcessorServiceGapicClient
     }
 
     /**
-     * Processes a single document.
+     * Creates a processor from the type processor that the user chose.
+     * The processor will be at "ENABLED" state by default after its creation.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $processor = new Processor();
+     *     $response = $documentProcessorServiceClient->createProcessor($formattedParent, $processor);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string    $parent       Required. The parent (project and location) under which to create the processor.
+     *                                Format: `projects/{project}/locations/{location}`
+     * @param Processor $processor    Required. The processor to be created, requires [processor_type] and [display_name]
+     *                                to be set. Also, the processor is under CMEK if CMEK fields are set.
+     * @param array     $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\Processor
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createProcessor(
+        $parent,
+        $processor,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateProcessorRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setProcessor($processor);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'CreateProcessor',
+            Processor::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the processor, unloads all deployed model artifacts if it was
+     * enabled and then deletes all artifacts associated with this processor.
      *
      * Sample code:
      * ```
      * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
      * try {
      *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
-     *     $response = $documentProcessorServiceClient->processDocument($formattedName);
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessor($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deleteProcessor');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor resource name to be deleted.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteProcessor($name, array $optionalArgs = [])
+    {
+        $request = new DeleteProcessorRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteProcessor',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deletes the processor version, all artifacts under the processor version
+     * will be deleted.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->deleteProcessorVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deleteProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // operation succeeded and returns no value
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor version resource name to be deleted.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteProcessorVersion($name, array $optionalArgs = [])
+    {
+        $request = new DeleteProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Deploys the processor version.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->deployProcessorVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'deployProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor version resource name to be deployed.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deployProcessorVersion($name, array $optionalArgs = [])
+    {
+        $request = new DeployProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeployProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Disables a processor
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->disableProcessor($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->disableProcessor($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'disableProcessor');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor resource name to be disabled.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function disableProcessor($name, array $optionalArgs = [])
+    {
+        $request = new DisableProcessorRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DisableProcessor',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Enables a processor
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $operationResponse = $documentProcessorServiceClient->enableProcessor($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->enableProcessor($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'enableProcessor');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor resource name to be enabled.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function enableProcessor($name, array $optionalArgs = [])
+    {
+        $request = new EnableProcessorRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'EnableProcessor',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Fetches processor types. Note that we do not use ListProcessorTypes here
+     * because it is not paginated.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     $response = $documentProcessorServiceClient->fetchProcessorTypes($formattedParent);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project of processor type to list.
+     *                             The available processor types may depend on the allow-listing on projects.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\FetchProcessorTypesResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function fetchProcessorTypes($parent, array $optionalArgs = [])
+    {
+        $request = new FetchProcessorTypesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'FetchProcessorTypes',
+            FetchProcessorTypesResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a processor detail.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $response = $documentProcessorServiceClient->getProcessor($formattedName);
      * } finally {
      *     $documentProcessorServiceClient->close();
      * }
      * ```
      *
      * @param string $name         Required. The processor resource name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\Processor
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProcessor($name, array $optionalArgs = [])
+    {
+        $request = new GetProcessorRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProcessor',
+            Processor::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a processor version detail.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $response = $documentProcessorServiceClient->getProcessorVersion($formattedName);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor resource name.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\DocumentAI\V1\ProcessorVersion
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getProcessorVersion($name, array $optionalArgs = [])
+    {
+        $request = new GetProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetProcessorVersion',
+            ProcessorVersion::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Lists the processor types that exist.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorTypes($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The location of processor type to list.
+     *                             The available processor types may depend on the allow-listing on projects.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProcessorTypes($parent, array $optionalArgs = [])
+    {
+        $request = new ListProcessorTypesRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProcessorTypes',
+            $optionalArgs,
+            ListProcessorTypesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists all versions of a processor.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessorVersions($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent (project, location and processor) to list all versions.
+     *                             Format: `projects/{project}/locations/{location}/processors/{processor}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProcessorVersions($parent, array $optionalArgs = [])
+    {
+        $request = new ListProcessorVersionsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProcessorVersions',
+            $optionalArgs,
+            ListProcessorVersionsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists all processors which belong to this project.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedParent = $documentProcessorServiceClient->locationName('[PROJECT]', '[LOCATION]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessors($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $documentProcessorServiceClient->listProcessors($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent (project and location) which owns this collection of Processors.
+     *                             Format: `projects/{project}/locations/{location}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listProcessors($parent, array $optionalArgs = [])
+    {
+        $request = new ListProcessorsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListProcessors',
+            $optionalArgs,
+            ListProcessorsResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Processes a single document.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $name = 'name';
+     *     $response = $documentProcessorServiceClient->processDocument($name);
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] or
+     *                             [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion]
+     *                             to use for processing. If a [Processor][google.cloud.documentai.v1.Processor] is specified, the server will use
+     *                             its [default version][google.cloud.documentai.v1.Processor.default_processor_version]. Format:
+     *                             `projects/{project}/locations/{location}/processors/{processor}`, or
+     *                             `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -504,6 +1414,8 @@ class DocumentProcessorServiceGapicClient
      *     @type bool $skipHumanReview
      *           Whether Human Review feature should be skipped for this request. Default to
      *           false.
+     *     @type FieldMask $fieldMask
+     *           Specifies which fields to include in ProcessResponse's document.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -530,6 +1442,10 @@ class DocumentProcessorServiceGapicClient
 
         if (isset($optionalArgs['skipHumanReview'])) {
             $request->setSkipHumanReview($optionalArgs['skipHumanReview']);
+        }
+
+        if (isset($optionalArgs['fieldMask'])) {
+            $request->setFieldMask($optionalArgs['fieldMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -598,6 +1514,8 @@ class DocumentProcessorServiceGapicClient
      *     @type int $priority
      *           The priority of the human review task.
      *           For allowed values, use constants defined on {@see \Google\Cloud\DocumentAI\V1\ReviewDocumentRequest\Priority}
+     *     @type DocumentSchema $documentSchema
+     *           The document schema of the human review task.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -628,6 +1546,10 @@ class DocumentProcessorServiceGapicClient
             $request->setPriority($optionalArgs['priority']);
         }
 
+        if (isset($optionalArgs['documentSchema'])) {
+            $request->setDocumentSchema($optionalArgs['documentSchema']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -640,5 +1562,301 @@ class DocumentProcessorServiceGapicClient
             $request,
             $this->getOperationsClient()
         )->wait();
+    }
+
+    /**
+     * Set the default (active) version of a [Processor][google.cloud.documentai.v1.Processor] that will be used in
+     * [ProcessDocument][google.cloud.documentai.v1.DocumentProcessorService.ProcessDocument] and
+     * [BatchProcessDocuments][google.cloud.documentai.v1.DocumentProcessorService.BatchProcessDocuments].
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedProcessor = $documentProcessorServiceClient->processorName('[PROJECT]', '[LOCATION]', '[PROCESSOR]');
+     *     $formattedDefaultProcessorVersion = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion($formattedProcessor, $formattedDefaultProcessorVersion);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->setDefaultProcessorVersion($formattedProcessor, $formattedDefaultProcessorVersion);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'setDefaultProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $processor               Required. The resource name of the [Processor][google.cloud.documentai.v1.Processor] to change default version.
+     * @param string $defaultProcessorVersion Required. The resource name of child [ProcessorVersion][google.cloud.documentai.v1.ProcessorVersion] to use as default.
+     *                                        Format:
+     *                                        `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{version}`
+     * @param array  $optionalArgs            {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setDefaultProcessorVersion(
+        $processor,
+        $defaultProcessorVersion,
+        array $optionalArgs = []
+    ) {
+        $request = new SetDefaultProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setProcessor($processor);
+        $request->setDefaultProcessorVersion($defaultProcessorVersion);
+        $requestParamHeaders['processor'] = $processor;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'SetDefaultProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Undeploys the processor version.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $formattedName = $documentProcessorServiceClient->processorVersionName('[PROJECT]', '[LOCATION]', '[PROCESSOR]', '[PROCESSOR_VERSION]');
+     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion($formattedName);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $documentProcessorServiceClient->undeployProcessorVersion($formattedName);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $documentProcessorServiceClient->resumeOperation($operationName, 'undeployProcessorVersion');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The processor version resource name to be undeployed.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function undeployProcessorVersion($name, array $optionalArgs = [])
+    {
+        $request = new UndeployProcessorVersionRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UndeployProcessorVersion',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     $response = $documentProcessorServiceClient->getLocation();
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $documentProcessorServiceClient = new DocumentProcessorServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $documentProcessorServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $documentProcessorServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $documentProcessorServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }

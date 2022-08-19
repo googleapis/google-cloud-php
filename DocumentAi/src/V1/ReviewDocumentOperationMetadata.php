@@ -22,7 +22,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     private $common_metadata = null;
     /**
-     * The question ID.
+     * The Crowd Compute question ID.
      *
      * Generated from protobuf field <code>string question_id = 6;</code>
      */
@@ -37,7 +37,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\CommonOperationMetadata $common_metadata
      *           The basic metadata of the long running operation.
      *     @type string $question_id
-     *           The question ID.
+     *           The Crowd Compute question ID.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,7 +82,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The question ID.
+     * The Crowd Compute question ID.
      *
      * Generated from protobuf field <code>string question_id = 6;</code>
      * @return string
@@ -93,7 +93,7 @@ class ReviewDocumentOperationMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The question ID.
+     * The Crowd Compute question ID.
      *
      * Generated from protobuf field <code>string question_id = 6;</code>
      * @param string $var

@@ -16,32 +16,27 @@ use Google\Protobuf\Internal\GPBUtil;
 class Layout extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      */
     private $text_anchor = null;
     /**
-     * Confidence of the current
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] within
-     * context of the object this layout is for. e.g. confidence can be for a
-     * single token, a table, a visual element, etc. depending on context.
-     * Range [0, 1].
+     * Confidence of the current [Layout][google.cloud.documentai.v1.Document.Page.Layout] within context of the object this
+     * layout is for. e.g. confidence can be for a single token, a table,
+     * a visual element, etc. depending on context. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
     private $confidence = 0.0;
     /**
-     * The bounding polygon for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * The bounding polygon for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 3;</code>
      */
     private $bounding_poly = null;
     /**
-     * Detected orientation for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * Detected orientation for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout.Orientation orientation = 4;</code>
      */
@@ -54,20 +49,15 @@ class Layout extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\TextAnchor $text_anchor
-     *           Text anchor indexing into the
-     *           [Document.text][google.cloud.documentai.v1.Document.text].
+     *           Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *     @type float $confidence
-     *           Confidence of the current
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] within
-     *           context of the object this layout is for. e.g. confidence can be for a
-     *           single token, a table, a visual element, etc. depending on context.
-     *           Range [0, 1].
+     *           Confidence of the current [Layout][google.cloud.documentai.v1.Document.Page.Layout] within context of the object this
+     *           layout is for. e.g. confidence can be for a single token, a table,
+     *           a visual element, etc. depending on context. Range [0, 1].
      *     @type \Google\Cloud\DocumentAI\V1\BoundingPoly $bounding_poly
-     *           The bounding polygon for the
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     *           The bounding polygon for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *     @type int $orientation
-     *           Detected orientation for the
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     *           Detected orientation for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      * }
      */
     public function __construct($data = NULL) {
@@ -76,8 +66,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\TextAnchor|null
@@ -98,8 +87,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Text anchor indexing into the
-     * [Document.text][google.cloud.documentai.v1.Document.text].
+     * Text anchor indexing into the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.TextAnchor text_anchor = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\TextAnchor $var
@@ -114,11 +102,9 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of the current
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] within
-     * context of the object this layout is for. e.g. confidence can be for a
-     * single token, a table, a visual element, etc. depending on context.
-     * Range [0, 1].
+     * Confidence of the current [Layout][google.cloud.documentai.v1.Document.Page.Layout] within context of the object this
+     * layout is for. e.g. confidence can be for a single token, a table,
+     * a visual element, etc. depending on context. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
@@ -129,11 +115,9 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of the current
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] within
-     * context of the object this layout is for. e.g. confidence can be for a
-     * single token, a table, a visual element, etc. depending on context.
-     * Range [0, 1].
+     * Confidence of the current [Layout][google.cloud.documentai.v1.Document.Page.Layout] within context of the object this
+     * layout is for. e.g. confidence can be for a single token, a table,
+     * a visual element, etc. depending on context. Range [0, 1].
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var
@@ -148,8 +132,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The bounding polygon for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * The bounding polygon for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 3;</code>
      * @return \Google\Cloud\DocumentAI\V1\BoundingPoly|null
@@ -170,8 +153,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The bounding polygon for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * The bounding polygon for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.BoundingPoly bounding_poly = 3;</code>
      * @param \Google\Cloud\DocumentAI\V1\BoundingPoly $var
@@ -186,8 +168,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detected orientation for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * Detected orientation for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout.Orientation orientation = 4;</code>
      * @return int
@@ -198,8 +179,7 @@ class Layout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Detected orientation for the
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout].
+     * Detected orientation for the [Layout][google.cloud.documentai.v1.Document.Page.Layout].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout.Orientation orientation = 4;</code>
      * @param int $var
