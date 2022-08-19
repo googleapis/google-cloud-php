@@ -1,0 +1,103 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.clouddms.v1",
+    "libraryPackage": "Google\\Cloud\\CloudDms\\V1",
+    "services": {
+        "DataMigrationService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataMigrationServiceGapicClient",
+                    "rpcs": {
+                        "CreateConnectionProfile": {
+                            "methods": [
+                                "createConnectionProfile"
+                            ]
+                        },
+                        "CreateMigrationJob": {
+                            "methods": [
+                                "createMigrationJob"
+                            ]
+                        },
+                        "DeleteConnectionProfile": {
+                            "methods": [
+                                "deleteConnectionProfile"
+                            ]
+                        },
+                        "DeleteMigrationJob": {
+                            "methods": [
+                                "deleteMigrationJob"
+                            ]
+                        },
+                        "GenerateSshScript": {
+                            "methods": [
+                                "generateSshScript"
+                            ]
+                        },
+                        "GetConnectionProfile": {
+                            "methods": [
+                                "getConnectionProfile"
+                            ]
+                        },
+                        "GetMigrationJob": {
+                            "methods": [
+                                "getMigrationJob"
+                            ]
+                        },
+                        "ListConnectionProfiles": {
+                            "methods": [
+                                "listConnectionProfiles"
+                            ]
+                        },
+                        "ListMigrationJobs": {
+                            "methods": [
+                                "listMigrationJobs"
+                            ]
+                        },
+                        "PromoteMigrationJob": {
+                            "methods": [
+                                "promoteMigrationJob"
+                            ]
+                        },
+                        "RestartMigrationJob": {
+                            "methods": [
+                                "restartMigrationJob"
+                            ]
+                        },
+                        "ResumeMigrationJob": {
+                            "methods": [
+                                "resumeMigrationJob"
+                            ]
+                        },
+                        "StartMigrationJob": {
+                            "methods": [
+                                "startMigrationJob"
+                            ]
+                        },
+                        "StopMigrationJob": {
+                            "methods": [
+                                "stopMigrationJob"
+                            ]
+                        },
+                        "UpdateConnectionProfile": {
+                            "methods": [
+                                "updateConnectionProfile"
+                            ]
+                        },
+                        "UpdateMigrationJob": {
+                            "methods": [
+                                "updateMigrationJob"
+                            ]
+                        },
+                        "VerifyMigrationJob": {
+                            "methods": [
+                                "verifyMigrationJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
