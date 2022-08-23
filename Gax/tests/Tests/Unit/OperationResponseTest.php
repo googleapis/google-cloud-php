@@ -377,7 +377,7 @@ class FakeOperationResponse extends OperationResponse
         return $this->sleeps;
     }
 
-    public function sleepMillis($millis)
+    public function sleepMillis(int $millis)
     {
         $this->currentTime += $millis;
         $this->sleeps[] = $millis;

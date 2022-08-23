@@ -57,6 +57,9 @@ class CredentialsWrapper
     private $credentialsFetcher;
     private $authHttpHandler;
 
+    /** @var int */
+    private static $eagerRefreshThresholdSeconds = 10;
+
     /**
      * CredentialsWrapper constructor.
      * @param FetchAuthTokenInterface $credentialsFetcher A credentials loader
@@ -297,6 +300,6 @@ class CredentialsWrapper
     {
         return !(self::isValid($token)
             && array_key_exists('expires_at', $token)
-            && $token['expires_at'] > time());
+            && $token['expires_at'] > time() + self::$eagerRefreshThresholdSeconds);
     }
 }
