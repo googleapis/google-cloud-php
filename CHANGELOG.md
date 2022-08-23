@@ -1,5 +1,533 @@
 # Changelog
 
+## 0.188.0
+
+<details><summary>google/cloud-api-gateway 0.2.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 0.3.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-bigquery 1.23.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+* fix class references in phpdoc ([#5445](https://github.com/googleapis/google-cloud-php/issues/5445)) ([01e6069](https://github.com/googleapis/google-cloud-php/commit/01e6069a8f0664d22989420ed4087ed600c6f68c))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.18.0</summary>
+
+
+
+### Features
+
+* **bigtable:** implementing actionable errors ([#5421](https://github.com/googleapis/google-cloud-php/issues/5421)) ([11664e0](https://github.com/googleapis/google-cloud-php/commit/11664e0f42ad5455871fd4038381cef20c06d9ae))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.5</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/common-protos to v3 ([#5423](https://github.com/googleapis/google-cloud-php/issues/5423)) ([6ca1de0](https://github.com/googleapis/google-cloud-php/commit/6ca1de01ba5b2207d87f59c4ed4291b9eefe9ca6))
+
+</details>
+
+<details><summary>google/cloud-core 1.47.2</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/common-protos to v3 ([#5423](https://github.com/googleapis/google-cloud-php/issues/5423)) ([6ca1de0](https://github.com/googleapis/google-cloud-php/commit/6ca1de01ba5b2207d87f59c4ed4291b9eefe9ca6))
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.16.2</summary>
+
+
+
+### Bug Fixes
+
+* ensure object cast only occurs with rest transport ([e559d46](https://github.com/googleapis/google-cloud-php/commit/e559d46fd3a976d02019b6c0fc920e4832f6c0ff))
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+* **datastore:** update service discovery ([#5455](https://github.com/googleapis/google-cloud-php/issues/5455)) ([2a89eb7](https://github.com/googleapis/google-cloud-php/commit/2a89eb7fdfbfd095dabd58680812bde6c661a3ee))
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-datastream 0.1.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.10</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-dms 0.2.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-document-ai 0.3.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* Changed the name field for ProcessRequest and BatchProcessorRequest to accept * so the name field can accept Processor and ProcessorVersion.
+
+### Features
+
+* Added Processor Management and Processor Version support to v1 library ([#5446](https://github.com/googleapis/google-cloud-php/issues/5446)) ([01f0d7a](https://github.com/googleapis/google-cloud-php/commit/01f0d7a7f162d49f96d06f8df1fd23f9f6d951e6))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.25.2</summary>
+
+
+
+### Bug Fixes
+
+* **firestore:** Fixing Firestore emulator tests ([#5458](https://github.com/googleapis/google-cloud-php/issues/5458)) ([e1d0e9a](https://github.com/googleapis/google-cloud-php/commit/e1d0e9a597ce26b6069bcb76c7a8fe434f2ea9d3))
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 0.2.3</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/common-protos to v3 ([#5423](https://github.com/googleapis/google-cloud-php/issues/5423)) ([6ca1de0](https://github.com/googleapis/google-cloud-php/commit/6ca1de01ba5b2207d87f59c4ed4291b9eefe9ca6))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-language 0.26.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.2.0</summary>
+
+
+
+### Features
+
+* [Monitoring] Added support for evaluating missing data in AlertPolicy ([#5440](https://github.com/googleapis/google-cloud-php/issues/5440)) ([24fe624](https://github.com/googleapis/google-cloud-php/commit/24fe62495dab9dd8afc6b1b4642f1ad7c82f1d4d))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 0.2.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-network-management 0.2.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 0.1.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.39.0</summary>
+
+
+
+### Features
+
+* **PubSub:** Support for Exactly Once Delivery([#5315](https://github.com/googleapis/google-cloud-php/issues/5315)) ([a6e8e2d](https://github.com/googleapis/google-cloud-php/commit/a6e8e2d564c86ea215ef953e0b86d4d39c32258a))
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-retail 0.6.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 0.4.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-service-control 0.3.9</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/common-protos to v3 ([#5423](https://github.com/googleapis/google-cloud-php/issues/5423)) ([6ca1de0](https://github.com/googleapis/google-cloud-php/commit/6ca1de01ba5b2207d87f59c4ed4291b9eefe9ca6))
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-service-directory 0.7.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-service-management 0.3.5</summary>
+
+
+
+### Bug Fixes
+
+* **deps:** update dependency google/common-protos to v3 ([#5423](https://github.com/googleapis/google-cloud-php/issues/5423)) ([6ca1de0](https://github.com/googleapis/google-cloud-php/commit/6ca1de01ba5b2207d87f59c4ed4291b9eefe9ca6))
+
+</details>
+
+<details><summary>google/cloud-service-usage 0.2.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-shell 0.2.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.51.2</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-speech 1.6.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-storage 1.28.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.8</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Many APIs] remove unused proto imports ([#5459](https://github.com/googleapis/google-cloud-php/issues/5459)) ([3c1c98e](https://github.com/googleapis/google-cloud-php/commit/3c1c98e7767b60fefceefbb5635bf1dd2686ea94))
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.9</summary>
+
+
+
+### Miscellaneous Chores
+
+* explicitly import prophecy ([#5464](https://github.com/googleapis/google-cloud-php/issues/5464)) ([d1d5d65](https://github.com/googleapis/google-cloud-php/commit/d1d5d65bd39edff8c000a3ae4fb33f3e7054a869))
+
+</details>
+
 ## 0.187.0
 
 <details><summary>google/cloud-access-approval 0.5.1</summary>
