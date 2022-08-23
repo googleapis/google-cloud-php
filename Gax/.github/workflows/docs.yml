@@ -25,7 +25,7 @@ jobs:
             max_attempts: 3
             command: composer install
         - name: Generate Documentation
-          uses: docker://php:7.4-cli
+          uses: docker://php:8.1-cli
           with:
             entrypoint: ./dev/sh/build-docs.sh
             args: ${{ steps.getTag.outputs.tag }}
