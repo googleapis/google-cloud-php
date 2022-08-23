@@ -127,4 +127,133 @@ class CatalogServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Gets a [CompletionConfig][google.cloud.retail.v2.CompletionConfig].
+     * @param \Google\Cloud\Retail\V2\GetCompletionConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetCompletionConfig(\Google\Cloud\Retail\V2\GetCompletionConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/GetCompletionConfig',
+        $argument,
+        ['\Google\Cloud\Retail\V2\CompletionConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the [CompletionConfig][google.cloud.retail.v2.CompletionConfig]s.
+     * @param \Google\Cloud\Retail\V2\UpdateCompletionConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateCompletionConfig(\Google\Cloud\Retail\V2\UpdateCompletionConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/UpdateCompletionConfig',
+        $argument,
+        ['\Google\Cloud\Retail\V2\CompletionConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets an [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+     * @param \Google\Cloud\Retail\V2\GetAttributesConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetAttributesConfig(\Google\Cloud\Retail\V2\GetAttributesConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/GetAttributesConfig',
+        $argument,
+        ['\Google\Cloud\Retail\V2\AttributesConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+     *
+     * The catalog attributes in the request will be updated in the catalog, or
+     * inserted if they do not exist. Existing catalog attributes not included in
+     * the request will remain unchanged. Attributes that are assigned to
+     * products, but do not exist at the catalog level, are always included in the
+     * response. The product attribute is assigned default values for missing
+     * catalog attribute fields, e.g., searchable and dynamic facetable options.
+     * @param \Google\Cloud\Retail\V2\UpdateAttributesConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateAttributesConfig(\Google\Cloud\Retail\V2\UpdateAttributesConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/UpdateAttributesConfig',
+        $argument,
+        ['\Google\Cloud\Retail\V2\AttributesConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Adds the specified
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to the
+     * [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+     *
+     * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to add
+     * already exists, an ALREADY_EXISTS error is returned.
+     * @param \Google\Cloud\Retail\V2\AddCatalogAttributeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AddCatalogAttribute(\Google\Cloud\Retail\V2\AddCatalogAttributeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/AddCatalogAttribute',
+        $argument,
+        ['\Google\Cloud\Retail\V2\AttributesConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Removes the specified
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] from the
+     * [AttributesConfig][google.cloud.retail.v2.AttributesConfig].
+     *
+     * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
+     * remove does not exist, a NOT_FOUND error is returned.
+     * @param \Google\Cloud\Retail\V2\RemoveCatalogAttributeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RemoveCatalogAttribute(\Google\Cloud\Retail\V2\RemoveCatalogAttributeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/RemoveCatalogAttribute',
+        $argument,
+        ['\Google\Cloud\Retail\V2\AttributesConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Replaces the specified
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] in the
+     * [AttributesConfig][google.cloud.retail.v2.AttributesConfig] by updating the
+     * catalog attribute with the same
+     * [CatalogAttribute.key][google.cloud.retail.v2.CatalogAttribute.key].
+     *
+     * If the [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] to
+     * replace does not exist, a NOT_FOUND error is returned.
+     * @param \Google\Cloud\Retail\V2\ReplaceCatalogAttributeRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ReplaceCatalogAttribute(\Google\Cloud\Retail\V2\ReplaceCatalogAttributeRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.CatalogService/ReplaceCatalogAttribute',
+        $argument,
+        ['\Google\Cloud\Retail\V2\AttributesConfig', 'decode'],
+        $metadata, $options);
+    }
+
 }

@@ -29,13 +29,6 @@ class ReconciliationMode
     /**
      * Calculates diff and replaces the entire product dataset. Existing
      * products may be deleted if they are not present in the source location.
-     * Can only be set while using
-     * [BigQuerySource][google.cloud.retail.v2.BigQuerySource]. And the BigQuery
-     * dataset must be created in the data location "us (multiple regions in
-     * United States)", otherwise a PERMISSION_DENIED error is thrown.
-     * Add the IAM permission "BigQuery Data Viewer" for
-     * cloud-retail-customer-data-access&#64;system.gserviceaccount.com before
-     * using this feature otherwise an error is thrown.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */
