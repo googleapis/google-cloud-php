@@ -28,6 +28,8 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
      *           Oracle data source objects to avoid backfilling.
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $mysql_excluded_objects
      *           MySQL data source objects to avoid backfilling.
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_excluded_objects
+     *           PostgreSQL data source objects to avoid backfilling.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +95,37 @@ class BackfillAllStrategy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlRdbms::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * PostgreSQL data source objects to avoid backfilling.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_excluded_objects = 3;</code>
+     * @return \Google\Cloud\Datastream\V1\PostgresqlRdbms|null
+     */
+    public function getPostgresqlExcludedObjects()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPostgresqlExcludedObjects()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * PostgreSQL data source objects to avoid backfilling.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_excluded_objects = 3;</code>
+     * @param \Google\Cloud\Datastream\V1\PostgresqlRdbms $var
+     * @return $this
+     */
+    public function setPostgresqlExcludedObjects($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlRdbms::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

@@ -23,7 +23,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
     private $table = '';
     /**
      * MySQL columns in the database.
-     * When unspecified as part of include/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>
@@ -40,7 +40,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
      *           Table name.
      *     @type array<\Google\Cloud\Datastream\V1\MysqlColumn>|\Google\Protobuf\Internal\RepeatedField $mysql_columns
      *           MySQL columns in the database.
-     *           When unspecified as part of include/exclude lists, includes/excludes
+     *           When unspecified as part of include/exclude objects, includes/excludes
      *           everything.
      * }
      */
@@ -77,7 +77,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
 
     /**
      * MySQL columns in the database.
-     * When unspecified as part of include/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>
@@ -90,7 +90,7 @@ class MysqlTable extends \Google\Protobuf\Internal\Message
 
     /**
      * MySQL columns in the database.
-     * When unspecified as part of include/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.MysqlColumn mysql_columns = 2;</code>

@@ -27,6 +27,8 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
      *           Oracle data source object identifier.
      *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MysqlObjectIdentifier $mysql_identifier
      *           Mysql data source object identifier.
+     *     @type \Google\Cloud\Datastream\V1\SourceObjectIdentifier\PostgresqlObjectIdentifier $postgresql_identifier
+     *           PostgreSQL data source object identifier.
      * }
      */
     public function __construct($data = NULL) {
@@ -92,6 +94,37 @@ class SourceObjectIdentifier extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\MysqlObjectIdentifier::class);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * PostgreSQL data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.PostgresqlObjectIdentifier postgresql_identifier = 3;</code>
+     * @return \Google\Cloud\Datastream\V1\SourceObjectIdentifier\PostgresqlObjectIdentifier|null
+     */
+    public function getPostgresqlIdentifier()
+    {
+        return $this->readOneof(3);
+    }
+
+    public function hasPostgresqlIdentifier()
+    {
+        return $this->hasOneof(3);
+    }
+
+    /**
+     * PostgreSQL data source object identifier.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.SourceObjectIdentifier.PostgresqlObjectIdentifier postgresql_identifier = 3;</code>
+     * @param \Google\Cloud\Datastream\V1\SourceObjectIdentifier\PostgresqlObjectIdentifier $var
+     * @return $this
+     */
+    public function setPostgresqlIdentifier($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\SourceObjectIdentifier\PostgresqlObjectIdentifier::class);
+        $this->writeOneof(3, $var);
 
         return $this;
     }

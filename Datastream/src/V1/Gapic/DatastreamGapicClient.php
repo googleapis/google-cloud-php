@@ -70,6 +70,7 @@ use Google\Cloud\Datastream\V1\ListStreamsResponse;
 use Google\Cloud\Datastream\V1\LookupStreamObjectRequest;
 use Google\Cloud\Datastream\V1\MysqlRdbms;
 use Google\Cloud\Datastream\V1\OracleRdbms;
+use Google\Cloud\Datastream\V1\PostgresqlRdbms;
 use Google\Cloud\Datastream\V1\PrivateConnection;
 use Google\Cloud\Datastream\V1\Route;
 use Google\Cloud\Datastream\V1\SourceObjectIdentifier;
@@ -1398,6 +1399,8 @@ class DatastreamGapicClient
      *           Oracle RDBMS to enrich with child data objects and metadata.
      *     @type MysqlRdbms $mysqlRdbms
      *           MySQL RDBMS to enrich with child data objects and metadata.
+     *     @type PostgresqlRdbms $postgresqlRdbms
+     *           PostgreSQL RDBMS to enrich with child data objects and metadata.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1438,6 +1441,10 @@ class DatastreamGapicClient
 
         if (isset($optionalArgs['mysqlRdbms'])) {
             $request->setMysqlRdbms($optionalArgs['mysqlRdbms']);
+        }
+
+        if (isset($optionalArgs['postgresqlRdbms'])) {
+            $request->setPostgresqlRdbms($optionalArgs['postgresqlRdbms']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
