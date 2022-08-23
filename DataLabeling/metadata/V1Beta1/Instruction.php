@@ -14,14 +14,13 @@ class Instruction
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Datalabeling\V1Beta1\Dataset::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‡
-3google/cloud/datalabeling/v1beta1/instruction.proto!google.cloud.datalabeling.v1beta1google/api/resource.proto/google/cloud/datalabeling/v1beta1/dataset.protogoogle/protobuf/timestamp.proto"ý
+ì
+3google/cloud/datalabeling/v1beta1/instruction.proto!google.cloud.datalabeling.v1beta1/google/cloud/datalabeling/v1beta1/dataset.protogoogle/protobuf/timestamp.proto"ý
 Instruction
 name (	
 display_name (	
