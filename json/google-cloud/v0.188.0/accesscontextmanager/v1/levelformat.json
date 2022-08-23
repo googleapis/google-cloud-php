@@ -1,0 +1,1 @@
+{"id":"accesscontextmanager\/v1\/levelformat","type":"","title":"Google\\Identity\\AccessContextManager\\V1\\LevelFormat","name":"LevelFormat","description":"<p>The format used in an <code>AccessLevel<\/code>.<\/p>\n<p>Protobuf type <code>google.identity.accesscontextmanager.v1.LevelFormat<\/code><\/p>","examples":[],"resources":[],"methods":[]}

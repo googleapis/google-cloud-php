@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqlbackuprunstatus","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlBackupRunStatus","name":"SqlBackupRunStatus","description":"<p>The status of a backup run.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlBackupRunStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

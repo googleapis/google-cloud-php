@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/edudata\/institutetype","type":"","title":"Google\\Cloud\\Channel\\V1\\EduData\\InstituteType","name":"InstituteType","description":"<p>Enum to specify the institute type.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.EduData.InstituteType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

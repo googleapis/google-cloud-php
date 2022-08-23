@@ -1,0 +1,1 @@
+{"id":"container\/v1\/setmasterauthrequest\/action","type":"","title":"Google\\Cloud\\Container\\V1\\SetMasterAuthRequest\\Action","name":"Action","description":"<p>Operation type: what type update to perform.<\/p>\n<p>Protobuf type <code>google.container.v1.SetMasterAuthRequest.Action<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildevent_buildfinished","type":"","title":"Google\\Cloud\\Build\\V1\\BuildEvent_BuildFinished","name":"BuildEvent_BuildFinished","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildEvent\\BuildFinished instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/propertyfilter\/operator","type":"","title":"Google\\Cloud\\Datastore\\V1\\PropertyFilter\\Operator","name":"Operator","description":"<p>A property filter operator.<\/p>\n<p>Protobuf type <code>google.datastore.v1.PropertyFilter.Operator<\/code><\/p>","examples":[],"resources":[],"methods":[]}

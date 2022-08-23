@@ -1,0 +1,1 @@
+{"id":"container\/v1\/dnsconfig\/dnsscope","type":"","title":"Google\\Cloud\\Container\\V1\\DNSConfig\\DNSScope","name":"DNSScope","description":"<p>DNSScope lists the various scopes of access to cluster DNS records.<\/p>\n<p>Protobuf type <code>google.container.v1.DNSConfig.DNSScope<\/code><\/p>","examples":[],"resources":[],"methods":[]}

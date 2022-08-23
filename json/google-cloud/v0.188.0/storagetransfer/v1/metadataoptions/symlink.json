@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/metadataoptions\/symlink","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\MetadataOptions\\Symlink","name":"Symlink","description":"<p>Whether symlinks should be skipped or preserved during a transfer job.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.MetadataOptions.Symlink<\/code><\/p>","examples":[],"resources":[],"methods":[]}

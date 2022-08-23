@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/analyticsadminservicegrpcclient","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\AnalyticsAdminServiceGrpcClient","name":"AnalyticsAdminServiceGrpcClient","description":"<p>Service Interface for the Analytics Admin API (GA4).<\/p>\n<p>Extends \\Grpc\\BaseStub<\/p>","examples":[],"resources":[],"methods":[]}

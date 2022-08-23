@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/instance\/patchstate","type":"","title":"Google\\Cloud\\OsConfig\\V1\\Instance\\PatchState","name":"PatchState","description":"<p>Patch state of an instance.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.Instance.PatchState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

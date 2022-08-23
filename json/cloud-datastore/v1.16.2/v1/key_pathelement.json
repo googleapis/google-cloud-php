@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/key_pathelement","type":"","title":"Google\\Cloud\\Datastore\\V1\\Key_PathElement","name":"Key_PathElement","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\Key\\PathElement instead.<\/p>","examples":[],"resources":[],"methods":[]}

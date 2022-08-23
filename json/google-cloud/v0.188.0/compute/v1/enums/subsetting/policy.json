@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/subsetting\/policy","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Subsetting\\Policy","name":"Policy","description":"<p>Policy contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Subsetting.Policy descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

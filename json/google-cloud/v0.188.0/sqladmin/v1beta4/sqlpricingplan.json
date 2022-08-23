@@ -1,0 +1,1 @@
+{"id":"sqladmin\/v1beta4\/sqlpricingplan","type":"","title":"Google\\Cloud\\Sql\\V1beta4\\SqlPricingPlan","name":"SqlPricingPlan","description":"<p>The pricing plan for this instance.<\/p>\n<p>Protobuf type <code>google.cloud.sql.v1beta4.SqlPricingPlan<\/code><\/p>","examples":[],"resources":[],"methods":[]}

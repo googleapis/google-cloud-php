@@ -1,0 +1,1 @@
+{"id":"talent\/v4\/completequeryrequest\/completiontype","type":"","title":"Google\\Cloud\\Talent\\V4\\CompleteQueryRequest\\CompletionType","name":"CompletionType","description":"<p>Enum to specify auto-completion topics.<\/p>\n<p>Protobuf type <code>google.cloud.talent.v4.CompleteQueryRequest.CompletionType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

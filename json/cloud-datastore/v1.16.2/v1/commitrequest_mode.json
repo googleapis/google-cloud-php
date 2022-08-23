@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/commitrequest_mode","type":"","title":"Google\\Cloud\\Datastore\\V1\\CommitRequest_Mode","name":"CommitRequest_Mode","description":"<p>This class is deprecated. Use Google\\Cloud\\Datastore\\V1\\CommitRequest\\Mode instead.<\/p>","examples":[],"resources":[],"methods":[]}

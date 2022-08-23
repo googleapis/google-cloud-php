@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/locationpolicy\/targetshape","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\LocationPolicy\\TargetShape","name":"TargetShape","description":"<p>TargetShape contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.LocationPolicy.TargetShape descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

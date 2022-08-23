@@ -1,0 +1,1 @@
+{"id":"tpu\/v1\/symptom\/symptomtype","type":"","title":"Google\\Cloud\\Tpu\\V1\\Symptom\\SymptomType","name":"SymptomType","description":"<p>SymptomType represents the different types of Symptoms that a TPU can be\nat.<\/p>\n<p>Protobuf type <code>google.cloud.tpu.v1.Symptom.SymptomType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

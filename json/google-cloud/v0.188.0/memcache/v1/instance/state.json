@@ -1,0 +1,1 @@
+{"id":"memcache\/v1\/instance\/state","type":"","title":"Google\\Cloud\\Memcache\\V1\\Instance\\State","name":"State","description":"<p>Different states of a Memcached instance.<\/p>\n<p>Protobuf type <code>google.cloud.memcache.v1.Instance.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

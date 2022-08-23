@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/locationpolicy\/targetshape","type":"","title":"Google\\Cloud\\Compute\\V1\\LocationPolicy\\TargetShape","name":"TargetShape","description":"<p>Strategy for distributing VMs across zones in a region.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.LocationPolicy.TargetShape<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"managedidentities\/v1beta1\/domain\/state","type":"","title":"Google\\Cloud\\ManagedIdentities\\V1beta1\\Domain\\State","name":"State","description":"<p>Represents the different states of a managed domain.<\/p>\n<p>Protobuf type <code>google.cloud.managedidentities.v1beta1.Domain.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

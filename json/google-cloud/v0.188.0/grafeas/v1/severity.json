@@ -1,0 +1,1 @@
+{"id":"grafeas\/v1\/severity","type":"","title":"Grafeas\\V1\\Severity","name":"Severity","description":"<p>Note provider assigned severity\/impact ranking.<\/p>\n<p>Protobuf type <code>grafeas.v1.Severity<\/code><\/p>","examples":[],"resources":[],"methods":[]}

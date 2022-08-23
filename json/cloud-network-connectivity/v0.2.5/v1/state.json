@@ -1,0 +1,1 @@
+{"id":"networkconnectivity\/v1\/state","type":"","title":"Google\\Cloud\\NetworkConnectivity\\V1\\State","name":"State","description":"<p>The State enum represents the lifecycle stage of a Network Connectivity\nCenter resource.<\/p>\n<p>Protobuf type <code>google.cloud.networkconnectivity.v1.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
