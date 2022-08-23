@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.3](https://github.com/googleapis/gax-php/compare/v1.16.2...v1.16.3) (2022-08-23)
+
+
+### Bug Fixes
+
+* add eager threshold ([#416](https://github.com/googleapis/gax-php/issues/416)) ([99eb172](https://github.com/googleapis/gax-php/commit/99eb172280f301b117fde9dcc92079ca03aa28bd))
+
 ## [1.16.2](https://github.com/googleapis/gax-php/compare/v1.16.1...v1.16.2) (2022-08-16)
 
 
