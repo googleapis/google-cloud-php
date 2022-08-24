@@ -20,7 +20,7 @@ class ServiceAccountDelegationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_email = 1;</code>
      */
-    protected $principal_email = '';
+    private $principal_email = '';
     /**
      * A string representing the principal_subject associated with the identity.
      * As compared to `principal_email`, supports principals that aren't
@@ -32,7 +32,7 @@ class ServiceAccountDelegationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string principal_subject = 2;</code>
      */
-    protected $principal_subject = '';
+    private $principal_subject = '';
 
     /**
      * Constructor.
