@@ -130,7 +130,6 @@ class GapicClientTraitTest extends TestCase
         $client->set('descriptors', ['method' => $unaryDescriptors]);
         $client->call('startApiCall', [
             'method',
-            null,
             $request,
             ['headers' => $headers]
         ]);
@@ -259,7 +258,6 @@ class GapicClientTraitTest extends TestCase
         $request = new MockRequest();
         $response = $client->call('startApiCall', [
             'method',
-            /* interfaceName */ null,
             $request
         ])->wait();
 
@@ -312,7 +310,6 @@ class GapicClientTraitTest extends TestCase
         $request = new MockRequest();
         $response = $client->call('startApiCall', [
             'method',
-            /* interfaceName */ null,
             $request,
         ])->wait();
 
@@ -340,7 +337,6 @@ class GapicClientTraitTest extends TestCase
 
         $client->call('startApiCall', [
             'method',
-            /* interfaceName */ null,
             new MockRequest()
         ])->wait();
     }
@@ -411,7 +407,6 @@ class GapicClientTraitTest extends TestCase
         $request = new MockRequest();
         $client->call('startApiCall', [
             'method',
-            /* interfaceName */ null,
             $request
         ])->wait();
     }
@@ -450,7 +445,6 @@ class GapicClientTraitTest extends TestCase
         $request = new MockRequest();
         $client->call('startApiCall', [
             'method',
-            /* interfaceName */ null,
             $request
         ]);
     }

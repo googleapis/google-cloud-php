@@ -530,7 +530,6 @@ trait GapicClientTrait
 
     /**
      * @param string $methodName
-     * @param string $interfaceName
      * @param Message $request
      * @param array $optionalArgs {
      *     Call Options
@@ -548,7 +547,6 @@ trait GapicClientTrait
      */
     private function startApiCall(
         string $methodName,
-        string $interfaceName = null,
         Message $request = null,
         array $optionalArgs = []
     ) {
@@ -565,7 +563,7 @@ trait GapicClientTrait
         $optionalArgs['headers'] = array_merge($requestHeaders, $optionalArgs['headers'] ?? []);
 
         // Default the interface name, if not set, to the client's protobuf service name.
-        $interfaceName = $interfaceName ?: $this->serviceName;
+        $interfaceName = $method['interfaceOverride'] ?? $this->serviceName;
 
         // Handle call based on call type configured in the method descriptor config.
         if (!isset($method['callType'])) {
