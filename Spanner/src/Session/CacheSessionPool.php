@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Database;
 use Grpc\UnaryCall;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
@@ -35,7 +36,12 @@ use Psr\Cache\CacheItemPoolInterface;
  * We provide `Google\Auth\Cache\SysVCacheItemPool`, which is a fast PSR-6
  * implementation in `google/auth` library. If your PHP has `sysvshm`
  * extension enabled (most binary distributions have it compiled in), consider
- * using it.
+ * using it. Please note the SysVCacheItemPool implementation defaults to a
+ * memory allotment that may not meet your requirements, we recommend setting
+ * the memsize setting to 250000 (250kb) as it should safely contain the default
+ * 500 maximum sessions the pool can handle. Please modify this value
+ * accordingly depending on the number of maximum sessions you would like
+ * for the pool to handle.
  *
  * Please note that when
  * {@see Google\Cloud\Spanner\Session\CacheSessionPool::acquire()} is called at
@@ -239,7 +245,7 @@ class CacheSessionPool implements SessionPoolInterface
             }
 
             if ($shouldSave) {
-                $this->cacheItemPool->save($item->set($data));
+                $this->save($item->set($data));
             }
 
             return [$session, $toCreate];
@@ -277,7 +283,7 @@ class CacheSessionPool implements SessionPoolInterface
                     }
                 }
 
-                $this->cacheItemPool->save($item->set($data));
+                $this->save($item->set($data));
 
                 return $session;
             });
@@ -323,7 +329,7 @@ class CacheSessionPool implements SessionPoolInterface
                     'expiration' => $session->expiration()
                         ?: $this->time() + SessionPoolInterface::SESSION_EXPIRATION_SECONDS
                 ]);
-                $this->cacheItemPool->save($item->set($data));
+                $this->save($item->set($data));
             }
         });
     }
@@ -347,7 +353,7 @@ class CacheSessionPool implements SessionPoolInterface
             $data = $item->get();
             $data['inUse'][$session->name()]['lastActive'] = $this->time();
 
-            $this->cacheItemPool->save($item->set($data));
+            $this->save($item->set($data));
         });
     }
 
@@ -384,7 +390,7 @@ class CacheSessionPool implements SessionPoolInterface
                 $toDelete = array_splice($data['queue'], (int) -$countToDelete);
             }
 
-            $this->cacheItemPool->save($item->set($data));
+            $this->save($item->set($data));
             return $toDelete;
         });
 
@@ -419,7 +425,7 @@ class CacheSessionPool implements SessionPoolInterface
             if ($count < $this->config['minSessions']) {
                 $toCreate = $this->buildToCreateList($this->config['minSessions'] - $count);
                 $data['toCreate'] += $toCreate;
-                $this->cacheItemPool->save($item->set($data));
+                $this->save($item->set($data));
             }
 
             return $toCreate;
@@ -443,7 +449,7 @@ class CacheSessionPool implements SessionPoolInterface
                 unset($data['toCreate'][$id]);
             }
 
-            $this->cacheItemPool->save($item->set($data));
+            $this->save($item->set($data));
         });
 
         if ($exception) {
@@ -710,7 +716,7 @@ class CacheSessionPool implements SessionPoolInterface
             $item = $this->cacheItemPool->getItem($this->cacheKey);
             $data = $item->get();
             unset($data['inUse'][$session['name']]);
-            $this->cacheItemPool->save($item->set($data));
+            $this->save($item->set($data));
         });
     }
 
@@ -731,12 +737,12 @@ class CacheSessionPool implements SessionPoolInterface
                 $session = $this->getSession($data);
 
                 if ($session) {
-                    $this->cacheItemPool->save($item->set($data));
+                    $this->save($item->set($data));
                     return $session;
                 }
 
                 if ($this->config['maxCyclesToWaitForSession'] <= $elapsedCycles) {
-                    $this->cacheItemPool->save($item->set($data));
+                    $this->save($item->set($data));
 
                     throw new \RuntimeException(
                         'A session did not become available in the allotted number of attempts.'
@@ -972,7 +978,7 @@ class CacheSessionPool implements SessionPoolInterface
             $cachedData['maintainTime'] = $this->time();
             // Put extra sessions to the end of the queue, so they won't be acquired until really needed.
             $cachedData['queue'] = array_merge($sessions, $extraSessions);
-            $this->cacheItemPool->save($cacheItem->set($cachedData));
+            $this->save($cacheItem->set($cachedData));
         });
     }
 
@@ -987,6 +993,29 @@ class CacheSessionPool implements SessionPoolInterface
             return true;
         } catch (NotFoundException $e) {
             return false;
+        }
+    }
+
+    /**
+     * @param CacheItemInterface $item
+     * @throws \RuntimeException
+     */
+    private function save(CacheItemInterface $item)
+    {
+        $status = $this->cacheItemPool->save($item);
+
+        if (!$status) {
+            throw new \RuntimeException(
+                'Failed to save session pool data. This can often be related to ' .
+                'your chosen cache implementation running out of memory. ' .
+                'If so, please attempt to configure a greater memory alottment ' .
+                'and try again. When using the Google\Auth\Cache\SysVCacheItemPool ' .
+                'implementation we recommend setting the memory allottment to ' .
+                '250000 (250kb) in order to safely handle the default maximum ' .
+                'of 500 sessions handled by the pool. If you require more ' .
+                'maximum sessions please plan accordingly and increase the memory ' .
+                'allocation.'
+            );
         }
     }
 }
