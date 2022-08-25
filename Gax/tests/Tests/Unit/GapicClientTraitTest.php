@@ -389,12 +389,19 @@ class GapicClientTraitTest extends TestCase
             ->getMock();
         $unaryDescriptors = [
             'callType' => Call::UNARY_CALL,
-            'responseType' => 'Google\Longrunning\Operation'
+            'responseType' => 'Google\Longrunning\Operation',
+            'interfaceOverride' => 'google.cloud.foo.v1.Foo'
         ];
         $expectedPromise = new FulfilledPromise(new Operation());
         $transport = $this->getMockBuilder(TransportInterface::class)->getMock();
         $transport->expects($this->once())
              ->method('startUnaryCall')
+             ->with(
+                $this->callback(function($call) use ($unaryDescriptors) {
+                    return strpos($call->getMethod(), $unaryDescriptors['interfaceOverride']) !== false;
+                }),
+                $this->anything()
+            )
              ->will($this->returnValue($expectedPromise));
         $credentialsWrapper = CredentialsWrapper::build([]);
         $client = new GapicClientTraitStub();
