@@ -314,6 +314,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Release a session back to the pool.
      *
      * @param Session $session The session.
+     * @throws \RuntimeException
      */
     public function release(Session $session)
     {
@@ -345,6 +346,7 @@ class CacheSessionPool implements SessionPoolInterface
      * to keep your session active.
      *
      * @param Session $session The session to keep alive.
+     * @throws \RuntimeException
      */
     public function keepAlive(Session $session)
     {
@@ -371,6 +373,7 @@ class CacheSessionPool implements SessionPoolInterface
      *        between 1 and 100.
      * @return int The number of sessions removed from the pool.
      * @throws \InvaldArgumentException
+     * @throws \RuntimeException
      */
     public function downsize($percent)
     {
@@ -413,6 +416,7 @@ class CacheSessionPool implements SessionPoolInterface
      * Create enough sessions to meet the minimum session constraint.
      *
      * @return int The number of sessions created and added to the queue.
+     * @throws \RuntimeException
      */
     public function warmup()
     {
