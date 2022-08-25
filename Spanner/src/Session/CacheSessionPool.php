@@ -37,7 +37,7 @@ use Psr\Cache\CacheItemPoolInterface;
  * implementation in `google/auth` library. If your PHP has `sysvshm`
  * extension enabled (most binary distributions have it compiled in), consider
  * using it. Please note the SysVCacheItemPool implementation defaults to a
- * memory allotment that may not meet your requirements, we recommend setting
+ * memory allotment that may not meet your requirements. We recommend setting
  * the memsize setting to 250000 (250kb) as it should safely contain the default
  * 500 maximum sessions the pool can handle. Please modify this value
  * accordingly depending on the number of maximum sessions you would like
