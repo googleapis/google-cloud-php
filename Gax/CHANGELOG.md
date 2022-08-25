@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.4](https://github.com/googleapis/gax-php/compare/v1.16.3...v1.16.4) (2022-08-25)
+
+
+### Bug Fixes
+
+* use interfaceOverride instead of param ([#419](https://github.com/googleapis/gax-php/issues/419)) ([9dd5bc9](https://github.com/googleapis/gax-php/commit/9dd5bc91c4becfd2a0832288ab2406c3d224618e))
+
 ## [1.16.3](https://github.com/googleapis/gax-php/compare/v1.16.2...v1.16.3) (2022-08-23)
 
 
