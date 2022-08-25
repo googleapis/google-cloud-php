@@ -641,7 +641,7 @@ class SpannerClient
      *
      * $spanner = new SpannerClient();
      *
-     * $jsonbVal = $spanner->jsonb('{}');
+     * $jsonbVal = $spanner->pgJsonb('{}');
      * ```
      */
     public function pgJsonb($value)

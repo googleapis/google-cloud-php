@@ -31,6 +31,7 @@ use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\ValueMapper;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
+use Google\Cloud\Spanner\V1\TypeCode;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
@@ -140,6 +141,23 @@ class ValueMapperTest extends TestCase
 
         $this->assertEquals($val, $res['params']['json']);
         $this->assertEquals(Database::TYPE_JSON, $res['paramTypes']['json']['code']);
+    }
+
+    public function testFormatParamsForExecuteSqlJsonB()
+    {
+        $val = '{\"rating\":9,\"open\":true}';
+        $params = [
+            'json' => $val
+        ];
+        $types = [
+            'json' => Database::TYPE_PG_JSONB
+        ];
+
+        $res = $this->mapper->formatParamsForExecuteSql($params, $types);
+
+        $this->assertEquals($val, $res['params']['json']);
+        $this->assertEquals(TypeCode::JSON, $res['paramTypes']['json']['code']);
+        $this->assertEquals(TypeAnnotationCode::PG_JSONB, $res['paramTypes']['json']['typeAnnotation']);
     }
 
     public function testFormatParamsForExecuteSqlValueInterface()
@@ -988,6 +1006,16 @@ class ValueMapperTest extends TestCase
     {
         $res = $this->mapper->decodeValues(
             $this->createField(Database::TYPE_JSON),
+            $this->createRow('{\"rating\":9,\"open\":true}'),
+            Result::RETURN_ASSOCIATIVE
+        );
+        $this->assertEquals('{\"rating\":9,\"open\":true}', $res['rowName']);
+    }
+
+    public function testDecodeValuesJsonB()
+    {
+        $res = $this->mapper->decodeValues(
+            $this->createField(Database::TYPE_PG_JSONB),
             $this->createRow('{\"rating\":9,\"open\":true}'),
             Result::RETURN_ASSOCIATIVE
         );

@@ -27,11 +27,9 @@ use JsonSerializable;
  *
  * Example:
  * ```
- * use Google\Cloud\Spanner\SpannerClient;
+ * use Google\Cloud\Spanner\JsonB;
  *
- * $spanner = new SpannerClient();
- *
- * $jsonbVal = $spanner->jsonb('{}');
+ * $jsonbVal = new JsonB('{}');
  * ```
  */
 class JsonB implements ValueInterface, TypeAnnotationInterface
