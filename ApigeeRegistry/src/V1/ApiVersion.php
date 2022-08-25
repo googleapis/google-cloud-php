@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An ApiVersion describes a particular version of an API.
+ * Describes a particular version of an API.
  * ApiVersions are what consumers actually use.
  *
  * Generated from protobuf message <code>google.cloud.apigeeregistry.v1.ApiVersion</code>
@@ -49,7 +49,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the lifecycle phase of this API version.
      * Format: free-form, but we expect single words that describe API maturity,
-     * e.g. "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
+     * e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
      * "DEPRECATED", "RETIRED".
      *
      * Generated from protobuf field <code>string state = 6;</code>
@@ -65,7 +65,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      */
@@ -99,7 +99,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      *     @type string $state
      *           A user-definable description of the lifecycle phase of this API version.
      *           Format: free-form, but we expect single words that describe API maturity,
-     *           e.g. "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
+     *           e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
      *           "DEPRECATED", "RETIRED".
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels attach identifying metadata to resources. Identifying metadata can
@@ -111,7 +111,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      *           labels are excluded).
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with
-     *           "apigeeregistry.googleapis.com/" and cannot be changed.
+     *           `apigeeregistry.googleapis.com/` and cannot be changed.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Annotations attach non-identifying metadata to resources.
      *           Annotation keys and values are less restricted than those of labels, but
@@ -277,7 +277,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the lifecycle phase of this API version.
      * Format: free-form, but we expect single words that describe API maturity,
-     * e.g. "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
+     * e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
      * "DEPRECATED", "RETIRED".
      *
      * Generated from protobuf field <code>string state = 6;</code>
@@ -291,7 +291,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the lifecycle phase of this API version.
      * Format: free-form, but we expect single words that describe API maturity,
-     * e.g. "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
+     * e.g., "CONCEPT", "DESIGN", "DEVELOPMENT", "STAGING", "PRODUCTION",
      * "DEPRECATED", "RETIRED".
      *
      * Generated from protobuf field <code>string state = 6;</code>
@@ -316,7 +316,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -336,7 +336,7 @@ class ApiVersion extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 7;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

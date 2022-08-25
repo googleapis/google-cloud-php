@@ -17,7 +17,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of APIs.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -29,8 +29,8 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
      */
     private $api = null;
     /**
-     * Required. The ID to use for the api, which will become the final component of
-     * the api's resource name.
+     * Required. The ID to use for the API, which will become the final component of
+     * the API's resource name.
      * This value should be 4-63 characters, and valid characters
      * are /[a-z][0-9]-/.
      * Following AIP-162, IDs must not have the form of a UUID.
@@ -47,12 +47,12 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of APIs.
-     *           Format: projects/&#42;&#47;locations/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;`
      *     @type \Google\Cloud\ApigeeRegistry\V1\Api $api
      *           Required. The API to create.
      *     @type string $api_id
-     *           Required. The ID to use for the api, which will become the final component of
-     *           the api's resource name.
+     *           Required. The ID to use for the API, which will become the final component of
+     *           the API's resource name.
      *           This value should be 4-63 characters, and valid characters
      *           are /[a-z][0-9]-/.
      *           Following AIP-162, IDs must not have the form of a UUID.
@@ -65,7 +65,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of APIs.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of APIs.
-     * Format: projects/&#42;&#47;locations/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -128,8 +128,8 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the api, which will become the final component of
-     * the api's resource name.
+     * Required. The ID to use for the API, which will become the final component of
+     * the API's resource name.
      * This value should be 4-63 characters, and valid characters
      * are /[a-z][0-9]-/.
      * Following AIP-162, IDs must not have the form of a UUID.
@@ -143,8 +143,8 @@ class CreateApiRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID to use for the api, which will become the final component of
-     * the api's resource name.
+     * Required. The ID to use for the API, which will become the final component of
+     * the API's resource name.
      * This value should be 4-63 characters, and valid characters
      * are /[a-z][0-9]-/.
      * Following AIP-162, IDs must not have the form of a UUID.

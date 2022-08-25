@@ -17,7 +17,7 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -56,7 +56,7 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of artifacts.
-     *           Format: {parent}
+     *           Format: `{parent}`
      *     @type int $page_size
      *           The maximum number of artifacts to return.
      *           The service may return fewer than this value.
@@ -79,7 +79,7 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -91,7 +91,7 @@ class ListArtifactsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
