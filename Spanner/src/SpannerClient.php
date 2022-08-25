@@ -631,6 +631,25 @@ class SpannerClient
     }
 
     /**
+     * Represents a value with a data type of
+     * [PG JSONB](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\SpannerClient;
+     *
+     * $spanner = new SpannerClient();
+     *
+     * $jsonbVal = $spanner->jsonb('{}');
+     * ```
+     */
+    public function pgJsonb($value)
+    {
+        return new JsonB($value);
+    }
+
+    /**
      * Create an Int64 object. This can be used to work with 64 bit integers as
      * a string value while on a 32 bit platform.
      *
