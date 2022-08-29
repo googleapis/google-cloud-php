@@ -10,6 +10,7 @@
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>
     <exclude-pattern>ErrorReporting/tests/Unit/BootstrapTest.php</exclude-pattern>
+    <exclude-pattern>Firestore/src/WriteBatch.php</exclude-pattern>
   </rule>
   <file>.</file>
   <exclude-pattern>*/src/V[0-9]+</exclude-pattern>
