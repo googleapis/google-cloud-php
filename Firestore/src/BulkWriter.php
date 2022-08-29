@@ -89,6 +89,35 @@ class BulkWriter
     const DEFAULT_JITTER_FACTOR = 0.3;
 
     /**
+     * The starting maximum number of operations per second as allowed by the 500/50/5 rule.
+     *
+     * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     */
+    const DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND = 500;
+
+    /**
+     * The maximum number of operations per second as allowed by the 500/50/5 rule.
+     *
+     * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     */
+    const DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT = 500;
+
+    /**
+     * The rate by which to increase the capacity as specified by the 500/50/5 rule.
+     *
+     * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     */
+    const RATE_LIMITER_MULTIPLIER = 1.5;
+
+    /**
+     * How often the operations per second capacity should increase in milliseconds as specified by
+     * the 500/50/5 rule.
+     *
+     * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     */
+    const RATE_LIMITER_MULTIPLIER_MILLIS = 5 * 60 * 1000;
+
+    /**
      * @var ConnectionInterface
      */
     private $connection;
@@ -127,6 +156,13 @@ class BulkWriter
      * @var array
      */
     private $finalResponse = [];
+
+    /**
+     * Rate limiter used to throttle requests as per the 500/50/5 rule.
+     *
+     * @var RateLimiter
+     */
+    private $rateLimiter;
 
     /**
      * @var array Failed rescheduled mutations.
@@ -187,9 +223,72 @@ class BulkWriter
         $options += [
             'maxBatchSize' => self::MAX_BATCH_SIZE,
             'greedilySend' => false,
+            'isThrottlingEnabled' => true,
+            'initialOpsPerSecond' => null,
+            'maxOpsPerSecond' => null,
         ];
         $this->maxBatchSize = $this->pluck('maxBatchSize', $options);
         $this->greedilySend = $this->pluck('greedilySend', $options);
+        if ($options['initialOpsPerSecond'] != null && $options['initialOpsPerSecond'] < 1) {
+            throw new \InvalidArgumentException(
+                "Value for argument 'initialOpsPerSecond' must be greater than 1, but was: "
+                +$options['initialOpsPerSecond']
+            );
+        }
+        if ($options['maxOpsPerSecond'] != null && $options['maxOpsPerSecond'] < 1) {
+            throw new \InvalidArgumentException(
+                "Value for argument 'maxOpsPerSecond' must be greater than 1, but was: "
+                +$options['initialOpsPerSecond']
+            );
+        }
+        if ($options['maxOpsPerSecond'] != null &&
+            $options['initialOpsPerSecond'] != null &&
+            $options['initialOpsPerSecond'] > $options['maxOpsPerSecond']) {
+            throw new \InvalidArgumentException(
+                "'maxOpsPerSecond' cannot be less than 'initialOpsPerSecond'."
+            );
+        }
+        if (!$options['isThrottlingEnabled'] &&
+            ($options['maxOpsPerSecond'] != null || $options['initialOpsPerSecond'] != null)) {
+            throw new \InvalidArgumentException(
+                "Cannot set 'initialOpsPerSecond' or 'maxOpsPerSecond' when 'throttlingEnabled' is set to false."
+            );
+        }
+        if ($options['isThrottlingEnabled'] == false) {
+            $this->rateLimiter = new RateLimiter(
+                PHP_INT_MAX,
+                PHP_INT_MAX,
+                PHP_INT_MAX,
+                PHP_INT_MAX
+            );
+        } else {
+            $startingRate = self::DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND;
+            $maxRate = self::DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT;
+            if (!is_null($options['maxOpsPerSecond'])) {
+                $maxRate = $options['maxOpsPerSecond'];
+            }
+            if (!is_null($options['initialOpsPerSecond'])) {
+                $startingRate = $options['initialOpsPerSecond'];
+            }
+            // The initial validation step ensures that the maxOpsPerSecond is
+            // greater than initialOpsPerSecond. If this inequality is true, that
+            // means initialOpsPerSecond was not set and maxOpsPerSecond is less
+            // than the default starting rate.
+            if ($maxRate < $startingRate) {
+                $startingRate = $maxRate;
+            }
+            // Ensure that the batch size is not larger than the number of allowed
+            // operations per second.
+            if ($startingRate < $this->maxBatchSize) {
+                $this->maxBatchSize = $startingRate;
+            }
+            $this->rateLimiter = new RateLimiter(
+                $startingRate,
+                self::RATE_LIMITER_MULTIPLIER,
+                self::RATE_LIMITER_MULTIPLIER_MILLIS,
+                $maxRate
+            );
+        }
     }
 
     /**
@@ -666,6 +765,17 @@ class BulkWriter
      */
     public function sendBatch(array $writes, array $options = [])
     {
+        $rateLimiterDelayMs = $this->rateLimiter->getNextRequestDelayMs(count($writes));
+        // avoid very long sleep
+        $rateLimiterDelayMs = min(
+            $rateLimiterDelayMs,
+            self::DEFAULT_BACKOFF_MAX_DELAY_MS
+        );
+        if ($rateLimiterDelayMs > 0) {
+            usleep($rateLimiterDelayMs * 1000);
+        }
+        $this->rateLimiter->tryMakeRequest(count($writes));
+
         unset($options['merge'], $options['precondition']);
         $options += ['labels' => []];
 
