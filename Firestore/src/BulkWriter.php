@@ -210,6 +210,10 @@ class BulkWriter
      *           **Defaults to** `20`.
      *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
      *           sends batches. **Defaults to** `true`.
+     *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
+     *           sending writes can be throttled. **Defaults to** `true`.
+     *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *     @type int $maxOpsPerSecond Maximum number of operations per second.
      * }
      */
     public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
@@ -232,7 +236,7 @@ class BulkWriter
         ];
         $options += [
             'maxBatchSize' => self::MAX_BATCH_SIZE,
-            'greedilySend' => false,
+            'greedilySend' => true,
             'isThrottlingEnabled' => true,
             'initialOpsPerSecond' => null,
             'maxOpsPerSecond' => null,
@@ -765,7 +769,7 @@ class BulkWriter
         return $this->finalResponse;
     }
 
-    public function getBackoffDuration(int $lastStatus, $backoffDurationInMillis = 0)
+    public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
             $backoffDurationInMillis = self::DEFAULT_BACKOFF_MAX_DELAY_MS;
