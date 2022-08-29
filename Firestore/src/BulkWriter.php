@@ -779,13 +779,28 @@ class BulkWriter
     public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
-            $backoffDurationInMillis = self::DEFAULT_BACKOFF_MAX_DELAY_MS;
+            $backoffDurationInMillis = $this->maxDelayTime;
         } elseif ($backoffDurationInMillis <= 0) {
             $backoffDurationInMillis = self::DEFAULT_BACKOFF_INITIAL_DELAY_MS;
         } else {
             $backoffDurationInMillis *= self::DEFAULT_BACKOFF_FACTOR;
         }
-        return min(self::DEFAULT_BACKOFF_MAX_DELAY_MS, $backoffDurationInMillis);
+        return min($this->maxDelayTime, $backoffDurationInMillis);
+    }
+
+    /**
+     * Change the maximum delay time for rescheduling a failed mutation or
+     * awaiting a batch creation.
+     *
+     * @internal
+     *
+     * @param int $maxTime The maximum delay time in millis for rescheduling
+     *            a failed mutation or awaiting a batch creation.
+     * @return void
+     */
+    public function setMaxRetryTimeInMs($maxTime)
+    {
+        $this->maxDelayTime = min($this->maxDelayTime, max(0, $maxTime));
     }
 
     /**
