@@ -659,11 +659,11 @@ class BulkWriter
     /**
      * Reschedule failed mutations if retryable.
      *
-     * @param int $writesId Sequence of mutation among all enqueued writes.
-     * @param int $lastRunStatusCode
+     * @param int $writesId Sequence of mutation among all enqueued writes
+     * @param int $lastRunStatusCode Previous status code of batchWrite
      * @return void
      */
-    private function handleSendbatchFailure(int $writesId, int $lastRunStatusCode)
+    private function handleSendbatchFailure($writesId, $lastRunStatusCode)
     {
         if ($lastRunStatusCode === Code::OK) {
             return;
@@ -754,7 +754,14 @@ class BulkWriter
         return $this->finalResponse;
     }
 
-    public function getBackoffDuration(int $lastStatus, $backoffDurationInMillis = 0)
+    /**
+     * Gets updated backoff duration provided last status code and backoff duration.
+     *
+     * @param int $lastStatus Previous status code of batchWrite
+     * @param int $backoffDurationInMillis Previous backoff duration in milliseconds
+     * @return int
+     */
+    public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
             $backoffDurationInMillis = $this->maxDelayTime;
@@ -1376,7 +1383,13 @@ class BulkWriter
         $this->unique_documents[] = $document;
     }
 
-    private function applyJitter(int $backoffMs)
+    /**
+     * Applies jitter to backoff duration.
+     *
+     * @param int $backoffMs The backoff duration in milliseconds.
+     * @return int Jittered backoff duration in milliseconds.
+     */
+    private function applyJitter($backoffMs)
     {
         if ($backoffMs <= 0) {
             return 0;
