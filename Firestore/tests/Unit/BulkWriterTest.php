@@ -700,7 +700,7 @@ class BulkWriterTest extends TestCase
     {
         $docs = [];
         for ($i = 0; $i < 50; $i++) {
-            $docs[] = uniqid(self::DOCUMENT);
+            $docs[] = uniqid(self::DOCUMENT, true);
         }
 
         return [[$docs]];
