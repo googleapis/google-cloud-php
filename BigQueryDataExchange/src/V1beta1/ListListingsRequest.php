@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of Listings.
+ * Message for requesting the list of listings.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.ListListingsRequest</code>
  */

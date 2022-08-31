@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Defines the Destination BigQuery Dataset.
+ * Defines the destination bigquery dataset.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.DestinationDataset</code>
  */
