@@ -45,8 +45,8 @@ class PgJsonB implements ValueInterface, TypeAnnotationInterface
     public function __construct($value)
     {
         // null shouldn't be casted to an empty string
-        if(!is_null($value)) {
-            if(is_array($value) || $value instanceof JsonSerializable) {
+        if (!is_null($value)) {
+            if (is_array($value) || $value instanceof JsonSerializable) {
                 $value = json_encode($value);
             } else {
                 $value = (string) $value;
