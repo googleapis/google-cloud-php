@@ -20,9 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\PgJsonB;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
-use JsonSerializable;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 /**
  * @group spanner
@@ -42,7 +40,7 @@ class PgJsonBTest extends TestCase
 
     public function validValueProvider()
     {
-        $obj = $this->createStub('JsonSerializable');
+        $obj = $this->createMock('JsonSerializable');
         $obj->method('jsonSerialize')->willReturn(["a" => 1, "b" => null]);
 
         return

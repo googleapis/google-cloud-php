@@ -116,7 +116,7 @@ class Database
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_PG_NUMERIC = 'pgNumeric';
-    const TYPE_PG_JSONB = 'jsonb';
+    const TYPE_PG_JSONB = 'pgJsonB';
     const TYPE_JSON = TypeCode::JSON;
 
     /**
