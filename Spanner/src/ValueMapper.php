@@ -43,7 +43,7 @@ class ValueMapper
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_NUMERIC = 'pgNumeric';
-    const TYPE_PG_JSONB = 'jsonb';
+    const TYPE_PG_JSONB = 'pgJsonB';
 
     /**
      * @var array

@@ -637,11 +637,7 @@ class SpannerClient
      *
      * Example:
      * ```
-     * use Google\Cloud\Spanner\SpannerClient;
-     *
-     * $spanner = new SpannerClient();
-     *
-     * $jsonbVal = $spanner->pgJsonb('{}');
+     * $pgJsonb = $spanner->pgJsonb('{}');
      * ```
      */
     public function pgJsonb($value)

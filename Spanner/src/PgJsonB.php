@@ -29,7 +29,7 @@ use JsonSerializable;
  * ```
  * use Google\Cloud\Spanner\PgJsonB;
  *
- * $jsonbVal = new PgJsonB('{}');
+ * $pgJsonb = new PgJsonB('{}');
  * ```
  */
 class PgJsonB implements ValueInterface, TypeAnnotationInterface
