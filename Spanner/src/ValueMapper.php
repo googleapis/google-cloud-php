@@ -324,7 +324,7 @@ class ValueMapper
 
             case self::TYPE_JSON:
                 if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_JSONB) {
-                    $value = new JsonB($value);
+                    $value = new PgJsonB($value);
                 }
                 break;
 

@@ -85,8 +85,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadSingleKeyClosed()
@@ -104,8 +104,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadSingleKeyOpenClosed()
@@ -122,8 +122,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadSingleKeyClosedOpen()
@@ -140,8 +140,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadPartialKeyOpen()
@@ -157,8 +157,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadPartialKeyClosed()
@@ -176,8 +176,8 @@ class PgReadTest extends SpannerPgTestCase
 
         $res = $db->read(self::$rangeTableName, $keyset, array_keys(self::$dataset[0]));
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexSingleKeyOpen()
@@ -195,8 +195,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexSingleKeyClosed()
@@ -216,8 +216,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexSingleKeyOpenClosed()
@@ -236,8 +236,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexSingleKeyClosedOpen()
@@ -256,8 +256,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexPartialKeyOpen()
@@ -275,8 +275,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringNotContainsString(self::$dataset[0], $rows);
-        $this->assertStringNotContainsString(self::$dataset[10], $rows);
+        $this->assertNotContains(self::$dataset[0], $rows);
+        $this->assertNotContains(self::$dataset[10], $rows);
     }
 
     public function testRangeReadIndexPartialKeyClosed()
@@ -296,8 +296,8 @@ class PgReadTest extends SpannerPgTestCase
             'index' => $this->getIndexName(self::$rangeTableName, 'complex')
         ]);
         $rows = iterator_to_array($res->rows());
-        $this->assertStringContainsString(self::$dataset[0], $rows);
-        $this->assertStringContainsString(self::$dataset[10], $rows);
+        $this->assertContains(self::$dataset[0], $rows);
+        $this->assertContains(self::$dataset[10], $rows);
     }
 
     public function testReadWithLimit()
@@ -357,8 +357,8 @@ class PgReadTest extends SpannerPgTestCase
         $res = $db->read(self::$readTableName, $keyset, array_keys($dataset[0]));
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertStringContainsString($row, $dataset);
-            $this->assertStringContainsString($row, $points);
+            $this->assertContains($row, $dataset);
+            $this->assertContains($row, $points);
         }
     }
 
@@ -384,8 +384,8 @@ class PgReadTest extends SpannerPgTestCase
         ]);
         $rows = $res->rows();
         foreach ($rows as $index => $row) {
-            $this->assertStringContainsString($row, $dataset);
-            $this->assertStringContainsString($row, $points);
+            $this->assertContains($row, $dataset);
+            $this->assertContains($row, $points);
         }
     }
 

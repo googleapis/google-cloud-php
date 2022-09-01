@@ -32,7 +32,7 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
-use Google\Cloud\Spanner\JsonB;
+use Google\Cloud\Spanner\PgJsonB;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
@@ -404,18 +404,18 @@ class SpannerClientTest extends TestCase
         $this->assertInstanceOf(PgNumeric::class, $scientificVal);
     }
 
-    public function testJsonB()
+    public function testPgJsonB()
     {
         $strVal = $this->client->pgJsonb('{}');
-        $this->assertInstanceOf(JsonB::class, $strVal);
+        $this->assertInstanceOf(PgJsonB::class, $strVal);
 
         $arrVal = $this->client->pgJsonb(["a" => 1, "b" => 2]);
-        $this->assertInstanceOf(JsonB::class, $arrVal);
+        $this->assertInstanceOf(PgJsonB::class, $arrVal);
 
         $stub = $this->createStub('JsonSerializable');
         $stub->method('jsonSerialize')->willReturn(["a" => 1, "b" => null]);
         $objVal = $this->client->pgJsonb($stub);
-        $this->assertInstanceOf(JsonB::class, $objVal);
+        $this->assertInstanceOf(PgJsonB::class, $objVal);
     }
 
     public function testInt64()

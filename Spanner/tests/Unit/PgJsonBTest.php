@@ -17,7 +17,7 @@
 
 namespace Google\Cloud\Spanner\Tests\Unit;
 
-use Google\Cloud\Spanner\JsonB;
+use Google\Cloud\Spanner\PgJsonB;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use Google\Cloud\Spanner\V1\TypeCode;
 use JsonSerializable;
@@ -26,17 +26,17 @@ use stdClass;
 
 /**
  * @group spanner
- * @group spanner-jsonb
+ * @group spanner-pgjsonb
  */
-class JsonBTest extends TestCase
+class PgJsonBTest extends TestCase
 {
     /**
      * @dataProvider validValueProvider
      */
     public function testValidValues($value, $expectedVal)
     {
-        $obj = new JsonB($value);
-        $this->assertInstanceOf(JsonB::class, $obj);
+        $obj = new PgJsonB($value);
+        $this->assertInstanceOf(PgJsonB::class, $obj);
         $this->assertEquals($expectedVal, $obj->get());
     }
 
@@ -64,7 +64,7 @@ class JsonBTest extends TestCase
      */
     public function testGetsType($val)
     {
-        $obj = new JsonB($val);
+        $obj = new PgJsonB($val);
         $this->assertEquals(TypeCode::JSON, $obj->type());
         $this->assertEquals(TypeAnnotationCode::PG_JSONB, $obj->typeAnnotation());
     }
@@ -72,7 +72,7 @@ class JsonBTest extends TestCase
     public function testToString()
     {
         $expected = '{}';
-        $val = new JsonB($expected);
+        $val = new PgJsonB($expected);
 
         $this->assertEquals($expected, (string) $val);
         $this->assertEquals($expected, $val->formatAsString());

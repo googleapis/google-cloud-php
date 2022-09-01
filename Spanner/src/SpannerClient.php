@@ -646,7 +646,7 @@ class SpannerClient
      */
     public function pgJsonb($value)
     {
-        return new JsonB($value);
+        return new PgJsonB($value);
     }
 
     /**

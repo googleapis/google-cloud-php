@@ -27,12 +27,12 @@ use JsonSerializable;
  *
  * Example:
  * ```
- * use Google\Cloud\Spanner\JsonB;
+ * use Google\Cloud\Spanner\PgJsonB;
  *
- * $jsonbVal = new JsonB('{}');
+ * $jsonbVal = new PgJsonB('{}');
  * ```
  */
-class JsonB implements ValueInterface, TypeAnnotationInterface
+class PgJsonB implements ValueInterface, TypeAnnotationInterface
 {
     /**
      * @var string|null

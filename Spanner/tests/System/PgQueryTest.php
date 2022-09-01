@@ -23,7 +23,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\PgNumeric;
-use Google\Cloud\Spanner\JsonB;
+use Google\Cloud\Spanner\PgJsonB;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
@@ -458,7 +458,7 @@ class PgQueryTest extends SpannerPgTestCase
     public function testBindPgJsonBParameter()
     {
         $str = '{"a": "hello", "b": "world"}';
-        $val = new JsonB($str);
+        $val = new PgJsonB($str);
 
         self::$database->runTransaction(function (Transaction $t) use ($val) {
             $t->executeUpdate(
@@ -483,7 +483,7 @@ class PgQueryTest extends SpannerPgTestCase
         $res = self::$database->execute('SELECT data FROM ' . self::TABLE_NAME . ' WHERE id = 11');
 
         $row = $res->rows()->current();
-        $this->assertInstanceOf(JsonB::class, $row['data']);
+        $this->assertInstanceOf(PgJsonB::class, $row['data']);
         $this->assertEquals($str, $val->formatAsString());
         $this->assertEquals($str, (string)$val->get());
     }
@@ -602,12 +602,12 @@ class PgQueryTest extends SpannerPgTestCase
             // pg_jsonb
             [
                 [
-                    new JsonB('{}'),
-                    new JsonB('{"a": "b"}'),
-                    new JsonB(["a" => "b"])
+                    new PgJsonB('{}'),
+                    new PgJsonB('{"a": "b"}'),
+                    new PgJsonB(["a" => "b"])
                 ],
                 ['{}', '{"a": "b"}', '{"a": "b"}'],
-                JsonB::class,
+                PgJsonB::class,
                 function (array $res) {
                     foreach ($res as $idx => $val) {
                         $res[$idx] = $val->get();
