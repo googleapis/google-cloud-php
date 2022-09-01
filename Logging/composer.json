@@ -25,7 +25,10 @@
     "suggest": {
         "ext-grpc": "The gRPC extension enables use of the performant gRPC transport",
         "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions.",
-        "psr/log": "For using the PSR logger"
+        "psr/log": "For using the PSR logger. Currently supports versions 1 and 2."
+    },
+    "conflict": {
+        "psr/log": ">=3"
     },
     "extra": {
         "component": {
