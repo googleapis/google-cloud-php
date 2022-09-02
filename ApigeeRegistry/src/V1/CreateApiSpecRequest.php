@@ -17,7 +17,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of specs.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of specs.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;`
      *     @type \Google\Cloud\ApigeeRegistry\V1\ApiSpec $api_spec
      *           Required. The spec to create.
      *     @type string $api_spec_id
@@ -65,7 +65,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of specs.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class CreateApiSpecRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of specs.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

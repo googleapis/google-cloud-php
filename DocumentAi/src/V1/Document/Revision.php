@@ -26,9 +26,18 @@ class Revision extends \Google\Protobuf\Internal\Message
      * more parent (when documents are merged.)  This field represents the
      * index into the `revisions` field.
      *
-     * Generated from protobuf field <code>repeated int32 parent = 2;</code>
+     * Generated from protobuf field <code>repeated int32 parent = 2 [deprecated = true];</code>
+     * @deprecated
      */
     private $parent;
+    /**
+     * The revisions that this revision is based on. Must include all the ids
+     * that have anything to do with this revision - eg. there are
+     * `provenance.parent.revision` fields that index into this field.
+     *
+     * Generated from protobuf field <code>repeated string parent_ids = 7;</code>
+     */
+    private $parent_ids;
     /**
      * The time that the revision was created.
      *
@@ -61,6 +70,10 @@ class Revision extends \Google\Protobuf\Internal\Message
      *           The revisions that this revision is based on.  This can include one or
      *           more parent (when documents are merged.)  This field represents the
      *           index into the `revisions` field.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $parent_ids
+     *           The revisions that this revision is based on. Must include all the ids
+     *           that have anything to do with this revision - eg. there are
+     *           `provenance.parent.revision` fields that index into this field.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time that the revision was created.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Revision\HumanReview $human_review
@@ -169,11 +182,13 @@ class Revision extends \Google\Protobuf\Internal\Message
      * more parent (when documents are merged.)  This field represents the
      * index into the `revisions` field.
      *
-     * Generated from protobuf field <code>repeated int32 parent = 2;</code>
+     * Generated from protobuf field <code>repeated int32 parent = 2 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getParent()
     {
+        @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
         return $this->parent;
     }
 
@@ -182,14 +197,46 @@ class Revision extends \Google\Protobuf\Internal\Message
      * more parent (when documents are merged.)  This field represents the
      * index into the `revisions` field.
      *
-     * Generated from protobuf field <code>repeated int32 parent = 2;</code>
+     * Generated from protobuf field <code>repeated int32 parent = 2 [deprecated = true];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setParent($var)
     {
+        @trigger_error('parent is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::INT32);
         $this->parent = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The revisions that this revision is based on. Must include all the ids
+     * that have anything to do with this revision - eg. there are
+     * `provenance.parent.revision` fields that index into this field.
+     *
+     * Generated from protobuf field <code>repeated string parent_ids = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getParentIds()
+    {
+        return $this->parent_ids;
+    }
+
+    /**
+     * The revisions that this revision is based on. Must include all the ids
+     * that have anything to do with this revision - eg. there are
+     * `provenance.parent.revision` fields that index into this field.
+     *
+     * Generated from protobuf field <code>repeated string parent_ids = 7;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setParentIds($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->parent_ids = $arr;
 
         return $this;
     }

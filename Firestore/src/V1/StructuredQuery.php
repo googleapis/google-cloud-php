@@ -35,19 +35,21 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
     private $where = null;
     /**
      * The order to apply to the query results.
-     * Firestore guarantees a stable ordering through the following rules:
-     *  * Any field required to appear in `order_by`, that is not already
-     *    specified in `order_by`, is appended to the order in field name order
-     *    by default.
+     * Firestore allows callers to provide a full ordering, a partial ordering, or
+     * no ordering at all. In all cases, Firestore guarantees a stable ordering
+     * through the following rules:
+     *  * The `order_by` is required to reference all fields used with an
+     *    inequality filter.
+     *  * All fields that are required to be in the `order_by` but are not already
+     *    present are appended in lexicographical ordering of the field name.
      *  * If an order on `__name__` is not specified, it is appended by default.
      * Fields are appended with the same sort direction as the last order
      * specified, or 'ASCENDING' if no order was specified. For example:
-     *  * `SELECT * FROM Foo ORDER BY A` becomes
-     *    `SELECT * FROM Foo ORDER BY A, __name__`
-     *  * `SELECT * FROM Foo ORDER BY A DESC` becomes
-     *    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`
-     *  * `SELECT * FROM Foo WHERE A > 1` becomes
-     *    `SELECT * FROM Foo WHERE A > 1 ORDER BY A, __name__`
+     *  * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
+     *  * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
+     *  * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
+     *  * `WHERE __name__ > ... AND a > 1` becomes
+     *     `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
      */
@@ -95,19 +97,21 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
      *           The filter to apply.
      *     @type array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $order_by
      *           The order to apply to the query results.
-     *           Firestore guarantees a stable ordering through the following rules:
-     *            * Any field required to appear in `order_by`, that is not already
-     *              specified in `order_by`, is appended to the order in field name order
-     *              by default.
+     *           Firestore allows callers to provide a full ordering, a partial ordering, or
+     *           no ordering at all. In all cases, Firestore guarantees a stable ordering
+     *           through the following rules:
+     *            * The `order_by` is required to reference all fields used with an
+     *              inequality filter.
+     *            * All fields that are required to be in the `order_by` but are not already
+     *              present are appended in lexicographical ordering of the field name.
      *            * If an order on `__name__` is not specified, it is appended by default.
      *           Fields are appended with the same sort direction as the last order
      *           specified, or 'ASCENDING' if no order was specified. For example:
-     *            * `SELECT * FROM Foo ORDER BY A` becomes
-     *              `SELECT * FROM Foo ORDER BY A, __name__`
-     *            * `SELECT * FROM Foo ORDER BY A DESC` becomes
-     *              `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`
-     *            * `SELECT * FROM Foo WHERE A > 1` becomes
-     *              `SELECT * FROM Foo WHERE A > 1 ORDER BY A, __name__`
+     *            * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
+     *            * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
+     *            * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
+     *            * `WHERE __name__ > ... AND a > 1` becomes
+     *               `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *     @type \Google\Cloud\Firestore\V1\Cursor $start_at
      *           A starting point for the query results.
      *     @type \Google\Cloud\Firestore\V1\Cursor $end_at
@@ -227,19 +231,21 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
 
     /**
      * The order to apply to the query results.
-     * Firestore guarantees a stable ordering through the following rules:
-     *  * Any field required to appear in `order_by`, that is not already
-     *    specified in `order_by`, is appended to the order in field name order
-     *    by default.
+     * Firestore allows callers to provide a full ordering, a partial ordering, or
+     * no ordering at all. In all cases, Firestore guarantees a stable ordering
+     * through the following rules:
+     *  * The `order_by` is required to reference all fields used with an
+     *    inequality filter.
+     *  * All fields that are required to be in the `order_by` but are not already
+     *    present are appended in lexicographical ordering of the field name.
      *  * If an order on `__name__` is not specified, it is appended by default.
      * Fields are appended with the same sort direction as the last order
      * specified, or 'ASCENDING' if no order was specified. For example:
-     *  * `SELECT * FROM Foo ORDER BY A` becomes
-     *    `SELECT * FROM Foo ORDER BY A, __name__`
-     *  * `SELECT * FROM Foo ORDER BY A DESC` becomes
-     *    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`
-     *  * `SELECT * FROM Foo WHERE A > 1` becomes
-     *    `SELECT * FROM Foo WHERE A > 1 ORDER BY A, __name__`
+     *  * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
+     *  * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
+     *  * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
+     *  * `WHERE __name__ > ... AND a > 1` becomes
+     *     `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -251,19 +257,21 @@ class StructuredQuery extends \Google\Protobuf\Internal\Message
 
     /**
      * The order to apply to the query results.
-     * Firestore guarantees a stable ordering through the following rules:
-     *  * Any field required to appear in `order_by`, that is not already
-     *    specified in `order_by`, is appended to the order in field name order
-     *    by default.
+     * Firestore allows callers to provide a full ordering, a partial ordering, or
+     * no ordering at all. In all cases, Firestore guarantees a stable ordering
+     * through the following rules:
+     *  * The `order_by` is required to reference all fields used with an
+     *    inequality filter.
+     *  * All fields that are required to be in the `order_by` but are not already
+     *    present are appended in lexicographical ordering of the field name.
      *  * If an order on `__name__` is not specified, it is appended by default.
      * Fields are appended with the same sort direction as the last order
      * specified, or 'ASCENDING' if no order was specified. For example:
-     *  * `SELECT * FROM Foo ORDER BY A` becomes
-     *    `SELECT * FROM Foo ORDER BY A, __name__`
-     *  * `SELECT * FROM Foo ORDER BY A DESC` becomes
-     *    `SELECT * FROM Foo ORDER BY A DESC, __name__ DESC`
-     *  * `SELECT * FROM Foo WHERE A > 1` becomes
-     *    `SELECT * FROM Foo WHERE A > 1 ORDER BY A, __name__`
+     *  * `ORDER BY a` becomes `ORDER BY a ASC, __name__ ASC`
+     *  * `ORDER BY a DESC` becomes `ORDER BY a DESC, __name__ DESC`
+     *  * `WHERE a > 1` becomes `WHERE a > 1 ORDER BY a ASC, __name__ ASC`
+     *  * `WHERE __name__ > ... AND a > 1` becomes
+     *     `WHERE __name__ > ... AND a > 1 ORDER BY a ASC, __name__ ASC`
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.StructuredQuery.Order order_by = 4;</code>
      * @param array<\Google\Cloud\Firestore\V1\StructuredQuery\Order>|\Google\Protobuf\Internal\RepeatedField $var

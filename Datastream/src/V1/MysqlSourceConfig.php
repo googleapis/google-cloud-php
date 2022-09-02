@@ -27,6 +27,13 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlRdbms exclude_objects = 2;</code>
      */
     private $exclude_objects = null;
+    /**
+     * Maximum number of concurrent CDC tasks. The number should be non negative.
+     * If not set (or set to 0), the system's default value will be used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
+     */
+    private $max_concurrent_cdc_tasks = 0;
 
     /**
      * Constructor.
@@ -38,6 +45,9 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
      *           MySQL objects to retrieve from the source.
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $exclude_objects
      *           MySQL objects to exclude from the stream.
+     *     @type int $max_concurrent_cdc_tasks
+     *           Maximum number of concurrent CDC tasks. The number should be non negative.
+     *           If not set (or set to 0), the system's default value will be used.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +123,34 @@ class MysqlSourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlRdbms::class);
         $this->exclude_objects = $var;
+
+        return $this;
+    }
+
+    /**
+     * Maximum number of concurrent CDC tasks. The number should be non negative.
+     * If not set (or set to 0), the system's default value will be used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
+     * @return int
+     */
+    public function getMaxConcurrentCdcTasks()
+    {
+        return $this->max_concurrent_cdc_tasks;
+    }
+
+    /**
+     * Maximum number of concurrent CDC tasks. The number should be non negative.
+     * If not set (or set to 0), the system's default value will be used.
+     *
+     * Generated from protobuf field <code>int32 max_concurrent_cdc_tasks = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setMaxConcurrentCdcTasks($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->max_concurrent_cdc_tasks = $var;
 
         return $this;
     }

@@ -19,7 +19,7 @@ class DeleteApiSpecRevisionRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the spec revision to be deleted,
      * with a revision ID explicitly included.
      * Example:
-     * projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8
+     * `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,7 +35,7 @@ class DeleteApiSpecRevisionRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the spec revision to be deleted,
      *           with a revision ID explicitly included.
      *           Example:
-     *           projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8
+     *           `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      * }
      */
     public function __construct($data = NULL) {
@@ -47,7 +47,7 @@ class DeleteApiSpecRevisionRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the spec revision to be deleted,
      * with a revision ID explicitly included.
      * Example:
-     * projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8
+     * `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -61,7 +61,7 @@ class DeleteApiSpecRevisionRequest extends \Google\Protobuf\Internal\Message
      * Required. The name of the spec revision to be deleted,
      * with a revision ID explicitly included.
      * Example:
-     * projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8
+     * `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

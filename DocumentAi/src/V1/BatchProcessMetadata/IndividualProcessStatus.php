@@ -25,13 +25,13 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      */
     private $input_gcs_source = '';
     /**
-     * The status of the processing of the document.
+     * The status processing the document.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      */
     private $status = null;
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination')
+     * The output_gcs_destination (in the request as `output_gcs_destination`)
      * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
@@ -56,9 +56,9 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
      *           take snapshot of that document, since a user can move or change that
      *           document during the process.
      *     @type \Google\Rpc\Status $status
-     *           The status of the processing of the document.
+     *           The status processing the document.
      *     @type string $output_gcs_destination
-     *           The output_gcs_destination (in the request as 'output_gcs_destination')
+     *           The output_gcs_destination (in the request as `output_gcs_destination`)
      *           of the processed document if it was successful, otherwise empty.
      *     @type \Google\Cloud\DocumentAI\V1\HumanReviewStatus $human_review_status
      *           The status of human review on the processed document.
@@ -102,7 +102,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the processing of the document.
+     * The status processing the document.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @return \Google\Rpc\Status|null
@@ -123,7 +123,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of the processing of the document.
+     * The status processing the document.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 2;</code>
      * @param \Google\Rpc\Status $var
@@ -138,7 +138,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination')
+     * The output_gcs_destination (in the request as `output_gcs_destination`)
      * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>
@@ -150,7 +150,7 @@ class IndividualProcessStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination')
+     * The output_gcs_destination (in the request as `output_gcs_destination`)
      * of the processed document if it was successful, otherwise empty.
      *
      * Generated from protobuf field <code>string output_gcs_destination = 3;</code>

@@ -18,7 +18,7 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The artifact to replace.
      * The `name` field is used to identify the artifact to replace.
-     * Format: {parent}/artifacts/&#42;
+     * Format: `{parent}/artifacts/&#42;`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -33,7 +33,7 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact
      *           Required. The artifact to replace.
      *           The `name` field is used to identify the artifact to replace.
-     *           Format: {parent}/artifacts/&#42;
+     *           Format: `{parent}/artifacts/&#42;`
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The artifact to replace.
      * The `name` field is used to identify the artifact to replace.
-     * Format: {parent}/artifacts/&#42;
+     * Format: `{parent}/artifacts/&#42;`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\ApigeeRegistry\V1\Artifact|null
@@ -67,7 +67,7 @@ class ReplaceArtifactRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The artifact to replace.
      * The `name` field is used to identify the artifact to replace.
-     * Format: {parent}/artifacts/&#42;
+     * Format: `{parent}/artifacts/&#42;`
      *
      * Generated from protobuf field <code>.google.cloud.apigeeregistry.v1.Artifact artifact = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\ApigeeRegistry\V1\Artifact $var
