@@ -42,13 +42,13 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     - `trigger_name` - The resource name of the trigger that created job.
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - `trigger_name` - The name of the trigger that created the job.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * Supported fields for risk analysis jobs:
      *     - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * The operator must be `=` or `!=`.
      * Examples:
      * * inspected_storage = cloud_storage AND state = done
@@ -85,9 +85,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the job was created.
-     * - `end_time`: corresponds to time the job ended.
-     * - `name`: corresponds to job's name.
+     * - `create_time`: corresponds to the time the job was created.
+     * - `end_time`: corresponds to the time the job ended.
+     * - `name`: corresponds to the job's name.
      * - `state`: corresponds to `state`
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
@@ -129,13 +129,13 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           * Supported fields/values for inspect jobs:
      *               - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *               - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *               - `trigger_name` - The resource name of the trigger that created job.
-     *               - 'end_time` - Corresponds to time the job finished.
-     *               - 'start_time` - Corresponds to time the job finished.
+     *               - `trigger_name` - The name of the trigger that created the job.
+     *               - 'end_time` - Corresponds to the time the job finished.
+     *               - 'start_time` - Corresponds to the time the job finished.
      *           * Supported fields for risk analysis jobs:
      *               - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *               - 'end_time` - Corresponds to time the job finished.
-     *               - 'start_time` - Corresponds to time the job finished.
+     *               - 'end_time` - Corresponds to the time the job finished.
+     *               - 'start_time` - Corresponds to the time the job finished.
      *           * The operator must be `=` or `!=`.
      *           Examples:
      *           * inspected_storage = cloud_storage AND state = done
@@ -156,9 +156,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      *           insignificant.
      *           Example: `name asc, end_time asc, create_time desc`
      *           Supported fields are:
-     *           - `create_time`: corresponds to time the job was created.
-     *           - `end_time`: corresponds to time the job ended.
-     *           - `name`: corresponds to job's name.
+     *           - `create_time`: corresponds to the time the job was created.
+     *           - `end_time`: corresponds to the time the job ended.
+     *           - `name`: corresponds to the job's name.
      *           - `state`: corresponds to `state`
      *     @type string $location_id
      *           Deprecated. This field has no effect.
@@ -227,13 +227,13 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     - `trigger_name` - The resource name of the trigger that created job.
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - `trigger_name` - The name of the trigger that created the job.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * Supported fields for risk analysis jobs:
      *     - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * The operator must be `=` or `!=`.
      * Examples:
      * * inspected_storage = cloud_storage AND state = done
@@ -260,13 +260,13 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * * Supported fields/values for inspect jobs:
      *     - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *     - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *     - `trigger_name` - The resource name of the trigger that created job.
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - `trigger_name` - The name of the trigger that created the job.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * Supported fields for risk analysis jobs:
      *     - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *     - 'end_time` - Corresponds to time the job finished.
-     *     - 'start_time` - Corresponds to time the job finished.
+     *     - 'end_time` - Corresponds to the time the job finished.
+     *     - 'start_time` - Corresponds to the time the job finished.
      * * The operator must be `=` or `!=`.
      * Examples:
      * * inspected_storage = cloud_storage AND state = done
@@ -372,9 +372,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the job was created.
-     * - `end_time`: corresponds to time the job ended.
-     * - `name`: corresponds to job's name.
+     * - `create_time`: corresponds to the time the job was created.
+     * - `end_time`: corresponds to the time the job ended.
+     * - `name`: corresponds to the job's name.
      * - `state`: corresponds to `state`
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
@@ -392,9 +392,9 @@ class ListDlpJobsRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, end_time asc, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the job was created.
-     * - `end_time`: corresponds to time the job ended.
-     * - `name`: corresponds to job's name.
+     * - `create_time`: corresponds to the time the job was created.
+     * - `end_time`: corresponds to the time the job ended.
+     * - `name`: corresponds to the job's name.
      * - `state`: corresponds to `state`
      *
      * Generated from protobuf field <code>string order_by = 6;</code>
