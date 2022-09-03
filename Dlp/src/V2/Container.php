@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Container extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Container type, for example BigQuery or Google Cloud Storage.
+     * Container type, for example BigQuery or Cloud Storage.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
@@ -33,7 +33,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * A string representation of the full container name.
      * Examples:
      * - BigQuery: 'Project:DataSetId.TableId'
-     * - Google Cloud Storage: 'gs://Bucket/folders/filename.txt'
+     * - Cloud Storage: 'gs://Bucket/folders/filename.txt'
      *
      * Generated from protobuf field <code>string full_path = 3;</code>
      */
@@ -43,7 +43,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the root is
      *  `dataset_id`
-     * - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the root
      *  is `gs://bucket`
      *
      * Generated from protobuf field <code>string root_path = 4;</code>
@@ -54,24 +54,24 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the relative path is
      *  `table_id`
-     * - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
      *  path is `folder/filename.txt`
      *
      * Generated from protobuf field <code>string relative_path = 5;</code>
      */
     private $relative_path = '';
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Findings container modification timestamp, if applicable. For Cloud
+     * Storage, this field contains the last file modification timestamp. For a
+     * BigQuery table, this field contains the last_modified_time property. For
+     * Datastore, this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      */
     private $update_time = null;
     /**
      * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string version = 7;</code>
      */
@@ -84,7 +84,7 @@ class Container extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $type
-     *           Container type, for example BigQuery or Google Cloud Storage.
+     *           Container type, for example BigQuery or Cloud Storage.
      *     @type string $project_id
      *           Project where the finding was found.
      *           Can be different from the project that owns the finding.
@@ -92,29 +92,29 @@ class Container extends \Google\Protobuf\Internal\Message
      *           A string representation of the full container name.
      *           Examples:
      *           - BigQuery: 'Project:DataSetId.TableId'
-     *           - Google Cloud Storage: 'gs://Bucket/folders/filename.txt'
+     *           - Cloud Storage: 'gs://Bucket/folders/filename.txt'
      *     @type string $root_path
      *           The root of the container.
      *           Examples:
      *           - For BigQuery table `project_id:dataset_id.table_id`, the root is
      *            `dataset_id`
-     *           - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root
+     *           - For Cloud Storage file `gs://bucket/folder/filename.txt`, the root
      *            is `gs://bucket`
      *     @type string $relative_path
      *           The rest of the path after the root.
      *           Examples:
      *           - For BigQuery table `project_id:dataset_id.table_id`, the relative path is
      *            `table_id`
-     *           - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
+     *           - For Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
      *            path is `folder/filename.txt`
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Findings container modification timestamp, if applicable.
-     *           For Google Cloud Storage contains last file modification timestamp.
-     *           For BigQuery table contains last_modified_time property.
-     *           For Datastore - not populated.
+     *           Findings container modification timestamp, if applicable. For Cloud
+     *           Storage, this field contains the last file modification timestamp. For a
+     *           BigQuery table, this field contains the last_modified_time property. For
+     *           Datastore, this field isn't populated.
      *     @type string $version
      *           Findings container version, if available
-     *           ("generation" for Google Cloud Storage).
+     *           ("generation" for Cloud Storage).
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +123,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container type, for example BigQuery or Google Cloud Storage.
+     * Container type, for example BigQuery or Cloud Storage.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @return string
@@ -134,7 +134,7 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Container type, for example BigQuery or Google Cloud Storage.
+     * Container type, for example BigQuery or Cloud Storage.
      *
      * Generated from protobuf field <code>string type = 1;</code>
      * @param string $var
@@ -180,7 +180,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * A string representation of the full container name.
      * Examples:
      * - BigQuery: 'Project:DataSetId.TableId'
-     * - Google Cloud Storage: 'gs://Bucket/folders/filename.txt'
+     * - Cloud Storage: 'gs://Bucket/folders/filename.txt'
      *
      * Generated from protobuf field <code>string full_path = 3;</code>
      * @return string
@@ -194,7 +194,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * A string representation of the full container name.
      * Examples:
      * - BigQuery: 'Project:DataSetId.TableId'
-     * - Google Cloud Storage: 'gs://Bucket/folders/filename.txt'
+     * - Cloud Storage: 'gs://Bucket/folders/filename.txt'
      *
      * Generated from protobuf field <code>string full_path = 3;</code>
      * @param string $var
@@ -213,7 +213,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the root is
      *  `dataset_id`
-     * - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the root
      *  is `gs://bucket`
      *
      * Generated from protobuf field <code>string root_path = 4;</code>
@@ -229,7 +229,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the root is
      *  `dataset_id`
-     * - For Google Cloud Storage file `gs://bucket/folder/filename.txt`, the root
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the root
      *  is `gs://bucket`
      *
      * Generated from protobuf field <code>string root_path = 4;</code>
@@ -249,7 +249,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the relative path is
      *  `table_id`
-     * - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
      *  path is `folder/filename.txt`
      *
      * Generated from protobuf field <code>string relative_path = 5;</code>
@@ -265,7 +265,7 @@ class Container extends \Google\Protobuf\Internal\Message
      * Examples:
      * - For BigQuery table `project_id:dataset_id.table_id`, the relative path is
      *  `table_id`
-     * - Google Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
+     * - For Cloud Storage file `gs://bucket/folder/filename.txt`, the relative
      *  path is `folder/filename.txt`
      *
      * Generated from protobuf field <code>string relative_path = 5;</code>
@@ -281,10 +281,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Findings container modification timestamp, if applicable. For Cloud
+     * Storage, this field contains the last file modification timestamp. For a
+     * BigQuery table, this field contains the last_modified_time property. For
+     * Datastore, this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -305,10 +305,10 @@ class Container extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Findings container modification timestamp, if applicable. For Cloud
+     * Storage, this field contains the last file modification timestamp. For a
+     * BigQuery table, this field contains the last_modified_time property. For
+     * Datastore, this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -324,7 +324,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string version = 7;</code>
      * @return string
@@ -336,7 +336,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string version = 7;</code>
      * @param string $var

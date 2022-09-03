@@ -30,7 +30,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\DatastoreOptions $datastore_options
      *           Google Cloud Datastore options.
      *     @type \Google\Cloud\Dlp\V2\CloudStorageOptions $cloud_storage_options
-     *           Google Cloud Storage options.
+     *           Cloud Storage options.
      *     @type \Google\Cloud\Dlp\V2\BigQueryOptions $big_query_options
      *           BigQuery options.
      *     @type \Google\Cloud\Dlp\V2\HybridOptions $hybrid_options
@@ -75,7 +75,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage options.
+     * Cloud Storage options.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions cloud_storage_options = 3;</code>
      * @return \Google\Cloud\Dlp\V2\CloudStorageOptions|null
@@ -91,7 +91,7 @@ class StorageConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Google Cloud Storage options.
+     * Cloud Storage options.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.CloudStorageOptions cloud_storage_options = 3;</code>
      * @param \Google\Cloud\Dlp\V2\CloudStorageOptions $var

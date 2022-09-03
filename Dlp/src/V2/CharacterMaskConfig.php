@@ -32,6 +32,18 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Number of characters to mask. If not set, all matching chars will be
      * masked. Skipped characters do not count towards this tally.
+     * If `number_to_mask` is negative, this denotes inverse masking. Cloud DLP
+     * masks all but a number of characters.
+     * For example, suppose you have the following values:
+     * - `masking_character` is `*`
+     * - `number_to_mask` is `-4`
+     * - `reverse_order` is `false`
+     * - `CharsToIgnore` includes `-`
+     * - Input string is `1234-5678-9012-3456`
+     * The resulting de-identified string is
+     * `****-****-****-3456`. Cloud DLP masks all but the last four characters.
+     * If `reverse_order` is `true`, all but the first four characters are masked
+     * as `1234-****-****-****`.
      *
      * Generated from protobuf field <code>int32 number_to_mask = 2;</code>
      */
@@ -70,6 +82,18 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
      *     @type int $number_to_mask
      *           Number of characters to mask. If not set, all matching chars will be
      *           masked. Skipped characters do not count towards this tally.
+     *           If `number_to_mask` is negative, this denotes inverse masking. Cloud DLP
+     *           masks all but a number of characters.
+     *           For example, suppose you have the following values:
+     *           - `masking_character` is `*`
+     *           - `number_to_mask` is `-4`
+     *           - `reverse_order` is `false`
+     *           - `CharsToIgnore` includes `-`
+     *           - Input string is `1234-5678-9012-3456`
+     *           The resulting de-identified string is
+     *           `****-****-****-3456`. Cloud DLP masks all but the last four characters.
+     *           If `reverse_order` is `true`, all but the first four characters are masked
+     *           as `1234-****-****-****`.
      *     @type bool $reverse_order
      *           Mask characters in reverse order. For example, if `masking_character` is
      *           `0`, `number_to_mask` is `14`, and `reverse_order` is `false`, then the
@@ -123,6 +147,18 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Number of characters to mask. If not set, all matching chars will be
      * masked. Skipped characters do not count towards this tally.
+     * If `number_to_mask` is negative, this denotes inverse masking. Cloud DLP
+     * masks all but a number of characters.
+     * For example, suppose you have the following values:
+     * - `masking_character` is `*`
+     * - `number_to_mask` is `-4`
+     * - `reverse_order` is `false`
+     * - `CharsToIgnore` includes `-`
+     * - Input string is `1234-5678-9012-3456`
+     * The resulting de-identified string is
+     * `****-****-****-3456`. Cloud DLP masks all but the last four characters.
+     * If `reverse_order` is `true`, all but the first four characters are masked
+     * as `1234-****-****-****`.
      *
      * Generated from protobuf field <code>int32 number_to_mask = 2;</code>
      * @return int
@@ -135,6 +171,18 @@ class CharacterMaskConfig extends \Google\Protobuf\Internal\Message
     /**
      * Number of characters to mask. If not set, all matching chars will be
      * masked. Skipped characters do not count towards this tally.
+     * If `number_to_mask` is negative, this denotes inverse masking. Cloud DLP
+     * masks all but a number of characters.
+     * For example, suppose you have the following values:
+     * - `masking_character` is `*`
+     * - `number_to_mask` is `-4`
+     * - `reverse_order` is `false`
+     * - `CharsToIgnore` includes `-`
+     * - Input string is `1234-5678-9012-3456`
+     * The resulting de-identified string is
+     * `****-****-****-3456`. Cloud DLP masks all but the last four characters.
+     * If `reverse_order` is `true`, all but the first four characters are masked
+     * as `1234-****-****-****`.
      *
      * Generated from protobuf field <code>int32 number_to_mask = 2;</code>
      * @param int $var

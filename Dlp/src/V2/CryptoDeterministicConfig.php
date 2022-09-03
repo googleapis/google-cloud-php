@@ -70,7 +70,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * 2. the field is not present when transforming a given value,
      * plaintext would be used as is for encryption.
      * Note that case (1) is expected when an `InfoTypeTransformation` is
-     * applied to both structured and non-structured `ContentItem`s.
+     * applied to both structured and unstructured `ContentItem`s.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
      */
@@ -127,7 +127,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      *           2. the field is not present when transforming a given value,
      *           plaintext would be used as is for encryption.
      *           Note that case (1) is expected when an `InfoTypeTransformation` is
-     *           applied to both structured and non-structured `ContentItem`s.
+     *           applied to both structured and unstructured `ContentItem`s.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,7 +275,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * 2. the field is not present when transforming a given value,
      * plaintext would be used as is for encryption.
      * Note that case (1) is expected when an `InfoTypeTransformation` is
-     * applied to both structured and non-structured `ContentItem`s.
+     * applied to both structured and unstructured `ContentItem`s.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
      * @return \Google\Cloud\Dlp\V2\FieldId|null
@@ -309,7 +309,7 @@ class CryptoDeterministicConfig extends \Google\Protobuf\Internal\Message
      * 2. the field is not present when transforming a given value,
      * plaintext would be used as is for encryption.
      * Note that case (1) is expected when an `InfoTypeTransformation` is
-     * applied to both structured and non-structured `ContentItem`s.
+     * applied to both structured and unstructured `ContentItem`s.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.FieldId context = 3;</code>
      * @param \Google\Cloud\Dlp\V2\FieldId $var
