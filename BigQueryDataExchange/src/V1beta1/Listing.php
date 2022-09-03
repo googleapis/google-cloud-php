@@ -28,7 +28,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     /**
      * Required. Human-readable display name of the listing. The display name must contain
      * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), and can't start or end with spaces.
+     * ( ), ampersands (&) and can't start or end with spaces.
      * Default value is an empty string.
      * Max length: 63 bytes.
      *
@@ -36,10 +36,9 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. Short description of the listing that can consist of sentences or
-     * paragraphs. The description must not contain Unicode non-characters as
-     * well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage
-     * returns (CR), and page breaks (FF).
+     * Optional. Short description of the listing. The description must not contain
+     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
+     * new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -60,7 +59,7 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     private $documentation = '';
     /**
-     * Output only. Current state of the Listing.
+     * Output only. Current state of the listing.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -76,19 +75,19 @@ class Listing extends \Google\Protobuf\Internal\Message
      */
     private $icon = '';
     /**
-     * Optional. The details of the Data Provider who owns the source data.
+     * Optional. Details of the data provider who owns the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataProvider data_provider = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $data_provider = null;
     /**
-     * Optional. Categories of the Listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to two categories are allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.common.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $categories;
     /**
-     * Optional. The details of the Publisher who owns the listing and has rights to share
+     * Optional. Details of the publisher who owns the listing and who can share
      * the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Publisher publisher = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -110,20 +109,21 @@ class Listing extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource $bigquery_dataset
+     *           Required. Shared dataset i.e. BigQuery dataset source.
      *     @type string $name
      *           Output only. The resource name of the listing.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
      *     @type string $display_name
      *           Required. Human-readable display name of the listing. The display name must contain
      *           only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     *           ( ), and can't start or end with spaces.
+     *           ( ), ampersands (&) and can't start or end with spaces.
      *           Default value is an empty string.
      *           Max length: 63 bytes.
      *     @type string $description
-     *           Optional. Short description of the listing that can consist of sentences or
-     *           paragraphs. The description must not contain Unicode non-characters as
-     *           well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage
-     *           returns (CR), and page breaks (FF).
+     *           Optional. Short description of the listing. The description must not contain
+     *           Unicode non-characters and C0 and C1 control codes except tabs (HT),
+     *           new lines (LF), carriage returns (CR), and page breaks (FF).
      *           Default value is an empty string.
      *           Max length: 2000 bytes.
      *     @type string $primary_contact
@@ -131,10 +131,8 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Max Length: 1000 bytes.
      *     @type string $documentation
      *           Optional. Documentation describing the listing.
-     *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource $bigquery_dataset
-     *           Required. Shared dataset i.e. BigQuery dataset source.
      *     @type int $state
-     *           Output only. Current state of the Listing.
+     *           Output only. Current state of the listing.
      *     @type string $icon
      *           Optional. Base64 encoded image representing the listing. Max Size: 3.0MiB
      *           Expected image dimensions are 512x512 pixels, however the API only
@@ -142,11 +140,11 @@ class Listing extends \Google\Protobuf\Internal\Message
      *           Note: For byte fields, the contents of the field are base64-encoded (which
      *           increases the size of the data by 33-36%) when using JSON on the wire.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\DataProvider $data_provider
-     *           Optional. The details of the Data Provider who owns the source data.
+     *           Optional. Details of the data provider who owns the source data.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $categories
-     *           Optional. Categories of the Listing. Up to two categories are allowed.
+     *           Optional. Categories of the listing. Up to two categories are allowed.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Publisher $publisher
-     *           Optional. The details of the Publisher who owns the listing and has rights to share
+     *           Optional. Details of the publisher who owns the listing and who can share
      *           the source data.
      *     @type string $request_access
      *           Optional. Email or URL of the request access of the listing.
@@ -157,6 +155,37 @@ class Listing extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Bigquery\Dataexchange\V1Beta1\Dataexchange::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Required. Shared dataset i.e. BigQuery dataset source.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource|null
+     */
+    public function getBigqueryDataset()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasBigqueryDataset()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Required. Shared dataset i.e. BigQuery dataset source.
+     *
+     * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource $var
+     * @return $this
+     */
+    public function setBigqueryDataset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
     }
 
     /**
@@ -190,7 +219,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     /**
      * Required. Human-readable display name of the listing. The display name must contain
      * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), and can't start or end with spaces.
+     * ( ), ampersands (&) and can't start or end with spaces.
      * Default value is an empty string.
      * Max length: 63 bytes.
      *
@@ -205,7 +234,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     /**
      * Required. Human-readable display name of the listing. The display name must contain
      * only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces
-     * ( ), and can't start or end with spaces.
+     * ( ), ampersands (&) and can't start or end with spaces.
      * Default value is an empty string.
      * Max length: 63 bytes.
      *
@@ -222,10 +251,9 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Short description of the listing that can consist of sentences or
-     * paragraphs. The description must not contain Unicode non-characters as
-     * well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage
-     * returns (CR), and page breaks (FF).
+     * Optional. Short description of the listing. The description must not contain
+     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
+     * new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -238,10 +266,9 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Short description of the listing that can consist of sentences or
-     * paragraphs. The description must not contain Unicode non-characters as
-     * well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage
-     * returns (CR), and page breaks (FF).
+     * Optional. Short description of the listing. The description must not contain
+     * Unicode non-characters and C0 and C1 control codes except tabs (HT),
+     * new lines (LF), carriage returns (CR), and page breaks (FF).
      * Default value is an empty string.
      * Max length: 2000 bytes.
      *
@@ -312,38 +339,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Shared dataset i.e. BigQuery dataset source.
-     *
-     * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource|null
-     */
-    public function getBigqueryDataset()
-    {
-        return $this->readOneof(6);
-    }
-
-    public function hasBigqueryDataset()
-    {
-        return $this->hasOneof(6);
-    }
-
-    /**
-     * Required. Shared dataset i.e. BigQuery dataset source.
-     *
-     * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.BigQueryDatasetSource bigquery_dataset = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource $var
-     * @return $this
-     */
-    public function setBigqueryDataset($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\BigQueryDatasetSource::class);
-        $this->writeOneof(6, $var);
-
-        return $this;
-    }
-
-    /**
-     * Output only. Current state of the Listing.
+     * Output only. Current state of the listing.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -354,7 +350,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Current state of the Listing.
+     * Output only. Current state of the listing.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Listing.State state = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -403,7 +399,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The details of the Data Provider who owns the source data.
+     * Optional. Details of the data provider who owns the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataProvider data_provider = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\BigQuery\DataExchange\V1beta1\DataProvider|null
@@ -424,7 +420,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The details of the Data Provider who owns the source data.
+     * Optional. Details of the data provider who owns the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.DataProvider data_provider = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataProvider $var
@@ -439,9 +435,9 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Categories of the Listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to two categories are allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.common.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getCategories()
@@ -450,22 +446,22 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Categories of the Listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to two categories are allowed.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.common.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.Listing.Category categories = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\DataExchange\Common\Category::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::ENUM, \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing\Category::class);
         $this->categories = $arr;
 
         return $this;
     }
 
     /**
-     * Optional. The details of the Publisher who owns the listing and has rights to share
+     * Optional. Details of the publisher who owns the listing and who can share
      * the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Publisher publisher = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -487,7 +483,7 @@ class Listing extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The details of the Publisher who owns the listing and has rights to share
+     * Optional. Details of the publisher who owns the listing and who can share
      * the source data.
      *
      * Generated from protobuf field <code>.google.cloud.bigquery.dataexchange.v1beta1.Publisher publisher = 11 [(.google.api.field_behavior) = OPTIONAL];</code>
