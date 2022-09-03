@@ -27,11 +27,13 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\SaveFindings $save_findings
      *           Save resulting findings in a provided location.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishToPubSub $pub_sub
-     *           Publish a notification to a pubsub topic.
+     *           Publish a notification to a Pub/Sub topic.
      *     @type \Google\Cloud\Dlp\V2\Action\PublishSummaryToCscc $publish_summary_to_cscc
      *           Publish summary to Cloud Security Command Center (Alpha).
      *     @type \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog $publish_findings_to_cloud_data_catalog
      *           Publish findings to Cloud Datahub.
+     *     @type \Google\Cloud\Dlp\V2\Action\Deidentify $deidentify
+     *           Create a de-identified copy of the input data.
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
      *           Enable email notification for project owners and editors on job's
      *           completion/failure.
@@ -76,7 +78,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publish a notification to a pubsub topic.
+     * Publish a notification to a Pub/Sub topic.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToPubSub pub_sub = 2;</code>
      * @return \Google\Cloud\Dlp\V2\Action\PublishToPubSub|null
@@ -92,7 +94,7 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Publish a notification to a pubsub topic.
+     * Publish a notification to a Pub/Sub topic.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.PublishToPubSub pub_sub = 2;</code>
      * @param \Google\Cloud\Dlp\V2\Action\PublishToPubSub $var
@@ -164,6 +166,37 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\PublishFindingsToCloudDataCatalog::class);
         $this->writeOneof(5, $var);
+
+        return $this;
+    }
+
+    /**
+     * Create a de-identified copy of the input data.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.Deidentify deidentify = 7;</code>
+     * @return \Google\Cloud\Dlp\V2\Action\Deidentify|null
+     */
+    public function getDeidentify()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasDeidentify()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * Create a de-identified copy of the input data.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.Deidentify deidentify = 7;</code>
+     * @param \Google\Cloud\Dlp\V2\Action\Deidentify $var
+     * @return $this
+     */
+    public function setDeidentify($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\Action\Deidentify::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }
