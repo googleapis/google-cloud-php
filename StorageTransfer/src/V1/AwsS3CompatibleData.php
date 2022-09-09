@@ -20,7 +20,7 @@ class AwsS3CompatibleData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string bucket_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $bucket_name = '';
+    private $bucket_name = '';
     /**
      * Specifies the root path to transfer objects.
      * Must be an empty string or full path name that ends with a '/'. This
@@ -29,20 +29,20 @@ class AwsS3CompatibleData extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 2;</code>
      */
-    protected $path = '';
+    private $path = '';
     /**
      * Required. Specifies the endpoint of the storage service.
      *
      * Generated from protobuf field <code>string endpoint = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $endpoint = '';
+    private $endpoint = '';
     /**
      * Specifies the region to sign requests with. This can be left blank if
      * requests should be signed with an empty region.
      *
      * Generated from protobuf field <code>string region = 5;</code>
      */
-    protected $region = '';
+    private $region = '';
     protected $data_provider;
 
     /**

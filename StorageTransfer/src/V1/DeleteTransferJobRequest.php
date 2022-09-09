@@ -20,14 +20,14 @@ class DeleteTransferJobRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string job_name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $job_name = '';
+    private $job_name = '';
     /**
      * Required. The ID of the Google Cloud project that owns the
      * job.
      *
      * Generated from protobuf field <code>string project_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $project_id = '';
+    private $project_id = '';
 
     /**
      * Constructor.

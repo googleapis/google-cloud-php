@@ -79,6 +79,8 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
      *           A POSIX Filesystem data source.
      *     @type \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData $azure_blob_storage_data_source
      *           An Azure Blob Storage data source.
+     *     @type \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData $aws_s3_compatible_data_source
+     *           An AWS S3 compatible data source.
      *     @type \Google\Cloud\StorageTransfer\V1\GcsData $gcs_intermediate_data_location
      *           Cloud Storage intermediate data location.
      *     @type \Google\Cloud\StorageTransfer\V1\ObjectConditions $object_conditions
@@ -321,6 +323,37 @@ class TransferSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AzureBlobStorageData::class);
         $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * An AWS S3 compatible data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.AwsS3CompatibleData aws_s3_compatible_data_source = 19;</code>
+     * @return \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData|null
+     */
+    public function getAwsS3CompatibleDataSource()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasAwsS3CompatibleDataSource()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * An AWS S3 compatible data source.
+     *
+     * Generated from protobuf field <code>.google.storagetransfer.v1.AwsS3CompatibleData aws_s3_compatible_data_source = 19;</code>
+     * @param \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData $var
+     * @return $this
+     */
+    public function setAwsS3CompatibleDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\StorageTransfer\V1\AwsS3CompatibleData::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

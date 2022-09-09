@@ -59,6 +59,4 @@ class AuthMethod
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AuthMethod::class, \Google\Cloud\StorageTransfer\V1\S3CompatibleMetadata_AuthMethod::class);
 
