@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://github.com/googleapis/gax-php/compare/v1.16.4...v1.17.0) (2022-09-08)
+
+
+### Features
+
+* Add startAsyncCall support ([#418](https://github.com/googleapis/gax-php/issues/418)) ([fc90693](https://github.com/googleapis/gax-php/commit/fc9069373c329183e07f8d174084c305b2308209))
+
 ## [1.16.4](https://github.com/googleapis/gax-php/compare/v1.16.3...v1.16.4) (2022-08-25)
 
 
