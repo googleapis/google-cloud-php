@@ -58,8 +58,11 @@ use Google\Cloud\Firestore\V1\PartitionQueryRequest;
 use Google\Cloud\Firestore\V1\PartitionQueryResponse;
 use Google\Cloud\Firestore\V1\Precondition;
 use Google\Cloud\Firestore\V1\RollbackRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryRequest;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryRequest;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
+use Google\Cloud\Firestore\V1\StructuredAggregationQuery;
 use Google\Cloud\Firestore\V1\StructuredQuery;
 use Google\Cloud\Firestore\V1\TransactionOptions;
 use Google\Cloud\Firestore\V1\UpdateDocumentRequest;
@@ -1028,6 +1031,96 @@ class FirestoreGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('Rollback', GPBEmpty::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Runs an aggregation query.
+     *
+     * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
+     * this API allows running an aggregation to produce a series of
+     * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
+     *
+     * High-Level Example:
+     *
+     * ```
+     * -- Return the number of documents in table given a filter.
+     * SELECT COUNT(*) FROM ( SELECT * FROM k where a = true );
+     * ```
+     *
+     * Sample code:
+     * ```
+     * $firestoreClient = new FirestoreClient();
+     * try {
+     *     $parent = 'parent';
+     *     // Read all responses until the stream is complete
+     *     $stream = $firestoreClient->runAggregationQuery($parent);
+     *     foreach ($stream->readAll() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $firestoreClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The parent resource name. In the format:
+     *                             `projects/{project_id}/databases/{database_id}/documents` or
+     *                             `projects/{project_id}/databases/{database_id}/documents/{document_path}`.
+     *                             For example:
+     *                             `projects/my-project/databases/my-database/documents` or
+     *                             `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type StructuredAggregationQuery $structuredAggregationQuery
+     *           An aggregation query.
+     *     @type string $transaction
+     *           Run the aggregation within an already active transaction.
+     *
+     *           The value here is the opaque transaction ID to execute the query in.
+     *     @type TransactionOptions $newTransaction
+     *           Starts a new transaction as part of the query, defaulting to read-only.
+     *
+     *           The new transaction ID will be returned as the first response in the
+     *           stream.
+     *     @type Timestamp $readTime
+     *           Executes the query at the given timestamp.
+     *
+     *           Requires:
+     *
+     *           * Cannot be more than 270 seconds in the past.
+     *     @type int $timeoutMillis
+     *           Timeout to use for this call.
+     * }
+     *
+     * @return \Google\ApiCore\ServerStream
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function runAggregationQuery($parent, array $optionalArgs = [])
+    {
+        $request = new RunAggregationQueryRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['structuredAggregationQuery'])) {
+            $request->setStructuredAggregationQuery($optionalArgs['structuredAggregationQuery']);
+        }
+
+        if (isset($optionalArgs['transaction'])) {
+            $request->setTransaction($optionalArgs['transaction']);
+        }
+
+        if (isset($optionalArgs['newTransaction'])) {
+            $request->setNewTransaction($optionalArgs['newTransaction']);
+        }
+
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('RunAggregationQuery', RunAggregationQueryResponse::class, $optionalArgs, $request, Call::SERVER_STREAMING_CALL);
     }
 
     /**
