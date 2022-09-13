@@ -116,12 +116,13 @@ class DocFx extends Command
 
         // Add an "overview" file if it exists
         $overviewFile = sprintf('%s/README.md', $componentPath);
-        if ($releaseLevel === 'beta') {
-            $overviewFile = $this->getBetaNotice() . $overviewFile;
-        }
         if (file_exists($overviewFile)) {
+            $overviewFileMarkdown = file_get_contents($overviewFile);
+            if ($releaseLevel === 'beta') {
+                $overviewFileMarkdown = $this->getMarkdownBetaNotice() . "\n" . $overviewFileMarkdown;
+            }
             $outFile = sprintf('%s/index.md', $outDir);
-            file_put_contents($outFile, file_get_contents($overviewFile));
+            file_put_contents($outFile, $overviewFileMarkdown);
             // Add "overview" as the first item on the TOC
             array_unshift($tocItems, ['name' => 'Overview', 'href' => 'index.md']);
         }
@@ -274,18 +275,12 @@ class DocFx extends Command
         return sprintf('https://github.com/%s/issues', $this->getRepo());
     }
 
-    private function getBetaNotice(): string
+    private function getMarkdownBetaNotice(): string
     {
-        return '
-        <aside class="beta">
-            <p><strong>Beta</strong></p>
-            <p>
-                This library is covered by the <a href="/terms/service-terms#1">Pre-GA Offerings Terms</a>
-                of the  Terms of Service. Pre-GA libraries might have limited support,
-                and changes to pre-GA libraries might not be compatible with other pre-GA versions.
-                For more information, see the
-                <a href="/products#product-launch-stages">launch stage descriptions</a>.
-            </p>
-        </aside>' . PHP_EOL;
+        return 'Beta: This library is covered by the [Pre-GA Offerings Terms](/terms/service-terms#1) ' .
+            'of the  Terms of Service. Pre-GA libraries might have limited support, ' .
+            'and changes to pre-GA libraries might not be compatible with other pre-GA versions. ' .
+            'For more information, see the ' .
+            '[launch stage descriptions](/products#product-launch-stages).' . PHP_EOL;
     }
 }

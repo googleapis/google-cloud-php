@@ -85,7 +85,7 @@ jobs:
           && chmod +x /usr/local/bin/phpdoc
     - name: Run DocFX Unit Test Suite
       run: vendor/bin/phpunit dev/tests/Unit/DocFx/
-    - name: Run Docs Generator
+    - name: Run Docs Generator (Dry Run)
       run: bash .kokoro/publish-docs.sh
 
   docs:
