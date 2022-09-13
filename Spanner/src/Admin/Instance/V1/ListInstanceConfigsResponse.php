@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for
- * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
+ * The response for [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.ListInstanceConfigsResponse</code>
  */
@@ -24,8 +23,8 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
     private $instance_configs;
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs]
-     * call to fetch more of the matching instance configurations.
+     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
+     * fetch more of the matching instance configurations.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -41,8 +40,8 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
      *           The list of requested instance configurations.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
-     *           [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs]
-     *           call to fetch more of the matching instance configurations.
+     *           [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
+     *           fetch more of the matching instance configurations.
      * }
      */
     public function __construct($data = NULL) {
@@ -78,8 +77,8 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs]
-     * call to fetch more of the matching instance configurations.
+     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
+     * fetch more of the matching instance configurations.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -91,8 +90,8 @@ class ListInstanceConfigsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs]
-     * call to fetch more of the matching instance configurations.
+     * [ListInstanceConfigs][google.spanner.admin.instance.v1.InstanceAdmin.ListInstanceConfigs] call to
+     * fetch more of the matching instance configurations.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var
