@@ -420,6 +420,46 @@
             ]
         },
         {
+            "id": "cloud-beyondcorp-appconnections",
+            "name": "google/cloud-beyondcorp-appconnections",
+            "defaultService": "beyondcorpappconnections/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-appconnectors",
+            "name": "google/cloud-beyondcorp-appconnectors",
+            "defaultService": "beyondcorpappconnectors/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-appgateways",
+            "name": "google/cloud-beyondcorp-appgateways",
+            "defaultService": "beyondcorpappgateways/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-clientconnectorservices",
+            "name": "google/cloud-beyondcorp-clientconnectorservices",
+            "defaultService": "beyondcorpclientconnectorservices/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-clientgateways",
+            "name": "google/cloud-beyondcorp-clientgateways",
+            "defaultService": "beyondcorpclientgateways/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery",
             "name": "google/cloud-bigquery",
             "defaultService": "bigquery/bigqueryclient",
