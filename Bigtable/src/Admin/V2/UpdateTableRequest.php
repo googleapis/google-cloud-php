@@ -24,7 +24,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $table = null;
+    private $table = null;
     /**
      * Required. The list of fields to update.
      * A mask specifying which fields (e.g. `deletion_protection`) in the `table`
@@ -37,7 +37,7 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $update_mask = null;
+    private $update_mask = null;
 
     /**
      * Constructor.
