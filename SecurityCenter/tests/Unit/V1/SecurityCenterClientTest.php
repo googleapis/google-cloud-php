@@ -319,6 +319,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
@@ -329,6 +330,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
@@ -1957,6 +1959,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
@@ -1967,6 +1970,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
@@ -2115,6 +2119,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
@@ -2125,6 +2130,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
@@ -2407,6 +2413,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $externalUri = 'externalUri-1385596168';
         $canonicalName = 'canonicalName1385400054';
         $muteInitiator = 'muteInitiator7603081';
+        $parentDisplayName = 'parentDisplayName934119773';
         $description = 'description-1724546052';
         $nextSteps = 'nextSteps-921338149';
         $expectedResponse = new Finding();
@@ -2417,6 +2424,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setExternalUri($externalUri);
         $expectedResponse->setCanonicalName($canonicalName);
         $expectedResponse->setMuteInitiator($muteInitiator);
+        $expectedResponse->setParentDisplayName($parentDisplayName);
         $expectedResponse->setDescription($description);
         $expectedResponse->setNextSteps($nextSteps);
         $transport->addResponse($expectedResponse);
