@@ -85,6 +85,12 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
+     * Share-settings for the node group
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     */
+    private $share_settings = null;
+    /**
      * [Output Only] The total number of nodes in the node group.
      *
      * Generated from protobuf field <code>optional int32 size = 3530753;</code>
@@ -133,6 +139,8 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
      *           URL of the node template to create the node group from.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
+     *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
+     *           Share-settings for the node group
      *     @type int $size
      *           [Output Only] The total number of nodes in the node group.
      *     @type string $status
@@ -569,6 +577,42 @@ class NodeGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->self_link = $var;
+
+        return $this;
+    }
+
+    /**
+     * Share-settings for the node group
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     * @return \Google\Cloud\Compute\V1\ShareSettings|null
+     */
+    public function getShareSettings()
+    {
+        return $this->share_settings;
+    }
+
+    public function hasShareSettings()
+    {
+        return isset($this->share_settings);
+    }
+
+    public function clearShareSettings()
+    {
+        unset($this->share_settings);
+    }
+
+    /**
+     * Share-settings for the node group
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
+     * @param \Google\Cloud\Compute\V1\ShareSettings $var
+     * @return $this
+     */
+    public function setShareSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ShareSettings::class);
+        $this->share_settings = $var;
 
         return $this;
     }
