@@ -158,7 +158,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return isset($this->inspect_config) ? $this->inspect_config : null;
+        return $this->inspect_config;
     }
 
     public function hasInspectConfig()
@@ -195,7 +195,7 @@ class InspectContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return isset($this->item) ? $this->item : null;
+        return $this->item;
     }
 
     public function hasItem()

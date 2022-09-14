@@ -62,6 +62,7 @@ class MatchingFileIterator extends \FilterIterator
      * @access private
      * @return boolean
      */
+    #[\ReturnTypeWillChange]
     public function accept()
     {
         $candidate = $this->getInnerIterator()->current();

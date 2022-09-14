@@ -19,17 +19,23 @@ class SourceIpRangesToNat
      */
     const UNDEFINED_SOURCE_IP_RANGES_TO_NAT = 0;
     /**
+     * The primary and all the secondary ranges are allowed to Nat.
+     *
      * Generated from protobuf enum <code>ALL_IP_RANGES = 35608496;</code>
      */
     const ALL_IP_RANGES = 35608496;
     /**
+     * A list of secondary ranges are allowed to Nat.
+     *
      * Generated from protobuf enum <code>LIST_OF_SECONDARY_IP_RANGES = 192289308;</code>
      */
     const LIST_OF_SECONDARY_IP_RANGES = 192289308;
     /**
-     * Generated from protobuf enum <code>PRIMARY_IP_RANGE = 28674498;</code>
+     * The primary range is allowed to Nat.
+     *
+     * Generated from protobuf enum <code>PRIMARY_IP_RANGE = 297109954;</code>
      */
-    const PRIMARY_IP_RANGE = 28674498;
+    const PRIMARY_IP_RANGE = 297109954;
 
     private static $valueToName = [
         self::UNDEFINED_SOURCE_IP_RANGES_TO_NAT => 'UNDEFINED_SOURCE_IP_RANGES_TO_NAT',

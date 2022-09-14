@@ -3,6 +3,31 @@
 return [
     'interfaces' => [
         'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/topics/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:getIamPolicy',
+                    ],
+                ],
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
             'SetIamPolicy' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=projects/*/topics/*}:setIamPolicy',
@@ -18,26 +43,10 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:setIamPolicy',
                         'body' => '*',
                     ],
-                ],
-                'placeholders' => [
-                    'resource' => [
-                        'getters' => [
-                            'getResource',
-                        ],
-                    ],
-                ],
-            ],
-            'GetIamPolicy' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{resource=projects/*/topics/*}:getIamPolicy',
-                'additionalBindings' => [
                     [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/subscriptions/*}:getIamPolicy',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:getIamPolicy',
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:setIamPolicy',
+                        'body' => '*',
                     ],
                 ],
                 'placeholders' => [
@@ -63,6 +72,11 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/snapshots/*}:testIamPermissions',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/schemas/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -86,33 +100,8 @@ return [
                     ],
                 ],
             ],
-            'UpdateTopic' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{topic.name=projects/*/topics/*}',
-                'body' => '*',
-                'placeholders' => [
-                    'topic.name' => [
-                        'getters' => [
-                            'getTopic',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'Publish' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{topic=projects/*/topics/*}:publish',
-                'body' => '*',
-                'placeholders' => [
-                    'topic' => [
-                        'getters' => [
-                            'getTopic',
-                        ],
-                    ],
-                ],
-            ],
-            'GetTopic' => [
-                'method' => 'get',
+            'DeleteTopic' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
                 'placeholders' => [
                     'topic' => [
@@ -122,20 +111,20 @@ return [
                     ],
                 ],
             ],
-            'ListTopics' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{project=projects/*}/topics',
+            'DetachSubscription' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{subscription=projects/*/subscriptions/*}:detach',
                 'placeholders' => [
-                    'project' => [
+                    'subscription' => [
                         'getters' => [
-                            'getProject',
+                            'getSubscription',
                         ],
                     ],
                 ],
             ],
-            'ListTopicSubscriptions' => [
+            'GetTopic' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{topic=projects/*/topics/*}/subscriptions',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
                 'placeholders' => [
                     'topic' => [
                         'getters' => [
@@ -155,9 +144,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteTopic' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{topic=projects/*/topics/*}',
+            'ListTopicSubscriptions' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}/subscriptions',
                 'placeholders' => [
                     'topic' => [
                         'getters' => [
@@ -166,13 +155,38 @@ return [
                     ],
                 ],
             ],
-            'DetachSubscription' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{subscription=projects/*/subscriptions/*}:detach',
+            'ListTopics' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{project=projects/*}/topics',
                 'placeholders' => [
-                    'subscription' => [
+                    'project' => [
                         'getters' => [
-                            'getSubscription',
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Publish' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{topic=projects/*/topics/*}:publish',
+                'body' => '*',
+                'placeholders' => [
+                    'topic' => [
+                        'getters' => [
+                            'getTopic',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTopic' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{topic.name=projects/*/topics/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'topic.name' => [
+                        'getters' => [
+                            'getTopic',
+                            'getName',
                         ],
                     ],
                 ],

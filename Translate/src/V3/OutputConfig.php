@@ -50,8 +50,12 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           changes. Callers should also expect all the content in input_file are
      *           processed and ready to be consumed (that is, no partial output file is
      *           written).
+     *           Since index.csv will be keeping updated during the process, please make
+     *           sure there is no custom retention policy applied on the output bucket
+     *           that may avoid file updating.
+     *           (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
      *           The format of translations_file (for target language code 'trg') is:
-     *           `gs://translation_test/a_b_c_'trg'_translations.[extension]`
+     *           gs://translation_test/a_b_c_'trg'_translations.[extension]
      *           If the input file extension is tsv, the output has the following
      *           columns:
      *           Column 1: ID of the request provided in the input, if it's not
@@ -66,9 +70,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           If input file extension is a txt or html, the translation is directly
      *           written to the output file. If glossary is requested, a separate
      *           glossary_translations_file has format of
-     *           `gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]`
+     *           gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]
      *           The format of errors file (for target language code 'trg') is:
-     *           `gs://translation_test/a_b_c_'trg'_errors.[extension]`
+     *           gs://translation_test/a_b_c_'trg'_errors.[extension]
      *           If the input file extension is tsv, errors_file contains the following:
      *           Column 1: ID of the request provided in the input, if it's not
      *           provided in the input, then the input row number is used (0-based).
@@ -78,7 +82,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *           Error when applying the glossary.
      *           If the input file extension is txt or html, glossary_error_file will be
      *           generated that contains error details. glossary_error_file has format of
-     *           `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`
+     *           gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]
      * }
      */
     public function __construct($data = NULL) {
@@ -113,8 +117,12 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * changes. Callers should also expect all the content in input_file are
      * processed and ready to be consumed (that is, no partial output file is
      * written).
+     * Since index.csv will be keeping updated during the process, please make
+     * sure there is no custom retention policy applied on the output bucket
+     * that may avoid file updating.
+     * (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
      * The format of translations_file (for target language code 'trg') is:
-     * `gs://translation_test/a_b_c_'trg'_translations.[extension]`
+     * gs://translation_test/a_b_c_'trg'_translations.[extension]
      * If the input file extension is tsv, the output has the following
      * columns:
      * Column 1: ID of the request provided in the input, if it's not
@@ -129,9 +137,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * If input file extension is a txt or html, the translation is directly
      * written to the output file. If glossary is requested, a separate
      * glossary_translations_file has format of
-     * `gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]`
+     * gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]
      * The format of errors file (for target language code 'trg') is:
-     * `gs://translation_test/a_b_c_'trg'_errors.[extension]`
+     * gs://translation_test/a_b_c_'trg'_errors.[extension]
      * If the input file extension is tsv, errors_file contains the following:
      * Column 1: ID of the request provided in the input, if it's not
      * provided in the input, then the input row number is used (0-based).
@@ -141,10 +149,10 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Error when applying the glossary.
      * If the input file extension is txt or html, glossary_error_file will be
      * generated that contains error details. glossary_error_file has format of
-     * `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`
+     * gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GcsDestination gcs_destination = 1;</code>
-     * @return \Google\Cloud\Translate\V3\GcsDestination
+     * @return \Google\Cloud\Translate\V3\GcsDestination|null
      */
     public function getGcsDestination()
     {
@@ -183,8 +191,12 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * changes. Callers should also expect all the content in input_file are
      * processed and ready to be consumed (that is, no partial output file is
      * written).
+     * Since index.csv will be keeping updated during the process, please make
+     * sure there is no custom retention policy applied on the output bucket
+     * that may avoid file updating.
+     * (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy)
      * The format of translations_file (for target language code 'trg') is:
-     * `gs://translation_test/a_b_c_'trg'_translations.[extension]`
+     * gs://translation_test/a_b_c_'trg'_translations.[extension]
      * If the input file extension is tsv, the output has the following
      * columns:
      * Column 1: ID of the request provided in the input, if it's not
@@ -199,9 +211,9 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * If input file extension is a txt or html, the translation is directly
      * written to the output file. If glossary is requested, a separate
      * glossary_translations_file has format of
-     * `gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]`
+     * gs://translation_test/a_b_c_'trg'_glossary_translations.[extension]
      * The format of errors file (for target language code 'trg') is:
-     * `gs://translation_test/a_b_c_'trg'_errors.[extension]`
+     * gs://translation_test/a_b_c_'trg'_errors.[extension]
      * If the input file extension is tsv, errors_file contains the following:
      * Column 1: ID of the request provided in the input, if it's not
      * provided in the input, then the input row number is used (0-based).
@@ -211,7 +223,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      * Error when applying the glossary.
      * If the input file extension is txt or html, glossary_error_file will be
      * generated that contains error details. glossary_error_file has format of
-     * `gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]`
+     * gs://translation_test/a_b_c_'trg'_glossary_errors.[extension]
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GcsDestination gcs_destination = 1;</code>
      * @param \Google\Cloud\Translate\V3\GcsDestination $var

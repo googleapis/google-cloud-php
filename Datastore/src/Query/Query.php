@@ -83,6 +83,9 @@ class Query implements QueryInterface
     const OP_GREATER_THAN           = 'GREATER_THAN';
     const OP_GREATER_THAN_OR_EQUAL  = 'GREATER_THAN_OR_EQUAL';
     const OP_EQUALS                 = 'EQUAL';
+    const OP_NOT_EQUALS             = 'NOT_EQUAL';
+    const OP_IN                     = 'IN';
+    const OP_NOT_IN                 = 'NOT_IN';
     const OP_HAS_ANCESTOR           = 'HAS_ANCESTOR';
 
     const ORDER_DEFAULT             = self::ORDER_ASCENDING;
@@ -99,6 +102,9 @@ class Query implements QueryInterface
         self::OP_GREATER_THAN_OR_EQUAL,
         self::OP_EQUALS,
         self::OP_HAS_ANCESTOR,
+        self::OP_NOT_EQUALS,
+        self::OP_IN,
+        self::OP_NOT_IN,
     ];
 
     /**
@@ -109,7 +115,8 @@ class Query implements QueryInterface
         '<=' => self::OP_LESS_THAN_OR_EQUAL,
         '>'  => self::OP_GREATER_THAN,
         '>=' => self::OP_GREATER_THAN_OR_EQUAL,
-        '='  => self::OP_EQUALS
+        '='  => self::OP_EQUALS,
+        '!='  => self::OP_NOT_EQUALS
     ];
 
     /**
@@ -243,7 +250,7 @@ class Query implements QueryInterface
      *        [here](https://cloud.google.com/datastore/reference/rest/v1/projects/runQuery#operator_1).
      *        Short comparison operators are provided for convenience and are
      *        mapped to their datastore-compatible equivalents. Available short
-     *        operators are `=`, `<`, `<=`, `>`, and `>=`.
+     *        operators are `=`, `!=`, `<`, `<=`, `>`, and `>=`.
      * @param mixed $value The value to check.
      * @return Query
      */
@@ -476,6 +483,7 @@ class Query implements QueryInterface
     /**
      * @access private
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->queryObject();

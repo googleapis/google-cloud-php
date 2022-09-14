@@ -8,11 +8,22 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}/addRule',
                 'body' => 'security_policy_rule_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
                     'security_policy' => [
                         'getters' => [
                             'getSecurityPolicy',
                         ],
                     ],
+                ],
+            ],
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/securityPolicies',
+                'placeholders' => [
                     'project' => [
                         'getters' => [
                             'getProject',
@@ -24,14 +35,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}',
                 'placeholders' => [
-                    'security_policy' => [
-                        'getters' => [
-                            'getSecurityPolicy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
                         ],
                     ],
                 ],
@@ -40,14 +51,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}',
                 'placeholders' => [
-                    'security_policy' => [
-                        'getters' => [
-                            'getSecurityPolicy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
                         ],
                     ],
                 ],
@@ -56,14 +67,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}/getRule',
                 'placeholders' => [
-                    'security_policy' => [
-                        'getters' => [
-                            'getSecurityPolicy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
                         ],
                     ],
                 ],
@@ -107,14 +118,14 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}',
                 'body' => 'security_policy_resource',
                 'placeholders' => [
-                    'security_policy' => [
-                        'getters' => [
-                            'getSecurityPolicy',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
                         ],
                     ],
                 ],
@@ -124,9 +135,54 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}/patchRule',
                 'body' => 'security_policy_rule_resource',
                 'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
                     'security_policy' => [
                         'getters' => [
                             'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+            'RemoveRule' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}/removeRule',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                    'security_policy' => [
+                        'getters' => [
+                            'getSecurityPolicy',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.GlobalOperations' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -136,13 +192,40 @@ return [
                     ],
                 ],
             ],
-            'RemoveRule' => [
-                'method' => 'post',
-                'uriTemplate' => '/compute/v1/projects/{project}/global/securityPolicies/{security_policy}/removeRule',
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
                 'placeholders' => [
-                    'security_policy' => [
+                    'operation' => [
                         'getters' => [
-                            'getSecurityPolicy',
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
                         ],
                     ],
                     'project' => [

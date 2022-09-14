@@ -18,21 +18,21 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      */
-    private $duration = '';
+    private $duration = null;
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 258327676;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      */
-    private $hours_in_cycle = 0;
+    private $hours_in_cycle = null;
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      */
-    private $start_time = '';
+    private $start_time = null;
 
     /**
      * Constructor.
@@ -56,18 +56,28 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @return string
      */
     public function getDuration()
     {
-        return $this->duration;
+        return isset($this->duration) ? $this->duration : '';
+    }
+
+    public function hasDuration()
+    {
+        return isset($this->duration);
+    }
+
+    public function clearDuration()
+    {
+        unset($this->duration);
     }
 
     /**
      * [Output only] Duration of the time window, automatically chosen to be smallest possible in the given scenario.
      *
-     * Generated from protobuf field <code>string duration = 155471252;</code>
+     * Generated from protobuf field <code>optional string duration = 155471252;</code>
      * @param string $var
      * @return $this
      */
@@ -82,18 +92,28 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 258327676;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      * @return int
      */
     public function getHoursInCycle()
     {
-        return $this->hours_in_cycle;
+        return isset($this->hours_in_cycle) ? $this->hours_in_cycle : 0;
+    }
+
+    public function hasHoursInCycle()
+    {
+        return isset($this->hours_in_cycle);
+    }
+
+    public function clearHoursInCycle()
+    {
+        unset($this->hours_in_cycle);
     }
 
     /**
      * Defines a schedule with units measured in hours. The value determines how many hours pass between the start of each cycle.
      *
-     * Generated from protobuf field <code>int32 hours_in_cycle = 258327676;</code>
+     * Generated from protobuf field <code>optional int32 hours_in_cycle = 526763132;</code>
      * @param int $var
      * @return $this
      */
@@ -108,18 +128,28 @@ class ResourcePolicyHourlyCycle extends \Google\Protobuf\Internal\Message
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @return string
      */
     public function getStartTime()
     {
-        return $this->start_time;
+        return isset($this->start_time) ? $this->start_time : '';
+    }
+
+    public function hasStartTime()
+    {
+        return isset($this->start_time);
+    }
+
+    public function clearStartTime()
+    {
+        unset($this->start_time);
     }
 
     /**
      * Time within the window to start the operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-00] GMT.
      *
-     * Generated from protobuf field <code>string start_time = 37467274;</code>
+     * Generated from protobuf field <code>optional string start_time = 37467274;</code>
      * @param string $var
      * @return $this
      */

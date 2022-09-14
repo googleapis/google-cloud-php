@@ -68,6 +68,12 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.osconfig.v1.ExecStep post_step = 9;</code>
      */
     private $post_step = null;
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     */
+    private $mig_instances_allowed = false;
 
     /**
      * Constructor.
@@ -95,6 +101,8 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      *           The `ExecStep` to run before the patch update.
      *     @type \Google\Cloud\OsConfig\V1\ExecStep $post_step
      *           The `ExecStep` to run after the patch update.
+     *     @type bool $mig_instances_allowed
+     *           Allows the patch job to run on Managed instance groups (MIGs).
      * }
      */
     public function __construct($data = NULL) {
@@ -137,7 +145,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getApt()
     {
-        return isset($this->apt) ? $this->apt : null;
+        return $this->apt;
     }
 
     public function hasApt()
@@ -175,7 +183,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getYum()
     {
-        return isset($this->yum) ? $this->yum : null;
+        return $this->yum;
     }
 
     public function hasYum()
@@ -213,7 +221,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGoo()
     {
-        return isset($this->goo) ? $this->goo : null;
+        return $this->goo;
     }
 
     public function hasGoo()
@@ -251,7 +259,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getZypper()
     {
-        return isset($this->zypper) ? $this->zypper : null;
+        return $this->zypper;
     }
 
     public function hasZypper()
@@ -288,7 +296,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsUpdate()
     {
-        return isset($this->windows_update) ? $this->windows_update : null;
+        return $this->windows_update;
     }
 
     public function hasWindowsUpdate()
@@ -324,7 +332,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPreStep()
     {
-        return isset($this->pre_step) ? $this->pre_step : null;
+        return $this->pre_step;
     }
 
     public function hasPreStep()
@@ -360,7 +368,7 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPostStep()
     {
-        return isset($this->post_step) ? $this->post_step : null;
+        return $this->post_step;
     }
 
     public function hasPostStep()
@@ -384,6 +392,32 @@ class PatchConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\ExecStep::class);
         $this->post_step = $var;
+
+        return $this;
+    }
+
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     * @return bool
+     */
+    public function getMigInstancesAllowed()
+    {
+        return $this->mig_instances_allowed;
+    }
+
+    /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     *
+     * Generated from protobuf field <code>bool mig_instances_allowed = 10;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMigInstancesAllowed($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->mig_instances_allowed = $var;
 
         return $this;
     }

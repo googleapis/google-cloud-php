@@ -119,11 +119,11 @@ class CreateUserLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The user link to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.UserLink user_link = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\UserLink
+     * @return \Google\Analytics\Admin\V1alpha\UserLink|null
      */
     public function getUserLink()
     {
-        return isset($this->user_link) ? $this->user_link : null;
+        return $this->user_link;
     }
 
     public function hasUserLink()

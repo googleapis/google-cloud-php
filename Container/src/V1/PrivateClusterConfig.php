@@ -269,7 +269,7 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMasterGlobalAccessConfig()
     {
-        return isset($this->master_global_access_config) ? $this->master_global_access_config : null;
+        return $this->master_global_access_config;
     }
 
     public function hasMasterGlobalAccessConfig()

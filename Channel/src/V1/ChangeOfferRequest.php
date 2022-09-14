@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the entitlement to update.
-     * Format:
+     * Required. The resource name of the entitlement to update.
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -31,7 +31,8 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      */
     private $offer = '';
     /**
-     * Optional. Parameters needed to purchase the Offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -43,13 +44,12 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      */
     private $purchase_order_id = '';
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to retry
+     * your request, the server will know to ignore the request if it's complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -65,24 +65,24 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the entitlement to update.
-     *           Format:
+     *           Required. The resource name of the entitlement to update.
+     *           Name uses the format:
      *           accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *     @type string $offer
      *           Required. New Offer.
      *           Format: accounts/{account_id}/offers/{offer_id}.
      *     @type \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
-     *           Optional. Parameters needed to purchase the Offer.
+     *           Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     *           refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *     @type string $purchase_order_id
      *           Optional. Purchase order id provided by the reseller.
      *     @type string $request_id
-     *           Optional. An optional request ID to identify requests. Specify a unique request ID so
-     *           that if you must retry your request, the server will know to ignore the
-     *           request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and
-     *           the request times out. If you make the request again with the same
-     *           request ID, the server can check if the original operation with the same
-     *           request ID was received, and if so, will ignore the second request.
+     *           Optional. You can specify an optional unique request ID, and if you need to retry
+     *           your request, the server will know to ignore the request if it's complete.
+     *           For example, you make an initial request and the request times out. If you
+     *           make the request again with the same request ID, the server can check if
+     *           it received the original operation with the same request ID. If it did, it
+     *           will ignore the second request.
      *           The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      *           with the exception that zero UUID is not supported
      *           (`00000000-0000-0000-0000-000000000000`).
@@ -94,8 +94,8 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entitlement to update.
-     * Format:
+     * Required. The resource name of the entitlement to update.
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -107,8 +107,8 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entitlement to update.
-     * Format:
+     * Required. The resource name of the entitlement to update.
+     * Name uses the format:
      * accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -152,7 +152,8 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Parameters needed to purchase the Offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -163,7 +164,8 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Parameters needed to purchase the Offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available Parameters
+     * refer to the [Offer.parameter_definitions][google.cloud.channel.v1.Offer.parameter_definitions] from the desired offer.
      *
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.Parameter parameters = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Channel\V1\Parameter[]|\Google\Protobuf\Internal\RepeatedField $var
@@ -204,13 +206,12 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to retry
+     * your request, the server will know to ignore the request if it's complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).
@@ -224,13 +225,12 @@ class ChangeOfferRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so
-     * that if you must retry your request, the server will know to ignore the
-     * request if it has already been completed.
-     * For example, consider a situation where you make an initial request and
-     * the request times out. If you make the request again with the same
-     * request ID, the server can check if the original operation with the same
-     * request ID was received, and if so, will ignore the second request.
+     * Optional. You can specify an optional unique request ID, and if you need to retry
+     * your request, the server will know to ignore the request if it's complete.
+     * For example, you make an initial request and the request times out. If you
+     * make the request again with the same request ID, the server can check if
+     * it received the original operation with the same request ID. If it did, it
+     * will ignore the second request.
      * The request ID must be a valid [UUID](https://tools.ietf.org/html/rfc4122)
      * with the exception that zero UUID is not supported
      * (`00000000-0000-0000-0000-000000000000`).

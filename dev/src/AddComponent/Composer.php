@@ -131,7 +131,7 @@ class Composer
         $composer = json_decode(file_get_contents($path), true);
 
         // Add `replace` to main composer file.
-        $composer['replace']['google/'. $this->info['name']] = 'master';
+        $composer['replace']['google/'. $this->info['name']] = 'main';
         ksort($composer['replace']);
 
         // Add namespaces to main composer file.

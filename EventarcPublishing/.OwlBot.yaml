@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/eventarc/publishing/v1/.*-php/(.*)
+      dest: /owl-bot-staging/EventarcPublishing/v1/$1
+api-name: EventarcPublishing

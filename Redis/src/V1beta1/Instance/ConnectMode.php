@@ -20,14 +20,15 @@ class ConnectMode
      */
     const CONNECT_MODE_UNSPECIFIED = 0;
     /**
-     * Connect via directly peering with memorystore redis hosted service.
+     * Connect via direct peering to the Memorystore for Redis hosted service.
      *
      * Generated from protobuf enum <code>DIRECT_PEERING = 1;</code>
      */
     const DIRECT_PEERING = 1;
     /**
-     * Connect with google via private service access and share connection
-     * across google managed services.
+     * Connect your Memorystore for Redis instance using Private Service
+     * Access. Private services access provides an IP address range for multiple
+     * Google Cloud services, including Memorystore.
      *
      * Generated from protobuf enum <code>PRIVATE_SERVICE_ACCESS = 2;</code>
      */

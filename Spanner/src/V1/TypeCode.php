@@ -102,6 +102,18 @@ class TypeCode
      * Generated from protobuf enum <code>NUMERIC = 10;</code>
      */
     const NUMERIC = 10;
+    /**
+     * Encoded as a JSON-formatted `string` as described in RFC 7159. The
+     * following rules are applied when parsing JSON input:
+     * - Whitespace characters are not preserved.
+     * - If a JSON object has duplicate keys, only the first key is preserved.
+     * - Members of a JSON object are not guaranteed to have their order
+     *   preserved.
+     * - JSON array elements will have their order preserved.
+     *
+     * Generated from protobuf enum <code>JSON = 11;</code>
+     */
+    const JSON = 11;
 
     private static $valueToName = [
         self::TYPE_CODE_UNSPECIFIED => 'TYPE_CODE_UNSPECIFIED',
@@ -112,9 +124,10 @@ class TypeCode
         self::DATE => 'DATE',
         self::STRING => 'STRING',
         self::BYTES => 'BYTES',
-        self::PBARRAY => 'PBARRAY',
+        self::PBARRAY => 'ARRAY',
         self::STRUCT => 'STRUCT',
         self::NUMERIC => 'NUMERIC',
+        self::JSON => 'JSON',
     ];
 
     public static function name($value)
@@ -131,8 +144,12 @@ class TypeCode
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

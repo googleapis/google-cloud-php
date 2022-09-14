@@ -1,0 +1,15 @@
+{
+    "title": "Filestore",
+    "defaultService": "filestore\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "filestore\/readme"
+        },
+        {
+            "title": "CloudFilestoreManagerClient (v1)",
+            "type": "filestore\/v1\/cloudfilestoremanagerclient"
+        }
+    ],
+    "pattern": "filestore\/\\w{1,}"
+}

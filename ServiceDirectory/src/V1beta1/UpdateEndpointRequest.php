@@ -53,7 +53,7 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEndpoint()
     {
-        return isset($this->endpoint) ? $this->endpoint : null;
+        return $this->endpoint;
     }
 
     public function hasEndpoint()
@@ -89,7 +89,7 @@ class UpdateEndpointRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

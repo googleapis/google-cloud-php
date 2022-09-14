@@ -30,9 +30,9 @@ class BatchTest extends SpannerTestCase
 {
     private static $tableName;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
-        parent::setupBeforeClass();
+        parent::set_up_before_class();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
 

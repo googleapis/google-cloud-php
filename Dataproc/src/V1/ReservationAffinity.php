@@ -44,7 +44,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           Optional. Type of reservation to consume
      *     @type string $key
      *           Optional. Corresponds to the label key of reservation resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Optional. Corresponds to the label values of reservation resource.
      * }
      */
@@ -120,7 +120,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Optional. Corresponds to the label values of reservation resource.
      *
      * Generated from protobuf field <code>repeated string values = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

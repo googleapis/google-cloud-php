@@ -1,0 +1,6 @@
+{
+    "distribution_name": "google/cloud-policy-troubleshooter",
+    "release_level": "beta",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-policy-troubleshooter/latest",
+    "library_type": "GAPIC_AUTO"
+}

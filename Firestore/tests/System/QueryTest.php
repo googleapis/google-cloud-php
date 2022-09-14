@@ -27,7 +27,7 @@ class QueryTest extends FirestoreTestCase
 {
     private $query;
 
-    public function setUp()
+    public function set_up()
     {
         $this->query = self::$client->collection(uniqid(self::COLLECTION_NAME));
         self::$localDeletionQueue->add($this->query);

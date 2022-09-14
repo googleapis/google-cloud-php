@@ -59,7 +59,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      */
     public function getRawIndices()
     {
-        return isset($this->raw_indices) ? $this->raw_indices : null;
+        return $this->raw_indices;
     }
 
     public function hasRawIndices()
@@ -98,7 +98,7 @@ class ThreatEntryRemovals extends \Google\Protobuf\Internal\Message
      */
     public function getRiceIndices()
     {
-        return isset($this->rice_indices) ? $this->rice_indices : null;
+        return $this->rice_indices;
     }
 
     public function hasRiceIndices()

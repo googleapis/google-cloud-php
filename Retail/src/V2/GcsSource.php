@@ -23,7 +23,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing product
-     * information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * information](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -41,7 +41,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
      * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     *   https://support.google.com/analytics/answer/3437719.
+     * Supported values for control imports:
+     * * 'control' (default): One JSON [Control][] per line.
+     * Supported values for catalog attribute imports:
+     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      */
@@ -53,14 +57,14 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_uris
      *           Required. Google Cloud Storage URIs to input files. URI can be up to
      *           2000 characters long. URIs can match the full object path (for example,
      *           `gs://bucket/directory/object.json`) or a pattern matching one or more
      *           files, such as `gs://bucket/directory/&#42;.json`. A request can
      *           contain at most 100 files, and each file can be up to 2 GB. See
      *           [Importing product
-     *           information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     *           information](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog)
      *           for the expected file format and setup instructions.
      *     @type string $data_schema
      *           The schema to use when parsing the data from the source.
@@ -74,7 +78,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           * `user_event` (default): One JSON
      *           [UserEvent][google.cloud.retail.v2.UserEvent] per line.
      *           * `user_event_ga360`: Using
-     *             https://support.google.com/analytics/answer/3437719?hl=en.
+     *             https://support.google.com/analytics/answer/3437719.
+     *           Supported values for control imports:
+     *           * 'control' (default): One JSON [Control][] per line.
+     *           Supported values for catalog attribute imports:
+     *           * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,7 +97,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing product
-     * information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * information](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -107,11 +115,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * files, such as `gs://bucket/directory/&#42;.json`. A request can
      * contain at most 100 files, and each file can be up to 2 GB. See
      * [Importing product
-     * information](https://cloud.google.com/recommendations-ai/docs/upload-catalog)
+     * information](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog)
      * for the expected file format and setup instructions.
      *
      * Generated from protobuf field <code>repeated string input_uris = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputUris($var)
@@ -134,7 +142,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
      * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     *   https://support.google.com/analytics/answer/3437719.
+     * Supported values for control imports:
+     * * 'control' (default): One JSON [Control][] per line.
+     * Supported values for catalog attribute imports:
+     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      * @return string
@@ -156,7 +168,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event` (default): One JSON
      * [UserEvent][google.cloud.retail.v2.UserEvent] per line.
      * * `user_event_ga360`: Using
-     *   https://support.google.com/analytics/answer/3437719?hl=en.
+     *   https://support.google.com/analytics/answer/3437719.
+     * Supported values for control imports:
+     * * 'control' (default): One JSON [Control][] per line.
+     * Supported values for catalog attribute imports:
+     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      * @param string $var

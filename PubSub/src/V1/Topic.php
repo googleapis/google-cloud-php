@@ -62,6 +62,19 @@ class Topic extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool satisfies_pzs = 7;</code>
      */
     private $satisfies_pzs = false;
+    /**
+     * Indicates the minimum duration to retain a message after it is published to
+     * the topic. If this field is set, messages published to the topic in the
+     * last `message_retention_duration` are always available to subscribers. For
+     * instance, it allows any attached subscription to [seek to a
+     * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
+     * that is up to `message_retention_duration` in the past. If this field is
+     * not set, message retention is controlled by settings on individual
+     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     */
+    private $message_retention_duration = null;
 
     /**
      * Constructor.
@@ -92,6 +105,15 @@ class Topic extends \Google\Protobuf\Internal\Message
      *     @type bool $satisfies_pzs
      *           Reserved for future use. This field is set only in responses from the
      *           server; it is ignored if it is set in any requests.
+     *     @type \Google\Protobuf\Duration $message_retention_duration
+     *           Indicates the minimum duration to retain a message after it is published to
+     *           the topic. If this field is set, messages published to the topic in the
+     *           last `message_retention_duration` are always available to subscribers. For
+     *           instance, it allows any attached subscription to [seek to a
+     *           timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
+     *           that is up to `message_retention_duration` in the past. If this field is
+     *           not set, message retention is controlled by settings on individual
+     *           subscriptions. Cannot be more than 7 days or less than 10 minutes.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,7 +195,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getMessageStoragePolicy()
     {
-        return isset($this->message_storage_policy) ? $this->message_storage_policy : null;
+        return $this->message_storage_policy;
     }
 
     public function hasMessageStoragePolicy()
@@ -241,7 +263,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getSchemaSettings()
     {
-        return isset($this->schema_settings) ? $this->schema_settings : null;
+        return $this->schema_settings;
     }
 
     public function hasSchemaSettings()
@@ -293,6 +315,56 @@ class Topic extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->satisfies_pzs = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates the minimum duration to retain a message after it is published to
+     * the topic. If this field is set, messages published to the topic in the
+     * last `message_retention_duration` are always available to subscribers. For
+     * instance, it allows any attached subscription to [seek to a
+     * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
+     * that is up to `message_retention_duration` in the past. If this field is
+     * not set, message retention is controlled by settings on individual
+     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getMessageRetentionDuration()
+    {
+        return $this->message_retention_duration;
+    }
+
+    public function hasMessageRetentionDuration()
+    {
+        return isset($this->message_retention_duration);
+    }
+
+    public function clearMessageRetentionDuration()
+    {
+        unset($this->message_retention_duration);
+    }
+
+    /**
+     * Indicates the minimum duration to retain a message after it is published to
+     * the topic. If this field is set, messages published to the topic in the
+     * last `message_retention_duration` are always available to subscribers. For
+     * instance, it allows any attached subscription to [seek to a
+     * timestamp](https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time)
+     * that is up to `message_retention_duration` in the past. If this field is
+     * not set, message retention is controlled by settings on individual
+     * subscriptions. Cannot be more than 7 days or less than 10 minutes.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration message_retention_duration = 8;</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setMessageRetentionDuration($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->message_retention_duration = $var;
 
         return $this;
     }

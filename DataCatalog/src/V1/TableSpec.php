@@ -9,17 +9,17 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Normal BigQuery table spec.
+ * Normal BigQuery table specification.
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.TableSpec</code>
  */
 class TableSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Output only. If the table is a dated shard, i.e., with name pattern `[prefix]YYYYMMDD`,
-     * `grouped_entry` is the Data Catalog resource name of the date sharded
-     * grouped entry, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * Output only. If the table is date-sharded, that is, it matches the `[prefix]YYYYMMDD`
+     * name pattern, this field is the Data Catalog resource name of the
+     * date-sharded grouped entry. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      * Otherwise, `grouped_entry` is empty.
      *
      * Generated from protobuf field <code>string grouped_entry = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -33,10 +33,10 @@ class TableSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $grouped_entry
-     *           Output only. If the table is a dated shard, i.e., with name pattern `[prefix]YYYYMMDD`,
-     *           `grouped_entry` is the Data Catalog resource name of the date sharded
-     *           grouped entry, for example,
-     *           `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     *           Output only. If the table is date-sharded, that is, it matches the `[prefix]YYYYMMDD`
+     *           name pattern, this field is the Data Catalog resource name of the
+     *           date-sharded grouped entry. For example:
+     *           `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      *           Otherwise, `grouped_entry` is empty.
      * }
      */
@@ -46,10 +46,10 @@ class TableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the table is a dated shard, i.e., with name pattern `[prefix]YYYYMMDD`,
-     * `grouped_entry` is the Data Catalog resource name of the date sharded
-     * grouped entry, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * Output only. If the table is date-sharded, that is, it matches the `[prefix]YYYYMMDD`
+     * name pattern, this field is the Data Catalog resource name of the
+     * date-sharded grouped entry. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      * Otherwise, `grouped_entry` is empty.
      *
      * Generated from protobuf field <code>string grouped_entry = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -61,10 +61,10 @@ class TableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. If the table is a dated shard, i.e., with name pattern `[prefix]YYYYMMDD`,
-     * `grouped_entry` is the Data Catalog resource name of the date sharded
-     * grouped entry, for example,
-     * `projects/{project_id}/locations/{location}/entrygroups/{entry_group_id}/entries/{entry_id}`.
+     * Output only. If the table is date-sharded, that is, it matches the `[prefix]YYYYMMDD`
+     * name pattern, this field is the Data Catalog resource name of the
+     * date-sharded grouped entry. For example:
+     * `projects/{PROJECT_ID}/locations/{LOCATION}/entrygroups/{ENTRY_GROUP_ID}/entries/{ENTRY_ID}`.
      * Otherwise, `grouped_entry` is empty.
      *
      * Generated from protobuf field <code>string grouped_entry = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>

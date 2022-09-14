@@ -4,6 +4,8 @@
 
 namespace Google\Cloud\DevTools\Source\V1\AliasContext;
 
+use UnexpectedValueException;
+
 /**
  * The type of an Alias.
  *
@@ -37,6 +39,33 @@ class Kind
      * Generated from protobuf enum <code>OTHER = 4;</code>
      */
     const OTHER = 4;
+
+    private static $valueToName = [
+        self::ANY => 'ANY',
+        self::FIXED => 'FIXED',
+        self::MOVABLE => 'MOVABLE',
+        self::OTHER => 'OTHER',
+    ];
+
+    public static function name($value)
+    {
+        if (!isset(self::$valueToName[$value])) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no name defined for value %s', __CLASS__, $value));
+        }
+        return self::$valueToName[$value];
+    }
+
+
+    public static function value($name)
+    {
+        $const = __CLASS__ . '::' . strtoupper($name);
+        if (!defined($const)) {
+            throw new UnexpectedValueException(sprintf(
+                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+        }
+        return constant($const);
+    }
 }
 
 // Adding a class alias for backwards compatibility with the previous class name.

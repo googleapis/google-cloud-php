@@ -67,11 +67,11 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      * Required. The security marks resource to update.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.SecurityMarks security_marks = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks|null
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -106,11 +106,11 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      * marks can be updated using "marks.<mark_key>".
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -147,11 +147,11 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      * SecurityMarks that are active immediately preceding this time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()

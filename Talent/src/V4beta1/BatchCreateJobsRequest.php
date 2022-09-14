@@ -42,7 +42,7 @@ class BatchCreateJobsRequest extends \Google\Protobuf\Internal\Message
      *           The format is "projects/{project_id}/tenants/{tenant_id}". For example,
      *           "projects/foo/tenant/bar". If tenant id is unspecified, a default tenant
      *           is created. For example, "projects/foo".
-     *     @type \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Talent\V4beta1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The jobs to be created.
      * }
      */
@@ -98,7 +98,7 @@ class BatchCreateJobsRequest extends \Google\Protobuf\Internal\Message
      * Required. The jobs to be created.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)

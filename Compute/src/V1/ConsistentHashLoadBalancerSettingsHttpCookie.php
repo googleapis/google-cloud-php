@@ -18,19 +18,19 @@ class ConsistentHashLoadBalancerSettingsHttpCookie extends \Google\Protobuf\Inte
     /**
      * Name of the cookie.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * Path to set for the cookie.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      */
-    private $path = '';
+    private $path = null;
     /**
      * Lifetime of the cookie.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration ttl = 115180;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration ttl = 115180;</code>
      */
     private $ttl = null;
 
@@ -56,18 +56,28 @@ class ConsistentHashLoadBalancerSettingsHttpCookie extends \Google\Protobuf\Inte
     /**
      * Name of the cookie.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
      * Name of the cookie.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -82,18 +92,28 @@ class ConsistentHashLoadBalancerSettingsHttpCookie extends \Google\Protobuf\Inte
     /**
      * Path to set for the cookie.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @return string
      */
     public function getPath()
     {
-        return $this->path;
+        return isset($this->path) ? $this->path : '';
+    }
+
+    public function hasPath()
+    {
+        return isset($this->path);
+    }
+
+    public function clearPath()
+    {
+        unset($this->path);
     }
 
     /**
      * Path to set for the cookie.
      *
-     * Generated from protobuf field <code>string path = 3433509;</code>
+     * Generated from protobuf field <code>optional string path = 3433509;</code>
      * @param string $var
      * @return $this
      */
@@ -108,12 +128,12 @@ class ConsistentHashLoadBalancerSettingsHttpCookie extends \Google\Protobuf\Inte
     /**
      * Lifetime of the cookie.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration ttl = 115180;</code>
-     * @return \Google\Cloud\Compute\V1\Duration
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration ttl = 115180;</code>
+     * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getTtl()
     {
-        return isset($this->ttl) ? $this->ttl : null;
+        return $this->ttl;
     }
 
     public function hasTtl()
@@ -129,7 +149,7 @@ class ConsistentHashLoadBalancerSettingsHttpCookie extends \Google\Protobuf\Inte
     /**
      * Lifetime of the cookie.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration ttl = 115180;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration ttl = 115180;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */

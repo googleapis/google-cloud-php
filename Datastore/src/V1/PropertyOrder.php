@@ -53,7 +53,7 @@ class PropertyOrder extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return isset($this->property) ? $this->property : null;
+        return $this->property;
     }
 
     public function hasProperty()

@@ -14,13 +14,12 @@ class Catalog
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-$google/cloud/retail/v2/catalog.protogoogle.cloud.retail.v2google/api/field_behavior.protogoogle/api/resource.proto"^
+ô
+$google/cloud/retail/v2/catalog.protogoogle.cloud.retail.v2google/api/resource.proto"^
 ProductLevelConfig
 ingestion_product_type (	(
  merchant_center_product_id_field (	"ì

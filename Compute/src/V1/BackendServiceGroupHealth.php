@@ -23,15 +23,15 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the backend instances or endpoints in requested instance or network endpoint group, determined based on configured health checks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
      */
     private $health_status;
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
 
     /**
      * Constructor.
@@ -41,7 +41,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations on the network endpoint group.
-     *     @type \Google\Cloud\Compute\V1\HealthStatus[]|\Google\Protobuf\Internal\RepeatedField $health_status
+     *     @type array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $health_status
      *           Health state of the backend instances or endpoints in requested instance or network endpoint group, determined based on configured health checks.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
@@ -81,7 +81,7 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the backend instances or endpoints in requested instance or network endpoint group, determined based on configured health checks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthStatus()
@@ -92,8 +92,8 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     /**
      * Health state of the backend instances or endpoints in requested instance or network endpoint group, determined based on configured health checks.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 112110389;</code>
-     * @param \Google\Cloud\Compute\V1\HealthStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthStatus health_status = 380545845;</code>
+     * @param array<\Google\Cloud\Compute\V1\HealthStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthStatus($var)
@@ -107,18 +107,28 @@ class BackendServiceGroupHealth extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
      * [Output Only] Type of resource. Always compute#backendServiceGroupHealth for the health of backend services.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */

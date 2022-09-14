@@ -9,50 +9,51 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A rule to be applied in a Policy.
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.Rule</code>
  */
 class Rule extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required
+     * This is deprecated and has no effect. Do not use.
+     * Check the Action enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
      */
-    private $action = 0;
+    private $action = null;
     /**
-     * Additional restrictions that must be met. All conditions must pass for the rule to match.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Condition conditions = 142882488;</code>
      */
     private $conditions;
     /**
-     * Human-readable description of the rule.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
-    private $description = '';
+    private $description = null;
     /**
-     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string ins = 104430;</code>
      */
     private $ins;
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfig log_configs = 152873846;</code>
      */
     private $log_configs;
     /**
-     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
      */
     private $not_ins;
     /**
-     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      */
@@ -64,20 +65,21 @@ class Rule extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $action
-     *           Required
-     *     @type \Google\Cloud\Compute\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Additional restrictions that must be met. All conditions must pass for the rule to match.
+     *     @type string $action
+     *           This is deprecated and has no effect. Do not use.
+     *           Check the Action enum for the list of possible values.
+     *     @type array<\Google\Cloud\Compute\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $description
-     *           Human-readable description of the rule.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ins
-     *           If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-     *     @type \Google\Cloud\Compute\V1\LogConfig[]|\Google\Protobuf\Internal\RepeatedField $log_configs
-     *           The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $not_ins
-     *           If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
-     *           A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
+     *           This is deprecated and has no effect. Do not use.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ins
+     *           This is deprecated and has no effect. Do not use.
+     *     @type array<\Google\Cloud\Compute\V1\LogConfig>|\Google\Protobuf\Internal\RepeatedField $log_configs
+     *           This is deprecated and has no effect. Do not use.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $not_ins
+     *           This is deprecated and has no effect. Do not use.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -86,33 +88,45 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required
+     * This is deprecated and has no effect. Do not use.
+     * Check the Action enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
+     * @return string
      */
     public function getAction()
     {
-        return $this->action;
+        return isset($this->action) ? $this->action : '';
+    }
+
+    public function hasAction()
+    {
+        return isset($this->action);
+    }
+
+    public function clearAction()
+    {
+        unset($this->action);
     }
 
     /**
-     * Required
+     * This is deprecated and has no effect. Do not use.
+     * Check the Action enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Rule.Action action = 187661878;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string action = 187661878;</code>
+     * @param string $var
      * @return $this
      */
     public function setAction($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Rule\Action::class);
+        GPBUtil::checkString($var, True);
         $this->action = $var;
 
         return $this;
     }
 
     /**
-     * Additional restrictions that must be met. All conditions must pass for the rule to match.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Condition conditions = 142882488;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -123,10 +137,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Additional restrictions that must be met. All conditions must pass for the rule to match.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Condition conditions = 142882488;</code>
-     * @param \Google\Cloud\Compute\V1\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -138,20 +152,30 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human-readable description of the rule.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : '';
+    }
+
+    public function hasDescription()
+    {
+        return isset($this->description);
+    }
+
+    public function clearDescription()
+    {
+        unset($this->description);
     }
 
     /**
-     * Human-readable description of the rule.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string description = 154502140;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -164,7 +188,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string ins = 104430;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -175,10 +199,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string ins = 104430;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIns($var)
@@ -190,7 +214,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfig log_configs = 152873846;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -201,10 +225,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.LogConfig log_configs = 152873846;</code>
-     * @param \Google\Cloud\Compute\V1\LogConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\LogConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogConfigs($var)
@@ -216,9 +240,9 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getNotIns()
@@ -227,10 +251,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>repeated string not_ins = 250007682;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string not_ins = 518443138;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotIns($var)
@@ -242,7 +266,7 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -253,10 +277,10 @@ class Rule extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
+     * This is deprecated and has no effect. Do not use.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPermissions($var)

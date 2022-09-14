@@ -31,7 +31,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $app_profile_id = '';
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      */
@@ -44,7 +45,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = null;
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
@@ -65,12 +66,13 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           This value specifies routing for replication. If not specified, the
      *           "default" application profile will be used.
      *     @type \Google\Cloud\Bigtable\V2\RowSet $rows
-     *           The row keys and/or ranges to read. If not specified, reads from all rows.
+     *           The row keys and/or ranges to read sequentially. If not specified, reads
+     *           from all rows.
      *     @type \Google\Cloud\Bigtable\V2\RowFilter $filter
      *           The filter to apply to the contents of the specified row(s). If unset,
      *           reads the entirety of each row.
      *     @type int|string $rows_limit
-     *           The read will terminate after committing to N rows' worth of results. The
+     *           The read will stop after committing to N rows' worth of results. The
      *           default (zero) is to return all results.
      * }
      */
@@ -138,14 +140,15 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      * @return \Google\Cloud\Bigtable\V2\RowSet|null
      */
     public function getRows()
     {
-        return isset($this->rows) ? $this->rows : null;
+        return $this->rows;
     }
 
     public function hasRows()
@@ -159,7 +162,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      * @param \Google\Cloud\Bigtable\V2\RowSet $var
@@ -182,7 +186,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFilter()
     {
-        return isset($this->filter) ? $this->filter : null;
+        return $this->filter;
     }
 
     public function hasFilter()
@@ -212,7 +216,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
@@ -224,7 +228,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>

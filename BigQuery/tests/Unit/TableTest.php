@@ -32,14 +32,17 @@ use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\ConnectionInterface as StorageConnectionInterface;
 use Google\Cloud\Storage\StorageObject;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
  */
 class TableTest extends TestCase
 {
+    use ExpectException;
+
     const JOB_ID = 'myJobId';
     const PROJECT_ID = 'myProjectId';
     const COMPUTE_PROJECT_ID = 'myComputeProjectId';
@@ -75,7 +78,7 @@ class TableTest extends TestCase
         ]
     ];
 
-    public function setUp()
+    public function set_up()
     {
         $this->mapper = new ValueMapper(false);
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -623,12 +626,11 @@ class TableTest extends TestCase
         $this->assertTrue($insertResponse->isSuccessful());
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedMessage A schema is required when creating a table.
-     */
     public function testInsertRowsThrowsExceptionWithoutSchema()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('A schema is required when creating a table.');
+
         $options = [
             'autoCreate' => true
         ];
@@ -653,11 +655,10 @@ class TableTest extends TestCase
         ], $options);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testInsertRowsThrowsExceptionWithUnretryableTableFailure()
     {
+        $this->expectException('\Exception');
+
         $options = [
             'autoCreate' => true,
             'tableMetadata' => [
@@ -697,11 +698,10 @@ class TableTest extends TestCase
         ], $options);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
     public function testInsertRowsThrowsExceptionWhenMaxRetryLimitHit()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $options = [
             'autoCreate' => true,
             'maxRetries' => 0,
@@ -742,22 +742,20 @@ class TableTest extends TestCase
         ], $options);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedMessage A row must have a data key.
-     */
     public function testInsertRowsThrowsExceptionWithoutDataKey()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('A row must have a data key.');
+
         $table = $this->getTable($this->connection);
         $table->insertRows([[], []]);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedMessage Must provide at least a single row.
-     */
     public function testInsertRowsThrowsExceptionWithZeroRows()
     {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Must provide at least a single row.');
+
         $table = $this->getTable($this->connection);
         $table->insertRows([]);
     }

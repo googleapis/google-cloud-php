@@ -65,7 +65,7 @@ class StackTrace extends \Google\Protobuf\Internal\Message
      */
     public function getStackFrames()
     {
-        return isset($this->stack_frames) ? $this->stack_frames : null;
+        return $this->stack_frames;
     }
 
     public function hasStackFrames()

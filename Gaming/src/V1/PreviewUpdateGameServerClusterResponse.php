@@ -75,11 +75,11 @@ class PreviewUpdateGameServerClusterResponse extends \Google\Protobuf\Internal\M
      * The target state.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.TargetState target_state = 3;</code>
-     * @return \Google\Cloud\Gaming\V1\TargetState
+     * @return \Google\Cloud\Gaming\V1\TargetState|null
      */
     public function getTargetState()
     {
-        return isset($this->target_state) ? $this->target_state : null;
+        return $this->target_state;
     }
 
     public function hasTargetState()

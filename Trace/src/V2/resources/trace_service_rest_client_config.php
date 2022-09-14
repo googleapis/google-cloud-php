@@ -3,9 +3,9 @@
 return [
     'interfaces' => [
         'google.devtools.cloudtrace.v2.TraceService' => [
-            'CreateSpan' => [
+            'BatchWriteSpans' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*/traces/*/spans/*}',
+                'uriTemplate' => '/v2/{name=projects/*}/traces:batchWrite',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [
@@ -15,9 +15,9 @@ return [
                     ],
                 ],
             ],
-            'BatchWriteSpans' => [
+            'CreateSpan' => [
                 'method' => 'post',
-                'uriTemplate' => '/v2/{name=projects/*}/traces:batchWrite',
+                'uriTemplate' => '/v2/{name=projects/*/traces/*/spans/*}',
                 'body' => '*',
                 'placeholders' => [
                     'name' => [

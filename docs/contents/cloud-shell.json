@@ -1,0 +1,15 @@
+{
+    "title": "Shell",
+    "defaultService": "shell\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "shell\/readme"
+        },
+        {
+            "title": "CloudShellServiceClient (v1)",
+            "type": "shell\/v1\/cloudshellserviceclient"
+        }
+    ],
+    "pattern": "shell\/\\w{1,}"
+}

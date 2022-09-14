@@ -36,9 +36,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      */
@@ -48,9 +47,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -79,12 +77,33 @@ class Feed extends \Google\Protobuf\Internal\Message
      * == true") will only publish Asset deletions. Other fields of `Expr` are
      * optional.
      * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
+     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes-with-condition)
      * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
      */
     private $condition = null;
+    /**
+     * A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationship updates on the [asset_names] or the
+     * [asset_types]. It returns an error if any of the [relationship_types]
+     * doesn't belong to the supported relationship types of the [asset_names] or
+     * [asset_types], or any of the [asset_names] or the [asset_types] doesn't
+     * belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships of the types of [asset_names] and
+     * [asset_types] or returns an error if any of the [asset_names] or the
+     * [asset_types] has no replationship support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
+     */
+    private $relationship_types;
 
     /**
      * Constructor.
@@ -99,23 +118,21 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           organizations/{organization_number}/feeds/{client-assigned_feed_identifier}
      *           The client-assigned feed identifier must be unique within the parent
      *           project/folder/organization.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_names
      *           A list of the full names of the assets to receive updates. You must specify
      *           either or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
      *           Example:
      *           `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     *           See [Resource
-     *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     *           for more info.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $asset_types
+     *           For a list of the full names for supported asset types, see [Resource
+     *           name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $asset_types
      *           A list of types of the assets to receive updates. You must specify either
      *           or both of asset_names and asset_types. Only asset updates matching
      *           specified asset_names or asset_types are exported to the feed.
      *           Example: `"compute.googleapis.com/Disk"`
-     *           See [this
-     *           topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     *           for a list of all supported asset types.
+     *           For a list of all supported asset types, see
+     *           [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name and
      *           type will be returned.
@@ -132,8 +149,25 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           == true") will only publish Asset deletions. Other fields of `Expr` are
      *           optional.
      *           See our [user
-     *           guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
+     *           guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes-with-condition)
      *           for detailed instructions.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
+     *           A list of relationship types to output, for example:
+     *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     *           content_type=RELATIONSHIP.
+     *           * If specified:
+     *           it outputs specified relationship updates on the [asset_names] or the
+     *           [asset_types]. It returns an error if any of the [relationship_types]
+     *           doesn't belong to the supported relationship types of the [asset_names] or
+     *           [asset_types], or any of the [asset_names] or the [asset_types] doesn't
+     *           belong to the source types of the [relationship_types].
+     *           * Otherwise:
+     *           it outputs the supported relationships of the types of [asset_names] and
+     *           [asset_types] or returns an error if any of the [asset_names] or the
+     *           [asset_types] has no replationship support.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,9 +217,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -201,12 +234,11 @@ class Feed extends \Google\Protobuf\Internal\Message
      * specified asset_names or asset_types are exported to the feed.
      * Example:
      * `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`.
-     * See [Resource
-     * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
-     * for more info.
+     * For a list of the full names for supported asset types, see [Resource
+     * name format](https://cloud.google.com/asset-inventory/docs/resource-name-format).
      *
      * Generated from protobuf field <code>repeated string asset_names = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetNames($var)
@@ -222,9 +254,8 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -239,12 +270,11 @@ class Feed extends \Google\Protobuf\Internal\Message
      * or both of asset_names and asset_types. Only asset updates matching
      * specified asset_names or asset_types are exported to the feed.
      * Example: `"compute.googleapis.com/Disk"`
-     * See [this
-     * topic](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
-     * for a list of all supported asset types.
+     * For a list of all supported asset types, see
+     * [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types).
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetTypes($var)
@@ -292,7 +322,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getFeedOutputConfig()
     {
-        return isset($this->feed_output_config) ? $this->feed_output_config : null;
+        return $this->feed_output_config;
     }
 
     public function hasFeedOutputConfig()
@@ -331,7 +361,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * == true") will only publish Asset deletions. Other fields of `Expr` are
      * optional.
      * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
+     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes-with-condition)
      * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
@@ -339,7 +369,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return isset($this->condition) ? $this->condition : null;
+        return $this->condition;
     }
 
     public function hasCondition()
@@ -362,7 +392,7 @@ class Feed extends \Google\Protobuf\Internal\Message
      * == true") will only publish Asset deletions. Other fields of `Expr` are
      * optional.
      * See our [user
-     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes#feed_with_condition)
+     * guide](https://cloud.google.com/asset-inventory/docs/monitoring-asset-changes-with-condition)
      * for detailed instructions.
      *
      * Generated from protobuf field <code>.google.type.Expr condition = 6;</code>
@@ -373,6 +403,62 @@ class Feed extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Type\Expr::class);
         $this->condition = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationship updates on the [asset_names] or the
+     * [asset_types]. It returns an error if any of the [relationship_types]
+     * doesn't belong to the supported relationship types of the [asset_names] or
+     * [asset_types], or any of the [asset_names] or the [asset_types] doesn't
+     * belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships of the types of [asset_names] and
+     * [asset_types] or returns an error if any of the [asset_names] or the
+     * [asset_types] has no replationship support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRelationshipTypes()
+    {
+        return $this->relationship_types;
+    }
+
+    /**
+     * A list of relationship types to output, for example:
+     * `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
+     * content_type=RELATIONSHIP.
+     * * If specified:
+     * it outputs specified relationship updates on the [asset_names] or the
+     * [asset_types]. It returns an error if any of the [relationship_types]
+     * doesn't belong to the supported relationship types of the [asset_names] or
+     * [asset_types], or any of the [asset_names] or the [asset_types] doesn't
+     * belong to the source types of the [relationship_types].
+     * * Otherwise:
+     * it outputs the supported relationships of the types of [asset_names] and
+     * [asset_types] or returns an error if any of the [asset_names] or the
+     * [asset_types] has no replationship support.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
+     *
+     * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRelationshipTypes($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->relationship_types = $arr;
 
         return $this;
     }

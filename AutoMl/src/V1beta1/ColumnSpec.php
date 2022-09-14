@@ -86,7 +86,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      *           This field may be stale, see the ancestor's
      *           Dataset.tables_dataset_metadata.stats_update_time field
      *           for the timestamp at which these stats were last updated.
-     *     @type \Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn[]|\Google\Protobuf\Internal\RepeatedField $top_correlated_columns
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn>|\Google\Protobuf\Internal\RepeatedField $top_correlated_columns
      *           Deprecated.
      *     @type string $etag
      *           Used to perform consistent read-modify-write updates. If not set, a blind
@@ -136,7 +136,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataType()
     {
-        return isset($this->data_type) ? $this->data_type : null;
+        return $this->data_type;
     }
 
     public function hasDataType()
@@ -207,7 +207,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDataStats()
     {
-        return isset($this->data_stats) ? $this->data_stats : null;
+        return $this->data_stats;
     }
 
     public function hasDataStats()
@@ -253,7 +253,7 @@ class ColumnSpec extends \Google\Protobuf\Internal\Message
      * Deprecated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.ColumnSpec.CorrelatedColumn top_correlated_columns = 5;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\ColumnSpec\CorrelatedColumn>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTopCorrelatedColumns($var)

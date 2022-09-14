@@ -28,7 +28,7 @@ class BatchGetAssetsHistoryResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\TemporalAsset[]|\Google\Protobuf\Internal\RepeatedField $assets
+     *     @type array<\Google\Cloud\Asset\V1\TemporalAsset>|\Google\Protobuf\Internal\RepeatedField $assets
      *           A list of assets with valid time windows.
      * }
      */
@@ -52,7 +52,7 @@ class BatchGetAssetsHistoryResponse extends \Google\Protobuf\Internal\Message
      * A list of assets with valid time windows.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.TemporalAsset assets = 1;</code>
-     * @param \Google\Cloud\Asset\V1\TemporalAsset[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\TemporalAsset>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssets($var)

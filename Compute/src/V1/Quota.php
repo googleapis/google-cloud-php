@@ -18,27 +18,28 @@ class Quota extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Quota limit for this metric.
      *
-     * Generated from protobuf field <code>double limit = 102976443;</code>
+     * Generated from protobuf field <code>optional double limit = 102976443;</code>
      */
-    private $limit = 0.0;
+    private $limit = null;
     /**
      * [Output Only] Name of the quota metric.
+     * Check the Metric enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Quota.Metric metric = 264631728;</code>
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
      */
-    private $metric = 0;
+    private $metric = null;
     /**
      * [Output Only] Owning resource. This is the resource on which this quota is applied.
      *
-     * Generated from protobuf field <code>string owner = 106164915;</code>
+     * Generated from protobuf field <code>optional string owner = 106164915;</code>
      */
-    private $owner = '';
+    private $owner = null;
     /**
      * [Output Only] Current usage of this metric.
      *
-     * Generated from protobuf field <code>double usage = 111574433;</code>
+     * Generated from protobuf field <code>optional double usage = 111574433;</code>
      */
-    private $usage = 0.0;
+    private $usage = null;
 
     /**
      * Constructor.
@@ -48,8 +49,9 @@ class Quota extends \Google\Protobuf\Internal\Message
      *
      *     @type float $limit
      *           [Output Only] Quota limit for this metric.
-     *     @type int $metric
+     *     @type string $metric
      *           [Output Only] Name of the quota metric.
+     *           Check the Metric enum for the list of possible values.
      *     @type string $owner
      *           [Output Only] Owning resource. This is the resource on which this quota is applied.
      *     @type float $usage
@@ -64,18 +66,28 @@ class Quota extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Quota limit for this metric.
      *
-     * Generated from protobuf field <code>double limit = 102976443;</code>
+     * Generated from protobuf field <code>optional double limit = 102976443;</code>
      * @return float
      */
     public function getLimit()
     {
-        return $this->limit;
+        return isset($this->limit) ? $this->limit : 0.0;
+    }
+
+    public function hasLimit()
+    {
+        return isset($this->limit);
+    }
+
+    public function clearLimit()
+    {
+        unset($this->limit);
     }
 
     /**
      * [Output Only] Quota limit for this metric.
      *
-     * Generated from protobuf field <code>double limit = 102976443;</code>
+     * Generated from protobuf field <code>optional double limit = 102976443;</code>
      * @param float $var
      * @return $this
      */
@@ -89,25 +101,37 @@ class Quota extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] Name of the quota metric.
+     * Check the Metric enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Quota.Metric metric = 264631728;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
+     * @return string
      */
     public function getMetric()
     {
-        return $this->metric;
+        return isset($this->metric) ? $this->metric : '';
+    }
+
+    public function hasMetric()
+    {
+        return isset($this->metric);
+    }
+
+    public function clearMetric()
+    {
+        unset($this->metric);
     }
 
     /**
      * [Output Only] Name of the quota metric.
+     * Check the Metric enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Quota.Metric metric = 264631728;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string metric = 533067184;</code>
+     * @param string $var
      * @return $this
      */
     public function setMetric($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\Quota\Metric::class);
+        GPBUtil::checkString($var, True);
         $this->metric = $var;
 
         return $this;
@@ -116,18 +140,28 @@ class Quota extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Owning resource. This is the resource on which this quota is applied.
      *
-     * Generated from protobuf field <code>string owner = 106164915;</code>
+     * Generated from protobuf field <code>optional string owner = 106164915;</code>
      * @return string
      */
     public function getOwner()
     {
-        return $this->owner;
+        return isset($this->owner) ? $this->owner : '';
+    }
+
+    public function hasOwner()
+    {
+        return isset($this->owner);
+    }
+
+    public function clearOwner()
+    {
+        unset($this->owner);
     }
 
     /**
      * [Output Only] Owning resource. This is the resource on which this quota is applied.
      *
-     * Generated from protobuf field <code>string owner = 106164915;</code>
+     * Generated from protobuf field <code>optional string owner = 106164915;</code>
      * @param string $var
      * @return $this
      */
@@ -142,18 +176,28 @@ class Quota extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Current usage of this metric.
      *
-     * Generated from protobuf field <code>double usage = 111574433;</code>
+     * Generated from protobuf field <code>optional double usage = 111574433;</code>
      * @return float
      */
     public function getUsage()
     {
-        return $this->usage;
+        return isset($this->usage) ? $this->usage : 0.0;
+    }
+
+    public function hasUsage()
+    {
+        return isset($this->usage);
+    }
+
+    public function clearUsage()
+    {
+        unset($this->usage);
     }
 
     /**
      * [Output Only] Current usage of this metric.
      *
-     * Generated from protobuf field <code>double usage = 111574433;</code>
+     * Generated from protobuf field <code>optional double usage = 111574433;</code>
      * @param float $var
      * @return $this
      */

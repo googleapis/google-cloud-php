@@ -24,13 +24,13 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * Name of the region scoping this request, should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
@@ -90,7 +90,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -101,7 +101,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -116,7 +116,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     /**
      * Name of the region scoping this request, should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -127,7 +127,7 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
     /**
      * Name of the region scoping this request, should conform to RFC1035.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */
@@ -143,11 +143,11 @@ class ApplyUpdatesToInstancesRegionInstanceGroupManagerRequest extends \Google\P
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.RegionInstanceGroupManagersApplyUpdatesRequest region_instance_group_managers_apply_updates_request_resource = 76248318 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest
+     * @return \Google\Cloud\Compute\V1\RegionInstanceGroupManagersApplyUpdatesRequest|null
      */
     public function getRegionInstanceGroupManagersApplyUpdatesRequestResource()
     {
-        return isset($this->region_instance_group_managers_apply_updates_request_resource) ? $this->region_instance_group_managers_apply_updates_request_resource : null;
+        return $this->region_instance_group_managers_apply_updates_request_resource;
     }
 
     public function hasRegionInstanceGroupManagersApplyUpdatesRequestResource()

@@ -28,7 +28,7 @@ class ListFindingTypeStatsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebSecurityScanner\V1beta\FindingTypeStats[]|\Google\Protobuf\Internal\RepeatedField $finding_type_stats
+     *     @type array<\Google\Cloud\WebSecurityScanner\V1beta\FindingTypeStats>|\Google\Protobuf\Internal\RepeatedField $finding_type_stats
      *           The list of FindingTypeStats returned.
      * }
      */
@@ -52,7 +52,7 @@ class ListFindingTypeStatsResponse extends \Google\Protobuf\Internal\Message
      * The list of FindingTypeStats returned.
      *
      * Generated from protobuf field <code>repeated .google.cloud.websecurityscanner.v1beta.FindingTypeStats finding_type_stats = 1;</code>
-     * @param \Google\Cloud\WebSecurityScanner\V1beta\FindingTypeStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebSecurityScanner\V1beta\FindingTypeStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFindingTypeStats($var)

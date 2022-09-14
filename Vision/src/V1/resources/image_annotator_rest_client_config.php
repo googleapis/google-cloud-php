@@ -3,19 +3,19 @@
 return [
     'interfaces' => [
         'google.cloud.vision.v1.ImageAnnotator' => [
-            'BatchAnnotateFiles' => [
+            'AsyncBatchAnnotateFiles' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/files:annotate',
+                'uriTemplate' => '/v1/files:asyncBatchAnnotate',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/files:annotate',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/files:asyncBatchAnnotate',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*}/files:annotate',
+                        'uriTemplate' => '/v1/{parent=projects/*}/files:asyncBatchAnnotate',
                         'body' => '*',
                     ],
                 ],
@@ -51,19 +51,19 @@ return [
                     ],
                 ],
             ],
-            'AsyncBatchAnnotateFiles' => [
+            'BatchAnnotateFiles' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/files:asyncBatchAnnotate',
+                'uriTemplate' => '/v1/files:annotate',
                 'body' => '*',
                 'additionalBindings' => [
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/files:asyncBatchAnnotate',
+                        'uriTemplate' => '/v1/{parent=projects/*/locations/*}/files:annotate',
                         'body' => '*',
                     ],
                     [
                         'method' => 'post',
-                        'uriTemplate' => '/v1/{parent=projects/*}/files:asyncBatchAnnotate',
+                        'uriTemplate' => '/v1/{parent=projects/*}/files:annotate',
                         'body' => '*',
                     ],
                 ],

@@ -45,7 +45,7 @@ class Constraints extends \Google\Protobuf\Internal\Message
      */
     public function getCustomerConstraints()
     {
-        return isset($this->customer_constraints) ? $this->customer_constraints : null;
+        return $this->customer_constraints;
     }
 
     public function hasCustomerConstraints()

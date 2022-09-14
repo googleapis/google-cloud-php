@@ -36,7 +36,7 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[]|\Google\Protobuf\Internal\RepeatedField $buckets
+     *     @type array<\Google\Cloud\Dlp\V2\BucketingConfig\Bucket>|\Google\Protobuf\Internal\RepeatedField $buckets
      *           Set of buckets. Ranges must be non-overlapping.
      * }
      */
@@ -60,7 +60,7 @@ class BucketingConfig extends \Google\Protobuf\Internal\Message
      * Set of buckets. Ranges must be non-overlapping.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.BucketingConfig.Bucket buckets = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\BucketingConfig\Bucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\BucketingConfig\Bucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuckets($var)

@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GetGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form:
+     * Required. The name of the game server delpoyment to retrieve, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -31,7 +31,7 @@ class GetGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal\Me
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the game server delpoyment to retrieve. Uses the form:
+     *           Required. The name of the game server delpoyment to retrieve, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * }
      */
@@ -41,7 +41,7 @@ class GetGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form:
+     * Required. The name of the game server delpoyment to retrieve, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -53,7 +53,7 @@ class GetGameServerDeploymentRolloutRequest extends \Google\Protobuf\Internal\Me
     }
 
     /**
-     * Required. The name of the game server delpoyment to retrieve. Uses the form:
+     * Required. The name of the game server delpoyment to retrieve, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

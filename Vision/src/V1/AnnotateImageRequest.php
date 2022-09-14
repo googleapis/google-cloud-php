@@ -62,7 +62,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()
@@ -124,7 +124,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return isset($this->image_context) ? $this->image_context : null;
+        return $this->image_context;
     }
 
     public function hasImageContext()

@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -39,7 +39,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
+use Google\Cloud\Security\PrivateCA\V1\CertificateAuthorityServiceClient;
 
 $client = new CertificateAuthorityServiceClient();
 

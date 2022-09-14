@@ -103,7 +103,7 @@ class RecurringTimeWindow extends \Google\Protobuf\Internal\Message
      */
     public function getWindow()
     {
-        return isset($this->window) ? $this->window : null;
+        return $this->window;
     }
 
     public function hasWindow()

@@ -9,24 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigCounterOptionsCustomField</code>
  */
 class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      */
-    private $value = '';
+    private $value = null;
 
     /**
      * Constructor.
@@ -35,9 +35,9 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Name is the field name.
+     *           This is deprecated and has no effect. Do not use.
      *     @type string $value
-     *           Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,20 +46,30 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
-     * Name is the field name.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -72,20 +82,30 @@ class LogConfigCounterOptionsCustomField extends \Google\Protobuf\Internal\Messa
     }
 
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @return string
      */
     public function getValue()
     {
-        return $this->value;
+        return isset($this->value) ? $this->value : '';
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>string value = 111972721;</code>
+     * Generated from protobuf field <code>optional string value = 111972721;</code>
      * @param string $var
      * @return $this
      */

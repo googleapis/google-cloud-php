@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\RouterBgpPeer;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The resource that configures and manages this BGP peer.
- * - MANAGED_BY_USER is the default value and can be managed by you or other users
- * - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted.
+ * [Output Only] The resource that configures and manages this BGP peer. - MANAGED_BY_USER is the default value and can be managed by you or other users - MANAGED_BY_ATTACHMENT is a BGP peer that is configured and managed by Cloud Interconnect, specifically by an InterconnectAttachment of type PARTNER. Google automatically creates, updates, and deletes this type of BGP peer when the PARTNER InterconnectAttachment is created, updated, or deleted. 
  *
  * Protobuf type <code>google.cloud.compute.v1.RouterBgpPeer.ManagementType</code>
  */
@@ -22,13 +20,17 @@ class ManagementType
      */
     const UNDEFINED_MANAGEMENT_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>MANAGED_BY_ATTACHMENT = 190490955;</code>
+     * The BGP peer is automatically created for PARTNER type InterconnectAttachment; Google will automatically create/delete this BGP peer when the PARTNER InterconnectAttachment is created/deleted, and Google will update the ipAddress and peerIpAddress when the PARTNER InterconnectAttachment is provisioned. This type of BGP peer cannot be created or deleted, but can be modified for all fields except for name, ipAddress and peerIpAddress.
+     *
+     * Generated from protobuf enum <code>MANAGED_BY_ATTACHMENT = 458926411;</code>
      */
-    const MANAGED_BY_ATTACHMENT = 190490955;
+    const MANAGED_BY_ATTACHMENT = 458926411;
     /**
-     * Generated from protobuf enum <code>MANAGED_BY_USER = 48858611;</code>
+     * Default value, the BGP peer is manually created and managed by user.
+     *
+     * Generated from protobuf enum <code>MANAGED_BY_USER = 317294067;</code>
      */
-    const MANAGED_BY_USER = 48858611;
+    const MANAGED_BY_USER = 317294067;
 
     private static $valueToName = [
         self::UNDEFINED_MANAGEMENT_TYPE => 'UNDEFINED_MANAGEMENT_TYPE',

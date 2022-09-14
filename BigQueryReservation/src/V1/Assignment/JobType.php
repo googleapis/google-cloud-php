@@ -32,11 +32,19 @@ class JobType
      * Generated from protobuf enum <code>QUERY = 2;</code>
      */
     const QUERY = 2;
+    /**
+     * BigQuery ML jobs that use services external to BigQuery for model
+     * training. These jobs will not utilize idle slots from other reservations.
+     *
+     * Generated from protobuf enum <code>ML_EXTERNAL = 3;</code>
+     */
+    const ML_EXTERNAL = 3;
 
     private static $valueToName = [
         self::JOB_TYPE_UNSPECIFIED => 'JOB_TYPE_UNSPECIFIED',
         self::PIPELINE => 'PIPELINE',
         self::QUERY => 'QUERY',
+        self::ML_EXTERNAL => 'ML_EXTERNAL',
     ];
 
     public static function name($value)

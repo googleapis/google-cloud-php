@@ -24,9 +24,9 @@ class XpnProjectStatus
      */
     const HOST = 2223528;
     /**
-     * Generated from protobuf enum <code>UNSPECIFIED_XPN_PROJECT_STATUS = 71957801;</code>
+     * Generated from protobuf enum <code>UNSPECIFIED_XPN_PROJECT_STATUS = 340393257;</code>
      */
-    const UNSPECIFIED_XPN_PROJECT_STATUS = 71957801;
+    const UNSPECIFIED_XPN_PROJECT_STATUS = 340393257;
 
     private static $valueToName = [
         self::UNDEFINED_XPN_PROJECT_STATUS => 'UNDEFINED_XPN_PROJECT_STATUS',

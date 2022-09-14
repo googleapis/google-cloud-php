@@ -1,0 +1,15 @@
+{
+    "title": "Profiler",
+    "defaultService": "profiler\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "profiler\/readme"
+        },
+        {
+            "title": "ProfilerServiceClient (v2)",
+            "type": "profiler\/v2\/profilerserviceclient"
+        }
+    ],
+    "pattern": "profiler\/\\w{1,}"
+}

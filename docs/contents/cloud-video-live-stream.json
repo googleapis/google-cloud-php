@@ -1,0 +1,15 @@
+{
+    "title": "videolivestream",
+    "defaultService": "videolivestream\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "videolivestream\/readme"
+        },
+        {
+            "title": "LivestreamServiceClient (v1)",
+            "type": "videolivestream\/v1\/livestreamserviceclient"
+        }
+    ],
+    "pattern": "videolivestream\/\\w{1,}"
+}

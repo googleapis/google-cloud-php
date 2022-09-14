@@ -30,7 +30,7 @@ $ composer require google/cloud
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -41,14 +41,15 @@ require 'vendor/autoload.php';
 use Google\Cloud\Compute\V1\InstancesClient;
 
 $instances = new InstancesClient();
-foreach ($instances->list_() as $instance) {
+foreach ($instances->list_('[MY_PROJECT_ID]', 'us-west1') as $instance) {
     print($instance->getName() . PHP_EOL);
 }
 ```
 
 ### Version
 
-This component is in active development. As such, it should be expected to be unstable, and is not covered by any SLA.
+This component is considered GA (generally available). As such, it will not introduce backwards-incompatible changes in
+any minor or patch releases. We will address issues and requests with the highest priority.
 
 ### Next Steps
 

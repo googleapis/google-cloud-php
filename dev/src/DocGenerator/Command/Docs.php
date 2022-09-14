@@ -52,10 +52,14 @@ class Docs extends GoogleCloudCommand
         $this->setName('docs')
             ->setDescription('Generate Documentation')
             ->addOption('release', 'r', InputOption::VALUE_NONE, 'If set, docs will be generated into tag folders' .
-                ' such as v1.0.0 rather than master.')
+                ' such as v1.0.0 rather than main.')
             ->addOption('pretty', 'p', InputOption::VALUE_NONE, 'If set, json files will be written with pretty'.
                 ' formatting using PHP\'s JSON_PRETTY_PRINT flag')
-            ->addOption('component', 'c', InputOption::VALUE_OPTIONAL, 'Generate docs only for a single component.');
+            ->addOption('component', 'c', InputOption::VALUE_OPTIONAL, 'Generate docs only for a single component.')
+            ->addOption('exclude', '', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
+                'exclude generating docs for a component.')
+            ->addOption('common-excludes', '', InputOption::VALUE_IS_ARRAY | InputOption::VALUE_REQUIRED,
+                'exclude files or directories when generating each component.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -63,6 +67,7 @@ class Docs extends GoogleCloudCommand
         $release = $input->getOption('release');
         $pretty = $input->getOption('pretty');
         $component = $input->getOption('component');
+        $componentsToExclude = $input->getOption('exclude');
 
         $paths = [
             'source' => $this->rootPath .'/'. self::DEFAULT_SOURCE_DIR,
@@ -72,7 +77,7 @@ class Docs extends GoogleCloudCommand
             'toc' => $this->rootPath .'/'. self::TOC_SOURCE_DIR,
             'tocTemplate' => $this->rootPath .'/'. self::TOC_TEMPLATE,
         ];
-        $commonExcludes = [
+        $commonExcludes = array_merge([
             '.github',
             'tests',
             'metadata',
@@ -80,12 +85,26 @@ class Docs extends GoogleCloudCommand
             'CHANGELOG.md',
             'bootstrap.php',
             'vendor/'
-        ];
+        ], $input->getOption('common-excludes'));
 
         $components = $this->getComponents($this->rootPath, $paths['source']);
         $tocTemplate = json_decode(file_get_contents($paths['tocTemplate']), true);
 
         if ($component !== 'google-cloud') {
+            // Verify and remove excluded component
+            foreach ($componentsToExclude as $exclude) {
+                $found = false;
+                $components = array_filter($components, function ($componentInfo) use ($exclude, &$found) {
+                    if ($componentInfo['id'] === $exclude) {
+                        $found = true;
+                        return false;
+                    }
+                    return true;
+                });
+                if (!$found) {
+                    throw new \RuntimeException(sprintf('Given component ID %s does not exist', $exclude));
+                }
+            }
             if ($component) {
                 $components = array_filter($components, function ($componentInfo) use ($component) {
                     return $componentInfo['id'] === $component;
@@ -165,7 +184,7 @@ class Docs extends GoogleCloudCommand
 
         $outputPath = ($release)
             ? $paths['output'] .'/'. $component['id'] .'/'. $version
-            : $paths['output'] .'/'. $component['id'] .'/master';
+            : $paths['output'] .'/'. $component['id'] .'/main';
 
         $output->writeln(sprintf('Writing to %s', realpath($outputPath)));
 

@@ -22,22 +22,26 @@
 
 namespace Google\Cloud\Compute\Tests\Unit\V1;
 
-use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
+
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Compute\V1\GetGlobalOperationRequest;
+use Google\Cloud\Compute\V1\GlobalOperationsClient;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\TargetTcpProxiesClient;
 use Google\Cloud\Compute\V1\TargetTcpProxiesSetBackendServiceRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxiesSetProxyHeaderRequest;
 use Google\Cloud\Compute\V1\TargetTcpProxy;
 use Google\Cloud\Compute\V1\TargetTcpProxyList;
-use Google\Protobuf\Any;
 use Google\Rpc\Code;
 use stdClass;
 
 /**
  * @group compute
+ *
  * @group gapic
  */
 class TargetTcpProxiesClientTest extends GeneratedTest
@@ -55,9 +59,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     private function createCredentials()
     {
-        return $this->getMockBuilder(CredentialsWrapper::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
     /**
@@ -68,7 +70,6 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $options += [
             'credentials' => $this->createCredentials(),
         ];
-
         return new TargetTcpProxiesClient($options);
     }
 
@@ -77,75 +78,61 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function deleteTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region = 'region-934795532';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/deleteTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/deleteTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-
-        $response = $client->delete($project, $targetTcpProxy);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/Delete', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
+        $response = $gapicClient->delete($project, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/Delete', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxy();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxy();
         $this->assertProtobufEquals($targetTcpProxy, $actualValue);
-
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -153,39 +140,55 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function deleteExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/deleteExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-
+        $response = $gapicClient->delete($project, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->delete($project, $targetTcpProxy);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -194,16 +197,18 @@ class TargetTcpProxiesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
-        $id = 'id3355';
+        $id = 3355;
         $kind = 'kind3292052';
         $name = 'name3373707';
+        $proxyBind = true;
+        $proxyHeader = 'proxyHeader-1987109506';
         $selfLink = 'selfLink-1691268851';
         $service = 'service1984153269';
         $expectedResponse = new TargetTcpProxy();
@@ -212,29 +217,25 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
+        $expectedResponse->setProxyBind($proxyBind);
+        $expectedResponse->setProxyHeader($proxyHeader);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setService($service);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-
-        $response = $client->get($project, $targetTcpProxy);
+        $response = $gapicClient->get($project, $targetTcpProxy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/Get', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $actualValue = $actualRequestObject->getTargetTcpProxy();
-
         $this->assertProtobufEquals($targetTcpProxy, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -244,35 +245,31 @@ class TargetTcpProxiesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxy = 'targetTcpProxy503065442';
-
         try {
-            $client->get($project, $targetTcpProxy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($project, $targetTcpProxy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -283,75 +280,61 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function insertTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region = 'region-934795532';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/insertTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/insertTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxyResource = new TargetTcpProxy();
-
-        $response = $client->insert($project, $targetTcpProxyResource);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/Insert', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
+        $response = $gapicClient->insert($project, $targetTcpProxyResource);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/Insert', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxyResource();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxyResource();
         $this->assertProtobufEquals($targetTcpProxyResource, $actualValue);
-
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -359,39 +342,55 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function insertExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/insertExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxyResource = new TargetTcpProxy();
-
+        $response = $gapicClient->insert($project, $targetTcpProxyResource);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->insert($project, $targetTcpProxyResource);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -400,17 +399,19 @@ class TargetTcpProxiesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $id = 'id3355';
         $kind = 'kind3292052';
         $nextPageToken = '';
         $selfLink = 'selfLink-1691268851';
         $itemsElement = new TargetTcpProxy();
-        $items = [$itemsElement];
+        $items = [
+            $itemsElement,
+        ];
         $expectedResponse = new TargetTcpProxyList();
         $expectedResponse->setId($id);
         $expectedResponse->setKind($kind);
@@ -418,24 +419,19 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setItems($items);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $project = 'project-309310695';
-
-        $response = $client->list_($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
         $this->assertEquals($expectedResponse->getItems()[0], $resources[0]);
-
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/List', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProject();
-
         $this->assertProtobufEquals($project, $actualValue);
         $this->assertTrue($transport->isExhausted());
     }
@@ -446,34 +442,30 @@ class TargetTcpProxiesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $project = 'project-309310695';
-
         try {
-            $client->list_($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -484,79 +476,64 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function setBackendServiceTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region = 'region-934795532';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setBackendServiceTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setBackendServiceTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxiesSetBackendServiceRequestResource = new TargetTcpProxiesSetBackendServiceRequest();
         $targetTcpProxy = 'targetTcpProxy503065442';
-
-        $response = $client->setBackendService($project, $targetTcpProxiesSetBackendServiceRequestResource, $targetTcpProxy);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/SetBackendService', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
+        $response = $gapicClient->setBackendService($project, $targetTcpProxiesSetBackendServiceRequestResource, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/SetBackendService', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxiesSetBackendServiceRequestResource();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxiesSetBackendServiceRequestResource();
         $this->assertProtobufEquals($targetTcpProxiesSetBackendServiceRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxy();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxy();
         $this->assertProtobufEquals($targetTcpProxy, $actualValue);
-
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -564,40 +541,56 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function setBackendServiceExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setBackendServiceExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxiesSetBackendServiceRequestResource = new TargetTcpProxiesSetBackendServiceRequest();
         $targetTcpProxy = 'targetTcpProxy503065442';
-
+        $response = $gapicClient->setBackendService($project, $targetTcpProxiesSetBackendServiceRequestResource, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->setBackendService($project, $targetTcpProxiesSetBackendServiceRequestResource, $targetTcpProxy);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -605,79 +598,64 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function setProxyHeaderTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
         // Mock response
-        $clientOperationId = 'clientOperationId-239630617';
-        $creationTimestamp = 'creationTimestamp567396278';
-        $description = 'description-1724546052';
-        $endTime = 'endTime1725551537';
-        $httpErrorMessage = 'httpErrorMessage1276263769';
-        $httpErrorStatusCode = 1386087020;
-        $id = 'id3355';
-        $insertTime = 'insertTime-103148397';
-        $kind = 'kind3292052';
-        $name = 'name3373707';
-        $operationType = 'operationType-1432962286';
-        $progress = 1001078227;
-        $region = 'region-934795532';
-        $selfLink = 'selfLink-1691268851';
-        $startTime = 'startTime-1573145462';
-        $statusMessage = 'statusMessage-239442758';
-        $targetId = 'targetId-815576439';
-        $targetLink = 'targetLink-2084812312';
-        $user = 'user3599307';
-        $zone = 'zone3744684';
-        $expectedResponse = new Operation();
-        $expectedResponse->setClientOperationId($clientOperationId);
-        $expectedResponse->setCreationTimestamp($creationTimestamp);
-        $expectedResponse->setDescription($description);
-        $expectedResponse->setEndTime($endTime);
-        $expectedResponse->setHttpErrorMessage($httpErrorMessage);
-        $expectedResponse->setHttpErrorStatusCode($httpErrorStatusCode);
-        $expectedResponse->setId($id);
-        $expectedResponse->setInsertTime($insertTime);
-        $expectedResponse->setKind($kind);
-        $expectedResponse->setName($name);
-        $expectedResponse->setOperationType($operationType);
-        $expectedResponse->setProgress($progress);
-        $expectedResponse->setRegion($region);
-        $expectedResponse->setSelfLink($selfLink);
-        $expectedResponse->setStartTime($startTime);
-        $expectedResponse->setStatusMessage($statusMessage);
-        $expectedResponse->setTargetId($targetId);
-        $expectedResponse->setTargetLink($targetLink);
-        $expectedResponse->setUser($user);
-        $expectedResponse->setZone($zone);
-        $transport->addResponse($expectedResponse);
-
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setProxyHeaderTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
+        $completeOperation = new Operation();
+        $completeOperation->setName('customOperations/setProxyHeaderTest');
+        $completeOperation->setStatus(Status::DONE);
+        $operationsTransport->addResponse($completeOperation);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxiesSetProxyHeaderRequestResource = new TargetTcpProxiesSetProxyHeaderRequest();
         $targetTcpProxy = 'targetTcpProxy503065442';
-
-        $response = $client->setProxyHeader($project, $targetTcpProxiesSetProxyHeaderRequestResource, $targetTcpProxy);
-        $this->assertEquals($expectedResponse, $response);
-        $actualRequests = $transport->popReceivedCalls();
-        $this->assertSame(1, count($actualRequests));
-        $actualFuncCall = $actualRequests[0]->getFuncCall();
-        $actualRequestObject = $actualRequests[0]->getRequestObject();
-        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/SetProxyHeader', $actualFuncCall);
-
-        $actualValue = $actualRequestObject->getProject();
-
+        $response = $gapicClient->setProxyHeader($project, $targetTcpProxiesSetProxyHeaderRequestResource, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $apiRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($apiRequests));
+        $operationsRequestsEmpty = $operationsTransport->popReceivedCalls();
+        $this->assertSame(0, count($operationsRequestsEmpty));
+        $actualApiFuncCall = $apiRequests[0]->getFuncCall();
+        $actualApiRequestObject = $apiRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.TargetTcpProxies/SetProxyHeader', $actualApiFuncCall);
+        $actualValue = $actualApiRequestObject->getProject();
         $this->assertProtobufEquals($project, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxiesSetProxyHeaderRequestResource();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxiesSetProxyHeaderRequestResource();
         $this->assertProtobufEquals($targetTcpProxiesSetProxyHeaderRequestResource, $actualValue);
-        $actualValue = $actualRequestObject->getTargetTcpProxy();
-
+        $actualValue = $actualApiRequestObject->getTargetTcpProxy();
         $this->assertProtobufEquals($targetTcpProxy, $actualValue);
-
+        $expectedOperationsRequestObject = new GetGlobalOperationRequest();
+        $expectedOperationsRequestObject->setOperation($completeOperation->getName());
+        $expectedOperationsRequestObject->setProject($project);
+        $response->pollUntilComplete([
+            'initialPollDelayMillis' => 1,
+        ]);
+        $this->assertTrue($response->isDone());
+        $apiRequestsEmpty = $transport->popReceivedCalls();
+        $this->assertSame(0, count($apiRequestsEmpty));
+        $operationsRequests = $operationsTransport->popReceivedCalls();
+        $this->assertSame(1, count($operationsRequests));
+        $actualOperationsFuncCall = $operationsRequests[0]->getFuncCall();
+        $actualOperationsRequestObject = $operationsRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.GlobalOperations/Get', $actualOperationsFuncCall);
+        $this->assertEquals($expectedOperationsRequestObject, $actualOperationsRequestObject);
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 
     /**
@@ -685,39 +663,55 @@ class TargetTcpProxiesClientTest extends GeneratedTest
      */
     public function setProxyHeaderExceptionTest()
     {
+        $operationsTransport = $this->createTransport();
+        $operationsClient = new GlobalOperationsClient([
+            'serviceAddress' => '',
+            'transport' => $operationsTransport,
+            'credentials' => $this->createCredentials(),
+        ]);
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+            'operationsClient' => $operationsClient,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
+        $this->assertTrue($operationsTransport->isExhausted());
+        // Mock response
+        $incompleteOperation = new Operation();
+        $incompleteOperation->setName('customOperations/setProxyHeaderExceptionTest');
+        $incompleteOperation->setStatus(Status::RUNNING);
+        $transport->addResponse($incompleteOperation);
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
         $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
-        $transport->addResponse(null, $status);
-
+        $operationsTransport->addResponse(null, $status);
         // Mock request
         $project = 'project-309310695';
         $targetTcpProxiesSetProxyHeaderRequestResource = new TargetTcpProxiesSetProxyHeaderRequest();
         $targetTcpProxy = 'targetTcpProxy503065442';
-
+        $response = $gapicClient->setProxyHeader($project, $targetTcpProxiesSetProxyHeaderRequestResource, $targetTcpProxy);
+        $this->assertFalse($response->isDone());
+        $this->assertNull($response->getResult());
         try {
-            $client->setProxyHeader($project, $targetTcpProxiesSetProxyHeaderRequestResource, $targetTcpProxy);
-            // If the $client method call did not throw, fail the test
+            $response->pollUntilComplete([
+                'initialPollDelayMillis' => 1,
+            ]);
+            // If the pollUntilComplete() method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
-        // Call popReceivedCalls to ensure the stub is exhausted
+        // Call popReceivedCalls to ensure the stubs are exhausted
         $transport->popReceivedCalls();
+        $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
+        $this->assertTrue($operationsTransport->isExhausted());
     }
 }

@@ -120,6 +120,10 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
      *           version of the object.
+     *     @type string[] $matchesPrefix Objects having names which start with
+     *           values specified by this condition will be matched.
+     *     @type string[] $matchesSuffix Objects having names which end with
+     *           values specified by this condition will be matched.
      * }
      * @return Lifecycle
      */
@@ -210,6 +214,10 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      *           the value is N, this condition is satisfied when there are at
      *           least N versions (including the live version) newer than this
      *           version of the object.
+     *     @type string[] $matchesPrefix Objects having names which start with
+     *           values specified by this condition will be matched.
+     *     @type string[] $matchesSuffix Objects having names which end with
+     *           values specified by this condition will be matched.
      * }
      * @return Lifecycle
      */
@@ -304,6 +312,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * @access private
      * @return \Generator
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         if (!isset($this->lifecycle['rule'])) {
@@ -329,6 +338,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * @param string $offset
      * @param mixed $value
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->lifecycle['rule'][$offset] = $value;
@@ -339,6 +349,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * @param string $offset
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->lifecycle['rule'][$offset]);
@@ -348,6 +359,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * @access private
      * @param string $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->lifecycle['rule'][$offset]);
@@ -358,6 +370,7 @@ class Lifecycle implements \ArrayAccess, \IteratorAggregate
      * @param string $offset
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return isset($this->lifecycle['rule'][$offset])

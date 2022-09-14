@@ -87,7 +87,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      *           parent.
      *     @type string $display_name
      *           The display name for the node.
-     *     @type \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $child_links
+     *     @type array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $child_links
      *           List of child node `index`es and their relationship to this parent.
      *     @type \Google\Cloud\Spanner\V1\PlanNode\ShortRepresentation $short_representation
      *           Condensed representation for [SCALAR][google.spanner.v1.PlanNode.Kind.SCALAR] nodes.
@@ -212,7 +212,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      * List of child node `index`es and their relationship to this parent.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.PlanNode.ChildLink child_links = 4;</code>
-     * @param \Google\Cloud\Spanner\V1\PlanNode\ChildLink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\PlanNode\ChildLink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChildLinks($var)
@@ -231,7 +231,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getShortRepresentation()
     {
-        return isset($this->short_representation) ? $this->short_representation : null;
+        return $this->short_representation;
     }
 
     public function hasShortRepresentation()
@@ -273,7 +273,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -318,7 +318,7 @@ class PlanNode extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionStats()
     {
-        return isset($this->execution_stats) ? $this->execution_stats : null;
+        return $this->execution_stats;
     }
 
     public function hasExecutionStats()

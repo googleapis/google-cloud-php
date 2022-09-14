@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GameServerDeployment extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the game server deployment. Uses the form:
+     * The resource name of the game server deployment, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
@@ -63,7 +63,7 @@ class GameServerDeployment extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the game server deployment. Uses the form:
+     *           The resource name of the game server deployment, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      *           For example,
      *           `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
@@ -86,7 +86,7 @@ class GameServerDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server deployment. Uses the form:
+     * The resource name of the game server deployment, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
@@ -100,7 +100,7 @@ class GameServerDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server deployment. Uses the form:
+     * The resource name of the game server deployment, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
@@ -121,11 +121,11 @@ class GameServerDeployment extends \Google\Protobuf\Internal\Message
      * Output only. The creation time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -157,11 +157,11 @@ class GameServerDeployment extends \Google\Protobuf\Internal\Message
      * Output only. The last-modified time.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

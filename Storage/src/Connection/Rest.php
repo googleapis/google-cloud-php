@@ -29,8 +29,9 @@ use Google\Cloud\Storage\Connection\ConnectionInterface;
 use Google\Cloud\Storage\StorageClient;
 use Google\CRC32\Builtin;
 use Google\CRC32\CRC32;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\MimeType;
 use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
@@ -322,7 +323,7 @@ class Rest implements ConnectionInterface
             'userProject' => null,
         ];
 
-        $args['data'] = Psr7\stream_for($args['data']);
+        $args['data'] = Utils::streamFor($args['data']);
 
         if ($args['resumable'] === null) {
             $args['resumable'] = $args['data']->getSize() > AbstractUploader::RESUMABLE_LIMIT;
@@ -334,7 +335,7 @@ class Rest implements ConnectionInterface
 
         $validate = $this->chooseValidationMethod($args);
         if ($validate === 'md5') {
-            $args['metadata']['md5Hash'] = base64_encode(Psr7\hash($args['data'], 'md5', true));
+            $args['metadata']['md5Hash'] = base64_encode(Utils::hash($args['data'], 'md5', true));
         } elseif ($validate === 'crc32') {
             $args['metadata']['crc32c'] = $this->crcFromStream($args['data']);
         }
@@ -343,7 +344,7 @@ class Rest implements ConnectionInterface
         unset($args['name']);
         $args['contentType'] = isset($args['metadata']['contentType'])
             ? $args['metadata']['contentType']
-            : Psr7\mimetype_from_filename($args['metadata']['name']);
+            : MimeType::fromFilename($args['metadata']['name']);
 
         $uploaderOptionKeys = [
             'restOptions',
@@ -505,7 +506,7 @@ class Rest implements ConnectionInterface
         ]);
 
         return [
-            new Request('GET', Psr7\uri_for($uri)),
+            new Request('GET', Utils::uriFor($uri)),
             $requestOptions
         ];
     }

@@ -145,4 +145,28 @@ class BetaAnalyticsDataGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * This compatibility method lists dimensions and metrics that can be added to
+     * a report request and maintain compatibility. This method fails if the
+     * request's dimensions and metrics are incompatible.
+     *
+     * In Google Analytics, reports fail if they request incompatible dimensions
+     * and/or metrics; in that case, you will need to remove dimensions and/or
+     * metrics from the incompatible report until the report is compatible.
+     *
+     * The Realtime and Core reports have different compatibility rules. This
+     * method checks compatibility for Core reports.
+     * @param \Google\Analytics\Data\V1beta\CheckCompatibilityRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CheckCompatibility(\Google\Analytics\Data\V1beta\CheckCompatibilityRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.analytics.data.v1beta.BetaAnalyticsData/CheckCompatibility',
+        $argument,
+        ['\Google\Analytics\Data\V1beta\CheckCompatibilityResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

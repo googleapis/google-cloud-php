@@ -17,10 +17,10 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectId}`, where `{projectId}` is the
      * [Google Cloud Platform project
-     * ID](https://support.google.com/cloud/answer/6158840). Example:
-     * `projects/my-project-123`.
+     * ID](https://support.google.com/cloud/answer/6158840).
+     * Example: // `projects/my-project-123`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -40,10 +40,10 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_name
      *           Required. The resource name of the Google Cloud Platform project. Written
-     *           as `projects/` plus the
+     *           as `projects/{projectId}`, where `{projectId}` is the
      *           [Google Cloud Platform project
-     *           ID](https://support.google.com/cloud/answer/6158840). Example:
-     *           `projects/my-project-123`.
+     *           ID](https://support.google.com/cloud/answer/6158840).
+     *           Example: // `projects/my-project-123`.
      *     @type \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent $event
      *           Required. The error event to be reported.
      * }
@@ -55,10 +55,10 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectId}`, where `{projectId}` is the
      * [Google Cloud Platform project
-     * ID](https://support.google.com/cloud/answer/6158840). Example:
-     * `projects/my-project-123`.
+     * ID](https://support.google.com/cloud/answer/6158840).
+     * Example: // `projects/my-project-123`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -70,10 +70,10 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the Google Cloud Platform project. Written
-     * as `projects/` plus the
+     * as `projects/{projectId}`, where `{projectId}` is the
      * [Google Cloud Platform project
-     * ID](https://support.google.com/cloud/answer/6158840). Example:
-     * `projects/my-project-123`.
+     * ID](https://support.google.com/cloud/answer/6158840).
+     * Example: // `projects/my-project-123`.
      *
      * Generated from protobuf field <code>string project_name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -91,11 +91,11 @@ class ReportErrorEventRequest extends \Google\Protobuf\Internal\Message
      * Required. The error event to be reported.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.ReportedErrorEvent event = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent
+     * @return \Google\Cloud\ErrorReporting\V1beta1\ReportedErrorEvent|null
      */
     public function getEvent()
     {
-        return isset($this->event) ? $this->event : null;
+        return $this->event;
     }
 
     public function hasEvent()

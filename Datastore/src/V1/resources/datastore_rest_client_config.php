@@ -3,21 +3,9 @@
 return [
     'interfaces' => [
         'google.datastore.v1.Datastore' => [
-            'Lookup' => [
+            'AllocateIds' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:lookup',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'RunQuery' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:runQuery',
+                'uriTemplate' => '/v1/projects/{project_id}:allocateIds',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -51,21 +39,9 @@ return [
                     ],
                 ],
             ],
-            'Rollback' => [
+            'Lookup' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:rollback',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'AllocateIds' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:allocateIds',
+                'uriTemplate' => '/v1/projects/{project_id}:lookup',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [
@@ -78,6 +54,30 @@ return [
             'ReserveIds' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project_id}:reserveIds',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'Rollback' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:rollback',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
+                        'getters' => [
+                            'getProjectId',
+                        ],
+                    ],
+                ],
+            ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:runQuery',
                 'body' => '*',
                 'placeholders' => [
                     'project_id' => [

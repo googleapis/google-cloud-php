@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit;
 
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -32,7 +32,7 @@ class TimestampTest extends TestCase
     private $dt;
     private $ts;
 
-    public function setUp()
+    public function set_up()
     {
         $this->dt = new \DateTime();
         $this->ts = new Timestamp($this->dt);
@@ -49,6 +49,11 @@ class TimestampTest extends TestCase
             (new \DateTime($this->dt->format(Timestamp::FORMAT)))->format('U'),
             (new \DateTime($this->ts->formatAsString()))->format('U')
         );
+    }
+
+    public function testJsonEncode()
+    {
+        $this->assertEquals(sprintf('"%s"', $this->dt->format(Timestamp::FORMAT)), json_encode($this->ts));
     }
 
     public function testCast()

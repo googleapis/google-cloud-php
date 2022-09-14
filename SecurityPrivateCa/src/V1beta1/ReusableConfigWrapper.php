@@ -73,7 +73,7 @@ class ReusableConfigWrapper extends \Google\Protobuf\Internal\Message
      * Required. A user-specified inline [ReusableConfigValues][google.cloud.security.privateca.v1beta1.ReusableConfigValues].
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigValues reusable_config_values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues|null
      */
     public function getReusableConfigValues()
     {

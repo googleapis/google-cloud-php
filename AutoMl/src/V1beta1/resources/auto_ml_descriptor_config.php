@@ -3,39 +3,19 @@
 return [
     'interfaces' => [
         'google.cloud.automl.v1beta1.AutoMl' => [
-            'DeleteDataset' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'ImportData' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'ExportData' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
             'CreateModel' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\AutoMl\V1beta1\Model',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'DeleteDataset' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
                     'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
@@ -63,17 +43,7 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'UndeployModel' => [
-                'longRunning' => [
-                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
-                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
-                    'initialPollDelayMillis' => '500',
-                    'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '5000',
-                    'totalPollTimeoutMillis' => '300000',
-                ],
-            ],
-            'ExportModel' => [
+            'ExportData' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
@@ -93,24 +63,34 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ListDatasets' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getDatasets',
+            'ExportModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
-            'ListTableSpecs' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getTableSpecs',
+            'ImportData' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'UndeployModel' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\AutoMl\V1beta1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'ListColumnSpecs' => [
@@ -123,14 +103,14 @@ return [
                     'resourcesGetMethod' => 'getColumnSpecs',
                 ],
             ],
-            'ListModels' => [
+            'ListDatasets' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getModel',
+                    'resourcesGetMethod' => 'getDatasets',
                 ],
             ],
             'ListModelEvaluations' => [
@@ -141,6 +121,26 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getModelEvaluation',
+                ],
+            ],
+            'ListModels' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getModel',
+                ],
+            ],
+            'ListTableSpecs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getTableSpecs',
                 ],
             ],
         ],

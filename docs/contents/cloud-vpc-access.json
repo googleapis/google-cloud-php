@@ -1,0 +1,15 @@
+{
+    "title": "vpcaccess",
+    "defaultService": "vpcaccess\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "vpcaccess\/readme"
+        },
+        {
+            "title": "VpcAccessServiceClient (v1)",
+            "type": "vpcaccess\/v1\/vpcaccessserviceclient"
+        }
+    ],
+    "pattern": "vpcaccess\/\\w{1,}"
+}

@@ -2,7 +2,46 @@
 
 return [
     'interfaces' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListLocations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
         'google.cloud.servicedirectory.v1beta1.RegistrationService' => [
+            'CreateEndpoint' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
+                'body' => 'endpoint',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'endpoint_id',
+                ],
+            ],
             'CreateNamespace' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/namespaces',
@@ -14,10 +53,14 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'namespace_id',
+                ],
             ],
-            'ListNamespaces' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/namespaces',
+            'CreateService' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*}/services',
+                'body' => 'service',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -25,26 +68,16 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'service_id',
+                ],
             ],
-            'GetNamespace' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*}',
+            'DeleteEndpoint' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateNamespace' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{namespace.name=projects/*/locations/*/namespaces/*}',
-                'body' => 'namespace',
-                'placeholders' => [
-                    'namespace.name' => [
-                        'getters' => [
-                            'getNamespace',
                             'getName',
                         ],
                     ],
@@ -61,53 +94,6 @@ return [
                     ],
                 ],
             ],
-            'CreateService' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*}/services',
-                'body' => 'service',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListServices' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*}/services',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'GetService' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateService' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{service.name=projects/*/locations/*/namespaces/*/services/*}',
-                'body' => 'service',
-                'placeholders' => [
-                    'service.name' => [
-                        'getters' => [
-                            'getService',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteService' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*}',
@@ -119,55 +105,8 @@ return [
                     ],
                 ],
             ],
-            'CreateEndpoint' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
-                'body' => 'endpoint',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListEndpoints' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'GetEndpoint' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateEndpoint' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
-                'body' => 'endpoint',
-                'placeholders' => [
-                    'endpoint.name' => [
-                        'getters' => [
-                            'getEndpoint',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteEndpoint' => [
-                'method' => 'delete',
                 'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
                 'placeholders' => [
                     'name' => [
@@ -192,6 +131,61 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'GetNamespace' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetService' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/namespaces/*/services/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListEndpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*/services/*}/endpoints',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListNamespaces' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/namespaces',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListServices' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*/namespaces/*}/services',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -232,6 +226,54 @@ return [
                             'getResource',
                         ],
                     ],
+                ],
+            ],
+            'UpdateEndpoint' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{endpoint.name=projects/*/locations/*/namespaces/*/services/*/endpoints/*}',
+                'body' => 'endpoint',
+                'placeholders' => [
+                    'endpoint.name' => [
+                        'getters' => [
+                            'getEndpoint',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateNamespace' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{namespace.name=projects/*/locations/*/namespaces/*}',
+                'body' => 'namespace',
+                'placeholders' => [
+                    'namespace.name' => [
+                        'getters' => [
+                            'getNamespace',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateService' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{service.name=projects/*/locations/*/namespaces/*/services/*}',
+                'body' => 'service',
+                'placeholders' => [
+                    'service.name' => [
+                        'getters' => [
+                            'getService',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
         ],

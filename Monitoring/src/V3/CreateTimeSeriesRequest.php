@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -41,9 +42,10 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The project on which to execute the request. The format is:
+     *           Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     *           which to execute the request. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
-     *     @type \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $time_series
+     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $time_series
      *           Required. The new data to be added to a list of time series.
      *           Adds at most one data point to each of several time series.  The new data
      *           point must be more recent than any other point in its time series.  Each
@@ -58,7 +60,8 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -70,7 +73,8 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The project on which to execute the request. The format is:
+     * Required. The [project](https://cloud.google.com/monitoring/api/v3#project_name) on
+     * which to execute the request. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string name = 3 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -110,7 +114,7 @@ class CreateTimeSeriesRequest extends \Google\Protobuf\Internal\Message
      * The maximum number of `TimeSeries` objects per `Create` request is 200.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeries($var)

@@ -7,14 +7,14 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/forwardingRules/{forwarding_rule}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -23,14 +23,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/global/forwardingRules/{forwarding_rule}',
                 'placeholders' => [
-                    'project' => [
-                        'getters' => [
-                            'getProject',
-                        ],
-                    ],
                     'forwarding_rule' => [
                         'getters' => [
                             'getForwardingRule',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],
@@ -63,14 +63,31 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/forwardingRules/{forwarding_rule}',
                 'body' => 'forwarding_rule_resource',
                 'placeholders' => [
+                    'forwarding_rule' => [
+                        'getters' => [
+                            'getForwardingRule',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
                         ],
                     ],
-                    'forwarding_rule' => [
+                ],
+            ],
+            'SetLabels' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/forwardingRules/{resource}/setLabels',
+                'body' => 'global_set_labels_request_resource',
+                'placeholders' => [
+                    'project' => [
                         'getters' => [
-                            'getForwardingRule',
+                            'getProject',
+                        ],
+                    ],
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
                         ],
                     ],
                 ],
@@ -80,14 +97,86 @@ return [
                 'uriTemplate' => '/compute/v1/projects/{project}/global/forwardingRules/{forwarding_rule}/setTarget',
                 'body' => 'target_reference_resource',
                 'placeholders' => [
+                    'forwarding_rule' => [
+                        'getters' => [
+                            'getForwardingRule',
+                        ],
+                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
                         ],
                     ],
-                    'forwarding_rule' => [
+                ],
+            ],
+        ],
+        'google.cloud.compute.v1.GlobalOperations' => [
+            'AggregatedList' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/aggregated/operations',
+                'placeholders' => [
+                    'project' => [
                         'getters' => [
-                            'getForwardingRule',
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Delete' => [
+                'method' => 'delete',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Get' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'List' => [
+                'method' => 'get',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations',
+                'placeholders' => [
+                    'project' => [
+                        'getters' => [
+                            'getProject',
+                        ],
+                    ],
+                ],
+            ],
+            'Wait' => [
+                'method' => 'post',
+                'uriTemplate' => '/compute/v1/projects/{project}/global/operations/{operation}/wait',
+                'placeholders' => [
+                    'operation' => [
+                        'getters' => [
+                            'getOperation',
+                        ],
+                    ],
+                    'project' => [
+                        'getters' => [
+                            'getProject',
                         ],
                     ],
                 ],

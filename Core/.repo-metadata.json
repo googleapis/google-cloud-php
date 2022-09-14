@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-core",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-core/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-core/latest",
+    "library_type": "CORE"
 }

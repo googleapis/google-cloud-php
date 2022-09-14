@@ -27,9 +27,11 @@ use Google\Cloud\Firestore\ValueMapper;
 use Google\Cloud\Firestore\FirestoreSessionHandler;
 use Google\Cloud\Firestore\Transaction;
 use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Iterator;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectPHPException;
 
 /**
  * @group firestore
@@ -37,6 +39,9 @@ use Iterator;
  */
 class FirestoreSessionHandlerTest extends TestCase
 {
+    use ExpectException;
+    use ExpectPHPException;
+
     const SESSION_SAVE_PATH = 'sessions';
     const SESSION_NAME = 'PHPSESSID';
     const PROJECT = 'example_project';
@@ -46,7 +51,7 @@ class FirestoreSessionHandlerTest extends TestCase
     private $valueMapper;
     private $documents;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->valueMapper = $this->prophesize(ValueMapper::class);
@@ -56,7 +61,8 @@ class FirestoreSessionHandlerTest extends TestCase
     public function testOpen()
     {
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->valueMapper->reveal(),
@@ -67,11 +73,10 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testOpenWithException()
     {
+        $this->expectWarning();
+
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)
             ->willThrow(new ServiceException(''));
@@ -85,11 +90,13 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertFalse($ret);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testReadNotAllowed()
     {
+        $this->expectException('InvalidArgumentException');
+
+        $this->connection->beginTransaction(['database' => $this->dbName()])
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $firestoreSessionHandler = new FirestoreSessionHandler(
             $this->connection->reveal(),
             $this->valueMapper->reveal(),
@@ -124,7 +131,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(null);
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $this->connection->batchGetDocuments([
             'database' => $this->dbName(),
             'documents' => [$this->documentName()],
@@ -144,13 +152,13 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertEquals('', $ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testReadWithException()
     {
+        $this->expectWarning();
+
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $this->connection->batchGetDocuments([
             'database' => $this->dbName(),
             'documents' => [$this->documentName()],
@@ -186,7 +194,8 @@ class FirestoreSessionHandlerTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(['data' => 'sessiondata']);
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $this->connection->batchGetDocuments([
             'database' => $this->dbName(),
             'documents' => [$this->documentName()],
@@ -217,7 +226,8 @@ class FirestoreSessionHandlerTest extends TestCase
                 return ['data' => ['stringValue' => 'sessiondata']];
             });
         $this->connection->beginTransaction(['database' => $this->dbName()])
-            ->shouldBeCalledTimes(1);
+            ->shouldBeCalledTimes(1)
+            ->willReturn(['transaction' => null]);
         $this->connection->commit([
             'database' => $this->dbName(),
             'writes' => [
@@ -245,11 +255,10 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testWriteWithException()
     {
+        $this->expectWarning();
+
         $phpunit = $this;
         $this->valueMapper->encodeValues(Argument::type('array'))
             ->will(function ($args) use ($phpunit) {
@@ -310,11 +319,10 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertTrue($ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testDestroyWithException()
     {
+        $this->expectWarning();
+
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(1)
             ->willReturn(['transaction' => 123]);
@@ -424,11 +432,10 @@ class FirestoreSessionHandlerTest extends TestCase
         $this->assertEquals(1, $ret);
     }
 
-    /**
-     * @expectedException PHPUnit_Framework_Error_Warning
-     */
     public function testGcWithException()
     {
+        $this->expectWarning();
+
         $this->connection->beginTransaction(['database' => $this->dbName()])
             ->shouldBeCalledTimes(2)
             ->willReturn(['transaction' => 123]);

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\InstanceProperties;
 use UnexpectedValueException;
 
 /**
- * The private IPv6 google access type for VMs. If not specified, use  INHERIT_FROM_SUBNETWORK as default.
+ * The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.
  *
  * Protobuf type <code>google.cloud.compute.v1.InstanceProperties.PrivateIpv6GoogleAccess</code>
  */
@@ -20,17 +20,23 @@ class PrivateIpv6GoogleAccess
      */
     const UNDEFINED_PRIVATE_IPV6_GOOGLE_ACCESS = 0;
     /**
-     * Generated from protobuf enum <code>ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE = 159540538;</code>
+     * Bidirectional private IPv6 access to/from Google services. If specified, the subnetwork who is attached to the instance's default network interface will be assigned an internal IPv6 prefix if it doesn't have before.
+     *
+     * Generated from protobuf enum <code>ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE = 427975994;</code>
      */
-    const ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE = 159540538;
+    const ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE = 427975994;
     /**
-     * Generated from protobuf enum <code>ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE = 19774807;</code>
+     * Outbound private IPv6 access from VMs in this subnet to Google services. If specified, the subnetwork who is attached to the instance's default network interface will be assigned an internal IPv6 prefix if it doesn't have before.
+     *
+     * Generated from protobuf enum <code>ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE = 288210263;</code>
      */
-    const ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE = 19774807;
+    const ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE = 288210263;
     /**
-     * Generated from protobuf enum <code>INHERIT_FROM_SUBNETWORK = 261821503;</code>
+     * Each network interface inherits PrivateIpv6GoogleAccess from its subnetwork.
+     *
+     * Generated from protobuf enum <code>INHERIT_FROM_SUBNETWORK = 530256959;</code>
      */
-    const INHERIT_FROM_SUBNETWORK = 261821503;
+    const INHERIT_FROM_SUBNETWORK = 530256959;
 
     private static $valueToName = [
         self::UNDEFINED_PRIVATE_IPV6_GOOGLE_ACCESS => 'UNDEFINED_PRIVATE_IPV6_GOOGLE_ACCESS',

@@ -88,7 +88,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      *              certificateRevocationLists/&#42;`.
      *     @type int|string $sequence_number
      *           Output only. The CRL sequence number that appears in pem_crl.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList\RevokedCertificate[]|\Google\Protobuf\Internal\RepeatedField $revoked_certificates
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $revoked_certificates
      *           Output only. The revoked serial numbers that appear in pem_crl.
      *     @type string $pem_crl
      *           Output only. The PEM-encoded X.509 CRL.
@@ -182,7 +182,7 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The revoked serial numbers that appear in pem_crl.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.CertificateRevocationList.RevokedCertificate revoked_certificates = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList\RevokedCertificate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList\RevokedCertificate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRevokedCertificates($var)
@@ -275,11 +275,11 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -311,11 +311,11 @@ class CertificateRevocationList extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [CertificateRevocationList][google.cloud.security.privateca.v1beta1.CertificateRevocationList] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

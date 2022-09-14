@@ -23,15 +23,15 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     private $parent = '';
     /**
      * Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Offers will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 offers.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
     private $page_size = 0;
     /**
-     * A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * A token for a page of results other than the first page.
+     * Obtained using
      * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
      * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
      *
@@ -39,15 +39,15 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Required. SKU for which the Offers are being looked up.
+     * Required. The SKU to look up Offers for.
      *
      * Generated from protobuf field <code>string sku = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $sku = '';
     /**
-     * The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      */
@@ -64,24 +64,24 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      *           Customer's Cloud Identity ID
      *     @type string $customer_name
      *           A reseller should create a customer and use the resource name of
-     *           the created customer here.
+     *           that customer here.
      *     @type string $parent
      *           Required. The resource name of the reseller's account.
      *     @type int $page_size
      *           Requested page size. Server might return fewer results than requested.
-     *           If unspecified, at most 100 Offers will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           If unspecified, returns at most 100 offers.
+     *           The maximum value is 1000; the server will coerce values above 1000.
      *     @type string $page_token
-     *           A token identifying a page of results, if other than the first one.
-     *           Typically obtained via
+     *           A token for a page of results other than the first page.
+     *           Obtained using
      *           [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
      *           [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
      *     @type string $sku
-     *           Required. SKU for which the Offers are being looked up.
+     *           Required. The SKU to look up Offers for.
      *     @type string $language_code
-     *           The BCP-47 language code, such as "en-US".  If specified, the
-     *           response will be localized to the corresponding language code. Default is
-     *           "en-US".
+     *           The BCP-47 language code. For example, "en-US". The
+     *           response will localize in the corresponding language code, if specified.
+     *           The default value is "en-US".
      * }
      */
     public function __construct($data = NULL) {
@@ -122,7 +122,7 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A reseller should create a customer and use the resource name of
-     * the created customer here.
+     * that customer here.
      *
      * Generated from protobuf field <code>string customer_name = 5;</code>
      * @return string
@@ -139,7 +139,7 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * A reseller should create a customer and use the resource name of
-     * the created customer here.
+     * that customer here.
      *
      * Generated from protobuf field <code>string customer_name = 5;</code>
      * @param string $var
@@ -181,8 +181,8 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Offers will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 offers.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -194,8 +194,8 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Offers will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 offers.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -210,8 +210,8 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * A token for a page of results other than the first page.
+     * Obtained using
      * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
      * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
      *
@@ -224,8 +224,8 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A token identifying a page of results, if other than the first one.
-     * Typically obtained via
+     * A token for a page of results other than the first page.
+     * Obtained using
      * [ListTransferableOffersResponse.next_page_token][google.cloud.channel.v1.ListTransferableOffersResponse.next_page_token] of the previous
      * [CloudChannelService.ListTransferableOffers][google.cloud.channel.v1.CloudChannelService.ListTransferableOffers] call.
      *
@@ -242,7 +242,7 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. SKU for which the Offers are being looked up.
+     * Required. The SKU to look up Offers for.
      *
      * Generated from protobuf field <code>string sku = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -253,7 +253,7 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. SKU for which the Offers are being looked up.
+     * Required. The SKU to look up Offers for.
      *
      * Generated from protobuf field <code>string sku = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -268,9 +268,9 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      * @return string
@@ -281,9 +281,9 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 7;</code>
      * @param string $var

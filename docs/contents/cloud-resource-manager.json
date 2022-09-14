@@ -1,0 +1,35 @@
+{
+    "title": "ResourceManager",
+    "defaultService": "resourcemanager\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "resourcemanager\/readme"
+        },
+        {
+            "title": "FoldersClient (v3)",
+            "type": "resourcemanager\/v3\/foldersclient"
+        },
+        {
+            "title": "OrganizationsClient (v3)",
+            "type": "resourcemanager\/v3\/organizationsclient"
+        },
+        {
+            "title": "ProjectsClient (v3)",
+            "type": "resourcemanager\/v3\/projectsclient"
+        },
+        {
+            "title": "TagBindingsClient (v3)",
+            "type": "resourcemanager\/v3\/tagbindingsclient"
+        },
+        {
+            "title": "TagKeysClient (v3)",
+            "type": "resourcemanager\/v3\/tagkeysclient"
+        },
+        {
+            "title": "TagValuesClient (v3)",
+            "type": "resourcemanager\/v3\/tagvaluesclient"
+        }
+    ],
+    "pattern": "resourcemanager\/\\w{1,}"
+}

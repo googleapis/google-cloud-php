@@ -26,7 +26,7 @@ class GuestAttributesValue extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\GuestAttributesEntry[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\GuestAttributesEntry>|\Google\Protobuf\Internal\RepeatedField $items
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class GuestAttributesValue extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestAttributesEntry items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\GuestAttributesEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\GuestAttributesEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

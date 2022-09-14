@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
+            'BulkMuteFindings' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse',
+                    'metadataReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'RunAssetDiscovery' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\SecurityCenter\V1\RunAssetDiscoveryResponse',
@@ -43,6 +53,16 @@ return [
                     'resourcesGetMethod' => 'getListAssetsResults',
                 ],
             ],
+            'ListBigQueryExports' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getBigQueryExports',
+                ],
+            ],
             'ListFindings' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -51,6 +71,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getListFindingsResults',
+                ],
+            ],
+            'ListMuteConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getMuteConfigs',
                 ],
             ],
             'ListNotificationConfigs' => [

@@ -15,9 +15,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class TargetSslProxiesSetSslCertificatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
+     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
     private $ssl_certificates;
 
@@ -27,8 +27,8 @@ class TargetSslProxiesSetSslCertificatesRequest extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *           New set of URLs to SslCertificate resources to associate with this TargetSslProxy. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,9 +37,9 @@ class TargetSslProxiesSetSslCertificatesRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
+     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getSslCertificates()
@@ -48,10 +48,10 @@ class TargetSslProxiesSetSslCertificatesRequest extends \Google\Protobuf\Interna
     }
 
     /**
-     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. Currently exactly one ssl certificate must be specified.
+     * New set of URLs to SslCertificate resources to associate with this TargetSslProxy. At least one SSL certificate must be specified. Currently, you may specify up to 15 SSL certificates.
      *
-     * Generated from protobuf field <code>repeated string ssl_certificates = 97571087;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSslCertificates($var)

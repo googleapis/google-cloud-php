@@ -36,7 +36,7 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\DeidentifyTemplate[]|\Google\Protobuf\Internal\RepeatedField $deidentify_templates
+     *     @type array<\Google\Cloud\Dlp\V2\DeidentifyTemplate>|\Google\Protobuf\Internal\RepeatedField $deidentify_templates
      *           List of deidentify templates, up to page_size in
      *           ListDeidentifyTemplatesRequest.
      *     @type string $next_page_token
@@ -66,7 +66,7 @@ class ListDeidentifyTemplatesResponse extends \Google\Protobuf\Internal\Message
      * ListDeidentifyTemplatesRequest.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.DeidentifyTemplate deidentify_templates = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\DeidentifyTemplate[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\DeidentifyTemplate>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeidentifyTemplates($var)

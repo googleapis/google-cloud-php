@@ -79,7 +79,7 @@ class TextProperty extends \Google\Protobuf\Internal\Message
      */
     public function getDetectedBreak()
     {
-        return isset($this->detected_break) ? $this->detected_break : null;
+        return $this->detected_break;
     }
 
     public function hasDetectedBreak()

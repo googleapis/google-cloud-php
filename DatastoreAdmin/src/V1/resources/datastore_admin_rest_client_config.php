@@ -3,30 +3,6 @@
 return [
     'interfaces' => [
         'google.datastore.admin.v1.DatastoreAdmin' => [
-            'ExportEntities' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:export',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
-            'ImportEntities' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/projects/{project_id}:import',
-                'body' => '*',
-                'placeholders' => [
-                    'project_id' => [
-                        'getters' => [
-                            'getProjectId',
-                        ],
-                    ],
-                ],
-            ],
             'CreateIndex' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/projects/{project_id}/indexes',
@@ -43,14 +19,26 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
                 'placeholders' => [
+                    'index_id' => [
+                        'getters' => [
+                            'getIndexId',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
                         ],
                     ],
-                    'index_id' => [
+                ],
+            ],
+            'ExportEntities' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:export',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
                         'getters' => [
-                            'getIndexId',
+                            'getProjectId',
                         ],
                     ],
                 ],
@@ -59,14 +47,26 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1/projects/{project_id}/indexes/{index_id}',
                 'placeholders' => [
+                    'index_id' => [
+                        'getters' => [
+                            'getIndexId',
+                        ],
+                    ],
                     'project_id' => [
                         'getters' => [
                             'getProjectId',
                         ],
                     ],
-                    'index_id' => [
+                ],
+            ],
+            'ImportEntities' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/projects/{project_id}:import',
+                'body' => '*',
+                'placeholders' => [
+                    'project_id' => [
                         'getters' => [
-                            'getIndexId',
+                            'getProjectId',
                         ],
                     ],
                 ],

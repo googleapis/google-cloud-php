@@ -17,7 +17,7 @@ class GetBiReservationRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the requested reservation, for example:
-     * `projects/{project_id}/locations/{location_id}/bireservation`
+     * `projects/{project_id}/locations/{location_id}/biReservation`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +31,7 @@ class GetBiReservationRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the requested reservation, for example:
-     *           `projects/{project_id}/locations/{location_id}/bireservation`
+     *           `projects/{project_id}/locations/{location_id}/biReservation`
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +41,7 @@ class GetBiReservationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the requested reservation, for example:
-     * `projects/{project_id}/locations/{location_id}/bireservation`
+     * `projects/{project_id}/locations/{location_id}/biReservation`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +53,7 @@ class GetBiReservationRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the requested reservation, for example:
-     * `projects/{project_id}/locations/{location_id}/bireservation`
+     * `projects/{project_id}/locations/{location_id}/biReservation`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

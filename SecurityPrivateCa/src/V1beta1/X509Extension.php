@@ -62,11 +62,11 @@ class X509Extension extends \Google\Protobuf\Internal\Message
      * Required. The OID for this X.509 extension.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ObjectId object_id = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ObjectId
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ObjectId|null
      */
     public function getObjectId()
     {
-        return isset($this->object_id) ? $this->object_id : null;
+        return $this->object_id;
     }
 
     public function hasObjectId()

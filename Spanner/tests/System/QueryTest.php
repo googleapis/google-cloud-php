@@ -27,6 +27,8 @@ use Google\Cloud\Spanner\Result;
 use Google\Cloud\Spanner\StructType;
 use Google\Cloud\Spanner\StructValue;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\V1\RequestOptions\Priority;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -34,6 +36,8 @@ use Google\Cloud\Spanner\Timestamp;
  */
 class QueryTest extends SpannerTestCase
 {
+    use ExpectException;
+
     /**
      * covers 19
      */
@@ -47,12 +51,27 @@ class QueryTest extends SpannerTestCase
         $this->assertEquals(1, $row[0]);
     }
 
+    public function testSelect1WithRequestOptions()
+    {
+        $db = self::$database;
+
+        $res = $db->execute('SELECT 1', [
+            'requestOptions' => [
+                'priority' => Priority::PRIORITY_LOW
+            ]
+        ]);
+        $row = $res->rows()->current();
+
+        $this->assertEquals(1, $row[0]);
+    }
+
     /**
      * covers 20
-     * @expectedException Google\Cloud\Core\Exception\BadRequestException
      */
     public function testInvalidQueryFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\BadRequestException');
+
         $db = self::$database;
 
         $db->execute('badquery')->rows()->current();
@@ -399,6 +418,43 @@ class QueryTest extends SpannerTestCase
             ],
             'types' => [
                 'param' => Database::TYPE_DATE
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertNull($row['foo']);
+    }
+
+    public function testBindJsonParameter()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $str = '{"json":true,"null":false}';
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => $str
+            ],
+            'types' => [
+                'param' => Database::TYPE_JSON
+            ]
+        ]);
+
+        $row = $res->rows()->current();
+        $this->assertEquals($str, $row['foo']);
+    }
+
+    public function testBindJsonParameterNull()
+    {
+        $this->skipEmulatorTests();
+        $db = self::$database;
+
+        $res = $db->execute('SELECT @param as foo', [
+            'parameters' => [
+                'param' => null
+            ],
+            'types' => [
+                'param' => Database::TYPE_JSON
             ]
         ]);
 

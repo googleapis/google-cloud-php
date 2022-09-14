@@ -49,11 +49,21 @@ class MutationRecord extends \Google\Protobuf\Internal\Message
      * When the change occurred.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp mutate_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getMutateTime()
     {
         return $this->mutate_time;
+    }
+
+    public function hasMutateTime()
+    {
+        return isset($this->mutate_time);
+    }
+
+    public function clearMutateTime()
+    {
+        unset($this->mutate_time);
     }
 
     /**

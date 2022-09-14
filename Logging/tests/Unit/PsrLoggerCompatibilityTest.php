@@ -22,21 +22,20 @@ use Google\Cloud\Logging\Logger;
 use Google\Cloud\Logging\PsrLogger;
 use Psr\Log\Test\LoggerInterfaceTest;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group logging
  */
 class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
 {
-    public static $logs = [];
+    use ExpectException;
 
-    public function setUp()
-    {
-        self::$logs = [];
-    }
+    public static $logs = [];
 
     public function getLogger()
     {
+        self::$logs = [];
         $connection = $this->prophesize(ConnectionInterface::class);
         $connection->writeEntries(Argument::any())
             ->will(function ($entries) {
@@ -56,6 +55,14 @@ class PsrLoggerCompatibilityTest extends LoggerInterfaceTest
         $logger = new Logger($connection->reveal(), 'my-log', 'projectId');
 
         return new PsrLogger($logger);
+    }
+
+    public function testThrowsOnInvalidLevel()
+    {
+        $this->expectException('\Psr\Log\InvalidArgumentException');
+
+        $logger = $this->getLogger();
+        $logger->log('invalid level', 'Foo');
     }
 
     public function getLogs()

@@ -20,6 +20,7 @@ namespace Google\Cloud\BigQuery\Tests\System;
 use Google\Cloud\BigQuery\BigQueryClient;
 use Google\Cloud\BigQuery\Table;
 use Google\Cloud\Core\ExponentialBackoff;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group bigquery
@@ -27,6 +28,8 @@ use Google\Cloud\Core\ExponentialBackoff;
  */
 class ManageTablesTest extends BigQueryTestCase
 {
+    use ExpectException;
+
     public function testListTables()
     {
         $foundTables = [];
@@ -132,11 +135,10 @@ class ManageTablesTest extends BigQueryTestCase
         $this->assertEquals($metadata['friendlyName'], $info['friendlyName']);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\FailedPreconditionException
-     */
     public function testUpdateTableConcurrentUpdateFails()
     {
+        $this->expectException('Google\Cloud\Core\Exception\FailedPreconditionException');
+
         $data = [
             'friendlyName' => 'foo',
             'etag' => 'blah'

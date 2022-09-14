@@ -194,7 +194,7 @@ class CreateTaskRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTask()
     {
-        return isset($this->task) ? $this->task : null;
+        return $this->task;
     }
 
     public function hasTask()

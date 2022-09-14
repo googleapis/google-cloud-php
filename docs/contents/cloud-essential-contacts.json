@@ -1,0 +1,15 @@
+{
+    "title": "EssentialContacts",
+    "defaultService": "essentialcontacts\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "essentialcontacts\/readme"
+        },
+        {
+            "title": "EssentialContactsServiceClient (v1)",
+            "type": "essentialcontacts\/v1\/essentialcontactsserviceclient"
+        }
+    ],
+    "pattern": "essentialcontacts\/\\w{1,}"
+}

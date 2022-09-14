@@ -25,18 +25,23 @@ use Google\Cloud\PubSub\BatchPublisher;
 use Google\Cloud\PubSub\Connection\ConnectionInterface;
 use Google\Cloud\PubSub\Subscription;
 use Google\Cloud\PubSub\Topic;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group pubsub
  */
 class TopicTest extends TestCase
 {
+    use ExpectException;
+
+    const TOPIC = 'projects/project-name/topics/topic-name';
+
     private $topic;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->topic = TestHelpers::stub(Topic::class, [
@@ -49,14 +54,14 @@ class TopicTest extends TestCase
 
     public function testName()
     {
-        $this->assertEquals($this->topic->name(), 'projects/project-name/topics/topic-name');
+        $this->assertEquals($this->topic->name(), self::TOPIC);
     }
 
     public function testCreate()
     {
         $this->connection->createTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->connection->getTopic()->shouldNotBeCalled();
@@ -68,7 +73,7 @@ class TopicTest extends TestCase
         // Make sure the topic data gets cached!
         $this->topic->info();
 
-        $this->assertEquals('projects/project-name/topics/topic-name', $res['name']);
+        $this->assertEquals(self::TOPIC, $res['name']);
     }
 
     public function testUpdate()
@@ -105,7 +110,7 @@ class TopicTest extends TestCase
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -127,7 +132,7 @@ class TopicTest extends TestCase
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ])->shouldBeCalledTimes(1);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
@@ -136,21 +141,21 @@ class TopicTest extends TestCase
         $res2 = $this->topic->info();
 
         $this->assertEquals($res, $res2);
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
     }
 
     public function testReload()
     {
         $this->connection->getTopic(Argument::withEntry('foo', 'bar'))
             ->willReturn([
-                'name' => 'projects/project-name/topics/topic-name'
+                'name' => self::TOPIC
             ]);
 
         $this->topic->___setProperty('connection', $this->connection->reveal());
 
         $res = $this->topic->reload(['foo' => 'bar']);
 
-        $this->assertEquals($res['name'], 'projects/project-name/topics/topic-name');
+        $this->assertEquals($res['name'], self::TOPIC);
     }
 
     public function testPublish()
@@ -243,11 +248,10 @@ class TopicTest extends TestCase
         $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testPublishMalformedMessage()
     {
+        $this->expectException('InvalidArgumentException');
+
         $message = [
             'key' => 'val'
         ];
@@ -271,7 +275,7 @@ class TopicTest extends TestCase
     {
         $subscriptionData = [
             'name' => 'projects/project-name/subscriptions/subscription-name',
-            'topic' => 'projects/project-name/topics/topic-name'
+            'topic' => self::TOPIC
         ];
 
         $this->connection->createSubscription(Argument::withEntry('foo', 'bar'))

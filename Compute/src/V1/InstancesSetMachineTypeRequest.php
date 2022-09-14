@@ -17,9 +17,9 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
-    private $machine_type = '';
+    private $machine_type = null;
 
     /**
      * Constructor.
@@ -39,18 +39,28 @@ class InstancesSetMachineTypeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @return string
      */
     public function getMachineType()
     {
-        return $this->machine_type;
+        return isset($this->machine_type) ? $this->machine_type : '';
+    }
+
+    public function hasMachineType()
+    {
+        return isset($this->machine_type);
+    }
+
+    public function clearMachineType()
+    {
+        unset($this->machine_type);
     }
 
     /**
      * Full or partial URL of the machine type resource. See Machine Types for a full list of machine types. For example: zones/us-central1-f/machineTypes/n1-standard-1
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var
      * @return $this
      */

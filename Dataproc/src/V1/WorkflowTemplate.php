@@ -91,6 +91,21 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $parameters;
+    /**
+     * Optional. Timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
+     * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * The timeout duration must be from 10 minutes ("600s") to 24 hours
+     * ("86400s"). The timer begins when the first job is submitted. If the
+     * workflow is running at the end of the timeout period, any remaining jobs
+     * are cancelled, the workflow is ended, and if the workflow was running on a
+     * [managed
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
+     * the cluster is deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dag_timeout = null;
 
     /**
      * Constructor.
@@ -133,12 +148,23 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      *           No more than 32 labels can be associated with a template.
      *     @type \Google\Cloud\Dataproc\V1\WorkflowTemplatePlacement $placement
      *           Required. WorkflowTemplate scheduling information.
-     *     @type \Google\Cloud\Dataproc\V1\OrderedJob[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The Directed Acyclic Graph of Jobs to submit.
-     *     @type \Google\Cloud\Dataproc\V1\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           Optional. Template parameters whose values are substituted into the
      *           template. Values for parameters must be provided when the template is
      *           instantiated.
+     *     @type \Google\Protobuf\Duration $dag_timeout
+     *           Optional. Timeout duration for the DAG of jobs, expressed in seconds (see
+     *           [JSON representation of
+     *           duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     *           The timeout duration must be from 10 minutes ("600s") to 24 hours
+     *           ("86400s"). The timer begins when the first job is submitted. If the
+     *           workflow is running at the end of the timeout period, any remaining jobs
+     *           are cancelled, the workflow is ended, and if the workflow was running on a
+     *           [managed
+     *           cluster](https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
+     *           the cluster is deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -256,7 +282,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -292,7 +318,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -370,7 +396,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      */
     public function getPlacement()
     {
-        return isset($this->placement) ? $this->placement : null;
+        return $this->placement;
     }
 
     public function hasPlacement()
@@ -413,7 +439,7 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * Required. The Directed Acyclic Graph of Jobs to submit.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.OrderedJob jobs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dataproc\V1\OrderedJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\OrderedJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)
@@ -443,13 +469,67 @@ class WorkflowTemplate extends \Google\Protobuf\Internal\Message
      * instantiated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.TemplateParameter parameters = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\TemplateParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\TemplateParameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\TemplateParameter::class);
         $this->parameters = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
+     * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * The timeout duration must be from 10 minutes ("600s") to 24 hours
+     * ("86400s"). The timer begins when the first job is submitted. If the
+     * workflow is running at the end of the timeout period, any remaining jobs
+     * are cancelled, the workflow is ended, and if the workflow was running on a
+     * [managed
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
+     * the cluster is deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Protobuf\Duration|null
+     */
+    public function getDagTimeout()
+    {
+        return $this->dag_timeout;
+    }
+
+    public function hasDagTimeout()
+    {
+        return isset($this->dag_timeout);
+    }
+
+    public function clearDagTimeout()
+    {
+        unset($this->dag_timeout);
+    }
+
+    /**
+     * Optional. Timeout duration for the DAG of jobs, expressed in seconds (see
+     * [JSON representation of
+     * duration](https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     * The timeout duration must be from 10 minutes ("600s") to 24 hours
+     * ("86400s"). The timer begins when the first job is submitted. If the
+     * workflow is running at the end of the timeout period, any remaining jobs
+     * are cancelled, the workflow is ended, and if the workflow was running on a
+     * [managed
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#configuring_or_selecting_a_cluster),
+     * the cluster is deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Duration dag_timeout = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Protobuf\Duration $var
+     * @return $this
+     */
+    public function setDagTimeout($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
+        $this->dag_timeout = $var;
 
         return $this;
     }

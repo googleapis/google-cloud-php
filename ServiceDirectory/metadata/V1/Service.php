@@ -14,14 +14,13 @@ class Service
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Servicedirectory\V1\Endpoint::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ø
-.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/field_behavior.protogoogle/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"Î
+é
+.google/cloud/servicedirectory/v1/service.proto google.cloud.servicedirectory.v1google/api/resource.proto/google/cloud/servicedirectory/v1/endpoint.proto"Î
 Service
 name (	B‡AT
 annotations (2:.google.cloud.servicedirectory.v1.Service.AnnotationsEntryB‡AB

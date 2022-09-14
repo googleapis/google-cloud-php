@@ -143,11 +143,11 @@ class PreviewRouterRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Router router_resource = 155222084 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Router
+     * @return \Google\Cloud\Compute\V1\Router|null
      */
     public function getRouterResource()
     {
-        return isset($this->router_resource) ? $this->router_resource : null;
+        return $this->router_resource;
     }
 
     public function hasRouterResource()

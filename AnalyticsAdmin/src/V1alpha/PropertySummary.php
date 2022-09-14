@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A virtual resource representing metadata for an GA4 property.
+ * A virtual resource representing metadata for a GA4 property.
  *
  * Generated from protobuf message <code>google.analytics.admin.v1alpha.PropertySummary</code>
  */
@@ -24,7 +24,7 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      */
     private $property = '';
     /**
-     * Display name for the property referred to in this account summary.
+     * Display name for the property referred to in this property summary.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
@@ -41,7 +41,7 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      *           Format: properties/{property_id}
      *           Example: "properties/1000"
      *     @type string $display_name
-     *           Display name for the property referred to in this account summary.
+     *           Display name for the property referred to in this property summary.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,7 +80,7 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display name for the property referred to in this account summary.
+     * Display name for the property referred to in this property summary.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @return string
@@ -91,7 +91,7 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display name for the property referred to in this account summary.
+     * Display name for the property referred to in this property summary.
      *
      * Generated from protobuf field <code>string display_name = 2;</code>
      * @param string $var

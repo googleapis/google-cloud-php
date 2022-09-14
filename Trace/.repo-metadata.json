@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-trace",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-trace/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-trace/latest",
+    "library_type": "GAPIC_COMBO"
 }

@@ -22,7 +22,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Core\Upload\AbstractUploader;
 use Google\Cloud\Storage\Connection\Rest;
 use Google\Cloud\Storage\StorageClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 
@@ -41,7 +41,7 @@ class RequesterPaysTest extends TestCase
     private $connection;
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = new Rest(['projectId' => self::PROJECT]);
         $this->client = TestHelpers::stub(

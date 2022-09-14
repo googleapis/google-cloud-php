@@ -75,11 +75,11 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
      * The time at which this [Certificate][google.cloud.security.privateca.v1beta1.Certificate] was revoked.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revocation_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRevocationTime()
     {
-        return isset($this->revocation_time) ? $this->revocation_time : null;
+        return $this->revocation_time;
     }
 
     public function hasRevocationTime()
@@ -109,6 +109,4 @@ class RevocationDetails extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RevocationDetails::class, \Google\Cloud\Security\PrivateCA\V1beta1\Certificate_RevocationDetails::class);
 

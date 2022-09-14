@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-pubsub",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-pubsub/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-pubsub/latest",
+    "library_type": "GAPIC_COMBO"
 }

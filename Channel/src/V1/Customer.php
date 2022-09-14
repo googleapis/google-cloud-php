@@ -29,11 +29,10 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     private $org_display_name = '';
     /**
-     * Required. Address of the organization of the customer entity.
-     * Region and zip codes are required to enforce US laws and embargoes.
-     * Valid address lines are required for all customers.
-     * Language code is discarded. Use the Customer-level language code to set the
-     * customer's language.
+     * Required. The organization address for the customer. To enforce US laws and
+     * embargoes, we require a region and zip code. You must provide valid
+     * addresses for every customer. To set the customer's language, use the
+     * Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,38 +44,37 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     private $primary_contact_info = null;
     /**
-     * Secondary contact email.
-     * Alternate email and primary contact email are required to have different
-     * domains if primary contact email is present.
-     * When creating admin.google.com accounts, users get notified credentials at
-     * this email. This email address is also used as a recovery email.
+     * Secondary contact email. You need to provide an alternate email to create
+     * different domains if a primary contact email already exists. Users will
+     * receive a notification with credentials when you create an admin.google.com
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      */
     private $alternate_email = '';
     /**
-     * Required. Primary domain used by the customer.
-     * Domain of primary contact email is required to be same as the provided
-     * domain.
+     * Required. The customer's primary domain. Must match the primary contact
+     * email's domain.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $domain = '';
     /**
-     * Output only. The time at which the customer is created.
+     * Output only. Time when the customer was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $create_time = null;
     /**
-     * Output only. The time at which the customer is updated.
+     * Output only. Time when the customer was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
     /**
-     * Output only. Customer's cloud_identity_id.
-     * Populated only if a Cloud Identity resource exists for this customer.
+     * Output only. The customer's Cloud Identity ID if the customer has a Cloud
+     * Identity resource.
      *
      * Generated from protobuf field <code>string cloud_identity_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -116,30 +114,28 @@ class Customer extends \Google\Protobuf\Internal\Message
      *     @type string $org_display_name
      *           Required. Name of the organization that the customer entity represents.
      *     @type \Google\Type\PostalAddress $org_postal_address
-     *           Required. Address of the organization of the customer entity.
-     *           Region and zip codes are required to enforce US laws and embargoes.
-     *           Valid address lines are required for all customers.
-     *           Language code is discarded. Use the Customer-level language code to set the
-     *           customer's language.
+     *           Required. The organization address for the customer. To enforce US laws and
+     *           embargoes, we require a region and zip code. You must provide valid
+     *           addresses for every customer. To set the customer's language, use the
+     *           Customer-level language code.
      *     @type \Google\Cloud\Channel\V1\ContactInfo $primary_contact_info
      *           Primary contact info.
      *     @type string $alternate_email
-     *           Secondary contact email.
-     *           Alternate email and primary contact email are required to have different
-     *           domains if primary contact email is present.
-     *           When creating admin.google.com accounts, users get notified credentials at
-     *           this email. This email address is also used as a recovery email.
+     *           Secondary contact email. You need to provide an alternate email to create
+     *           different domains if a primary contact email already exists. Users will
+     *           receive a notification with credentials when you create an admin.google.com
+     *           account. Secondary emails are also recovery email addresses. Alternate
+     *           emails are optional when you create Team customers.
      *     @type string $domain
-     *           Required. Primary domain used by the customer.
-     *           Domain of primary contact email is required to be same as the provided
-     *           domain.
+     *           Required. The customer's primary domain. Must match the primary contact
+     *           email's domain.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time at which the customer is created.
+     *           Output only. Time when the customer was created.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           Output only. The time at which the customer is updated.
+     *           Output only. Time when the customer was updated.
      *     @type string $cloud_identity_id
-     *           Output only. Customer's cloud_identity_id.
-     *           Populated only if a Cloud Identity resource exists for this customer.
+     *           Output only. The customer's Cloud Identity ID if the customer has a Cloud
+     *           Identity resource.
      *     @type string $language_code
      *           Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more
      *           information, see
@@ -212,18 +208,17 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Address of the organization of the customer entity.
-     * Region and zip codes are required to enforce US laws and embargoes.
-     * Valid address lines are required for all customers.
-     * Language code is discarded. Use the Customer-level language code to set the
-     * customer's language.
+     * Required. The organization address for the customer. To enforce US laws and
+     * embargoes, we require a region and zip code. You must provide valid
+     * addresses for every customer. To set the customer's language, use the
+     * Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Type\PostalAddress|null
      */
     public function getOrgPostalAddress()
     {
-        return isset($this->org_postal_address) ? $this->org_postal_address : null;
+        return $this->org_postal_address;
     }
 
     public function hasOrgPostalAddress()
@@ -237,11 +232,10 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Address of the organization of the customer entity.
-     * Region and zip codes are required to enforce US laws and embargoes.
-     * Valid address lines are required for all customers.
-     * Language code is discarded. Use the Customer-level language code to set the
-     * customer's language.
+     * Required. The organization address for the customer. To enforce US laws and
+     * embargoes, we require a region and zip code. You must provide valid
+     * addresses for every customer. To set the customer's language, use the
+     * Customer-level language code.
      *
      * Generated from protobuf field <code>.google.type.PostalAddress org_postal_address = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Type\PostalAddress $var
@@ -263,7 +257,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getPrimaryContactInfo()
     {
-        return isset($this->primary_contact_info) ? $this->primary_contact_info : null;
+        return $this->primary_contact_info;
     }
 
     public function hasPrimaryContactInfo()
@@ -292,11 +286,11 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Secondary contact email.
-     * Alternate email and primary contact email are required to have different
-     * domains if primary contact email is present.
-     * When creating admin.google.com accounts, users get notified credentials at
-     * this email. This email address is also used as a recovery email.
+     * Secondary contact email. You need to provide an alternate email to create
+     * different domains if a primary contact email already exists. Users will
+     * receive a notification with credentials when you create an admin.google.com
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      * @return string
@@ -307,11 +301,11 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Secondary contact email.
-     * Alternate email and primary contact email are required to have different
-     * domains if primary contact email is present.
-     * When creating admin.google.com accounts, users get notified credentials at
-     * this email. This email address is also used as a recovery email.
+     * Secondary contact email. You need to provide an alternate email to create
+     * different domains if a primary contact email already exists. Users will
+     * receive a notification with credentials when you create an admin.google.com
+     * account. Secondary emails are also recovery email addresses. Alternate
+     * emails are optional when you create Team customers.
      *
      * Generated from protobuf field <code>string alternate_email = 5;</code>
      * @param string $var
@@ -326,9 +320,8 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Primary domain used by the customer.
-     * Domain of primary contact email is required to be same as the provided
-     * domain.
+     * Required. The customer's primary domain. Must match the primary contact
+     * email's domain.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -339,9 +332,8 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Primary domain used by the customer.
-     * Domain of primary contact email is required to be same as the provided
-     * domain.
+     * Required. The customer's primary domain. Must match the primary contact
+     * email's domain.
      *
      * Generated from protobuf field <code>string domain = 6 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -356,14 +348,14 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the customer is created.
+     * Output only. Time when the customer was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -377,7 +369,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the customer is created.
+     * Output only. Time when the customer was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -392,14 +384,14 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the customer is updated.
+     * Output only. Time when the customer was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -413,7 +405,7 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time at which the customer is updated.
+     * Output only. Time when the customer was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -428,8 +420,8 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Customer's cloud_identity_id.
-     * Populated only if a Cloud Identity resource exists for this customer.
+     * Output only. The customer's Cloud Identity ID if the customer has a Cloud
+     * Identity resource.
      *
      * Generated from protobuf field <code>string cloud_identity_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -440,8 +432,8 @@ class Customer extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Customer's cloud_identity_id.
-     * Populated only if a Cloud Identity resource exists for this customer.
+     * Output only. The customer's Cloud Identity ID if the customer has a Cloud
+     * Identity resource.
      *
      * Generated from protobuf field <code>string cloud_identity_id = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -494,7 +486,7 @@ class Customer extends \Google\Protobuf\Internal\Message
      */
     public function getCloudIdentityInfo()
     {
-        return isset($this->cloud_identity_info) ? $this->cloud_identity_info : null;
+        return $this->cloud_identity_info;
     }
 
     public function hasCloudIdentityInfo()

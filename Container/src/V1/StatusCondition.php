@@ -18,16 +18,24 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
 {
     /**
      * Machine-friendly representation of the condition
+     * Deprecated. Use canonical_code instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1;</code>
+     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $code = 0;
+    protected $code = 0;
     /**
      * Human-friendly representation of the condition
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
     private $message = '';
+    /**
+     * Canonical code of the condition.
+     *
+     * Generated from protobuf field <code>.google.rpc.Code canonical_code = 3;</code>
+     */
+    private $canonical_code = 0;
 
     /**
      * Constructor.
@@ -37,8 +45,11 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
      *
      *     @type int $code
      *           Machine-friendly representation of the condition
+     *           Deprecated. Use canonical_code instead.
      *     @type string $message
      *           Human-friendly representation of the condition
+     *     @type int $canonical_code
+     *           Canonical code of the condition.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,24 +59,30 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
 
     /**
      * Machine-friendly representation of the condition
+     * Deprecated. Use canonical_code instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1;</code>
+     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getCode()
     {
+        @trigger_error('code is deprecated.', E_USER_DEPRECATED);
         return $this->code;
     }
 
     /**
      * Machine-friendly representation of the condition
+     * Deprecated. Use canonical_code instead.
      *
-     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1;</code>
+     * Generated from protobuf field <code>.google.container.v1.StatusCondition.Code code = 1 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setCode($var)
     {
+        @trigger_error('code is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StatusCondition\Code::class);
         $this->code = $var;
 
@@ -94,6 +111,32 @@ class StatusCondition extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Canonical code of the condition.
+     *
+     * Generated from protobuf field <code>.google.rpc.Code canonical_code = 3;</code>
+     * @return int
+     */
+    public function getCanonicalCode()
+    {
+        return $this->canonical_code;
+    }
+
+    /**
+     * Canonical code of the condition.
+     *
+     * Generated from protobuf field <code>.google.rpc.Code canonical_code = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setCanonicalCode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Rpc\Code::class);
+        $this->canonical_code = $var;
 
         return $this;
     }

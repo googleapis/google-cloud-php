@@ -22,10 +22,9 @@ class EncryptionType
     /**
      * Use the same encryption configuration as the database. This is the
      * default option when
-     * [encryption_config][google.spanner.admin.database.v1.CreateBackupEncryptionConfig]
-     * is empty. For example, if the database is using
-     * `Customer_Managed_Encryption`, the backup will be using the same Cloud
-     * KMS key as the database.
+     * [encryption_config][google.spanner.admin.database.v1.CreateBackupEncryptionConfig] is empty.
+     * For example, if the database is using `Customer_Managed_Encryption`, the
+     * backup will be using the same Cloud KMS key as the database.
      *
      * Generated from protobuf enum <code>USE_DATABASE_ENCRYPTION = 1;</code>
      */

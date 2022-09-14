@@ -89,11 +89,11 @@ class DeleteGlossaryResponse extends \Google\Protobuf\Internal\Message
      * The time when the operation was submitted to the server.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp submit_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getSubmitTime()
     {
-        return isset($this->submit_time) ? $this->submit_time : null;
+        return $this->submit_time;
     }
 
     public function hasSubmitTime()
@@ -127,11 +127,11 @@ class DeleteGlossaryResponse extends \Google\Protobuf\Internal\Message
      * set to true.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

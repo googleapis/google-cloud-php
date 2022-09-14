@@ -33,15 +33,21 @@ export ASSET_TEST_BUCKET="php_asset_test_bucket"
 echo "Running PHPCS Code Style Checker"
 dev/sh/style
 
+PHP_VERSION=$(php -r 'echo PHP_MAJOR_VERSION;')
+if [ "5" == $PHP_VERSION ]; then
+    # Exclude compute if the PHP version is below 7.0
+    PHPUNIT_SUFFIX="-php5"
+fi
+
 echo "Running Unit Test Suite"
-vendor/bin/phpunit --log-junit ${UNIT_LOG_FILENAME}
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}.xml.dist --log-junit ${UNIT_LOG_FILENAME}
 
 echo "Running Snippet Test Suite"
 vendor/bin/phpunit -c phpunit-snippets.xml.dist --verbose --log-junit \
                    ${SNIPPETS_LOG_FILENAME}
 
 echo "Running System Test Suite"
-vendor/bin/phpunit -c phpunit-system.xml.dist --verbose --log-junit \
+vendor/bin/phpunit -c phpunit${PHPUNIT_SUFFIX}-system.xml.dist --verbose --log-junit \
                    ${SYSTEM_LOG_FILENAME}
 
 echo "Running package integration Test"

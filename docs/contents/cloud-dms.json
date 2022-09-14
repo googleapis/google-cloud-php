@@ -1,0 +1,15 @@
+{
+    "title": "Dms",
+    "defaultService": "dms\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dms\/readme"
+        },
+        {
+            "title": "DataMigrationServiceClient (v1)",
+            "type": "dms\/v1\/datamigrationserviceclient"
+        }
+    ],
+    "pattern": "dms\/\\w{1,}"
+}

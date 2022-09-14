@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Resource name of the parent workspace. The format is:
+     * Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     * the parent workspace. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -43,7 +44,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Resource name of the parent workspace. The format is:
+     *           Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     *           the parent workspace. The format is:
      *               projects/[PROJECT_ID_OR_NUMBER]
      *     @type string $service_id
      *           Optional. The Service id to use for this Service. If omitted, an id will be
@@ -58,7 +60,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent workspace. The format is:
+     * Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     * the parent workspace. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -70,7 +73,8 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Resource name of the parent workspace. The format is:
+     * Required. Resource [name](https://cloud.google.com/monitoring/api/v3#project_name) of
+     * the parent workspace. The format is:
      *     projects/[PROJECT_ID_OR_NUMBER]
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -117,11 +121,21 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      * Required. The `Service` to create.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.Service service = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\Service
+     * @return \Google\Cloud\Monitoring\V3\Service|null
      */
     public function getService()
     {
         return $this->service;
+    }
+
+    public function hasService()
+    {
+        return isset($this->service);
+    }
+
+    public function clearService()
+    {
+        unset($this->service);
     }
 
     /**

@@ -19,7 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\ReadModifyWriteRowRules;
 use Google\Cloud\Bigtable\V2\ReadModifyWriteRule;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -32,7 +32,7 @@ class ReadModifyWriteRowRulesTest extends TestCase
 
     private $readModifyWriteRowRules;
 
-    public function setUp()
+    public function set_up()
     {
         $this->readModifyWriteRowRules = new ReadModifyWriteRowRules;
     }

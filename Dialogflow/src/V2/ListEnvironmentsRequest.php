@@ -17,7 +17,9 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to list all environments from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format:
+     * - `projects/<Project ID>/agent`
+     * - `projects/<Project ID>/locations/<Location ID>/agent`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -44,7 +46,9 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to list all environments from.
-     *           Format: `projects/<Project ID>/agent`.
+     *           Format:
+     *           - `projects/<Project ID>/agent`
+     *           - `projects/<Project ID>/locations/<Location ID>/agent`
      *     @type int $page_size
      *           Optional. The maximum number of items to return in a single page. By default 100 and
      *           at most 1000.
@@ -59,7 +63,9 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all environments from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format:
+     * - `projects/<Project ID>/agent`
+     * - `projects/<Project ID>/locations/<Location ID>/agent`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -71,7 +77,9 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all environments from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format:
+     * - `projects/<Project ID>/agent`
+     * - `projects/<Project ID>/locations/<Location ID>/agent`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

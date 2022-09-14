@@ -147,9 +147,9 @@ class Job
      * further polling may be necessary in order to access the full query
      * results. Polling for completion can be initiated by iterating on the
      * returned
-     * {@see Google\Cloud\BigQuery\QueryResults}, or by calling either
-     * {@see Google\Cloud\BigQuery\QueryResults::rows()} or
-     * {@see Google\Cloud\BigQuery\QueryResults::waitUntilComplete()}.
+     * {@see QueryResults}, or by calling either
+     * {@see QueryResults::rows()} or
+     * {@see QueryResults::waitUntilComplete()}.
      *
      * Example:
      * ```
@@ -238,7 +238,7 @@ class Job
 
     /**
      * Checks the job's completeness. Useful in combination with
-     * {@see Google\Cloud\BigQuery\Job::reload()} to poll for job status.
+     * {@see Job::reload()} to poll for job status.
      *
      * Example:
      * ```

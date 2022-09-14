@@ -3,14 +3,14 @@
 return [
     'interfaces' => [
         'google.cloud.bigquery.reservation.v1.ReservationService' => [
-            'ListReservations' => [
+            'ListAssignments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',
                     'requestPageSizeGetMethod' => 'getPageSize',
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getReservations',
+                    'resourcesGetMethod' => 'getAssignments',
                 ],
             ],
             'ListCapacityCommitments' => [
@@ -23,7 +23,17 @@ return [
                     'resourcesGetMethod' => 'getCapacityCommitments',
                 ],
             ],
-            'ListAssignments' => [
+            'ListReservations' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getReservations',
+                ],
+            ],
+            'SearchAllAssignments' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
                     'requestPageTokenSetMethod' => 'setPageToken',

@@ -30,10 +30,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
     private $catalog = null;
     /**
      * Indicates which fields in the provided
-     * [Catalog][google.cloud.retail.v2.Catalog] to update. If not set, will only
-     * update the
-     * [Catalog.product_level_config][google.cloud.retail.v2.Catalog.product_level_config]
-     * field, which is also the only currently supported field to update.
+     * [Catalog][google.cloud.retail.v2.Catalog] to update.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
      *
@@ -56,10 +53,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      *           a NOT_FOUND error is returned.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Indicates which fields in the provided
-     *           [Catalog][google.cloud.retail.v2.Catalog] to update. If not set, will only
-     *           update the
-     *           [Catalog.product_level_config][google.cloud.retail.v2.Catalog.product_level_config]
-     *           field, which is also the only currently supported field to update.
+     *           [Catalog][google.cloud.retail.v2.Catalog] to update.
      *           If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      *           is returned.
      * }
@@ -82,7 +76,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCatalog()
     {
-        return isset($this->catalog) ? $this->catalog : null;
+        return $this->catalog;
     }
 
     public function hasCatalog()
@@ -117,10 +111,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which fields in the provided
-     * [Catalog][google.cloud.retail.v2.Catalog] to update. If not set, will only
-     * update the
-     * [Catalog.product_level_config][google.cloud.retail.v2.Catalog.product_level_config]
-     * field, which is also the only currently supported field to update.
+     * [Catalog][google.cloud.retail.v2.Catalog] to update.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
      *
@@ -129,7 +120,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -144,10 +135,7 @@ class UpdateCatalogRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Indicates which fields in the provided
-     * [Catalog][google.cloud.retail.v2.Catalog] to update. If not set, will only
-     * update the
-     * [Catalog.product_level_config][google.cloud.retail.v2.Catalog.product_level_config]
-     * field, which is also the only currently supported field to update.
+     * [Catalog][google.cloud.retail.v2.Catalog] to update.
      * If an unsupported or unknown field is provided, an INVALID_ARGUMENT error
      * is returned.
      *

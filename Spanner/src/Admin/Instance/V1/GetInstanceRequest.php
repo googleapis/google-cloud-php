@@ -89,7 +89,7 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFieldMask()
     {
-        return isset($this->field_mask) ? $this->field_mask : null;
+        return $this->field_mask;
     }
 
     public function hasFieldMask()

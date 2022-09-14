@@ -69,6 +69,14 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.analytics.data.v1beta.PropertyQuota property_quota = 8;</code>
      */
     private $property_quota = null;
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runRealtimeReport". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 9;</code>
+     */
+    private $kind = '';
 
     /**
      * Constructor.
@@ -76,19 +84,19 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\DimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $dimension_headers
+     *     @type array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $dimension_headers
      *           Describes dimension columns. The number of DimensionHeaders and ordering of
      *           DimensionHeaders matches the dimensions present in rows.
-     *     @type \Google\Analytics\Data\V1beta\MetricHeader[]|\Google\Protobuf\Internal\RepeatedField $metric_headers
+     *     @type array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $metric_headers
      *           Describes metric columns. The number of MetricHeaders and ordering of
      *           MetricHeaders matches the metrics present in rows.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Rows of dimension value combinations and metric values in the report.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $totals
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $totals
      *           If requested, the totaled values of metrics.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $maximums
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $maximums
      *           If requested, the maximum values of metrics.
-     *     @type \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $minimums
+     *     @type array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $minimums
      *           If requested, the minimum values of metrics.
      *     @type int $row_count
      *           The total number of rows in the query result. `rowCount` is independent of
@@ -98,6 +106,10 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      *           only 50 rows.
      *     @type \Google\Analytics\Data\V1beta\PropertyQuota $property_quota
      *           This Analytics Property's Realtime quota state including this request.
+     *     @type string $kind
+     *           Identifies what kind of resource this message is. This `kind` is always the
+     *           fixed string "analyticsData#runRealtimeReport". Useful to distinguish
+     *           between response types in JSON.
      * }
      */
     public function __construct($data = NULL) {
@@ -122,7 +134,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * DimensionHeaders matches the dimensions present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionHeader dimension_headers = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\DimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensionHeaders($var)
@@ -150,7 +162,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * MetricHeaders matches the metrics present in rows.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricHeader metric_headers = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\MetricHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\MetricHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricHeaders($var)
@@ -176,7 +188,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * Rows of dimension value combinations and metric values in the report.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row rows = 3;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)
@@ -202,7 +214,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * If requested, the totaled values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row totals = 4;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTotals($var)
@@ -228,7 +240,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * If requested, the maximum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row maximums = 5;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMaximums($var)
@@ -254,7 +266,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      * If requested, the minimum values of metrics.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.Row minimums = 6;</code>
-     * @param \Google\Analytics\Data\V1beta\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMinimums($var)
@@ -307,7 +319,7 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
      */
     public function getPropertyQuota()
     {
-        return isset($this->property_quota) ? $this->property_quota : null;
+        return $this->property_quota;
     }
 
     public function hasPropertyQuota()
@@ -331,6 +343,36 @@ class RunRealtimeReportResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Data\V1beta\PropertyQuota::class);
         $this->property_quota = $var;
+
+        return $this;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runRealtimeReport". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 9;</code>
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Identifies what kind of resource this message is. This `kind` is always the
+     * fixed string "analyticsData#runRealtimeReport". Useful to distinguish
+     * between response types in JSON.
+     *
+     * Generated from protobuf field <code>string kind = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKind($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kind = $var;
 
         return $this;
     }

@@ -28,7 +28,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $values
      *           Individual cells.
      * }
      */
@@ -52,7 +52,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * Individual cells.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value values = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

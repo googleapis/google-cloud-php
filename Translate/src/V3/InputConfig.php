@@ -112,7 +112,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      * treated as a single large chunk of text.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.GcsSource gcs_source = 2;</code>
-     * @return \Google\Cloud\Translate\V3\GcsSource
+     * @return \Google\Cloud\Translate\V3\GcsSource|null
      */
     public function getGcsSource()
     {

@@ -110,6 +110,15 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool single_utterance = 8;</code>
      */
     private $single_utterance = false;
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     */
+    private $disable_no_speech_recognized_event = false;
 
     /**
      * Constructor.
@@ -136,7 +145,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] with information about the recognized speech
      *           words, e.g. start and end time offsets. If false or unspecified, Speech
      *           doesn't return any word-level information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrase_hints
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrase_hints
      *           A list of strings containing words and phrases that the speech
      *           recognizer should recognize with higher likelihood.
      *           See [the Cloud Speech
@@ -145,7 +154,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           This field is deprecated. Please use [speech_contexts]() instead. If you
      *           specify both [phrase_hints]() and [speech_contexts](), Dialogflow will
      *           treat the [phrase_hints]() as a single additional [SpeechContext]().
-     *     @type \Google\Cloud\Dialogflow\V2\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *     @type array<\Google\Cloud\Dialogflow\V2\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Context information to assist speech recognition.
      *           See [the Cloud Speech
      *           documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints)
@@ -175,6 +184,11 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      *           Note: This setting is relevant only for streaming methods.
      *           Note: When specified, InputAudioConfig.single_utterance takes precedence
      *           over StreamingDetectIntentRequest.single_utterance.
+     *     @type bool $disable_no_speech_recognized_event
+     *           Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     *           [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     *           If `false` and recognition doesn't return any result, trigger
+     *           `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
      * }
      */
     public function __construct($data = NULL) {
@@ -339,7 +353,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * treat the [phrase_hints]() as a single additional [SpeechContext]().
      *
      * Generated from protobuf field <code>repeated string phrase_hints = 4 [deprecated = true];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */
@@ -373,7 +387,7 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.SpeechContext speech_contexts = 11;</code>
-     * @param \Google\Cloud\Dialogflow\V2\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpeechContexts($var)
@@ -496,6 +510,38 @@ class InputAudioConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->single_utterance = $var;
+
+        return $this;
+    }
+
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     * @return bool
+     */
+    public function getDisableNoSpeechRecognizedEvent()
+    {
+        return $this->disable_no_speech_recognized_event;
+    }
+
+    /**
+     * Only used in [Participants.AnalyzeContent][google.cloud.dialogflow.v2.Participants.AnalyzeContent] and
+     * [Participants.StreamingAnalyzeContent][google.cloud.dialogflow.v2.Participants.StreamingAnalyzeContent].
+     * If `false` and recognition doesn't return any result, trigger
+     * `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     *
+     * Generated from protobuf field <code>bool disable_no_speech_recognized_event = 14;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDisableNoSpeechRecognizedEvent($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->disable_no_speech_recognized_event = $var;
 
         return $this;
     }

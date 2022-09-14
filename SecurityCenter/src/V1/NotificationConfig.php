@@ -194,7 +194,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * The config for triggering streaming-based notifications.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.NotificationConfig.StreamingConfig streaming_config = 5;</code>
-     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig
+     * @return \Google\Cloud\SecurityCenter\V1\NotificationConfig\StreamingConfig|null
      */
     public function getStreamingConfig()
     {

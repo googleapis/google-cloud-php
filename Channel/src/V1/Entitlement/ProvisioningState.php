@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class ProvisioningState
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>PROVISIONING_STATE_UNSPECIFIED = 0;</code>
      */

@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -126,7 +126,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API
+     * Returns a list of the sensitive information types that DLP API
      * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
      * learn more.
      * @param \Google\Cloud\Dlp\V2\ListInfoTypesRequest $argument input argument
@@ -143,7 +143,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates an InspectTemplate for re-using frequently used configuration
+     * Creates an InspectTemplate for reusing frequently used configuration
      * for inspecting content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      * @param \Google\Cloud\Dlp\V2\CreateInspectTemplateRequest $argument input argument
@@ -224,7 +224,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * Creates a DeidentifyTemplate for reusing frequently used configuration
      * for de-identifying content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
@@ -346,9 +346,6 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
      * Inspect hybrid content and store findings to a trigger. The inspection
      * will be processed asynchronously. To review the findings monitor the
      * jobs within the trigger.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      * @param \Google\Cloud\Dlp\V2\HybridInspectJobTriggerRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -483,7 +480,7 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes a long-running DlpJob. This method indicates that the client is
-     * no longer interested in the DlpJob result. The job will be cancelled if
+     * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -607,11 +604,8 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Inspect hybrid content and store findings to a job.
-     * To review the findings inspect the job. Inspection will occur
+     * To review the findings, inspect the job. Inspection will occur
      * asynchronously.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      * @param \Google\Cloud\Dlp\V2\HybridInspectDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -628,9 +622,6 @@ class DlpServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Finish a running hybrid DlpJob. Triggers the finalization steps and running
      * of any enabled actions that have not yet run.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      * @param \Google\Cloud\Dlp\V2\FinishDlpJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

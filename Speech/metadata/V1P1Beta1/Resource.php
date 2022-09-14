@@ -14,12 +14,11 @@ class Resource
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-•
-,google/cloud/speech/v1p1beta1/resource.protogoogle.cloud.speech.v1p1beta1google/api/resource.proto"ƒ
+ì
+,google/cloud/speech/v1p1beta1/resource.protogoogle.cloud.speech.v1p1beta1"ƒ
 CustomClass
 name (	
 custom_class_id (	C
@@ -34,10 +33,18 @@ class Resource
 Phrase
 value (	
 boost (:eêAb
-speech.googleapis.com/PhraseSet?projects/{project}/locations/{location}/phraseSets/{phrase_set}"•
+speech.googleapis.com/PhraseSet?projects/{project}/locations/{location}/phraseSets/{phrase_set}"Ú
 SpeechAdaptation=
-phrase_sets (2(.google.cloud.speech.v1p1beta1.PhraseSetB
-custom_classes (2*.google.cloud.speech.v1p1beta1.CustomClassBˆ
+phrase_sets (2(.google.cloud.speech.v1p1beta1.PhraseSetC
+phrase_set_references (	B$úA!
+speech.googleapis.com/PhraseSetB
+custom_classes (2*.google.cloud.speech.v1p1beta1.CustomClass"ª
+TranscriptNormalizationM
+entries (2<.google.cloud.speech.v1p1beta1.TranscriptNormalization.Entry@
+Entry
+search (	
+replace (	
+case_sensitive (Bˆ
 !com.google.cloud.speech.v1p1beta1BSpeechResourceProtoPZCgoogle.golang.org/genproto/googleapis/cloud/speech/v1p1beta1;speechø¢GCSbproto3'
         , true);
 

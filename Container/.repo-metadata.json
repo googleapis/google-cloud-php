@@ -1,5 +1,7 @@
 {
     "distribution_name": "google/cloud-container",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-container/latest"
+    "codeowner_team": "@googleapis/cicd",
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-container/latest",
+    "library_type": "GAPIC_AUTO"
 }

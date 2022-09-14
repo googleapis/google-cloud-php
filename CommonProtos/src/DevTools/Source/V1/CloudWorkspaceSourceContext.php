@@ -20,14 +20,14 @@ class CloudWorkspaceSourceContext extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.CloudWorkspaceId workspace_id = 1;</code>
      */
-    private $workspace_id = null;
+    protected $workspace_id = null;
     /**
      * The ID of the snapshot.
      * An empty snapshot_id refers to the most recent snapshot.
      *
      * Generated from protobuf field <code>string snapshot_id = 2;</code>
      */
-    private $snapshot_id = '';
+    protected $snapshot_id = '';
 
     /**
      * Constructor.
@@ -51,11 +51,21 @@ class CloudWorkspaceSourceContext extends \Google\Protobuf\Internal\Message
      * The ID of the workspace.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.CloudWorkspaceId workspace_id = 1;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\CloudWorkspaceId
+     * @return \Google\Cloud\DevTools\Source\V1\CloudWorkspaceId|null
      */
     public function getWorkspaceId()
     {
-        return $this->workspace_id;
+        return isset($this->workspace_id) ? $this->workspace_id : null;
+    }
+
+    public function hasWorkspaceId()
+    {
+        return isset($this->workspace_id);
+    }
+
+    public function clearWorkspaceId()
+    {
+        unset($this->workspace_id);
     }
 
     /**

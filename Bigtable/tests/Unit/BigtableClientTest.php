@@ -20,7 +20,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Table;
 use Google\Cloud\Core\Testing\TestHelpers;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group bigtable
@@ -30,7 +30,7 @@ class BigtableClientTest extends TestCase
 {
     private $client;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(BigtableClient::class, [
             ['projectId' => 'my-project']

@@ -29,6 +29,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *           Editing Object
      *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
+     *           If the specified Cloud Storage object already exists and there is no
+     *           [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     *           overwritten with the exported result.
      *     @type string $uri_prefix
      *           The uri prefix of all generated Cloud Storage objects. Example:
      *           "gs://bucket_name/object_name_prefix". Each object uri is in format:
@@ -52,6 +55,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the exported result.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -72,6 +78,9 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
+     * If the specified Cloud Storage object already exists and there is no
+     * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
+     * overwritten with the exported result.
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var

@@ -57,12 +57,12 @@ class Float64Stats extends \Google\Protobuf\Internal\Message
      *           The mean of the series.
      *     @type float $standard_deviation
      *           The standard deviation of the series.
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $quantiles
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $quantiles
      *           Ordered from 0 to k k-quantile values of the data series of n values.
      *           The value at index i is, approximately, the i*n/k-th smallest value in the
      *           series; for i = 0 and i = k these are, respectively, the min and max
      *           values.
-     *     @type \Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $histogram_buckets
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket>|\Google\Protobuf\Internal\RepeatedField $histogram_buckets
      *           Histogram buckets of the data series. Sorted by the min value of the
      *           bucket, ascendingly, and the number of the buckets is dynamically
      *           generated. The buckets are non-overlapping and completely cover whole
@@ -148,7 +148,7 @@ class Float64Stats extends \Google\Protobuf\Internal\Message
      * values.
      *
      * Generated from protobuf field <code>repeated double quantiles = 3;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuantiles($var)
@@ -182,7 +182,7 @@ class Float64Stats extends \Google\Protobuf\Internal\Message
      * the last one being `"Infinity"`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.Float64Stats.HistogramBucket histogram_buckets = 4;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\Float64Stats\HistogramBucket>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHistogramBuckets($var)

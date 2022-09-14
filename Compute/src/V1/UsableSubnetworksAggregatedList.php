@@ -17,9 +17,9 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      */
-    private $id = '';
+    private $id = null;
     /**
      * [Output] A list of usable subnetwork URLs.
      *
@@ -29,25 +29,25 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
-    private $kind = '';
+    private $kind = null;
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
-    private $next_page_token = '';
+    private $next_page_token = null;
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
-    private $self_link = '';
+    private $self_link = null;
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -59,12 +59,12 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type \Google\Cloud\Compute\V1\UsableSubnetwork[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\UsableSubnetwork>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output] A list of usable subnetwork URLs.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
      *     @type string $next_page_token
-     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for this resource.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
@@ -79,18 +79,28 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
      */
     public function getId()
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : '';
+    }
+
+    public function hasId()
+    {
+        return isset($this->id);
+    }
+
+    public function clearId()
+    {
+        unset($this->id);
     }
 
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
      * @return $this
      */
@@ -117,7 +127,7 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
      * [Output] A list of usable subnetwork URLs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.UsableSubnetwork items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\UsableSubnetwork[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\UsableSubnetwork>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)
@@ -131,18 +141,28 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
     {
-        return $this->kind;
+        return isset($this->kind) ? $this->kind : '';
+    }
+
+    public function hasKind()
+    {
+        return isset($this->kind);
+    }
+
+    public function clearKind()
+    {
+        unset($this->kind);
     }
 
     /**
      * [Output Only] Type of resource. Always compute#usableSubnetworksAggregatedList for aggregated lists of usable subnetworks.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -155,20 +175,30 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
      */
     public function getNextPageToken()
     {
-        return $this->next_page_token;
+        return isset($this->next_page_token) ? $this->next_page_token : '';
+    }
+
+    public function hasNextPageToken()
+    {
+        return isset($this->next_page_token);
+    }
+
+    public function clearNextPageToken()
+    {
+        unset($this->next_page_token);
     }
 
     /**
-     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
+     * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
      * @return $this
      */
@@ -183,18 +213,28 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
     {
-        return $this->self_link;
+        return isset($this->self_link) ? $this->self_link : '';
+    }
+
+    public function hasSelfLink()
+    {
+        return isset($this->self_link);
+    }
+
+    public function clearSelfLink()
+    {
+        unset($this->self_link);
     }
 
     /**
      * [Output Only] Server-defined URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 187779341;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -209,12 +249,12 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -230,7 +270,7 @@ class UsableSubnetworksAggregatedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Informational warning message.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

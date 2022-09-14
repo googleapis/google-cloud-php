@@ -18,7 +18,7 @@ class SetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 68613042 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 337048498 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $global_set_policy_request_resource = null;
     /**
@@ -56,12 +56,12 @@ class SetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 68613042 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\GlobalSetPolicyRequest
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 337048498 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Compute\V1\GlobalSetPolicyRequest|null
      */
     public function getGlobalSetPolicyRequestResource()
     {
-        return isset($this->global_set_policy_request_resource) ? $this->global_set_policy_request_resource : null;
+        return $this->global_set_policy_request_resource;
     }
 
     public function hasGlobalSetPolicyRequestResource()
@@ -77,7 +77,7 @@ class SetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
     /**
      * The body resource for this request
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 68613042 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.compute.v1.GlobalSetPolicyRequest global_set_policy_request_resource = 337048498 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Compute\V1\GlobalSetPolicyRequest $var
      * @return $this
      */

@@ -350,6 +350,4 @@ class Code
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Code::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfigError_Code::class);
 

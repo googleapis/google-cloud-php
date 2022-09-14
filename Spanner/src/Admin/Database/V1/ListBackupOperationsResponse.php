@@ -19,13 +19,13 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of matching backup [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the backup's name and the operation's
-     * [metadata][google.longrunning.Operation.metadata] will be of type
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     * Operations returned include those that are pending or have
-     * completed/failed/canceled within the last 7 days. Operations returned are
-     * ordered by `operation.metadata.value.progress.start_time` in descending
-     * order starting from the most recently started operation.
+     * prefixed by the backup's name. The operation's
+     * [metadata][google.longrunning.Operation.metadata] field type
+     * `metadata.type_url` describes the type of the metadata. Operations returned
+     * include those that are pending or have completed/failed/canceled within the
+     * last 7 days. Operations returned are ordered by
+     * `operation.metadata.value.progress.start_time` in descending order starting
+     * from the most recently started operation.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
      */
@@ -45,16 +45,16 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           The list of matching backup [long-running
      *           operations][google.longrunning.Operation]. Each operation's name will be
-     *           prefixed by the backup's name and the operation's
-     *           [metadata][google.longrunning.Operation.metadata] will be of type
-     *           [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     *           Operations returned include those that are pending or have
-     *           completed/failed/canceled within the last 7 days. Operations returned are
-     *           ordered by `operation.metadata.value.progress.start_time` in descending
-     *           order starting from the most recently started operation.
+     *           prefixed by the backup's name. The operation's
+     *           [metadata][google.longrunning.Operation.metadata] field type
+     *           `metadata.type_url` describes the type of the metadata. Operations returned
+     *           include those that are pending or have completed/failed/canceled within the
+     *           last 7 days. Operations returned are ordered by
+     *           `operation.metadata.value.progress.start_time` in descending order starting
+     *           from the most recently started operation.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
      *           [ListBackupOperations][google.spanner.admin.database.v1.DatabaseAdmin.ListBackupOperations]
@@ -69,13 +69,13 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of matching backup [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the backup's name and the operation's
-     * [metadata][google.longrunning.Operation.metadata] will be of type
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     * Operations returned include those that are pending or have
-     * completed/failed/canceled within the last 7 days. Operations returned are
-     * ordered by `operation.metadata.value.progress.start_time` in descending
-     * order starting from the most recently started operation.
+     * prefixed by the backup's name. The operation's
+     * [metadata][google.longrunning.Operation.metadata] field type
+     * `metadata.type_url` describes the type of the metadata. Operations returned
+     * include those that are pending or have completed/failed/canceled within the
+     * last 7 days. Operations returned are ordered by
+     * `operation.metadata.value.progress.start_time` in descending order starting
+     * from the most recently started operation.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,16 +88,16 @@ class ListBackupOperationsResponse extends \Google\Protobuf\Internal\Message
     /**
      * The list of matching backup [long-running
      * operations][google.longrunning.Operation]. Each operation's name will be
-     * prefixed by the backup's name and the operation's
-     * [metadata][google.longrunning.Operation.metadata] will be of type
-     * [CreateBackupMetadata][google.spanner.admin.database.v1.CreateBackupMetadata].
-     * Operations returned include those that are pending or have
-     * completed/failed/canceled within the last 7 days. Operations returned are
-     * ordered by `operation.metadata.value.progress.start_time` in descending
-     * order starting from the most recently started operation.
+     * prefixed by the backup's name. The operation's
+     * [metadata][google.longrunning.Operation.metadata] field type
+     * `metadata.type_url` describes the type of the metadata. Operations returned
+     * include those that are pending or have completed/failed/canceled within the
+     * last 7 days. Operations returned are ordered by
+     * `operation.metadata.value.progress.start_time` in descending order starting
+     * from the most recently started operation.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

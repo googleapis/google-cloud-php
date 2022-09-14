@@ -52,11 +52,21 @@ class QueryError extends \Google\Protobuf\Internal\Message
      * to.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TextLocator locator = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\TextLocator
+     * @return \Google\Cloud\Monitoring\V3\TextLocator|null
      */
     public function getLocator()
     {
         return $this->locator;
+    }
+
+    public function hasLocator()
+    {
+        return isset($this->locator);
+    }
+
+    public function clearLocator()
+    {
+        unset($this->locator);
     }
 
     /**

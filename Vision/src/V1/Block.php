@@ -105,7 +105,7 @@ class Block extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return isset($this->property) ? $this->property : null;
+        return $this->property;
     }
 
     public function hasProperty()
@@ -155,7 +155,7 @@ class Block extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingBox()
     {
-        return isset($this->bounding_box) ? $this->bounding_box : null;
+        return $this->bounding_box;
     }
 
     public function hasBoundingBox()

@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Field extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -41,7 +41,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $name = '';
     /**
@@ -53,6 +53,14 @@ class Field extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.firestore.admin.v1.Field.IndexConfig index_config = 2;</code>
      */
     private $index_config = null;
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     */
+    private $ttl_config = null;
 
     /**
      * Constructor.
@@ -61,7 +69,7 @@ class Field extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           A field name of the form
+     *           Required. A field name of the form
      *           `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      *           A field path may be a simple field name, e.g. `address` or a path to fields
      *           within map_value , e.g. `address.city`,
@@ -88,6 +96,10 @@ class Field extends \Google\Protobuf\Internal\Message
      *           revert to the configuration defined by the `ancestor_field`. To
      *           explicitly remove all indexes for this field, specify an index config
      *           with an empty list of indexes.
+     *     @type \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig $ttl_config
+     *           The TTL configuration for this `Field`.
+     *           Setting or unsetting this will enable or disable the TTL for
+     *           documents that have this `Field`.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,7 +108,7 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -119,7 +131,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getName()
@@ -128,7 +140,7 @@ class Field extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A field name of the form
+     * Required. A field name of the form
      * `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
      * A field path may be a simple field name, e.g. `address` or a path to fields
      * within map_value , e.g. `address.city`,
@@ -151,7 +163,7 @@ class Field extends \Google\Protobuf\Internal\Message
      * Indexes defined on this `Field` will be applied to all fields which do not
      * have their own `Field` index configuration.
      *
-     * Generated from protobuf field <code>string name = 1;</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -174,7 +186,7 @@ class Field extends \Google\Protobuf\Internal\Message
      */
     public function getIndexConfig()
     {
-        return isset($this->index_config) ? $this->index_config : null;
+        return $this->index_config;
     }
 
     public function hasIndexConfig()
@@ -201,6 +213,46 @@ class Field extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field\IndexConfig::class);
         $this->index_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     * @return \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig|null
+     */
+    public function getTtlConfig()
+    {
+        return $this->ttl_config;
+    }
+
+    public function hasTtlConfig()
+    {
+        return isset($this->ttl_config);
+    }
+
+    public function clearTtlConfig()
+    {
+        unset($this->ttl_config);
+    }
+
+    /**
+     * The TTL configuration for this `Field`.
+     * Setting or unsetting this will enable or disable the TTL for
+     * documents that have this `Field`.
+     *
+     * Generated from protobuf field <code>.google.firestore.admin.v1.Field.TtlConfig ttl_config = 3;</code>
+     * @param \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig $var
+     * @return $this
+     */
+    public function setTtlConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Firestore\Admin\V1\Field\TtlConfig::class);
+        $this->ttl_config = $var;
 
         return $this;
     }

@@ -43,7 +43,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      */
     public function getThreat()
     {
-        return isset($this->threat) ? $this->threat : null;
+        return $this->threat;
     }
 
     public function hasThreat()

@@ -18,11 +18,10 @@ class ProductSearch
         \GPBMetadata\Google\Cloud\Vision\V1\Geometry::initOnce();
         \GPBMetadata\Google\Cloud\Vision\V1\ProductSearchService::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¬	
-+google/cloud/vision/v1/product_search.protogoogle.cloud.vision.v1%google/cloud/vision/v1/geometry.proto3google/cloud/vision/v1/product_search_service.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"º
+Ž	
++google/cloud/vision/v1/product_search.protogoogle.cloud.vision.v1%google/cloud/vision/v1/geometry.proto3google/cloud/vision/v1/product_search_service.protogoogle/protobuf/timestamp.proto"º
 ProductSearchParams;
 bounding_poly	 (2$.google.cloud.vision.v1.BoundingPoly:
 product_set (	B%úA"

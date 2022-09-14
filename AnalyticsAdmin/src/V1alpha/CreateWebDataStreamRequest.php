@@ -51,11 +51,11 @@ class CreateWebDataStreamRequest extends \Google\Protobuf\Internal\Message
      * Required. The web stream to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.WebDataStream web_data_stream = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\WebDataStream
+     * @return \Google\Analytics\Admin\V1alpha\WebDataStream|null
      */
     public function getWebDataStream()
     {
-        return isset($this->web_data_stream) ? $this->web_data_stream : null;
+        return $this->web_data_stream;
     }
 
     public function hasWebDataStream()

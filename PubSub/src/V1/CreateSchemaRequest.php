@@ -106,7 +106,7 @@ class CreateSchemaRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSchema()
     {
-        return isset($this->schema) ? $this->schema : null;
+        return $this->schema;
     }
 
     public function hasSchema()

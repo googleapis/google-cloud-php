@@ -23,10 +23,10 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
     private $quasi_ids_values;
     /**
      * The estimated probability that a given individual sharing these
-     * quasi-identifier values is in the dataset. This value, typically called
-     * δ, is the ratio between the number of records in the dataset with these
-     * quasi-identifier values, and the total number of individuals (inside
-     * *and* outside the dataset) with these quasi-identifier values.
+     * quasi-identifier values is in the dataset. This value, typically
+     * called δ, is the ratio between the number of records in the dataset
+     * with these quasi-identifier values, and the total number of individuals
+     * (inside *and* outside the dataset) with these quasi-identifier values.
      * For example, if there are 15 individuals in the dataset who share the
      * same quasi-identifier values, and an estimated 100 people in the entire
      * population with these values, then δ is 0.15.
@@ -41,14 +41,14 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
+     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quasi_ids_values
      *           The quasi-identifier values.
      *     @type float $estimated_probability
      *           The estimated probability that a given individual sharing these
-     *           quasi-identifier values is in the dataset. This value, typically called
-     *           δ, is the ratio between the number of records in the dataset with these
-     *           quasi-identifier values, and the total number of individuals (inside
-     *           *and* outside the dataset) with these quasi-identifier values.
+     *           quasi-identifier values is in the dataset. This value, typically
+     *           called δ, is the ratio between the number of records in the dataset
+     *           with these quasi-identifier values, and the total number of individuals
+     *           (inside *and* outside the dataset) with these quasi-identifier values.
      *           For example, if there are 15 individuals in the dataset who share the
      *           same quasi-identifier values, and an estimated 100 people in the entire
      *           population with these values, then δ is 0.15.
@@ -74,7 +74,7 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
      * The quasi-identifier values.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quasi_ids_values = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuasiIdsValues($var)
@@ -87,10 +87,10 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
 
     /**
      * The estimated probability that a given individual sharing these
-     * quasi-identifier values is in the dataset. This value, typically called
-     * δ, is the ratio between the number of records in the dataset with these
-     * quasi-identifier values, and the total number of individuals (inside
-     * *and* outside the dataset) with these quasi-identifier values.
+     * quasi-identifier values is in the dataset. This value, typically
+     * called δ, is the ratio between the number of records in the dataset
+     * with these quasi-identifier values, and the total number of individuals
+     * (inside *and* outside the dataset) with these quasi-identifier values.
      * For example, if there are 15 individuals in the dataset who share the
      * same quasi-identifier values, and an estimated 100 people in the entire
      * population with these values, then δ is 0.15.
@@ -105,10 +105,10 @@ class DeltaPresenceEstimationQuasiIdValues extends \Google\Protobuf\Internal\Mes
 
     /**
      * The estimated probability that a given individual sharing these
-     * quasi-identifier values is in the dataset. This value, typically called
-     * δ, is the ratio between the number of records in the dataset with these
-     * quasi-identifier values, and the total number of individuals (inside
-     * *and* outside the dataset) with these quasi-identifier values.
+     * quasi-identifier values is in the dataset. This value, typically
+     * called δ, is the ratio between the number of records in the dataset
+     * with these quasi-identifier values, and the total number of individuals
+     * (inside *and* outside the dataset) with these quasi-identifier values.
      * For example, if there are 15 individuals in the dataset who share the
      * same quasi-identifier values, and an estimated 100 people in the entire
      * population with these values, then δ is 0.15.

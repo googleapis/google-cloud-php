@@ -1,0 +1,37 @@
+{
+    "name": "google/cloud-iam-credentials",
+    "description": "Google Cloud Iam Credentials Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\Iam\\Credentials\\": "src",
+            "GPBMetadata\\Google\\Iam\\Credentials\\": "metadata"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Google\\Cloud\\Iam\\Credentials\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-iam-credentials",
+            "path": "IamCredentials",
+            "entry": null,
+            "target": "googleapis/google-cloud-php-iam-credentials.git"
+        }
+    },
+    "require": {
+        "google/gax": "^1.7.0",
+        "google/common-protos": "^1.3.1||^2.0||^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0|^8.0",
+        "yoast/phpunit-polyfills": "^1.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

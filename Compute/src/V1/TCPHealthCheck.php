@@ -17,43 +17,41 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      */
-    private $port_name = '';
+    private $port_name = null;
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.PortSpecification port_specification = 51590597;</code>
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
      */
-    private $port_specification = 0;
+    private $port_specification = null;
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.ProxyHeader proxy_header = 160374142;</code>
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
      */
-    private $proxy_header = 0;
+    private $proxy_header = null;
     /**
      * The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
      *
-     * Generated from protobuf field <code>string request = 21951119;</code>
+     * Generated from protobuf field <code>optional string request = 21951119;</code>
      */
-    private $request = '';
+    private $request = null;
     /**
      * The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      */
-    private $response = '';
+    private $response = null;
 
     /**
      * Constructor.
@@ -65,14 +63,12 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
      *           The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
      *     @type string $port_name
      *           Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
-     *     @type int $port_specification
-     *           Specifies how port is selected for health checking, can be one of following values:
-     *           USE_FIXED_PORT: The port number in port is used for health checking.
-     *           USE_NAMED_PORT: The portName is used for health checking.
-     *           USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     *           If not specified, TCP health check follows behavior specified in port and portName fields.
-     *     @type int $proxy_header
+     *     @type string $port_specification
+     *           Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, TCP health check follows behavior specified in port and portName fields.
+     *           Check the PortSpecification enum for the list of possible values.
+     *     @type string $proxy_header
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     *           Check the ProxyHeader enum for the list of possible values.
      *     @type string $request
      *           The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
      *     @type string $response
@@ -87,18 +83,28 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
      * The TCP port number for the health check request. The default value is 80. Valid values are 1 through 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */
@@ -113,18 +119,28 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @return string
      */
     public function getPortName()
     {
-        return $this->port_name;
+        return isset($this->port_name) ? $this->port_name : '';
+    }
+
+    public function hasPortName()
+    {
+        return isset($this->port_name);
+    }
+
+    public function clearPortName()
+    {
+        unset($this->port_name);
     }
 
     /**
      * Port name as defined in InstanceGroup#NamedPort#name. If both port and port_name are defined, port takes precedence.
      *
-     * Generated from protobuf field <code>string port_name = 41534345;</code>
+     * Generated from protobuf field <code>optional string port_name = 41534345;</code>
      * @param string $var
      * @return $this
      */
@@ -137,34 +153,38 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.PortSpecification port_specification = 51590597;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
+     * @return string
      */
     public function getPortSpecification()
     {
-        return $this->port_specification;
+        return isset($this->port_specification) ? $this->port_specification : '';
+    }
+
+    public function hasPortSpecification()
+    {
+        return isset($this->port_specification);
+    }
+
+    public function clearPortSpecification()
+    {
+        unset($this->port_specification);
     }
 
     /**
-     * Specifies how port is selected for health checking, can be one of following values:
-     * USE_FIXED_PORT: The port number in port is used for health checking.
-     * USE_NAMED_PORT: The portName is used for health checking.
-     * USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking.
-     * If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Specifies how port is selected for health checking, can be one of following values: USE_FIXED_PORT: The port number in port is used for health checking. USE_NAMED_PORT: The portName is used for health checking. USE_SERVING_PORT: For NetworkEndpointGroup, the port specified for each network endpoint is used for health checking. For other backends, the port or named port specified in the Backend Service is used for health checking. If not specified, TCP health check follows behavior specified in port and portName fields.
+     * Check the PortSpecification enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.PortSpecification port_specification = 51590597;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string port_specification = 51590597;</code>
+     * @param string $var
      * @return $this
      */
     public function setPortSpecification($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TCPHealthCheck\PortSpecification::class);
+        GPBUtil::checkString($var, True);
         $this->port_specification = $var;
 
         return $this;
@@ -172,25 +192,37 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.ProxyHeader proxy_header = 160374142;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @return string
      */
     public function getProxyHeader()
     {
-        return $this->proxy_header;
+        return isset($this->proxy_header) ? $this->proxy_header : '';
+    }
+
+    public function hasProxyHeader()
+    {
+        return isset($this->proxy_header);
+    }
+
+    public function clearProxyHeader()
+    {
+        unset($this->proxy_header);
     }
 
     /**
      * Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
+     * Check the ProxyHeader enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TCPHealthCheck.ProxyHeader proxy_header = 160374142;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string proxy_header = 160374142;</code>
+     * @param string $var
      * @return $this
      */
     public function setProxyHeader($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TCPHealthCheck\ProxyHeader::class);
+        GPBUtil::checkString($var, True);
         $this->proxy_header = $var;
 
         return $this;
@@ -199,18 +231,28 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
      *
-     * Generated from protobuf field <code>string request = 21951119;</code>
+     * Generated from protobuf field <code>optional string request = 21951119;</code>
      * @return string
      */
     public function getRequest()
     {
-        return $this->request;
+        return isset($this->request) ? $this->request : '';
+    }
+
+    public function hasRequest()
+    {
+        return isset($this->request);
+    }
+
+    public function clearRequest()
+    {
+        unset($this->request);
     }
 
     /**
      * The application data to send once the TCP connection has been established (default value is empty). If both request and response are empty, the connection establishment alone will indicate health. The request data can only be ASCII.
      *
-     * Generated from protobuf field <code>string request = 21951119;</code>
+     * Generated from protobuf field <code>optional string request = 21951119;</code>
      * @param string $var
      * @return $this
      */
@@ -225,18 +267,28 @@ class TCPHealthCheck extends \Google\Protobuf\Internal\Message
     /**
      * The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @return string
      */
     public function getResponse()
     {
-        return $this->response;
+        return isset($this->response) ? $this->response : '';
+    }
+
+    public function hasResponse()
+    {
+        return isset($this->response);
+    }
+
+    public function clearResponse()
+    {
+        unset($this->response);
     }
 
     /**
      * The bytes to match against the beginning of the response data. If left empty (the default value), any response will indicate health. The response data can only be ASCII.
      *
-     * Generated from protobuf field <code>string response = 196547649;</code>
+     * Generated from protobuf field <code>optional string response = 196547649;</code>
      * @param string $var
      * @return $this
      */

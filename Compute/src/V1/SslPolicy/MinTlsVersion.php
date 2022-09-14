@@ -20,14 +20,20 @@ class MinTlsVersion
      */
     const UNDEFINED_MIN_TLS_VERSION = 0;
     /**
+     * TLS 1.0
+     *
      * Generated from protobuf enum <code>TLS_1_0 = 33116734;</code>
      */
     const TLS_1_0 = 33116734;
     /**
+     * TLS 1.1
+     *
      * Generated from protobuf enum <code>TLS_1_1 = 33116735;</code>
      */
     const TLS_1_1 = 33116735;
     /**
+     * TLS 1.2
+     *
      * Generated from protobuf enum <code>TLS_1_2 = 33116736;</code>
      */
     const TLS_1_2 = 33116736;

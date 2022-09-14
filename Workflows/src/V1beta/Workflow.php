@@ -276,11 +276,11 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * Output only. The timestamp of when the workflow was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -312,11 +312,11 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * Output only. The last update timestamp of the workflow.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -349,11 +349,11 @@ class Workflow extends \Google\Protobuf\Internal\Message
      * was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp revision_create_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getRevisionCreateTime()
     {
-        return isset($this->revision_create_time) ? $this->revision_create_time : null;
+        return $this->revision_create_time;
     }
 
     public function hasRevisionCreateTime()

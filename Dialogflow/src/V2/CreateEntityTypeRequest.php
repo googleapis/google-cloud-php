@@ -99,7 +99,7 @@ class CreateEntityTypeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntityType()
     {
-        return isset($this->entity_type) ? $this->entity_type : null;
+        return $this->entity_type;
     }
 
     public function hasEntityType()

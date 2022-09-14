@@ -62,11 +62,11 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * value is missing, the extension will be omitted from the CA certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue is_ca = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getIsCa()
     {
-        return isset($this->is_ca) ? $this->is_ca : null;
+        return $this->is_ca;
     }
 
     public function hasIsCa()
@@ -133,11 +133,11 @@ class CaOptions extends \Google\Protobuf\Internal\Message
      * CA certificate.
      *
      * Generated from protobuf field <code>.google.protobuf.Int32Value max_issuer_path_length = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Int32Value
+     * @return \Google\Protobuf\Int32Value|null
      */
     public function getMaxIssuerPathLength()
     {
-        return isset($this->max_issuer_path_length) ? $this->max_issuer_path_length : null;
+        return $this->max_issuer_path_length;
     }
 
     public function hasMaxIssuerPathLength()
@@ -209,6 +209,4 @@ class CaOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CaOptions::class, \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues_CaOptions::class);
 

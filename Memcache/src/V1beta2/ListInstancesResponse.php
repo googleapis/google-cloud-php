@@ -44,7 +44,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Memcache\V1beta2\Instance[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\Memcache\V1beta2\Instance>|\Google\Protobuf\Internal\RepeatedField $resources
      *           A list of Memcached instances in the project in the specified location,
      *           or across all locations.
      *           If the `location_id` in the parent field of the request is "-", all regions
@@ -52,7 +52,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -82,7 +82,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * available to the project are queried, and the results aggregated.
      *
      * Generated from protobuf field <code>repeated .google.cloud.memcache.v1beta2.Instance resources = 1;</code>
-     * @param \Google\Cloud\Memcache\V1beta2\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Memcache\V1beta2\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -136,7 +136,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

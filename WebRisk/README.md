@@ -12,8 +12,6 @@ that project.
 
 ### Installation
 
-**NOTE:** Cloud Web Risk is not yet publicly available. You must be whitelisted in order to gain access. See [Setting up the Web Risk API](https://cloud.google.com/web-risk/docs/quickstart) in the product documentation for a link to the sign-up form.
-
 Install the preferred dependency manager for PHP, [Composer](https://getcomposer.org/).
 
 Now to install just this component:
@@ -33,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

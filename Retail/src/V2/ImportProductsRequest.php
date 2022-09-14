@@ -21,9 +21,16 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * If no updateMask is specified, requires products.create permission.
      * If updateMask is specified, requires products.update permission.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
+    /**
+     * Deprecated. This field has no effect.
+     *
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $request_id = '';
     /**
      * Required. The desired input location of the data.
      *
@@ -43,6 +50,33 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 4;</code>
      */
     private $update_mask = null;
+    /**
+     * The mode of reconciliation between existing products and the products to be
+     * imported. Defaults to
+     * [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode reconciliation_mode = 5;</code>
+     */
+    private $reconciliation_mode = 0;
+    /**
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
+     * Only supported when
+     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
+     * is set to `FULL`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 7;</code>
+     */
+    private $notification_pubsub_topic = '';
 
     /**
      * Constructor.
@@ -55,6 +89,8 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch`
      *           If no updateMask is specified, requires products.create permission.
      *           If updateMask is specified, requires products.update permission.
+     *     @type string $request_id
+     *           Deprecated. This field has no effect.
      *     @type \Google\Cloud\Retail\V2\ProductInputConfig $input_config
      *           Required. The desired input location of the data.
      *     @type \Google\Cloud\Retail\V2\ImportErrorsConfig $errors_config
@@ -62,6 +98,25 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Indicates which fields in the provided imported 'products' to update. If
      *           not set, will by default update all fields.
+     *     @type int $reconciliation_mode
+     *           The mode of reconciliation between existing products and the products to be
+     *           imported. Defaults to
+     *           [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
+     *     @type string $notification_pubsub_topic
+     *           Full Pub/Sub topic name for receiving notification. If this field is set,
+     *           when the import is finished, a notification will be sent to
+     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           [Operation][google.longrunning.Operation].
+     *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     *           to be within the same project as
+     *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     *           Make sure that both
+     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     *           have the `pubsub.topics.publish` IAM permission on the topic.
+     *           Only supported when
+     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
+     *           is set to `FULL`.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +130,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * If no updateMask is specified, requires products.create permission.
      * If updateMask is specified, requires products.update permission.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -89,7 +144,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      * If no updateMask is specified, requires products.create permission.
      * If updateMask is specified, requires products.update permission.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -102,6 +157,36 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated. This field has no effect.
+     *
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
+     * @return string
+     * @deprecated
+     */
+    public function getRequestId()
+    {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
+        return $this->request_id;
+    }
+
+    /**
+     * Deprecated. This field has no effect.
+     *
+     * Generated from protobuf field <code>string request_id = 6 [deprecated = true];</code>
+     * @param string $var
+     * @return $this
+     * @deprecated
+     */
+    public function setRequestId($var)
+    {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkString($var, True);
+        $this->request_id = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.ProductInputConfig input_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -109,7 +194,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -145,7 +230,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getErrorsConfig()
     {
-        return isset($this->errors_config) ? $this->errors_config : null;
+        return $this->errors_config;
     }
 
     public function hasErrorsConfig()
@@ -182,7 +267,7 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -207,6 +292,88 @@ class ImportProductsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
+
+        return $this;
+    }
+
+    /**
+     * The mode of reconciliation between existing products and the products to be
+     * imported. Defaults to
+     * [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode reconciliation_mode = 5;</code>
+     * @return int
+     */
+    public function getReconciliationMode()
+    {
+        return $this->reconciliation_mode;
+    }
+
+    /**
+     * The mode of reconciliation between existing products and the products to be
+     * imported. Defaults to
+     * [ReconciliationMode.INCREMENTAL][google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode.INCREMENTAL].
+     *
+     * Generated from protobuf field <code>.google.cloud.retail.v2.ImportProductsRequest.ReconciliationMode reconciliation_mode = 5;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setReconciliationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Retail\V2\ImportProductsRequest\ReconciliationMode::class);
+        $this->reconciliation_mode = $var;
+
+        return $this;
+    }
+
+    /**
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
+     * Only supported when
+     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
+     * is set to `FULL`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 7;</code>
+     * @return string
+     */
+    public function getNotificationPubsubTopic()
+    {
+        return $this->notification_pubsub_topic;
+    }
+
+    /**
+     * Full Pub/Sub topic name for receiving notification. If this field is set,
+     * when the import is finished, a notification will be sent to
+     * specified Pub/Sub topic. The message data will be JSON string of a
+     * [Operation][google.longrunning.Operation].
+     * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
+     * to be within the same project as
+     * [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
+     * Make sure that both
+     * `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
+     * `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
+     * have the `pubsub.topics.publish` IAM permission on the topic.
+     * Only supported when
+     * [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
+     * is set to `FULL`.
+     *
+     * Generated from protobuf field <code>string notification_pubsub_topic = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNotificationPubsubTopic($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->notification_pubsub_topic = $var;
 
         return $this;
     }

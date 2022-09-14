@@ -27,6 +27,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Backup;
 use Google\Cloud\Spanner\Instance;
+use Google\Cloud\Spanner\SpannerClient;
 use Prophecy\Argument;
 
  /**
@@ -44,14 +45,16 @@ class BackupTest extends SnippetTestCase
 
     private $connection;
     private $backup;
+    private $client;
     private $instance;
     private $expireTime;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
+        $this->client = TestHelpers::stub(SpannerClient::class);
         $this->expireTime = new \DateTime("+ 7 hours");
         $this->instance = TestHelpers::stub(Instance::class, [
             $this->connection->reveal(),
@@ -95,6 +98,23 @@ class BackupTest extends SnippetTestCase
             ]);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    public function testCreateCopy()
+    {
+        $snippet = $this->snippetFromMethod(Backup::class, 'createCopy');
+        $snippet->addLocal('spanner', $this->client);
+
+        $this->connection->copyBackup(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->client->___setProperty('connection', $this->connection->reveal());
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
@@ -186,7 +206,7 @@ class BackupTest extends SnippetTestCase
             ->WillReturn(['state' => Backup::STATE_READY]);
 
         $this->backup->___setProperty('connection', $this->connection->reveal());
-        
+
         $res = $snippet->invoke();
         $this->assertEquals('Backup is ready!', $res->output());
     }

@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "grafeas.v1",
+    "libraryPackage": "Grafeas\\V1",
+    "services": {
+        "Grafeas": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "GrafeasGapicClient",
+                    "rpcs": {
+                        "BatchCreateNotes": {
+                            "methods": [
+                                "batchCreateNotes"
+                            ]
+                        },
+                        "BatchCreateOccurrences": {
+                            "methods": [
+                                "batchCreateOccurrences"
+                            ]
+                        },
+                        "CreateNote": {
+                            "methods": [
+                                "createNote"
+                            ]
+                        },
+                        "CreateOccurrence": {
+                            "methods": [
+                                "createOccurrence"
+                            ]
+                        },
+                        "DeleteNote": {
+                            "methods": [
+                                "deleteNote"
+                            ]
+                        },
+                        "DeleteOccurrence": {
+                            "methods": [
+                                "deleteOccurrence"
+                            ]
+                        },
+                        "GetNote": {
+                            "methods": [
+                                "getNote"
+                            ]
+                        },
+                        "GetOccurrence": {
+                            "methods": [
+                                "getOccurrence"
+                            ]
+                        },
+                        "GetOccurrenceNote": {
+                            "methods": [
+                                "getOccurrenceNote"
+                            ]
+                        },
+                        "ListNoteOccurrences": {
+                            "methods": [
+                                "listNoteOccurrences"
+                            ]
+                        },
+                        "ListNotes": {
+                            "methods": [
+                                "listNotes"
+                            ]
+                        },
+                        "ListOccurrences": {
+                            "methods": [
+                                "listOccurrences"
+                            ]
+                        },
+                        "UpdateNote": {
+                            "methods": [
+                                "updateNote"
+                            ]
+                        },
+                        "UpdateOccurrence": {
+                            "methods": [
+                                "updateOccurrence"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

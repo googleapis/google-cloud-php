@@ -1,0 +1,30 @@
+{
+    "name": "google/cloud-apigee-registry",
+    "description": "Google Cloud Apigee Registry Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\ApigeeRegistry\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Apigeeregistry\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-apigee-registry",
+            "path": "ApigeeRegistry",
+            "entry": null,
+            "target": "googleapis/google-cloud-php-apigee-registry.git"
+        }
+    },
+    "require": {
+        "google/gax": "^1.14.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8|^5.0|^8.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

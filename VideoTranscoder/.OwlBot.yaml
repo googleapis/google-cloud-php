@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/video/transcoder/(v1|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/VideoTranscoder/$1/$2
+api-name: VideoTranscoder

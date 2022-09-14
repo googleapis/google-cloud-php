@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class Type
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
@@ -88,6 +88,12 @@ class Type
      * Generated from protobuf enum <code>LICENSE_ASSIGNMENT_CHANGED = 12;</code>
      */
     const LICENSE_ASSIGNMENT_CHANGED = 12;
+    /**
+     * License cap was changed for the entitlement.
+     *
+     * Generated from protobuf enum <code>LICENSE_CAP_CHANGED = 13;</code>
+     */
+    const LICENSE_CAP_CHANGED = 13;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
@@ -102,6 +108,7 @@ class Type
         self::RENEWAL_SETTING_CHANGED => 'RENEWAL_SETTING_CHANGED',
         self::PAID_SERVICE_STARTED => 'PAID_SERVICE_STARTED',
         self::LICENSE_ASSIGNMENT_CHANGED => 'LICENSE_ASSIGNMENT_CHANGED',
+        self::LICENSE_CAP_CHANGED => 'LICENSE_CAP_CHANGED',
     ];
 
     public static function name($value)

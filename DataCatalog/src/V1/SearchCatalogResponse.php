@@ -23,16 +23,18 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      */
     private $results;
     /**
-     * The token that can be used to retrieve the next page of results.
+     * Pagination token that can be used in subsequent calls to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      */
     private $next_page_token = '';
     /**
-     * Unreachable locations. Search result does not include data from those
-     * locations. Users can get additional information on the error by repeating
-     * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * Unreachable locations. Search results don't include data from those
+     * locations.
+     * To get additional information on an error, repeat the search request and
+     * restrict it to specific locations by setting the
+     * `SearchCatalogRequest.scope.restricted_locations` parameter.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
      */
@@ -44,15 +46,17 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataCatalog\V1\SearchCatalogResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           Search results.
      *     @type string $next_page_token
-     *           The token that can be used to retrieve the next page of results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
-     *           Unreachable locations. Search result does not include data from those
-     *           locations. Users can get additional information on the error by repeating
-     *           the search request with a more restrictive parameter -- setting the value
-     *           for `SearchDataCatalogRequest.scope.include_locations`.
+     *           Pagination token that can be used in subsequent calls to retrieve the next
+     *           page of results.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *           Unreachable locations. Search results don't include data from those
+     *           locations.
+     *           To get additional information on an error, repeat the search request and
+     *           restrict it to specific locations by setting the
+     *           `SearchCatalogRequest.scope.restricted_locations` parameter.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,7 +79,7 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
      * Search results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datacatalog.v1.SearchCatalogResult results = 1;</code>
-     * @param \Google\Cloud\DataCatalog\V1\SearchCatalogResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataCatalog\V1\SearchCatalogResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)
@@ -87,7 +91,8 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The token that can be used to retrieve the next page of results.
+     * Pagination token that can be used in subsequent calls to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @return string
@@ -98,7 +103,8 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The token that can be used to retrieve the next page of results.
+     * Pagination token that can be used in subsequent calls to retrieve the next
+     * page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 3;</code>
      * @param string $var
@@ -113,10 +119,11 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unreachable locations. Search result does not include data from those
-     * locations. Users can get additional information on the error by repeating
-     * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * Unreachable locations. Search results don't include data from those
+     * locations.
+     * To get additional information on an error, repeat the search request and
+     * restrict it to specific locations by setting the
+     * `SearchCatalogRequest.scope.restricted_locations` parameter.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -127,13 +134,14 @@ class SearchCatalogResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Unreachable locations. Search result does not include data from those
-     * locations. Users can get additional information on the error by repeating
-     * the search request with a more restrictive parameter -- setting the value
-     * for `SearchDataCatalogRequest.scope.include_locations`.
+     * Unreachable locations. Search results don't include data from those
+     * locations.
+     * To get additional information on an error, repeat the search request and
+     * restrict it to specific locations by setting the
+     * `SearchCatalogRequest.scope.restricted_locations` parameter.
      *
      * Generated from protobuf field <code>repeated string unreachable = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

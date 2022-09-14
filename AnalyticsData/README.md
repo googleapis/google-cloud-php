@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -44,7 +44,7 @@ use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 $client = new BetaAnalyticsDataClient();
 
 $response = $client->runReport([
-    'property' => '[YOUR_PROPERTY_ID]'
+    'property' => 'properties/[YOUR_PROPERTY_ID]'
 ]);
 
 foreach ($response->getRows() as $row) {

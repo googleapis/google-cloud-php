@@ -34,7 +34,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash[]|\Google\Protobuf\Internal\RepeatedField $threats
+     *     @type array<\Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash>|\Google\Protobuf\Internal\RepeatedField $threats
      *           The full hashes that matched the requested prefixes.
      *           The hash will be populated in the key.
      *     @type \Google\Protobuf\Timestamp $negative_expire_time
@@ -64,7 +64,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      * The hash will be populated in the key.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1.SearchHashesResponse.ThreatHash threats = 1;</code>
-     * @param \Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\WebRisk\V1\SearchHashesResponse\ThreatHash>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setThreats($var)
@@ -84,7 +84,7 @@ class SearchHashesResponse extends \Google\Protobuf\Internal\Message
      */
     public function getNegativeExpireTime()
     {
-        return isset($this->negative_expire_time) ? $this->negative_expire_time : null;
+        return $this->negative_expire_time;
     }
 
     public function hasNegativeExpireTime()

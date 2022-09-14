@@ -20,13 +20,13 @@ namespace Google\Cloud\Core\Tests\Unit\Upload;
 use Google\Cloud\Core\Exception\GoogleException;
 use Google\Cloud\Core\RequestWrapper;
 use Google\Cloud\Core\Upload\ResumableUploader;
-use GuzzleHttp\Psr7;
-use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Utils;
 use Prophecy\Argument;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\StreamInterface;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group core
@@ -34,14 +34,16 @@ use PHPUnit\Framework\TestCase;
  */
 class ResumableUploaderTest extends TestCase
 {
+    use ExpectException;
+
     private $requestWrapper;
     private $stream;
     private $successBody;
 
-    public function setUp()
+    public function set_up()
     {
         $this->requestWrapper = $this->prophesize(RequestWrapper::class);
-        $this->stream = Psr7\stream_for('abcd');
+        $this->stream = Utils::streamFor('abcd');
         $this->successBody = '{"canI":"kickIt"}';
     }
 
@@ -88,11 +90,10 @@ class ResumableUploaderTest extends TestCase
         $this->assertTrue($called);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testUploadsDataWithInvalidCallback()
     {
+        $this->expectException('InvalidArgumentException');
+
         $callback = 'foo';
 
         $uploader = new ResumableUploader(
@@ -172,11 +173,10 @@ class ResumableUploaderTest extends TestCase
         );
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenAttemptsAsyncUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $stream = $this->prophesize(StreamInterface::class);
         $uploader = new ResumableUploader(
             $this->requestWrapper->reveal(),
@@ -187,11 +187,10 @@ class ResumableUploaderTest extends TestCase
         $uploader->uploadAsync();
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWhenResumingNonSeekableStream()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $stream = $this->prophesize(StreamInterface::class);
         $stream->isSeekable()->willReturn(false);
         $stream->getMetadata('uri')->willReturn('blah');
@@ -205,11 +204,10 @@ class ResumableUploaderTest extends TestCase
         $uploader->resume('http://some-resume-uri.example.com');
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
-     */
     public function testThrowsExceptionWithFailedUpload()
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $resumeUriResponse = new Response(200, ['Location' => 'theResumeUri']);
 
         $this->requestWrapper->send(

@@ -20,9 +20,9 @@ class AdvertiseMode
      */
     const UNDEFINED_ADVERTISE_MODE = 0;
     /**
-     * Generated from protobuf enum <code>CUSTOM = 120160113;</code>
+     * Generated from protobuf enum <code>CUSTOM = 388595569;</code>
      */
-    const CUSTOM = 120160113;
+    const CUSTOM = 388595569;
     /**
      * Generated from protobuf enum <code>DEFAULT = 115302945;</code>
      */
@@ -31,7 +31,7 @@ class AdvertiseMode
     private static $valueToName = [
         self::UNDEFINED_ADVERTISE_MODE => 'UNDEFINED_ADVERTISE_MODE',
         self::CUSTOM => 'CUSTOM',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
     ];
 
     public static function name($value)
@@ -48,8 +48,12 @@ class AdvertiseMode
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

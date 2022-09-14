@@ -153,7 +153,7 @@ class Link extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return isset($this->attributes) ? $this->attributes : null;
+        return $this->attributes;
     }
 
     public function hasAttributes()

@@ -22,10 +22,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      */
     private $encryption_type = 0;
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
-     * restored database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
+     * database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -41,10 +41,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
      *     @type int $encryption_type
      *           Required. The encryption type of the restored database.
      *     @type string $kms_key_name
-     *           Optional. The Cloud KMS key that will be used to encrypt/decrypt the
-     *           restored database. This field should be set only when
-     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
-     *           is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     *           Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
+     *           database. This field should be set only when
+     *           [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
+     *           `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      *           `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      * }
      */
@@ -80,10 +80,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
-     * restored database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
+     * database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
@@ -95,10 +95,10 @@ class RestoreDatabaseEncryptionConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the
-     * restored database. This field should be set only when
-     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type]
-     * is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
+     * Optional. The Cloud KMS key that will be used to encrypt/decrypt the restored
+     * database. This field should be set only when
+     * [encryption_type][google.spanner.admin.database.v1.RestoreDatabaseEncryptionConfig.encryption_type] is
+     * `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form
      * `projects/<project>/locations/<location>/keyRings/<key_ring>/cryptoKeys/<kms_key_name>`.
      *
      * Generated from protobuf field <code>string kms_key_name = 2 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>

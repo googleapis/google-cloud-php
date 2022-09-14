@@ -23,8 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
  * contexts.
  * Foreign partition IDs (in which the project ID does
  * not match the context project ID ) are discouraged.
- * Reads and writes of foreign partition IDs may fail if the project is not in
- * an active state.
+ * Reads and writes of foreign partition IDs may fail if the project is not in an active state.
  *
  * Generated from protobuf message <code>google.datastore.v1.PartitionId</code>
  */
@@ -36,6 +35,13 @@ class PartitionId extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string project_id = 2;</code>
      */
     private $project_id = '';
+    /**
+     * If not empty, the ID of the database to which the entities
+     * belong.
+     *
+     * Generated from protobuf field <code>string database_id = 3;</code>
+     */
+    private $database_id = '';
     /**
      * If not empty, the ID of the namespace to which the entities belong.
      *
@@ -51,6 +57,9 @@ class PartitionId extends \Google\Protobuf\Internal\Message
      *
      *     @type string $project_id
      *           The ID of the project to which the entities belong.
+     *     @type string $database_id
+     *           If not empty, the ID of the database to which the entities
+     *           belong.
      *     @type string $namespace_id
      *           If not empty, the ID of the namespace to which the entities belong.
      * }
@@ -82,6 +91,34 @@ class PartitionId extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->project_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * If not empty, the ID of the database to which the entities
+     * belong.
+     *
+     * Generated from protobuf field <code>string database_id = 3;</code>
+     * @return string
+     */
+    public function getDatabaseId()
+    {
+        return $this->database_id;
+    }
+
+    /**
+     * If not empty, the ID of the database to which the entities
+     * belong.
+     *
+     * Generated from protobuf field <code>string database_id = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDatabaseId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->database_id = $var;
 
         return $this;
     }

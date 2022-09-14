@@ -48,11 +48,16 @@ class Code
     /**
      * Unable to perform an encrypt operation against the CloudKMS key used for
      * etcd level encryption.
-     * More codes TBA
      *
      * Generated from protobuf enum <code>CLOUD_KMS_KEY_ERROR = 7;</code>
      */
     const CLOUD_KMS_KEY_ERROR = 7;
+    /**
+     * Cluster CA is expiring soon.
+     *
+     * Generated from protobuf enum <code>CA_EXPIRING = 9;</code>
+     */
+    const CA_EXPIRING = 9;
 
     private static $valueToName = [
         self::UNKNOWN => 'UNKNOWN',
@@ -61,6 +66,7 @@ class Code
         self::GCE_QUOTA_EXCEEDED => 'GCE_QUOTA_EXCEEDED',
         self::SET_BY_OPERATOR => 'SET_BY_OPERATOR',
         self::CLOUD_KMS_KEY_ERROR => 'CLOUD_KMS_KEY_ERROR',
+        self::CA_EXPIRING => 'CA_EXPIRING',
     ];
 
     public static function name($value)

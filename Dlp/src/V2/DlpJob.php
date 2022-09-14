@@ -91,7 +91,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      *     @type string $job_trigger_name
      *           If created by a job trigger, the resource name of the trigger that
      *           instantiated the job.
-     *     @type \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           A stream of errors encountered running the job.
      * }
      */
@@ -248,7 +248,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -284,7 +284,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -320,7 +320,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -391,7 +391,7 @@ class DlpJob extends \Google\Protobuf\Internal\Message
      * A stream of errors encountered running the job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Error errors = 11;</code>
-     * @param \Google\Cloud\Dlp\V2\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

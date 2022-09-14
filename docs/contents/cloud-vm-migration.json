@@ -1,0 +1,15 @@
+{
+    "title": "vmmigration",
+    "defaultService": "vmmigration\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "vmmigration\/readme"
+        },
+        {
+            "title": "VmMigrationClient (v1)",
+            "type": "vmmigration\/v1\/vmmigrationclient"
+        }
+    ],
+    "pattern": "vmmigration\/\\w{1,}"
+}

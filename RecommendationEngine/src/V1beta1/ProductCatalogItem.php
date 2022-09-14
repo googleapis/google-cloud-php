@@ -87,7 +87,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      *     @type string $canonical_product_uri
      *           Optional. Canonical URL directly linking to the item detail page with a
      *           length limit of 5 KiB..
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\Image[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $images
      *           Optional. Product images for the catalog item.
      * }
      */
@@ -100,11 +100,16 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. The exact product price.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductCatalogItem.ExactPrice exact_price = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\ExactPrice
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\ExactPrice|null
      */
     public function getExactPrice()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasExactPrice()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -116,7 +121,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      */
     public function setExactPrice($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_ExactPrice::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\ExactPrice::class);
         $this->writeOneof(1, $var);
 
         return $this;
@@ -126,11 +131,16 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. The product price range.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductCatalogItem.PriceRange price_range = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\PriceRange
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\PriceRange|null
      */
     public function getPriceRange()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasPriceRange()
+    {
+        return $this->hasOneof(2);
     }
 
     /**
@@ -142,7 +152,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      */
     public function setPriceRange($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_PriceRange::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\PriceRange::class);
         $this->writeOneof(2, $var);
 
         return $this;
@@ -232,7 +242,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      */
     public function setStockState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_StockState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\StockState::class);
         $this->stock_state = $var;
 
         return $this;
@@ -307,7 +317,7 @@ class ProductCatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Product images for the catalog item.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.Image images = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\Image[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\Image>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)

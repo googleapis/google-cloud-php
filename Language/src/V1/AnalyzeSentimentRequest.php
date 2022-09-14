@@ -53,7 +53,7 @@ class AnalyzeSentimentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return isset($this->document) ? $this->document : null;
+        return $this->document;
     }
 
     public function hasDocument()

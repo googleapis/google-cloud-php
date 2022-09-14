@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2\CharsToIgnore;
 use UnexpectedValueException;
 
 /**
- * Convenience enum for indication common characters to not transform.
+ * Convenience enum for indicating common characters to not transform.
  *
  * Protobuf type <code>google.privacy.dlp.v2.CharsToIgnore.CommonCharsToIgnore</code>
  */

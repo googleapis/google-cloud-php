@@ -93,6 +93,12 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes partition_token = 10;</code>
      */
     private $partition_token = '';
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -111,7 +117,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           If non-empty, the name of an index on [table][google.spanner.v1.ReadRequest.table]. This index is
      *           used instead of the table primary key when interpreting [key_set][google.spanner.v1.ReadRequest.key_set]
      *           and sorting result rows. See [key_set][google.spanner.v1.ReadRequest.key_set] for further information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
      *           Required. The columns of [table][google.spanner.v1.ReadRequest.table] to be returned for each row matching
      *           this request.
      *     @type \Google\Cloud\Spanner\V1\KeySet $key_set
@@ -141,6 +147,8 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      *           previously created using PartitionRead().    There must be an exact
      *           match for the values of fields common to this message and the
      *           PartitionReadRequest message used to create this partition_token.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -183,7 +191,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -285,7 +293,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      * this request.
      *
      * Generated from protobuf field <code>repeated string columns = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumns($var)
@@ -313,7 +321,7 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKeySet()
     {
-        return isset($this->key_set) ? $this->key_set : null;
+        return $this->key_set;
     }
 
     public function hasKeySet()
@@ -444,6 +452,42 @@ class ReadRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->partition_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 11;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

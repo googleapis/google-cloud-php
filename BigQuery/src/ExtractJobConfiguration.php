@@ -157,7 +157,7 @@ class ExtractJobConfiguration implements JobConfigurationInterface
      * Sets a reference to the table being exported.
      *
      * Cannot be used in the same job as
-     * {@see Google\Cloud\BigQuery\ExtractJobConfiguration::sourceModel()}.
+     * {@see ExtractJobConfiguration::sourceModel()}.
      *
      * Example:
      * ```
@@ -180,7 +180,7 @@ class ExtractJobConfiguration implements JobConfigurationInterface
      * Sets a reference to the model being exported.
      *
      * Cannot be used in the same job as
-     * {@see Google\Cloud\BigQuery\ExtractJobConfiguration::sourceTable()}.
+     * {@see ExtractJobConfiguration::sourceTable()}.
      *
      * Example:
      * ```

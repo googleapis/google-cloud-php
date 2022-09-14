@@ -32,7 +32,7 @@ class FaceTest extends SnippetTestCase
     private $faceData;
     private $face;
 
-    public function setUp()
+    public function set_up()
     {
         $this->faceData = [
             'landmarks' => [[]],

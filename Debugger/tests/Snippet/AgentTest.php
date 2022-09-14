@@ -29,7 +29,7 @@ class AgentTest extends SnippetTestCase
 {
     private $storage;
 
-    public function setUp()
+    public function set_up()
     {
         $this->storage = $this->prophesize(BreakpointStorageInterface::class);
     }

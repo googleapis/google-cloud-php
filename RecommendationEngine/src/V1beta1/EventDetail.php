@@ -101,7 +101,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      *           The `pageViewId` property should be kept the same for all these events so
      *           that they can be grouped together properly. This `pageViewId` will be
      *           automatically generated if using the JavaScript pixel.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $experiment_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $experiment_ids
      *           Optional. A list of identifiers for the independent experiment groups
      *           this user event belongs to. This is used to distinguish between user events
      *           associated with different experiment setups (e.g. using Recommendation
@@ -250,7 +250,7 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      * Engine system, using different recommendation models).
      *
      * Generated from protobuf field <code>repeated string experiment_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExperimentIds($var)
@@ -318,11 +318,21 @@ class EventDetail extends \Google\Protobuf\Internal\Message
      * search, and etc.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap event_attributes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap|null
      */
     public function getEventAttributes()
     {
         return $this->event_attributes;
+    }
+
+    public function hasEventAttributes()
+    {
+        return isset($this->event_attributes);
+    }
+
+    public function clearEventAttributes()
+    {
+        unset($this->event_attributes);
     }
 
     /**

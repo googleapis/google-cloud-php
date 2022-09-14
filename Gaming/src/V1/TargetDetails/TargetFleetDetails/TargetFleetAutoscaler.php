@@ -78,11 +78,11 @@ class TargetFleetAutoscaler extends \Google\Protobuf\Internal\Message
      * Details about the Agones autoscaler spec.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.SpecSource spec_source = 2;</code>
-     * @return \Google\Cloud\Gaming\V1\SpecSource
+     * @return \Google\Cloud\Gaming\V1\SpecSource|null
      */
     public function getSpecSource()
     {
-        return isset($this->spec_source) ? $this->spec_source : null;
+        return $this->spec_source;
     }
 
     public function hasSpecSource()
@@ -113,6 +113,4 @@ class TargetFleetAutoscaler extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TargetFleetAutoscaler::class, \Google\Cloud\Gaming\V1\TargetDetails_TargetFleetDetails_TargetFleetAutoscaler::class);
 

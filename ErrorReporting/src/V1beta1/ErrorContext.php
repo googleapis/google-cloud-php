@@ -85,11 +85,11 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * triggered.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.HttpRequestContext http_request = 1;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext
+     * @return \Google\Cloud\ErrorReporting\V1beta1\HttpRequestContext|null
      */
     public function getHttpRequest()
     {
-        return isset($this->http_request) ? $this->http_request : null;
+        return $this->http_request;
     }
 
     public function hasHttpRequest()
@@ -166,11 +166,11 @@ class ErrorContext extends \Google\Protobuf\Internal\Message
      * caught.
      *
      * Generated from protobuf field <code>.google.devtools.clouderrorreporting.v1beta1.SourceLocation report_location = 3;</code>
-     * @return \Google\Cloud\ErrorReporting\V1beta1\SourceLocation
+     * @return \Google\Cloud\ErrorReporting\V1beta1\SourceLocation|null
      */
     public function getReportLocation()
     {
-        return isset($this->report_location) ? $this->report_location : null;
+        return $this->report_location;
     }
 
     public function hasReportLocation()

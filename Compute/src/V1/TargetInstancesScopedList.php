@@ -17,13 +17,13 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of target instances contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 124479824;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 392915280;</code>
      */
     private $target_instances;
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -33,7 +33,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\TargetInstance[]|\Google\Protobuf\Internal\RepeatedField $target_instances
+     *     @type array<\Google\Cloud\Compute\V1\TargetInstance>|\Google\Protobuf\Internal\RepeatedField $target_instances
      *           A list of target instances contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when the list is empty.
@@ -47,7 +47,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of target instances contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 124479824;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 392915280;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getTargetInstances()
@@ -58,8 +58,8 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * A list of target instances contained in this scope.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 124479824;</code>
-     * @param \Google\Cloud\Compute\V1\TargetInstance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetInstance target_instances = 392915280;</code>
+     * @param array<\Google\Cloud\Compute\V1\TargetInstance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetInstances($var)
@@ -73,12 +73,12 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
-     * @return \Google\Cloud\Compute\V1\Warning
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class TargetInstancesScopedList extends \Google\Protobuf\Internal\Message
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

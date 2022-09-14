@@ -19,6 +19,8 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * An approximate projection on amount saved or amount incurred. Negative cost
      * units indicate cost savings and positive cost units indicate increase.
      * See google.type.Money documentation for positive/negative units.
+     * A user's permissions may affect whether the cost is computed using list
+     * prices or custom contract prices.
      *
      * Generated from protobuf field <code>.google.type.Money cost = 1;</code>
      */
@@ -40,6 +42,8 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      *           An approximate projection on amount saved or amount incurred. Negative cost
      *           units indicate cost savings and positive cost units indicate increase.
      *           See google.type.Money documentation for positive/negative units.
+     *           A user's permissions may affect whether the cost is computed using list
+     *           prices or custom contract prices.
      *     @type \Google\Protobuf\Duration $duration
      *           Duration for which this cost applies.
      * }
@@ -53,13 +57,15 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * An approximate projection on amount saved or amount incurred. Negative cost
      * units indicate cost savings and positive cost units indicate increase.
      * See google.type.Money documentation for positive/negative units.
+     * A user's permissions may affect whether the cost is computed using list
+     * prices or custom contract prices.
      *
      * Generated from protobuf field <code>.google.type.Money cost = 1;</code>
      * @return \Google\Type\Money|null
      */
     public function getCost()
     {
-        return isset($this->cost) ? $this->cost : null;
+        return $this->cost;
     }
 
     public function hasCost()
@@ -76,6 +82,8 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      * An approximate projection on amount saved or amount incurred. Negative cost
      * units indicate cost savings and positive cost units indicate increase.
      * See google.type.Money documentation for positive/negative units.
+     * A user's permissions may affect whether the cost is computed using list
+     * prices or custom contract prices.
      *
      * Generated from protobuf field <code>.google.type.Money cost = 1;</code>
      * @param \Google\Type\Money $var
@@ -97,7 +105,7 @@ class CostProjection extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()

@@ -13,7 +13,8 @@ use Google\Protobuf\Internal\GPBUtil;
  * [resource
  * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
  * a resource outside the Google Cloud resource hierarchy (such as Google
- * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy).
+ * Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy),
+ * or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship).
  * See [Supported asset
  * types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
  * for more information.
@@ -86,6 +87,23 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $os_inventory = null;
     /**
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
+     * @deprecated
+     */
+    protected $related_assets = null;
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     */
+    private $related_asset = null;
+    /**
      * The ancestry path of an asset in Google Cloud [resource
      * hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      * represented as a list of relative resource names. An ancestry path starts
@@ -131,7 +149,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           the hierarchy. See
      *           [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
      *           more information.
-     *     @type \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $org_policy
+     *     @type array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $org_policy
      *           A representation of an [organization
      *           policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
      *           There can be more than one organization policy with different constraints
@@ -149,7 +167,15 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           A representation of runtime OS Inventory information. See [this
      *           topic](https://cloud.google.com/compute/docs/instances/os-inventory-management)
      *           for more information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *     @type \Google\Cloud\Asset\V1\RelatedAssets $related_assets
+     *           DEPRECATED. This field only presents for the purpose of
+     *           backward-compatibility. The server will never generate responses with this
+     *           field.
+     *           The related assets of the asset of one relationship type. One asset
+     *           only represents one type of relationship.
+     *     @type \Google\Cloud\Asset\V1\RelatedAsset $related_asset
+     *           One related asset of the current asset.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestry path of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      *           represented as a list of relative resource names. An ancestry path starts
@@ -173,7 +199,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -276,7 +302,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return isset($this->resource) ? $this->resource : null;
+        return $this->resource;
     }
 
     public function hasResource()
@@ -320,7 +346,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getIamPolicy()
     {
-        return isset($this->iam_policy) ? $this->iam_policy : null;
+        return $this->iam_policy;
     }
 
     public function hasIamPolicy()
@@ -377,7 +403,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * set on a given resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v1.Policy org_policy = 6;</code>
-     * @param \Google\Cloud\OrgPolicy\V1\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOrgPolicy($var)
@@ -497,7 +523,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     public function getOsInventory()
     {
-        return isset($this->os_inventory) ? $this->os_inventory : null;
+        return $this->os_inventory;
     }
 
     public function hasOsInventory()
@@ -523,6 +549,92 @@ class Asset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsConfig\V1\Inventory::class);
         $this->os_inventory = $var;
+
+        return $this;
+    }
+
+    /**
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
+     * @return \Google\Cloud\Asset\V1\RelatedAssets|null
+     * @deprecated
+     */
+    public function getRelatedAssets()
+    {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        return $this->related_assets;
+    }
+
+    public function hasRelatedAssets()
+    {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        return isset($this->related_assets);
+    }
+
+    public function clearRelatedAssets()
+    {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        unset($this->related_assets);
+    }
+
+    /**
+     * DEPRECATED. This field only presents for the purpose of
+     * backward-compatibility. The server will never generate responses with this
+     * field.
+     * The related assets of the asset of one relationship type. One asset
+     * only represents one type of relationship.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAssets related_assets = 13 [deprecated = true];</code>
+     * @param \Google\Cloud\Asset\V1\RelatedAssets $var
+     * @return $this
+     * @deprecated
+     */
+    public function setRelatedAssets($var)
+    {
+        @trigger_error('related_assets is deprecated.', E_USER_DEPRECATED);
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\RelatedAssets::class);
+        $this->related_assets = $var;
+
+        return $this;
+    }
+
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     * @return \Google\Cloud\Asset\V1\RelatedAsset|null
+     */
+    public function getRelatedAsset()
+    {
+        return $this->related_asset;
+    }
+
+    public function hasRelatedAsset()
+    {
+        return isset($this->related_asset);
+    }
+
+    public function clearRelatedAsset()
+    {
+        unset($this->related_asset);
+    }
+
+    /**
+     * One related asset of the current asset.
+     *
+     * Generated from protobuf field <code>.google.cloud.asset.v1.RelatedAsset related_asset = 15;</code>
+     * @param \Google\Cloud\Asset\V1\RelatedAsset $var
+     * @return $this
+     */
+    public function setRelatedAsset($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Asset\V1\RelatedAsset::class);
+        $this->related_asset = $var;
 
         return $this;
     }
@@ -554,7 +666,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAncestors($var)

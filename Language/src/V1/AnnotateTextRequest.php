@@ -62,7 +62,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return isset($this->document) ? $this->document : null;
+        return $this->document;
     }
 
     public function hasDocument()
@@ -98,7 +98,7 @@ class AnnotateTextRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFeatures()
     {
-        return isset($this->features) ? $this->features : null;
+        return $this->features;
     }
 
     public function hasFeatures()

@@ -17,7 +17,7 @@ class TargetPoolsAddHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * The HttpHealthCheck to add to the target pool.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      */
     private $health_checks;
 
@@ -27,7 +27,7 @@ class TargetPoolsAddHealthCheckRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\HealthCheckReference[]|\Google\Protobuf\Internal\RepeatedField $health_checks
+     *     @type array<\Google\Cloud\Compute\V1\HealthCheckReference>|\Google\Protobuf\Internal\RepeatedField $health_checks
      *           The HttpHealthCheck to add to the target pool.
      * }
      */
@@ -39,7 +39,7 @@ class TargetPoolsAddHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * The HttpHealthCheck to add to the target pool.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getHealthChecks()
@@ -50,8 +50,8 @@ class TargetPoolsAddHealthCheckRequest extends \Google\Protobuf\Internal\Message
     /**
      * The HttpHealthCheck to add to the target pool.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 179935150;</code>
-     * @param \Google\Cloud\Compute\V1\HealthCheckReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.HealthCheckReference health_checks = 448370606;</code>
+     * @param array<\Google\Cloud\Compute\V1\HealthCheckReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHealthChecks($var)

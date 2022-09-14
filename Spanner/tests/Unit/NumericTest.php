@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\Unit;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\V1\TypeCode;
 use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -27,12 +28,15 @@ use PHPUnit\Framework\TestCase;
  */
 class NumericTest extends TestCase
 {
+    use ExpectException;
+
     /**
      * @dataProvider invalidValueProvider
-     * @expectedException \InvalidArgumentException
      */
     public function testInvalidValues($value)
     {
+        $this->expectException('\InvalidArgumentException');
+
         new Numeric($value);
     }
 

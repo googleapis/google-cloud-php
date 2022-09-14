@@ -33,7 +33,7 @@ class EnvironmentsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the list of all non-draft environments of the specified agent.
+     * Returns the list of all non-default environments of the specified agent.
      * @param \Google\Cloud\Dialogflow\V2\ListEnvironmentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -44,6 +44,92 @@ class EnvironmentsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/ListEnvironments',
         $argument,
         ['\Google\Cloud\Dialogflow\V2\ListEnvironmentsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Retrieves the specified agent environment.
+     * @param \Google\Cloud\Dialogflow\V2\GetEnvironmentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEnvironment(\Google\Cloud\Dialogflow\V2\GetEnvironmentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/GetEnvironment',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\Environment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates an agent environment.
+     * @param \Google\Cloud\Dialogflow\V2\CreateEnvironmentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateEnvironment(\Google\Cloud\Dialogflow\V2\CreateEnvironmentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/CreateEnvironment',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\Environment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates the specified agent environment.
+     *
+     * This method allows you to deploy new agent versions into the environment.
+     * When an environment is pointed to a new agent version by setting
+     * `environment.agent_version`, the environment is temporarily set to the
+     * `LOADING` state. During that time, the environment continues serving the
+     * previous version of the agent. After the new agent version is done loading,
+     * the environment is set back to the `RUNNING` state.
+     * You can use "-" as Environment ID in environment name to update an agent
+     * version in the default environment. WARNING: this will negate all recent
+     * changes to the draft agent and can't be undone. You may want to save the
+     * draft agent to a version before calling this method.
+     * @param \Google\Cloud\Dialogflow\V2\UpdateEnvironmentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateEnvironment(\Google\Cloud\Dialogflow\V2\UpdateEnvironmentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/UpdateEnvironment',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\Environment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes the specified agent environment.
+     * @param \Google\Cloud\Dialogflow\V2\DeleteEnvironmentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteEnvironment(\Google\Cloud\Dialogflow\V2\DeleteEnvironmentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/DeleteEnvironment',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the history of the specified environment.
+     * @param \Google\Cloud\Dialogflow\V2\GetEnvironmentHistoryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetEnvironmentHistory(\Google\Cloud\Dialogflow\V2\GetEnvironmentHistoryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Environments/GetEnvironmentHistory',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\EnvironmentHistory', 'decode'],
         $metadata, $options);
     }
 

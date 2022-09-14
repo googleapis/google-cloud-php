@@ -30,8 +30,9 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -39,6 +40,7 @@ use Prophecy\Argument;
  */
 class InstanceTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -51,7 +53,7 @@ class InstanceTest extends TestCase
     private $instance;
     private $lroConnection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -275,6 +277,29 @@ class InstanceTest extends TestCase
         $this->instance->___setProperty('connection', $this->connection->reveal());
 
         $this->instance->update(['displayName' => 'bar']);
+    }
+
+    public function testUpdateWithProcessingUnits()
+    {
+        $instance = $this->getDefaultInstance();
+
+        $this->connection->updateInstance([
+            'processingUnits' => 500,
+            'name' => $instance['name'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->instance->___setProperty('connection', $this->connection->reveal());
+
+        $this->instance->update(['processingUnits' => 500]);
+    }
+
+    public function testUpdateRaisesInvalidArgument()
+    {
+        $this->expectException('\InvalidArgumentException');
+
+        $this->instance->update(['processingUnits' => 5000, 'nodeCount' => 5]);
     }
 
     public function testUpdateWithExistingLabels()

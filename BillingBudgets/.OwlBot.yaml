@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/billing/budgets/(.*)/.*-php/(.*)
+      dest: /owl-bot-staging/BillingBudgets/$1/$2
+api-name: BillingBudgets

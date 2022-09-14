@@ -15,9 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ServerBinding extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
+     * 
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = 0;
+    private $type = null;
 
     /**
      * Constructor.
@@ -25,7 +28,9 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $type
+     *     @type string $type
+     *           
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -34,22 +39,38 @@ class ServerBinding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
-     * @return int
+     * 
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ServerBinding.Type type = 3575610;</code>
-     * @param int $var
+     * 
+     * Check the Type enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
      * @return $this
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ServerBinding\Type::class);
+        GPBUtil::checkString($var, True);
         $this->type = $var;
 
         return $this;

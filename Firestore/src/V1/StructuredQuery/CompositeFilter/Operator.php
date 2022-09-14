@@ -20,7 +20,7 @@ class Operator
      */
     const OPERATOR_UNSPECIFIED = 0;
     /**
-     * The results are required to satisfy each of the combined filters.
+     * Documents are required to satisfy all of the combined filters.
      *
      * Generated from protobuf enum <code>AND = 1;</code>
      */
@@ -28,7 +28,7 @@ class Operator
 
     private static $valueToName = [
         self::OPERATOR_UNSPECIFIED => 'OPERATOR_UNSPECIFIED',
-        self::PBAND => 'PBAND',
+        self::PBAND => 'AND',
     ];
 
     public static function name($value)
@@ -45,8 +45,12 @@ class Operator
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

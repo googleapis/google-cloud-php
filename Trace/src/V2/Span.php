@@ -298,7 +298,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayName()
     {
-        return isset($this->display_name) ? $this->display_name : null;
+        return $this->display_name;
     }
 
     public function hasDisplayName()
@@ -342,7 +342,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -382,7 +382,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -421,7 +421,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getAttributes()
     {
-        return isset($this->attributes) ? $this->attributes : null;
+        return $this->attributes;
     }
 
     public function hasAttributes()
@@ -458,7 +458,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStackTrace()
     {
-        return isset($this->stack_trace) ? $this->stack_trace : null;
+        return $this->stack_trace;
     }
 
     public function hasStackTrace()
@@ -495,7 +495,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getTimeEvents()
     {
-        return isset($this->time_events) ? $this->time_events : null;
+        return $this->time_events;
     }
 
     public function hasTimeEvents()
@@ -532,7 +532,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getLinks()
     {
-        return isset($this->links) ? $this->links : null;
+        return $this->links;
     }
 
     public function hasLinks()
@@ -568,7 +568,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -607,7 +607,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getSameProcessAsParentSpan()
     {
-        return isset($this->same_process_as_parent_span) ? $this->same_process_as_parent_span : null;
+        return $this->same_process_as_parent_span;
     }
 
     public function hasSameProcessAsParentSpan()
@@ -680,7 +680,7 @@ class Span extends \Google\Protobuf\Internal\Message
      */
     public function getChildSpanCount()
     {
-        return isset($this->child_span_count) ? $this->child_span_count : null;
+        return $this->child_span_count;
     }
 
     public function hasChildSpanCount()

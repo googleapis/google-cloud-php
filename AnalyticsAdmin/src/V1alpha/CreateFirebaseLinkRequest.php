@@ -79,11 +79,11 @@ class CreateFirebaseLinkRequest extends \Google\Protobuf\Internal\Message
      * Required. The Firebase link to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.FirebaseLink firebase_link = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Analytics\Admin\V1alpha\FirebaseLink
+     * @return \Google\Analytics\Admin\V1alpha\FirebaseLink|null
      */
     public function getFirebaseLink()
     {
-        return isset($this->firebase_link) ? $this->firebase_link : null;
+        return $this->firebase_link;
     }
 
     public function hasFirebaseLink()

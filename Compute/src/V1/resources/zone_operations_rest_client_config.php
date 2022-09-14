@@ -7,9 +7,9 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
                 'placeholders' => [
-                    'zone' => [
+                    'operation' => [
                         'getters' => [
-                            'getZone',
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -17,9 +17,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'operation' => [
+                    'zone' => [
                         'getters' => [
-                            'getOperation',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -28,9 +28,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}',
                 'placeholders' => [
-                    'zone' => [
+                    'operation' => [
                         'getters' => [
-                            'getZone',
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -38,9 +38,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'operation' => [
+                    'zone' => [
                         'getters' => [
-                            'getOperation',
+                            'getZone',
                         ],
                     ],
                 ],
@@ -49,14 +49,14 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations',
                 'placeholders' => [
-                    'zone' => [
-                        'getters' => [
-                            'getZone',
-                        ],
-                    ],
                     'project' => [
                         'getters' => [
                             'getProject',
+                        ],
+                    ],
+                    'zone' => [
+                        'getters' => [
+                            'getZone',
                         ],
                     ],
                 ],
@@ -65,9 +65,9 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/compute/v1/projects/{project}/zones/{zone}/operations/{operation}/wait',
                 'placeholders' => [
-                    'zone' => [
+                    'operation' => [
                         'getters' => [
-                            'getZone',
+                            'getOperation',
                         ],
                     ],
                     'project' => [
@@ -75,9 +75,9 @@ return [
                             'getProject',
                         ],
                     ],
-                    'operation' => [
+                    'zone' => [
                         'getters' => [
-                            'getOperation',
+                            'getZone',
                         ],
                     ],
                 ],

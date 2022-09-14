@@ -96,7 +96,7 @@ trait LROTrait
      *     @type string $pageToken A previously-returned page token used to
      *           resume the loading of results from a specific point.
      * }
-     * @return ItemIterator<InstanceConfiguration>
+     * @return ItemIterator<LongRunningOperation>
      */
     public function longRunningOperations(array $options = [])
     {

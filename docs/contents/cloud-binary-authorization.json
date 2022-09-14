@@ -1,0 +1,15 @@
+{
+    "title": "BinaryAuthorization",
+    "defaultService": "binaryauthorization\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "binaryauthorization\/readme"
+        },
+        {
+            "title": "BinauthzManagementServiceV1Beta1Client (v1beta1)",
+            "type": "binaryauthorization\/v1beta1\/binauthzmanagementservicev1beta1client"
+        }
+    ],
+    "pattern": "binaryauthorization\/\\w{1,}"
+}

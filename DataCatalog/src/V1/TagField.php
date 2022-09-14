@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains the value and supporting information for a field within
+ * Contains the value and additional information on a field within
  * a [Tag][google.cloud.datacatalog.v1.Tag].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.TagField</code>
@@ -23,11 +23,11 @@ class TagField extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Output only. The order of this field with respect to other fields in this tag. It can be
-     * set in [Tag][google.cloud.datacatalog.v1.TagTemplateField.order]. For
-     * example, a higher value can indicate a more important field. The value can
-     * be negative. Multiple fields can have the same order, and field orders
-     * within a tag do not have to be sequential.
+     * Output only. The order of this field with respect to other fields in this tag. Can be
+     * set by [Tag][google.cloud.datacatalog.v1.TagTemplateField.order].
+     * For example, a higher value can indicate a more important field.
+     * The value can be negative. Multiple fields can have the same order, and
+     * field orders within a tag don't have to be sequential.
      *
      * Generated from protobuf field <code>int32 order = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -43,22 +43,28 @@ class TagField extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Output only. The display name of this field.
      *     @type float $double_value
-     *           Holds the value for a tag field with double type.
+     *           The value of a tag field with a double type.
      *     @type string $string_value
-     *           Holds the value for a tag field with string type.
+     *           The value of a tag field with a string type.
+     *           The maximum length is 2000 UTF-8 characters.
      *     @type bool $bool_value
-     *           Holds the value for a tag field with boolean type.
+     *           The value of a tag field with a boolean type.
      *     @type \Google\Protobuf\Timestamp $timestamp_value
-     *           Holds the value for a tag field with timestamp type.
+     *           The value of a tag field with a timestamp type.
      *     @type \Google\Cloud\DataCatalog\V1\TagField\EnumValue $enum_value
-     *           Holds the value for a tag field with enum type. This value must be
-     *           one of the allowed values in the definition of this enum.
+     *           The value of a tag field with an enum type.
+     *           This value must be one of the allowed values listed in this enum.
+     *     @type string $richtext_value
+     *           The value of a tag field with a rich text type.
+     *           The maximum length is 10 MiB as this value holds HTML descriptions
+     *           including encoded images. The maximum length of the text without images
+     *           is 100 KiB.
      *     @type int $order
-     *           Output only. The order of this field with respect to other fields in this tag. It can be
-     *           set in [Tag][google.cloud.datacatalog.v1.TagTemplateField.order]. For
-     *           example, a higher value can indicate a more important field. The value can
-     *           be negative. Multiple fields can have the same order, and field orders
-     *           within a tag do not have to be sequential.
+     *           Output only. The order of this field with respect to other fields in this tag. Can be
+     *           set by [Tag][google.cloud.datacatalog.v1.TagTemplateField.order].
+     *           For example, a higher value can indicate a more important field.
+     *           The value can be negative. Multiple fields can have the same order, and
+     *           field orders within a tag don't have to be sequential.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +99,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with double type.
+     * The value of a tag field with a double type.
      *
      * Generated from protobuf field <code>double double_value = 2;</code>
      * @return float
@@ -109,7 +115,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with double type.
+     * The value of a tag field with a double type.
      *
      * Generated from protobuf field <code>double double_value = 2;</code>
      * @param float $var
@@ -124,7 +130,8 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with string type.
+     * The value of a tag field with a string type.
+     * The maximum length is 2000 UTF-8 characters.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @return string
@@ -140,7 +147,8 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with string type.
+     * The value of a tag field with a string type.
+     * The maximum length is 2000 UTF-8 characters.
      *
      * Generated from protobuf field <code>string string_value = 3;</code>
      * @param string $var
@@ -155,7 +163,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with boolean type.
+     * The value of a tag field with a boolean type.
      *
      * Generated from protobuf field <code>bool bool_value = 4;</code>
      * @return bool
@@ -171,7 +179,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with boolean type.
+     * The value of a tag field with a boolean type.
      *
      * Generated from protobuf field <code>bool bool_value = 4;</code>
      * @param bool $var
@@ -186,7 +194,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with timestamp type.
+     * The value of a tag field with a timestamp type.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -202,7 +210,7 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with timestamp type.
+     * The value of a tag field with a timestamp type.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp timestamp_value = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -217,8 +225,8 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with enum type. This value must be
-     * one of the allowed values in the definition of this enum.
+     * The value of a tag field with an enum type.
+     * This value must be one of the allowed values listed in this enum.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagField.EnumValue enum_value = 6;</code>
      * @return \Google\Cloud\DataCatalog\V1\TagField\EnumValue|null
@@ -234,8 +242,8 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Holds the value for a tag field with enum type. This value must be
-     * one of the allowed values in the definition of this enum.
+     * The value of a tag field with an enum type.
+     * This value must be one of the allowed values listed in this enum.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TagField.EnumValue enum_value = 6;</code>
      * @param \Google\Cloud\DataCatalog\V1\TagField\EnumValue $var
@@ -250,11 +258,48 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The order of this field with respect to other fields in this tag. It can be
-     * set in [Tag][google.cloud.datacatalog.v1.TagTemplateField.order]. For
-     * example, a higher value can indicate a more important field. The value can
-     * be negative. Multiple fields can have the same order, and field orders
-     * within a tag do not have to be sequential.
+     * The value of a tag field with a rich text type.
+     * The maximum length is 10 MiB as this value holds HTML descriptions
+     * including encoded images. The maximum length of the text without images
+     * is 100 KiB.
+     *
+     * Generated from protobuf field <code>string richtext_value = 8;</code>
+     * @return string
+     */
+    public function getRichtextValue()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasRichtextValue()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The value of a tag field with a rich text type.
+     * The maximum length is 10 MiB as this value holds HTML descriptions
+     * including encoded images. The maximum length of the text without images
+     * is 100 KiB.
+     *
+     * Generated from protobuf field <code>string richtext_value = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRichtextValue($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(8, $var);
+
+        return $this;
+    }
+
+    /**
+     * Output only. The order of this field with respect to other fields in this tag. Can be
+     * set by [Tag][google.cloud.datacatalog.v1.TagTemplateField.order].
+     * For example, a higher value can indicate a more important field.
+     * The value can be negative. Multiple fields can have the same order, and
+     * field orders within a tag don't have to be sequential.
      *
      * Generated from protobuf field <code>int32 order = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -265,11 +310,11 @@ class TagField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The order of this field with respect to other fields in this tag. It can be
-     * set in [Tag][google.cloud.datacatalog.v1.TagTemplateField.order]. For
-     * example, a higher value can indicate a more important field. The value can
-     * be negative. Multiple fields can have the same order, and field orders
-     * within a tag do not have to be sequential.
+     * Output only. The order of this field with respect to other fields in this tag. Can be
+     * set by [Tag][google.cloud.datacatalog.v1.TagTemplateField.order].
+     * For example, a higher value can indicate a more important field.
+     * The value can be negative. Multiple fields can have the same order, and
+     * field orders within a tag don't have to be sequential.
      *
      * Generated from protobuf field <code>int32 order = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

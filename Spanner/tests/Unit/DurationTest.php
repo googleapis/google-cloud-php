@@ -18,7 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Spanner\Duration;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group spanner
@@ -30,7 +30,7 @@ class DurationTest extends TestCase
 
     private $duration;
 
-    public function setUp()
+    public function set_up()
     {
         $this->duration = new Duration(self::SECONDS, self::NANOS);
     }

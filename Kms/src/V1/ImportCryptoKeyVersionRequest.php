@@ -9,31 +9,60 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
+ * Request message for
+ * [KeyManagementService.ImportCryptoKeyVersion][google.cloud.kms.v1.KeyManagementService.ImportCryptoKeyVersion].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ImportCryptoKeyVersionRequest</code>
  */
 class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
-     * be imported into.
+     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     * The create permission is only required on this key when creating a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
-     * the key being imported. This does not need to match the
-     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
-     * version imports into.
+     * Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
+     * an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
+     * target for an import operation. If this field is not present, a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
+     * supplied key material is created.
+     * If this field is present, the supplied key material is imported into
+     * the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To
+     * import into an existing
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
+     * [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent],
+     * have been previously created via [ImportCryptoKeyVersion][], and be in
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]
+     * or
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]
+     * state. The key material and algorithm must match the previous
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
+     * key material.
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     */
+    private $crypto_key_version = '';
+    /**
+     * Required. The
+     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * of the key being imported. This does not need to match the
+     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $algorithm = 0;
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
-     * wrap this key material.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     * material.
      *
      * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -47,16 +76,40 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
-     *           be imported into.
+     *           Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     *           The create permission is only required on this key when creating a new
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
+     *     @type string $crypto_key_version
+     *           Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
+     *           an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
+     *           target for an import operation. If this field is not present, a new
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
+     *           supplied key material is created.
+     *           If this field is present, the supplied key material is imported into
+     *           the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To
+     *           import into an existing
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
+     *           [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent],
+     *           have been previously created via [ImportCryptoKeyVersion][], and be in
+     *           [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]
+     *           or
+     *           [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]
+     *           state. The key material and algorithm must match the previous
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
+     *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
+     *           key material.
      *     @type int $algorithm
-     *           Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
-     *           the key being imported. This does not need to match the
-     *           [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
-     *           version imports into.
+     *           Required. The
+     *           [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     *           of the key being imported. This does not need to match the
+     *           [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     *           [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
      *     @type string $import_job
-     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
-     *           wrap this key material.
+     *           Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     *           [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     *           material.
      *     @type string $rsa_aes_wrapped_key
      *           Wrapped key material produced with
      *           [RSA_OAEP_3072_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA1_AES_256]
@@ -65,8 +118,9 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      *           This field contains the concatenation of two wrapped keys:
      *           <ol>
      *             <li>An ephemeral AES-256 wrapping key wrapped with the
-     *                 [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP with SHA-1,
-     *                 MGF1 with SHA-1, and an empty label.
+     *                 [public_key][google.cloud.kms.v1.ImportJob.public_key] using
+     *                 RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an
+     *                 empty label.
      *             </li>
      *             <li>The key to be imported, wrapped with the ephemeral AES-256 key
      *                 using AES-KWP (RFC 5649).
@@ -86,8 +140,10 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
-     * be imported into.
+     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     * The create permission is only required on this key when creating a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -98,8 +154,10 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] to
-     * be imported into.
+     * Required. The [name][google.cloud.kms.v1.CryptoKey.name] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] to be imported into.
+     * The create permission is only required on this key when creating a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion].
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -114,10 +172,73 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
-     * the key being imported. This does not need to match the
-     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
-     * version imports into.
+     * Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
+     * an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
+     * target for an import operation. If this field is not present, a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
+     * supplied key material is created.
+     * If this field is present, the supplied key material is imported into
+     * the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To
+     * import into an existing
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
+     * [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent],
+     * have been previously created via [ImportCryptoKeyVersion][], and be in
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]
+     * or
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]
+     * state. The key material and algorithm must match the previous
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
+     * key material.
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getCryptoKeyVersion()
+    {
+        return $this->crypto_key_version;
+    }
+
+    /**
+     * Optional. The optional [name][google.cloud.kms.v1.CryptoKeyVersion.name] of
+     * an existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] to
+     * target for an import operation. If this field is not present, a new
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] containing the
+     * supplied key material is created.
+     * If this field is present, the supplied key material is imported into
+     * the existing [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion]. To
+     * import into an existing
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion], the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] must be a child of
+     * [ImportCryptoKeyVersionRequest.parent][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.parent],
+     * have been previously created via [ImportCryptoKeyVersion][], and be in
+     * [DESTROYED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.DESTROYED]
+     * or
+     * [IMPORT_FAILED][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionState.IMPORT_FAILED]
+     * state. The key material and algorithm must match the previous
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
+     * [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
+     * key material.
+     *
+     * Generated from protobuf field <code>string crypto_key_version = 6 [(.google.api.field_behavior) = OPTIONAL, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCryptoKeyVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->crypto_key_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Required. The
+     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * of the key being imported. This does not need to match the
+     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
@@ -128,10 +249,11 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm] of
-     * the key being imported. This does not need to match the
-     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the [CryptoKey][google.cloud.kms.v1.CryptoKey] this
-     * version imports into.
+     * Required. The
+     * [algorithm][google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm]
+     * of the key being imported. This does not need to match the
+     * [version_template][google.cloud.kms.v1.CryptoKey.version_template] of the
+     * [CryptoKey][google.cloud.kms.v1.CryptoKey] this version imports into.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.CryptoKeyVersion.CryptoKeyVersionAlgorithm algorithm = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
@@ -146,8 +268,9 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
-     * wrap this key material.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     * material.
      *
      * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -158,8 +281,9 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the [ImportJob][google.cloud.kms.v1.ImportJob] that was used to
-     * wrap this key material.
+     * Required. The [name][google.cloud.kms.v1.ImportJob.name] of the
+     * [ImportJob][google.cloud.kms.v1.ImportJob] that was used to wrap this key
+     * material.
      *
      * Generated from protobuf field <code>string import_job = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -181,8 +305,9 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * This field contains the concatenation of two wrapped keys:
      * <ol>
      *   <li>An ephemeral AES-256 wrapping key wrapped with the
-     *       [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP with SHA-1,
-     *       MGF1 with SHA-1, and an empty label.
+     *       [public_key][google.cloud.kms.v1.ImportJob.public_key] using
+     *       RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an
+     *       empty label.
      *   </li>
      *   <li>The key to be imported, wrapped with the ephemeral AES-256 key
      *       using AES-KWP (RFC 5649).
@@ -216,8 +341,9 @@ class ImportCryptoKeyVersionRequest extends \Google\Protobuf\Internal\Message
      * This field contains the concatenation of two wrapped keys:
      * <ol>
      *   <li>An ephemeral AES-256 wrapping key wrapped with the
-     *       [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP with SHA-1,
-     *       MGF1 with SHA-1, and an empty label.
+     *       [public_key][google.cloud.kms.v1.ImportJob.public_key] using
+     *       RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an
+     *       empty label.
      *   </li>
      *   <li>The key to be imported, wrapped with the ephemeral AES-256 key
      *       using AES-KWP (RFC 5649).

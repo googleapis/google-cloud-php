@@ -9,16 +9,19 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Write a Data Access (Gin) log
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfigDataAccessOptions</code>
  */
 class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 134461886;</code>
+     * This is deprecated and has no effect. Do not use.
+     * Check the LogMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string log_mode = 402897342;</code>
      */
-    private $log_mode = 0;
+    private $log_mode = null;
 
     /**
      * Constructor.
@@ -26,7 +29,9 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $log_mode
+     *     @type string $log_mode
+     *           This is deprecated and has no effect. Do not use.
+     *           Check the LogMode enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,22 +40,38 @@ class LogConfigDataAccessOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 134461886;</code>
-     * @return int
+     * This is deprecated and has no effect. Do not use.
+     * Check the LogMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string log_mode = 402897342;</code>
+     * @return string
      */
     public function getLogMode()
     {
-        return $this->log_mode;
+        return isset($this->log_mode) ? $this->log_mode : '';
+    }
+
+    public function hasLogMode()
+    {
+        return isset($this->log_mode);
+    }
+
+    public function clearLogMode()
+    {
+        unset($this->log_mode);
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions.LogMode log_mode = 134461886;</code>
-     * @param int $var
+     * This is deprecated and has no effect. Do not use.
+     * Check the LogMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string log_mode = 402897342;</code>
+     * @param string $var
      * @return $this
      */
     public function setLogMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\LogConfigDataAccessOptions\LogMode::class);
+        GPBUtil::checkString($var, True);
         $this->log_mode = $var;
 
         return $this;

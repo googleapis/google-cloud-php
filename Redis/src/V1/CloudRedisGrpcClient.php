@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -81,6 +81,23 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/GetInstance',
         $argument,
         ['\Google\Cloud\Redis\V1\Instance', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+     * instance the response will be empty. This information is not included in
+     * the details returned to GetInstance.
+     * @param \Google\Cloud\Redis\V1\GetInstanceAuthStringRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetInstanceAuthString(\Google\Cloud\Redis\V1\GetInstanceAuthStringRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/GetInstanceAuthString',
+        $argument,
+        ['\Google\Cloud\Redis\V1\InstanceAuthString', 'decode'],
         $metadata, $options);
     }
 
@@ -188,7 +205,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Initiates a failover of the master node to current replica node for a
+     * Initiates a failover of the primary node to current replica node for a
      * specific STANDARD tier Cloud Memorystore for Redis instance.
      * @param \Google\Cloud\Redis\V1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata
@@ -214,6 +231,22 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function DeleteInstance(\Google\Cloud\Redis\V1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/DeleteInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Reschedule maintenance for a given instance in a given project and
+     * location.
+     * @param \Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Redis\V1\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1.CloudRedis/RescheduleMaintenance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

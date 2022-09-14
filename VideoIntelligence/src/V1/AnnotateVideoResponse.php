@@ -30,7 +30,7 @@ class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\VideoAnnotationResults[]|\Google\Protobuf\Internal\RepeatedField $annotation_results
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoAnnotationResults>|\Google\Protobuf\Internal\RepeatedField $annotation_results
      *           Annotation results for all videos specified in `AnnotateVideoRequest`.
      * }
      */
@@ -54,7 +54,7 @@ class AnnotateVideoResponse extends \Google\Protobuf\Internal\Message
      * Annotation results for all videos specified in `AnnotateVideoRequest`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoAnnotationResults annotation_results = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\VideoAnnotationResults[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoAnnotationResults>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotationResults($var)

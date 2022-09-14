@@ -16,22 +16,24 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
      * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.AutoDelete auto_delete = 196325947;</code>
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
-    private $auto_delete = 0;
+    private $auto_delete = null;
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * Check the Mode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.Mode mode = 3357091;</code>
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
      */
-    private $mode = 0;
+    private $mode = null;
     /**
      * The URL of the disk resource that is stateful and should be attached to the VM instance.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = '';
+    private $source = null;
 
     /**
      * Constructor.
@@ -39,10 +41,12 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $auto_delete
+     *     @type string $auto_delete
      *           These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
-     *     @type int $mode
+     *           Check the AutoDelete enum for the list of possible values.
+     *     @type string $mode
      *           The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     *           Check the Mode enum for the list of possible values.
      *     @type string $source
      *           The URL of the disk resource that is stateful and should be attached to the VM instance.
      * }
@@ -54,25 +58,37 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
 
     /**
      * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.AutoDelete auto_delete = 196325947;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
+     * @return string
      */
     public function getAutoDelete()
     {
-        return $this->auto_delete;
+        return isset($this->auto_delete) ? $this->auto_delete : '';
+    }
+
+    public function hasAutoDelete()
+    {
+        return isset($this->auto_delete);
+    }
+
+    public function clearAutoDelete()
+    {
+        unset($this->auto_delete);
     }
 
     /**
      * These stateful disks will never be deleted during autohealing, update, instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole MIG is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.AutoDelete auto_delete = 196325947;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
+     * @param string $var
      * @return $this
      */
     public function setAutoDelete($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\PreservedStatePreservedDisk\AutoDelete::class);
+        GPBUtil::checkString($var, True);
         $this->auto_delete = $var;
 
         return $this;
@@ -80,25 +96,37 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
 
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * Check the Mode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.Mode mode = 3357091;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @return string
      */
     public function getMode()
     {
-        return $this->mode;
+        return isset($this->mode) ? $this->mode : '';
+    }
+
+    public function hasMode()
+    {
+        return isset($this->mode);
+    }
+
+    public function clearMode()
+    {
+        unset($this->mode);
     }
 
     /**
      * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
+     * Check the Mode enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.PreservedStatePreservedDisk.Mode mode = 3357091;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string mode = 3357091;</code>
+     * @param string $var
      * @return $this
      */
     public function setMode($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\PreservedStatePreservedDisk\Mode::class);
+        GPBUtil::checkString($var, True);
         $this->mode = $var;
 
         return $this;
@@ -107,18 +135,28 @@ class PreservedStatePreservedDisk extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the disk resource that is stateful and should be attached to the VM instance.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @return string
      */
     public function getSource()
     {
-        return $this->source;
+        return isset($this->source) ? $this->source : '';
+    }
+
+    public function hasSource()
+    {
+        return isset($this->source);
+    }
+
+    public function clearSource()
+    {
+        unset($this->source);
     }
 
     /**
      * The URL of the disk resource that is stateful and should be attached to the VM instance.
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @param string $var
      * @return $this
      */

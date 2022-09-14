@@ -20,9 +20,9 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>PROJECT = 140236537;</code>
+     * Generated from protobuf enum <code>PROJECT = 408671993;</code>
      */
-    const PROJECT = 140236537;
+    const PROJECT = 408671993;
     /**
      * Generated from protobuf enum <code>XPN_RESOURCE_TYPE_UNSPECIFIED = 151607034;</code>
      */

@@ -21,7 +21,6 @@ use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Core\Exception\ServiceException;
 use Google\Cloud\Storage\Bucket;
 use GuzzleHttp\Psr7\CachingStream;
-use GuzzleHttp\Psr7;
 
 /**
  * A streamWrapper implementation for handling `gs://bucket/path/to/file.jpg`.
@@ -118,6 +117,16 @@ class StreamWrapper
     public function __destruct()
     {
         $this->stream_close();
+    }
+
+    /**
+     * Starting PHP 7.4, this is called when include/require is used on a stream.
+     * Absence of this method presents a warning.
+     * https://www.php.net/manual/en/migration74.incompatible.php
+     */
+    public function stream_set_option()
+    {
+        return false;
     }
 
     /**

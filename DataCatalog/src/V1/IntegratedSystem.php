@@ -7,8 +7,7 @@ namespace Google\Cloud\DataCatalog\V1;
 use UnexpectedValueException;
 
 /**
- * This enum describes all the possible systems that Data Catalog integrates
- * with.
+ * This enum lists all the systems that Data Catalog integrates with.
  *
  * Protobuf type <code>google.cloud.datacatalog.v1.IntegratedSystem</code>
  */
@@ -32,11 +31,25 @@ class IntegratedSystem
      * Generated from protobuf enum <code>CLOUD_PUBSUB = 2;</code>
      */
     const CLOUD_PUBSUB = 2;
+    /**
+     * Dataproc Metastore.
+     *
+     * Generated from protobuf enum <code>DATAPROC_METASTORE = 3;</code>
+     */
+    const DATAPROC_METASTORE = 3;
+    /**
+     * Dataplex.
+     *
+     * Generated from protobuf enum <code>DATAPLEX = 4;</code>
+     */
+    const DATAPLEX = 4;
 
     private static $valueToName = [
         self::INTEGRATED_SYSTEM_UNSPECIFIED => 'INTEGRATED_SYSTEM_UNSPECIFIED',
         self::BIGQUERY => 'BIGQUERY',
         self::CLOUD_PUBSUB => 'CLOUD_PUBSUB',
+        self::DATAPROC_METASTORE => 'DATAPROC_METASTORE',
+        self::DATAPLEX => 'DATAPLEX',
     ];
 
     public static function name($value)

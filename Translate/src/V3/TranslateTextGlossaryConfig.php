@@ -17,8 +17,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on glossary:
+     * - User provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +40,10 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $glossary
-     *           Required. Specifies the glossary used for this translation. Use
-     *           this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     *           Required. The `glossary` to be applied for this translation.
+     *           The format depends on glossary:
+     *           - User provided custom glossary:
+     *             `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *     @type bool $ignore_case
      *           Optional. Indicates match is case-insensitive.
      *           Default value is false if missing.
@@ -51,8 +55,10 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on glossary:
+     * - User provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -63,8 +69,10 @@ class TranslateTextGlossaryConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Specifies the glossary used for this translation. Use
-     * this format: projects/&#42;&#47;locations/&#42;&#47;glossaries/&#42;
+     * Required. The `glossary` to be applied for this translation.
+     * The format depends on glossary:
+     * - User provided custom glossary:
+     *   `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`
      *
      * Generated from protobuf field <code>string glossary = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

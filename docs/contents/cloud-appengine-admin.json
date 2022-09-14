@@ -1,0 +1,43 @@
+{
+    "title": "AppEngineAdmin",
+    "defaultService": "appengineadmin\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "appengineadmin\/readme"
+        },
+        {
+            "title": "ApplicationsClient (v1)",
+            "type": "appengineadmin\/v1\/applicationsclient"
+        },
+        {
+            "title": "AuthorizedCertificatesClient (v1)",
+            "type": "appengineadmin\/v1\/authorizedcertificatesclient"
+        },
+        {
+            "title": "AuthorizedDomainsClient (v1)",
+            "type": "appengineadmin\/v1\/authorizeddomainsclient"
+        },
+        {
+            "title": "DomainMappingsClient (v1)",
+            "type": "appengineadmin\/v1\/domainmappingsclient"
+        },
+        {
+            "title": "FirewallClient (v1)",
+            "type": "appengineadmin\/v1\/firewallclient"
+        },
+        {
+            "title": "InstancesClient (v1)",
+            "type": "appengineadmin\/v1\/instancesclient"
+        },
+        {
+            "title": "ServicesClient (v1)",
+            "type": "appengineadmin\/v1\/servicesclient"
+        },
+        {
+            "title": "VersionsClient (v1)",
+            "type": "appengineadmin\/v1\/versionsclient"
+        }
+    ],
+    "pattern": "appengineadmin\/\\w{1,}"
+}

@@ -7,7 +7,7 @@ PHP Version  | Status
 ------------ | ------
 PHP 7.2 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php72.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php72.html)
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud) [![Travis Build Status](https://travis-ci.org/googleapis/google-cloud-php.svg?branch=master)](https://travis-ci.org/googleapis/google-cloud-php/) [![codecov](https://codecov.io/gh/googleapis/google-cloud-php/branch/master/graph/badge.svg)](https://codecov.io/gh/googleapis/google-cloud-php)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud)
 
 * [Homepage](http://googleapis.github.io/google-cloud-php)
 * [API Documentation](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/servicebuilder)
@@ -22,6 +22,7 @@ This client supports the following Google Cloud Platform services at a [General 
 * [Google Cloud BigQuery Data Transfer](BigQueryDataTransfer)
 * [Google Cloud BigQuery Storage](BigQueryStorage)
 * [Google Cloud Billing](Billing)
+* [Google Cloud Compute](Compute)
 * [Google Cloud Container](Container)
 * [Google Cloud Dataproc](Dataproc)
 * [Google Cloud Datastore](Datastore)
@@ -71,10 +72,6 @@ This client supports the following Google Cloud Platform services at a [Beta](#v
 * [Memorystore for Memcached](Memcache)
 * [Recommendations AI](RecommendationEngine)
 
-This client supports the following Google Cloud Platform services in development:
-
-* [Compute API](Compute)
-
 If you need support for other Google APIs, please check out the [Google APIs Client Library for PHP](https://github.com/google/google-api-php-client).
 
 ## Quick Start
@@ -96,7 +93,7 @@ $ composer require google/cloud
 
 ### Authentication
 
-Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/guides/authentication).
+Authentication is handled by the client library automatically. You just need to provide the authentication details when creating a client. Generally, authentication is accomplished using a Service Account. For more information on obtaining Service Account credentials, see our [Authentication Guide](https://cloud.google.com/docs/authentication/production#manually).
 
 Once you've obtained your credentials file, it may be used to create an authenticated client.
 
@@ -176,6 +173,11 @@ $spanner = new SpannerClient([
     'authCache' => $cache
 ]);
 ```
+
+## PHP Versions Supported
+
+All client libraries support PHP 5.6 and above, with the exception of
+[Google Cloud Compute](Compute), which supports PHP 7.0 and above.
 
 ## Versioning
 

@@ -9,7 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * [Product][google.cloud.retail.v2.Product] thumbnail/detail image.
+ * [Product][google.cloud.retail.v2.Product] image. Recommendations AI and
+ * Retail Search do not use product images to improve prediction and search
+ * results. However, product images can be returned in results, and are shown in
+ * prediction or search previews in the console.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.Image</code>
  */

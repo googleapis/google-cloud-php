@@ -48,6 +48,7 @@ class ObjectPageIterator implements \Iterator
      *
      * @return array|null
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         if (!$this->page) {

@@ -47,7 +47,6 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * If the map is empty or a specific model is
      * not requested for a language pair, then default google model (nmt) is used.
      *
@@ -56,7 +55,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
     private $models;
     /**
      * Required. Input configurations.
-     * The total number of files matched should be <= 1000.
+     * The total number of files matched should be <= 100.
      * The total content size should be <= 100M Unicode codepoints.
      * The files must use UTF-8 encoding.
      *
@@ -84,7 +83,8 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -105,7 +105,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           error is returned.
      *     @type string $source_language_code
      *           Required. Source language code.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_language_codes
      *           Required. Specify up to 10 language codes here.
      *     @type array|\Google\Protobuf\Internal\MapField $models
      *           Optional. The models to use for translation. Map's key is target language
@@ -116,12 +116,11 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *             `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      *           - General (built-in) models:
      *             `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *             `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      *           If the map is empty or a specific model is
      *           not requested for a language pair, then default google model (nmt) is used.
-     *     @type \Google\Cloud\Translate\V3\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $input_configs
+     *     @type array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $input_configs
      *           Required. Input configurations.
-     *           The total number of files matched should be <= 1000.
+     *           The total number of files matched should be <= 100.
      *           The total content size should be <= 100M Unicode codepoints.
      *           The files must use UTF-8 encoding.
      *     @type \Google\Cloud\Translate\V3\OutputConfig $output_config
@@ -137,7 +136,8 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *           (Unicode codepoints), can only contain lowercase letters, numeric
      *           characters, underscores and dashes. International characters are allowed.
      *           Label values are optional. Label keys must start with a letter.
-     *           See https://cloud.google.com/translate/docs/labels for more information.
+     *           See https://cloud.google.com/translate/docs/advanced/labels for more
+     *           information.
      * }
      */
     public function __construct($data = NULL) {
@@ -222,7 +222,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * Required. Specify up to 10 language codes here.
      *
      * Generated from protobuf field <code>repeated string target_language_codes = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetLanguageCodes($var)
@@ -242,7 +242,6 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * If the map is empty or a specific model is
      * not requested for a language pair, then default google model (nmt) is used.
      *
@@ -263,7 +262,6 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      *   `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}`
      * - General (built-in) models:
      *   `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`,
-     *   `projects/{project-number-or-id}/locations/{location-id}/models/general/base`
      * If the map is empty or a specific model is
      * not requested for a language pair, then default google model (nmt) is used.
      *
@@ -281,7 +279,7 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input configurations.
-     * The total number of files matched should be <= 1000.
+     * The total number of files matched should be <= 100.
      * The total content size should be <= 100M Unicode codepoints.
      * The files must use UTF-8 encoding.
      *
@@ -295,12 +293,12 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Input configurations.
-     * The total number of files matched should be <= 1000.
+     * The total number of files matched should be <= 100.
      * The total content size should be <= 100M Unicode codepoints.
      * The files must use UTF-8 encoding.
      *
      * Generated from protobuf field <code>repeated .google.cloud.translation.v3.InputConfig input_configs = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Translate\V3\InputConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Translate\V3\InputConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputConfigs($var)
@@ -317,11 +315,11 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * we don't generate output for duplicate inputs.
      *
      * Generated from protobuf field <code>.google.cloud.translation.v3.OutputConfig output_config = 6 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Translate\V3\OutputConfig
+     * @return \Google\Cloud\Translate\V3\OutputConfig|null
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()
@@ -385,7 +383,8 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -401,7 +400,8 @@ class BatchTranslateTextRequest extends \Google\Protobuf\Internal\Message
      * (Unicode codepoints), can only contain lowercase letters, numeric
      * characters, underscores and dashes. International characters are allowed.
      * Label values are optional. Label keys must start with a letter.
-     * See https://cloud.google.com/translate/docs/labels for more information.
+     * See https://cloud.google.com/translate/docs/advanced/labels for more
+     * information.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

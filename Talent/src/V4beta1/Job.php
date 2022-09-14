@@ -115,7 +115,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -366,7 +366,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 100,000.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $addresses
      *           Strongly recommended for the best service experience.
      *           Location(s) where the employer is looking to hire for this job posting.
      *           Specifying the full street address(es) of the hiring location enables
@@ -382,7 +382,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           The maximum number of allowed characters is 500.
      *     @type \Google\Cloud\Talent\V4beta1\Job\ApplicationInfo $application_info
      *           Job application information.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_benefits
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $job_benefits
      *           The benefits included with the job.
      *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo $compensation_info
      *           Job compensation information (a.k.a. "pay rate") i.e., the compensation
@@ -391,20 +391,20 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A map of fields to hold both filterable and non-filterable custom job
      *           attributes that are not covered by the provided structured fields.
      *           The keys of the map are strings up to 64 bytes and must match the
-     *           pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     *           pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      *           KEY_1_LIKE_THIS.
      *           At most 100 filterable and at most 100 unfilterable keys are supported.
      *           For filterable `string_values`, across all keys at most 200 values are
      *           allowed, with each string no more than 255 characters. For unfilterable
      *           `string_values`, the maximum total size of `string_values` across all keys
      *           is 50KB.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $degree_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $degree_types
      *           The desired education degrees for the job, such as Bachelors, Masters.
      *     @type string $department
      *           The department or functional area within the company with the open
      *           position.
      *           The maximum number of allowed characters is 255.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $employment_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $employment_types
      *           The employment type(s) of a job, for example,
      *           [full time][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME] or
      *           [part time][google.cloud.talent.v4beta1.EmploymentType.PART_TIME].
@@ -743,7 +743,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters is 500.
      *
      * Generated from protobuf field <code>repeated string addresses = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAddresses($var)
@@ -762,7 +762,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationInfo()
     {
-        return isset($this->application_info) ? $this->application_info : null;
+        return $this->application_info;
     }
 
     public function hasApplicationInfo()
@@ -805,7 +805,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The benefits included with the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobBenefit job_benefits = 8;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobBenefits($var)
@@ -825,7 +825,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCompensationInfo()
     {
-        return isset($this->compensation_info) ? $this->compensation_info : null;
+        return $this->compensation_info;
     }
 
     public function hasCompensationInfo()
@@ -858,7 +858,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -878,7 +878,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * A map of fields to hold both filterable and non-filterable custom job
      * attributes that are not covered by the provided structured fields.
      * The keys of the map are strings up to 64 bytes and must match the
-     * pattern: [a-zA-Z][a-zA-Z0-9_]*. For example, key0LikeThis or
+     * pattern: `[a-zA-Z][a-zA-Z0-9_]*`. For example, key0LikeThis or
      * KEY_1_LIKE_THIS.
      * At most 100 filterable and at most 100 unfilterable keys are supported.
      * For filterable `string_values`, across all keys at most 200 values are
@@ -913,7 +913,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * The desired education degrees for the job, such as Bachelors, Masters.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.DegreeType degree_types = 11;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDegreeTypes($var)
@@ -973,7 +973,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * [part time][google.cloud.talent.v4beta1.EmploymentType.PART_TIME].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentType employment_types = 13;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEmploymentTypes($var)
@@ -1271,7 +1271,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobStartTime()
     {
-        return isset($this->job_start_time) ? $this->job_start_time : null;
+        return $this->job_start_time;
     }
 
     public function hasJobStartTime()
@@ -1309,7 +1309,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobEndTime()
     {
-        return isset($this->job_end_time) ? $this->job_end_time : null;
+        return $this->job_end_time;
     }
 
     public function hasJobEndTime()
@@ -1348,7 +1348,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingPublishTime()
     {
-        return isset($this->posting_publish_time) ? $this->posting_publish_time : null;
+        return $this->posting_publish_time;
     }
 
     public function hasPostingPublishTime()
@@ -1420,7 +1420,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingExpireTime()
     {
-        return isset($this->posting_expire_time) ? $this->posting_expire_time : null;
+        return $this->posting_expire_time;
     }
 
     public function hasPostingExpireTime()
@@ -1490,7 +1490,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingCreateTime()
     {
-        return isset($this->posting_create_time) ? $this->posting_create_time : null;
+        return $this->posting_create_time;
     }
 
     public function hasPostingCreateTime()
@@ -1526,7 +1526,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPostingUpdateTime()
     {
-        return isset($this->posting_update_time) ? $this->posting_update_time : null;
+        return $this->posting_update_time;
     }
 
     public function hasPostingUpdateTime()
@@ -1588,7 +1588,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getDerivedInfo()
     {
-        return isset($this->derived_info) ? $this->derived_info : null;
+        return $this->derived_info;
     }
 
     public function hasDerivedInfo()
@@ -1624,7 +1624,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getProcessingOptions()
     {
-        return isset($this->processing_options) ? $this->processing_options : null;
+        return $this->processing_options;
     }
 
     public function hasProcessingOptions()

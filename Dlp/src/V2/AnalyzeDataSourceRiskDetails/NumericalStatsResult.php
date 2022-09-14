@@ -45,7 +45,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      *           Minimum value appearing in the column.
      *     @type \Google\Cloud\Dlp\V2\Value $max_value
      *           Maximum value appearing in the column.
-     *     @type \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $quantile_values
+     *     @type array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $quantile_values
      *           List of 99 values that partition the set of field values into 100 equal
      *           sized buckets.
      * }
@@ -63,7 +63,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      */
     public function getMinValue()
     {
-        return isset($this->min_value) ? $this->min_value : null;
+        return $this->min_value;
     }
 
     public function hasMinValue()
@@ -99,7 +99,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      */
     public function getMaxValue()
     {
-        return isset($this->max_value) ? $this->max_value : null;
+        return $this->max_value;
     }
 
     public function hasMaxValue()
@@ -144,7 +144,7 @@ class NumericalStatsResult extends \Google\Protobuf\Internal\Message
      * sized buckets.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Value quantile_values = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\Value[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Value>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setQuantileValues($var)

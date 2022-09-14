@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/networksecurity/(v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/NetworkSecurity/$1/$2
+api-name: NetworkSecurity

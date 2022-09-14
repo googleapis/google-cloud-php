@@ -3,6 +3,11 @@
 return [
     'interfaces' => [
         'google.spanner.v1.Spanner' => [
+            'ExecuteStreamingSql' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+            ],
             'ListSessions' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -11,11 +16,6 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getSessions',
-                ],
-            ],
-            'ExecuteStreamingSql' => [
-                'grpcStreaming' => [
-                    'grpcStreamingType' => 'ServerStreaming',
                 ],
             ],
             'StreamingRead' => [

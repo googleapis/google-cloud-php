@@ -1,0 +1,15 @@
+{
+    "title": "DocumentAi",
+    "defaultService": "documentai\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "documentai\/readme"
+        },
+        {
+            "title": "DocumentProcessorServiceClient (v1)",
+            "type": "documentai\/v1\/documentprocessorserviceclient"
+        }
+    ],
+    "pattern": "documentai\/\\w{1,}"
+}

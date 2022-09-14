@@ -48,7 +48,7 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
      */
     public function getHeadquartersLocation()
     {
-        return isset($this->headquarters_location) ? $this->headquarters_location : null;
+        return $this->headquarters_location;
     }
 
     public function hasHeadquartersLocation()
@@ -79,6 +79,4 @@ class DerivedInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DerivedInfo::class, \Google\Cloud\Talent\V4\Company_DerivedInfo::class);
 

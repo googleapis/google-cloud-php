@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A response message for [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
+ * A response message for
+ * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.AnalyzeIamPolicyResponse</code>
  */
@@ -30,9 +31,11 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      */
     private $service_account_impersonation_analysis;
     /**
-     * Represents whether all entries in the [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis] and
-     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis] have been fully explored to
-     * answer the query in the request.
+     * Represents whether all entries in the
+     * [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis]
+     * and
+     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]
+     * have been fully explored to answer the query in the request.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      */
@@ -46,14 +49,16 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis $main_analysis
      *           The main analysis that matches the original request.
-     *     @type \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis[]|\Google\Protobuf\Internal\RepeatedField $service_account_impersonation_analysis
+     *     @type array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $service_account_impersonation_analysis
      *           The service account impersonation analysis if
      *           [AnalyzeIamPolicyRequest.analyze_service_account_impersonation][] is
      *           enabled.
      *     @type bool $fully_explored
-     *           Represents whether all entries in the [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis] and
-     *           [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis] have been fully explored to
-     *           answer the query in the request.
+     *           Represents whether all entries in the
+     *           [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis]
+     *           and
+     *           [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]
+     *           have been fully explored to answer the query in the request.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +74,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      */
     public function getMainAnalysis()
     {
-        return isset($this->main_analysis) ? $this->main_analysis : null;
+        return $this->main_analysis;
     }
 
     public function hasMainAnalysis()
@@ -116,7 +121,7 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
      * enabled.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis service_account_impersonation_analysis = 2;</code>
-     * @param \Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\AnalyzeIamPolicyResponse\IamPolicyAnalysis>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccountImpersonationAnalysis($var)
@@ -128,9 +133,11 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all entries in the [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis] and
-     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis] have been fully explored to
-     * answer the query in the request.
+     * Represents whether all entries in the
+     * [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis]
+     * and
+     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]
+     * have been fully explored to answer the query in the request.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      * @return bool
@@ -141,9 +148,11 @@ class AnalyzeIamPolicyResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all entries in the [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis] and
-     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis] have been fully explored to
-     * answer the query in the request.
+     * Represents whether all entries in the
+     * [main_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.main_analysis]
+     * and
+     * [service_account_impersonation_analysis][google.cloud.asset.v1.AnalyzeIamPolicyResponse.service_account_impersonation_analysis]
+     * have been fully explored to answer the query in the request.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      * @param bool $var

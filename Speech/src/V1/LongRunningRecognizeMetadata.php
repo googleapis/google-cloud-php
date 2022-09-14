@@ -36,6 +36,13 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
      */
     private $last_update_time = null;
+    /**
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $uri = '';
 
     /**
      * Constructor.
@@ -50,6 +57,9 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      *           Time when the request was received.
      *     @type \Google\Protobuf\Timestamp $last_update_time
      *           Time of the most recent processing update.
+     *     @type string $uri
+     *           Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     *           as byte content.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,11 +99,11 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time when the request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -125,11 +135,11 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
      * Time of the most recent processing update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 3;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getLastUpdateTime()
     {
-        return isset($this->last_update_time) ? $this->last_update_time : null;
+        return $this->last_update_time;
     }
 
     public function hasLastUpdateTime()
@@ -153,6 +163,34 @@ class LongRunningRecognizeMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getUri()
+    {
+        return $this->uri;
+    }
+
+    /**
+     * Output only. The URI of the audio file being transcribed. Empty if the audio was sent
+     * as byte content.
+     *
+     * Generated from protobuf field <code>string uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUri($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->uri = $var;
 
         return $this;
     }

@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SubnetworkLogConfig;
 use UnexpectedValueException;
 
 /**
- * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is INCLUDE_ALL_METADATA.
+ * Can only be specified if VPC flow logs for this subnetwork is enabled. Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default is EXCLUDE_ALL_METADATA.
  *
  * Protobuf type <code>google.cloud.compute.v1.SubnetworkLogConfig.Metadata</code>
  */
@@ -24,9 +24,9 @@ class Metadata
      */
     const CUSTOM_METADATA = 62450749;
     /**
-     * Generated from protobuf enum <code>EXCLUDE_ALL_METADATA = 66084498;</code>
+     * Generated from protobuf enum <code>EXCLUDE_ALL_METADATA = 334519954;</code>
      */
-    const EXCLUDE_ALL_METADATA = 66084498;
+    const EXCLUDE_ALL_METADATA = 334519954;
     /**
      * Generated from protobuf enum <code>INCLUDE_ALL_METADATA = 164619908;</code>
      */

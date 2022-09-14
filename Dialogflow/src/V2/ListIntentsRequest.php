@@ -17,7 +17,14 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The agent to list all intents from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format: `projects/<Project ID>/agent` or `projects/<Project
+     * ID>/locations/<Location ID>/agent`.
+     * Alternatively, you can specify the environment to list intents for.
+     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     * or `projects/<Project ID>/locations/<Location
+     * ID>/agent/environments/<Environment ID>`.
+     * Note: training phrases of the intents will not be returned for non-draft
+     * environment.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,7 +67,14 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The agent to list all intents from.
-     *           Format: `projects/<Project ID>/agent`.
+     *           Format: `projects/<Project ID>/agent` or `projects/<Project
+     *           ID>/locations/<Location ID>/agent`.
+     *           Alternatively, you can specify the environment to list intents for.
+     *           Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     *           or `projects/<Project ID>/locations/<Location
+     *           ID>/agent/environments/<Environment ID>`.
+     *           Note: training phrases of the intents will not be returned for non-draft
+     *           environment.
      *     @type string $language_code
      *           Optional. The language used to access language-specific data.
      *           If not specified, the agent's default language is used.
@@ -83,7 +97,14 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all intents from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format: `projects/<Project ID>/agent` or `projects/<Project
+     * ID>/locations/<Location ID>/agent`.
+     * Alternatively, you can specify the environment to list intents for.
+     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     * or `projects/<Project ID>/locations/<Location
+     * ID>/agent/environments/<Environment ID>`.
+     * Note: training phrases of the intents will not be returned for non-draft
+     * environment.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +116,14 @@ class ListIntentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The agent to list all intents from.
-     * Format: `projects/<Project ID>/agent`.
+     * Format: `projects/<Project ID>/agent` or `projects/<Project
+     * ID>/locations/<Location ID>/agent`.
+     * Alternatively, you can specify the environment to list intents for.
+     * Format: `projects/<Project ID>/agent/environments/<Environment ID>`
+     * or `projects/<Project ID>/locations/<Location
+     * ID>/agent/environments/<Environment ID>`.
+     * Note: training phrases of the intents will not be returned for non-draft
+     * environment.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2020 Google Inc.
+ * Copyright 2021 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,9 @@
 
 namespace Google\Cloud\Compute\Tests\System\V1;
 
-use Google\Cloud\Compute\V1\ZonesClient;
 use Google\Cloud\Compute\V1\InstancesClient;
+use Google\Cloud\Compute\V1\ZonesClient;
+use Google\Cloud\Compute\V1\AcceleratorTypesClient;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -28,8 +29,10 @@ use PHPUnit\Framework\TestCase;
 class PaginationTest extends TestCase
 {
     private static $instancesClient;
+    private static $acceleratorTypesClient;
     private static $zonesClient;
     private static $projectId;
+    private static $zone;
 
     public static function setUpBeforeClass(): void
     {
@@ -39,23 +42,26 @@ class PaginationTest extends TestCase
         }
         self::$instancesClient = new InstancesClient();
         self::$zonesClient = new ZonesClient();
+        self::$acceleratorTypesClient = new AcceleratorTypesClient();
+        self::$zone = 'us-central1-a';
     }
 
     public static function tearDownAfterClass(): void
     {
         self::$instancesClient->close();
         self::$zonesClient->close();
+        self::$acceleratorTypesClient->close();
     }
 
     public function testPageToken()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
         $page = $response->getPage();
         $pageToken = $page->getNextPageToken();
-        $nextPage = self::$zonesClient->list_(
+        $nextPage = self::$zonesClient->list(
             self::$projectId,
             ['pageToken'=>$pageToken, 'maxResults' => 5]
         )->getPage();
@@ -66,7 +72,7 @@ class PaginationTest extends TestCase
 
     public function testNextPage()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 1]
         );
@@ -79,7 +85,7 @@ class PaginationTest extends TestCase
 
     public function  testNextPageSize()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 5]
         );
@@ -91,13 +97,47 @@ class PaginationTest extends TestCase
 
     public function testMaxResults()
     {
-        $response = self::$zonesClient->list_(
+        $response = self::$zonesClient->list(
             self::$projectId,
             ['maxResults' => 10]
         );
         $page = $response->getPage();
         $arr = iterator_to_array($page->getIterator());
         self::assertCount(10, $arr);
+    }
+
+    public function testAutoPaginationList()
+    {
+        $response = self::$acceleratorTypesClient->list(
+            self::$projectId,
+            self::$zone,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $element){
+            if ($element->getName() == 'nvidia-tesla-t4'){
+                $presented = true;
+            }
+        }
+        self::assertTrue($presented);
+    }
+
+    public function testAutoPaginationMapResponse()
+    {
+        $response = self::$acceleratorTypesClient->aggregatedList(
+            self::$projectId,
+            ['maxResults' => 2]
+        );
+        $presented = false;
+        foreach ($response->iterateAllElements() as $zone => $element){
+            $types = $element->getAcceleratorTypes();
+            foreach ($types as $type){
+                if ($type->getName() == 'nvidia-tesla-t4'){
+                    $presented = true;
+                }
+            }
+        }
+        self::assertTrue($presented);
     }
 
     public function testAggregatedPageToken()

@@ -25,7 +25,7 @@ use Google\Auth\HttpHandler\HttpHandlerFactory;
 use Google\Cloud\Core\RequestWrapperTrait;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -304,7 +304,7 @@ class RequestWrapper
             }
         }
 
-        return Psr7\modify_request($request, ['set_headers' => $headers]);
+        return Utils::modifyRequest($request, ['set_headers' => $headers]);
     }
 
     /**

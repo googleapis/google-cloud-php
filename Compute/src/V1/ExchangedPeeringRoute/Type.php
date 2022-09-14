@@ -20,17 +20,23 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
-     * Generated from protobuf enum <code>DYNAMIC_PEERING_ROUTE = 201359402;</code>
+     * For routes exported from local network.
+     *
+     * Generated from protobuf enum <code>DYNAMIC_PEERING_ROUTE = 469794858;</code>
      */
-    const DYNAMIC_PEERING_ROUTE = 201359402;
+    const DYNAMIC_PEERING_ROUTE = 469794858;
     /**
-     * Generated from protobuf enum <code>STATIC_PEERING_ROUTE = 204972089;</code>
+     * The peering route.
+     *
+     * Generated from protobuf enum <code>STATIC_PEERING_ROUTE = 473407545;</code>
      */
-    const STATIC_PEERING_ROUTE = 204972089;
+    const STATIC_PEERING_ROUTE = 473407545;
     /**
-     * Generated from protobuf enum <code>SUBNET_PEERING_ROUTE = 197347048;</code>
+     * The peering route corresponding to subnetwork range.
+     *
+     * Generated from protobuf enum <code>SUBNET_PEERING_ROUTE = 465782504;</code>
      */
-    const SUBNET_PEERING_ROUTE = 197347048;
+    const SUBNET_PEERING_ROUTE = 465782504;
 
     private static $valueToName = [
         self::UNDEFINED_TYPE => 'UNDEFINED_TYPE',

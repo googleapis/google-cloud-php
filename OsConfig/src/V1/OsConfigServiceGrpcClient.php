@@ -172,4 +172,51 @@ class OsConfigServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Update an OS Config patch deployment.
+     * @param \Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdatePatchDeployment(\Google\Cloud\OsConfig\V1\UpdatePatchDeploymentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.osconfig.v1.OsConfigService/UpdatePatchDeployment',
+        $argument,
+        ['\Google\Cloud\OsConfig\V1\PatchDeployment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Change state of patch deployment to "PAUSED".
+     * Patch deployment in paused state doesn't generate patch jobs.
+     * @param \Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PausePatchDeployment(\Google\Cloud\OsConfig\V1\PausePatchDeploymentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.osconfig.v1.OsConfigService/PausePatchDeployment',
+        $argument,
+        ['\Google\Cloud\OsConfig\V1\PatchDeployment', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Change state of patch deployment back to "ACTIVE".
+     * Patch deployment in active state continues to generate patch jobs.
+     * @param \Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ResumePatchDeployment(\Google\Cloud\OsConfig\V1\ResumePatchDeploymentRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.osconfig.v1.OsConfigService/ResumePatchDeployment',
+        $argument,
+        ['\Google\Cloud\OsConfig\V1\PatchDeployment', 'decode'],
+        $metadata, $options);
+    }
+
 }

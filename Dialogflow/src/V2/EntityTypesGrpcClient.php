@@ -64,6 +64,10 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates an entity type in the specified agent.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\CreateEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -79,6 +83,10 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates the specified entity type.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\UpdateEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -94,6 +102,10 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Deletes the specified entity type.
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\DeleteEntityTypeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,7 +122,17 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
     /**
      * Updates/Creates multiple entity types in the specified agent.
      *
-     * Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -127,7 +149,18 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes entity types in the specified agent.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteEntityTypesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -144,7 +177,18 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
     /**
      * Creates multiple new entities in the specified entity type.
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
+     *
+     * - `metadata`: An empty [Struct
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchCreateEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -163,8 +207,19 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
      * method does not affect entities in the entity type that aren't explicitly
      * specified in the request.
      *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * - `metadata`: An empty [Struct
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
+     *
      * @param \Google\Cloud\Dialogflow\V2\BatchUpdateEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -181,8 +236,18 @@ class EntityTypesGrpcClient extends \Grpc\BaseStub {
     /**
      * Deletes entities in the specified entity type.
      *
+     * This method is a [long-running
+     * operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+     * The returned `Operation` type has the following method-specific fields:
      *
-     * Operation <response: [google.protobuf.Empty][google.protobuf.Empty]>
+     * - `metadata`: An empty [Struct
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+     * - `response`: An [Empty
+     *   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+     *
+     * Note: You should always train an agent prior to sending it queries. See the
+     * [training
+     * documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @param \Google\Cloud\Dialogflow\V2\BatchDeleteEntitiesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

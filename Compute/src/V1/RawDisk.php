@@ -17,22 +17,23 @@ class RawDisk extends \Google\Protobuf\Internal\Message
 {
     /**
      * The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.
+     * Check the ContainerType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RawDisk.ContainerType container_type = 50373688;</code>
+     * Generated from protobuf field <code>optional string container_type = 318809144;</code>
      */
-    private $container_type = 0;
+    private $container_type = null;
     /**
      * [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *
-     * Generated from protobuf field <code>string sha1_checksum = 46008893;</code>
+     * Generated from protobuf field <code>optional string sha1_checksum = 314444349;</code>
      */
-    private $sha1_checksum = '';
+    private $sha1_checksum = null;
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      */
-    private $source = '';
+    private $source = null;
 
     /**
      * Constructor.
@@ -40,12 +41,13 @@ class RawDisk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $container_type
+     *     @type string $container_type
      *           The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.
+     *           Check the ContainerType enum for the list of possible values.
      *     @type string $sha1_checksum
      *           [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *     @type string $source
-     *           The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     *           The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      * }
      */
     public function __construct($data = NULL) {
@@ -55,25 +57,37 @@ class RawDisk extends \Google\Protobuf\Internal\Message
 
     /**
      * The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.
+     * Check the ContainerType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RawDisk.ContainerType container_type = 50373688;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string container_type = 318809144;</code>
+     * @return string
      */
     public function getContainerType()
     {
-        return $this->container_type;
+        return isset($this->container_type) ? $this->container_type : '';
+    }
+
+    public function hasContainerType()
+    {
+        return isset($this->container_type);
+    }
+
+    public function clearContainerType()
+    {
+        unset($this->container_type);
     }
 
     /**
      * The format used to encode and transmit the block device, which should be TAR. This is just a container and transmission format and not a runtime format. Provided by the client when the disk image is created.
+     * Check the ContainerType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RawDisk.ContainerType container_type = 50373688;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string container_type = 318809144;</code>
+     * @param string $var
      * @return $this
      */
     public function setContainerType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\RawDisk\ContainerType::class);
+        GPBUtil::checkString($var, True);
         $this->container_type = $var;
 
         return $this;
@@ -82,18 +96,28 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     /**
      * [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *
-     * Generated from protobuf field <code>string sha1_checksum = 46008893;</code>
+     * Generated from protobuf field <code>optional string sha1_checksum = 314444349;</code>
      * @return string
      */
     public function getSha1Checksum()
     {
-        return $this->sha1_checksum;
+        return isset($this->sha1_checksum) ? $this->sha1_checksum : '';
+    }
+
+    public function hasSha1Checksum()
+    {
+        return isset($this->sha1_checksum);
+    }
+
+    public function clearSha1Checksum()
+    {
+        unset($this->sha1_checksum);
     }
 
     /**
      * [Deprecated] This field is deprecated. An optional SHA1 checksum of the disk image before unpackaging provided by the client when the disk image is created.
      *
-     * Generated from protobuf field <code>string sha1_checksum = 46008893;</code>
+     * Generated from protobuf field <code>optional string sha1_checksum = 314444349;</code>
      * @param string $var
      * @return $this
      */
@@ -106,20 +130,30 @@ class RawDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @return string
      */
     public function getSource()
     {
-        return $this->source;
+        return isset($this->source) ? $this->source : '';
+    }
+
+    public function hasSource()
+    {
+        return isset($this->source);
+    }
+
+    public function clearSource()
+    {
+        unset($this->source);
     }
 
     /**
-     * The full Google Cloud Storage URL where the disk image is stored. You must provide either this property or the sourceDisk property but not both.
+     * The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL 
      *
-     * Generated from protobuf field <code>string source = 177235995;</code>
+     * Generated from protobuf field <code>optional string source = 177235995;</code>
      * @param string $var
      * @return $this
      */

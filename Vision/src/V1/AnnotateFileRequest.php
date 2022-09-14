@@ -87,7 +87,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -149,7 +149,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return isset($this->image_context) ? $this->image_context : null;
+        return $this->image_context;
     }
 
     public function hasImageContext()

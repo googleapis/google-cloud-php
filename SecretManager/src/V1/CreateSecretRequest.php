@@ -129,7 +129,7 @@ class CreateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecret()
     {
-        return isset($this->secret) ? $this->secret : null;
+        return $this->secret;
     }
 
     public function hasSecret()

@@ -18,33 +18,31 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      *
-     * Generated from protobuf field <code>int32 drain_timeout_seconds = 89271642;</code>
+     * Generated from protobuf field <code>optional int32 drain_timeout_seconds = 357707098;</code>
      */
-    private $drain_timeout_seconds = 0;
+    private $drain_timeout_seconds = null;
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      */
     private $region = '';
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      */
-    private $request_id = '';
+    private $request_id = null;
     /**
      * Name of the Subnetwork resource to patch.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $subnetwork = '';
     /**
@@ -67,9 +65,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           Name of the region scoping this request.
      *     @type string $request_id
-     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     *           For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     *           The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type string $subnetwork
      *           Name of the Subnetwork resource to patch.
      *     @type \Google\Cloud\Compute\V1\Subnetwork $subnetwork_resource
@@ -84,18 +80,28 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      *
-     * Generated from protobuf field <code>int32 drain_timeout_seconds = 89271642;</code>
+     * Generated from protobuf field <code>optional int32 drain_timeout_seconds = 357707098;</code>
      * @return int
      */
     public function getDrainTimeoutSeconds()
     {
-        return $this->drain_timeout_seconds;
+        return isset($this->drain_timeout_seconds) ? $this->drain_timeout_seconds : 0;
+    }
+
+    public function hasDrainTimeoutSeconds()
+    {
+        return isset($this->drain_timeout_seconds);
+    }
+
+    public function clearDrainTimeoutSeconds()
+    {
+        unset($this->drain_timeout_seconds);
     }
 
     /**
      * The drain timeout specifies the upper bound in seconds on the amount of time allowed to drain connections from the current ACTIVE subnetwork to the current BACKUP subnetwork. The drain timeout is only applicable when the following conditions are true: - the subnetwork being patched has purpose = INTERNAL_HTTPS_LOAD_BALANCER - the subnetwork being patched has role = BACKUP - the patch request is setting the role to ACTIVE. Note that after this patch operation the roles of the ACTIVE and BACKUP subnetworks will be swapped.
      *
-     * Generated from protobuf field <code>int32 drain_timeout_seconds = 89271642;</code>
+     * Generated from protobuf field <code>optional int32 drain_timeout_seconds = 357707098;</code>
      * @param int $var
      * @return $this
      */
@@ -110,7 +116,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -121,7 +127,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -136,7 +142,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @return string
      */
     public function getRegion()
@@ -147,7 +153,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the region scoping this request.
      *
-     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string region = 138946292 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "region"];</code>
      * @param string $var
      * @return $this
      */
@@ -160,24 +166,30 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @return string
      */
     public function getRequestId()
     {
-        return $this->request_id;
+        return isset($this->request_id) ? $this->request_id : '';
+    }
+
+    public function hasRequestId()
+    {
+        return isset($this->request_id);
+    }
+
+    public function clearRequestId()
+    {
+        unset($this->request_id);
     }
 
     /**
-     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.
-     * For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.
-     * The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *
-     * Generated from protobuf field <code>string request_id = 37109963;</code>
+     * Generated from protobuf field <code>optional string request_id = 37109963;</code>
      * @param string $var
      * @return $this
      */
@@ -192,7 +204,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the Subnetwork resource to patch.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getSubnetwork()
@@ -203,7 +215,7 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the Subnetwork resource to patch.
      *
-     * Generated from protobuf field <code>string subnetwork = 39392238 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string subnetwork = 307827694 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -219,11 +231,11 @@ class PatchSubnetworkRequest extends \Google\Protobuf\Internal\Message
      * The body resource for this request
      *
      * Generated from protobuf field <code>.google.cloud.compute.v1.Subnetwork subnetwork_resource = 42233151 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Compute\V1\Subnetwork
+     * @return \Google\Cloud\Compute\V1\Subnetwork|null
      */
     public function getSubnetworkResource()
     {
-        return isset($this->subnetwork_resource) ? $this->subnetwork_resource : null;
+        return $this->subnetwork_resource;
     }
 
     public function hasSubnetworkResource()

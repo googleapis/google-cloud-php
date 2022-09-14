@@ -95,7 +95,7 @@ class BatchCreateSessionsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSessionTemplate()
     {
-        return isset($this->session_template) ? $this->session_template : null;
+        return $this->session_template;
     }
 
     public function hasSessionTemplate()

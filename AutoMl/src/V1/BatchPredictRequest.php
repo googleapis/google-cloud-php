@@ -225,7 +225,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -262,7 +262,7 @@ class BatchPredictRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()

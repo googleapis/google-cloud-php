@@ -53,7 +53,7 @@ class InfoTypeStats extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return isset($this->info_type) ? $this->info_type : null;
+        return $this->info_type;
     }
 
     public function hasInfoType()

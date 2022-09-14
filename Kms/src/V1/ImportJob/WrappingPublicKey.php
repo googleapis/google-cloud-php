@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The public key component of the wrapping key. For details of the type of
- * key this public key corresponds to, see the [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod].
+ * key this public key corresponds to, see the
+ * [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ImportJob.WrappingPublicKey</code>
  */

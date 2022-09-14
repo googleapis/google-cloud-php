@@ -1,0 +1,23 @@
+{
+    "title": "DataprocMetastore",
+    "defaultService": "dataprocmetastore\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dataprocmetastore\/readme"
+        },
+        {
+            "title": "DataprocMetastoreClient (v1)",
+            "type": "dataprocmetastore\/v1\/dataprocmetastoreclient"
+        },
+        {
+            "title": "DataprocMetastoreClient (v1alpha)",
+            "type": "dataprocmetastore\/v1alpha\/dataprocmetastoreclient"
+        },
+        {
+            "title": "DataprocMetastoreClient (v1beta)",
+            "type": "dataprocmetastore\/v1beta\/dataprocmetastoreclient"
+        }
+    ],
+    "pattern": "dataprocmetastore\/\\w{1,}"
+}

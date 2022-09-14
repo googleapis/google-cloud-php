@@ -7,16 +7,60 @@ return [
                 'method' => 'delete',
                 'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
                 'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
                     'breakpoint_id' => [
                         'getters' => [
                             'getBreakpointId',
                         ],
                     ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'client_version',
+                ],
+            ],
+            'GetBreakpoint' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
+                'placeholders' => [
+                    'breakpoint_id' => [
+                        'getters' => [
+                            'getBreakpointId',
+                        ],
+                    ],
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'client_version',
+                ],
+            ],
+            'ListBreakpoints' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints',
+                'placeholders' => [
+                    'debuggee_id' => [
+                        'getters' => [
+                            'getDebuggeeId',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'client_version',
+                ],
+            ],
+            'ListDebuggees' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/debugger/debuggees',
+                'queryParams' => [
+                    'project',
+                    'client_version',
                 ],
             ],
             'SetBreakpoint' => [
@@ -30,37 +74,9 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'GetBreakpoint' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints/{breakpoint_id}',
-                'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
-                    'breakpoint_id' => [
-                        'getters' => [
-                            'getBreakpointId',
-                        ],
-                    ],
+                'queryParams' => [
+                    'client_version',
                 ],
-            ],
-            'ListBreakpoints' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/debugger/debuggees/{debuggee_id}/breakpoints',
-                'placeholders' => [
-                    'debuggee_id' => [
-                        'getters' => [
-                            'getDebuggeeId',
-                        ],
-                    ],
-                ],
-            ],
-            'ListDebuggees' => [
-                'method' => 'get',
-                'uriTemplate' => '/v2/debugger/debuggees',
             ],
         ],
     ],

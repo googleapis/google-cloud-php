@@ -51,11 +51,11 @@ class ProvisionAccountTicketRequest extends \Google\Protobuf\Internal\Message
      * The account to create.
      *
      * Generated from protobuf field <code>.google.analytics.admin.v1alpha.Account account = 1;</code>
-     * @return \Google\Analytics\Admin\V1alpha\Account
+     * @return \Google\Analytics\Admin\V1alpha\Account|null
      */
     public function getAccount()
     {
-        return isset($this->account) ? $this->account : null;
+        return $this->account;
     }
 
     public function hasAccount()

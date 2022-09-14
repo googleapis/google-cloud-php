@@ -77,7 +77,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      *           The progress, in documents, of this operation.
      *     @type \Google\Cloud\Firestore\Admin\V1\Progress $progress_bytes
      *           The progress, in bytes, of this operation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $collection_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $collection_ids
      *           Which collection ids are being exported.
      *     @type string $output_uri_prefix
      *           Where the entities are being exported to.
@@ -96,7 +96,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -133,7 +133,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -196,7 +196,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressDocuments()
     {
-        return isset($this->progress_documents) ? $this->progress_documents : null;
+        return $this->progress_documents;
     }
 
     public function hasProgressDocuments()
@@ -232,7 +232,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgressBytes()
     {
-        return isset($this->progress_bytes) ? $this->progress_bytes : null;
+        return $this->progress_bytes;
     }
 
     public function hasProgressBytes()
@@ -275,7 +275,7 @@ class ExportDocumentsMetadata extends \Google\Protobuf\Internal\Message
      * Which collection ids are being exported.
      *
      * Generated from protobuf field <code>repeated string collection_ids = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCollectionIds($var)

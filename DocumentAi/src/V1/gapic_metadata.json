@@ -1,0 +1,113 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.documentai.v1",
+    "libraryPackage": "Google\\Cloud\\DocumentAI\\V1",
+    "services": {
+        "DocumentProcessorService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DocumentProcessorServiceGapicClient",
+                    "rpcs": {
+                        "BatchProcessDocuments": {
+                            "methods": [
+                                "batchProcessDocuments"
+                            ]
+                        },
+                        "CreateProcessor": {
+                            "methods": [
+                                "createProcessor"
+                            ]
+                        },
+                        "DeleteProcessor": {
+                            "methods": [
+                                "deleteProcessor"
+                            ]
+                        },
+                        "DeleteProcessorVersion": {
+                            "methods": [
+                                "deleteProcessorVersion"
+                            ]
+                        },
+                        "DeployProcessorVersion": {
+                            "methods": [
+                                "deployProcessorVersion"
+                            ]
+                        },
+                        "DisableProcessor": {
+                            "methods": [
+                                "disableProcessor"
+                            ]
+                        },
+                        "EnableProcessor": {
+                            "methods": [
+                                "enableProcessor"
+                            ]
+                        },
+                        "FetchProcessorTypes": {
+                            "methods": [
+                                "fetchProcessorTypes"
+                            ]
+                        },
+                        "GetProcessor": {
+                            "methods": [
+                                "getProcessor"
+                            ]
+                        },
+                        "GetProcessorVersion": {
+                            "methods": [
+                                "getProcessorVersion"
+                            ]
+                        },
+                        "ListProcessorTypes": {
+                            "methods": [
+                                "listProcessorTypes"
+                            ]
+                        },
+                        "ListProcessorVersions": {
+                            "methods": [
+                                "listProcessorVersions"
+                            ]
+                        },
+                        "ListProcessors": {
+                            "methods": [
+                                "listProcessors"
+                            ]
+                        },
+                        "ProcessDocument": {
+                            "methods": [
+                                "processDocument"
+                            ]
+                        },
+                        "ReviewDocument": {
+                            "methods": [
+                                "reviewDocument"
+                            ]
+                        },
+                        "SetDefaultProcessorVersion": {
+                            "methods": [
+                                "setDefaultProcessorVersion"
+                            ]
+                        },
+                        "UndeployProcessorVersion": {
+                            "methods": [
+                                "undeployProcessorVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

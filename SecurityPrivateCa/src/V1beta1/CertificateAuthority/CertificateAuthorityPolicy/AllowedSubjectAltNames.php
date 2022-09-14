@@ -20,11 +20,11 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Contains valid, fully-qualified host names. Glob patterns are also
      * supported. To allow an explicit wildcard certificate, escape with
-     * backlash (i.e. "\*").
-     * E.g. for globbed entries: '*bar.com' will allow foo.bar.com, but not
-     * *.bar.com, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
-     * E.g. for wildcard entries: '\*.bar.com' will allow '*.bar.com', but not
-     * 'foo.bar.com'.
+     * backlash (i.e. `\*`).
+     * E.g. for globbed entries: `*bar.com` will allow `foo.bar.com`, but not
+     * `*.bar.com`, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
+     * E.g. for wildcard entries: `\*.bar.com` will allow `*.bar.com`, but not
+     * `foo.bar.com`.
      *
      * Generated from protobuf field <code>repeated string allowed_dns_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -73,22 +73,22 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_dns_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_dns_names
      *           Optional. Contains valid, fully-qualified host names. Glob patterns are also
      *           supported. To allow an explicit wildcard certificate, escape with
-     *           backlash (i.e. "\*").
-     *           E.g. for globbed entries: '*bar.com' will allow foo.bar.com, but not
-     *           *.bar.com, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
-     *           E.g. for wildcard entries: '\*.bar.com' will allow '*.bar.com', but not
-     *           'foo.bar.com'.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_uris
+     *           backlash (i.e. `\*`).
+     *           E.g. for globbed entries: `*bar.com` will allow `foo.bar.com`, but not
+     *           `*.bar.com`, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
+     *           E.g. for wildcard entries: `\*.bar.com` will allow `*.bar.com`, but not
+     *           `foo.bar.com`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_uris
      *           Optional. Contains valid RFC 3986 URIs. Glob patterns are also supported. To
      *           match across path seperators (i.e. '/') use the double star glob
      *           pattern (i.e. '**').
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_email_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_email_addresses
      *           Optional. Contains valid RFC 2822 E-mail addresses. Glob patterns are also
      *           supported.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_ips
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_ips
      *           Optional. Contains valid 32-bit IPv4 addresses and subnet ranges or RFC 4291 IPv6
      *           addresses and subnet ranges. Subnet ranges are specified using the
      *           '/' notation (e.g. 10.0.0.0/8, 2001:700:300:1800::/64). Glob patterns
@@ -108,11 +108,11 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Contains valid, fully-qualified host names. Glob patterns are also
      * supported. To allow an explicit wildcard certificate, escape with
-     * backlash (i.e. "\*").
-     * E.g. for globbed entries: '*bar.com' will allow foo.bar.com, but not
-     * *.bar.com, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
-     * E.g. for wildcard entries: '\*.bar.com' will allow '*.bar.com', but not
-     * 'foo.bar.com'.
+     * backlash (i.e. `\*`).
+     * E.g. for globbed entries: `*bar.com` will allow `foo.bar.com`, but not
+     * `*.bar.com`, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
+     * E.g. for wildcard entries: `\*.bar.com` will allow `*.bar.com`, but not
+     * `foo.bar.com`.
      *
      * Generated from protobuf field <code>repeated string allowed_dns_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -125,14 +125,14 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Contains valid, fully-qualified host names. Glob patterns are also
      * supported. To allow an explicit wildcard certificate, escape with
-     * backlash (i.e. "\*").
-     * E.g. for globbed entries: '*bar.com' will allow foo.bar.com, but not
-     * *.bar.com, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
-     * E.g. for wildcard entries: '\*.bar.com' will allow '*.bar.com', but not
-     * 'foo.bar.com'.
+     * backlash (i.e. `\*`).
+     * E.g. for globbed entries: `*bar.com` will allow `foo.bar.com`, but not
+     * `*.bar.com`, unless the [allow_globbing_dns_wildcards][google.cloud.security.privateca.v1beta1.CertificateAuthority.CertificateAuthorityPolicy.AllowedSubjectAltNames.allow_globbing_dns_wildcards] field is set.
+     * E.g. for wildcard entries: `\*.bar.com` will allow `*.bar.com`, but not
+     * `foo.bar.com`.
      *
      * Generated from protobuf field <code>repeated string allowed_dns_names = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedDnsNames($var)
@@ -162,7 +162,7 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
      * pattern (i.e. '**').
      *
      * Generated from protobuf field <code>repeated string allowed_uris = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedUris($var)
@@ -190,7 +190,7 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
      * supported.
      *
      * Generated from protobuf field <code>repeated string allowed_email_addresses = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedEmailAddresses($var)
@@ -222,7 +222,7 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
      * are supported only for ip address entries (i.e. not for subnet ranges).
      *
      * Generated from protobuf field <code>repeated string allowed_ips = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedIps($var)
@@ -289,6 +289,4 @@ class AllowedSubjectAltNames extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AllowedSubjectAltNames::class, \Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority_CertificateAuthorityPolicy_AllowedSubjectAltNames::class);
 

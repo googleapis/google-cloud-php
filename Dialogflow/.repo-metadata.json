@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-dialogflow",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-dialogflow/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-dialogflow/latest",
+    "library_type": "GAPIC_AUTO"
 }

@@ -12,9 +12,9 @@ use Google\Protobuf\Internal\GPBUtil;
  * A request to create a data transfer configuration. If new credentials are
  * needed for this transfer configuration, an authorization code must be
  * provided. If an authorization code is provided, the transfer configuration
- * will be associated with the user id corresponding to the
- * authorization code. Otherwise, the transfer configuration will be associated
- * with the calling user.
+ * will be associated with the user id corresponding to the authorization code.
+ * Otherwise, the transfer configuration will be associated with the calling
+ * user.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.datatransfer.v1.CreateTransferConfigRequest</code>
  */
@@ -164,7 +164,7 @@ class CreateTransferConfigRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransferConfig()
     {
-        return isset($this->transfer_config) ? $this->transfer_config : null;
+        return $this->transfer_config;
     }
 
     public function hasTransferConfig()

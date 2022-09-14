@@ -23,17 +23,17 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      */
     private $enable_kerberos = false;
     /**
-     * Required. The Cloud Storage URI of a KMS encrypted file containing the root
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      * principal password.
      *
-     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $root_principal_password_uri = '';
     /**
-     * Required. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The uri of the KMS key used to encrypt various sensitive
      * files.
      *
-     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $kms_key_uri = '';
     /**
@@ -138,10 +138,10 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Flag to indicate whether to Kerberize the cluster (default: false). Set
      *           this field to true to enable Kerberos on a cluster.
      *     @type string $root_principal_password_uri
-     *           Required. The Cloud Storage URI of a KMS encrypted file containing the root
+     *           Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      *           principal password.
      *     @type string $kms_key_uri
-     *           Required. The uri of the KMS key used to encrypt various sensitive
+     *           Optional. The uri of the KMS key used to encrypt various sensitive
      *           files.
      *     @type string $keystore_uri
      *           Optional. The Cloud Storage URI of the keystore file used for SSL
@@ -222,10 +222,10 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Storage URI of a KMS encrypted file containing the root
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      * principal password.
      *
-     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getRootPrincipalPasswordUri()
@@ -234,10 +234,10 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The Cloud Storage URI of a KMS encrypted file containing the root
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the root
      * principal password.
      *
-     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string root_principal_password_uri = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
@@ -250,10 +250,10 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The uri of the KMS key used to encrypt various sensitive
      * files.
      *
-     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getKmsKeyUri()
@@ -262,10 +262,10 @@ class KerberosConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The uri of the KMS key used to encrypt various sensitive
+     * Optional. The uri of the KMS key used to encrypt various sensitive
      * files.
      *
-     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string kms_key_uri = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

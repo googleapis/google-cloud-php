@@ -78,7 +78,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return isset($this->instance) ? $this->instance : null;
+        return $this->instance;
     }
 
     public function hasInstance()
@@ -116,7 +116,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -156,7 +156,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCancelTime()
     {
-        return isset($this->cancel_time) ? $this->cancel_time : null;
+        return $this->cancel_time;
     }
 
     public function hasCancelTime()
@@ -194,7 +194,7 @@ class CreateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

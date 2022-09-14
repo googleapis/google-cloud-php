@@ -10,8 +10,10 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * The export asset response. This message is returned by the
- * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation] method in the returned
- * [google.longrunning.Operation.response][google.longrunning.Operation.response] field.
+ * [google.longrunning.Operations.GetOperation][google.longrunning.Operations.GetOperation]
+ * method in the returned
+ * [google.longrunning.Operation.response][google.longrunning.Operation.response]
+ * field.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ExportAssetsResponse</code>
  */
@@ -71,7 +73,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getReadTime()
     {
-        return isset($this->read_time) ? $this->read_time : null;
+        return $this->read_time;
     }
 
     public function hasReadTime()
@@ -107,7 +109,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()
@@ -147,7 +149,7 @@ class ExportAssetsResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputResult()
     {
-        return isset($this->output_result) ? $this->output_result : null;
+        return $this->output_result;
     }
 
     public function hasOutputResult()

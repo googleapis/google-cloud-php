@@ -28,6 +28,7 @@ use Google\Cloud\Core\LongRunning\LROTrait;
 use Google\Cloud\Core\Retry;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
 use Google\Cloud\Spanner\Admin\Database\V1\Database\State;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Connection\IamDatabase;
@@ -114,6 +115,8 @@ class Database
     const TYPE_ARRAY = TypeCode::PBARRAY;
     const TYPE_STRUCT = TypeCode::STRUCT;
     const TYPE_NUMERIC = TypeCode::NUMERIC;
+    const TYPE_PG_NUMERIC = 'pgNumeric';
+    const TYPE_JSON = TypeCode::JSON;
 
     /**
      * @var ConnectionInterface
@@ -402,13 +405,13 @@ class Database
     public function create(array $options = [])
     {
         $statements = $this->pluck('statements', $options, false) ?: [];
+        $dialect = isset($options['databaseDialect']) ? $options['databaseDialect'] : null;
 
-        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
-        $statement = sprintf('CREATE DATABASE `%s`', $databaseId);
+        $createStatement = $this->getCreateDbStatement($dialect);
 
         $operation = $this->connection->createDatabase([
             'instance' => $this->instance->name(),
-            'createStatement' => $statement,
+            'createStatement' => $createStatement,
             'extraStatements' => $statements
         ] + $options);
 
@@ -717,6 +720,8 @@ class Database
      *           **Defaults to** `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @return Transaction
      * @throws \BadMethodCallException If attempting to call this method within
@@ -818,6 +823,8 @@ class Database
      *           `false`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type string $tag A transaction tag. Requests made using this transaction will
+     *           use this as the transaction tag.
      * }
      * @return mixed The return value of `$operation`.
      * @throws \RuntimeException If a transaction is not committed or rolled back.
@@ -920,7 +927,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insert($table, array $data, array $options = [])
@@ -959,7 +976,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertBatch($table, array $dataSet, array $options = [])
@@ -995,7 +1022,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function update($table, array $data, array $options = [])
@@ -1031,7 +1068,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function updateBatch($table, array $dataSet, array $options = [])
@@ -1068,7 +1115,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to insert or update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdate($table, array $data, array $options = [])
@@ -1106,7 +1163,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to insert or update.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function insertOrUpdateBatch($table, array $dataSet, array $options = [])
@@ -1143,7 +1210,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $data The row data to replace.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function replace($table, array $data, array $options = [])
@@ -1181,7 +1258,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param array $dataSet The row data to replace.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function replaceBatch($table, array $dataSet, array $options = [])
@@ -1221,7 +1308,17 @@ class Database
      *
      * @param string $table The table to mutate.
      * @param KeySet $keySet The KeySet to identify rows to delete.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use
+     *         transactions.
+     * }
      * @return Timestamp The commit Timestamp.
      */
     public function delete($table, KeySet $keySet, array $options = [])
@@ -1469,12 +1566,20 @@ class Database
      *           query execution. Executing a SQL statement with an invalid
      *           optimizer version will fail with a syntax error
      *           (`INVALID_ARGUMENT`) status.
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only
+     *         transactions.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function execute($sql, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->pluck('session', $options, false)
             ?: $this->selectSession(
                 SessionPoolInterface::CONTEXT_READ,
@@ -1601,11 +1706,18 @@ class Database
      *           {@see Google\Cloud\Spanner\ArrayType} to declare the array
      *           parameter types. Likewise, for structs, use
      *           {@see Google\Cloud\Spanner\StructType}.
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for partitioned DML.
      * }
      * @return int The number of rows modified.
      */
     public function executePartitionedUpdate($statement, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(SessionPoolInterface::CONTEXT_READWRITE);
 
         $transaction = $this->operation->transaction($session, [
@@ -1726,12 +1838,19 @@ class Database
      *           **Defaults to** `SessionPoolInterface::CONTEXT_READ`.
      *     @type array $sessionOptions Session configuration and request options.
      *           Session labels may be applied using the `labels` key.
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for read-only transactions.
      * }
      * @codingStandardsIgnoreEnd
      * @return Result
      */
     public function read($table, KeySet $keySet, array $columns, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $session = $this->selectSession(
             SessionPoolInterface::CONTEXT_READ,
             $this->pluck('sessionOptions', $options, false) ?: []
@@ -1910,11 +2029,21 @@ class Database
      * Common method to run mutations within a single-use transaction.
      *
      * @param array $mutations A list of mutations to execute.
-     * @param array $options [optional] Configuration options.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type array $requestOptions Request options.
+     *         For more information on available options, please see
+     *         [the upstream documentation](https://cloud.google.com/spanner/docs/reference/rest/v1/RequestOptions).
+     *         Please note, if using the `priority` setting you may utilize the constants available
+     *         on {@see Google\Cloud\Spanner\V1\RequestOptions\Priority} to set a value.
+     *         Please note, the `transactionTag` setting will be ignored as it is not supported for single-use transactions.
+     * }
      * @return Timestamp The commit timestamp.
      */
     private function commitInSingleUseTransaction(array $mutations, array $options = [])
     {
+        unset($options['requestOptions']['transactionTag']);
         $options['mutations'] = $mutations;
 
         return $this->runTransaction(function (Transaction $t) use ($options) {
@@ -1944,5 +2073,22 @@ class Database
             return $name;
         }
         //@codeCoverageIgnoreEnd
+    }
+
+    /**
+     * Returns the 'CREATE DATABASE' statement as per the given database dialect
+     * 
+     * @param string $dialect The dialect of the database to be created
+     * @return string The specific 'CREATE DATABASE' statement
+     */
+    private function getCreateDbStatement($dialect)
+    {
+        $databaseId = DatabaseAdminClient::parseName($this->name())['database'];
+
+        if ($dialect === DatabaseDialect::POSTGRESQL) {
+            return sprintf('CREATE DATABASE "%s"', $databaseId);
+        }
+
+        return sprintf('CREATE DATABASE `%s`', $databaseId);
     }
 }

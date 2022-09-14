@@ -59,7 +59,7 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $industry_category = 0;
     /**
-     * Reporting Time Zone, used as the day boundary for reports, regardless of
+     * Required. Reporting Time Zone, used as the day boundary for reports, regardless of
      * where the data originates. If the time zone honors DST, Analytics will
      * automatically adjust for the changes.
      * NOTE: Changing the time zone only affects data going forward, and is not
@@ -67,7 +67,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * Format: https://www.iana.org/time-zones
      * Example: "America/Los_Angeles"
      *
-     * Generated from protobuf field <code>string time_zone = 7;</code>
+     * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $time_zone = '';
     /**
@@ -79,12 +79,34 @@ class Property extends \Google\Protobuf\Internal\Message
      */
     private $currency_code = '';
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
-     * are excluded from List results unless specifically requested.
+     * Output only. The Google Analytics service level that applies to this property.
      *
-     * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $deleted = false;
+    private $service_level = 0;
+    /**
+     * Output only. If set, the time at which this property was trashed. If not set, then this
+     * property is not currently in the trash can.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $delete_time = null;
+    /**
+     * Output only. If set, the time at which this trashed property will be permanently
+     * deleted. If not set, then this property is not currently in the trash can
+     * and is not slated to be deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $expire_time = null;
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     */
+    private $account = '';
 
     /**
      * Constructor.
@@ -112,7 +134,7 @@ class Property extends \Google\Protobuf\Internal\Message
      *           Industry associated with this property
      *           Example: AUTOMOTIVE, FOOD_AND_DRINK
      *     @type string $time_zone
-     *           Reporting Time Zone, used as the day boundary for reports, regardless of
+     *           Required. Reporting Time Zone, used as the day boundary for reports, regardless of
      *           where the data originates. If the time zone honors DST, Analytics will
      *           automatically adjust for the changes.
      *           NOTE: Changing the time zone only affects data going forward, and is not
@@ -123,9 +145,19 @@ class Property extends \Google\Protobuf\Internal\Message
      *           The currency type used in reports involving monetary values.
      *           Format: https://en.wikipedia.org/wiki/ISO_4217
      *           Examples: "USD", "EUR", "JPY"
-     *     @type bool $deleted
-     *           Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
-     *           are excluded from List results unless specifically requested.
+     *     @type int $service_level
+     *           Output only. The Google Analytics service level that applies to this property.
+     *     @type \Google\Protobuf\Timestamp $delete_time
+     *           Output only. If set, the time at which this property was trashed. If not set, then this
+     *           property is not currently in the trash can.
+     *     @type \Google\Protobuf\Timestamp $expire_time
+     *           Output only. If set, the time at which this trashed property will be permanently
+     *           deleted. If not set, then this property is not currently in the trash can
+     *           and is not slated to be deleted.
+     *     @type string $account
+     *           Immutable. The resource name of the parent account
+     *           Format: accounts/{account_id}
+     *           Example: "accounts/123"
      * }
      */
     public function __construct($data = NULL) {
@@ -167,11 +199,11 @@ class Property extends \Google\Protobuf\Internal\Message
      * Output only. Time when the entity was originally created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -203,11 +235,11 @@ class Property extends \Google\Protobuf\Internal\Message
      * Output only. Time when entity payload fields were last updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -324,7 +356,7 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reporting Time Zone, used as the day boundary for reports, regardless of
+     * Required. Reporting Time Zone, used as the day boundary for reports, regardless of
      * where the data originates. If the time zone honors DST, Analytics will
      * automatically adjust for the changes.
      * NOTE: Changing the time zone only affects data going forward, and is not
@@ -332,7 +364,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * Format: https://www.iana.org/time-zones
      * Example: "America/Los_Angeles"
      *
-     * Generated from protobuf field <code>string time_zone = 7;</code>
+     * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTimeZone()
@@ -341,7 +373,7 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Reporting Time Zone, used as the day boundary for reports, regardless of
+     * Required. Reporting Time Zone, used as the day boundary for reports, regardless of
      * where the data originates. If the time zone honors DST, Analytics will
      * automatically adjust for the changes.
      * NOTE: Changing the time zone only affects data going forward, and is not
@@ -349,7 +381,7 @@ class Property extends \Google\Protobuf\Internal\Message
      * Format: https://www.iana.org/time-zones
      * Example: "America/Los_Angeles"
      *
-     * Generated from protobuf field <code>string time_zone = 7;</code>
+     * Generated from protobuf field <code>string time_zone = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -392,29 +424,135 @@ class Property extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
-     * are excluded from List results unless specifically requested.
+     * Output only. The Google Analytics service level that applies to this property.
      *
-     * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return bool
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return int
      */
-    public function getDeleted()
+    public function getServiceLevel()
     {
-        return $this->deleted;
+        return $this->service_level;
     }
 
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties
-     * are excluded from List results unless specifically requested.
+     * Output only. The Google Analytics service level that applies to this property.
      *
-     * Generated from protobuf field <code>bool deleted = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param bool $var
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.ServiceLevel service_level = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param int $var
      * @return $this
      */
-    public function setDeleted($var)
+    public function setServiceLevel($var)
     {
-        GPBUtil::checkBool($var);
-        $this->deleted = $var;
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\ServiceLevel::class);
+        $this->service_level = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set, the time at which this property was trashed. If not set, then this
+     * property is not currently in the trash can.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getDeleteTime()
+    {
+        return $this->delete_time;
+    }
+
+    public function hasDeleteTime()
+    {
+        return isset($this->delete_time);
+    }
+
+    public function clearDeleteTime()
+    {
+        unset($this->delete_time);
+    }
+
+    /**
+     * Output only. If set, the time at which this property was trashed. If not set, then this
+     * property is not currently in the trash can.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp delete_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setDeleteTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->delete_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set, the time at which this trashed property will be permanently
+     * deleted. If not set, then this property is not currently in the trash can
+     * and is not slated to be deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getExpireTime()
+    {
+        return $this->expire_time;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
+    }
+
+    /**
+     * Output only. If set, the time at which this trashed property will be permanently
+     * deleted. If not set, then this property is not currently in the trash can
+     * and is not slated to be deleted.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setExpireTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->expire_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getAccount()
+    {
+        return $this->account;
+    }
+
+    /**
+     * Immutable. The resource name of the parent account
+     * Format: accounts/{account_id}
+     * Example: "accounts/123"
+     *
+     * Generated from protobuf field <code>string account = 13 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->account = $var;
 
         return $this;
     }

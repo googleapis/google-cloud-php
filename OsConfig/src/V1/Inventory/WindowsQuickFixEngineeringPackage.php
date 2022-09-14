@@ -150,7 +150,7 @@ class WindowsQuickFixEngineeringPackage extends \Google\Protobuf\Internal\Messag
      */
     public function getInstallTime()
     {
-        return isset($this->install_time) ? $this->install_time : null;
+        return $this->install_time;
     }
 
     public function hasInstallTime()
@@ -180,6 +180,4 @@ class WindowsQuickFixEngineeringPackage extends \Google\Protobuf\Internal\Messag
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(WindowsQuickFixEngineeringPackage::class, \Google\Cloud\OsConfig\V1\Inventory_WindowsQuickFixEngineeringPackage::class);
 

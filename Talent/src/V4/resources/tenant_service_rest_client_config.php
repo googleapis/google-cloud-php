@@ -15,8 +15,8 @@ return [
                     ],
                 ],
             ],
-            'GetTenant' => [
-                'method' => 'get',
+            'DeleteTenant' => [
+                'method' => 'delete',
                 'uriTemplate' => '/v4/{name=projects/*/tenants/*}',
                 'placeholders' => [
                     'name' => [
@@ -26,21 +26,8 @@ return [
                     ],
                 ],
             ],
-            'UpdateTenant' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v4/{tenant.name=projects/*/tenants/*}',
-                'body' => 'tenant',
-                'placeholders' => [
-                    'tenant.name' => [
-                        'getters' => [
-                            'getTenant',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteTenant' => [
-                'method' => 'delete',
+            'GetTenant' => [
+                'method' => 'get',
                 'uriTemplate' => '/v4/{name=projects/*/tenants/*}',
                 'placeholders' => [
                     'name' => [
@@ -57,6 +44,19 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateTenant' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v4/{tenant.name=projects/*/tenants/*}',
+                'body' => 'tenant',
+                'placeholders' => [
+                    'tenant.name' => [
+                        'getters' => [
+                            'getTenant',
+                            'getName',
                         ],
                     ],
                 ],

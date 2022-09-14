@@ -20,25 +20,35 @@ class DetailedHealthState
      */
     const UNDEFINED_DETAILED_HEALTH_STATE = 0;
     /**
-     * Generated from protobuf enum <code>DRAINING = 212019946;</code>
+     * The instance is being drained. The existing connections to the instance have time to complete, but the new ones are being refused.
+     *
+     * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
-    const DRAINING = 212019946;
+    const DRAINING = 480455402;
     /**
-     * Generated from protobuf enum <code>HEALTHY = 171365757;</code>
+     * The instance is reachable i.e. a connection to the application health checking endpoint can be established, and conforms to the requirements defined by the health check.
+     *
+     * Generated from protobuf enum <code>HEALTHY = 439801213;</code>
      */
-    const HEALTHY = 171365757;
+    const HEALTHY = 439801213;
     /**
-     * Generated from protobuf enum <code>TIMEOUT = 209377601;</code>
+     * The instance is unreachable i.e. a connection to the application health checking endpoint cannot be established, or the server does not respond within the specified timeout.
+     *
+     * Generated from protobuf enum <code>TIMEOUT = 477813057;</code>
      */
-    const TIMEOUT = 209377601;
+    const TIMEOUT = 477813057;
     /**
-     * Generated from protobuf enum <code>UNHEALTHY = 193682628;</code>
+     * The instance is reachable, but does not conform to the requirements defined by the health check.
+     *
+     * Generated from protobuf enum <code>UNHEALTHY = 462118084;</code>
      */
-    const UNHEALTHY = 193682628;
+    const UNHEALTHY = 462118084;
     /**
-     * Generated from protobuf enum <code>UNKNOWN = 164706346;</code>
+     * The health checking system is aware of the instance but its health is not known at the moment.
+     *
+     * Generated from protobuf enum <code>UNKNOWN = 433141802;</code>
      */
-    const UNKNOWN = 164706346;
+    const UNKNOWN = 433141802;
 
     private static $valueToName = [
         self::UNDEFINED_DETAILED_HEALTH_STATE => 'UNDEFINED_DETAILED_HEALTH_STATE',

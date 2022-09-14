@@ -32,6 +32,12 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      */
     private $resource_limits;
     /**
+     * Defines autoscaling behaviour.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutoscalingProfile autoscaling_profile = 3;</code>
+     */
+    private $autoscaling_profile = 0;
+    /**
      * AutoprovisioningNodePoolDefaults contains defaults for a node pool
      * created by NAP.
      *
@@ -55,13 +61,15 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enable_node_autoprovisioning
      *           Enables automatic node pool creation and deletion.
-     *     @type \Google\Cloud\Container\V1\ResourceLimit[]|\Google\Protobuf\Internal\RepeatedField $resource_limits
+     *     @type array<\Google\Cloud\Container\V1\ResourceLimit>|\Google\Protobuf\Internal\RepeatedField $resource_limits
      *           Contains global constraints regarding minimum and maximum
      *           amount of resources in the cluster.
+     *     @type int $autoscaling_profile
+     *           Defines autoscaling behaviour.
      *     @type \Google\Cloud\Container\V1\AutoprovisioningNodePoolDefaults $autoprovisioning_node_pool_defaults
      *           AutoprovisioningNodePoolDefaults contains defaults for a node pool
      *           created by NAP.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $autoprovisioning_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $autoprovisioning_locations
      *           The list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           NodePool's nodes can be created by NAP.
@@ -115,13 +123,39 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * amount of resources in the cluster.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ResourceLimit resource_limits = 2;</code>
-     * @param \Google\Cloud\Container\V1\ResourceLimit[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\ResourceLimit>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceLimits($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Container\V1\ResourceLimit::class);
         $this->resource_limits = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Defines autoscaling behaviour.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutoscalingProfile autoscaling_profile = 3;</code>
+     * @return int
+     */
+    public function getAutoscalingProfile()
+    {
+        return $this->autoscaling_profile;
+    }
+
+    /**
+     * Defines autoscaling behaviour.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ClusterAutoscaling.AutoscalingProfile autoscaling_profile = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setAutoscalingProfile($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\ClusterAutoscaling\AutoscalingProfile::class);
+        $this->autoscaling_profile = $var;
 
         return $this;
     }
@@ -135,7 +169,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      */
     public function getAutoprovisioningNodePoolDefaults()
     {
-        return isset($this->autoprovisioning_node_pool_defaults) ? $this->autoprovisioning_node_pool_defaults : null;
+        return $this->autoprovisioning_node_pool_defaults;
     }
 
     public function hasAutoprovisioningNodePoolDefaults()
@@ -183,7 +217,7 @@ class ClusterAutoscaling extends \Google\Protobuf\Internal\Message
      * NodePool's nodes can be created by NAP.
      *
      * Generated from protobuf field <code>repeated string autoprovisioning_locations = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAutoprovisioningLocations($var)

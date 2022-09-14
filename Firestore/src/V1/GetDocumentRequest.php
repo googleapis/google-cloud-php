@@ -95,7 +95,7 @@ class GetDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMask()
     {
-        return isset($this->mask) ? $this->mask : null;
+        return $this->mask;
     }
 
     public function hasMask()

@@ -106,6 +106,21 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates a specified table.
+     * @param \Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateTable(\Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateTable',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Permanently deletes a specified table and all of its data.
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest $argument input argument
      * @param array $metadata metadata
@@ -117,6 +132,21 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/DeleteTable',
         $argument,
         ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Restores a specified table which was accidentally deleted.
+     * @param \Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UndeleteTable(\Google\Cloud\Bigtable\Admin\V2\UndeleteTableRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/UndeleteTable',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
@@ -360,7 +390,7 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Create a new table by restoring from a completed backup. The new table
-     * must be in the same instance as the instance containing the backup.  The
+     * must be in the same project as the instance containing the backup.  The
      * returned table [long-running operation][google.longrunning.Operation] can
      * be used to track the progress of the operation, and to cancel it.  The
      * [metadata][google.longrunning.Operation.metadata] field type is

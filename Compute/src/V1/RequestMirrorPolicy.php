@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A policy that specifies how requests intended for the route's backends are shadowed to a separate mirrored backend service. Loadbalancer does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host / authority header is suffixed with -shadow.
+ * A policy that specifies how requests intended for the route's backends are shadowed to a separate mirrored backend service. The load balancer doesn't wait for responses from the shadow service. Before sending traffic to the shadow service, the host or authority header is suffixed with -shadow.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.RequestMirrorPolicy</code>
  */
 class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The full or partial URL to the BackendService resource being mirrored to.
+     * The full or partial URL to the BackendService resource being mirrored to. The backend service configured for a mirroring policy must reference backends that are of the same type as the original backend service matched in the URL map. Serverless NEG backends are not currently supported as a mirrored backend service. 
      *
-     * Generated from protobuf field <code>string backend_service = 38510602;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      */
-    private $backend_service = '';
+    private $backend_service = null;
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $backend_service
-     *           The full or partial URL to the BackendService resource being mirrored to.
+     *           The full or partial URL to the BackendService resource being mirrored to. The backend service configured for a mirroring policy must reference backends that are of the same type as the original backend service matched in the URL map. Serverless NEG backends are not currently supported as a mirrored backend service. 
      * }
      */
     public function __construct($data = NULL) {
@@ -38,20 +38,30 @@ class RequestMirrorPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full or partial URL to the BackendService resource being mirrored to.
+     * The full or partial URL to the BackendService resource being mirrored to. The backend service configured for a mirroring policy must reference backends that are of the same type as the original backend service matched in the URL map. Serverless NEG backends are not currently supported as a mirrored backend service. 
      *
-     * Generated from protobuf field <code>string backend_service = 38510602;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @return string
      */
     public function getBackendService()
     {
-        return $this->backend_service;
+        return isset($this->backend_service) ? $this->backend_service : '';
+    }
+
+    public function hasBackendService()
+    {
+        return isset($this->backend_service);
+    }
+
+    public function clearBackendService()
+    {
+        unset($this->backend_service);
     }
 
     /**
-     * The full or partial URL to the BackendService resource being mirrored to.
+     * The full or partial URL to the BackendService resource being mirrored to. The backend service configured for a mirroring policy must reference backends that are of the same type as the original backend service matched in the URL map. Serverless NEG backends are not currently supported as a mirrored backend service. 
      *
-     * Generated from protobuf field <code>string backend_service = 38510602;</code>
+     * Generated from protobuf field <code>optional string backend_service = 306946058;</code>
      * @param string $var
      * @return $this
      */

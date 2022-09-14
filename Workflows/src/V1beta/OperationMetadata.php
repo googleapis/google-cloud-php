@@ -73,11 +73,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * The time the operation was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -109,11 +109,11 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * The time the operation finished running.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

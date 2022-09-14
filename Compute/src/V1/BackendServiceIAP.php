@@ -18,27 +18,27 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     /**
      * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
      *
-     * Generated from protobuf field <code>bool enabled = 1018689;</code>
+     * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      */
-    private $enabled = false;
+    private $enabled = null;
     /**
      * OAuth2 client ID to use for the authentication flow.
      *
-     * Generated from protobuf field <code>string oauth2_client_id = 45582155;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_id = 314017611;</code>
      */
-    private $oauth2_client_id = '';
+    private $oauth2_client_id = null;
     /**
-     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
+     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field. &#64;InputOnly
      *
-     * Generated from protobuf field <code>string oauth2_client_secret = 50999520;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      */
-    private $oauth2_client_secret = '';
+    private $oauth2_client_secret = null;
     /**
      * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
-     * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 112903782;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      */
-    private $oauth2_client_secret_sha256 = '';
+    private $oauth2_client_secret_sha256 = null;
 
     /**
      * Constructor.
@@ -51,7 +51,7 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
      *     @type string $oauth2_client_id
      *           OAuth2 client ID to use for the authentication flow.
      *     @type string $oauth2_client_secret
-     *           OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
+     *           OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field. &#64;InputOnly
      *     @type string $oauth2_client_secret_sha256
      *           [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      * }
@@ -64,18 +64,28 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     /**
      * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
      *
-     * Generated from protobuf field <code>bool enabled = 1018689;</code>
+     * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      * @return bool
      */
     public function getEnabled()
     {
-        return $this->enabled;
+        return isset($this->enabled) ? $this->enabled : false;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**
      * Whether the serving infrastructure will authenticate and authorize all incoming requests. If true, the oauth2ClientId and oauth2ClientSecret fields must be non-empty.
      *
-     * Generated from protobuf field <code>bool enabled = 1018689;</code>
+     * Generated from protobuf field <code>optional bool enabled = 1018689;</code>
      * @param bool $var
      * @return $this
      */
@@ -90,18 +100,28 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     /**
      * OAuth2 client ID to use for the authentication flow.
      *
-     * Generated from protobuf field <code>string oauth2_client_id = 45582155;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_id = 314017611;</code>
      * @return string
      */
     public function getOauth2ClientId()
     {
-        return $this->oauth2_client_id;
+        return isset($this->oauth2_client_id) ? $this->oauth2_client_id : '';
+    }
+
+    public function hasOauth2ClientId()
+    {
+        return isset($this->oauth2_client_id);
+    }
+
+    public function clearOauth2ClientId()
+    {
+        unset($this->oauth2_client_id);
     }
 
     /**
      * OAuth2 client ID to use for the authentication flow.
      *
-     * Generated from protobuf field <code>string oauth2_client_id = 45582155;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_id = 314017611;</code>
      * @param string $var
      * @return $this
      */
@@ -114,20 +134,30 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
+     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field. &#64;InputOnly
      *
-     * Generated from protobuf field <code>string oauth2_client_secret = 50999520;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      * @return string
      */
     public function getOauth2ClientSecret()
     {
-        return $this->oauth2_client_secret;
+        return isset($this->oauth2_client_secret) ? $this->oauth2_client_secret : '';
+    }
+
+    public function hasOauth2ClientSecret()
+    {
+        return isset($this->oauth2_client_secret);
+    }
+
+    public function clearOauth2ClientSecret()
+    {
+        unset($this->oauth2_client_secret);
     }
 
     /**
-     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.
+     * OAuth2 client secret to use for the authentication flow. For security reasons, this value cannot be retrieved via the API. Instead, the SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field. &#64;InputOnly
      *
-     * Generated from protobuf field <code>string oauth2_client_secret = 50999520;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret = 50999520;</code>
      * @param string $var
      * @return $this
      */
@@ -142,18 +172,28 @@ class BackendServiceIAP extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
-     * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 112903782;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      * @return string
      */
     public function getOauth2ClientSecretSha256()
     {
-        return $this->oauth2_client_secret_sha256;
+        return isset($this->oauth2_client_secret_sha256) ? $this->oauth2_client_secret_sha256 : '';
+    }
+
+    public function hasOauth2ClientSecretSha256()
+    {
+        return isset($this->oauth2_client_secret_sha256);
+    }
+
+    public function clearOauth2ClientSecretSha256()
+    {
+        unset($this->oauth2_client_secret_sha256);
     }
 
     /**
      * [Output Only] SHA256 hash value for the field oauth2_client_secret above.
      *
-     * Generated from protobuf field <code>string oauth2_client_secret_sha256 = 112903782;</code>
+     * Generated from protobuf field <code>optional string oauth2_client_secret_sha256 = 112903782;</code>
      * @param string $var
      * @return $this
      */

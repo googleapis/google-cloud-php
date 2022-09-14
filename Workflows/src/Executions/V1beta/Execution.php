@@ -139,11 +139,11 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Output only. Marks the beginning of execution.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -175,11 +175,11 @@ class Execution extends \Google\Protobuf\Internal\Message
      * Output only. Marks the end of execution, successful or not.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -295,11 +295,11 @@ class Execution extends \Google\Protobuf\Internal\Message
      * or `CANCELLED`.
      *
      * Generated from protobuf field <code>.google.cloud.workflows.executions.v1beta.Execution.Error error = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Cloud\Workflows\Executions\V1beta\Execution\Error
+     * @return \Google\Cloud\Workflows\Executions\V1beta\Execution\Error|null
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()

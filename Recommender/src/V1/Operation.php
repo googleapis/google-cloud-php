@@ -23,7 +23,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Operation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Type of this operation. Contains one of 'and', 'remove', 'replace', 'move',
+     * Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
      * 'copy', 'test' and custom operations. This field is case-insensitive and
      * always populated.
      *
@@ -75,18 +75,27 @@ class Operation extends \Google\Protobuf\Internal\Message
      * tested/modified.
      * This is intended to be an exact match per filter. To perform advanced
      * matching, use path_value_matchers.
-     * * Example: {
+     * * Example:
+     * ```
+     * {
      *   "/versions/&#42;&#47;name" : "it-123"
      *   "/versions/&#42;&#47;targetSize/percent": 20
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;condition" : null
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
-     *  }
+     * }
+     * ```
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.
      *
@@ -95,7 +104,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $path_filters;
     /**
      * Similar to path_filters, this contains set of filters to apply if `path`
-     * field referes to array elements. This is meant to support value matching
+     * field refers to array elements. This is meant to support value matching
      * beyond exact match. To perform exact match, use path_filters.
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.
@@ -112,7 +121,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $action
-     *           Type of this operation. Contains one of 'and', 'remove', 'replace', 'move',
+     *           Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
      *           'copy', 'test' and custom operations. This field is case-insensitive and
      *           always populated.
      *     @type string $resource_type
@@ -147,23 +156,32 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           tested/modified.
      *           This is intended to be an exact match per filter. To perform advanced
      *           matching, use path_value_matchers.
-     *           * Example: {
+     *           * Example:
+     *           ```
+     *           {
      *             "/versions/&#42;&#47;name" : "it-123"
      *             "/versions/&#42;&#47;targetSize/percent": 20
-     *            }
-     *           * Example: {
+     *           }
+     *           ```
+     *           * Example:
+     *           ```
+     *           {
      *             "/bindings/&#42;&#47;role": "roles/owner"
      *             "/bindings/&#42;&#47;condition" : null
-     *            }
-     *           * Example: {
+     *           }
+     *           ```
+     *           * Example:
+     *           ```
+     *           {
      *             "/bindings/&#42;&#47;role": "roles/owner"
      *             "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
-     *            }
+     *           }
+     *           ```
      *           When both path_filters and path_value_matchers are set, an implicit AND
      *           must be performed.
      *     @type array|\Google\Protobuf\Internal\MapField $path_value_matchers
      *           Similar to path_filters, this contains set of filters to apply if `path`
-     *           field referes to array elements. This is meant to support value matching
+     *           field refers to array elements. This is meant to support value matching
      *           beyond exact match. To perform exact match, use path_filters.
      *           When both path_filters and path_value_matchers are set, an implicit AND
      *           must be performed.
@@ -175,7 +193,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of this operation. Contains one of 'and', 'remove', 'replace', 'move',
+     * Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
      * 'copy', 'test' and custom operations. This field is case-insensitive and
      * always populated.
      *
@@ -188,7 +206,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of this operation. Contains one of 'and', 'remove', 'replace', 'move',
+     * Type of this operation. Contains one of 'add', 'remove', 'replace', 'move',
      * 'copy', 'test' and custom operations. This field is case-insensitive and
      * always populated.
      *
@@ -426,18 +444,27 @@ class Operation extends \Google\Protobuf\Internal\Message
      * tested/modified.
      * This is intended to be an exact match per filter. To perform advanced
      * matching, use path_value_matchers.
-     * * Example: {
+     * * Example:
+     * ```
+     * {
      *   "/versions/&#42;&#47;name" : "it-123"
      *   "/versions/&#42;&#47;targetSize/percent": 20
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;condition" : null
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
-     *  }
+     * }
+     * ```
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.
      *
@@ -455,18 +482,27 @@ class Operation extends \Google\Protobuf\Internal\Message
      * tested/modified.
      * This is intended to be an exact match per filter. To perform advanced
      * matching, use path_value_matchers.
-     * * Example: {
+     * * Example:
+     * ```
+     * {
      *   "/versions/&#42;&#47;name" : "it-123"
      *   "/versions/&#42;&#47;targetSize/percent": 20
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;condition" : null
-     *  }
-     * * Example: {
+     * }
+     * ```
+     * * Example:
+     * ```
+     * {
      *   "/bindings/&#42;&#47;role": "roles/owner"
      *   "/bindings/&#42;&#47;members/&#42;" : ["x&#64;example.com", "y&#64;example.com"]
-     *  }
+     * }
+     * ```
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.
      *
@@ -484,7 +520,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * Similar to path_filters, this contains set of filters to apply if `path`
-     * field referes to array elements. This is meant to support value matching
+     * field refers to array elements. This is meant to support value matching
      * beyond exact match. To perform exact match, use path_filters.
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.
@@ -499,7 +535,7 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * Similar to path_filters, this contains set of filters to apply if `path`
-     * field referes to array elements. This is meant to support value matching
+     * field refers to array elements. This is meant to support value matching
      * beyond exact match. To perform exact match, use path_filters.
      * When both path_filters and path_value_matchers are set, an implicit AND
      * must be performed.

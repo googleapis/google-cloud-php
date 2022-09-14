@@ -122,11 +122,11 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
      * The GameServerConfig resource may no longer exist in the system.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.SpecSource spec_source = 3;</code>
-     * @return \Google\Cloud\Gaming\V1\SpecSource
+     * @return \Google\Cloud\Gaming\V1\SpecSource|null
      */
     public function getSpecSource()
     {
-        return isset($this->spec_source) ? $this->spec_source : null;
+        return $this->spec_source;
     }
 
     public function hasSpecSource()
@@ -160,11 +160,11 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
      * Includes count of game servers in various states.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.DeployedFleetDetails.DeployedFleet.DeployedFleetStatus status = 5;</code>
-     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet\DeployedFleetStatus
+     * @return \Google\Cloud\Gaming\V1\DeployedFleetDetails\DeployedFleet\DeployedFleetStatus|null
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()
@@ -195,6 +195,4 @@ class DeployedFleet extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DeployedFleet::class, \Google\Cloud\Gaming\V1\DeployedFleetDetails_DeployedFleet::class);
 

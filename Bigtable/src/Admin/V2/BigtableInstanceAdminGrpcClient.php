@@ -36,6 +36,12 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Create an instance within a project.
+     *
+     * Note that exactly one of Cluster.serve_nodes and
+     * Cluster.cluster_config.cluster_autoscaling_config can be set. If
+     * serve_nodes is set to non-zero, then the cluster is manually scaled. If
+     * cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is
+     * enabled.
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -129,6 +135,12 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Creates a cluster within an instance.
+     *
+     * Note that exactly one of Cluster.serve_nodes and
+     * Cluster.cluster_config.cluster_autoscaling_config can be set. If
+     * serve_nodes is set to non-zero, then the cluster is manually scaled. If
+     * cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is
+     * enabled.
      * @param \Google\Cloud\Bigtable\Admin\V2\CreateClusterRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -174,6 +186,10 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Updates a cluster within an instance.
+     *
+     * Note that UpdateCluster does not support updating
+     * cluster_config.cluster_autoscaling_config. In order to update it, you
+     * must use PartialUpdateCluster.
      * @param \Google\Cloud\Bigtable\Admin\V2\Cluster $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -182,6 +198,32 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
     public function UpdateCluster(\Google\Cloud\Bigtable\Admin\V2\Cluster $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/UpdateCluster',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Partially updates a cluster within a project. This method is the preferred
+     * way to update a Cluster.
+     *
+     * To enable and update autoscaling, set
+     * cluster_config.cluster_autoscaling_config. When autoscaling is enabled,
+     * serve_nodes is treated as an OUTPUT_ONLY field, meaning that updates to it
+     * are ignored. Note that an update cannot simultaneously set serve_nodes to
+     * non-zero and cluster_config.cluster_autoscaling_config to non-empty, and
+     * also specify both in the update_mask.
+     *
+     * To disable autoscaling, clear cluster_config.cluster_autoscaling_config,
+     * and explicitly set a serve_node count via the update_mask.
+     * @param \Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PartialUpdateCluster(\Google\Cloud\Bigtable\Admin\V2\PartialUpdateClusterRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/PartialUpdateCluster',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
@@ -321,6 +363,22 @@ class BigtableInstanceAdminGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Lists hot tablets in a cluster, within the time range provided. Hot
+     * tablets are ordered based on CPU usage.
+     * @param \Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListHotTablets(\Google\Cloud\Bigtable\Admin\V2\ListHotTabletsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableInstanceAdmin/ListHotTablets',
+        $argument,
+        ['\Google\Cloud\Bigtable\Admin\V2\ListHotTabletsResponse', 'decode'],
         $metadata, $options);
     }
 

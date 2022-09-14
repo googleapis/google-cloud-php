@@ -36,7 +36,7 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1\ModelEvaluation[]|\Google\Protobuf\Internal\RepeatedField $model_evaluation
+     *     @type array<\Google\Cloud\AutoMl\V1\ModelEvaluation>|\Google\Protobuf\Internal\RepeatedField $model_evaluation
      *           List of model evaluations in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -64,7 +64,7 @@ class ListModelEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * List of model evaluations in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.ModelEvaluation model_evaluation = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1\ModelEvaluation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1\ModelEvaluation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setModelEvaluation($var)

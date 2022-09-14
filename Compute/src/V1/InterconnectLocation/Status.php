@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectLocation;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of this InterconnectLocation, which can take one of the following values:
- * - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects.
- * - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects.
+ * [Output Only] The status of this InterconnectLocation, which can take one of the following values: - CLOSED: The InterconnectLocation is closed and is unavailable for provisioning new Interconnects. - AVAILABLE: The InterconnectLocation is available for provisioning new Interconnects. 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectLocation.Status</code>
  */
@@ -22,13 +20,17 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
-     * Generated from protobuf enum <code>AVAILABLE = 173644457;</code>
+     * The InterconnectLocation is available for provisioning new Interconnects.
+     *
+     * Generated from protobuf enum <code>AVAILABLE = 442079913;</code>
      */
-    const AVAILABLE = 173644457;
+    const AVAILABLE = 442079913;
     /**
-     * Generated from protobuf enum <code>CLOSED = 111727980;</code>
+     * The InterconnectLocation is closed for provisioning new Interconnects.
+     *
+     * Generated from protobuf enum <code>CLOSED = 380163436;</code>
      */
-    const CLOSED = 111727980;
+    const CLOSED = 380163436;
 
     private static $valueToName = [
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',

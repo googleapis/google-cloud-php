@@ -22,6 +22,14 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Can be used to force delete commitments even if assignments exist. Deleting
+     * commitments with assignments may cause queries to fail if they no longer
+     * have access to slots.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     */
+    private $force = false;
 
     /**
      * Constructor.
@@ -32,6 +40,10 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Resource name of the capacity commitment to delete. E.g.,
      *              `projects/myproject/locations/US/capacityCommitments/123`
+     *     @type bool $force
+     *           Can be used to force delete commitments even if assignments exist. Deleting
+     *           commitments with assignments may cause queries to fail if they no longer
+     *           have access to slots.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +75,36 @@ class DeleteCapacityCommitmentRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Can be used to force delete commitments even if assignments exist. Deleting
+     * commitments with assignments may cause queries to fail if they no longer
+     * have access to slots.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     * @return bool
+     */
+    public function getForce()
+    {
+        return $this->force;
+    }
+
+    /**
+     * Can be used to force delete commitments even if assignments exist. Deleting
+     * commitments with assignments may cause queries to fail if they no longer
+     * have access to slots.
+     *
+     * Generated from protobuf field <code>bool force = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForce($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force = $var;
 
         return $this;
     }

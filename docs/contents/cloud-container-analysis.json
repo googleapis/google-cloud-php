@@ -1,0 +1,15 @@
+{
+    "title": "ContainerAnalysis",
+    "defaultService": "containeranalysis\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "containeranalysis\/readme"
+        },
+        {
+            "title": "ContainerAnalysisClient (v1)",
+            "type": "containeranalysis\/v1\/containeranalysisclient"
+        }
+    ],
+    "pattern": "containeranalysis\/\\w{1,}"
+}

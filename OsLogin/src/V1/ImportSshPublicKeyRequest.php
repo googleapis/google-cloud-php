@@ -87,7 +87,7 @@ class ImportSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSshPublicKey()
     {
-        return isset($this->ssh_public_key) ? $this->ssh_public_key : null;
+        return $this->ssh_public_key;
     }
 
     public function hasSshPublicKey()

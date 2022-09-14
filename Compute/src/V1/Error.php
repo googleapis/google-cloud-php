@@ -18,7 +18,7 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      */
     private $errors;
 
@@ -28,7 +28,7 @@ class Error extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Errors[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $errors
      *           [Output Only] The array of errors encountered while processing this operation.
      * }
      */
@@ -40,7 +40,7 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getErrors()
@@ -51,8 +51,8 @@ class Error extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The array of errors encountered while processing this operation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 47542123;</code>
-     * @param \Google\Cloud\Compute\V1\Errors[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Errors errors = 315977579;</code>
+     * @param array<\Google\Cloud\Compute\V1\Errors>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

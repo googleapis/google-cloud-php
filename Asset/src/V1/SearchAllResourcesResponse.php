@@ -37,7 +37,7 @@ class SearchAllResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\ResourceSearchResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Asset\V1\ResourceSearchResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           A list of Resources that match the search query. It contains the resource
      *           standard metadata information.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class SearchAllResourcesResponse extends \Google\Protobuf\Internal\Message
      * standard metadata information.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.ResourceSearchResult results = 1;</code>
-     * @param \Google\Cloud\Asset\V1\ResourceSearchResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\ResourceSearchResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)

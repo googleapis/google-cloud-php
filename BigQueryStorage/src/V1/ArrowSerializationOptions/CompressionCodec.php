@@ -25,10 +25,17 @@ class CompressionCodec
      * Generated from protobuf enum <code>LZ4_FRAME = 1;</code>
      */
     const LZ4_FRAME = 1;
+    /**
+     * Zstandard compression.
+     *
+     * Generated from protobuf enum <code>ZSTD = 2;</code>
+     */
+    const ZSTD = 2;
 
     private static $valueToName = [
         self::COMPRESSION_UNSPECIFIED => 'COMPRESSION_UNSPECIFIED',
         self::LZ4_FRAME => 'LZ4_FRAME',
+        self::ZSTD => 'ZSTD',
     ];
 
     public static function name($value)

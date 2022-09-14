@@ -18,7 +18,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 {
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -117,8 +121,12 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type int $num_instances
      *           Optional. The number of VM instances in the instance group.
-     *           For master instance groups, must be set to 1.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_names
+     *           For [HA
+     *           cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     *           [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     *           For standard cluster [master_config](#FIELDS.master_config) groups,
+     *           **must be set to 1**.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_names
      *           Output only. The list of instance names. Dataproc derives the names
      *           from `cluster_name`, `num_instances`, and the instance group.
      *     @type string $image_uri
@@ -160,7 +168,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The config for Compute Engine Instance Group
      *           Manager that manages this group.
      *           This is only used for preemptible instance groups.
-     *     @type \Google\Cloud\Dataproc\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $accelerators
+     *     @type array<\Google\Cloud\Dataproc\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           Optional. The Compute Engine accelerator configuration for these
      *           instances.
      *     @type string $min_cpu_platform
@@ -176,7 +184,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -188,7 +200,11 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The number of VM instances in the instance group.
-     * For master instance groups, must be set to 1.
+     * For [HA
+     * cluster](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/high-availability)
+     * [master_config](#FIELDS.master_config) groups, **must be set to 3**.
+     * For standard cluster [master_config](#FIELDS.master_config) groups,
+     * **must be set to 1**.
      *
      * Generated from protobuf field <code>int32 num_instances = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -219,7 +235,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * from `cluster_name`, `num_instances`, and the instance group.
      *
      * Generated from protobuf field <code>repeated string instance_names = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceNames($var)
@@ -330,7 +346,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDiskConfig()
     {
-        return isset($this->disk_config) ? $this->disk_config : null;
+        return $this->disk_config;
     }
 
     public function hasDiskConfig()
@@ -430,7 +446,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      */
     public function getManagedGroupConfig()
     {
-        return isset($this->managed_group_config) ? $this->managed_group_config : null;
+        return $this->managed_group_config;
     }
 
     public function hasManagedGroupConfig()
@@ -477,7 +493,7 @@ class InstanceGroupConfig extends \Google\Protobuf\Internal\Message
      * instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.AcceleratorConfig accelerators = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataproc\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccelerators($var)

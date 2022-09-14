@@ -93,11 +93,21 @@ class GetNotificationChannelVerificationCodeResponse extends \Google\Protobuf\In
      * requested expiration in the request and the max permitted expiration.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
         return $this->expire_time;
+    }
+
+    public function hasExpireTime()
+    {
+        return isset($this->expire_time);
+    }
+
+    public function clearExpireTime()
+    {
+        unset($this->expire_time);
     }
 
     /**

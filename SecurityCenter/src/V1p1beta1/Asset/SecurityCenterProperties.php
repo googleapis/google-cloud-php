@@ -71,6 +71,14 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string resource_project_display_name = 8;</code>
      */
     private $resource_project_display_name = '';
+    /**
+     * Contains a Folder message for each folder in the assets ancestry.
+     * The first folder is the deepest nested folder, and the last folder is the
+     * folder directly under the Organization.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1p1beta1.Folder folders = 10;</code>
+     */
+    private $folders;
 
     /**
      * Constructor.
@@ -93,7 +101,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *     @type string $resource_project
      *           The full resource name of the project the resource belongs to. See:
      *           https://cloud.google.com/apis/design/resource_names#full_resource_name
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_owners
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_owners
      *           Owners of the Google Cloud resource.
      *     @type string $resource_display_name
      *           The user defined display name for this resource.
@@ -101,6 +109,10 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      *           The user defined display name for the parent of this resource.
      *     @type string $resource_project_display_name
      *           The user defined display name for the project of this resource.
+     *     @type array<\Google\Cloud\SecurityCenter\V1p1beta1\Folder>|\Google\Protobuf\Internal\RepeatedField $folders
+     *           Contains a Folder message for each folder in the assets ancestry.
+     *           The first folder is the deepest nested folder, and the last folder is the
+     *           folder directly under the Organization.
      * }
      */
     public function __construct($data = NULL) {
@@ -241,7 +253,7 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
      * Owners of the Google Cloud resource.
      *
      * Generated from protobuf field <code>repeated string resource_owners = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceOwners($var)
@@ -326,6 +338,36 @@ class SecurityCenterProperties extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->resource_project_display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Contains a Folder message for each folder in the assets ancestry.
+     * The first folder is the deepest nested folder, and the last folder is the
+     * folder directly under the Organization.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1p1beta1.Folder folders = 10;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFolders()
+    {
+        return $this->folders;
+    }
+
+    /**
+     * Contains a Folder message for each folder in the assets ancestry.
+     * The first folder is the deepest nested folder, and the last folder is the
+     * folder directly under the Organization.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1p1beta1.Folder folders = 10;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1p1beta1\Folder>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFolders($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1p1beta1\Folder::class);
+        $this->folders = $arr;
 
         return $this;
     }

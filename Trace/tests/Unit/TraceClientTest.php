@@ -21,7 +21,7 @@ use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Trace\Connection\ConnectionInterface;
 use Google\Cloud\Trace\Trace;
 use Google\Cloud\Trace\TraceClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -32,7 +32,7 @@ class TraceClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(TraceClient::class, [
             ['projectId' => 'project']

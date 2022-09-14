@@ -126,7 +126,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getPostalAddress()
     {
-        return isset($this->postal_address) ? $this->postal_address : null;
+        return $this->postal_address;
     }
 
     public function hasPostalAddress()
@@ -165,7 +165,7 @@ class Location extends \Google\Protobuf\Internal\Message
      */
     public function getLatLng()
     {
-        return isset($this->lat_lng) ? $this->lat_lng : null;
+        return $this->lat_lng;
     }
 
     public function hasLatLng()

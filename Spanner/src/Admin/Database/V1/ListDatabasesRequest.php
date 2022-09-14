@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for
- * [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
+ * The request for [ListDatabases][google.spanner.admin.database.v1.DatabaseAdmin.ListDatabases].
  *
  * Generated from protobuf message <code>google.spanner.admin.database.v1.ListDatabasesRequest</code>
  */
@@ -32,9 +31,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token]
-     * from a previous
-     * [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
+     * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      */
@@ -54,9 +52,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
      *           defaults to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token]
-     *           from a previous
-     *           [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
+     *           [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
+     *           previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      * }
      */
     public function __construct($data = NULL) {
@@ -122,9 +119,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token]
-     * from a previous
-     * [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
+     * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @return string
@@ -136,9 +132,8 @@ class ListDatabasesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token]
-     * from a previous
-     * [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
+     * [next_page_token][google.spanner.admin.database.v1.ListDatabasesResponse.next_page_token] from a
+     * previous [ListDatabasesResponse][google.spanner.admin.database.v1.ListDatabasesResponse].
      *
      * Generated from protobuf field <code>string page_token = 4;</code>
      * @param string $var

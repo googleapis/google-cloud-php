@@ -24,22 +24,22 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     private $account = '';
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Products will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 Products.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -56,14 +56,14 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
      *           Format: accounts/{account_id}.
      *     @type int $page_size
      *           Optional. Requested page size. Server might return fewer results than requested.
-     *           If unspecified, at most 100 Products will be returned.
-     *           The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *           If unspecified, returns at most 100 Products.
+     *           The maximum value is 1000; the server will coerce values above 1000.
      *     @type string $page_token
-     *           Optional. A token identifying a page of results, if other than the first one.
+     *           Optional. A token for a page of results other than the first page.
      *     @type string $language_code
-     *           Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     *           response will be localized to the corresponding language code. Default is
-     *           "en-US".
+     *           Optional. The BCP-47 language code. For example, "en-US". The
+     *           response will localize in the corresponding language code, if specified.
+     *           The default value is "en-US".
      * }
      */
     public function __construct($data = NULL) {
@@ -101,8 +101,8 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Products will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 Products.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -114,8 +114,8 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. Requested page size. Server might return fewer results than requested.
-     * If unspecified, at most 100 Products will be returned.
-     * The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * If unspecified, returns at most 100 Products.
+     * The maximum value is 1000; the server will coerce values above 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -130,7 +130,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -141,7 +141,7 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A token identifying a page of results, if other than the first one.
+     * Optional. A token for a page of results other than the first page.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -156,9 +156,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -169,9 +169,9 @@ class ListProductsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The BCP-47 language code, such as "en-US".  If specified, the
-     * response will be localized to the corresponding language code. Default is
-     * "en-US".
+     * Optional. The BCP-47 language code. For example, "en-US". The
+     * response will localize in the corresponding language code, if specified.
+     * The default value is "en-US".
      *
      * Generated from protobuf field <code>string language_code = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

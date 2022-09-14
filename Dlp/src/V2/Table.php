@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Structured content to inspect. Up to 50,000 `Value`s per request allowed.
- * See https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to
- * learn more.
+ * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See
+ * https://cloud.google.com/dlp/docs/inspecting-structured-text#inspecting_a_table
+ * to learn more.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.Table</code>
  */
@@ -36,9 +36,9 @@ class Table extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $headers
      *           Headers of the table.
-     *     @type \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Cloud\Dlp\V2\Table\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Rows of the table.
      * }
      */
@@ -62,7 +62,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Headers of the table.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldId headers = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)
@@ -88,7 +88,7 @@ class Table extends \Google\Protobuf\Internal\Message
      * Rows of the table.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Table.Row rows = 2;</code>
-     * @param \Google\Cloud\Dlp\V2\Table\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Table\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)

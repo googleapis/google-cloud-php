@@ -30,7 +30,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
+     *     @type array<\Google\Cloud\AutoMl\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $normalized_vertices
      *           Output only . The bounding polygon normalized vertices.
      * }
      */
@@ -54,7 +54,7 @@ class BoundingPoly extends \Google\Protobuf\Internal\Message
      * Output only . The bounding polygon normalized vertices.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1.NormalizedVertex normalized_vertices = 2;</code>
-     * @param \Google\Cloud\AutoMl\V1\NormalizedVertex[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1\NormalizedVertex>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNormalizedVertices($var)

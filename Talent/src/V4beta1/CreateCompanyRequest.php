@@ -91,7 +91,7 @@ class CreateCompanyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCompany()
     {
-        return isset($this->company) ? $this->company : null;
+        return $this->company;
     }
 
     public function hasCompany()

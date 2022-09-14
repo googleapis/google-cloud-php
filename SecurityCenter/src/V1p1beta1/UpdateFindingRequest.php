@@ -71,11 +71,11 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      * characters in length.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Finding finding = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Finding|null
      */
     public function getFinding()
     {
-        return isset($this->finding) ? $this->finding : null;
+        return $this->finding;
     }
 
     public function hasFinding()
@@ -116,11 +116,11 @@ class UpdateFindingRequest extends \Google\Protobuf\Internal\Message
      * mask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

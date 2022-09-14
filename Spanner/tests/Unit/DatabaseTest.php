@@ -26,6 +26,7 @@ use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Database\V1\DatabaseAdminClient;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreInfo;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
 use Google\Cloud\Spanner\Connection\ConnectionInterface;
@@ -45,8 +46,9 @@ use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\SpannerClient;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
@@ -54,6 +56,7 @@ use Prophecy\Argument;
  */
 class DatabaseTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use OperationRefreshTrait;
     use ResultGeneratorTrait;
@@ -65,6 +68,7 @@ class DatabaseTest extends TestCase
     const SESSION = 'my-session';
     const TRANSACTION = 'my-transaction';
     const BACKUP = 'my-backup';
+    const TRANSACTION_TAG = 'my-transaction-tag';
 
     private $connection;
     private $instance;
@@ -75,7 +79,7 @@ class DatabaseTest extends TestCase
     private $session;
 
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -326,6 +330,29 @@ class DatabaseTest extends TestCase
     /**
      * @group spanner-admin
      */
+    public function testCreatePostgresDialect()
+    {
+        $createStatement = sprintf('CREATE DATABASE "%s"', self::DATABASE);
+
+        $this->connection->createDatabase(Argument::allOf(
+            Argument::withEntry('createStatement', $createStatement),
+            Argument::withEntry('extraStatements', [])
+        ))->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->database->___setProperty('connection', $this->connection->reveal());
+
+        $op = $this->database->create([
+            'databaseDialect'=> DatabaseDialect::POSTGRESQL
+        ]);
+
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    /**
+     * @group spanner-admin
+     */
     public function testRestoreFromBackupName()
     {
         $backupName = DatabaseAdminClient::backupName(self::PROJECT, self::INSTANCE, self::BACKUP);
@@ -557,27 +584,24 @@ class DatabaseTest extends TestCase
         $this->assertInstanceOf(Snapshot::class, $res);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testSnapshotMinReadTimestamp()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->database->snapshot(['minReadTimestamp' => 'foo']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testSnapshotMaxStaleness()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->database->snapshot(['maxStaleness' => 'foo']);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testSnapshotNestedTransaction()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
             Argument::withEntry(
@@ -613,7 +637,10 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
@@ -627,7 +654,10 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['commitTimestamp' => '2017-01-09T18:05:22.534799Z']);
@@ -640,16 +670,15 @@ class DatabaseTest extends TestCase
             $hasTransaction = true;
 
             $t->commit();
-        });
+        }, ['tag' => self::TRANSACTION_TAG]);
 
         $this->assertTrue($hasTransaction);
     }
 
-    /**
-     * @expectedException RuntimeException
-     */
     public function testRunTransactionNoCommit()
     {
+        $this->expectException('RuntimeException');
+
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
             Argument::withEntry(
@@ -682,11 +711,10 @@ class DatabaseTest extends TestCase
         $this->database->runTransaction($this->noop());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testRunTransactionNestedTransaction()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
             Argument::withEntry(
@@ -771,11 +799,10 @@ class DatabaseTest extends TestCase
         });
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\AbortedException
-     */
     public function testRunTransactionAborted()
     {
+        $this->expectException('Google\Cloud\Core\Exception\AbortedException');
+
         $abort = new AbortedException('foo', 409, null, [
             [
                 'retryDelay' => [
@@ -840,22 +867,24 @@ class DatabaseTest extends TestCase
                     self::INSTANCE,
                     self::DATABASE
                 )
-            )
+            ),
+            Argument::withEntry('requestOptions', [
+                'transactionTag' => self::TRANSACTION_TAG,
+            ])
         ))
             ->shouldBeCalled()
             ->willReturn(['id' => self::TRANSACTION]);
 
         $this->refreshOperation($this->database, $this->connection->reveal());
 
-        $t = $this->database->transaction();
+        $t = $this->database->transaction(['tag' => self::TRANSACTION_TAG]);
         $this->assertInstanceOf(Transaction::class, $t);
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testTransactionNestedTransaction()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->connection->beginTransaction(Argument::allOf(
             Argument::withEntry('session', $this->session->name()),
             Argument::withEntry(
@@ -1183,11 +1212,10 @@ class DatabaseTest extends TestCase
         $rows = iterator_to_array($res->rows());
     }
 
-    /**
-     * @expectedException BadMethodCallException
-     */
     public function testExecuteBeginMaxStalenessFails()
     {
+        $this->expectException('BadMethodCallException');
+
         $this->database->___setProperty('sessionPool', null);
         $this->database->___setProperty('session', $this->session);
         $sql = 'SELECT * FROM Table';

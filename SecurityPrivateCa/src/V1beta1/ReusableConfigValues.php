@@ -63,14 +63,14 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues\CaOptions $ca_options
      *           Optional. Describes options in this [ReusableConfigValues][google.cloud.security.privateca.v1beta1.ReusableConfigValues] that are
      *           relevant in a CA certificate.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\ObjectId[]|\Google\Protobuf\Internal\RepeatedField $policy_ids
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $policy_ids
      *           Optional. Describes the X.509 certificate policy object identifiers, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $aia_ocsp_servers
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_ocsp_servers
      *           Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses
      *           that appear in the "Authority Information Access" extension in the
      *           certificate.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\X509Extension[]|\Google\Protobuf\Internal\RepeatedField $additional_extensions
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $additional_extensions
      *           Optional. Describes custom X.509 extensions.
      * }
      */
@@ -83,11 +83,11 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * Optional. Indicates the intended use for keys that correspond to a certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.KeyUsage key_usage = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\KeyUsage|null
      */
     public function getKeyUsage()
     {
-        return isset($this->key_usage) ? $this->key_usage : null;
+        return $this->key_usage;
     }
 
     public function hasKeyUsage()
@@ -120,11 +120,11 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * relevant in a CA certificate.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigValues.CaOptions ca_options = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues\CaOptions
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues\CaOptions|null
      */
     public function getCaOptions()
     {
-        return isset($this->ca_options) ? $this->ca_options : null;
+        return $this->ca_options;
     }
 
     public function hasCaOptions()
@@ -170,7 +170,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.ObjectId policy_ids = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\ObjectId[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\ObjectId>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPolicyIds($var)
@@ -200,7 +200,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * certificate.
      *
      * Generated from protobuf field <code>repeated string aia_ocsp_servers = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAiaOcspServers($var)
@@ -226,7 +226,7 @@ class ReusableConfigValues extends \Google\Protobuf\Internal\Message
      * Optional. Describes custom X.509 extensions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.X509Extension additional_extensions = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\X509Extension[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\X509Extension>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAdditionalExtensions($var)

@@ -16,25 +16,23 @@ use Google\Protobuf\Internal\GPBUtil;
 class FixedOrPercent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the specific mode.
-     * - If the value is fixed, then the calculated value is equal to the fixed value.
-     * - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+     * [Output Only] Absolute value of VM instances calculated based on the specific mode. - If the value is fixed, then the calculated value is equal to the fixed value. - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded. 
      *
-     * Generated from protobuf field <code>int32 calculated = 203647422;</code>
+     * Generated from protobuf field <code>optional int32 calculated = 472082878;</code>
      */
-    private $calculated = 0;
+    private $calculated = null;
     /**
      * Specifies a fixed number of VM instances. This must be a positive integer.
      *
-     * Generated from protobuf field <code>int32 fixed = 97445748;</code>
+     * Generated from protobuf field <code>optional int32 fixed = 97445748;</code>
      */
-    private $fixed = 0;
+    private $fixed = null;
     /**
      * Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
      *
-     * Generated from protobuf field <code>int32 percent = 126379077;</code>
+     * Generated from protobuf field <code>optional int32 percent = 394814533;</code>
      */
-    private $percent = 0;
+    private $percent = null;
 
     /**
      * Constructor.
@@ -43,9 +41,7 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $calculated
-     *           [Output Only] Absolute value of VM instances calculated based on the specific mode.
-     *           - If the value is fixed, then the calculated value is equal to the fixed value.
-     *           - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+     *           [Output Only] Absolute value of VM instances calculated based on the specific mode. - If the value is fixed, then the calculated value is equal to the fixed value. - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded. 
      *     @type int $fixed
      *           Specifies a fixed number of VM instances. This must be a positive integer.
      *     @type int $percent
@@ -58,24 +54,30 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the specific mode.
-     * - If the value is fixed, then the calculated value is equal to the fixed value.
-     * - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+     * [Output Only] Absolute value of VM instances calculated based on the specific mode. - If the value is fixed, then the calculated value is equal to the fixed value. - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded. 
      *
-     * Generated from protobuf field <code>int32 calculated = 203647422;</code>
+     * Generated from protobuf field <code>optional int32 calculated = 472082878;</code>
      * @return int
      */
     public function getCalculated()
     {
-        return $this->calculated;
+        return isset($this->calculated) ? $this->calculated : 0;
+    }
+
+    public function hasCalculated()
+    {
+        return isset($this->calculated);
+    }
+
+    public function clearCalculated()
+    {
+        unset($this->calculated);
     }
 
     /**
-     * [Output Only] Absolute value of VM instances calculated based on the specific mode.
-     * - If the value is fixed, then the calculated value is equal to the fixed value.
-     * - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.
+     * [Output Only] Absolute value of VM instances calculated based on the specific mode. - If the value is fixed, then the calculated value is equal to the fixed value. - If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded. 
      *
-     * Generated from protobuf field <code>int32 calculated = 203647422;</code>
+     * Generated from protobuf field <code>optional int32 calculated = 472082878;</code>
      * @param int $var
      * @return $this
      */
@@ -90,18 +92,28 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a fixed number of VM instances. This must be a positive integer.
      *
-     * Generated from protobuf field <code>int32 fixed = 97445748;</code>
+     * Generated from protobuf field <code>optional int32 fixed = 97445748;</code>
      * @return int
      */
     public function getFixed()
     {
-        return $this->fixed;
+        return isset($this->fixed) ? $this->fixed : 0;
+    }
+
+    public function hasFixed()
+    {
+        return isset($this->fixed);
+    }
+
+    public function clearFixed()
+    {
+        unset($this->fixed);
     }
 
     /**
      * Specifies a fixed number of VM instances. This must be a positive integer.
      *
-     * Generated from protobuf field <code>int32 fixed = 97445748;</code>
+     * Generated from protobuf field <code>optional int32 fixed = 97445748;</code>
      * @param int $var
      * @return $this
      */
@@ -116,18 +128,28 @@ class FixedOrPercent extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
      *
-     * Generated from protobuf field <code>int32 percent = 126379077;</code>
+     * Generated from protobuf field <code>optional int32 percent = 394814533;</code>
      * @return int
      */
     public function getPercent()
     {
-        return $this->percent;
+        return isset($this->percent) ? $this->percent : 0;
+    }
+
+    public function hasPercent()
+    {
+        return isset($this->percent);
+    }
+
+    public function clearPercent()
+    {
+        unset($this->percent);
     }
 
     /**
      * Specifies a percentage of instances between 0 to 100%, inclusive. For example, specify 80 for 80%.
      *
-     * Generated from protobuf field <code>int32 percent = 126379077;</code>
+     * Generated from protobuf field <code>optional int32 percent = 394814533;</code>
      * @param int $var
      * @return $this
      */

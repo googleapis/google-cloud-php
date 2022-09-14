@@ -31,13 +31,14 @@ use Google\Cloud\Storage\SigningHelper;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
-use GuzzleHttp\Psr7;
-use PHPUnit\Framework\TestCase;
+use GuzzleHttp\Psr7\Utils;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -45,6 +46,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class StorageObjectTest extends TestCase
 {
+    use ExpectException;
     use KeyPairGenerateTrait;
 
     const TIMESTAMP = '2025-01-01';
@@ -57,7 +59,7 @@ class StorageObjectTest extends TestCase
     private $key;
     private $kf;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->key = $this->getKeyPair();
@@ -207,11 +209,10 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($destinationObject, $copiedObject->info()['name']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCopyObjectThrowsExceptionWithInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->copy($object);
     }
@@ -313,11 +314,10 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($destinationObject, $rewrittenObject->info()['name']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testRewriteObjectThrowsExceptionWithInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->rewrite($object);
     }
@@ -414,7 +414,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
@@ -443,7 +443,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
                 'bucket' => $bucket,
                 'object' => $object,
@@ -470,7 +470,7 @@ class StorageObjectTest extends TestCase
     {
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
@@ -491,7 +491,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObject([
             'bucket' => $bucket,
             'object' => $object,
@@ -522,7 +522,7 @@ class StorageObjectTest extends TestCase
         $hash = base64_encode('1234');
         $bucket = 'bucket';
         $object = self::OBJECT;
-        $stream = Psr7\stream_for($string = 'abcdefg');
+        $stream = Utils::streamFor($string = 'abcdefg');
         $this->connection->downloadObjectAsync([
             'bucket' => $bucket,
             'object' => $object,
@@ -675,11 +675,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testInvalidSigningVersion()
     {
+        $this->expectException('InvalidArgumentException');
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time()+1, [
             'version' => uniqid()
@@ -730,11 +730,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testSignedUrlInvalidKeyFilePath()
     {
+        $this->expectException('InvalidArgumentException');
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time(), [
             'keyFilePath' => __DIR__ . '/foo/bar/json.json'
@@ -742,11 +742,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testSignedUrlInvalidKeyFileData()
     {
+        $this->expectException('InvalidArgumentException');
         $file = tmpfile();
         $path = stream_get_meta_data($file)['uri'];
         fwrite($file, '{');

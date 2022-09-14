@@ -52,6 +52,12 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 seqno = 4 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $seqno = 0;
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     */
+    private $request_options = null;
 
     /**
      * Constructor.
@@ -66,7 +72,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           To protect against replays, single-use transactions are not supported. The
      *           caller must either supply an existing transaction ID or begin a new
      *           transaction.
-     *     @type \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $statements
      *           Required. The list of statements to execute in this batch. Statements are executed
      *           serially, such that the effects of statement `i` are visible to statement
      *           `i+1`. Each statement must be a DML statement. Execution stops at the
@@ -80,6 +86,8 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      *           transaction. If a request arrives for the first time with an out-of-order
      *           sequence number, the transaction may be aborted. Replays of previously
      *           handled requests will yield the same response as the first execution.
+     *     @type \Google\Cloud\Spanner\V1\RequestOptions $request_options
+     *           Common options for this request.
      * }
      */
     public function __construct($data = NULL) {
@@ -124,7 +132,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTransaction()
     {
-        return isset($this->transaction) ? $this->transaction : null;
+        return $this->transaction;
     }
 
     public function hasTransaction()
@@ -178,7 +186,7 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
      * Callers must provide at least one statement.
      *
      * Generated from protobuf field <code>repeated .google.spanner.v1.ExecuteBatchDmlRequest.Statement statements = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatements($var)
@@ -223,6 +231,42 @@ class ExecuteBatchDmlRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->seqno = $var;
+
+        return $this;
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     * @return \Google\Cloud\Spanner\V1\RequestOptions|null
+     */
+    public function getRequestOptions()
+    {
+        return $this->request_options;
+    }
+
+    public function hasRequestOptions()
+    {
+        return isset($this->request_options);
+    }
+
+    public function clearRequestOptions()
+    {
+        unset($this->request_options);
+    }
+
+    /**
+     * Common options for this request.
+     *
+     * Generated from protobuf field <code>.google.spanner.v1.RequestOptions request_options = 5;</code>
+     * @param \Google\Cloud\Spanner\V1\RequestOptions $var
+     * @return $this
+     */
+    public function setRequestOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\V1\RequestOptions::class);
+        $this->request_options = $var;
 
         return $this;
     }

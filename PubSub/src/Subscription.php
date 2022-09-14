@@ -20,6 +20,8 @@ namespace Google\Cloud\PubSub;
 use Google\Cloud\Core\ArrayTrait;
 use Google\Cloud\Core\Duration;
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\Exception\BadRequestException;
+use Google\Cloud\Core\ExponentialBackoff;
 use Google\Cloud\Core\Iam\Iam;
 use Google\Cloud\Core\Timestamp;
 use Google\Cloud\Core\TimeTrait;
@@ -120,6 +122,34 @@ class Subscription
      * @var Iam
      */
     private $iam;
+
+    /**
+     * @var int
+     *
+     * The max time an exponential retry should delay for(in microseconds)
+     * set to 64 secs.
+     */
+    private static $exactlyOnceDeliveryMaxRetryTime = 64000000;
+
+    /**
+     * @var string
+     *
+     * The Error Info reason that is used to identify a subscription
+     * with Exactly Once Delivery enabled or not.
+     */
+    private static $exactlyOnceDeliveryFailureReason = 'EXACTLY_ONCE_ACKID_FAILURE';
+
+    /**
+     * @var string
+     */
+    private static $exactlyOnceDeliveryTransientFailurePrefix = 'TRANSIENT_FAILURE';
+
+    /**
+     * @var int
+     *
+     * Max num of retries for an Exactly Once Delivery enabled sub's ack operation.
+     */
+    private static $exactlyOnceDeliveryMaxRetries = 15;
 
     /**
      * Create a Subscription.
@@ -319,6 +349,8 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
+     *           'Exactly Once Delivery' on the subscription.
      * }
      * @return array An array of subscription info
      * @throws \InvalidArgumentException
@@ -465,6 +497,8 @@ class Subscription
      *     @type Duration|string $retryPolicy.maximumBackoff The maximum delay
      *           between consecutive deliveries of a given message. Value should
      *           be between 0 and 600 seconds. Defaults to 600 seconds.
+     *     @type bool $enableExactlyOnceDelivery Indicates whether to enable
+     *           'Exactly Once Delivery' on the subscription.
      * }
      * @param array $options [optional] {
      *     Configuration options.
@@ -649,9 +683,6 @@ class Subscription
     public function pull(array $options = [])
     {
         $messages = [];
-        $options['returnImmediately'] = isset($options['returnImmediately'])
-            ? $options['returnImmediately']
-            : false;
         $options['maxMessages'] = isset($options['maxMessages'])
             ? $options['maxMessages']
             : self::MAX_MESSAGES;
@@ -683,18 +714,35 @@ class Subscription
      *     $subscription->acknowledge($message);
      * }
      * ```
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * foreach ($messages as $message) {
+     *     $failedMsgs = $subscription->acknowledge($message, ['returnFailures' => true]);
+     *
+     *     // Either log or store the $failedMsgs to be retried later
+     * }
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
      * @param Message $message A message object.
-     * @param array $options [optional] Configuration Options
-     * @return void
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if an acknowledgement is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
      */
     public function acknowledge(Message $message, array $options = [])
     {
-        $this->acknowledgeBatch([$message], $options);
+        return $this->acknowledgeBatch([$message], $options);
     }
 
     /**
@@ -709,23 +757,70 @@ class Subscription
      *
      * $subscription->acknowledgeBatch($messages);
      * ```
+     * ```
+     * $messages = $subscription->pull();
+     *
+     * $failedMsgs = $subscription->acknowledgeBatch($messages, ['returnFailures' => true]);
+     *
+     * // Either log or store the $failedMsgs to be retried later
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/acknowledge Acknowledge Message
      * @codingStandardsIgnoreEnd
      *
      * @param Message[] $messages An array of messages
-     * @param array $options Configuration Options
-     * @return void
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
      */
     public function acknowledgeBatch(array $messages, array $options = [])
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->acknowledge($options + [
-            'subscription' => $this->name,
-            'ackIds' => $this->getMessageAckIds($messages)
-        ]);
+        if (isset($options['returnFailures']) && $options['returnFailures']) {
+            return $this->acknowledgeBatchWithRetries($messages, $options);
+        }
+
+        // the rpc may throw errors for a sub with EOD enabled
+        // but we don't act on the exception to maintain compatibility
+        try {
+            $this->connection->acknowledge($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages)
+            ]);
+        } catch (BadRequestException $e) {
+            // bubble up the error if the exception isn't an EOD exception
+            if (!$this->isExceptionExactlyOnce($e)) {
+                throw $e;
+            }
+        }
+    }
+
+    /**
+     * Helper that sends an acknowledge request but with retries.
+     *
+     * @param Message[] $messages An array of messages
+     * @param array $options Configuration Options
+     * @return array|void Array of messages which failed permanently
+     */
+    private function acknowledgeBatchWithRetries(array $messages, array $options = [])
+    {
+        $actionFunc = function (&$messages, $options) {
+            $this->connection->acknowledge($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages)
+            ]);
+        };
+
+        return $this->retryEodAction($actionFunc, $messages, $options);
     }
 
     /**
@@ -760,12 +855,20 @@ class Subscription
      *        seconds after the ModifyAckDeadline call was made. Specifying
      *        zero may immediately make the message available for another pull
      *        request.
-     * @param array $options [optional] Configuration Options
-     * @return void
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
      */
     public function modifyAckDeadline(Message $message, $seconds, array $options = [])
     {
-        $this->modifyAckDeadlineBatch([$message], $seconds, $options);
+        return $this->modifyAckDeadlineBatch([$message], $seconds, $options);
     }
 
     /**
@@ -787,6 +890,12 @@ class Subscription
      * // Now we'll acknowledge
      * $subscription->acknowledgeBatch($messages);
      * ```
+     * ```
+     * $messages = $subscription->pull();
+     * $failedMsgs = $subscription->modifyAckDeadlineBatch($messages, 3, ['returnFailures' => true]);
+     *
+     * // Either log or store the $failedMsgs to be retried later
+     * ```
      *
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/pubsub/docs/reference/rest/v1/projects.subscriptions/modifyAckDeadline Modify Ack Deadline
@@ -799,18 +908,160 @@ class Subscription
      *        seconds after the ModifyAckDeadline call was made. Specifying
      *        zero may immediately make the message available for another pull
      *        request.
-     * @param array $options [optional] Configuration Options
-     * @return void
+     * @param array $options [optional] {
+     *      Configuration Options
+     *
+     *      @type bool $returnFailures If set, and if a message is failed with a
+     *            temporary failure code, it will be retried with an exponential delay. This will also make sure
+     *            that the permanently failed message is returned to the caller. This is only true for a
+     *            subscription with 'Exactly Once Delivery' enabled.
+     *            Read more about EOD: https://cloud.google.com/pubsub/docs/exactly-once-delivery
+     * }
+     * @return void|array
      */
     public function modifyAckDeadlineBatch(array $messages, $seconds, array $options = [])
     {
         $this->validateBatch($messages, Message::class);
 
-        $this->connection->modifyAckDeadline($options + [
-            'subscription' => $this->name,
-            'ackIds' => $this->getMessageAckIds($messages),
-            'ackDeadlineSeconds' => $seconds
-        ]);
+        if (isset($options['returnFailures']) && $options['returnFailures']) {
+            return $this->modifyAckDeadlineBatchWithRetries($messages, $seconds, $options);
+        }
+
+        // the rpc may throw errors for a sub with EOD enabled
+        // but we don't act on the exception to maintain compatibility
+        try {
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        } catch (BadRequestException $e) {
+            // bubble up the error if the exception isn't an EOD exception
+            if (!$this->isExceptionExactlyOnce($e)) {
+                throw $e;
+            }
+        }
+    }
+
+    /**
+     * Helper that sends a request to modify the ack deadline but with retries.
+     *
+     * @param Message[] $messages An array of messages
+     * @param int $seconds The new ack deadline with respect to the time
+     *        this request was sent to the Pub/Sub system. Must be >= 0. For
+     *        example, if the value is 10, the new ack deadline will expire 10
+     *        seconds after the ModifyAckDeadline call was made. Specifying
+     *        zero may immediately make the message available for another pull
+     *        request.
+     * @param array $options Configuration Options
+     *
+     * @return array
+     */
+    private function modifyAckDeadlineBatchWithRetries(array $messages, $seconds, array $options)
+    {
+        $actionFunc = function (&$messages, $options) use ($seconds) {
+            $this->connection->modifyAckDeadline($options + [
+                'subscription' => $this->name,
+                'ackIds' => $this->getMessageAckIds($messages),
+                'ackDeadlineSeconds' => $seconds
+            ]);
+        };
+
+        return $this->retryEodAction($actionFunc, $messages, $options);
+    }
+
+    /**
+     * Helper function to retry an action for an `Exactly Once Delivery` enabled subscription
+     * with an ExponentionBackOff.
+     *
+     * @param callable $actionFunc The function to be retried
+     * @param Messages[] $messages The messages to be passed on to the pubsub service
+     * @param array $options The configuration options
+     */
+    private function retryEodAction(callable $actionFunc, array $messages, array $options)
+    {
+        $failed = [];
+        $eodEnabled = true;
+        $startTime = time();
+        $maxAttemptTime = 10 * 60;  // 10 minutes
+        
+        // min delay of 1 sec, max delay of 64 secs
+        // doubles on every attempt
+        $delayFunc = function ($attempt) {
+            $delay = min(
+                mt_rand(0, 1000000) + (pow(2, $attempt) * 1000000),
+                self::$exactlyOnceDeliveryMaxRetryTime
+            );
+            return $delay;
+        };
+
+        // Func that decides if we need to retry again or not
+        $retryFunc = function (
+            BadRequestException $e,
+            $attempt
+        ) use (
+            &$messages,
+            &$failed,
+            &$eodEnabled,
+            $startTime,
+            $maxAttemptTime
+        ) {
+            // If the subscription isn't EOD enabled, the method behaves as the acknowledge method.
+            // Info from the exception is used instead of $subscription->info() to avoid
+            // the need of `pubsub.subscriptions.get` permission.
+            if (!$this->isExceptionExactlyOnce($e)) {
+                $eodEnabled = false;
+                return false;
+            }
+
+            $retryAckIds = $this->getRetryableAckIds($e);
+
+            // Find the messages which can be retried
+            $messages = array_filter($messages, function ($message) use (
+                $retryAckIds,
+                &$failed,
+                $startTime,
+                $maxAttemptTime
+            ) {
+                // A message will only be retried if
+                // 1. It's ackId is in the list of retryable ackIds
+                // 2. The total time elapsed hasn't crossed $maxAttemptTime seconds
+                if (in_array($message->ackId(), $retryAckIds)
+                    && time() - $startTime < $maxAttemptTime
+                ) {
+                    return true;
+                }
+
+                // If a message ack fails permanently, we remove it from the $messages array
+                // and add it to the list of failed messages
+                $failed[] = $message;
+
+                return false;
+            });
+
+            // Retry only if there are retryable messages left
+            return count($messages) > 0;
+        };
+        
+        // We use 15 retries as the number of retries should be high enough to have a total delay
+        // of 10 minutes($maxAttemptTime)
+        $backoff = new ExponentialBackoff(self::$exactlyOnceDeliveryMaxRetries, $retryFunc);
+        $backoff->setCalcDelayFunction($delayFunc);
+
+        // Try to ack the messages with an ExponentialBackoff
+        try {
+            $backoff->execute($actionFunc, [&$messages, $options]);
+        } catch (BadRequestException $e) {
+            // When an exception is thrown in the action func
+            // and retry function returns false
+            // the exception is passed here
+        }
+
+        // We don't return anything if EOD is disabled
+        // to make it behave like if the flag `returnFailures` wasn't set.
+        if ($eodEnabled) {
+            return $failed;
+        }
     }
 
     /**
@@ -1036,6 +1287,20 @@ class Subscription
     }
 
     /**
+     * Checks if a given exception failure is because of
+     * an EOD failure.
+     *
+     * @param BadRequestException $e
+     * @return boolean
+     */
+    private function isExceptionExactlyOnce(BadRequestException $e)
+    {
+        $reason = $e->getReason();
+
+        return $reason === self::$exactlyOnceDeliveryFailureReason;
+    }
+
+    /**
      * Present a nicer debug result to people using php 5.6 or greater.
      * @return array
      * @codeCoverageIgnore
@@ -1050,5 +1315,50 @@ class Subscription
             'info' => $this->info,
             'connection' => get_class($this->connection)
         ];
+    }
+
+    /**
+     * Returns the temporarily failed ackIds from the exception object
+     *
+     * @param BadRequestException
+     * @return array
+     */
+    private function getRetryableAckIds(BadRequestException $e)
+    {
+        $metadata = $e->getErrorInfoMetadata();
+        $ackIds = [];
+
+        // EOD enabled subscription
+        if ($this->isExceptionExactlyOnce($e)) {
+            foreach ($metadata as $ackId => $failureReason) {
+                // check if the prefix of the failure reason is same as
+                // the transient failure for EOD enabled subscriptions
+                if (strpos($failureReason, self::$exactlyOnceDeliveryTransientFailurePrefix) === 0) {
+                    $ackIds[] = $ackId;
+                }
+            }
+        }
+
+        return $ackIds;
+    }
+
+    /**
+     * Func to change the maximum delay time for an `Exactly Once Delivery` enabled subscription's
+     * retry attempt.
+     *
+     * @internal
+     */
+    public static function setMaxEodRetryTime($maxTime)
+    {
+        self::$exactlyOnceDeliveryMaxRetryTime = $maxTime;
+    }
+
+    /**
+     * Getter for the private static variable
+     * @return int
+     */
+    public static function getMaxRetries()
+    {
+        return self::$exactlyOnceDeliveryMaxRetries;
     }
 }

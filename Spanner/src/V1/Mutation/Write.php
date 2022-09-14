@@ -19,7 +19,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $table = '';
     /**
@@ -53,12 +53,12 @@ class Write extends \Google\Protobuf\Internal\Message
      *
      *     @type string $table
      *           Required. The table whose rows will be written.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $columns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $columns
      *           The names of the columns in [table][google.spanner.v1.Mutation.Write.table] to be written.
      *           The list of columns must contain enough columns to allow
      *           Cloud Spanner to derive values for all primary key columns in the
      *           row(s) to be modified.
-     *     @type \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $values
      *           The values to be written. `values` can contain more than one
      *           list of values. If it does, then multiple rows are written, one
      *           for each entry in `values`. Each list in `values` must have
@@ -77,7 +77,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getTable()
@@ -88,7 +88,7 @@ class Write extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table whose rows will be written.
      *
-     * Generated from protobuf field <code>string table = 1;</code>
+     * Generated from protobuf field <code>string table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -121,7 +121,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * row(s) to be modified.
      *
      * Generated from protobuf field <code>repeated string columns = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setColumns($var)
@@ -161,7 +161,7 @@ class Write extends \Google\Protobuf\Internal\Message
      * encoded as described [here][google.spanner.v1.TypeCode].
      *
      * Generated from protobuf field <code>repeated .google.protobuf.ListValue values = 3;</code>
-     * @param \Google\Protobuf\ListValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\ListValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

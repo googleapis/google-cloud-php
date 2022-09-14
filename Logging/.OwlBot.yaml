@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/logging/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Logging/$1/$2
+api-name: Logging

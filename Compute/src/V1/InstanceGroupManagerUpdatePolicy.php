@@ -15,47 +15,52 @@ use Google\Protobuf\Internal\GPBUtil;
 class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The  instance redistribution policy for regional managed instance groups. Valid values are:
-     * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
-     * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * The instance redistribution policy for regional managed instance groups. Valid values are: - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region. - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * Check the InstanceRedistributionType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>optional string instance_redistribution_type = 292630424;</code>
      */
-    private $instance_redistribution_type = '';
+    private $instance_redistribution_type = null;
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
      */
     private $max_surge = null;
     /**
-     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
-     * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied: - The instance's status is RUNNING. - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
      */
     private $max_unavailable = null;
     /**
-     * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+     * Minimal action to be taken on an instance. Use this option to minimize disruption as much as possible or to apply a more disruptive action than is necessary. - To limit disruption as much as possible, set the minimal action to REFRESH. If your update requires a more disruptive action, Compute Engine performs the necessary action to execute the update. - To apply a more disruptive action than is strictly necessary, set the minimal action to RESTART or REPLACE. For example, Compute Engine does not need to restart a VM to change its metadata. But if your application reads instance metadata only when a VM is restarted, you can set the minimal action to RESTART in order to pick up metadata changes.
+     * Check the MinimalAction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      */
-    private $minimal_action = '';
+    private $minimal_action = null;
+    /**
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
+     */
+    private $most_disruptive_allowed_action = null;
     /**
      * What action should be used to replace instances. See minimal_action.REPLACE
+     * Check the ReplacementMethod enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>optional string replacement_method = 505931694;</code>
      */
-    private $replacement_method = '';
+    private $replacement_method = null;
     /**
      * The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
-    private $type = '';
+    private $type = null;
 
     /**
      * Constructor.
@@ -64,23 +69,24 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $instance_redistribution_type
-     *           The  instance redistribution policy for regional managed instance groups. Valid values are:
-     *           - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
-     *           - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     *           The instance redistribution policy for regional managed instance groups. Valid values are: - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region. - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     *           Check the InstanceRedistributionType enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\FixedOrPercent $max_surge
-     *           The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     *           At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+     *           The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *     @type \Google\Cloud\Compute\V1\FixedOrPercent $max_unavailable
-     *           The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
-     *           - The instance's status is RUNNING.
-     *           - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     *           At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+     *           The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied: - The instance's status is RUNNING. - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *     @type string $minimal_action
-     *           Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+     *           Minimal action to be taken on an instance. Use this option to minimize disruption as much as possible or to apply a more disruptive action than is necessary. - To limit disruption as much as possible, set the minimal action to REFRESH. If your update requires a more disruptive action, Compute Engine performs the necessary action to execute the update. - To apply a more disruptive action than is strictly necessary, set the minimal action to RESTART or REPLACE. For example, Compute Engine does not need to restart a VM to change its metadata. But if your application reads instance metadata only when a VM is restarted, you can set the minimal action to RESTART in order to pick up metadata changes.
+     *           Check the MinimalAction enum for the list of possible values.
+     *     @type string $most_disruptive_allowed_action
+     *           Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     *           Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *     @type string $replacement_method
      *           What action should be used to replace instances. See minimal_action.REPLACE
+     *           Check the ReplacementMethod enum for the list of possible values.
      *     @type string $type
      *           The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,24 +95,32 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The  instance redistribution policy for regional managed instance groups. Valid values are:
-     * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
-     * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * The instance redistribution policy for regional managed instance groups. Valid values are: - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region. - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * Check the InstanceRedistributionType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>optional string instance_redistribution_type = 292630424;</code>
      * @return string
      */
     public function getInstanceRedistributionType()
     {
-        return $this->instance_redistribution_type;
+        return isset($this->instance_redistribution_type) ? $this->instance_redistribution_type : '';
+    }
+
+    public function hasInstanceRedistributionType()
+    {
+        return isset($this->instance_redistribution_type);
+    }
+
+    public function clearInstanceRedistributionType()
+    {
+        unset($this->instance_redistribution_type);
     }
 
     /**
-     * The  instance redistribution policy for regional managed instance groups. Valid values are:
-     * - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region.
-     * - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * The instance redistribution policy for regional managed instance groups. Valid values are: - PROACTIVE (default): The group attempts to maintain an even distribution of VM instances across zones in the region. - NONE: For non-autoscaled groups, proactive redistribution is disabled.
+     * Check the InstanceRedistributionType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string instance_redistribution_type = 24194968;</code>
+     * Generated from protobuf field <code>optional string instance_redistribution_type = 292630424;</code>
      * @param string $var
      * @return $this
      */
@@ -119,15 +133,14 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
-     * @return \Google\Cloud\Compute\V1\FixedOrPercent
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
+     * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getMaxSurge()
     {
-        return isset($this->max_surge) ? $this->max_surge : null;
+        return $this->max_surge;
     }
 
     public function hasMaxSurge()
@@ -141,10 +154,9 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be created above the specified targetSize during the update process. By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
+     * The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_surge = 34137235;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_surge = 302572691;</code>
      * @param \Google\Cloud\Compute\V1\FixedOrPercent $var
      * @return $this
      */
@@ -157,17 +169,14 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
-     * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied: - The instance's status is RUNNING. - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
-     * @return \Google\Cloud\Compute\V1\FixedOrPercent
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
+     * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getMaxUnavailable()
     {
-        return isset($this->max_unavailable) ? $this->max_unavailable : null;
+        return $this->max_unavailable;
     }
 
     public function hasMaxUnavailable()
@@ -181,12 +190,9 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:
-     * - The instance's status is RUNNING.
-     * - If there is a health check on the instance group, the instance's liveness health check result must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  By default, a fixed value of 1 is used. This value can be either a fixed number or a percentage if the instance group has 10 or more instances. If you set a percentage, the number of instances will be rounded up if necessary.
-     * At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
+     * The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied: - The instance's status is RUNNING. - If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates. At least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_unavailable = 136504821;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_unavailable = 404940277;</code>
      * @param \Google\Cloud\Compute\V1\FixedOrPercent $var
      * @return $this
      */
@@ -199,20 +205,32 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+     * Minimal action to be taken on an instance. Use this option to minimize disruption as much as possible or to apply a more disruptive action than is necessary. - To limit disruption as much as possible, set the minimal action to REFRESH. If your update requires a more disruptive action, Compute Engine performs the necessary action to execute the update. - To apply a more disruptive action than is strictly necessary, set the minimal action to RESTART or REPLACE. For example, Compute Engine does not need to restart a VM to change its metadata. But if your application reads instance metadata only when a VM is restarted, you can set the minimal action to RESTART in order to pick up metadata changes.
+     * Check the MinimalAction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      * @return string
      */
     public function getMinimalAction()
     {
-        return $this->minimal_action;
+        return isset($this->minimal_action) ? $this->minimal_action : '';
+    }
+
+    public function hasMinimalAction()
+    {
+        return isset($this->minimal_action);
+    }
+
+    public function clearMinimalAction()
+    {
+        unset($this->minimal_action);
     }
 
     /**
-     * Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.
+     * Minimal action to be taken on an instance. Use this option to minimize disruption as much as possible or to apply a more disruptive action than is necessary. - To limit disruption as much as possible, set the minimal action to REFRESH. If your update requires a more disruptive action, Compute Engine performs the necessary action to execute the update. - To apply a more disruptive action than is strictly necessary, set the minimal action to RESTART or REPLACE. For example, Compute Engine does not need to restart a VM to change its metadata. But if your application reads instance metadata only when a VM is restarted, you can set the minimal action to RESTART in order to pick up metadata changes.
+     * Check the MinimalAction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string minimal_action = 2131604;</code>
+     * Generated from protobuf field <code>optional string minimal_action = 270567060;</code>
      * @param string $var
      * @return $this
      */
@@ -225,20 +243,70 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * What action should be used to replace instances. See minimal_action.REPLACE
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
      * @return string
      */
-    public function getReplacementMethod()
+    public function getMostDisruptiveAllowedAction()
     {
-        return $this->replacement_method;
+        return isset($this->most_disruptive_allowed_action) ? $this->most_disruptive_allowed_action : '';
+    }
+
+    public function hasMostDisruptiveAllowedAction()
+    {
+        return isset($this->most_disruptive_allowed_action);
+    }
+
+    public function clearMostDisruptiveAllowedAction()
+    {
+        unset($this->most_disruptive_allowed_action);
+    }
+
+    /**
+     * Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.
+     * Check the MostDisruptiveAllowedAction enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string most_disruptive_allowed_action = 66103053;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMostDisruptiveAllowedAction($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->most_disruptive_allowed_action = $var;
+
+        return $this;
     }
 
     /**
      * What action should be used to replace instances. See minimal_action.REPLACE
+     * Check the ReplacementMethod enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string replacement_method = 237496238;</code>
+     * Generated from protobuf field <code>optional string replacement_method = 505931694;</code>
+     * @return string
+     */
+    public function getReplacementMethod()
+    {
+        return isset($this->replacement_method) ? $this->replacement_method : '';
+    }
+
+    public function hasReplacementMethod()
+    {
+        return isset($this->replacement_method);
+    }
+
+    public function clearReplacementMethod()
+    {
+        unset($this->replacement_method);
+    }
+
+    /**
+     * What action should be used to replace instances. See minimal_action.REPLACE
+     * Check the ReplacementMethod enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string replacement_method = 505931694;</code>
      * @param string $var
      * @return $this
      */
@@ -252,19 +320,31 @@ class InstanceGroupManagerUpdatePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @return string
      */
     public function getType()
     {
-        return $this->type;
+        return isset($this->type) ? $this->type : '';
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
     }
 
     /**
      * The type of update process. You can specify either PROACTIVE so that the instance group manager proactively executes actions in order to bring instances to their target versions or OPPORTUNISTIC so that no action is proactively executed but the update will be performed as part of other actions (for example, resizes or recreateInstances calls).
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>string type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      * @param string $var
      * @return $this
      */

@@ -42,7 +42,7 @@ class Row extends \Google\Protobuf\Internal\Message
      *           The unique key which identifies this row within its table. This is the same
      *           key that's used to identify the row in, for example, a MutateRowRequest.
      *           May contain any non-empty byte string up to 4KiB in length.
-     *     @type \Google\Cloud\Bigtable\V2\Family[]|\Google\Protobuf\Internal\RepeatedField $families
+     *     @type array<\Google\Cloud\Bigtable\V2\Family>|\Google\Protobuf\Internal\RepeatedField $families
      *           May be empty, but only if the entire row is empty.
      *           The mutual ordering of column families is not specified.
      * }
@@ -99,7 +99,7 @@ class Row extends \Google\Protobuf\Internal\Message
      * The mutual ordering of column families is not specified.
      *
      * Generated from protobuf field <code>repeated .google.bigtable.v2.Family families = 2;</code>
-     * @param \Google\Cloud\Bigtable\V2\Family[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Bigtable\V2\Family>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFamilies($var)

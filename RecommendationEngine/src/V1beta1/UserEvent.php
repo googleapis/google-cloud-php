@@ -212,11 +212,21 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * Required. User information.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.UserInfo user_info = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserInfo
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\UserInfo|null
      */
     public function getUserInfo()
     {
         return $this->user_info;
+    }
+
+    public function hasUserInfo()
+    {
+        return isset($this->user_info);
+    }
+
+    public function clearUserInfo()
+    {
+        unset($this->user_info);
     }
 
     /**
@@ -239,11 +249,21 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * recommendation types.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.EventDetail event_detail = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\EventDetail
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\EventDetail|null
      */
     public function getEventDetail()
     {
         return $this->event_detail;
+    }
+
+    public function hasEventDetail()
+    {
+        return isset($this->event_detail);
+    }
+
+    public function clearEventDetail()
+    {
+        unset($this->event_detail);
     }
 
     /**
@@ -283,11 +303,21 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * * `home-page-view`
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductEventDetail product_event_detail = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductEventDetail
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductEventDetail|null
      */
     public function getProductEventDetail()
     {
         return $this->product_event_detail;
+    }
+
+    public function hasProductEventDetail()
+    {
+        return isset($this->product_event_detail);
+    }
+
+    public function clearProductEventDetail()
+    {
+        unset($this->product_event_detail);
     }
 
     /**
@@ -327,11 +357,21 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      * event created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp event_time = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEventTime()
     {
         return $this->event_time;
+    }
+
+    public function hasEventTime()
+    {
+        return isset($this->event_time);
+    }
+
+    public function clearEventTime()
+    {
+        unset($this->event_time);
     }
 
     /**
@@ -372,7 +412,7 @@ class UserEvent extends \Google\Protobuf\Internal\Message
      */
     public function setEventSource($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\UserEvent_EventSource::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\UserEvent\EventSource::class);
         $this->event_source = $var;
 
         return $this;

@@ -14,8 +14,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * larger than the cron_spec + cron_job_duration, the event will be recurring.
  * If only cron_spec + cron_job_duration are specified, the event is effective
  * starting at the local time specified by cron_spec, and is recurring.
- *   start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time
- *   cron job: cron spec start time + duration
+ * ```
+ * start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time
+ * cron job: cron spec start time + duration
+ * ```
  *
  * Generated from protobuf message <code>google.cloud.gaming.v1.Schedule</code>
  */
@@ -77,11 +79,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * The start time of the event.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -113,11 +115,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * The end time of the event.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 2;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -150,11 +152,11 @@ class Schedule extends \Google\Protobuf\Internal\Message
      * after the cron job's start time.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration cron_job_duration = 3;</code>
-     * @return \Google\Protobuf\Duration
+     * @return \Google\Protobuf\Duration|null
      */
     public function getCronJobDuration()
     {
-        return isset($this->cron_job_duration) ? $this->cron_job_duration : null;
+        return $this->cron_job_duration;
     }
 
     public function hasCronJobDuration()

@@ -18,7 +18,7 @@ class ImageClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Type of the classification problem.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $classification_type = 0;
 
@@ -40,7 +40,7 @@ class ImageClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Type of the classification problem.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int
      */
     public function getClassificationType()
@@ -51,7 +51,7 @@ class ImageClassificationDatasetMetadata extends \Google\Protobuf\Internal\Messa
     /**
      * Required. Type of the classification problem.
      *
-     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.automl.v1.ClassificationType classification_type = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int $var
      * @return $this
      */

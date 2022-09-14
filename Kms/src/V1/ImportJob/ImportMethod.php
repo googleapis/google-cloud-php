@@ -7,7 +7,8 @@ namespace Google\Cloud\Kms\V1\ImportJob;
 use UnexpectedValueException;
 
 /**
- * [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] describes the key wrapping method chosen for this
+ * [ImportMethod][google.cloud.kms.v1.ImportJob.ImportMethod] describes the
+ * key wrapping method chosen for this
  * [ImportJob][google.cloud.kms.v1.ImportJob].
  *
  * Protobuf type <code>google.cloud.kms.v1.ImportJob.ImportMethod</code>

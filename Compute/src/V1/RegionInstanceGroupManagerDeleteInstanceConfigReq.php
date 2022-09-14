@@ -28,7 +28,7 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $names
      *           The list of instance names for which we want to delete per-instance configs on this managed instance group.
      * }
      */
@@ -52,7 +52,7 @@ class RegionInstanceGroupManagerDeleteInstanceConfigReq extends \Google\Protobuf
      * The list of instance names for which we want to delete per-instance configs on this managed instance group.
      *
      * Generated from protobuf field <code>repeated string names = 104585032;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNames($var)

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/devtools/cloudprofiler/(v2)/.*-php/(.*)
+      dest: /owl-bot-staging/Profiler/$1/$2
+api-name: Profiler

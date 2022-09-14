@@ -141,7 +141,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getMarketingInfo()
     {
-        return isset($this->marketing_info) ? $this->marketing_info : null;
+        return $this->marketing_info;
     }
 
     public function hasMarketingInfo()
@@ -177,7 +177,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()
@@ -213,7 +213,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getPlan()
     {
-        return isset($this->plan) ? $this->plan : null;
+        return $this->plan;
     }
 
     public function hasPlan()
@@ -249,7 +249,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getConstraints()
     {
-        return isset($this->constraints) ? $this->constraints : null;
+        return $this->constraints;
     }
 
     public function hasConstraints()
@@ -311,7 +311,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -347,7 +347,7 @@ class Offer extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

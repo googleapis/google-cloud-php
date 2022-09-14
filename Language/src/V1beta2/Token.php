@@ -69,7 +69,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getText()
     {
-        return isset($this->text) ? $this->text : null;
+        return $this->text;
     }
 
     public function hasText()
@@ -105,7 +105,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getPartOfSpeech()
     {
-        return isset($this->part_of_speech) ? $this->part_of_speech : null;
+        return $this->part_of_speech;
     }
 
     public function hasPartOfSpeech()
@@ -141,7 +141,7 @@ class Token extends \Google\Protobuf\Internal\Message
      */
     public function getDependencyEdge()
     {
-        return isset($this->dependency_edge) ? $this->dependency_edge : null;
+        return $this->dependency_edge;
     }
 
     public function hasDependencyEdge()

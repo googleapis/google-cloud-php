@@ -22,19 +22,24 @@ use Google\Cloud\Vision\Annotation;
 use Google\Cloud\Vision\Connection\ConnectionInterface;
 use Google\Cloud\Vision\Image;
 use Google\Cloud\Vision\VisionClient;
-use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 
 /**
  * @group vision
  */
 class VisionClientTest extends TestCase
 {
+    use AssertIsType;
+    use ExpectException;
+
     private $client;
 
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->client = TestHelpers::stub(VisionClient::class);
         $this->connection = $this->prophesize(ConnectionInterface::class);
@@ -88,17 +93,16 @@ class VisionClientTest extends TestCase
 
         $res = $this->client->annotateBatch([$image]);
 
-        $this->assertInternalType('array', $res);
+        $this->assertIsArray($res);
 
         $this->assertInstanceOf(Annotation::class, $res[0]);
         $this->assertInstanceOf(Annotation::class, $res[1]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAnnotateBatchInvalidImageType()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->client->annotateBatch(['test']);
     }
 }

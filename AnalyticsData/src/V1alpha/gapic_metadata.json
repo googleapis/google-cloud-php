@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.analytics.data.v1alpha",
+    "libraryPackage": "Google\\Analytics\\Data\\V1alpha",
+    "services": {
+        "AlphaAnalyticsData": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AlphaAnalyticsDataGapicClient",
+                    "rpcs": {
+                        "BatchRunPivotReports": {
+                            "methods": [
+                                "batchRunPivotReports"
+                            ]
+                        },
+                        "BatchRunReports": {
+                            "methods": [
+                                "batchRunReports"
+                            ]
+                        },
+                        "GetMetadata": {
+                            "methods": [
+                                "getMetadata"
+                            ]
+                        },
+                        "RunPivotReport": {
+                            "methods": [
+                                "runPivotReport"
+                            ]
+                        },
+                        "RunRealtimeReport": {
+                            "methods": [
+                                "runRealtimeReport"
+                            ]
+                        },
+                        "RunReport": {
+                            "methods": [
+                                "runReport"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -31,6 +31,76 @@ use Google\Cloud\BigQuery\DataTransfer\V1\Gapic\DataTransferServiceGapicClient;
  */
 class DataTransferServiceClient extends DataTransferServiceGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual
-    // additions to the generated {@see DataTransferServiceGapicClient} class.
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_data_source resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $dataSource
+     *
+     * @return string The formatted location_data_source resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function locationDataSourceName($project, $location, $dataSource)
+    {
+        return self::projectLocationDataSourceName($project, $location, $dataSource);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_run resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     * @param string $run
+     *
+     * @return string The formatted location_run resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function locationRunName($project, $location, $transferConfig, $run)
+    {
+        return self::projectLocationTransferConfigRunName($project, $location, $transferConfig, $run);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a location_transfer_config resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $transferConfig
+     *
+     * @return string The formatted location_transfer_config resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function locationTransferConfigName($project, $location, $transferConfig)
+    {
+        return self::projectLocationTransferConfigName($project, $location, $transferConfig);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a project_run resource.
+     *
+     * @param string $project
+     * @param string $transferConfig
+     * @param string $run
+     *
+     * @return string The formatted project_run resource.
+     *
+     * @deprecated Multi-pattern resource names will have unified formatting functions.
+     *             This helper function will be deleted in the next major version.
+     */
+    public static function projectRunName($project, $transferConfig, $run)
+    {
+        return self::projectTransferConfigRunName($project, $transferConfig, $run);
+    }
 }

@@ -1,0 +1,19 @@
+{
+    "title": "ApigeeRegistry",
+    "defaultService": "apigeeregistry\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "apigeeregistry\/readme"
+        },
+        {
+            "title": "ProvisioningClient (v1)",
+            "type": "apigeeregistry\/v1\/provisioningclient"
+        },
+        {
+            "title": "RegistryClient (v1)",
+            "type": "apigeeregistry\/v1\/registryclient"
+        }
+    ],
+    "pattern": "apigeeregistry\/\\w{1,}"
+}

@@ -24,8 +24,9 @@ use Google\Cloud\Firestore\DocumentReference;
 use Google\Cloud\Firestore\DocumentSnapshot;
 use Google\Cloud\Firestore\SnapshotTrait;
 use Google\Cloud\Firestore\ValueMapper;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group firestore
@@ -33,6 +34,8 @@ use Prophecy\Argument;
  */
 class SnapshotTraitTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'example_project';
     const DATABASE = '(default)';
     const NAME = 'projects/example_project/databases/(default)/documents/a/b';
@@ -41,7 +44,7 @@ class SnapshotTraitTest extends TestCase
     private $mapper;
     private $impl;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(ConnectionInterface::class);
         $this->impl = TestHelpers::impl(SnapshotTrait::class);
@@ -141,11 +144,10 @@ class SnapshotTraitTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testGetSnapshotReadTimeInvalidReadTime()
     {
+        $this->expectException('InvalidArgumentException');
+
         $this->impl->call('getSnapshot', [
             $this->connection->reveal(),
             self::NAME,
@@ -153,11 +155,10 @@ class SnapshotTraitTest extends TestCase
         ]);
     }
 
-    /**
-     * @expectedException Google\Cloud\Core\Exception\NotFoundException
-     */
     public function testGetSnapshotNotFound()
     {
+        $this->expectException('Google\Cloud\Core\Exception\NotFoundException');
+
         $this->connection->batchGetDocuments([
             'database' => sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
             'documents' => [self::NAME]

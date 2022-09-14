@@ -61,6 +61,4 @@ class RiskLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RiskLevel::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_RiskLevel::class);
 

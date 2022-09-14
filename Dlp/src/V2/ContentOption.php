@@ -7,7 +7,7 @@ namespace Google\Cloud\Dlp\V2;
 use UnexpectedValueException;
 
 /**
- * Options describing which parts of the provided content should be scanned.
+ * Deprecated and unused.
  *
  * Protobuf type <code>google.privacy.dlp.v2.ContentOption</code>
  */

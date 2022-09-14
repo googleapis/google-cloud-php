@@ -21,37 +21,53 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Health state of the instance.
+     * URL of the forwarding rule associated with the health status of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
+     * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
      */
-    private $health_state = 0;
-    /**
-     * URL of the instance resource.
-     *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
-     */
-    private $instance = '';
+    private $forwarding_rule = null;
     /**
      * A forwarding rule IP address assigned to this instance.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>optional string forwarding_rule_ip = 172250632;</code>
      */
-    private $ip_address = '';
+    private $forwarding_rule_ip = null;
+    /**
+     * Health state of the instance.
+     * Check the HealthState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string health_state = 324007150;</code>
+     */
+    private $health_state = null;
+    /**
+     * URL of the instance resource.
+     *
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
+     */
+    private $instance = null;
+    /**
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
+     *
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
+     */
+    private $ip_address = null;
     /**
      * The named port of the instance group, not necessarily the port that is health-checked.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>optional string weight = 282149496;</code>
      */
-    private $weight = '';
+    private $weight = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
+     * 
+     * Check the WeightError enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string weight_error = 522501505;</code>
      */
-    private $weight_error = 0;
+    private $weight_error = null;
 
     /**
      * Constructor.
@@ -61,16 +77,23 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Metadata defined as annotations for network endpoint.
-     *     @type int $health_state
+     *     @type string $forwarding_rule
+     *           URL of the forwarding rule associated with the health status of the instance.
+     *     @type string $forwarding_rule_ip
+     *           A forwarding rule IP address assigned to this instance.
+     *     @type string $health_state
      *           Health state of the instance.
+     *           Check the HealthState enum for the list of possible values.
      *     @type string $instance
      *           URL of the instance resource.
      *     @type string $ip_address
-     *           A forwarding rule IP address assigned to this instance.
+     *           For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *     @type int $port
      *           The named port of the instance group, not necessarily the port that is health-checked.
      *     @type string $weight
-     *     @type int $weight_error
+     *     @type string $weight_error
+     *           
+     *           Check the WeightError enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -105,26 +128,110 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Health state of the instance.
+     * URL of the forwarding rule associated with the health status of the instance.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
+     * @return string
      */
-    public function getHealthState()
+    public function getForwardingRule()
     {
-        return $this->health_state;
+        return isset($this->forwarding_rule) ? $this->forwarding_rule : '';
+    }
+
+    public function hasForwardingRule()
+    {
+        return isset($this->forwarding_rule);
+    }
+
+    public function clearForwardingRule()
+    {
+        unset($this->forwarding_rule);
+    }
+
+    /**
+     * URL of the forwarding rule associated with the health status of the instance.
+     *
+     * Generated from protobuf field <code>optional string forwarding_rule = 269964030;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRule($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule = $var;
+
+        return $this;
+    }
+
+    /**
+     * A forwarding rule IP address assigned to this instance.
+     *
+     * Generated from protobuf field <code>optional string forwarding_rule_ip = 172250632;</code>
+     * @return string
+     */
+    public function getForwardingRuleIp()
+    {
+        return isset($this->forwarding_rule_ip) ? $this->forwarding_rule_ip : '';
+    }
+
+    public function hasForwardingRuleIp()
+    {
+        return isset($this->forwarding_rule_ip);
+    }
+
+    public function clearForwardingRuleIp()
+    {
+        unset($this->forwarding_rule_ip);
+    }
+
+    /**
+     * A forwarding rule IP address assigned to this instance.
+     *
+     * Generated from protobuf field <code>optional string forwarding_rule_ip = 172250632;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setForwardingRuleIp($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->forwarding_rule_ip = $var;
+
+        return $this;
     }
 
     /**
      * Health state of the instance.
+     * Check the HealthState enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.HealthState health_state = 55571694;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string health_state = 324007150;</code>
+     * @return string
+     */
+    public function getHealthState()
+    {
+        return isset($this->health_state) ? $this->health_state : '';
+    }
+
+    public function hasHealthState()
+    {
+        return isset($this->health_state);
+    }
+
+    public function clearHealthState()
+    {
+        unset($this->health_state);
+    }
+
+    /**
+     * Health state of the instance.
+     * Check the HealthState enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string health_state = 324007150;</code>
+     * @param string $var
      * @return $this
      */
     public function setHealthState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\HealthStatus\HealthState::class);
+        GPBUtil::checkString($var, True);
         $this->health_state = $var;
 
         return $this;
@@ -133,18 +240,28 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * URL of the instance resource.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @return string
      */
     public function getInstance()
     {
-        return $this->instance;
+        return isset($this->instance) ? $this->instance : '';
+    }
+
+    public function hasInstance()
+    {
+        return isset($this->instance);
+    }
+
+    public function clearInstance()
+    {
+        unset($this->instance);
     }
 
     /**
      * URL of the instance resource.
      *
-     * Generated from protobuf field <code>string instance = 18257045;</code>
+     * Generated from protobuf field <code>optional string instance = 18257045;</code>
      * @param string $var
      * @return $this
      */
@@ -157,20 +274,30 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A forwarding rule IP address assigned to this instance.
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @return string
      */
     public function getIpAddress()
     {
-        return $this->ip_address;
+        return isset($this->ip_address) ? $this->ip_address : '';
+    }
+
+    public function hasIpAddress()
+    {
+        return isset($this->ip_address);
+    }
+
+    public function clearIpAddress()
+    {
+        unset($this->ip_address);
     }
 
     /**
-     * A forwarding rule IP address assigned to this instance.
+     * For target pool based Network Load Balancing, it indicates the forwarding rule's IP address assigned to this instance. For other types of load balancing, the field indicates VM internal ip.
      *
-     * Generated from protobuf field <code>string ip_address = 137836764;</code>
+     * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      * @param string $var
      * @return $this
      */
@@ -185,18 +312,28 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     /**
      * The named port of the instance group, not necessarily the port that is health-checked.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
      * The named port of the instance group, not necessarily the port that is health-checked.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */
@@ -209,16 +346,26 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>optional string weight = 282149496;</code>
      * @return string
      */
     public function getWeight()
     {
-        return $this->weight;
+        return isset($this->weight) ? $this->weight : '';
+    }
+
+    public function hasWeight()
+    {
+        return isset($this->weight);
+    }
+
+    public function clearWeight()
+    {
+        unset($this->weight);
     }
 
     /**
-     * Generated from protobuf field <code>string weight = 13714040;</code>
+     * Generated from protobuf field <code>optional string weight = 282149496;</code>
      * @param string $var
      * @return $this
      */
@@ -231,22 +378,38 @@ class HealthStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
-     * @return int
+     * 
+     * Check the WeightError enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string weight_error = 522501505;</code>
+     * @return string
      */
     public function getWeightError()
     {
-        return $this->weight_error;
+        return isset($this->weight_error) ? $this->weight_error : '';
+    }
+
+    public function hasWeightError()
+    {
+        return isset($this->weight_error);
+    }
+
+    public function clearWeightError()
+    {
+        unset($this->weight_error);
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.HealthStatus.WeightError weight_error = 254066049;</code>
-     * @param int $var
+     * 
+     * Check the WeightError enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string weight_error = 522501505;</code>
+     * @param string $var
      * @return $this
      */
     public function setWeightError($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\HealthStatus\WeightError::class);
+        GPBUtil::checkString($var, True);
         $this->weight_error = $var;
 
         return $this;

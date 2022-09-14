@@ -14,15 +14,16 @@ class PurgeConfig
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-–
-)google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/field_behavior.proto"
-PurgeMetadata"Q
-PurgeUserEventsRequest
-parent (	B‡A
+Ï
+)google/cloud/retail/v2/purge_config.protogoogle.cloud.retail.v2google/api/resource.proto"
+PurgeMetadata"s
+PurgeUserEventsRequest5
+parent (	B%‡A˙A
+retail.googleapis.com/Catalog
 filter (	B‡A
 force ("6
 PurgeUserEventsResponse

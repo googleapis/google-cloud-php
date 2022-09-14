@@ -2,7 +2,7 @@
 
 > Idiomatic PHP client for [Google Cloud Dataproc](https://cloud.google.com/dataproc/).
 
-[![Latest Stable Version](https://poser.pugx.org/google/cloud-bigtable/v/stable)](https://packagist.org/packages/google/cloud-bigtable) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigtable.svg)](https://packagist.org/packages/google/cloud-bigtable)
+[![Latest Stable Version](https://poser.pugx.org/google/cloud-dataproc/v/stable)](https://packagist.org/packages/google/cloud-dataproc) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-dataproc.svg)](https://packagist.org/packages/google/cloud-dataproc)
 
 * [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-dataproc/latest)
 
@@ -36,7 +36,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample

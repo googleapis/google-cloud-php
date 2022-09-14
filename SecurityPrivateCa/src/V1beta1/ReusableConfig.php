@@ -116,11 +116,11 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      * Required. The config values.
      *
      * Generated from protobuf field <code>.google.cloud.security.privateca.v1beta1.ReusableConfigValues values = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues
+     * @return \Google\Cloud\Security\PrivateCA\V1beta1\ReusableConfigValues|null
      */
     public function getValues()
     {
-        return isset($this->values) ? $this->values : null;
+        return $this->values;
     }
 
     public function hasValues()
@@ -180,11 +180,11 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [ReusableConfig][google.cloud.security.privateca.v1beta1.ReusableConfig] was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -216,11 +216,11 @@ class ReusableConfig extends \Google\Protobuf\Internal\Message
      * Output only. The time at which this [ReusableConfig][google.cloud.security.privateca.v1beta1.ReusableConfig] was updated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

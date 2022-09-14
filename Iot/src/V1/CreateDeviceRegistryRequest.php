@@ -89,7 +89,7 @@ class CreateDeviceRegistryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeviceRegistry()
     {
-        return isset($this->device_registry) ? $this->device_registry : null;
+        return $this->device_registry;
     }
 
     public function hasDeviceRegistry()

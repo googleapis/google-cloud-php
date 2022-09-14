@@ -17,10 +17,11 @@
 
 namespace Google\Cloud\Dev\DocGenerator;
 
+use Google\Cloud\Core\Testing\Reflection\ReflectionHandlerV4;
 use Google\Cloud\Dev\DocGenerator\Parser\CodeParser;
 use Google\Cloud\Dev\DocGenerator\Parser\MarkdownParser;
+use phpDocumentor\Reflection\File\LocalFile;
 use Symfony\Component\Console\Output\OutputInterface;
-use phpDocumentor\Reflection\FileReflector;
 
 /**
  * Parses given files and builds documentation for our common docs site.
@@ -77,23 +78,32 @@ class DocGenerator
      */
     public function generate($basePath, $pretty)
     {
-        $fileReflectorRegister = new ReflectorRegister();
+        $localFiles = [];
+        foreach ($this->files as $fileName) {
+            $localFiles[] = new LocalFile($fileName);
+        }
+        $reflection = new ReflectionHandlerV4();
+        $projectFactory = $reflection->createProjectFactory();
+        $descriptionFactory = $reflection->createDescriptionFactory();
+        $project = $projectFactory->create($this->componentId, $localFiles);
+        $fileRegister = new ReflectorRegister($project);
 
         $rootPath = $this->executionPath;
-        foreach ($this->files as $file) {
+        foreach ($project->getFiles() as $file) {
+            $filePath = $file->getPath();
             $currentFileArr = $this->isComponent
-                ? explode("/$basePath/", $file)
-                : explode("$rootPath", $file);
+                ? explode("/$basePath/", $filePath, 2)
+                : explode("$rootPath", $filePath, 2);
 
             if (isset($currentFileArr[1])) {
                 $currentFile = str_replace('src/', '', $currentFileArr[1]);
             } else {
                 throw new \Exception(
-                    sprintf('Failed to determine currentFile: %s', $file)
+                    sprintf('Failed to determine currentFile: %s', $filePath)
                 );
             }
 
-            $isPhp = strrpos($file, '.php') == strlen($file) - strlen('.php');
+            $isPhp = strrpos($filePath, '.php') == strlen($filePath) - strlen('.php');
             $pathInfo = pathinfo($currentFile);
             $servicePath = $pathInfo['dirname'] === '.'
                 ? strtolower($pathInfo['filename'])
@@ -105,7 +115,8 @@ class DocGenerator
             if ($isPhp) {
                 $parser = new CodeParser(
                     $file,
-                    $fileReflectorRegister,
+                    $fileRegister,
+                    $descriptionFactory,
                     $rootPath,
                     $this->componentId,
                     $this->manifestPath,
@@ -115,7 +126,7 @@ class DocGenerator
                     $this->isComponent
                 );
             } else {
-                $content = file_get_contents($file);
+                $content = file_get_contents($filePath);
                 $parser = new MarkdownParser($currentFile, $content, $id);
             }
 

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The named port. For example: .
+ * The named port. For example: <"http", 80>.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NamedPort</code>
  */
@@ -18,15 +18,15 @@ class NamedPort extends \Google\Protobuf\Internal\Message
     /**
      * The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
-    private $name = '';
+    private $name = null;
     /**
      * The port number, which can be a value between 1 and 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      */
-    private $port = 0;
+    private $port = null;
 
     /**
      * Constructor.
@@ -48,18 +48,28 @@ class NamedPort extends \Google\Protobuf\Internal\Message
     /**
      * The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        return isset($this->name) ? $this->name : '';
+    }
+
+    public function hasName()
+    {
+        return isset($this->name);
+    }
+
+    public function clearName()
+    {
+        unset($this->name);
     }
 
     /**
      * The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -74,18 +84,28 @@ class NamedPort extends \Google\Protobuf\Internal\Message
     /**
      * The port number, which can be a value between 1 and 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @return int
      */
     public function getPort()
     {
-        return $this->port;
+        return isset($this->port) ? $this->port : 0;
+    }
+
+    public function hasPort()
+    {
+        return isset($this->port);
+    }
+
+    public function clearPort()
+    {
+        unset($this->port);
     }
 
     /**
      * The port number, which can be a value between 1 and 65535.
      *
-     * Generated from protobuf field <code>int32 port = 3446913;</code>
+     * Generated from protobuf field <code>optional int32 port = 3446913;</code>
      * @param int $var
      * @return $this
      */

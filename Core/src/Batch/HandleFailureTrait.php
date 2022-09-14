@@ -43,6 +43,12 @@ trait HandleFailureTrait
     private function initFailureFile()
     {
         $this->baseDir = getenv('GOOGLE_CLOUD_BATCH_DAEMON_FAILURE_DIR');
+
+        if ('false' === $this->baseDir) {
+            // setting the file to the string "false" will prevent logging of failed items
+            return;
+        }
+
         if ($this->baseDir === false) {
             $this->baseDir = sprintf(
                 '%s/batch-daemon-failure',
@@ -80,9 +86,11 @@ trait HandleFailureTrait
             $this->initFailureFile();
         }
 
-        $fp = @fopen($this->failureFile, 'a');
-        @fwrite($fp, serialize([$idNum => $items]) . PHP_EOL);
-        @fclose($fp);
+        if ($this->failureFile) {
+            $fp = @fopen($this->failureFile, 'a');
+            @fwrite($fp, serialize([$idNum => $items]) . PHP_EOL);
+            @fclose($fp);
+        }
     }
 
     /**

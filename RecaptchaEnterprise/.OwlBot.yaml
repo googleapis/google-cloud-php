@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/recaptchaenterprise/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/RecaptchaEnterprise/$1/$2
+api-name: RecaptchaEnterprise

@@ -14,14 +14,28 @@ use UnexpectedValueException;
 class Type
 {
     /**
-     * Default value. This state doesn't show unless an error occurs.
+     * Not used.
      *
      * Generated from protobuf enum <code>TYPE_UNSPECIFIED = 0;</code>
      */
     const TYPE_UNSPECIFIED = 0;
+    /**
+     * Primary domain for customer was changed.
+     *
+     * Generated from protobuf enum <code>PRIMARY_DOMAIN_CHANGED = 1;</code>
+     */
+    const PRIMARY_DOMAIN_CHANGED = 1;
+    /**
+     * Primary domain of the customer has been verified.
+     *
+     * Generated from protobuf enum <code>PRIMARY_DOMAIN_VERIFIED = 2;</code>
+     */
+    const PRIMARY_DOMAIN_VERIFIED = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
+        self::PRIMARY_DOMAIN_CHANGED => 'PRIMARY_DOMAIN_CHANGED',
+        self::PRIMARY_DOMAIN_VERIFIED => 'PRIMARY_DOMAIN_VERIFIED',
     ];
 
     public static function name($value)

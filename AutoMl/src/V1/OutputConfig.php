@@ -20,16 +20,16 @@ use Google\Protobuf\Internal\GPBUtil;
  *         Output depends on whether the dataset was imported from Google Cloud
  *         Storage or BigQuery.
  *         Google Cloud Storage case:
- * [gcs_destination][google.cloud.automl.v1p1beta.OutputConfig.gcs_destination]
+ *           [gcs_destination][google.cloud.automl.v1p1beta.OutputConfig.gcs_destination]
  *           must be set. Exported are CSV file(s) `tables_1.csv`,
  *           `tables_2.csv`,...,`tables_N.csv` with each having as header line
  *           the table's column names, and all other lines contain values for
  *           the header columns.
  *         BigQuery case:
- * [bigquery_destination][google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination]
+ *           [bigquery_destination][google.cloud.automl.v1p1beta.OutputConfig.bigquery_destination]
  *           pointing to a BigQuery project must be set. In the given project a
  *           new dataset will be created with name
- * `export_data_<automl-dataset-display-name>_<timestamp-of-export-call>`
+ *           `export_data_<automl-dataset-display-name>_<timestamp-of-export-call>`
  *           where <automl-dataset-display-name> will be made
  *           BigQuery-dataset-name compatible (e.g. most special characters will
  *           become underscores), and timestamp will be in

@@ -37,7 +37,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\PivotDimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $pivot_dimension_headers
+     *     @type array<\Google\Analytics\Data\V1beta\PivotDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $pivot_dimension_headers
      *           The size is the same as the cardinality of the corresponding dimension
      *           combinations.
      *     @type int $row_count
@@ -68,7 +68,7 @@ class PivotHeader extends \Google\Protobuf\Internal\Message
      * combinations.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.PivotDimensionHeader pivot_dimension_headers = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\PivotDimensionHeader[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\PivotDimensionHeader>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPivotDimensionHeaders($var)

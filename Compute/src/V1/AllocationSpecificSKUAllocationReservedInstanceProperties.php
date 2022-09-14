@@ -18,7 +18,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
      */
     private $guest_accelerators;
     /**
@@ -28,17 +28,23 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      */
     private $local_ssds;
     /**
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     */
+    private $location_hint = null;
+    /**
      * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      */
-    private $machine_type = '';
+    private $machine_type = null;
     /**
      * Minimum cpu platform the reservation.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      */
-    private $min_cpu_platform = '';
+    private $min_cpu_platform = null;
 
     /**
      * Constructor.
@@ -46,10 +52,12 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
+     *     @type array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $guest_accelerators
      *           Specifies accelerator type and count.
-     *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[]|\Google\Protobuf\Internal\RepeatedField $local_ssds
+     *     @type array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $local_ssds
      *           Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
+     *     @type string $location_hint
+     *           An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
      *     @type string $machine_type
      *           Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *     @type string $min_cpu_platform
@@ -64,7 +72,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getGuestAccelerators()
@@ -75,8 +83,8 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Specifies accelerator type and count.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 195159663;</code>
-     * @param \Google\Cloud\Compute\V1\AcceleratorConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AcceleratorConfig guest_accelerators = 463595119;</code>
+     * @param array<\Google\Cloud\Compute\V1\AcceleratorConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestAccelerators($var)
@@ -102,7 +110,7 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
      * Specifies amount of local ssd to reserve with each instance. The type of disk is local-ssd.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk local_ssds = 229951299;</code>
-     * @param \Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\AllocationSpecificSKUAllocationAllocatedInstancePropertiesReservedDisk>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocalSsds($var)
@@ -114,20 +122,66 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     }
 
     /**
-     * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
      * @return string
      */
-    public function getMachineType()
+    public function getLocationHint()
     {
-        return $this->machine_type;
+        return isset($this->location_hint) ? $this->location_hint : '';
+    }
+
+    public function hasLocationHint()
+    {
+        return isset($this->location_hint);
+    }
+
+    public function clearLocationHint()
+    {
+        unset($this->location_hint);
+    }
+
+    /**
+     * An opaque location hint used to place the allocation close to other resources. This field is for use by internal tools that use the public API.
+     *
+     * Generated from protobuf field <code>optional string location_hint = 350519505;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLocationHint($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->location_hint = $var;
+
+        return $this;
     }
 
     /**
      * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
      *
-     * Generated from protobuf field <code>string machine_type = 227711026;</code>
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
+     * @return string
+     */
+    public function getMachineType()
+    {
+        return isset($this->machine_type) ? $this->machine_type : '';
+    }
+
+    public function hasMachineType()
+    {
+        return isset($this->machine_type);
+    }
+
+    public function clearMachineType()
+    {
+        unset($this->machine_type);
+    }
+
+    /**
+     * Specifies type of machine (name only) which has fixed number of vCPUs and fixed amount of memory. This also includes specifying custom machine type following custom-NUMBER_OF_CPUS-AMOUNT_OF_MEMORY pattern.
+     *
+     * Generated from protobuf field <code>optional string machine_type = 227711026;</code>
      * @param string $var
      * @return $this
      */
@@ -142,18 +196,28 @@ class AllocationSpecificSKUAllocationReservedInstanceProperties extends \Google\
     /**
      * Minimum cpu platform the reservation.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @return string
      */
     public function getMinCpuPlatform()
     {
-        return $this->min_cpu_platform;
+        return isset($this->min_cpu_platform) ? $this->min_cpu_platform : '';
+    }
+
+    public function hasMinCpuPlatform()
+    {
+        return isset($this->min_cpu_platform);
+    }
+
+    public function clearMinCpuPlatform()
+    {
+        unset($this->min_cpu_platform);
     }
 
     /**
      * Minimum cpu platform the reservation.
      *
-     * Generated from protobuf field <code>string min_cpu_platform = 242912759;</code>
+     * Generated from protobuf field <code>optional string min_cpu_platform = 242912759;</code>
      * @param string $var
      * @return $this
      */

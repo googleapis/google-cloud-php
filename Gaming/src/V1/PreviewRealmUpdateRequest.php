@@ -25,9 +25,7 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -51,9 +49,7 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource. For the `FieldMask`
      *           definition, see
-     *           https:
-     *           //developers.google.com/protocol-buffers
-     *           // /docs/reference/google.protobuf#fieldmask
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     @type \Google\Protobuf\Timestamp $preview_time
      *           Optional. The target timestamp to compute the preview.
      * }
@@ -68,11 +64,11 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      * Only fields specified in update_mask are updated.
      *
      * Generated from protobuf field <code>.google.cloud.gaming.v1.Realm realm = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Gaming\V1\Realm
+     * @return \Google\Cloud\Gaming\V1\Realm|null
      */
     public function getRealm()
     {
-        return isset($this->realm) ? $this->realm : null;
+        return $this->realm;
     }
 
     public function hasRealm()
@@ -104,16 +100,14 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Protobuf\FieldMask
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -129,9 +123,7 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var
@@ -149,11 +141,11 @@ class PreviewRealmUpdateRequest extends \Google\Protobuf\Internal\Message
      * Optional. The target timestamp to compute the preview.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp preview_time = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getPreviewTime()
     {
-        return isset($this->preview_time) ? $this->preview_time : null;
+        return $this->preview_time;
     }
 
     public function hasPreviewTime()

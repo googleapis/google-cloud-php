@@ -7,13 +7,13 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/threatLists:computeDiff',
             ],
-            'SearchUris' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1beta1/uris:search',
-            ],
             'SearchHashes' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta1/hashes:search',
+            ],
+            'SearchUris' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1beta1/uris:search',
             ],
         ],
     ],

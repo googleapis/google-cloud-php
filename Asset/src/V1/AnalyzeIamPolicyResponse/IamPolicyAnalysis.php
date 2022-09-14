@@ -22,15 +22,17 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      */
     private $analysis_query = null;
     /**
-     * A list of [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult] that matches the analysis query, or
-     * empty if no result is found.
+     * A list of
+     * [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
+     * that matches the analysis query, or empty if no result is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult analysis_results = 2;</code>
      */
     private $analysis_results;
     /**
-     * Represents whether all entries in the [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results] have been
-     * fully explored to answer the query.
+     * Represents whether all entries in the
+     * [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results]
+     * have been fully explored to answer the query.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      */
@@ -50,13 +52,15 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $analysis_query
      *           The analysis query.
-     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult[]|\Google\Protobuf\Internal\RepeatedField $analysis_results
-     *           A list of [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult] that matches the analysis query, or
-     *           empty if no result is found.
+     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult>|\Google\Protobuf\Internal\RepeatedField $analysis_results
+     *           A list of
+     *           [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
+     *           that matches the analysis query, or empty if no result is found.
      *     @type bool $fully_explored
-     *           Represents whether all entries in the [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results] have been
-     *           fully explored to answer the query.
-     *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisState[]|\Google\Protobuf\Internal\RepeatedField $non_critical_errors
+     *           Represents whether all entries in the
+     *           [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results]
+     *           have been fully explored to answer the query.
+     *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisState>|\Google\Protobuf\Internal\RepeatedField $non_critical_errors
      *           A list of non-critical errors happened during the query handling.
      * }
      */
@@ -73,7 +77,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisQuery()
     {
-        return isset($this->analysis_query) ? $this->analysis_query : null;
+        return $this->analysis_query;
     }
 
     public function hasAnalysisQuery()
@@ -102,8 +106,9 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult] that matches the analysis query, or
-     * empty if no result is found.
+     * A list of
+     * [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
+     * that matches the analysis query, or empty if no result is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult analysis_results = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -114,11 +119,12 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult] that matches the analysis query, or
-     * empty if no result is found.
+     * A list of
+     * [IamPolicyAnalysisResult][google.cloud.asset.v1.IamPolicyAnalysisResult]
+     * that matches the analysis query, or empty if no result is found.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult analysis_results = 2;</code>
-     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnalysisResults($var)
@@ -130,8 +136,9 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all entries in the [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results] have been
-     * fully explored to answer the query.
+     * Represents whether all entries in the
+     * [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results]
+     * have been fully explored to answer the query.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      * @return bool
@@ -142,8 +149,9 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all entries in the [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results] have been
-     * fully explored to answer the query.
+     * Represents whether all entries in the
+     * [analysis_results][google.cloud.asset.v1.AnalyzeIamPolicyResponse.IamPolicyAnalysis.analysis_results]
+     * have been fully explored to answer the query.
      *
      * Generated from protobuf field <code>bool fully_explored = 3;</code>
      * @param bool $var
@@ -172,7 +180,7 @@ class IamPolicyAnalysis extends \Google\Protobuf\Internal\Message
      * A list of non-critical errors happened during the query handling.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisState non_critical_errors = 5;</code>
-     * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisState[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisState>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNonCriticalErrors($var)

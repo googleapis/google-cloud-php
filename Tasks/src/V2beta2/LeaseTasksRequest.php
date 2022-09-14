@@ -257,7 +257,7 @@ class LeaseTasksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getLeaseDuration()
     {
-        return isset($this->lease_duration) ? $this->lease_duration : null;
+        return $this->lease_duration;
     }
 
     public function hasLeaseDuration()

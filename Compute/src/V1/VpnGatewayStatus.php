@@ -17,7 +17,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
     /**
      * List of VPN connection for this VpnGateway.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 170899082;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
      */
     private $vpn_connections;
 
@@ -27,7 +27,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection[]|\Google\Protobuf\Internal\RepeatedField $vpn_connections
+     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection>|\Google\Protobuf\Internal\RepeatedField $vpn_connections
      *           List of VPN connection for this VpnGateway.
      * }
      */
@@ -39,7 +39,7 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
     /**
      * List of VPN connection for this VpnGateway.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 170899082;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getVpnConnections()
@@ -50,8 +50,8 @@ class VpnGatewayStatus extends \Google\Protobuf\Internal\Message
     /**
      * List of VPN connection for this VpnGateway.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 170899082;</code>
-     * @param \Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayStatusVpnConnection vpn_connections = 439334538;</code>
+     * @param array<\Google\Cloud\Compute\V1\VpnGatewayStatusVpnConnection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVpnConnections($var)

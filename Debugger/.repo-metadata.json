@@ -1,5 +1,6 @@
 {
     "distribution_name": "google/cloud-debugger",
     "release_level": "ga",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/latest"
+    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/latest",
+    "library_type": "GAPIC_COMBO"
 }

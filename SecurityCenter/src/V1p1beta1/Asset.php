@@ -57,8 +57,7 @@ class Asset extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * The time at which the asset was last updated, added, or deleted in Cloud
-     * SCC.
+     * The time at which the asset was last updated or added in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
      */
@@ -72,6 +71,16 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Asset.IamPolicy iam_policy = 11;</code>
      */
     private $iam_policy = null;
+    /**
+     * The canonical name of the resource. It's either
+     * "organizations/{organization_id}/assets/{asset_id}",
+     * "folders/{folder_id}/assets/{asset_id}" or
+     * "projects/{project_number}/assets/{asset_id}", depending on the closest CRM
+     * ancestor of the resource.
+     *
+     * Generated from protobuf field <code>string canonical_name = 13;</code>
+     */
+    private $canonical_name = '';
 
     /**
      * Constructor.
@@ -96,13 +105,18 @@ class Asset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time at which the asset was created in Security Command Center.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The time at which the asset was last updated, added, or deleted in Cloud
-     *           SCC.
+     *           The time at which the asset was last updated or added in Cloud SCC.
      *     @type \Google\Cloud\SecurityCenter\V1p1beta1\Asset\IamPolicy $iam_policy
      *           Cloud IAM Policy information associated with the Google Cloud resource
      *           described by the Security Command Center asset. This information is managed
      *           and defined by the Google Cloud resource and cannot be modified by the
      *           user.
+     *     @type string $canonical_name
+     *           The canonical name of the resource. It's either
+     *           "organizations/{organization_id}/assets/{asset_id}",
+     *           "folders/{folder_id}/assets/{asset_id}" or
+     *           "projects/{project_number}/assets/{asset_id}", depending on the closest CRM
+     *           ancestor of the resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -147,11 +161,11 @@ class Asset extends \Google\Protobuf\Internal\Message
      * Security Command Center and cannot be modified by the user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Asset.SecurityCenterProperties security_center_properties = 2;</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Asset\SecurityCenterProperties
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Asset\SecurityCenterProperties|null
      */
     public function getSecurityCenterProperties()
     {
-        return isset($this->security_center_properties) ? $this->security_center_properties : null;
+        return $this->security_center_properties;
     }
 
     public function hasSecurityCenterProperties()
@@ -213,11 +227,11 @@ class Asset extends \Google\Protobuf\Internal\Message
      * and come from the SecurityMarks resource that belongs to the asset.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.SecurityMarks security_marks = 8;</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\SecurityMarks|null
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -250,11 +264,11 @@ class Asset extends \Google\Protobuf\Internal\Message
      * The time at which the asset was created in Security Command Center.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -283,15 +297,14 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the asset was last updated, added, or deleted in Cloud
-     * SCC.
+     * The time at which the asset was last updated or added in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
-     * @return \Google\Protobuf\Timestamp
+     * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -305,8 +318,7 @@ class Asset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which the asset was last updated, added, or deleted in Cloud
-     * SCC.
+     * The time at which the asset was last updated or added in Cloud SCC.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -327,11 +339,11 @@ class Asset extends \Google\Protobuf\Internal\Message
      * user.
      *
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1p1beta1.Asset.IamPolicy iam_policy = 11;</code>
-     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Asset\IamPolicy
+     * @return \Google\Cloud\SecurityCenter\V1p1beta1\Asset\IamPolicy|null
      */
     public function getIamPolicy()
     {
-        return isset($this->iam_policy) ? $this->iam_policy : null;
+        return $this->iam_policy;
     }
 
     public function hasIamPolicy()
@@ -358,6 +370,40 @@ class Asset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1p1beta1\Asset\IamPolicy::class);
         $this->iam_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The canonical name of the resource. It's either
+     * "organizations/{organization_id}/assets/{asset_id}",
+     * "folders/{folder_id}/assets/{asset_id}" or
+     * "projects/{project_number}/assets/{asset_id}", depending on the closest CRM
+     * ancestor of the resource.
+     *
+     * Generated from protobuf field <code>string canonical_name = 13;</code>
+     * @return string
+     */
+    public function getCanonicalName()
+    {
+        return $this->canonical_name;
+    }
+
+    /**
+     * The canonical name of the resource. It's either
+     * "organizations/{organization_id}/assets/{asset_id}",
+     * "folders/{folder_id}/assets/{asset_id}" or
+     * "projects/{project_number}/assets/{asset_id}", depending on the closest CRM
+     * ancestor of the resource.
+     *
+     * Generated from protobuf field <code>string canonical_name = 13;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCanonicalName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->canonical_name = $var;
 
         return $this;
     }

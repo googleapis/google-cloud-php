@@ -3,13 +3,25 @@
 return [
     'interfaces' => [
         'google.cloud.scheduler.v1beta1.CloudScheduler' => [
-            'ListJobs' => [
-                'method' => 'get',
+            'CreateJob' => [
+                'method' => 'post',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/jobs',
+                'body' => 'job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/jobs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
                         ],
                     ],
                 ],
@@ -25,38 +37,13 @@ return [
                     ],
                 ],
             ],
-            'CreateJob' => [
-                'method' => 'post',
+            'ListJobs' => [
+                'method' => 'get',
                 'uriTemplate' => '/v1beta1/{parent=projects/*/locations/*}/jobs',
-                'body' => 'job',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateJob' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1beta1/{job.name=projects/*/locations/*/jobs/*}',
-                'body' => 'job',
-                'placeholders' => [
-                    'job.name' => [
-                        'getters' => [
-                            'getJob',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'DeleteJob' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1beta1/{name=projects/*/locations/*/jobs/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
                         ],
                     ],
                 ],
@@ -92,6 +79,19 @@ return [
                 'placeholders' => [
                     'name' => [
                         'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateJob' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1beta1/{job.name=projects/*/locations/*/jobs/*}',
+                'body' => 'job',
+                'placeholders' => [
+                    'job.name' => [
+                        'getters' => [
+                            'getJob',
                             'getName',
                         ],
                     ],

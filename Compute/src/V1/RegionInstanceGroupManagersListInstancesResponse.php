@@ -17,15 +17,15 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     /**
      * A list of managed instances.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
      */
     private $managed_instances;
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
-    private $next_page_token = '';
+    private $next_page_token = null;
 
     /**
      * Constructor.
@@ -33,7 +33,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ManagedInstance[]|\Google\Protobuf\Internal\RepeatedField $managed_instances
+     *     @type array<\Google\Cloud\Compute\V1\ManagedInstance>|\Google\Protobuf\Internal\RepeatedField $managed_instances
      *           A list of managed instances.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
@@ -47,7 +47,7 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     /**
      * A list of managed instances.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getManagedInstances()
@@ -58,8 +58,8 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     /**
      * A list of managed instances.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 67784158;</code>
-     * @param \Google\Cloud\Compute\V1\ManagedInstance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ManagedInstance managed_instances = 336219614;</code>
+     * @param array<\Google\Cloud\Compute\V1\ManagedInstance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setManagedInstances($var)
@@ -73,18 +73,28 @@ class RegionInstanceGroupManagersListInstancesResponse extends \Google\Protobuf\
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
      */
     public function getNextPageToken()
     {
-        return $this->next_page_token;
+        return isset($this->next_page_token) ? $this->next_page_token : '';
+    }
+
+    public function hasNextPageToken()
+    {
+        return isset($this->next_page_token);
+    }
+
+    public function clearNextPageToken()
+    {
+        unset($this->next_page_token);
     }
 
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
      * @return $this
      */

@@ -31,7 +31,7 @@ class FirestoreTestCase extends SystemTestCase
     protected static $localDeletionQueue;
     private static $hasSetUp = false;
 
-    public static function setupBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;
