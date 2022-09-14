@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\DeleteSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\ListSecurityPoliciesRequest;
@@ -52,6 +53,7 @@ use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsRespo
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyList;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\SetLabelsSecurityPolicyRequest;
 
 /**
  * Service Description: The SecurityPolicies API.
@@ -1061,5 +1063,74 @@ class SecurityPoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RemoveRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * Sample code:
+     * ```
+     * $securityPoliciesClient = new SecurityPoliciesClient();
+     * try {
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'setLabels');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $securityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    {
+        $request = new SetLabelsSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }
