@@ -16,7 +16,6 @@ jobs:
           - platform: ubuntu-latest
             php: "5.6"
             phpunit-filename: phpunit-php5
-        include:
           - platform: ubuntu-latest
             php: "7.0"
             phpunit-filename: phpunit
