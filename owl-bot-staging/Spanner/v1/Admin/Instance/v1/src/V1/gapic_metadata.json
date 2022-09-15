@@ -1,0 +1,88 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.spanner.admin.instance.v1",
+    "libraryPackage": "Google\\Cloud\\Spanner\\Admin\\Instance\\V1",
+    "services": {
+        "InstanceAdmin": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "InstanceAdminGapicClient",
+                    "rpcs": {
+                        "CreateInstance": {
+                            "methods": [
+                                "createInstance"
+                            ]
+                        },
+                        "CreateInstanceConfig": {
+                            "methods": [
+                                "createInstanceConfig"
+                            ]
+                        },
+                        "DeleteInstance": {
+                            "methods": [
+                                "deleteInstance"
+                            ]
+                        },
+                        "DeleteInstanceConfig": {
+                            "methods": [
+                                "deleteInstanceConfig"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetInstance": {
+                            "methods": [
+                                "getInstance"
+                            ]
+                        },
+                        "GetInstanceConfig": {
+                            "methods": [
+                                "getInstanceConfig"
+                            ]
+                        },
+                        "ListInstanceConfigOperations": {
+                            "methods": [
+                                "listInstanceConfigOperations"
+                            ]
+                        },
+                        "ListInstanceConfigs": {
+                            "methods": [
+                                "listInstanceConfigs"
+                            ]
+                        },
+                        "ListInstances": {
+                            "methods": [
+                                "listInstances"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateInstance": {
+                            "methods": [
+                                "updateInstance"
+                            ]
+                        },
+                        "UpdateInstanceConfig": {
+                            "methods": [
+                                "updateInstanceConfig"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
