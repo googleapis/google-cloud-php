@@ -225,11 +225,7 @@ class DocFx extends Command
 
     private function getProductDocumentation(): string
     {
-        if (empty($this->repoMetadataJson['product_documentation'])) {
-            return '';
-        }
-
-        return $this->repoMetadataJson['release_level'];
+        return $this->repoMetadataJson['release_level'] ?? '';
     }
 
     private function getDistributionName(): string

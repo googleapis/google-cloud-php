@@ -47,7 +47,7 @@ trait DocblockTrait
         if (!empty($this->xmlNode->docblock)) {
             $docblockNode = $this->xmlNode->docblock;
             if (!empty($docblockNode->{'long-description'})) {
-                return $docblockNode->{'long-description'};;
+                return $docblockNode->{'long-description'};
             }
         }
 
