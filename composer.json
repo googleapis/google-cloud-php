@@ -490,7 +490,6 @@
         "psr-4": {
             "Google\\Analytics\\Admin\\Tests\\": "AnalyticsAdmin/tests",
             "Google\\Analytics\\Data\\Tests\\": "AnalyticsData/tests",
-            "Google\\ApiCore\\LongRunning\\Tests\\": "LongRunning/tests",
             "Google\\Cloud\\AIPlatform\\Tests\\": "AiPlatform/tests",
             "Google\\Cloud\\AccessApproval\\Tests\\": "AccessApproval/tests",
             "Google\\Cloud\\ApiGateway\\Tests\\": "ApiGateway/tests",
