@@ -85,9 +85,6 @@ class Page
                 'parent'  => $this->classNode->getFullname(),
                 'type' => 'method',
                 'langs' => ['php'],
-                // 'syntax' => array_filter([
-                //     'content' => $method->getContent(),
-                // ]),
             ]);
             if ($parameters = $method->getParameters()) {
                 $methodItem['syntax']['parameters'] = [];
