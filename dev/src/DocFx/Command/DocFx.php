@@ -119,7 +119,7 @@ class DocFx extends Command
         if (file_exists($overviewFile)) {
             $overviewFileMarkdown = file_get_contents($overviewFile);
             if ($releaseLevel === 'beta') {
-                $overviewFileMarkdown = $this->getMarkdownBetaNotice() . "\n" . $overviewFileMarkdown;
+                $overviewFileMarkdown = $this->addMarkdownBetaNotice($overviewFileMarkdown);
             }
             $outFile = sprintf('%s/index.md', $outDir);
             file_put_contents($outFile, $overviewFileMarkdown);
@@ -275,12 +275,21 @@ class DocFx extends Command
         return sprintf('https://github.com/%s/issues', $this->getRepo());
     }
 
-    private function getMarkdownBetaNotice(): string
+    private function addMarkdownBetaNotice(string $markdown): string
     {
-        return 'Beta: This library is covered by the [Pre-GA Offerings Terms](/terms/service-terms#1) ' .
+        $betaText = '<aside class="beta"><p><strong>Beta</strong></p><p>' .
+            'This library is covered by the <a href="/terms/service-terms#1">Pre-GA Offerings Terms</a> ' .
             'of the  Terms of Service. Pre-GA libraries might have limited support, ' .
             'and changes to pre-GA libraries might not be compatible with other pre-GA versions. ' .
             'For more information, see the ' .
-            '[launch stage descriptions](/products#product-launch-stages).' . PHP_EOL;
+            '<a href="/products#product-launch-stages">launch stage descriptions</a>.' .
+            '</p></aside>' . PHP_EOL;
+
+        if (0 === strpos($markdown, '#') && $newlinePos = strpos($markdown, "\n")) {
+            return substr($markdown, 0, $newlinePos) . "\n\n" . $betaText .
+                substr($markdown, $newlinePos + 1);
+        }
+
+        return $markdown;
     }
 }
