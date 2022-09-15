@@ -53,6 +53,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'UpdateTable' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Bigtable\Admin\V2\Table',
+                    'metadataReturnType' => '\Google\Cloud\Bigtable\Admin\V2\UpdateTableMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListBackups' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
