@@ -27,7 +27,7 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
      * operation.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
      */
     private $progress = null;
     /**
@@ -45,7 +45,7 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig $instance_config
      *           The desired instance config after updating.
-     *     @type \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $progress
+     *     @type \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress $progress
      *           The progress of the
      *           [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
      *           operation.
@@ -99,8 +99,8 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
      * operation.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
-     * @return \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress|null
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
+     * @return \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress|null
      */
     public function getProgress()
     {
@@ -122,13 +122,13 @@ class UpdateInstanceConfigMetadata extends \Google\Protobuf\Internal\Message
      * [UpdateInstanceConfig][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstanceConfig]
      * operation.
      *
-     * Generated from protobuf field <code>.google.spanner.admin.database.v1.OperationProgress progress = 2;</code>
-     * @param \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress $var
+     * Generated from protobuf field <code>.google.spanner.admin.instance.v1.OperationProgress progress = 2;</code>
+     * @param \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress $var
      * @return $this
      */
     public function setProgress($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Database\V1\OperationProgress::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Spanner\Admin\Instance\V1\OperationProgress::class);
         $this->progress = $var;
 
         return $this;
