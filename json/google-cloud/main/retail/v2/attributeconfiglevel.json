@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/attributeconfiglevel","type":"","title":"Google\\Cloud\\Retail\\V2\\AttributeConfigLevel","name":"AttributeConfigLevel","description":"<p>At which level we offer configuration for attributes.<\/p>\n<p>Protobuf type <code>google.cloud.retail.v2.AttributeConfigLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

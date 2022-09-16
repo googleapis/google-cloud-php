@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/index\/indexupdatemethod","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\Index\\IndexUpdateMethod","name":"IndexUpdateMethod","description":"<p>The update method of an Index.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.Index.IndexUpdateMethod<\/code><\/p>","examples":[],"resources":[],"methods":[]}
