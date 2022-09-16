@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Next ID: 3
- *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ModelMonitoringAlertConfig</code>
  */
 class ModelMonitoringAlertConfig extends \Google\Protobuf\Internal\Message

@@ -48,6 +48,18 @@ return [
                     ],
                 ],
             ],
+            'RemoveDatapoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{index=projects/*/locations/*/indexes/*}:removeDatapoints',
+                'body' => '*',
+                'placeholders' => [
+                    'index' => [
+                        'getters' => [
+                            'getIndex',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateIndex' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{index.name=projects/*/locations/*/indexes/*}',
@@ -57,6 +69,18 @@ return [
                         'getters' => [
                             'getIndex',
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpsertDatapoints' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{index=projects/*/locations/*/indexes/*}:upsertDatapoints',
+                'body' => '*',
+                'placeholders' => [
+                    'index' => [
+                        'getters' => [
+                            'getIndex',
                         ],
                     ],
                 ],

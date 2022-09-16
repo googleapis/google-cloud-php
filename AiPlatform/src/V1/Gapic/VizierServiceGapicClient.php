@@ -1316,7 +1316,7 @@ class VizierServiceGapicClient
      *
      * @param string $parent          Required. The project and location that the Study belongs to.
      *                                Format: `projects/{project}/locations/{location}/studies/{study}`
-     * @param int    $suggestionCount Required. The number of suggestions requested.
+     * @param int    $suggestionCount Required. The number of suggestions requested. It must be positive.
      * @param string $clientId        Required. The identifier of the client that is requesting the suggestion.
      *
      *                                If multiple SuggestTrialsRequests have the same `client_id`,

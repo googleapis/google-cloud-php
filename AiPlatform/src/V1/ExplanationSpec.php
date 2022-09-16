@@ -22,9 +22,9 @@ class ExplanationSpec extends \Google\Protobuf\Internal\Message
      */
     private $parameters = null;
     /**
-     * Required. Metadata describing the Model's input and output for explanation.
+     * Optional. Metadata describing the Model's input and output for explanation.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metadata = null;
 
@@ -37,7 +37,7 @@ class ExplanationSpec extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationParameters $parameters
      *           Required. Parameters that configure explaining of the Model's predictions.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationMetadata $metadata
-     *           Required. Metadata describing the Model's input and output for explanation.
+     *           Optional. Metadata describing the Model's input and output for explanation.
      * }
      */
     public function __construct($data = NULL) {
@@ -82,9 +82,9 @@ class ExplanationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Metadata describing the Model's input and output for explanation.
+     * Optional. Metadata describing the Model's input and output for explanation.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\AIPlatform\V1\ExplanationMetadata|null
      */
     public function getMetadata()
@@ -103,9 +103,9 @@ class ExplanationSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Metadata describing the Model's input and output for explanation.
+     * Optional. Metadata describing the Model's input and output for explanation.
      *
-     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ExplanationMetadata metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\AIPlatform\V1\ExplanationMetadata $var
      * @return $this
      */
