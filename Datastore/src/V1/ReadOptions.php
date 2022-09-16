@@ -25,7 +25,6 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type int $read_consistency
      *           The non-transactional read consistency to use.
-     *           Cannot be set to `STRONG` for global queries.
      *     @type string $transaction
      *           The identifier of the transaction in which to read. A
      *           transaction identifier is returned by a call to
@@ -43,7 +42,6 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * The non-transactional read consistency to use.
-     * Cannot be set to `STRONG` for global queries.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions.ReadConsistency read_consistency = 1;</code>
      * @return int
@@ -60,7 +58,6 @@ class ReadOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * The non-transactional read consistency to use.
-     * Cannot be set to `STRONG` for global queries.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions.ReadConsistency read_consistency = 1;</code>
      * @param int $var
