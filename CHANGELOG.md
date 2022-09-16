@@ -32,6 +32,46 @@
 
 </details>
 
+<details><summary>google/cloud-beyondcorp-appconnectors 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce beyondcorp appconnectors ([#5498](https://github.com/googleapis/google-cloud-php/issues/5498)) ([03990a6](https://github.com/googleapis/google-cloud-php/commit/03990a6b68f79800cf2d25cce6e4b5a39f9f6993))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce beyondcorp appgateways ([#5499](https://github.com/googleapis/google-cloud-php/issues/5499)) ([f30b771](https://github.com/googleapis/google-cloud-php/commit/f30b7712d6213dba7ef856e6f117e68b89364231))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce beyondcorp clientconnectorservices ([#5500](https://github.com/googleapis/google-cloud-php/issues/5500)) ([4a55836](https://github.com/googleapis/google-cloud-php/commit/4a55836fef812c3b6a7d85eeb30011053bc1ec1c))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce beyondcorp clientgateways ([#5501](https://github.com/googleapis/google-cloud-php/issues/5501)) ([767fd80](https://github.com/googleapis/google-cloud-php/commit/767fd809395c7d4b677315266b15ef158f806563))
+
+</details>
+
 <details><summary>google/cloud-bigquery-data-exchange 0.2.0</summary>
 
 

@@ -436,6 +436,7 @@
             "name": "google/cloud-beyondcorp-appconnectors",
             "defaultService": "beyondcorpappconnectors/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -444,6 +445,7 @@
             "name": "google/cloud-beyondcorp-appgateways",
             "defaultService": "beyondcorpappgateways/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -452,6 +454,7 @@
             "name": "google/cloud-beyondcorp-clientconnectorservices",
             "defaultService": "beyondcorpclientconnectorservices/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
@@ -460,6 +463,7 @@
             "name": "google/cloud-beyondcorp-clientgateways",
             "defaultService": "beyondcorpclientgateways/readme",
             "versions": [
+                "v0.1.0",
                 "main"
             ]
         },
