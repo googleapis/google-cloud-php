@@ -76,7 +76,7 @@ class Network extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1300 and the maximum value is 8896. The suggested value is 1500, which is the default MTU used on the Internet, or 8896 if you want to use Jumbo frames. If unspecified, the value defaults to 1460.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      */
@@ -152,7 +152,7 @@ class Network extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#network for networks.
      *     @type int $mtu
-     *           Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
+     *           Maximum Transmission Unit in bytes. The minimum value for this field is 1300 and the maximum value is 8896. The suggested value is 1500, which is the default MTU used on the Internet, or 8896 if you want to use Jumbo frames. If unspecified, the value defaults to 1460.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.
      *     @type string $network_firewall_policy_enforcement_order
@@ -536,7 +536,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1300 and the maximum value is 8896. The suggested value is 1500, which is the default MTU used on the Internet, or 8896 if you want to use Jumbo frames. If unspecified, the value defaults to 1460.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @return int
@@ -557,7 +557,7 @@ class Network extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Maximum Transmission Unit in bytes. The minimum value for this field is 1460 and the maximum value is 1500 bytes. If unspecified, defaults to 1460.
+     * Maximum Transmission Unit in bytes. The minimum value for this field is 1300 and the maximum value is 8896. The suggested value is 1500, which is the default MTU used on the Internet, or 8896 if you want to use Jumbo frames. If unspecified, the value defaults to 1460.
      *
      * Generated from protobuf field <code>optional int32 mtu = 108462;</code>
      * @param int $var

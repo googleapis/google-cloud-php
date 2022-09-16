@@ -57,6 +57,17 @@ class Table extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.bigtable.admin.v2.RestoreInfo restore_info = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $restore_info = null;
+    /**
+     * Set to true to make the table protected against data loss. i.e. deleting
+     * the following resources through Admin APIs are prohibited:
+     *   - The table.
+     *   - The column families in the table.
+     *   - The instance containing the table.
+     * Note one can still delete the data stored in the table through Data APIs.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 9;</code>
+     */
+    private $deletion_protection = false;
 
     /**
      * Constructor.
@@ -85,6 +96,13 @@ class Table extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\RestoreInfo $restore_info
      *           Output only. If this table was restored from another data source (e.g. a backup), this
      *           field will be populated with information about the restore.
+     *     @type bool $deletion_protection
+     *           Set to true to make the table protected against data loss. i.e. deleting
+     *           the following resources through Admin APIs are prohibited:
+     *             - The table.
+     *             - The column families in the table.
+     *             - The instance containing the table.
+     *           Note one can still delete the data stored in the table through Data APIs.
      * }
      */
     public function __construct($data = NULL) {
@@ -250,6 +268,42 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\Admin\V2\RestoreInfo::class);
         $this->restore_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Set to true to make the table protected against data loss. i.e. deleting
+     * the following resources through Admin APIs are prohibited:
+     *   - The table.
+     *   - The column families in the table.
+     *   - The instance containing the table.
+     * Note one can still delete the data stored in the table through Data APIs.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 9;</code>
+     * @return bool
+     */
+    public function getDeletionProtection()
+    {
+        return $this->deletion_protection;
+    }
+
+    /**
+     * Set to true to make the table protected against data loss. i.e. deleting
+     * the following resources through Admin APIs are prohibited:
+     *   - The table.
+     *   - The column families in the table.
+     *   - The instance containing the table.
+     * Note one can still delete the data stored in the table through Data APIs.
+     *
+     * Generated from protobuf field <code>bool deletion_protection = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDeletionProtection($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->deletion_protection = $var;
 
         return $this;
     }
