@@ -63,8 +63,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      */
@@ -147,8 +147,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      *           effectively policy is the union of both the policy set on this resource
      *           and each policy set on all of the resource's ancestry resource levels in
      *           the hierarchy. See
-     *           [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     *           more information.
+     *           [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     *           for more information.
      *     @type array<\Google\Cloud\OrgPolicy\V1\Policy>|\Google\Protobuf\Internal\RepeatedField $org_policy
      *           A representation of an [organization
      *           policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy).
@@ -338,8 +338,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @return \Google\Cloud\Iam\V1\Policy|null
@@ -367,8 +367,8 @@ class Asset extends \Google\Protobuf\Internal\Message
      * effectively policy is the union of both the policy set on this resource
      * and each policy set on all of the resource's ancestry resource levels in
      * the hierarchy. See
-     * [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for
-     * more information.
+     * [this topic](https://cloud.google.com/iam/help/allow-policies/inheritance)
+     * for more information.
      *
      * Generated from protobuf field <code>.google.iam.v1.Policy iam_policy = 4;</code>
      * @param \Google\Cloud\Iam\V1\Policy $var
