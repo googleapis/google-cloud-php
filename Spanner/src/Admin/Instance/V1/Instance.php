@@ -65,10 +65,10 @@ class Instance extends \Google\Protobuf\Internal\Message
     private $processing_units = 0;
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -151,10 +151,10 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           for more information about nodes and processing units.
      *     @type int $state
      *           Output only. The current instance state. For
-     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     *           either omitted or set to `CREATING`. For
-     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     *           either omitted or set to `READY`.
+     *           [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     *           the state must be either omitted or set to `CREATING`. For
+     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     *           the state must be either omitted or set to `READY`.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud Labels are a flexible and lightweight mechanism for organizing cloud
      *           resources into groups that reflect a customer's organizational needs and
@@ -355,10 +355,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -370,10 +370,10 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The current instance state. For
-     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance], the state must be
-     * either omitted or set to `CREATING`. For
-     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance], the state must be
-     * either omitted or set to `READY`.
+     * [CreateInstance][google.spanner.admin.instance.v1.InstanceAdmin.CreateInstance],
+     * the state must be either omitted or set to `CREATING`. For
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance],
+     * the state must be either omitted or set to `READY`.
      *
      * Generated from protobuf field <code>.google.spanner.admin.instance.v1.Instance.State state = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var

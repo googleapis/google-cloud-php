@@ -85,9 +85,32 @@ return [
                     ],
                 ],
             ],
+            'CreateInstanceConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigs',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteInstance' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteInstanceConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -126,6 +149,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListInstanceConfigOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*}/instanceConfigOperations',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -184,6 +218,19 @@ return [
                     'instance.name' => [
                         'getters' => [
                             'getInstance',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateInstanceConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{instance_config.name=projects/*/instanceConfigs/*}',
+                'body' => '*',
+                'placeholders' => [
+                    'instance_config.name' => [
+                        'getters' => [
+                            'getInstanceConfig',
                             'getName',
                         ],
                     ],
