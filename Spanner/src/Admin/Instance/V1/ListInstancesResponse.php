@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The response for [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
+ * The response for
+ * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.ListInstancesResponse</code>
  */
@@ -23,8 +24,8 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
     private $instances;
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances] call to fetch more
-     * of the matching instances.
+     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances]
+     * call to fetch more of the matching instances.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -40,8 +41,8 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      *           The list of requested instances.
      *     @type string $next_page_token
      *           `next_page_token` can be sent in a subsequent
-     *           [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances] call to fetch more
-     *           of the matching instances.
+     *           [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances]
+     *           call to fetch more of the matching instances.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,8 +78,8 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances] call to fetch more
-     * of the matching instances.
+     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances]
+     * call to fetch more of the matching instances.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -90,8 +91,8 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * `next_page_token` can be sent in a subsequent
-     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances] call to fetch more
-     * of the matching instances.
+     * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances]
+     * call to fetch more of the matching instances.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

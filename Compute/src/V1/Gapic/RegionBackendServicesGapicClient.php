@@ -39,13 +39,17 @@ use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\BackendServiceList;
 use Google\Cloud\Compute\V1\DeleteRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetHealthRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\InsertRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListRegionBackendServicesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 
 /**
@@ -446,6 +450,59 @@ class RegionBackendServicesGapicClient
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * Sample code:
+     * ```
+     * $regionBackendServicesClient = new RegionBackendServicesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $resource = 'resource';
+     *     $response = $regionBackendServicesClient->getIamPolicy($project, $region, $resource);
+     * } finally {
+     *     $regionBackendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $optionsRequestedPolicyVersion
+     *           Requested IAM Policy version.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($project, $region, $resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRegionBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
+            $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a regional BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview.
      *
      * Sample code:
@@ -685,6 +742,56 @@ class RegionBackendServicesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * Sample code:
+     * ```
+     * $regionBackendServicesClient = new RegionBackendServicesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+     *     $resource = 'resource';
+     *     $response = $regionBackendServicesClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+     * } finally {
+     *     $regionBackendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $region                         The name of the region for this request.
+     * @param RegionSetPolicyRequest $regionSetPolicyRequestResource The body resource for this request
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRegionBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**

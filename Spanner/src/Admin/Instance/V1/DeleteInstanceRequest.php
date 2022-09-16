@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
+ * The request for
+ * [DeleteInstance][google.spanner.admin.instance.v1.InstanceAdmin.DeleteInstance].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.DeleteInstanceRequest</code>
  */
