@@ -42,7 +42,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
      */
     private $delete_objects_from_source_after_transfer = false;
     /**
-     * When to overwrite objects that already exist in the sink. If not set
+     * When to overwrite objects that already exist in the sink. If not set,
      * overwrite behavior is determined by
      * [overwrite_objects_already_existing_in_sink][google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink].
      *
@@ -50,8 +50,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
      */
     private $overwrite_when = 0;
     /**
-     * Represents the selected metadata options for a transfer job. This feature
-     * is in Preview.
+     * Represents the selected metadata options for a transfer job.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions metadata_options = 5;</code>
      */
@@ -78,12 +77,11 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
      *           **Note:** This option and [delete_objects_unique_in_sink][google.storagetransfer.v1.TransferOptions.delete_objects_unique_in_sink] are mutually
      *           exclusive.
      *     @type int $overwrite_when
-     *           When to overwrite objects that already exist in the sink. If not set
+     *           When to overwrite objects that already exist in the sink. If not set,
      *           overwrite behavior is determined by
      *           [overwrite_objects_already_existing_in_sink][google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink].
      *     @type \Google\Cloud\StorageTransfer\V1\MetadataOptions $metadata_options
-     *           Represents the selected metadata options for a transfer job. This feature
-     *           is in Preview.
+     *           Represents the selected metadata options for a transfer job.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,7 +184,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When to overwrite objects that already exist in the sink. If not set
+     * When to overwrite objects that already exist in the sink. If not set,
      * overwrite behavior is determined by
      * [overwrite_objects_already_existing_in_sink][google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink].
      *
@@ -199,7 +197,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When to overwrite objects that already exist in the sink. If not set
+     * When to overwrite objects that already exist in the sink. If not set,
      * overwrite behavior is determined by
      * [overwrite_objects_already_existing_in_sink][google.storagetransfer.v1.TransferOptions.overwrite_objects_already_existing_in_sink].
      *
@@ -216,8 +214,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the selected metadata options for a transfer job. This feature
-     * is in Preview.
+     * Represents the selected metadata options for a transfer job.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions metadata_options = 5;</code>
      * @return \Google\Cloud\StorageTransfer\V1\MetadataOptions|null
@@ -238,8 +235,7 @@ class TransferOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents the selected metadata options for a transfer job. This feature
-     * is in Preview.
+     * Represents the selected metadata options for a transfer job.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.MetadataOptions metadata_options = 5;</code>
      * @param \Google\Cloud\StorageTransfer\V1\MetadataOptions $var

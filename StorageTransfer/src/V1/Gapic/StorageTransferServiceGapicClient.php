@@ -40,6 +40,7 @@ use Google\Cloud\StorageTransfer\V1\AgentPool;
 use Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\CreateTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\DeleteAgentPoolRequest;
+use Google\Cloud\StorageTransfer\V1\DeleteTransferJobRequest;
 use Google\Cloud\StorageTransfer\V1\GetAgentPoolRequest;
 use Google\Cloud\StorageTransfer\V1\GetGoogleServiceAccountRequest;
 use Google\Cloud\StorageTransfer\V1\GetTransferJobRequest;
@@ -483,6 +484,60 @@ class StorageTransferServiceGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteAgentPool',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes a transfer job. Deleting a transfer job sets its status to
+     * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
+     *
+     * Sample code:
+     * ```
+     * $storageTransferServiceClient = new StorageTransferServiceClient();
+     * try {
+     *     $jobName = 'job_name';
+     *     $projectId = 'project_id';
+     *     $storageTransferServiceClient->deleteTransferJob($jobName, $projectId);
+     * } finally {
+     *     $storageTransferServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $jobName      Required. The job to delete.
+     * @param string $projectId    Required. The ID of the Google Cloud project that owns the
+     *                             job.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteTransferJob(
+        $jobName,
+        $projectId,
+        array $optionalArgs = []
+    ) {
+        $request = new DeleteTransferJobRequest();
+        $requestParamHeaders = [];
+        $request->setJobName($jobName);
+        $request->setProjectId($projectId);
+        $requestParamHeaders['job_name'] = $jobName;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteTransferJob',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -1097,7 +1152,7 @@ class StorageTransferServiceGapicClient
      *                                  other fields are rejected with the error
      *                                  [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
      *                                  to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     *                                  `storagetransfer.jobs.delete` permissions.
+     *                                  `storagetransfer.jobs.delete` permission.
      * @param array       $optionalArgs {
      *     Optional.
      *
