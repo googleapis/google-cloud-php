@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/authfailaction","type":"","title":"Google\\Cloud\\AppEngine\\V1\\AuthFailAction","name":"AuthFailAction","description":"<p>Actions to take when the user is not logged in.<\/p>\n<p>Protobuf type <code>google.appengine.v1.AuthFailAction<\/code><\/p>","examples":[],"resources":[],"methods":[]}

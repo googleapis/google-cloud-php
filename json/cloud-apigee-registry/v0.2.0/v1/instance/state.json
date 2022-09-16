@@ -1,0 +1,1 @@
+{"id":"apigeeregistry\/v1\/instance\/state","type":"","title":"Google\\Cloud\\ApigeeRegistry\\V1\\Instance\\State","name":"State","description":"<p>State of the Instance.<\/p>\n<p>Protobuf type <code>google.cloud.apigeeregistry.v1.Instance.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

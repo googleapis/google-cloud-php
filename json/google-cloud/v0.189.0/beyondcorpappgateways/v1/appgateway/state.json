@@ -1,0 +1,1 @@
+{"id":"beyondcorpappgateways\/v1\/appgateway\/state","type":"","title":"Google\\Cloud\\BeyondCorp\\AppGateways\\V1\\AppGateway\\State","name":"State","description":"<p>Represents the different states of an AppGateway.<\/p>\n<p>Protobuf type <code>google.cloud.beyondcorp.appgateways.v1.AppGateway.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

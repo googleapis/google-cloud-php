@@ -1,0 +1,1 @@
+{"id":"orgpolicy\/v2\/constraint_listconstraint","type":"","title":"Google\\Cloud\\OrgPolicy\\V2\\Constraint_ListConstraint","name":"Constraint_ListConstraint","description":"<p>This class is deprecated. Use Google\\Cloud\\OrgPolicy\\V2\\Constraint\\ListConstraint instead.<\/p>","examples":[],"resources":[],"methods":[]}

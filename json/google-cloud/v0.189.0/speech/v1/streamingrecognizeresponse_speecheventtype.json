@@ -1,0 +1,1 @@
+{"id":"speech\/v1\/streamingrecognizeresponse_speecheventtype","type":"","title":"Google\\Cloud\\Speech\\V1\\StreamingRecognizeResponse_SpeechEventType","name":"StreamingRecognizeResponse_SpeechEventType","description":"<p>This class is deprecated. Use Google\\Cloud\\Speech\\V1\\StreamingRecognizeResponse\\SpeechEventType instead.<\/p>","examples":[],"resources":[],"methods":[]}

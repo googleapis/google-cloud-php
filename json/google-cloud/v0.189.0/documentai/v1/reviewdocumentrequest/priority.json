@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/reviewdocumentrequest\/priority","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\ReviewDocumentRequest\\Priority","name":"Priority","description":"<p>The priority level of the human review task.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.ReviewDocumentRequest.Priority<\/code><\/p>","examples":[],"resources":[],"methods":[]}

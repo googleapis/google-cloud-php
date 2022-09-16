@@ -1,0 +1,1 @@
+{"id":"run\/v2\/condition\/revisionreason","type":"","title":"Google\\Cloud\\Run\\V2\\Condition\\RevisionReason","name":"RevisionReason","description":"<p>Reasons specific to Revision resource.<\/p>\n<p>Protobuf type <code>google.cloud.run.v2.Condition.RevisionReason<\/code><\/p>","examples":[],"resources":[],"methods":[]}

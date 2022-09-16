@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/taillogentriesresponse_suppressioninfo","type":"","title":"Google\\Cloud\\Logging\\V2\\TailLogEntriesResponse_SuppressionInfo","name":"TailLogEntriesResponse_SuppressionInfo","description":"<p>This class is deprecated. Use Google\\Cloud\\Logging\\V2\\TailLogEntriesResponse\\SuppressionInfo instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"artifactregistry\/v1beta2\/hash\/hashtype","type":"","title":"Google\\Cloud\\ArtifactRegistry\\V1beta2\\Hash\\HashType","name":"HashType","description":"<p>The algorithm used to compute the hash.<\/p>\n<p>Protobuf type <code>google.devtools.artifactregistry.v1beta2.Hash.HashType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

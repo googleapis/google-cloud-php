@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/autoscalingevent_autoscalingeventtype","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\AutoscalingEvent_AutoscalingEventType","name":"AutoscalingEvent_AutoscalingEventType","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataflow\\V1beta3\\AutoscalingEvent\\AutoscalingEventType instead.<\/p>","examples":[],"resources":[],"methods":[]}

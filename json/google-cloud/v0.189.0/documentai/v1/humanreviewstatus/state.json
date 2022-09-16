@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/humanreviewstatus\/state","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\HumanReviewStatus\\State","name":"State","description":"<p>The final state of human review on a processed document.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.HumanReviewStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

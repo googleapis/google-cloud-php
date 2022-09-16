@@ -1,0 +1,1 @@
+{"id":"datastore\/v1\/commitrequest\/mode","type":"","title":"Google\\Cloud\\Datastore\\V1\\CommitRequest\\Mode","name":"Mode","description":"<p>The modes available for commits.<\/p>\n<p>Protobuf type <code>google.datastore.v1.CommitRequest.Mode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

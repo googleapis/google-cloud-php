@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/cvssv3_attackvector","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Cvssv3_AttackVector","name":"Cvssv3_AttackVector","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Cvssv3\\AttackVector instead.<\/p>","examples":[],"resources":[],"methods":[]}

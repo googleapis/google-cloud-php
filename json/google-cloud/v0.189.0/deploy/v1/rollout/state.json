@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/rollout\/state","type":"","title":"Google\\Cloud\\Deploy\\V1\\Rollout\\State","name":"State","description":"<p>Valid states of a <code>Rollout<\/code>.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Rollout.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

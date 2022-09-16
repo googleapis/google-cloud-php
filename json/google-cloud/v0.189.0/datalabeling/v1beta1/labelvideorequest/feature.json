@@ -1,0 +1,1 @@
+{"id":"datalabeling\/v1beta1\/labelvideorequest\/feature","type":"","title":"Google\\Cloud\\DataLabeling\\V1beta1\\LabelVideoRequest\\Feature","name":"Feature","description":"<p>Video labeling task feature.<\/p>\n<p>Protobuf type <code>google.cloud.datalabeling.v1beta1.LabelVideoRequest.Feature<\/code><\/p>","examples":[],"resources":[],"methods":[]}

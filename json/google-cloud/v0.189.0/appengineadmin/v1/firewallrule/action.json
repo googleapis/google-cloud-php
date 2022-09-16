@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/firewallrule\/action","type":"","title":"Google\\Cloud\\AppEngine\\V1\\FirewallRule\\Action","name":"Action","description":"<p>Available actions to take on matching requests.<\/p>\n<p>Protobuf type <code>google.appengine.v1.FirewallRule.Action<\/code><\/p>","examples":[],"resources":[],"methods":[]}

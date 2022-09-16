@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodepoolupdatestrategy","type":"","title":"Google\\Cloud\\Container\\V1\\NodePoolUpdateStrategy","name":"NodePoolUpdateStrategy","description":"<p>Strategy used for node pool update.<\/p>\n<p>Protobuf type <code>google.container.v1.NodePoolUpdateStrategy<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"orchestrationairflow\/v1\/operationmetadata_type","type":"","title":"Google\\Cloud\\Orchestration\\Airflow\\Service\\V1\\OperationMetadata_Type","name":"OperationMetadata_Type","description":"<p>This class is deprecated. Use Google\\Cloud\\Orchestration\\Airflow\\Service\\V1\\OperationMetadata\\Type instead.<\/p>","examples":[],"resources":[],"methods":[]}

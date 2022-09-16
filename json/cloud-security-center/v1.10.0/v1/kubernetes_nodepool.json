@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_nodepool","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_NodePool","name":"Kubernetes_NodePool","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\NodePool instead.<\/p>","examples":[],"resources":[],"methods":[]}

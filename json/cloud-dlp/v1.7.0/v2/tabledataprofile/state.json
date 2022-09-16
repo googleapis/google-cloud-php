@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/tabledataprofile\/state","type":"","title":"Google\\Cloud\\Dlp\\V2\\TableDataProfile\\State","name":"State","description":"<p>Possible states of a profile. New items may be added.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.TableDataProfile.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

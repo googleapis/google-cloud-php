@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/cvssv3_privilegesrequired","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Cvssv3_PrivilegesRequired","name":"Cvssv3_PrivilegesRequired","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Cvssv3\\PrivilegesRequired instead.<\/p>","examples":[],"resources":[],"methods":[]}

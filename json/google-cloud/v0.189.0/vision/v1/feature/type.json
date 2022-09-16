@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/feature\/type","type":"","title":"Google\\Cloud\\Vision\\V1\\Feature\\Type","name":"Type","description":"<p>Type of Google Cloud Vision API feature to be extracted.<\/p>\n<p>Protobuf type <code>google.cloud.vision.v1.Feature.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

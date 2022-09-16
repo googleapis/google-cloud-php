@@ -1,0 +1,1 @@
+{"id":"functions\/v1\/cloudfunction\/dockerregistry","type":"","title":"Google\\Cloud\\Functions\\V1\\CloudFunction\\DockerRegistry","name":"DockerRegistry","description":"<p>Docker Registry to use for storing function Docker images.<\/p>\n<p>Protobuf type <code>google.cloud.functions.v1.CloudFunction.DockerRegistry<\/code><\/p>","examples":[],"resources":[],"methods":[]}

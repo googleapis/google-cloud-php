@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/perinstanceconfig\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\PerInstanceConfig\\Status","name":"Status","description":"<p>Status contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.PerInstanceConfig.Status descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

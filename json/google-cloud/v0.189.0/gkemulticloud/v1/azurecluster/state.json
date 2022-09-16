@@ -1,0 +1,1 @@
+{"id":"gkemulticloud\/v1\/azurecluster\/state","type":"","title":"Google\\Cloud\\GkeMultiCloud\\V1\\AzureCluster\\State","name":"State","description":"<p>The lifecycle state of the cluster.<\/p>\n<p>Protobuf type <code>google.cloud.gkemulticloud.v1.AzureCluster.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

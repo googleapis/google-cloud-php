@@ -1,0 +1,1 @@
+{"id":"run\/v2\/ingresstraffic","type":"","title":"Google\\Cloud\\Run\\V2\\IngressTraffic","name":"IngressTraffic","description":"<p>Allowed ingress traffic for the Container.<\/p>\n<p>Protobuf type <code>google.cloud.run.v2.IngressTraffic<\/code><\/p>","examples":[],"resources":[],"methods":[]}
