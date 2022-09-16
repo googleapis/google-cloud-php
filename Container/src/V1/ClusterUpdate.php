@@ -267,6 +267,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
      */
     private $desired_node_pool_auto_config_network_tags = null;
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     */
+    private $desired_node_pool_logging_config = null;
 
     /**
      * Constructor.
@@ -388,6 +394,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NetworkTags $desired_node_pool_auto_config_network_tags
      *           The desired network tags that apply to all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
+     *           The desired node pool logging configuration defaults for the cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -1617,6 +1625,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
         $this->desired_node_pool_auto_config_network_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getDesiredNodePoolLoggingConfig()
+    {
+        return $this->desired_node_pool_logging_config;
+    }
+
+    public function hasDesiredNodePoolLoggingConfig()
+    {
+        return isset($this->desired_node_pool_logging_config);
+    }
+
+    public function clearDesiredNodePoolLoggingConfig()
+    {
+        unset($this->desired_node_pool_logging_config);
+    }
+
+    /**
+     * The desired node pool logging configuration defaults for the cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig desired_node_pool_logging_config = 116;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setDesiredNodePoolLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->desired_node_pool_logging_config = $var;
 
         return $this;
     }

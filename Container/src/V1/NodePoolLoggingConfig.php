@@ -20,7 +20,7 @@ class NodePoolLoggingConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.LoggingVariantConfig variant_config = 1;</code>
      */
-    protected $variant_config = null;
+    private $variant_config = null;
 
     /**
      * Constructor.
