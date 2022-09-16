@@ -1,0 +1,1 @@
+{"id":"beyondcorpclientgateways\/v1\/clientgateway\/state","type":"","title":"Google\\Cloud\\BeyondCorp\\ClientGateways\\V1\\ClientGateway\\State","name":"State","description":"<p>Represents the different states of a gateway.<\/p>\n<p>Protobuf type <code>google.cloud.beyondcorp.clientgateways.v1.ClientGateway.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
