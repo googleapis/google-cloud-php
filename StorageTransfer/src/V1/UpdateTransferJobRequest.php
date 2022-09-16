@@ -38,7 +38,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * other fields are rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
      * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     * `storagetransfer.jobs.delete` permissions.
+     * `storagetransfer.jobs.delete` permission.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -80,7 +80,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      *           other fields are rejected with the error
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
      *           to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     *           `storagetransfer.jobs.delete` permissions.
+     *           `storagetransfer.jobs.delete` permission.
      *     @type \Google\Protobuf\FieldMask $update_transfer_job_field_mask
      *           The field mask of the fields in `transferJob` that are to be updated in
      *           this request.  Fields in `transferJob` that can be updated are:
@@ -163,7 +163,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * other fields are rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
      * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     * `storagetransfer.jobs.delete` permissions.
+     * `storagetransfer.jobs.delete` permission.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\StorageTransfer\V1\TransferJob|null
@@ -193,7 +193,7 @@ class UpdateTransferJobRequest extends \Google\Protobuf\Internal\Message
      * other fields are rejected with the error
      * [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT]. Updating a job status
      * to [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED] requires
-     * `storagetransfer.jobs.delete` permissions.
+     * `storagetransfer.jobs.delete` permission.
      *
      * Generated from protobuf field <code>.google.storagetransfer.v1.TransferJob transfer_job = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\StorageTransfer\V1\TransferJob $var
