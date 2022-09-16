@@ -29,6 +29,11 @@
                             "methods": [
                                 "listConnectors"
                             ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
