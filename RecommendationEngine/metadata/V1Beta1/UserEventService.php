@@ -22,12 +22,11 @@ class UserEventService
         \GPBMetadata\Google\Cloud\Recommendationengine\V1Beta1\UserEvent::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Type\Date::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©
-Bgoogle/cloud/recommendationengine/v1beta1/user_event_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto6google/cloud/recommendationengine/v1beta1/import.proto:google/cloud/recommendationengine/v1beta1/user_event.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.protogoogle/type/date.protogoogle/api/client.proto"‰
+‘
+Bgoogle/cloud/recommendationengine/v1beta1/user_event_service.proto)google.cloud.recommendationengine.v1beta1google/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto6google/cloud/recommendationengine/v1beta1/import.proto:google/cloud/recommendationengine/v1beta1/user_event.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.protogoogle/api/client.proto"‰
 PurgeUserEventsRequestF
 parent (	B6àAúA0
 .recommendationengine.googleapis.com/EventStore

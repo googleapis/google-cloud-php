@@ -174,6 +174,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $plan = 'plan3443497';
         $region2 = 'region2-690338393';
         $selfLink = 'selfLink-1691268851';
+        $splitSourceCommitment = 'splitSourceCommitment402611156';
         $startTimestamp = 'startTimestamp-1526966919';
         $status = 'status-892481550';
         $statusMessage = 'statusMessage-239442758';
@@ -190,6 +191,7 @@ class RegionCommitmentsClientTest extends GeneratedTest
         $expectedResponse->setPlan($plan);
         $expectedResponse->setRegion($region2);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setSplitSourceCommitment($splitSourceCommitment);
         $expectedResponse->setStartTimestamp($startTimestamp);
         $expectedResponse->setStatus($status);
         $expectedResponse->setStatusMessage($statusMessage);

@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An Api is a top-level description of an API.
- * Apis are produced by producers and are commitments to provide services.
+ * A top-level description of an API.
+ * Produced by producers and are commitments to provide services.
  *
  * Generated from protobuf message <code>google.cloud.apigeeregistry.v1.Api</code>
  */
@@ -49,21 +49,21 @@ class Api extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the availability of this service.
      * Format: free-form, but we expect single words that describe availability,
-     * e.g. "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
+     * e.g., "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
      *
      * Generated from protobuf field <code>string availability = 6;</code>
      */
     private $availability = '';
     /**
      * The recommended version of the API.
-     * Format: apis/{api}/versions/{version}
+     * Format: `apis/{api}/versions/{version}`
      *
      * Generated from protobuf field <code>string recommended_version = 7 [(.google.api.resource_reference) = {</code>
      */
     private $recommended_version = '';
     /**
      * The recommended deployment of the API.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string recommended_deployment = 8 [(.google.api.resource_reference) = {</code>
      */
@@ -73,12 +73,12 @@ class Api extends \Google\Protobuf\Internal\Message
      * be used to filter list operations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
-     * characters, underscores and dashes. International characters are allowed.
+     * characters, underscores, and dashes. International characters are allowed.
      * No more than 64 user labels can be associated with one resource (System
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      */
@@ -112,24 +112,24 @@ class Api extends \Google\Protobuf\Internal\Message
      *     @type string $availability
      *           A user-definable description of the availability of this service.
      *           Format: free-form, but we expect single words that describe availability,
-     *           e.g. "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
+     *           e.g., "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
      *     @type string $recommended_version
      *           The recommended version of the API.
-     *           Format: apis/{api}/versions/{version}
+     *           Format: `apis/{api}/versions/{version}`
      *     @type string $recommended_deployment
      *           The recommended deployment of the API.
-     *           Format: apis/{api}/deployments/{deployment}
+     *           Format: `apis/{api}/deployments/{deployment}`
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels attach identifying metadata to resources. Identifying metadata can
      *           be used to filter list operations.
      *           Label keys and values can be no longer than 64 characters
      *           (Unicode codepoints), can only contain lowercase letters, numeric
-     *           characters, underscores and dashes. International characters are allowed.
+     *           characters, underscores, and dashes. International characters are allowed.
      *           No more than 64 user labels can be associated with one resource (System
      *           labels are excluded).
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with
-     *           "apigeeregistry.googleapis.com/" and cannot be changed.
+     *           `apigeeregistry.googleapis.com/` and cannot be changed.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Annotations attach non-identifying metadata to resources.
      *           Annotation keys and values are less restricted than those of labels, but
@@ -295,7 +295,7 @@ class Api extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the availability of this service.
      * Format: free-form, but we expect single words that describe availability,
-     * e.g. "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
+     * e.g., "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
      *
      * Generated from protobuf field <code>string availability = 6;</code>
      * @return string
@@ -308,7 +308,7 @@ class Api extends \Google\Protobuf\Internal\Message
     /**
      * A user-definable description of the availability of this service.
      * Format: free-form, but we expect single words that describe availability,
-     * e.g. "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
+     * e.g., "NONE", "TESTING", "PREVIEW", "GENERAL", "DEPRECATED", "SHUTDOWN".
      *
      * Generated from protobuf field <code>string availability = 6;</code>
      * @param string $var
@@ -324,7 +324,7 @@ class Api extends \Google\Protobuf\Internal\Message
 
     /**
      * The recommended version of the API.
-     * Format: apis/{api}/versions/{version}
+     * Format: `apis/{api}/versions/{version}`
      *
      * Generated from protobuf field <code>string recommended_version = 7 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -336,7 +336,7 @@ class Api extends \Google\Protobuf\Internal\Message
 
     /**
      * The recommended version of the API.
-     * Format: apis/{api}/versions/{version}
+     * Format: `apis/{api}/versions/{version}`
      *
      * Generated from protobuf field <code>string recommended_version = 7 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -352,7 +352,7 @@ class Api extends \Google\Protobuf\Internal\Message
 
     /**
      * The recommended deployment of the API.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string recommended_deployment = 8 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -364,7 +364,7 @@ class Api extends \Google\Protobuf\Internal\Message
 
     /**
      * The recommended deployment of the API.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string recommended_deployment = 8 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -383,12 +383,12 @@ class Api extends \Google\Protobuf\Internal\Message
      * be used to filter list operations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
-     * characters, underscores and dashes. International characters are allowed.
+     * characters, underscores, and dashes. International characters are allowed.
      * No more than 64 user labels can be associated with one resource (System
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -403,12 +403,12 @@ class Api extends \Google\Protobuf\Internal\Message
      * be used to filter list operations.
      * Label keys and values can be no longer than 64 characters
      * (Unicode codepoints), can only contain lowercase letters, numeric
-     * characters, underscores and dashes. International characters are allowed.
+     * characters, underscores, and dashes. International characters are allowed.
      * No more than 64 user labels can be associated with one resource (System
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 9;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

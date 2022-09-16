@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Options defining a file or a set of files within a Google Cloud Storage
+ * Options defining a file or a set of files within a Cloud Storage
  * bucket.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.CloudStorageOptions</code>

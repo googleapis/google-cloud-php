@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An expression, consisting or an operator and conditions.
+ * An expression, consisting of an operator and conditions.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.RecordCondition.Expressions</code>
  */

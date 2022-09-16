@@ -37,6 +37,12 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature signatures = 3;</code>
      */
     private $signatures;
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     */
+    private $uris;
 
     /**
      * Constructor.
@@ -51,6 +57,8 @@ class Indicator extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
      *           The list of matched signatures indicating that the given
      *           process is present in the environment.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *           The list of URIs associated to the Findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +142,32 @@ class Indicator extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature::class);
         $this->signatures = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUris()
+    {
+        return $this->uris;
+    }
+
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->uris = $arr;
 
         return $this;
     }

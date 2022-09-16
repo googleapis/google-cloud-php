@@ -41,7 +41,9 @@ class FieldValueTest extends SnippetTestCase
         $this->checkAndSkipGrpcTests();
 
         $this->connection = $this->prophesize(ConnectionInterface::class);
-        $this->firestore = TestHelpers::stub(FirestoreClient::class);
+        $this->firestore = TestHelpers::stub(FirestoreClient::class, [
+            ['projectId' => 'my-awesome-project'],
+        ]);
     }
 
     public function testDeleteField()
@@ -51,16 +53,16 @@ class FieldValueTest extends SnippetTestCase
             "writes" => [
                 [
                     "updateMask" => [
-                        "fieldPaths" => ["hometown"]
+                        "fieldPaths" => ["hometown"],
                     ],
                     "currentDocument" => [
-                        "exists" => true
+                        "exists" => true,
                     ],
                     "update" => [
                         "name" => "projects/my-awesome-project/databases/(default)/documents/users/dave",
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ])->willReturn([[]]);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
@@ -83,15 +85,15 @@ class FieldValueTest extends SnippetTestCase
                         "fieldTransforms" => [
                             [
                                 "fieldPath" => "lastLogin",
-                                "setToServerValue" => ServerValue::REQUEST_TIME
-                            ]
-                        ]
+                                "setToServerValue" => ServerValue::REQUEST_TIME,
+                            ],
+                        ],
                     ],
                     "currentDocument" => [
-                        "exists" => true
-                    ]
-                ]
-            ]
+                        "exists" => true,
+                    ],
+                ],
+            ],
         ])->willReturn([[]]);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
@@ -117,20 +119,20 @@ class FieldValueTest extends SnippetTestCase
                                 'appendMissingElements' => [
                                     'values' => [
                                         [
-                                            'stringValue' => 'red'
+                                            'stringValue' => 'red',
                                         ], [
-                                            'stringValue' => 'blue'
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                            'stringValue' => 'blue',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     "currentDocument" => [
-                        "exists" => true
-                    ]
-                ]
-            ]
+                        "exists" => true,
+                    ],
+                ],
+            ],
         ])->willReturn([[]]);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
@@ -156,18 +158,18 @@ class FieldValueTest extends SnippetTestCase
                                 'removeAllFromArray' => [
                                     'values' => [
                                         [
-                                            'stringValue' => 'green'
-                                        ]
-                                    ]
-                                ]
-                            ]
-                        ]
+                                            'stringValue' => 'green',
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     "currentDocument" => [
-                        "exists" => true
-                    ]
-                ]
-            ]
+                        "exists" => true,
+                    ],
+                ],
+            ],
         ])->willReturn([[]]);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());
@@ -191,16 +193,16 @@ class FieldValueTest extends SnippetTestCase
                             [
                                 "fieldPath" => "loginCount",
                                 'increment' => [
-                                    'integerValue' => 1
-                                ]
-                            ]
-                        ]
+                                    'integerValue' => 1,
+                                ],
+                            ],
+                        ],
                     ],
                     "currentDocument" => [
-                        "exists" => true
-                    ]
-                ]
-            ]
+                        "exists" => true,
+                    ],
+                ],
+            ],
         ])->willReturn([[]]);
 
         $this->firestore->___setProperty('connection', $this->connection->reveal());

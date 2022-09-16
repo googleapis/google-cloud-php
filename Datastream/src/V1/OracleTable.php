@@ -23,7 +23,7 @@ class OracleTable extends \Google\Protobuf\Internal\Message
     private $table = '';
     /**
      * Oracle columns in the schema.
-     * When unspecified as part of inclue/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.OracleColumn oracle_columns = 2;</code>
@@ -40,7 +40,7 @@ class OracleTable extends \Google\Protobuf\Internal\Message
      *           Table name.
      *     @type array<\Google\Cloud\Datastream\V1\OracleColumn>|\Google\Protobuf\Internal\RepeatedField $oracle_columns
      *           Oracle columns in the schema.
-     *           When unspecified as part of inclue/exclude lists, includes/excludes
+     *           When unspecified as part of include/exclude objects, includes/excludes
      *           everything.
      * }
      */
@@ -77,7 +77,7 @@ class OracleTable extends \Google\Protobuf\Internal\Message
 
     /**
      * Oracle columns in the schema.
-     * When unspecified as part of inclue/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.OracleColumn oracle_columns = 2;</code>
@@ -90,7 +90,7 @@ class OracleTable extends \Google\Protobuf\Internal\Message
 
     /**
      * Oracle columns in the schema.
-     * When unspecified as part of inclue/exclude lists, includes/excludes
+     * When unspecified as part of include/exclude objects, includes/excludes
      * everything.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.OracleColumn oracle_columns = 2;</code>

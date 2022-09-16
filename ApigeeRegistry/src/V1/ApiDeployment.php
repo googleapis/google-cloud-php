@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An ApiDeployment describes a service running at particular address that
+ * Describes a service running at particular address that
  * provides a particular version of an API. ApiDeployments have revisions which
  * correspond to different configurations of a single deployment in time.
  * Revision identifiers should be updated whenever the served API spec or
@@ -64,9 +64,9 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      */
     private $revision_update_time = null;
     /**
-     * The full resource name (including revision id) of the spec of the API being
+     * The full resource name (including revision ID) of the spec of the API being
      * served by the deployment. Changes to this value will update the revision.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string api_spec_revision = 8 [(.google.api.resource_reference) = {</code>
      */
@@ -79,7 +79,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      */
     private $endpoint_uri = '';
     /**
-     * The address of the external channel of the API (e.g. the Developer
+     * The address of the external channel of the API (e.g., the Developer
      * Portal). Changes to this value will not affect the revision.
      *
      * Generated from protobuf field <code>string external_channel_uri = 10;</code>
@@ -109,7 +109,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      */
@@ -147,14 +147,14 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $revision_update_time
      *           Output only. Last update timestamp: when the represented revision was last modified.
      *     @type string $api_spec_revision
-     *           The full resource name (including revision id) of the spec of the API being
+     *           The full resource name (including revision ID) of the spec of the API being
      *           served by the deployment. Changes to this value will update the revision.
-     *           Format: apis/{api}/deployments/{deployment}
+     *           Format: `apis/{api}/deployments/{deployment}`
      *     @type string $endpoint_uri
      *           The address where the deployment is serving. Changes to this value will
      *           update the revision.
      *     @type string $external_channel_uri
-     *           The address of the external channel of the API (e.g. the Developer
+     *           The address of the external channel of the API (e.g., the Developer
      *           Portal). Changes to this value will not affect the revision.
      *     @type string $intended_audience
      *           Text briefly identifying the intended audience of the API. Changes to this
@@ -172,7 +172,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      *           labels are excluded).
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with
-     *           "apigeeregistry.googleapis.com/" and cannot be changed.
+     *           `apigeeregistry.googleapis.com/` and cannot be changed.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Annotations attach non-identifying metadata to resources.
      *           Annotation keys and values are less restricted than those of labels, but
@@ -402,9 +402,9 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name (including revision id) of the spec of the API being
+     * The full resource name (including revision ID) of the spec of the API being
      * served by the deployment. Changes to this value will update the revision.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string api_spec_revision = 8 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -415,9 +415,9 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The full resource name (including revision id) of the spec of the API being
+     * The full resource name (including revision ID) of the spec of the API being
      * served by the deployment. Changes to this value will update the revision.
-     * Format: apis/{api}/deployments/{deployment}
+     * Format: `apis/{api}/deployments/{deployment}`
      *
      * Generated from protobuf field <code>string api_spec_revision = 8 [(.google.api.resource_reference) = {</code>
      * @param string $var
@@ -460,7 +460,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address of the external channel of the API (e.g. the Developer
+     * The address of the external channel of the API (e.g., the Developer
      * Portal). Changes to this value will not affect the revision.
      *
      * Generated from protobuf field <code>string external_channel_uri = 10;</code>
@@ -472,7 +472,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The address of the external channel of the API (e.g. the Developer
+     * The address of the external channel of the API (e.g., the Developer
      * Portal). Changes to this value will not affect the revision.
      *
      * Generated from protobuf field <code>string external_channel_uri = 10;</code>
@@ -553,7 +553,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -573,7 +573,7 @@ class ApiDeployment extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

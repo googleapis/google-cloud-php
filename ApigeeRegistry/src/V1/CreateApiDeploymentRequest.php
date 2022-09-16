@@ -17,7 +17,7 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of deployments.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of deployments.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
      *     @type \Google\Cloud\ApigeeRegistry\V1\ApiDeployment $api_deployment
      *           Required. The deployment to create.
      *     @type string $api_deployment_id
@@ -65,7 +65,7 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of deployments.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class CreateApiDeploymentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of deployments.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
