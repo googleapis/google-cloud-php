@@ -11,6 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.189.0",
                 "v0.188.0",
                 "v0.187.0",
                 "v0.186.0",
@@ -250,6 +251,7 @@
             "name": "google/cloud-apigee-registry",
             "defaultService": "apigeeregistry/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "main"
             ]
@@ -368,6 +370,7 @@
             "name": "google/cloud-automl",
             "defaultService": "automl/readme",
             "versions": [
+                "v1.4.10",
                 "v1.4.9",
                 "v1.4.8",
                 "v1.4.7",
@@ -415,6 +418,51 @@
                 "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-appconnections",
+            "name": "google/cloud-beyondcorp-appconnections",
+            "defaultService": "beyondcorpappconnections/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-appconnectors",
+            "name": "google/cloud-beyondcorp-appconnectors",
+            "defaultService": "beyondcorpappconnectors/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-appgateways",
+            "name": "google/cloud-beyondcorp-appgateways",
+            "defaultService": "beyondcorpappgateways/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-clientconnectorservices",
+            "name": "google/cloud-beyondcorp-clientconnectorservices",
+            "defaultService": "beyondcorpclientconnectorservices/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-beyondcorp-clientgateways",
+            "name": "google/cloud-beyondcorp-clientgateways",
+            "defaultService": "beyondcorpclientgateways/readme",
+            "versions": [
                 "v0.1.0",
                 "main"
             ]
@@ -524,6 +572,7 @@
             "name": "google/cloud-bigquery-data-exchange",
             "defaultService": "bigquerydataexchange/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
@@ -652,6 +701,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.19.0",
                 "v1.18.0",
                 "v1.17.0",
                 "v1.16.0",
@@ -1394,6 +1444,7 @@
             "name": "google/cloud-datastream",
             "defaultService": "datastream/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.3",
                 "v0.1.2",
                 "v0.1.1",
@@ -1561,6 +1612,7 @@
             "name": "google/cloud-dlp",
             "defaultService": "dlp/readme",
             "versions": [
+                "v1.7.0",
                 "v1.6.1",
                 "v1.6.0",
                 "v1.5.3",
@@ -1833,6 +1885,7 @@
             "name": "google/cloud-firestore",
             "defaultService": "firestore/firestoreclient",
             "versions": [
+                "v1.25.3",
                 "v1.25.2",
                 "v1.25.1",
                 "v1.25.0",
@@ -2288,6 +2341,7 @@
             "name": "google/cloud-logging",
             "defaultService": "logging/loggingclient",
             "versions": [
+                "v1.24.8",
                 "v1.24.7",
                 "v1.24.6",
                 "v1.24.5",
@@ -2895,6 +2949,7 @@
             "name": "google/cloud-recommendations-ai",
             "defaultService": "recommendationengine/readme",
             "versions": [
+                "v0.4.6",
                 "v0.4.5",
                 "v0.4.4",
                 "v0.4.3",
@@ -3156,6 +3211,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.10.0",
                 "v1.9.0",
                 "v1.8.0",
                 "v1.7.0",
@@ -3319,6 +3375,7 @@
             "name": "google/cloud-spanner",
             "defaultService": "spanner/spannerclient",
             "versions": [
+                "v1.52.0",
                 "v1.51.2",
                 "v1.51.1",
                 "v1.51.0",

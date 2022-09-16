@@ -34,7 +34,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      */
@@ -58,13 +58,13 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
-     * [Output Only] Name of the resource. It is a numeric ID allocated by GCP which uniquely identifies the Firewall Policy.
+     * Name of the resource. For Organization Firewall Policies it's a [Output Only] numeric ID allocated by GCP which uniquely identifies the Organization Firewall Policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * [Output Only] The parent of the firewall policy.
+     * [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      */
@@ -100,7 +100,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      */
     private $self_link_with_id = null;
     /**
-     * User-provided name of the Organization firewall plicy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      */
@@ -119,7 +119,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type string $display_name
-     *           Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $fingerprint
      *           Specifies a fingerprint for this resource, which is essentially a hash of the metadata's contents and used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after every request to modify or update metadata. You must always provide an up-to-date fingerprint hash in order to update or change metadata, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make get() request to the firewall policy.
      *     @type int|string $id
@@ -127,9 +127,9 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $kind
      *           [Output only] Type of the resource. Always compute#firewallPolicyfor firewall policies
      *     @type string $name
-     *           [Output Only] Name of the resource. It is a numeric ID allocated by GCP which uniquely identifies the Firewall Policy.
+     *           Name of the resource. For Organization Firewall Policies it's a [Output Only] numeric ID allocated by GCP which uniquely identifies the Organization Firewall Policy.
      *     @type string $parent
-     *           [Output Only] The parent of the firewall policy.
+     *           [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *     @type string $region
      *           [Output Only] URL of the region where the regional firewall policy resides. This field is not applicable to global firewall policies. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.
      *     @type int $rule_tuple_count
@@ -141,7 +141,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $self_link_with_id
      *           [Output Only] Server-defined URL for this resource with the resource id.
      *     @type string $short_name
-     *           User-provided name of the Organization firewall plicy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *           User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      * }
      */
     public function __construct($data = NULL) {
@@ -248,7 +248,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @return string
@@ -269,7 +269,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string display_name = 4473832;</code>
      * @param string $var
@@ -392,7 +392,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource. It is a numeric ID allocated by GCP which uniquely identifies the Firewall Policy.
+     * Name of the resource. For Organization Firewall Policies it's a [Output Only] numeric ID allocated by GCP which uniquely identifies the Organization Firewall Policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
@@ -413,7 +413,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] Name of the resource. It is a numeric ID allocated by GCP which uniquely identifies the Firewall Policy.
+     * Name of the resource. For Organization Firewall Policies it's a [Output Only] numeric ID allocated by GCP which uniquely identifies the Organization Firewall Policy.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
@@ -428,7 +428,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the firewall policy.
+     * [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      * @return string
@@ -449,7 +449,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Output Only] The parent of the firewall policy.
+     * [Output Only] The parent of the firewall policy. This field is not applicable to network firewall policies.
      *
      * Generated from protobuf field <code>optional string parent = 78317738;</code>
      * @param string $var
@@ -634,7 +634,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided name of the Organization firewall plicy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @return string
@@ -655,7 +655,7 @@ class FirewallPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * User-provided name of the Organization firewall plicy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This field is not applicable to network firewall policies. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string short_name = 492051566;</code>
      * @param string $var

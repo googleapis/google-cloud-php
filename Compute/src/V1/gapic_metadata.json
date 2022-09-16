@@ -58,6 +58,11 @@
                             "methods": [
                                 "list"
                             ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
                         }
                     }
                 }
@@ -196,6 +201,11 @@
                                 "getHealth"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "Insert": {
                             "methods": [
                                 "insert"
@@ -214,6 +224,11 @@
                         "SetEdgeSecurityPolicy": {
                             "methods": [
                                 "setEdgeSecurityPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
                             ]
                         },
                         "SetSecurityPolicy": {
@@ -577,6 +592,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
                             ]
                         }
                     }
@@ -1360,6 +1380,11 @@
                             "methods": [
                                 "patch"
                             ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
                         }
                     }
                 }
@@ -1417,6 +1442,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
                             ]
                         }
                     }
@@ -2192,6 +2222,11 @@
                                 "getHealth"
                             ]
                         },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
                         "Insert": {
                             "methods": [
                                 "insert"
@@ -2205,6 +2240,11 @@
                         "Patch": {
                             "methods": [
                                 "patch"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
                             ]
                         },
                         "Update": {
@@ -2802,6 +2842,45 @@
                 }
             }
         },
+        "RegionSslPolicies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionSslPoliciesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListAvailableFeatures": {
+                            "methods": [
+                                "listAvailableFeatures"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "RegionTargetHttpProxies": {
             "clients": {
                 "grpc": {
@@ -2874,6 +2953,35 @@
                         "SetUrlMap": {
                             "methods": [
                                 "setUrlMap"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "RegionTargetTcpProxies": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RegionTargetTcpProxiesGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
                             ]
                         }
                     }
@@ -3198,6 +3306,11 @@
                             "methods": [
                                 "removeRule"
                             ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
                         }
                     }
                 }
@@ -3345,6 +3458,11 @@
                 "grpc": {
                     "libraryClient": "SslPoliciesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"
@@ -3810,6 +3928,11 @@
                             "methods": [
                                 "list"
                             ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
+                            ]
                         }
                     }
                 }
@@ -3946,6 +4069,11 @@
                         "List": {
                             "methods": [
                                 "list"
+                            ]
+                        },
+                        "SetLabels": {
+                            "methods": [
+                                "setLabels"
                             ]
                         }
                     }
