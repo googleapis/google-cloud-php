@@ -47,6 +47,7 @@ use Google\Cloud\Firestore\V1\ListDocumentsResponse;
 use Google\Cloud\Firestore\V1\ListenRequest;
 use Google\Cloud\Firestore\V1\ListenResponse;
 use Google\Cloud\Firestore\V1\PartitionQueryResponse;
+use Google\Cloud\Firestore\V1\RunAggregationQueryResponse;
 use Google\Cloud\Firestore\V1\RunQueryResponse;
 use Google\Cloud\Firestore\V1\WriteRequest;
 use Google\Cloud\Firestore\V1\WriteResponse;
@@ -932,6 +933,86 @@ class FirestoreClientTest extends GeneratedTest
         try {
             $gapicClient->rollback($database, $transaction);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function runAggregationQueryTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $transaction2 = '17';
+        $expectedResponse = new RunAggregationQueryResponse();
+        $expectedResponse->setTransaction($transaction2);
+        $transport->addResponse($expectedResponse);
+        $transaction3 = '18';
+        $expectedResponse2 = new RunAggregationQueryResponse();
+        $expectedResponse2->setTransaction($transaction3);
+        $transport->addResponse($expectedResponse2);
+        $transaction4 = '19';
+        $expectedResponse3 = new RunAggregationQueryResponse();
+        $expectedResponse3->setTransaction($transaction4);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $parent = 'parent-995424086';
+        $serverStream = $gapicClient->runAggregationQuery($parent);
+        $this->assertInstanceOf(ServerStream::class, $serverStream);
+        $responses = iterator_to_array($serverStream->readAll());
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.firestore.v1.Firestore/RunAggregationQuery', $actualFuncCall);
+        $actualValue = $actualRequestObject->getParent();
+        $this->assertProtobufEquals($parent, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function runAggregationQueryExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        // Mock request
+        $parent = 'parent-995424086';
+        $serverStream = $gapicClient->runAggregationQuery($parent);
+        $results = $serverStream->readAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
