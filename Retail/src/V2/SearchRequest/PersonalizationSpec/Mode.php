@@ -21,7 +21,8 @@ class Mode
      */
     const MODE_UNSPECIFIED = 0;
     /**
-     * Let CRS decide whether to use personalization.
+     * Let CRS decide whether to use personalization based on quality of user
+     * event data.
      *
      * Generated from protobuf enum <code>AUTO = 1;</code>
      */
