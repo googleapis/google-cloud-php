@@ -1256,7 +1256,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates a DeidentifyTemplate for re-using frequently used configuration
+     * Creates a DeidentifyTemplate for reusing frequently used configuration
      * for de-identifying content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates-deid to learn
      * more.
@@ -1446,7 +1446,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Creates an InspectTemplate for re-using frequently used configuration
+     * Creates an InspectTemplate for reusing frequently used configuration
      * for inspecting content, images, and storage.
      * See https://cloud.google.com/dlp/docs/creating-templates to learn more.
      *
@@ -1888,7 +1888,7 @@ class DlpServiceGapicClient
 
     /**
      * Deletes a long-running DlpJob. This method indicates that the client is
-     * no longer interested in the DlpJob result. The job will be cancelled if
+     * no longer interested in the DlpJob result. The job will be canceled if
      * possible.
      * See https://cloud.google.com/dlp/docs/inspecting-storage and
      * https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
@@ -2674,10 +2674,10 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the template was created.
-     *           - `update_time`: corresponds to time the template was last updated.
-     *           - `name`: corresponds to template's name.
-     *           - `display_name`: corresponds to template's display name.
+     *           - `create_time`: corresponds to the time the template was created.
+     *           - `update_time`: corresponds to the time the template was last updated.
+     *           - `name`: corresponds to the template's name.
+     *           - `display_name`: corresponds to the template's display name.
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
@@ -2785,13 +2785,13 @@ class DlpServiceGapicClient
      *           * Supported fields/values for inspect jobs:
      *           - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED
      *           - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY
-     *           - `trigger_name` - The resource name of the trigger that created job.
-     *           - 'end_time` - Corresponds to time the job finished.
-     *           - 'start_time` - Corresponds to time the job finished.
+     *           - `trigger_name` - The name of the trigger that created the job.
+     *           - 'end_time` - Corresponds to the time the job finished.
+     *           - 'start_time` - Corresponds to the time the job finished.
      *           * Supported fields for risk analysis jobs:
      *           - `state` - RUNNING|CANCELED|FINISHED|FAILED
-     *           - 'end_time` - Corresponds to time the job finished.
-     *           - 'start_time` - Corresponds to time the job finished.
+     *           - 'end_time` - Corresponds to the time the job finished.
+     *           - 'start_time` - Corresponds to the time the job finished.
      *           * The operator must be `=` or `!=`.
      *
      *           Examples:
@@ -2824,9 +2824,9 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the job was created.
-     *           - `end_time`: corresponds to time the job ended.
-     *           - `name`: corresponds to job's name.
+     *           - `create_time`: corresponds to the time the job was created.
+     *           - `end_time`: corresponds to the time the job ended.
+     *           - `name`: corresponds to the job's name.
      *           - `state`: corresponds to `state`
      *     @type string $locationId
      *           Deprecated. This field has no effect.
@@ -2885,7 +2885,7 @@ class DlpServiceGapicClient
     }
 
     /**
-     * Returns a list of the sensitive information types that the DLP API
+     * Returns a list of the sensitive information types that DLP API
      * supports. See https://cloud.google.com/dlp/docs/infotypes-reference to
      * learn more.
      *
@@ -3031,10 +3031,10 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the template was created.
-     *           - `update_time`: corresponds to time the template was last updated.
-     *           - `name`: corresponds to template's name.
-     *           - `display_name`: corresponds to template's display name.
+     *           - `create_time`: corresponds to the time the template was created.
+     *           - `update_time`: corresponds to the time the template was last updated.
+     *           - `name`: corresponds to the template's name.
+     *           - `display_name`: corresponds to the template's display name.
      *     @type string $locationId
      *           Deprecated. This field has no effect.
      *     @type RetrySettings|array $retrySettings
@@ -3148,11 +3148,11 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the JobTrigger was created.
-     *           - `update_time`: corresponds to time the JobTrigger was last updated.
+     *           - `create_time`: corresponds to the time the JobTrigger was created.
+     *           - `update_time`: corresponds to the time the JobTrigger was last updated.
      *           - `last_run_time`: corresponds to the last time the JobTrigger ran.
-     *           - `name`: corresponds to JobTrigger's name.
-     *           - `display_name`: corresponds to JobTrigger's display name.
+     *           - `name`: corresponds to the JobTrigger's name.
+     *           - `display_name`: corresponds to the JobTrigger's display name.
      *           - `status`: corresponds to JobTrigger's status.
      *     @type string $filter
      *           Allows filtering.
@@ -3276,10 +3276,6 @@ class DlpServiceGapicClient
      *                             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *                             + Projects scope, no location specified (defaults to global):<br/>
      *                             `projects/`<var>PROJECT_ID</var>
-     *                             + Organizations scope, location specified:<br/>
-     *                             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *                             + Organizations scope, no location specified (defaults to global):<br/>
-     *                             `organizations/`<var>ORG_ID</var>
      *
      *                             The following example `parent` string specifies a parent project with the
      *                             identifier `example-project`, and specifies the `europe-west3` location
@@ -3308,7 +3304,7 @@ class DlpServiceGapicClient
      *
      *           Supported fields are:
      *
-     *           - `create_time`: corresponds to time the most recent version of the
+     *           - `create_time`: corresponds to the time the most recent version of the
      *           resource was created.
      *           - `state`: corresponds to the state of the resource.
      *           - `name`: corresponds to resource name.

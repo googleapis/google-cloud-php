@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of DataExchanges.
+ * Message for requesting the list of data exchanges.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.ListDataExchangesRequest</code>
  */
 class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent resource path of the DataExchanges.
+     * Required. The parent resource path of the data exchanges.
      * e.g. `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -44,7 +44,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent resource path of the DataExchanges.
+     *           Required. The parent resource path of the data exchanges.
      *           e.g. `projects/myproject/locations/US`.
      *     @type int $page_size
      *           The maximum number of results to return in a single response page. Leverage
@@ -60,7 +60,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource path of the DataExchanges.
+     * Required. The parent resource path of the data exchanges.
      * e.g. `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -72,7 +72,7 @@ class ListDataExchangesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent resource path of the DataExchanges.
+     * Required. The parent resource path of the data exchanges.
      * e.g. `projects/myproject/locations/US`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>

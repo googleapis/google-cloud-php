@@ -16,11 +16,10 @@ class Resource
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Securitycenter\V1P1Beta1\Folder::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‚
-4google/cloud/securitycenter/v1p1beta1/resource.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.protogoogle/api/annotations.proto"¹
+ä
+4google/cloud/securitycenter/v1p1beta1/resource.proto%google.cloud.securitycenter.v1p1beta12google/cloud/securitycenter/v1p1beta1/folder.proto"¹
 Resource
 name (	
 project (	

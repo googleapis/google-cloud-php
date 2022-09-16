@@ -729,7 +729,7 @@ class RegistryGapicClient
     }
 
     /**
-     * CreateApi creates a specified API.
+     * Creates a specified API.
      *
      * Sample code:
      * ```
@@ -745,10 +745,10 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of APIs.
-     *                             Format: projects/&#42;/locations/*
+     *                             Format: `projects/&#42;/locations/*`
      * @param Api    $api          Required. The API to create.
-     * @param string $apiId        Required. The ID to use for the api, which will become the final component of
-     *                             the api's resource name.
+     * @param string $apiId        Required. The ID to use for the API, which will become the final component of
+     *                             the API's resource name.
      *
      *                             This value should be 4-63 characters, and valid characters
      *                             are /[a-z][0-9]-/.
@@ -790,7 +790,7 @@ class RegistryGapicClient
     }
 
     /**
-     * CreateApiDeployment creates a specified deployment.
+     * Creates a specified deployment.
      *
      * Sample code:
      * ```
@@ -806,7 +806,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string        $parent          Required. The parent, which owns this collection of deployments.
-     *                                       Format: projects/&#42;/locations/&#42;/apis/*
+     *                                       Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param ApiDeployment $apiDeployment   Required. The deployment to create.
      * @param string        $apiDeploymentId Required. The ID to use for the deployment, which will become the final component of
      *                                       the deployment's resource name.
@@ -855,7 +855,7 @@ class RegistryGapicClient
     }
 
     /**
-     * CreateApiSpec creates a specified spec.
+     * Creates a specified spec.
      *
      * Sample code:
      * ```
@@ -871,7 +871,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string  $parent       Required. The parent, which owns this collection of specs.
-     *                              Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/*
+     *                              Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      * @param ApiSpec $apiSpec      Required. The spec to create.
      * @param string  $apiSpecId    Required. The ID to use for the spec, which will become the final component of
      *                              the spec's resource name.
@@ -920,7 +920,7 @@ class RegistryGapicClient
     }
 
     /**
-     * CreateApiVersion creates a specified version.
+     * Creates a specified version.
      *
      * Sample code:
      * ```
@@ -936,7 +936,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string     $parent       Required. The parent, which owns this collection of versions.
-     *                                 Format: projects/&#42;/locations/&#42;/apis/*
+     *                                 Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param ApiVersion $apiVersion   Required. The version to create.
      * @param string     $apiVersionId Required. The ID to use for the version, which will become the final component of
      *                                 the version's resource name.
@@ -985,7 +985,7 @@ class RegistryGapicClient
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      *
      * Sample code:
      * ```
@@ -1001,7 +1001,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string   $parent       Required. The parent, which owns this collection of artifacts.
-     *                               Format: {parent}
+     *                               Format: `{parent}`
      * @param Artifact $artifact     Required. The artifact to create.
      * @param string   $artifactId   Required. The ID to use for the artifact, which will become the final component of
      *                               the artifact's resource name.
@@ -1050,7 +1050,7 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApi removes a specified API and all of the resources that it
+     * Removes a specified API and all of the resources that it
      * owns.
      *
      * Sample code:
@@ -1065,10 +1065,13 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the API to delete.
-     *                             Format: projects/&#42;/locations/&#42;/apis/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $force
+     *           If set to true, any child resources will also be deleted.
+     *           (Otherwise, the request will only work if there are no child resources.)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1083,6 +1086,10 @@ class RegistryGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1098,8 +1105,8 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApiDeployment removes a specified deployment, all revisions, and all
-     * child resources (e.g. artifacts).
+     * Removes a specified deployment, all revisions, and all
+     * child resources (e.g., artifacts).
      *
      * Sample code:
      * ```
@@ -1113,7 +1120,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the deployment to delete.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/deployments/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1153,7 +1160,7 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApiDeploymentRevision deletes a revision of a deployment.
+     * Deletes a revision of a deployment.
      *
      * Sample code:
      * ```
@@ -1170,7 +1177,7 @@ class RegistryGapicClient
      *                             with a revision ID explicitly included.
      *
      *                             Example:
-     *                             projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8
+     *                             `projects/sample/locations/global/apis/petstore/deployments/prod&#64;c7cfa2a8`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1205,8 +1212,8 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApiSpec removes a specified spec, all revisions, and all child
-     * resources (e.g. artifacts).
+     * Removes a specified spec, all revisions, and all child
+     * resources (e.g., artifacts).
      *
      * Sample code:
      * ```
@@ -1220,7 +1227,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the spec to delete.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1260,7 +1267,7 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApiSpecRevision deletes a revision of a spec.
+     * Deletes a revision of a spec.
      *
      * Sample code:
      * ```
@@ -1277,7 +1284,7 @@ class RegistryGapicClient
      *                             with a revision ID explicitly included.
      *
      *                             Example:
-     *                             projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8
+     *                             `projects/sample/locations/global/apis/petstore/versions/1.0.0/specs/openapi.yaml&#64;c7cfa2a8`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1312,7 +1319,7 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteApiVersion removes a specified version and all of the resources that
+     * Removes a specified version and all of the resources that
      * it owns.
      *
      * Sample code:
@@ -1327,10 +1334,13 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the version to delete.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $force
+     *           If set to true, any child resources will also be deleted.
+     *           (Otherwise, the request will only work if there are no child resources.)
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1345,6 +1355,10 @@ class RegistryGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['force'])) {
+            $request->setForce($optionalArgs['force']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1360,7 +1374,7 @@ class RegistryGapicClient
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      *
      * Sample code:
      * ```
@@ -1374,7 +1388,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the artifact to delete.
-     *                             Format: {parent}/artifacts/*
+     *                             Format: `{parent}/artifacts/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1407,7 +1421,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetApi returns a specified API.
+     * Returns a specified API.
      *
      * Sample code:
      * ```
@@ -1421,7 +1435,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the API to retrieve.
-     *                             Format: projects/&#42;/locations/&#42;/apis/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1456,7 +1470,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetApiDeployment returns a specified deployment.
+     * Returns a specified deployment.
      *
      * Sample code:
      * ```
@@ -1470,7 +1484,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the deployment to retrieve.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/deployments/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1505,7 +1519,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetApiSpec returns a specified spec.
+     * Returns a specified spec.
      *
      * Sample code:
      * ```
@@ -1519,7 +1533,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the spec to retrieve.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1554,7 +1568,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetApiSpecContents returns the contents of a specified spec.
+     * Returns the contents of a specified spec.
      * If specs are stored with GZip compression, the default behavior
      * is to return the spec uncompressed (the mime_type response field
      * indicates the exact format returned).
@@ -1571,7 +1585,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the spec whose contents should be retrieved.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1606,7 +1620,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetApiVersion returns a specified version.
+     * Returns a specified version.
      *
      * Sample code:
      * ```
@@ -1620,7 +1634,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the version to retrieve.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1655,7 +1669,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      *
      * Sample code:
      * ```
@@ -1669,7 +1683,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the artifact to retrieve.
-     *                             Format: {parent}/artifacts/*
+     *                             Format: `{parent}/artifacts/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1704,7 +1718,7 @@ class RegistryGapicClient
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact.
+     * Returns the contents of a specified artifact.
      * If artifacts are stored with GZip compression, the default behavior
      * is to return the artifact uncompressed (the mime_type response field
      * indicates the exact format returned).
@@ -1721,7 +1735,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $name         Required. The name of the artifact whose contents should be retrieved.
-     *                             Format: {parent}/artifacts/*
+     *                             Format: `{parent}/artifacts/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1756,7 +1770,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApiDeploymentRevisions lists all revisions of a deployment.
+     * Lists all revisions of a deployment.
      * Revisions are returned in descending order of revision creation time.
      *
      * Sample code:
@@ -1834,7 +1848,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApiDeployments returns matching deployments.
+     * Returns matching deployments.
      *
      * Sample code:
      * ```
@@ -1860,7 +1874,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of deployments.
-     *                             Format: projects/&#42;/locations/&#42;/apis/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1919,7 +1933,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApiSpecRevisions lists all revisions of a spec.
+     * Lists all revisions of a spec.
      * Revisions are returned in descending order of revision creation time.
      *
      * Sample code:
@@ -1997,7 +2011,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApiSpecs returns matching specs.
+     * Returns matching specs.
      *
      * Sample code:
      * ```
@@ -2023,7 +2037,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of specs.
-     *                             Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2082,7 +2096,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApiVersions returns matching versions.
+     * Returns matching versions.
      *
      * Sample code:
      * ```
@@ -2108,7 +2122,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of versions.
-     *                             Format: projects/&#42;/locations/&#42;/apis/*
+     *                             Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2167,7 +2181,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListApis returns matching APIs.
+     * Returns matching APIs.
      *
      * Sample code:
      * ```
@@ -2193,7 +2207,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of APIs.
-     *                             Format: projects/&#42;/locations/*
+     *                             Format: `projects/&#42;/locations/*`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2252,7 +2266,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      *
      * Sample code:
      * ```
@@ -2278,7 +2292,7 @@ class RegistryGapicClient
      * ```
      *
      * @param string $parent       Required. The parent, which owns this collection of artifacts.
-     *                             Format: {parent}
+     *                             Format: `{parent}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2337,7 +2351,7 @@ class RegistryGapicClient
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      *
      * Sample code:
      * ```
@@ -2353,7 +2367,7 @@ class RegistryGapicClient
      * @param Artifact $artifact     Required. The artifact to replace.
      *
      *                               The `name` field is used to identify the artifact to replace.
-     *                               Format: {parent}/artifacts/*
+     *                               Format: `{parent}/artifacts/*`
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -2388,7 +2402,7 @@ class RegistryGapicClient
     }
 
     /**
-     * RollbackApiDeployment sets the current revision to a specified prior
+     * Sets the current revision to a specified prior
      * revision. Note that this creates a new revision with a new revision ID.
      *
      * Sample code:
@@ -2407,7 +2421,7 @@ class RegistryGapicClient
      * @param string $revisionId   Required. The revision ID to roll back to.
      *                             It must be a revision of the same deployment.
      *
-     *                             Example: c7cfa2a8
+     *                             Example: `c7cfa2a8`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2446,7 +2460,7 @@ class RegistryGapicClient
     }
 
     /**
-     * RollbackApiSpec sets the current revision to a specified prior revision.
+     * Sets the current revision to a specified prior revision.
      * Note that this creates a new revision with a new revision ID.
      *
      * Sample code:
@@ -2465,7 +2479,7 @@ class RegistryGapicClient
      * @param string $revisionId   Required. The revision ID to roll back to.
      *                             It must be a revision of the same spec.
      *
-     *                             Example: c7cfa2a8
+     *                             Example: `c7cfa2a8`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2504,7 +2518,7 @@ class RegistryGapicClient
     }
 
     /**
-     * TagApiDeploymentRevision adds a tag to a specified revision of a
+     * Adds a tag to a specified revision of a
      * deployment.
      *
      * Sample code:
@@ -2560,7 +2574,7 @@ class RegistryGapicClient
     }
 
     /**
-     * TagApiSpecRevision adds a tag to a specified revision of a spec.
+     * Adds a tag to a specified revision of a spec.
      *
      * Sample code:
      * ```
@@ -2612,7 +2626,7 @@ class RegistryGapicClient
     }
 
     /**
-     * UpdateApi can be used to modify a specified API.
+     * Used to modify a specified API.
      *
      * Sample code:
      * ```
@@ -2628,17 +2642,17 @@ class RegistryGapicClient
      * @param Api   $api          Required. The API to update.
      *
      *                            The `name` field is used to identify the API to update.
-     *                            Format: projects/&#42;/locations/&#42;/apis/*
+     *                            Format: `projects/&#42;/locations/&#42;/apis/*`
      * @param array $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
-     *           If a "*" is specified, all fields are updated, including fields that are
-     *           unspecified/default in the request.
+     *           If an asterisk "*" is specified, all fields are updated, including fields
+     *           that are unspecified/default in the request.
      *     @type bool $allowMissing
-     *           If set to true, and the api is not found, a new api will be created.
+     *           If set to true, and the API is not found, a new API will be created.
      *           In this situation, `update_mask` is ignored.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -2679,7 +2693,7 @@ class RegistryGapicClient
     }
 
     /**
-     * UpdateApiDeployment can be used to modify a specified deployment.
+     * Used to modify a specified deployment.
      *
      * Sample code:
      * ```
@@ -2695,15 +2709,15 @@ class RegistryGapicClient
      * @param ApiDeployment $apiDeployment Required. The deployment to update.
      *
      *                                     The `name` field is used to identify the deployment to update.
-     *                                     Format: projects/&#42;/locations/&#42;/apis/&#42;/deployments/*
+     *                                     Format: `projects/&#42;/locations/&#42;/apis/&#42;/deployments/*`
      * @param array         $optionalArgs  {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
-     *           If a "*" is specified, all fields are updated, including fields that are
-     *           unspecified/default in the request.
+     *           If an asterisk "*" is specified, all fields are updated, including fields
+     *           that are unspecified/default in the request.
      *     @type bool $allowMissing
      *           If set to true, and the deployment is not found, a new deployment will be
      *           created. In this situation, `update_mask` is ignored.
@@ -2748,7 +2762,7 @@ class RegistryGapicClient
     }
 
     /**
-     * UpdateApiSpec can be used to modify a specified spec.
+     * Used to modify a specified spec.
      *
      * Sample code:
      * ```
@@ -2764,15 +2778,15 @@ class RegistryGapicClient
      * @param ApiSpec $apiSpec      Required. The spec to update.
      *
      *                              The `name` field is used to identify the spec to update.
-     *                              Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*
+     *                              Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/&#42;/specs/*`
      * @param array   $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
-     *           If a "*" is specified, all fields are updated, including fields that are
-     *           unspecified/default in the request.
+     *           If an asterisk "*" is specified, all fields are updated, including fields
+     *           that are unspecified/default in the request.
      *     @type bool $allowMissing
      *           If set to true, and the spec is not found, a new spec will be created.
      *           In this situation, `update_mask` is ignored.
@@ -2815,7 +2829,7 @@ class RegistryGapicClient
     }
 
     /**
-     * UpdateApiVersion can be used to modify a specified version.
+     * Used to modify a specified version.
      *
      * Sample code:
      * ```
@@ -2831,15 +2845,15 @@ class RegistryGapicClient
      * @param ApiVersion $apiVersion   Required. The version to update.
      *
      *                                 The `name` field is used to identify the version to update.
-     *                                 Format: projects/&#42;/locations/&#42;/apis/&#42;/versions/*
+     *                                 Format: `projects/&#42;/locations/&#42;/apis/&#42;/versions/*`
      * @param array      $optionalArgs {
      *     Optional.
      *
      *     @type FieldMask $updateMask
      *           The list of fields to be updated. If omitted, all fields are updated that
      *           are set in the request message (fields set to default values are ignored).
-     *           If a "*" is specified, all fields are updated, including fields that are
-     *           unspecified/default in the request.
+     *           If an asterisk "*" is specified, all fields are updated, including fields
+     *           that are unspecified/default in the request.
      *     @type bool $allowMissing
      *           If set to true, and the version is not found, a new version will be
      *           created. In this situation, `update_mask` is ignored.

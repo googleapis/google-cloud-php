@@ -20,13 +20,12 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Security\Privateca\V1Beta1\Resources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ùT
-5google/cloud/security/privateca/v1beta1/service.proto\'google.cloud.security.privateca.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/security/privateca/v1beta1/resources.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Á
+˝S
+5google/cloud/security/privateca/v1beta1/service.proto\'google.cloud.security.privateca.v1beta1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto7google/cloud/security/privateca/v1beta1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"Á
 CreateCertificateRequestE
 parent (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority

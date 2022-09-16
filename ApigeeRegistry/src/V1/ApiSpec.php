@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An ApiSpec describes a version of an API in a structured way.
+ * Describes a version of an API in a structured way.
  * ApiSpecs provide formal descriptions that consumers can use to use a version.
  * ApiSpec resources are intended to be fully-resolved descriptions of an
  * ApiVersion. When specs consist of multiple files, these should be bundled
- * together (e.g. in a zip archive) and stored as a unit. Multiple specs can
+ * together (e.g., in a zip archive) and stored as a unit. Multiple specs can
  * exist to provide representations in different API description formats.
  * Synchronization of these representations would be provided by tooling and
  * background services.
@@ -69,8 +69,8 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
     /**
      * A style (format) descriptor for this spec that is specified as a Media Type
      * (https://en.wikipedia.org/wiki/Media_type). Possible values include
-     * "application/vnd.apigee.proto", "application/vnd.apigee.openapi", and
-     * "application/vnd.apigee.graphql", with possible suffixes representing
+     * `application/vnd.apigee.proto`, `application/vnd.apigee.openapi`, and
+     * `application/vnd.apigee.graphql`, with possible suffixes representing
      * compression types. These hypothetical names are defined in the vendor tree
      * defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final.
      * Content types can specify compression. Currently only GZip compression is
@@ -120,7 +120,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      */
@@ -160,8 +160,8 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *     @type string $mime_type
      *           A style (format) descriptor for this spec that is specified as a Media Type
      *           (https://en.wikipedia.org/wiki/Media_type). Possible values include
-     *           "application/vnd.apigee.proto", "application/vnd.apigee.openapi", and
-     *           "application/vnd.apigee.graphql", with possible suffixes representing
+     *           `application/vnd.apigee.proto`, `application/vnd.apigee.openapi`, and
+     *           `application/vnd.apigee.graphql`, with possible suffixes representing
      *           compression types. These hypothetical names are defined in the vendor tree
      *           defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final.
      *           Content types can specify compression. Currently only GZip compression is
@@ -191,7 +191,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      *           labels are excluded).
      *           See https://goo.gl/xmQnxf for more information and examples of labels.
      *           System reserved label keys are prefixed with
-     *           "apigeeregistry.googleapis.com/" and cannot be changed.
+     *           `apigeeregistry.googleapis.com/` and cannot be changed.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           Annotations attach non-identifying metadata to resources.
      *           Annotation keys and values are less restricted than those of labels, but
@@ -423,8 +423,8 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
     /**
      * A style (format) descriptor for this spec that is specified as a Media Type
      * (https://en.wikipedia.org/wiki/Media_type). Possible values include
-     * "application/vnd.apigee.proto", "application/vnd.apigee.openapi", and
-     * "application/vnd.apigee.graphql", with possible suffixes representing
+     * `application/vnd.apigee.proto`, `application/vnd.apigee.openapi`, and
+     * `application/vnd.apigee.graphql`, with possible suffixes representing
      * compression types. These hypothetical names are defined in the vendor tree
      * defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final.
      * Content types can specify compression. Currently only GZip compression is
@@ -441,8 +441,8 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
     /**
      * A style (format) descriptor for this spec that is specified as a Media Type
      * (https://en.wikipedia.org/wiki/Media_type). Possible values include
-     * "application/vnd.apigee.proto", "application/vnd.apigee.openapi", and
-     * "application/vnd.apigee.graphql", with possible suffixes representing
+     * `application/vnd.apigee.proto`, `application/vnd.apigee.openapi`, and
+     * `application/vnd.apigee.graphql`, with possible suffixes representing
      * compression types. These hypothetical names are defined in the vendor tree
      * defined in RFC6838 (https://tools.ietf.org/html/rfc6838) and are not final.
      * Content types can specify compression. Currently only GZip compression is
@@ -588,7 +588,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -608,7 +608,7 @@ class ApiSpec extends \Google\Protobuf\Internal\Message
      * labels are excluded).
      * See https://goo.gl/xmQnxf for more information and examples of labels.
      * System reserved label keys are prefixed with
-     * "apigeeregistry.googleapis.com/" and cannot be changed.
+     * `apigeeregistry.googleapis.com/` and cannot be changed.
      *
      * Generated from protobuf field <code>map<string, string> labels = 14;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

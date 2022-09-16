@@ -77,7 +77,12 @@ use Google\Auth\Cache\SysVCacheItemPool;
 $authCache = new SysVCacheItemPool();
 $sessionCache = new SysVCacheItemPool([
     // Use a different project identifier for ftok than the default
-    'proj' => 'B'
+    'proj' => 'B',
+    // We highly recommend using 250kb as it should safely contain the default
+    // 500 maximum sessions the pool can handle. Please modify this value
+    // accordingly depending on the number of maximum sessions you would like
+    // for the pool to handle.
+    'memsize' => 250000
 ]);
 
 $spanner = new SpannerClient([

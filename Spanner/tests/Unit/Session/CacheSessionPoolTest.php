@@ -25,6 +25,7 @@ use Google\Cloud\Spanner\Session\CacheSessionPool;
 use Google\Cloud\Spanner\Session\Session;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use GuzzleHttp\Promise\PromiseInterface;
+use Psr\Cache\CacheItemInterface;
 use Psr\Cache\CacheItemPoolInterface;
 use Prophecy\Argument;
 use Prophecy\Argument\ArgumentsWildcard;
@@ -83,6 +84,37 @@ class CacheSessionPoolTest extends TestCase
             [['minSessions' => 5, 'maxSessions' => 1]],
             [['lock' => new \stdClass]]
         ];
+    }
+
+    public function testAcquireThrowsExceptionUnableToSaveItem()
+    {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage(
+            'Failed to save session pool data. This can often be related to ' .
+            'your chosen cache implementation running out of memory. ' .
+            'If so, please attempt to configure a greater memory alottment ' .
+            'and try again. When using the Google\Auth\Cache\SysVCacheItemPool ' .
+            'implementation we recommend setting the memory allottment to ' .
+            '250000 (250kb) in order to safely handle the default maximum ' .
+            'of 500 sessions handled by the pool. If you require more ' .
+            'maximum sessions please plan accordingly and increase the memory ' .
+            'allocation.'
+        );
+        $config = ['maxSessions' => 1];
+        $cacheItem = $this->prophesize(CacheItemInterface::class);
+        $cacheItem->get()
+            ->willReturn(null);
+        $cacheItem->set(Argument::any())
+            ->willReturn($cacheItem);
+        $cacheItemPool = $this->prophesize(CacheItemPoolInterface::class);
+        $cacheItemPool->save(Argument::any())
+            ->willReturn(false);
+        $cacheItemPool->getItem(Argument::any())
+            ->willReturn($cacheItem->reveal());
+
+        $pool = new CacheSessionPoolStub($cacheItemPool->reveal(), $config, $this->time);
+        $pool->setDatabase($this->getDatabase());
+        $pool->acquire();
     }
 
     public function testAcquireThrowsExceptionWhenMaxCyclesMet()

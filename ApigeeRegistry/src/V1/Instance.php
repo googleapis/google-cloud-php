@@ -18,7 +18,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 {
     /**
      * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
-     * Currently only locations/global is supported.
+     * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -62,7 +62,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
-     *           Currently only locations/global is supported.
+     *           Currently only `locations/global` is supported.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Creation timestamp.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -82,7 +82,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
-     * Currently only locations/global is supported.
+     * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -94,7 +94,7 @@ class Instance extends \Google\Protobuf\Internal\Message
 
     /**
      * Format: `projects/&#42;&#47;locations/&#42;&#47;instance`.
-     * Currently only locations/global is supported.
+     * Currently only `locations/global` is supported.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

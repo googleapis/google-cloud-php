@@ -71,6 +71,10 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
      *           Cloud Storage ConnectionProfile configuration.
      *     @type \Google\Cloud\Datastream\V1\MysqlProfile $mysql_profile
      *           MySQL ConnectionProfile configuration.
+     *     @type \Google\Cloud\Datastream\V1\BigQueryProfile $bigquery_profile
+     *           BigQuery Connection Profile configuration.
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlProfile $postgresql_profile
+     *           PostgreSQL Connection Profile configuration.
      *     @type \Google\Cloud\Datastream\V1\StaticServiceIpConnectivity $static_service_ip_connectivity
      *           Static Service IP connectivity.
      *     @type \Google\Cloud\Datastream\V1\ForwardSshTunnelConnectivity $forward_ssh_connectivity
@@ -323,6 +327,68 @@ class ConnectionProfile extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlProfile::class);
         $this->writeOneof(102, $var);
+
+        return $this;
+    }
+
+    /**
+     * BigQuery Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryProfile bigquery_profile = 103;</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryProfile|null
+     */
+    public function getBigqueryProfile()
+    {
+        return $this->readOneof(103);
+    }
+
+    public function hasBigqueryProfile()
+    {
+        return $this->hasOneof(103);
+    }
+
+    /**
+     * BigQuery Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryProfile bigquery_profile = 103;</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryProfile $var
+     * @return $this
+     */
+    public function setBigqueryProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryProfile::class);
+        $this->writeOneof(103, $var);
+
+        return $this;
+    }
+
+    /**
+     * PostgreSQL Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlProfile postgresql_profile = 104;</code>
+     * @return \Google\Cloud\Datastream\V1\PostgresqlProfile|null
+     */
+    public function getPostgresqlProfile()
+    {
+        return $this->readOneof(104);
+    }
+
+    public function hasPostgresqlProfile()
+    {
+        return $this->hasOneof(104);
+    }
+
+    /**
+     * PostgreSQL Connection Profile configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlProfile postgresql_profile = 104;</code>
+     * @param \Google\Cloud\Datastream\V1\PostgresqlProfile $var
+     * @return $this
+     */
+    public function setPostgresqlProfile($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlProfile::class);
+        $this->writeOneof(104, $var);
 
         return $this;
     }

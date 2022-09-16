@@ -24,7 +24,7 @@ class RegistryService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ör
+ôr
 5google/cloud/apigeeregistry/v1/registry_service.protogoogle.cloud.apigeeregistry.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/httpbody.protogoogle/api/resource.proto4google/cloud/apigeeregistry/v1/registry_models.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ƒ
 ListApisRequest9
 parent (	B)àAúA#!apigeeregistry.googleapis.com/Api
@@ -45,10 +45,11 @@ page_token (	
 UpdateApiRequest5
 api (2#.google.cloud.apigeeregistry.v1.ApiBàA/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("K
+allow_missing ("Z
 DeleteApiRequest7
 name (	B)àAúA#
-!apigeeregistry.googleapis.com/Api"‘
+!apigeeregistry.googleapis.com/Api
+force ("‘
 ListApiVersionsRequest@
 parent (	B0àAúA*(apigeeregistry.googleapis.com/ApiVersion
 	page_size (
@@ -68,10 +69,11 @@ page_token (	
 UpdateApiVersionRequestD
 api_version (2*.google.cloud.apigeeregistry.v1.ApiVersionBàA/
 update_mask (2.google.protobuf.FieldMask
-allow_missing ("Y
+allow_missing ("h
 DeleteApiVersionRequest>
 name (	B0àAúA*
-(apigeeregistry.googleapis.com/ApiVersion"‹
+(apigeeregistry.googleapis.com/ApiVersion
+force ("‹
 ListApiSpecsRequest=
 parent (	B-àAúA\'%apigeeregistry.googleapis.com/ApiSpec
 	page_size (

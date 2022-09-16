@@ -40,6 +40,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 require 'vendor/autoload.php';
 
 use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
 
 $autoMlClient = new AutoMlClient();

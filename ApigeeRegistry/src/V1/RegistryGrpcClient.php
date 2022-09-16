@@ -33,7 +33,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApis returns matching APIs.
+     * Returns matching APIs.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApisRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -48,7 +48,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetApi returns a specified API.
+     * Returns a specified API.
      * @param \Google\Cloud\ApigeeRegistry\V1\GetApiRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -63,7 +63,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * CreateApi creates a specified API.
+     * Creates a specified API.
      * @param \Google\Cloud\ApigeeRegistry\V1\CreateApiRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -78,7 +78,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * UpdateApi can be used to modify a specified API.
+     * Used to modify a specified API.
      * @param \Google\Cloud\ApigeeRegistry\V1\UpdateApiRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -93,7 +93,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApi removes a specified API and all of the resources that it
+     * Removes a specified API and all of the resources that it
      * owns.
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiRequest $argument input argument
      * @param array $metadata metadata
@@ -109,7 +109,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApiVersions returns matching versions.
+     * Returns matching versions.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApiVersionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -124,7 +124,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetApiVersion returns a specified version.
+     * Returns a specified version.
      * @param \Google\Cloud\ApigeeRegistry\V1\GetApiVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -139,7 +139,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * CreateApiVersion creates a specified version.
+     * Creates a specified version.
      * @param \Google\Cloud\ApigeeRegistry\V1\CreateApiVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -154,7 +154,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * UpdateApiVersion can be used to modify a specified version.
+     * Used to modify a specified version.
      * @param \Google\Cloud\ApigeeRegistry\V1\UpdateApiVersionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -169,7 +169,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApiVersion removes a specified version and all of the resources that
+     * Removes a specified version and all of the resources that
      * it owns.
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiVersionRequest $argument input argument
      * @param array $metadata metadata
@@ -185,7 +185,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApiSpecs returns matching specs.
+     * Returns matching specs.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApiSpecsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -200,7 +200,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetApiSpec returns a specified spec.
+     * Returns a specified spec.
      * @param \Google\Cloud\ApigeeRegistry\V1\GetApiSpecRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -215,7 +215,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetApiSpecContents returns the contents of a specified spec.
+     * Returns the contents of a specified spec.
      * If specs are stored with GZip compression, the default behavior
      * is to return the spec uncompressed (the mime_type response field
      * indicates the exact format returned).
@@ -233,7 +233,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * CreateApiSpec creates a specified spec.
+     * Creates a specified spec.
      * @param \Google\Cloud\ApigeeRegistry\V1\CreateApiSpecRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -248,7 +248,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * UpdateApiSpec can be used to modify a specified spec.
+     * Used to modify a specified spec.
      * @param \Google\Cloud\ApigeeRegistry\V1\UpdateApiSpecRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -263,8 +263,8 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApiSpec removes a specified spec, all revisions, and all child
-     * resources (e.g. artifacts).
+     * Removes a specified spec, all revisions, and all child
+     * resources (e.g., artifacts).
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiSpecRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -279,7 +279,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * TagApiSpecRevision adds a tag to a specified revision of a spec.
+     * Adds a tag to a specified revision of a spec.
      * @param \Google\Cloud\ApigeeRegistry\V1\TagApiSpecRevisionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -294,7 +294,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApiSpecRevisions lists all revisions of a spec.
+     * Lists all revisions of a spec.
      * Revisions are returned in descending order of revision creation time.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApiSpecRevisionsRequest $argument input argument
      * @param array $metadata metadata
@@ -310,7 +310,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * RollbackApiSpec sets the current revision to a specified prior revision.
+     * Sets the current revision to a specified prior revision.
      * Note that this creates a new revision with a new revision ID.
      * @param \Google\Cloud\ApigeeRegistry\V1\RollbackApiSpecRequest $argument input argument
      * @param array $metadata metadata
@@ -326,7 +326,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApiSpecRevision deletes a revision of a spec.
+     * Deletes a revision of a spec.
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiSpecRevisionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -341,7 +341,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApiDeployments returns matching deployments.
+     * Returns matching deployments.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -356,7 +356,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetApiDeployment returns a specified deployment.
+     * Returns a specified deployment.
      * @param \Google\Cloud\ApigeeRegistry\V1\GetApiDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -371,7 +371,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * CreateApiDeployment creates a specified deployment.
+     * Creates a specified deployment.
      * @param \Google\Cloud\ApigeeRegistry\V1\CreateApiDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -386,7 +386,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * UpdateApiDeployment can be used to modify a specified deployment.
+     * Used to modify a specified deployment.
      * @param \Google\Cloud\ApigeeRegistry\V1\UpdateApiDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -401,8 +401,8 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApiDeployment removes a specified deployment, all revisions, and all
-     * child resources (e.g. artifacts).
+     * Removes a specified deployment, all revisions, and all
+     * child resources (e.g., artifacts).
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiDeploymentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -417,7 +417,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * TagApiDeploymentRevision adds a tag to a specified revision of a
+     * Adds a tag to a specified revision of a
      * deployment.
      * @param \Google\Cloud\ApigeeRegistry\V1\TagApiDeploymentRevisionRequest $argument input argument
      * @param array $metadata metadata
@@ -433,7 +433,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListApiDeploymentRevisions lists all revisions of a deployment.
+     * Lists all revisions of a deployment.
      * Revisions are returned in descending order of revision creation time.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListApiDeploymentRevisionsRequest $argument input argument
      * @param array $metadata metadata
@@ -449,7 +449,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * RollbackApiDeployment sets the current revision to a specified prior
+     * Sets the current revision to a specified prior
      * revision. Note that this creates a new revision with a new revision ID.
      * @param \Google\Cloud\ApigeeRegistry\V1\RollbackApiDeploymentRequest $argument input argument
      * @param array $metadata metadata
@@ -465,7 +465,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteApiDeploymentRevision deletes a revision of a deployment.
+     * Deletes a revision of a deployment.
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteApiDeploymentRevisionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -480,7 +480,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ListArtifacts returns matching artifacts.
+     * Returns matching artifacts.
      * @param \Google\Cloud\ApigeeRegistry\V1\ListArtifactsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -495,7 +495,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetArtifact returns a specified artifact.
+     * Returns a specified artifact.
      * @param \Google\Cloud\ApigeeRegistry\V1\GetArtifactRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -510,7 +510,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * GetArtifactContents returns the contents of a specified artifact.
+     * Returns the contents of a specified artifact.
      * If artifacts are stored with GZip compression, the default behavior
      * is to return the artifact uncompressed (the mime_type response field
      * indicates the exact format returned).
@@ -528,7 +528,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * CreateArtifact creates a specified artifact.
+     * Creates a specified artifact.
      * @param \Google\Cloud\ApigeeRegistry\V1\CreateArtifactRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -543,7 +543,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ReplaceArtifact can be used to replace a specified artifact.
+     * Used to replace a specified artifact.
      * @param \Google\Cloud\ApigeeRegistry\V1\ReplaceArtifactRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -558,7 +558,7 @@ class RegistryGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * DeleteArtifact removes a specified artifact.
+     * Removes a specified artifact.
      * @param \Google\Cloud\ApigeeRegistry\V1\DeleteArtifactRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

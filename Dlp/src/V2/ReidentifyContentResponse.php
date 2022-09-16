@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Results of re-identifying a item.
+ * Results of re-identifying an item.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ReidentifyContentResponse</code>
  */
