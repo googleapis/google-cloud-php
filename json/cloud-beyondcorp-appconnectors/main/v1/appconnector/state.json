@@ -1,0 +1,1 @@
+{"id":"beyondcorpappconnectors\/v1\/appconnector\/state","type":"","title":"Google\\Cloud\\BeyondCorp\\AppConnectors\\V1\\AppConnector\\State","name":"State","description":"<p>Represents the different states of a AppConnector.<\/p>\n<p>Protobuf type <code>google.cloud.beyondcorp.appconnectors.v1.AppConnector.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
