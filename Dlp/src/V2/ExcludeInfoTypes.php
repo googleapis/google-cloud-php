@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * List of exclude infoTypes.
+ * List of excluded infoTypes.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ExcludeInfoTypes</code>
  */
