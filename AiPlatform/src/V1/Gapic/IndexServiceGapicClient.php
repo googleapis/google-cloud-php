@@ -42,9 +42,14 @@ use Google\Cloud\AIPlatform\V1\CreateIndexRequest;
 use Google\Cloud\AIPlatform\V1\DeleteIndexRequest;
 use Google\Cloud\AIPlatform\V1\GetIndexRequest;
 use Google\Cloud\AIPlatform\V1\Index;
+use Google\Cloud\AIPlatform\V1\IndexDatapoint;
 use Google\Cloud\AIPlatform\V1\ListIndexesRequest;
 use Google\Cloud\AIPlatform\V1\ListIndexesResponse;
+use Google\Cloud\AIPlatform\V1\RemoveDatapointsRequest;
+use Google\Cloud\AIPlatform\V1\RemoveDatapointsResponse;
 use Google\Cloud\AIPlatform\V1\UpdateIndexRequest;
+use Google\Cloud\AIPlatform\V1\UpsertDatapointsRequest;
+use Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse;
 use Google\Cloud\Iam\V1\GetIamPolicyRequest;
 use Google\Cloud\Iam\V1\GetPolicyOptions;
 use Google\Cloud\Iam\V1\Policy;
@@ -677,6 +682,62 @@ class IndexServiceGapicClient
     }
 
     /**
+     * Remove Datapoints from an Index.
+     *
+     * Sample code:
+     * ```
+     * $indexServiceClient = new IndexServiceClient();
+     * try {
+     *     $formattedIndex = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+     *     $response = $indexServiceClient->removeDatapoints($formattedIndex);
+     * } finally {
+     *     $indexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $index        Required. The name of the Index resource to be updated.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/indexes/{index}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string[] $datapointIds
+     *           A list of datapoint ids to be deleted.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\RemoveDatapointsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeDatapoints($index, array $optionalArgs = [])
+    {
+        $request = new RemoveDatapointsRequest();
+        $requestParamHeaders = [];
+        $request->setIndex($index);
+        $requestParamHeaders['index'] = $index;
+        if (isset($optionalArgs['datapointIds'])) {
+            $request->setDatapointIds($optionalArgs['datapointIds']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RemoveDatapoints',
+            RemoveDatapointsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates an Index.
      *
      * Sample code:
@@ -753,6 +814,62 @@ class IndexServiceGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Add/update Datapoints into an Index.
+     *
+     * Sample code:
+     * ```
+     * $indexServiceClient = new IndexServiceClient();
+     * try {
+     *     $formattedIndex = $indexServiceClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+     *     $response = $indexServiceClient->upsertDatapoints($formattedIndex);
+     * } finally {
+     *     $indexServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $index        Required. The name of the Index resource to be updated.
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/indexes/{index}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type IndexDatapoint[] $datapoints
+     *           A list of datapoints to be created/updated.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function upsertDatapoints($index, array $optionalArgs = [])
+    {
+        $request = new UpsertDatapointsRequest();
+        $requestParamHeaders = [];
+        $request->setIndex($index);
+        $requestParamHeaders['index'] = $index;
+        if (isset($optionalArgs['datapoints'])) {
+            $request->setDatapoints($optionalArgs['datapoints']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'UpsertDatapoints',
+            UpsertDatapointsResponse::class,
+            $optionalArgs,
+            $request
         )->wait();
     }
 
