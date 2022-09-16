@@ -34,9 +34,11 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
      *           Required. Source connection profile resoource.
      *           Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *     @type \Google\Cloud\Datastream\V1\OracleSourceConfig $oracle_source_config
-     *           Oracle data source configuration
+     *           Oracle data source configuration.
      *     @type \Google\Cloud\Datastream\V1\MysqlSourceConfig $mysql_source_config
-     *           MySQL data source configuration
+     *           MySQL data source configuration.
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlSourceConfig $postgresql_source_config
+     *           PostgreSQL data source configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +75,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle data source configuration
+     * Oracle data source configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig oracle_source_config = 100;</code>
      * @return \Google\Cloud\Datastream\V1\OracleSourceConfig|null
@@ -89,7 +91,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Oracle data source configuration
+     * Oracle data source configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.OracleSourceConfig oracle_source_config = 100;</code>
      * @param \Google\Cloud\Datastream\V1\OracleSourceConfig $var
@@ -104,7 +106,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL data source configuration
+     * MySQL data source configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig mysql_source_config = 101;</code>
      * @return \Google\Cloud\Datastream\V1\MysqlSourceConfig|null
@@ -120,7 +122,7 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * MySQL data source configuration
+     * MySQL data source configuration.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.MysqlSourceConfig mysql_source_config = 101;</code>
      * @param \Google\Cloud\Datastream\V1\MysqlSourceConfig $var
@@ -130,6 +132,37 @@ class SourceConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlSourceConfig::class);
         $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * PostgreSQL data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlSourceConfig postgresql_source_config = 102;</code>
+     * @return \Google\Cloud\Datastream\V1\PostgresqlSourceConfig|null
+     */
+    public function getPostgresqlSourceConfig()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasPostgresqlSourceConfig()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * PostgreSQL data source configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlSourceConfig postgresql_source_config = 102;</code>
+     * @param \Google\Cloud\Datastream\V1\PostgresqlSourceConfig $var
+     * @return $this
+     */
+    public function setPostgresqlSourceConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlSourceConfig::class);
+        $this->writeOneof(102, $var);
 
         return $this;
     }

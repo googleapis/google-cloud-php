@@ -36,7 +36,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Logging\V2\LogSink[]|\Google\Protobuf\Internal\RepeatedField $sinks
+     *     @type array<\Google\Cloud\Logging\V2\LogSink>|\Google\Protobuf\Internal\RepeatedField $sinks
      *           A list of sinks.
      *     @type string $next_page_token
      *           If there might be more results than appear in this response, then
@@ -64,7 +64,7 @@ class ListSinksResponse extends \Google\Protobuf\Internal\Message
      * A list of sinks.
      *
      * Generated from protobuf field <code>repeated .google.logging.v2.LogSink sinks = 1;</code>
-     * @param \Google\Cloud\Logging\V2\LogSink[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Logging\V2\LogSink>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSinks($var)

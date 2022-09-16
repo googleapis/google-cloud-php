@@ -78,15 +78,15 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      *           Dataflow service generated id for this stage.
      *     @type int $kind
      *           Type of transform this stage is executing.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource[]|\Google\Protobuf\Internal\RepeatedField $input_source
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource>|\Google\Protobuf\Internal\RepeatedField $input_source
      *           Input sources for this stage.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource[]|\Google\Protobuf\Internal\RepeatedField $output_source
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource>|\Google\Protobuf\Internal\RepeatedField $output_source
      *           Output sources for this stage.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $prerequisite_stage
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $prerequisite_stage
      *           Other stages that must complete before this stage can run.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentTransform[]|\Google\Protobuf\Internal\RepeatedField $component_transform
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentTransform>|\Google\Protobuf\Internal\RepeatedField $component_transform
      *           Transforms that comprise this execution stage.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentSource[]|\Google\Protobuf\Internal\RepeatedField $component_source
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentSource>|\Google\Protobuf\Internal\RepeatedField $component_source
      *           Collections produced and consumed by component transforms of this stage.
      * }
      */
@@ -188,7 +188,7 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      * Input sources for this stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary.StageSource input_source = 4;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputSource($var)
@@ -214,7 +214,7 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      * Output sources for this stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary.StageSource output_source = 5;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\StageSource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOutputSource($var)
@@ -240,7 +240,7 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      * Other stages that must complete before this stage can run.
      *
      * Generated from protobuf field <code>repeated string prerequisite_stage = 8;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPrerequisiteStage($var)
@@ -266,7 +266,7 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      * Transforms that comprise this execution stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary.ComponentTransform component_transform = 6;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentTransform[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentTransform>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setComponentTransform($var)
@@ -292,7 +292,7 @@ class ExecutionStageSummary extends \Google\Protobuf\Internal\Message
      * Collections produced and consumed by component transforms of this stage.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageSummary.ComponentSource component_source = 7;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentSource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageSummary\ComponentSource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setComponentSource($var)

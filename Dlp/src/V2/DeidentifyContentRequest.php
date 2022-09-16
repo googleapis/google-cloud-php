@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to de-identify a list of items.
+ * Request to de-identify a ContentItem.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyContentRequest</code>
  */

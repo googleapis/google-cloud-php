@@ -35,7 +35,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Repository[]|\Google\Protobuf\Internal\RepeatedField $repositories
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\Repository>|\Google\Protobuf\Internal\RepeatedField $repositories
      *           The repositories returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of repositories, or empty if there are
@@ -62,7 +62,7 @@ class ListRepositoriesResponse extends \Google\Protobuf\Internal\Message
      * The repositories returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Repository repositories = 1;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Repository[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\Repository>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRepositories($var)

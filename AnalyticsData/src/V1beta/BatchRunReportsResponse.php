@@ -36,7 +36,7 @@ class BatchRunReportsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\RunReportResponse[]|\Google\Protobuf\Internal\RepeatedField $reports
+     *     @type array<\Google\Analytics\Data\V1beta\RunReportResponse>|\Google\Protobuf\Internal\RepeatedField $reports
      *           Individual responses. Each response has a separate report request.
      *     @type string $kind
      *           Identifies what kind of resource this message is. This `kind` is always the
@@ -64,7 +64,7 @@ class BatchRunReportsResponse extends \Google\Protobuf\Internal\Message
      * Individual responses. Each response has a separate report request.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.RunReportResponse reports = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\RunReportResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\RunReportResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReports($var)

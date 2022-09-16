@@ -89,15 +89,15 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $matching_jobs
+     *     @type array<\Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob>|\Google\Protobuf\Internal\RepeatedField $matching_jobs
      *           The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
-     *     @type \Google\Cloud\Talent\V4beta1\HistogramQueryResult[]|\Google\Protobuf\Internal\RepeatedField $histogram_query_results
+     *     @type array<\Google\Cloud\Talent\V4beta1\HistogramQueryResult>|\Google\Protobuf\Internal\RepeatedField $histogram_query_results
      *           The histogram results that match with specified
      *           [SearchJobsRequest.histogram_queries][google.cloud.talent.v4beta1.SearchJobsRequest.histogram_queries].
      *     @type string $next_page_token
      *           The token that specifies the starting position of the next page of results.
      *           This field is empty if there are no more results.
-     *     @type \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $location_filters
+     *     @type array<\Google\Cloud\Talent\V4beta1\Location>|\Google\Protobuf\Internal\RepeatedField $location_filters
      *           The location filters that the service applied to the specified query. If
      *           any filters are lat-lng based, the [Location.location_type][google.cloud.talent.v4beta1.Location.location_type] is
      *           [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
@@ -142,7 +142,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      * The Job entities that match the specified [SearchJobsRequest][google.cloud.talent.v4beta1.SearchJobsRequest].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.SearchJobsResponse.MatchingJob matching_jobs = 1;</code>
-     * @param \Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\SearchJobsResponse\MatchingJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMatchingJobs($var)
@@ -170,7 +170,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      * [SearchJobsRequest.histogram_queries][google.cloud.talent.v4beta1.SearchJobsRequest.histogram_queries].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.HistogramQueryResult histogram_query_results = 2;</code>
-     * @param \Google\Cloud\Talent\V4beta1\HistogramQueryResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\HistogramQueryResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHistogramQueryResults($var)
@@ -228,7 +228,7 @@ class SearchJobsResponse extends \Google\Protobuf\Internal\Message
      * [Location.LocationType.LOCATION_TYPE_UNSPECIFIED][google.cloud.talent.v4beta1.Location.LocationType.LOCATION_TYPE_UNSPECIFIED].
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Location location_filters = 4;</code>
-     * @param \Google\Cloud\Talent\V4beta1\Location[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\Location>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocationFilters($var)

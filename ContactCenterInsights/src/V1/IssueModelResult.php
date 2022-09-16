@@ -38,7 +38,7 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
      *     @type string $issue_model
      *           Issue model that generates the result.
      *           Format: projects/{project}/locations/{location}/issueModels/{issue_model}
-     *     @type \Google\Cloud\ContactCenterInsights\V1\IssueAssignment[]|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\IssueAssignment>|\Google\Protobuf\Internal\RepeatedField $issues
      *           All the matched issues.
      * }
      */
@@ -90,7 +90,7 @@ class IssueModelResult extends \Google\Protobuf\Internal\Message
      * All the matched issues.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.IssueAssignment issues = 2;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\IssueAssignment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\IssueAssignment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIssues($var)

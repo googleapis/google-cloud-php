@@ -37,7 +37,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      *
      *     @type string $binary_family
      *           The binary family.
-     *     @type \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection[]|\Google\Protobuf\Internal\RepeatedField $detections
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection>|\Google\Protobuf\Internal\RepeatedField $detections
      *           The list of memory hash detections contributing to the binary family
      *           match.
      * }
@@ -90,7 +90,7 @@ class MemoryHashSignature extends \Google\Protobuf\Internal\Message
      * match.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature.MemoryHashSignature.Detection detections = 4;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature\MemoryHashSignature\Detection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetections($var)

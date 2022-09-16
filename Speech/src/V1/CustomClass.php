@@ -48,7 +48,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      *     @type string $custom_class_id
      *           If this custom class is a resource, the custom_class_id is the resource id
      *           of the CustomClass. Case sensitive.
-     *     @type \Google\Cloud\Speech\V1\CustomClass\ClassItem[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Speech\V1\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $items
      *           A collection of class items.
      * }
      */
@@ -126,7 +126,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      * A collection of class items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1.CustomClass.ClassItem items = 3;</code>
-     * @param \Google\Cloud\Speech\V1\CustomClass\ClassItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

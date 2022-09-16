@@ -92,7 +92,7 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      *           Unix timestamp of the most recent config update.
      *     @type \Google\Cloud\Compute\V1\BfdStatusPacketCounts $control_packet_counts
      *           Control packet counts for the current BFD session.
-     *     @type \Google\Cloud\Compute\V1\PacketIntervals[]|\Google\Protobuf\Internal\RepeatedField $control_packet_intervals
+     *     @type array<\Google\Cloud\Compute\V1\PacketIntervals>|\Google\Protobuf\Internal\RepeatedField $control_packet_intervals
      *           Inter-packet time interval statistics for control packets.
      *     @type string $local_diagnostic
      *           The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880
@@ -240,7 +240,7 @@ class BfdStatus extends \Google\Protobuf\Internal\Message
      * Inter-packet time interval statistics for control packets.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.PacketIntervals control_packet_intervals = 500806649;</code>
-     * @param \Google\Cloud\Compute\V1\PacketIntervals[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\PacketIntervals>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setControlPacketIntervals($var)

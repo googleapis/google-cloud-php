@@ -56,7 +56,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      *           [Output Only] Deprecated, please use short name instead. The display name of the firewall policy.
      *     @type string $name
      *           [Output Only] The name of the firewall policy.
-     *     @type \Google\Cloud\Compute\V1\FirewallPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $rules
+     *     @type array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
      *           The rules that apply to the network.
      *     @type string $short_name
      *           [Output Only] The short name of the firewall policy.
@@ -157,7 +157,7 @@ class InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy extends \Goo
      * The rules that apply to the network.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.FirewallPolicyRule rules = 108873975;</code>
-     * @param \Google\Cloud\Compute\V1\FirewallPolicyRule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\FirewallPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)

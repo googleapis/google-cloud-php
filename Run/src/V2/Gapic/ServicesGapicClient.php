@@ -145,16 +145,22 @@ class ServicesGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'apiEndpoint' => self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
-            'clientConfig' => __DIR__ . '/../resources/services_client_config.json',
-            'descriptorsConfigPath' => __DIR__ . '/../resources/services_descriptor_config.php',
-            'gcpApiConfigPath' => __DIR__ . '/../resources/services_grpc_config.json',
+            'apiEndpoint' =>
+                self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
+            'clientConfig' =>
+                __DIR__ . '/../resources/services_client_config.json',
+            'descriptorsConfigPath' =>
+                __DIR__ . '/../resources/services_descriptor_config.php',
+            'gcpApiConfigPath' =>
+                __DIR__ . '/../resources/services_grpc_config.json',
             'credentialsConfig' => [
                 'defaultScopes' => self::$serviceScopes,
             ],
             'transportConfig' => [
                 'rest' => [
-                    'restClientConfigPath' => __DIR__ . '/../resources/services_rest_client_config.php',
+                    'restClientConfigPath' =>
+                        __DIR__ .
+                        '/../resources/services_rest_client_config.php',
                 ],
             ],
         ];
@@ -163,7 +169,9 @@ class ServicesGapicClient
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
-            self::$locationNameTemplate = new PathTemplate('projects/{project}/locations/{location}');
+            self::$locationNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}'
+            );
         }
 
         return self::$locationNameTemplate;
@@ -172,7 +180,9 @@ class ServicesGapicClient
     private static function getRevisionNameTemplate()
     {
         if (self::$revisionNameTemplate == null) {
-            self::$revisionNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}/revisions/{revision}');
+            self::$revisionNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}/revisions/{revision}'
+            );
         }
 
         return self::$revisionNameTemplate;
@@ -181,7 +191,9 @@ class ServicesGapicClient
     private static function getServiceNameTemplate()
     {
         if (self::$serviceNameTemplate == null) {
-            self::$serviceNameTemplate = new PathTemplate('projects/{project}/locations/{location}/services/{service}');
+            self::$serviceNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/services/{service}'
+            );
         }
 
         return self::$serviceNameTemplate;
@@ -228,8 +240,12 @@ class ServicesGapicClient
      *
      * @return string The formatted revision resource.
      */
-    public static function revisionName($project, $location, $service, $revision)
-    {
+    public static function revisionName(
+        $project,
+        $location,
+        $service,
+        $revision
+    ) {
         return self::getRevisionNameTemplate()->render([
             'project' => $project,
             'location' => $location,
@@ -283,7 +299,9 @@ class ServicesGapicClient
         $templateMap = self::getPathTemplateMap();
         if ($template) {
             if (!isset($templateMap[$template])) {
-                throw new ValidationException("Template name $template does not exist");
+                throw new ValidationException(
+                    "Template name $template does not exist"
+                );
             }
 
             return $templateMap[$template]->match($formattedName);
@@ -297,7 +315,9 @@ class ServicesGapicClient
             }
         }
 
-        throw new ValidationException("Input did not match any known format. Input: $formattedName");
+        throw new ValidationException(
+            "Input did not match any known format. Input: $formattedName"
+        );
     }
 
     /**
@@ -323,8 +343,14 @@ class ServicesGapicClient
      */
     public function resumeOperation($operationName, $methodName = null)
     {
-        $options = isset($this->descriptors[$methodName]['longRunning']) ? $this->descriptors[$methodName]['longRunning'] : [];
-        $operation = new OperationResponse($operationName, $this->getOperationsClient(), $options);
+        $options = isset($this->descriptors[$methodName]['longRunning'])
+            ? $this->descriptors[$methodName]['longRunning']
+            : [];
+        $operation = new OperationResponse(
+            $operationName,
+            $this->getOperationsClient(),
+            $options
+        );
         $operation->reload();
         return $operation;
     }
@@ -446,18 +472,21 @@ class ServicesGapicClient
      *           Indicates that the request should be validated and default values
      *           populated, without persisting the request or creating any resources.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function createService($parent, $service, $serviceId, array $optionalArgs = [])
-    {
+    public function createService(
+        $parent,
+        $service,
+        $serviceId,
+        array $optionalArgs = []
+    ) {
         $request = new CreateServiceRequest();
         $requestParamHeaders = [];
         $request->setParent($parent);
@@ -468,9 +497,18 @@ class ServicesGapicClient
             $request->setValidateOnly($optionalArgs['validateOnly']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('CreateService', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateService',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -526,10 +564,9 @@ class ServicesGapicClient
      *           A system-generated fingerprint for this version of the
      *           resource. May be used to detect modification conflict during updates.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -550,9 +587,18 @@ class ServicesGapicClient
             $request->setEtag($optionalArgs['etag']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('DeleteService', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'DeleteService',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 
     /**
@@ -579,10 +625,9 @@ class ServicesGapicClient
      *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
      *           `GetIamPolicy`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -599,9 +644,18 @@ class ServicesGapicClient
             $request->setOptions($optionalArgs['options']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -624,10 +678,9 @@ class ServicesGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Run\V2\Service
@@ -640,9 +693,18 @@ class ServicesGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['location'] = $name;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('GetService', Service::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetService',
+            Service::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -689,10 +751,9 @@ class ServicesGapicClient
      *     @type bool $showDeleted
      *           If true, returns deleted (but unexpired) resources along with active ones.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -717,9 +778,18 @@ class ServicesGapicClient
             $request->setShowDeleted($optionalArgs['showDeleted']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->getPagedListResponse('ListServices', $optionalArgs, ListServicesResponse::class, $request);
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListServices',
+            $optionalArgs,
+            ListServicesResponse::class,
+            $request
+        );
     }
 
     /**
@@ -754,10 +824,9 @@ class ServicesGapicClient
      *
      *           `paths: "bindings, etag"`
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\Policy
@@ -775,9 +844,18 @@ class ServicesGapicClient
             $request->setUpdateMask($optionalArgs['updateMask']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -807,26 +885,37 @@ class ServicesGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
      *
      * @throws ApiException if the remote call fails
      */
-    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
-    {
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
         $request = new TestIamPermissionsRequest();
         $requestParamHeaders = [];
         $request->setResource($resource);
         $request->setPermissions($permissions);
         $requestParamHeaders['resource'] = $resource;
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request)->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -880,10 +969,9 @@ class ServicesGapicClient
      *           one. Caller must have both create and update permissions for this call if
      *           this is set to true.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -904,8 +992,17 @@ class ServicesGapicClient
             $request->setAllowMissing($optionalArgs['allowMissing']);
         }
 
-        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
-        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
-        return $this->startOperationsCall('UpdateService', $optionalArgs, $request, $this->getOperationsClient())->wait();
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateService',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
     }
 }

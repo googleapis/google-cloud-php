@@ -60,7 +60,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      *           Output only. Backfill job's start time.
      *     @type \Google\Protobuf\Timestamp $last_end_time
      *           Output only. Backfill job's end time.
-     *     @type \Google\Cloud\Datastream\V1\Error[]|\Google\Protobuf\Internal\RepeatedField $errors
+     *     @type array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $errors
      *           Output only. Errors which caused the backfill job to fail.
      * }
      */
@@ -208,7 +208,7 @@ class BackfillJob extends \Google\Protobuf\Internal\Message
      * Output only. Errors which caused the backfill job to fail.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datastream.v1.Error errors = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Datastream\V1\Error[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastream\V1\Error>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setErrors($var)

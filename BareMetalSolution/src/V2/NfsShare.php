@@ -66,7 +66,7 @@ class NfsShare extends \Google\Protobuf\Internal\Message
      *           The state of the NFS share.
      *     @type string $volume
      *           The volume containing the share.
-     *     @type \Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient[]|\Google\Protobuf\Internal\RepeatedField $allowed_clients
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient>|\Google\Protobuf\Internal\RepeatedField $allowed_clients
      *           List of allowed access points.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels as key value pairs.
@@ -196,7 +196,7 @@ class NfsShare extends \Google\Protobuf\Internal\Message
      * List of allowed access points.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.NfsShare.AllowedClient allowed_clients = 5;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\NfsShare\AllowedClient>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedClients($var)

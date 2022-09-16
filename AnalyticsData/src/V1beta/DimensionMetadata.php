@@ -72,7 +72,7 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      *           example, `Event name`.
      *     @type string $description
      *           Description of how this dimension is used and calculated.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $deprecated_api_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $deprecated_api_names
      *           Still usable but deprecated names for this dimension. If populated, this
      *           dimension is available by either `apiName` or one of `deprecatedApiNames`
      *           for a period of time. After the deprecation period, the dimension will be
@@ -192,7 +192,7 @@ class DimensionMetadata extends \Google\Protobuf\Internal\Message
      * available only by `apiName`.
      *
      * Generated from protobuf field <code>repeated string deprecated_api_names = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeprecatedApiNames($var)

@@ -34,10 +34,22 @@ class TypeAnnotationCode
      * Generated from protobuf enum <code>PG_NUMERIC = 2;</code>
      */
     const PG_NUMERIC = 2;
+    /**
+     * PostgreSQL compatible JSONB type. This annotation needs to be applied to
+     * [Type][google.spanner.v1.Type] instances having [JSON][google.spanner.v1.TypeCode.JSON]
+     * type code to specify that values of this type should be treated as
+     * PostgreSQL JSONB values. Currently this annotation is always needed for
+     * [JSON][google.spanner.v1.TypeCode.JSON] when a client interacts with PostgreSQL-enabled
+     * Spanner databases.
+     *
+     * Generated from protobuf enum <code>PG_JSONB = 3;</code>
+     */
+    const PG_JSONB = 3;
 
     private static $valueToName = [
         self::TYPE_ANNOTATION_CODE_UNSPECIFIED => 'TYPE_ANNOTATION_CODE_UNSPECIFIED',
         self::PG_NUMERIC => 'PG_NUMERIC',
+        self::PG_JSONB => 'PG_JSONB',
     ];
 
     public static function name($value)

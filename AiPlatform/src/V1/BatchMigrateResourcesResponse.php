@@ -28,7 +28,7 @@ class BatchMigrateResourcesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\MigrateResourceResponse[]|\Google\Protobuf\Internal\RepeatedField $migrate_resource_responses
+     *     @type array<\Google\Cloud\AIPlatform\V1\MigrateResourceResponse>|\Google\Protobuf\Internal\RepeatedField $migrate_resource_responses
      *           Successfully migrated resources.
      * }
      */
@@ -52,7 +52,7 @@ class BatchMigrateResourcesResponse extends \Google\Protobuf\Internal\Message
      * Successfully migrated resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.MigrateResourceResponse migrate_resource_responses = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\MigrateResourceResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\MigrateResourceResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMigrateResourceResponses($var)

@@ -48,7 +48,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $emails
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $emails
      *           Use this field to specify email address(es) to which resumes or
      *           applications can be sent.
      *           The maximum number of allowed characters for each entry is 255.
@@ -58,7 +58,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      *           This field accepts and sanitizes HTML input, and also accepts
      *           bold, italic, ordered list, and unordered list markup tags.
      *           The maximum number of allowed characters is 3,000.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
      *           Use this URI field to direct an applicant to a website, for example to
      *           link to an online application form.
      *           The maximum number of allowed characters for each entry is 2,000.
@@ -88,7 +88,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 255.
      *
      * Generated from protobuf field <code>repeated string emails = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEmails($var)
@@ -152,7 +152,7 @@ class ApplicationInfo extends \Google\Protobuf\Internal\Message
      * The maximum number of allowed characters for each entry is 2,000.
      *
      * Generated from protobuf field <code>repeated string uris = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUris($var)

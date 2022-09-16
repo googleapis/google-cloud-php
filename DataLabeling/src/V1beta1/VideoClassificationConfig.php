@@ -43,7 +43,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig[]|\Google\Protobuf\Internal\RepeatedField $annotation_spec_set_configs
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_set_configs
      *           Required. The list of annotation spec set configs.
      *           Since watching a video clip takes much longer time than an image, we
      *           support label with multiple AnnotationSpecSet at the same time. Labels
@@ -84,7 +84,7 @@ class VideoClassificationConfig extends \Google\Protobuf\Internal\Message
      * label) from each group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.VideoClassificationConfig.AnnotationSpecSetConfig annotation_spec_set_configs = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\VideoClassificationConfig\AnnotationSpecSetConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotationSpecSetConfigs($var)

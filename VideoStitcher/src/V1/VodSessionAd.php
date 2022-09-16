@@ -48,7 +48,7 @@ class VodSessionAd extends \Google\Protobuf\Internal\Message
      *           Duration in seconds of the ad.
      *     @type \Google\Cloud\Video\Stitcher\V1\CompanionAds $companion_ads
      *           Metadata of companion ads associated with the ad.
-     *     @type \Google\Cloud\Video\Stitcher\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $activity_events
+     *     @type array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $activity_events
      *           The list of progress tracking events for the ad break. These can be of
      *           the following IAB types: `MUTE`, `UNMUTE`, `PAUSE`, `CLICK`,
      *           `CLICK_THROUGH`, `REWIND`, `RESUME`, `ERROR`, `FULLSCREEN`,
@@ -156,7 +156,7 @@ class VodSessionAd extends \Google\Protobuf\Internal\Message
      * `CLOSE_LINEAR`, `SKIP`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.stitcher.v1.Event activity_events = 3;</code>
-     * @param \Google\Cloud\Video\Stitcher\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Stitcher\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActivityEvents($var)

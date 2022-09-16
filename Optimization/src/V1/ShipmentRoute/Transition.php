@@ -168,7 +168,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      *           vehicle route. Then, after each visit, the visit's `load_demands` are
      *           either added or subtracted to get the next transition's loads, depending
      *           on whether the visit was a pickup or a delivery.
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $loads
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $loads
      *           Deprecated: Use [Transition.vehicle_loads][] instead.
      * }
      */
@@ -580,7 +580,7 @@ class Transition extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [Transition.vehicle_loads][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity loads = 10 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

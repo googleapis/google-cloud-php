@@ -42,7 +42,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $rows
+     *     @type array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $rows
      *           Specifies the rows of the duration and distance matrix. It must have as
      *           many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *     @type string $vehicle_start_tag
@@ -77,7 +77,7 @@ class DurationDistanceMatrix extends \Google\Protobuf\Internal\Message
      * many elements as [ShipmentModel.duration_distance_matrix_src_tags][google.cloud.optimization.v1.ShipmentModel.duration_distance_matrix_src_tags].
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.ShipmentModel.DurationDistanceMatrix.Row rows = 1;</code>
-     * @param \Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\ShipmentModel\DurationDistanceMatrix\Row>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRows($var)

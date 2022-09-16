@@ -36,7 +36,7 @@ class ListServerTlsPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy[]|\Google\Protobuf\Internal\RepeatedField $server_tls_policies
+     *     @type array<\Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy>|\Google\Protobuf\Internal\RepeatedField $server_tls_policies
      *           List of ServerTlsPolicy resources.
      *     @type string $next_page_token
      *           If there might be more results than those appearing in this response, then
@@ -64,7 +64,7 @@ class ListServerTlsPoliciesResponse extends \Google\Protobuf\Internal\Message
      * List of ServerTlsPolicy resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.ServerTlsPolicy server_tls_policies = 1;</code>
-     * @param \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServerTlsPolicies($var)

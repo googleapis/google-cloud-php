@@ -45,7 +45,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $logical_network_interfaces
+     *     @type array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface>|\Google\Protobuf\Internal\RepeatedField $logical_network_interfaces
      *           List of logical network interfaces within a logical interface.
      *     @type string $name
      *           Interface name. This is of syntax <bond><bond_mode> or <nic> and
@@ -75,7 +75,7 @@ class LogicalInterface extends \Google\Protobuf\Internal\Message
      * List of logical network interfaces within a logical interface.
      *
      * Generated from protobuf field <code>repeated .google.cloud.baremetalsolution.v2.LogicalInterface.LogicalNetworkInterface logical_network_interfaces = 1;</code>
-     * @param \Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BareMetalSolution\V2\LogicalInterface\LogicalNetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogicalNetworkInterfaces($var)

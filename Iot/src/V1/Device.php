@@ -181,7 +181,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *     @type int|string $num_id
      *           [Output only] A server-defined unique numeric ID for the device. This is a
      *           more compact way to identify devices, and it is globally unique.
-     *     @type \Google\Cloud\Iot\V1\DeviceCredential[]|\Google\Protobuf\Internal\RepeatedField $credentials
+     *     @type array<\Google\Cloud\Iot\V1\DeviceCredential>|\Google\Protobuf\Internal\RepeatedField $credentials
      *           The credentials used to authenticate this device. To allow credential
      *           rotation without interruption, multiple device credentials can be bound to
      *           this device. No more than 3 credentials can be bound to a single device at
@@ -370,7 +370,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * `DeviceRegistry.credentials` field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.DeviceCredential credentials = 12;</code>
-     * @param \Google\Cloud\Iot\V1\DeviceCredential[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\DeviceCredential>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCredentials($var)

@@ -28,7 +28,7 @@ class RelatedResources extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Asset\V1\RelatedResource[]|\Google\Protobuf\Internal\RepeatedField $related_resources
+     *     @type array<\Google\Cloud\Asset\V1\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $related_resources
      *           The detailed related resources of the primary resource.
      * }
      */
@@ -52,7 +52,7 @@ class RelatedResources extends \Google\Protobuf\Internal\Message
      * The detailed related resources of the primary resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.RelatedResource related_resources = 1;</code>
-     * @param \Google\Cloud\Asset\V1\RelatedResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\RelatedResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedResources($var)

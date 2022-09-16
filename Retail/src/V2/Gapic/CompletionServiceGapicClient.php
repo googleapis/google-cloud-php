@@ -353,6 +353,9 @@ class CompletionServiceGapicClient
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type string[] $languageCodes
+     *           Note that this field applies for `user-data` dataset only. For requests
+     *           with `cloud-retail` dataset, setting this field has no effect.
+     *
      *           The language filters applied to the output suggestions. If set, it should
      *           contain the language of the query. If not set, suggestions are returned
      *           without considering language restrictions. This is the BCP-47 language
@@ -395,10 +398,9 @@ class CompletionServiceGapicClient
      *           The maximum allowed max suggestions is 20. If it is set higher, it will be
      *           capped by 20.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Retail\V2\CompleteQueryResponse
@@ -508,10 +510,9 @@ class CompletionServiceGapicClient
      *           [Operation][google.longrunning.Operation].
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse

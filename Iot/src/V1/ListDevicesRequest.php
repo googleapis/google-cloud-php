@@ -78,10 +78,10 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The device registry path. Required. For example,
      *           `projects/my-project/locations/us-central1/registries/my-registry`.
-     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $device_num_ids
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $device_num_ids
      *           A list of device numeric IDs. If empty, this field is ignored. Maximum
      *           IDs: 10,000.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $device_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $device_ids
      *           A list of device string IDs. For example, `['device0', 'device12']`.
      *           If empty, this field is ignored. Maximum IDs: 10,000
      *     @type \Google\Protobuf\FieldMask $field_mask
@@ -152,7 +152,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      * IDs: 10,000.
      *
      * Generated from protobuf field <code>repeated uint64 device_num_ids = 2;</code>
-     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeviceNumIds($var)
@@ -180,7 +180,7 @@ class ListDevicesRequest extends \Google\Protobuf\Internal\Message
      * If empty, this field is ignored. Maximum IDs: 10,000
      *
      * Generated from protobuf field <code>repeated string device_ids = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeviceIds($var)

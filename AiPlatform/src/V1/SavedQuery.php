@@ -78,7 +78,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      */
     private $annotation_spec_count = 0;
     /**
-     * Used to perform a consistent read-modify-write update. If not set, a blind
+     * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
@@ -128,7 +128,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
      *     @type int $annotation_spec_count
      *           Output only. Number of AnnotationSpecs in the context of the SavedQuery.
      *     @type string $etag
-     *           Used to perform a consistent read-modify-write update. If not set, a blind
+     *           Used to perform consistent read-modify-write updates. If not set, a blind
      *           "overwrite" update happens.
      *     @type bool $support_automl_training
      *           Output only. If the Annotations belonging to the SavedQuery can be used for AutoML
@@ -405,7 +405,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Used to perform a consistent read-modify-write update. If not set, a blind
+     * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8;</code>
@@ -417,7 +417,7 @@ class SavedQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Used to perform a consistent read-modify-write update. If not set, a blind
+     * Used to perform consistent read-modify-write updates. If not set, a blind
      * "overwrite" update happens.
      *
      * Generated from protobuf field <code>string etag = 8;</code>

@@ -28,7 +28,7 @@ class Transcript extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment[]|\Google\Protobuf\Internal\RepeatedField $transcript_segments
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment>|\Google\Protobuf\Internal\RepeatedField $transcript_segments
      *           A list of sequential transcript segments that comprise the conversation.
      * }
      */
@@ -52,7 +52,7 @@ class Transcript extends \Google\Protobuf\Internal\Message
      * A list of sequential transcript segments that comprise the conversation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.Conversation.Transcript.TranscriptSegment transcript_segments = 1;</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\Conversation\Transcript\TranscriptSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTranscriptSegments($var)

@@ -47,7 +47,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $query_variables
      *           Optional. Mapping of query variable names to values (equivalent to the
      *           Spark SQL command: `SET name="value";`).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jar_file_uris
      *           Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      * }
      */
@@ -125,7 +125,7 @@ class SparkSqlBatch extends \Google\Protobuf\Internal\Message
      * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
      *
      * Generated from protobuf field <code>repeated string jar_file_uris = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJarFileUris($var)

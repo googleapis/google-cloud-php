@@ -49,8 +49,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     private $policy = null;
     /**
-     * Output only. The time the migrating VM was created (this refers to this resource and not
-     * to the time it was installed in the source).
+     * Output only. The time the migrating VM was created (this refers to this
+     * resource and not to the time it was installed in the source).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -62,8 +62,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. The most updated snapshot created time in the source that finished
-     * replication.
+     * Output only. The most updated snapshot created time in the source that
+     * finished replication.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationSync last_sync = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -81,14 +81,15 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     private $state_time = null;
     /**
-     * Output only. The percentage progress of the current running replication cycle.
+     * Output only. The percentage progress of the current running replication
+     * cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $current_sync_info = null;
     /**
-     * Output only. The group this migrating vm is included in, if any. The group is
-     * represented by the full path of the appropriate
+     * Output only. The group this migrating vm is included in, if any. The group
+     * is represented by the full path of the appropriate
      * [Group][google.cloud.vmmigration.v1.Group] resource.
      *
      * Generated from protobuf field <code>string group = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -101,12 +102,32 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output only. Provides details on the state of the Migrating VM in case of an
-     * error in replication.
+     * Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
+     * performed on the migrating VM. This field holds the vm's last completed
+     * clone job and the vm's running clone job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneJob recent_clone_jobs = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $recent_clone_jobs;
+    /**
+     * Output only. Provides details on the state of the Migrating VM in case of
+     * an error in replication.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = null;
+    /**
+     * Output only. The recent cutover jobs performed on the migrating VM.
+     * This field holds the vm's last completed cutover job and the vm's
+     * running cutover job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverJob recent_cutover_jobs = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $recent_cutover_jobs;
     protected $target_vm_defaults;
 
     /**
@@ -130,28 +151,41 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\VMMigration\V1\SchedulePolicy $policy
      *           The replication schedule policy.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time the migrating VM was created (this refers to this resource and not
-     *           to the time it was installed in the source).
+     *           Output only. The time the migrating VM was created (this refers to this
+     *           resource and not to the time it was installed in the source).
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last time the migrating VM resource was updated.
      *     @type \Google\Cloud\VMMigration\V1\ReplicationSync $last_sync
-     *           Output only. The most updated snapshot created time in the source that finished
-     *           replication.
+     *           Output only. The most updated snapshot created time in the source that
+     *           finished replication.
      *     @type int $state
      *           Output only. State of the MigratingVm.
      *     @type \Google\Protobuf\Timestamp $state_time
      *           Output only. The last time the migrating VM state was updated.
      *     @type \Google\Cloud\VMMigration\V1\ReplicationCycle $current_sync_info
-     *           Output only. The percentage progress of the current running replication cycle.
+     *           Output only. The percentage progress of the current running replication
+     *           cycle.
      *     @type string $group
-     *           Output only. The group this migrating vm is included in, if any. The group is
-     *           represented by the full path of the appropriate
+     *           Output only. The group this migrating vm is included in, if any. The group
+     *           is represented by the full path of the appropriate
      *           [Group][google.cloud.vmmigration.v1.Group] resource.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels of the migrating VM.
+     *     @type array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $recent_clone_jobs
+     *           Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
+     *           performed on the migrating VM. This field holds the vm's last completed
+     *           clone job and the vm's running clone job, if one exists.
+     *           Note: To have this field populated you need to explicitly request it via
+     *           the "view" parameter of the Get/List request.
      *     @type \Google\Rpc\Status $error
-     *           Output only. Provides details on the state of the Migrating VM in case of an
-     *           error in replication.
+     *           Output only. Provides details on the state of the Migrating VM in case of
+     *           an error in replication.
+     *     @type array<\Google\Cloud\VMMigration\V1\CutoverJob>|\Google\Protobuf\Internal\RepeatedField $recent_cutover_jobs
+     *           Output only. The recent cutover jobs performed on the migrating VM.
+     *           This field holds the vm's last completed cutover job and the vm's
+     *           running cutover job, if one exists.
+     *           Note: To have this field populated you need to explicitly request it via
+     *           the "view" parameter of the Get/List request.
      * }
      */
     public function __construct($data = NULL) {
@@ -335,8 +369,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the migrating VM was created (this refers to this resource and not
-     * to the time it was installed in the source).
+     * Output only. The time the migrating VM was created (this refers to this
+     * resource and not to the time it was installed in the source).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -357,8 +391,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the migrating VM was created (this refers to this resource and not
-     * to the time it was installed in the source).
+     * Output only. The time the migrating VM was created (this refers to this
+     * resource and not to the time it was installed in the source).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -409,8 +443,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The most updated snapshot created time in the source that finished
-     * replication.
+     * Output only. The most updated snapshot created time in the source that
+     * finished replication.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationSync last_sync = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\VMMigration\V1\ReplicationSync|null
@@ -431,8 +465,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The most updated snapshot created time in the source that finished
-     * replication.
+     * Output only. The most updated snapshot created time in the source that
+     * finished replication.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationSync last_sync = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\VMMigration\V1\ReplicationSync $var
@@ -509,7 +543,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The percentage progress of the current running replication cycle.
+     * Output only. The percentage progress of the current running replication
+     * cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\VMMigration\V1\ReplicationCycle|null
@@ -530,7 +565,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The percentage progress of the current running replication cycle.
+     * Output only. The percentage progress of the current running replication
+     * cycle.
      *
      * Generated from protobuf field <code>.google.cloud.vmmigration.v1.ReplicationCycle current_sync_info = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\VMMigration\V1\ReplicationCycle $var
@@ -545,8 +581,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The group this migrating vm is included in, if any. The group is
-     * represented by the full path of the appropriate
+     * Output only. The group this migrating vm is included in, if any. The group
+     * is represented by the full path of the appropriate
      * [Group][google.cloud.vmmigration.v1.Group] resource.
      *
      * Generated from protobuf field <code>string group = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -558,8 +594,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The group this migrating vm is included in, if any. The group is
-     * represented by the full path of the appropriate
+     * Output only. The group this migrating vm is included in, if any. The group
+     * is represented by the full path of the appropriate
      * [Group][google.cloud.vmmigration.v1.Group] resource.
      *
      * Generated from protobuf field <code>string group = 15 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
@@ -601,8 +637,42 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details on the state of the Migrating VM in case of an
-     * error in replication.
+     * Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
+     * performed on the migrating VM. This field holds the vm's last completed
+     * clone job and the vm's running clone job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneJob recent_clone_jobs = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRecentCloneJobs()
+    {
+        return $this->recent_clone_jobs;
+    }
+
+    /**
+     * Output only. The recent [clone jobs][google.cloud.vmmigration.v1.CloneJob]
+     * performed on the migrating VM. This field holds the vm's last completed
+     * clone job and the vm's running clone job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CloneJob recent_clone_jobs = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\CloneJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRecentCloneJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CloneJob::class);
+        $this->recent_clone_jobs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Provides details on the state of the Migrating VM in case of
+     * an error in replication.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -623,8 +693,8 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details on the state of the Migrating VM in case of an
-     * error in replication.
+     * Output only. Provides details on the state of the Migrating VM in case of
+     * an error in replication.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 19 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
@@ -634,6 +704,40 @@ class MigratingVm extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Rpc\Status::class);
         $this->error = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The recent cutover jobs performed on the migrating VM.
+     * This field holds the vm's last completed cutover job and the vm's
+     * running cutover job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverJob recent_cutover_jobs = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getRecentCutoverJobs()
+    {
+        return $this->recent_cutover_jobs;
+    }
+
+    /**
+     * Output only. The recent cutover jobs performed on the migrating VM.
+     * This field holds the vm's last completed cutover job and the vm's
+     * running cutover job, if one exists.
+     * Note: To have this field populated you need to explicitly request it via
+     * the "view" parameter of the Get/List request.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.CutoverJob recent_cutover_jobs = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\VMMigration\V1\CutoverJob>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setRecentCutoverJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\VMMigration\V1\CutoverJob::class);
+        $this->recent_cutover_jobs = $arr;
 
         return $this;
     }

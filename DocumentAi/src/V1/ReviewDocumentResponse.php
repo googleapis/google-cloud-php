@@ -16,11 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is
+     * succeeded.
      *
      * Generated from protobuf field <code>string gcs_destination = 1;</code>
      */
     private $gcs_destination = '';
+    /**
+     * The state of the review operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentResponse.State state = 2;</code>
+     */
+    private $state = 0;
+    /**
+     * The reason why the review is rejected by reviewer.
+     *
+     * Generated from protobuf field <code>string rejection_reason = 3;</code>
+     */
+    private $rejection_reason = '';
 
     /**
      * Constructor.
@@ -29,7 +42,12 @@ class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $gcs_destination
-     *           The Cloud Storage uri for the human reviewed document.
+     *           The Cloud Storage uri for the human reviewed document if the review is
+     *           succeeded.
+     *     @type int $state
+     *           The state of the review operation.
+     *     @type string $rejection_reason
+     *           The reason why the review is rejected by reviewer.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +56,8 @@ class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is
+     * succeeded.
      *
      * Generated from protobuf field <code>string gcs_destination = 1;</code>
      * @return string
@@ -49,7 +68,8 @@ class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Cloud Storage uri for the human reviewed document.
+     * The Cloud Storage uri for the human reviewed document if the review is
+     * succeeded.
      *
      * Generated from protobuf field <code>string gcs_destination = 1;</code>
      * @param string $var
@@ -59,6 +79,58 @@ class ReviewDocumentResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gcs_destination = $var;
+
+        return $this;
+    }
+
+    /**
+     * The state of the review operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentResponse.State state = 2;</code>
+     * @return int
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * The state of the review operation.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.ReviewDocumentResponse.State state = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setState($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\DocumentAI\V1\ReviewDocumentResponse\State::class);
+        $this->state = $var;
+
+        return $this;
+    }
+
+    /**
+     * The reason why the review is rejected by reviewer.
+     *
+     * Generated from protobuf field <code>string rejection_reason = 3;</code>
+     * @return string
+     */
+    public function getRejectionReason()
+    {
+        return $this->rejection_reason;
+    }
+
+    /**
+     * The reason why the review is rejected by reviewer.
+     *
+     * Generated from protobuf field <code>string rejection_reason = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRejectionReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->rejection_reason = $var;
 
         return $this;
     }

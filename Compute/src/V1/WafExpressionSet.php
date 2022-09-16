@@ -39,9 +39,9 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $aliases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aliases
      *           A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
-     *     @type \Google\Cloud\Compute\V1\WafExpressionSetExpression[]|\Google\Protobuf\Internal\RepeatedField $expressions
+     *     @type array<\Google\Cloud\Compute\V1\WafExpressionSetExpression>|\Google\Protobuf\Internal\RepeatedField $expressions
      *           List of available expressions.
      *     @type string $id
      *           Google specified expression set ID. The format should be: - E.g. XSS-20170329 required
@@ -67,7 +67,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * A list of alternate IDs. The format should be: - E.g. XSS-stable Generic suffix like "stable" is particularly useful if a policy likes to avail newer set of expressions without having to change the policy. A given alias name can't be used for more than one entity set.
      *
      * Generated from protobuf field <code>repeated string aliases = 159207166;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAliases($var)
@@ -93,7 +93,7 @@ class WafExpressionSet extends \Google\Protobuf\Internal\Message
      * List of available expressions.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSetExpression expressions = 175554779;</code>
-     * @param \Google\Cloud\Compute\V1\WafExpressionSetExpression[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\WafExpressionSetExpression>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExpressions($var)

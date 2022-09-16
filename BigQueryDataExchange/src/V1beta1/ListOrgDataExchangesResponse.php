@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for response to listing DataExchanges in an organization and
+ * Message for response to listing data exchanges in an organization and
  * location.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.ListOrgDataExchangesResponse</code>
@@ -17,7 +17,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListOrgDataExchangesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The list of DataExchange.
+     * The list of data exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.DataExchange data_exchanges = 1;</code>
      */
@@ -35,8 +35,8 @@ class ListOrgDataExchangesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange[]|\Google\Protobuf\Internal\RepeatedField $data_exchanges
-     *           The list of DataExchange.
+     *     @type array<\Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange>|\Google\Protobuf\Internal\RepeatedField $data_exchanges
+     *           The list of data exchanges.
      *     @type string $next_page_token
      *           A token to request the next page of results.
      * }
@@ -47,7 +47,7 @@ class ListOrgDataExchangesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of DataExchange.
+     * The list of data exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.DataExchange data_exchanges = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -58,10 +58,10 @@ class ListOrgDataExchangesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of DataExchange.
+     * The list of data exchanges.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.dataexchange.v1beta1.DataExchange data_exchanges = 1;</code>
-     * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataExchange\V1beta1\DataExchange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataExchanges($var)

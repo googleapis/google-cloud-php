@@ -54,7 +54,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           For `KIND_LIST` entity types:
      *           *   A string that can contain references to other entity types (with or
      *               without aliases).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
      *           Required. A collection of value synonyms. For example, if the entity type
      *           is *vegetable*, and `value` is *scallions*, a synonym could be *green
      *           onions*.
@@ -130,7 +130,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      * *   This collection must contain exactly one synonym equal to `value`.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSynonyms($var)

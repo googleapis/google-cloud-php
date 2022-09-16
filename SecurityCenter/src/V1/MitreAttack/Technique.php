@@ -206,6 +206,24 @@ class Technique
      * Generated from protobuf enum <code>IMPAIR_DEFENSES = 31;</code>
      */
     const IMPAIR_DEFENSES = 31;
+    /**
+     * T1046
+     *
+     * Generated from protobuf enum <code>NETWORK_SERVICE_DISCOVERY = 32;</code>
+     */
+    const NETWORK_SERVICE_DISCOVERY = 32;
+    /**
+     * T1134
+     *
+     * Generated from protobuf enum <code>ACCESS_TOKEN_MANIPULATION = 33;</code>
+     */
+    const ACCESS_TOKEN_MANIPULATION = 33;
+    /**
+     * T1548
+     *
+     * Generated from protobuf enum <code>ABUSE_ELEVATION_CONTROL_MECHANISM = 34;</code>
+     */
+    const ABUSE_ELEVATION_CONTROL_MECHANISM = 34;
 
     private static $valueToName = [
         self::TECHNIQUE_UNSPECIFIED => 'TECHNIQUE_UNSPECIFIED',
@@ -240,6 +258,9 @@ class Technique
         self::DATA_DESTRUCTION => 'DATA_DESTRUCTION',
         self::DOMAIN_POLICY_MODIFICATION => 'DOMAIN_POLICY_MODIFICATION',
         self::IMPAIR_DEFENSES => 'IMPAIR_DEFENSES',
+        self::NETWORK_SERVICE_DISCOVERY => 'NETWORK_SERVICE_DISCOVERY',
+        self::ACCESS_TOKEN_MANIPULATION => 'ACCESS_TOKEN_MANIPULATION',
+        self::ABUSE_ELEVATION_CONTROL_MECHANISM => 'ABUSE_ELEVATION_CONTROL_MECHANISM',
     ];
 
     public static function name($value)

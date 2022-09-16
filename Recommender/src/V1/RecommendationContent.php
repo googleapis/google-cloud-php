@@ -36,7 +36,7 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Recommender\V1\OperationGroup[]|\Google\Protobuf\Internal\RepeatedField $operation_groups
+     *     @type array<\Google\Cloud\Recommender\V1\OperationGroup>|\Google\Protobuf\Internal\RepeatedField $operation_groups
      *           Operations to one or more Google Cloud resources grouped in such a way
      *           that, all operations within one group are expected to be performed
      *           atomically and in an order.
@@ -68,7 +68,7 @@ class RecommendationContent extends \Google\Protobuf\Internal\Message
      * atomically and in an order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.OperationGroup operation_groups = 2;</code>
-     * @param \Google\Cloud\Recommender\V1\OperationGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\OperationGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperationGroups($var)

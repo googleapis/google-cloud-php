@@ -41,14 +41,15 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      */
     private $state_time = null;
     /**
-     * Output only. Provides details on the state of the report in case of an error.
+     * Output only. Provides details on the state of the report in case of an
+     * error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $error = null;
     /**
-     * Output only. The time the report was created (this refers to the time of the request,
-     * not the time the report creation completed).
+     * Output only. The time the report was created (this refers to the time of
+     * the request, not the time the report creation completed).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -60,9 +61,9 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      */
     private $time_frame = 0;
     /**
-     * Output only. The point in time when the time frame ends. Notice that the time
-     * frame is counted backwards. For instance if the "frame_end_time" value is
-     * 2021/01/20 and the time frame is WEEK then the report covers the week
+     * Output only. The point in time when the time frame ends. Notice that the
+     * time frame is counted backwards. For instance if the "frame_end_time" value
+     * is 2021/01/20 and the time frame is WEEK then the report covers the week
      * between 2021/01/20 and 2021/01/14.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp frame_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -99,20 +100,21 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $state_time
      *           Output only. The time the state was last set.
      *     @type \Google\Rpc\Status $error
-     *           Output only. Provides details on the state of the report in case of an error.
+     *           Output only. Provides details on the state of the report in case of an
+     *           error.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time the report was created (this refers to the time of the request,
-     *           not the time the report creation completed).
+     *           Output only. The time the report was created (this refers to the time of
+     *           the request, not the time the report creation completed).
      *     @type int $time_frame
      *           Time frame of the report.
      *     @type \Google\Protobuf\Timestamp $frame_end_time
-     *           Output only. The point in time when the time frame ends. Notice that the time
-     *           frame is counted backwards. For instance if the "frame_end_time" value is
-     *           2021/01/20 and the time frame is WEEK then the report covers the week
+     *           Output only. The point in time when the time frame ends. Notice that the
+     *           time frame is counted backwards. For instance if the "frame_end_time" value
+     *           is 2021/01/20 and the time frame is WEEK then the report covers the week
      *           between 2021/01/20 and 2021/01/14.
      *     @type int $vm_count
      *           Output only. Total number of VMs included in the report.
-     *     @type \Google\Cloud\VMMigration\V1\VmUtilizationInfo[]|\Google\Protobuf\Internal\RepeatedField $vms
+     *     @type array<\Google\Cloud\VMMigration\V1\VmUtilizationInfo>|\Google\Protobuf\Internal\RepeatedField $vms
      *           List of utilization information per VM.
      *           When sent as part of the request, the "vm_id" field is used in order to
      *           specify which VMs to include in the report. In that case all other fields
@@ -239,7 +241,8 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details on the state of the report in case of an error.
+     * Output only. Provides details on the state of the report in case of an
+     * error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Rpc\Status|null
@@ -260,7 +263,8 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Provides details on the state of the report in case of an error.
+     * Output only. Provides details on the state of the report in case of an
+     * error.
      *
      * Generated from protobuf field <code>.google.rpc.Status error = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Rpc\Status $var
@@ -275,8 +279,8 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the report was created (this refers to the time of the request,
-     * not the time the report creation completed).
+     * Output only. The time the report was created (this refers to the time of
+     * the request, not the time the report creation completed).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -297,8 +301,8 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time the report was created (this refers to the time of the request,
-     * not the time the report creation completed).
+     * Output only. The time the report was created (this refers to the time of
+     * the request, not the time the report creation completed).
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -339,9 +343,9 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The point in time when the time frame ends. Notice that the time
-     * frame is counted backwards. For instance if the "frame_end_time" value is
-     * 2021/01/20 and the time frame is WEEK then the report covers the week
+     * Output only. The point in time when the time frame ends. Notice that the
+     * time frame is counted backwards. For instance if the "frame_end_time" value
+     * is 2021/01/20 and the time frame is WEEK then the report covers the week
      * between 2021/01/20 and 2021/01/14.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp frame_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -363,9 +367,9 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The point in time when the time frame ends. Notice that the time
-     * frame is counted backwards. For instance if the "frame_end_time" value is
-     * 2021/01/20 and the time frame is WEEK then the report covers the week
+     * Output only. The point in time when the time frame ends. Notice that the
+     * time frame is counted backwards. For instance if the "frame_end_time" value
+     * is 2021/01/20 and the time frame is WEEK then the report covers the week
      * between 2021/01/20 and 2021/01/14.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp frame_end_time = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -427,7 +431,7 @@ class UtilizationReport extends \Google\Protobuf\Internal\Message
      * are ignored.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.VmUtilizationInfo vms = 10;</code>
-     * @param \Google\Cloud\VMMigration\V1\VmUtilizationInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\VmUtilizationInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVms($var)

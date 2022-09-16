@@ -20,7 +20,8 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The text of the documentation, interpreted according to `mime_type`.
      * The content may not exceed 8,192 Unicode characters and may not exceed
      * more than 10,240 bytes when encoded in UTF-8 format, whichever is
-     * smaller.
+     * smaller. This text can be [templatized by using
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
      *
      * Generated from protobuf field <code>string content = 1;</code>
      */
@@ -44,7 +45,8 @@ class Documentation extends \Google\Protobuf\Internal\Message
      *           The text of the documentation, interpreted according to `mime_type`.
      *           The content may not exceed 8,192 Unicode characters and may not exceed
      *           more than 10,240 bytes when encoded in UTF-8 format, whichever is
-     *           smaller.
+     *           smaller. This text can be [templatized by using
+     *           variables](https://cloud.google.com/monitoring/alerts/doc-variables).
      *     @type string $mime_type
      *           The format of the `content` field. Presently, only the value
      *           `"text/markdown"` is supported. See
@@ -60,7 +62,8 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The text of the documentation, interpreted according to `mime_type`.
      * The content may not exceed 8,192 Unicode characters and may not exceed
      * more than 10,240 bytes when encoded in UTF-8 format, whichever is
-     * smaller.
+     * smaller. This text can be [templatized by using
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @return string
@@ -74,7 +77,8 @@ class Documentation extends \Google\Protobuf\Internal\Message
      * The text of the documentation, interpreted according to `mime_type`.
      * The content may not exceed 8,192 Unicode characters and may not exceed
      * more than 10,240 bytes when encoded in UTF-8 format, whichever is
-     * smaller.
+     * smaller. This text can be [templatized by using
+     * variables](https://cloud.google.com/monitoring/alerts/doc-variables).
      *
      * Generated from protobuf field <code>string content = 1;</code>
      * @param string $var

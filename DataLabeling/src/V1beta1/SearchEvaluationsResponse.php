@@ -34,7 +34,7 @@ class SearchEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\Evaluation[]|\Google\Protobuf\Internal\RepeatedField $evaluations
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Evaluation>|\Google\Protobuf\Internal\RepeatedField $evaluations
      *           The list of evaluations matching the search.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class SearchEvaluationsResponse extends \Google\Protobuf\Internal\Message
      * The list of evaluations matching the search.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Evaluation evaluations = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\Evaluation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\Evaluation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvaluations($var)

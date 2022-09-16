@@ -40,6 +40,7 @@ use Google\Cloud\Compute\V1\DeleteSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetRuleSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GetSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertSecurityPolicyRequest;
 use Google\Cloud\Compute\V1\ListPreconfiguredExpressionSetsSecurityPoliciesRequest;
 use Google\Cloud\Compute\V1\ListSecurityPoliciesRequest;
@@ -52,6 +53,7 @@ use Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsRespo
 use Google\Cloud\Compute\V1\SecurityPolicy;
 use Google\Cloud\Compute\V1\SecurityPolicyList;
 use Google\Cloud\Compute\V1\SecurityPolicyRule;
+use Google\Cloud\Compute\V1\SetLabelsSecurityPolicyRequest;
 
 /**
  * Service Description: The SecurityPolicies API.
@@ -324,10 +326,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -398,10 +399,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -489,10 +489,9 @@ class SecurityPoliciesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -537,10 +536,9 @@ class SecurityPoliciesGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Compute\V1\SecurityPolicy
@@ -583,10 +581,9 @@ class SecurityPoliciesGapicClient
      *     @type int $priority
      *           The priority of the rule to get from the security policy.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Compute\V1\SecurityPolicyRule
@@ -658,10 +655,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -732,10 +728,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -802,10 +797,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Compute\V1\SecurityPoliciesListPreconfiguredExpressionSetsResponse
@@ -891,10 +885,9 @@ class SecurityPoliciesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -969,10 +962,9 @@ class SecurityPoliciesGapicClient
      *     @type bool $validateOnly
      *           If true, the request will not be committed.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1047,10 +1039,9 @@ class SecurityPoliciesGapicClient
      *     @type int $priority
      *           The priority of the rule to remove from the security policy.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1072,5 +1063,74 @@ class SecurityPoliciesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('RemoveRule', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the labels on a security policy. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * Sample code:
+     * ```
+     * $securityPoliciesClient = new SecurityPoliciesClient();
+     * try {
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $securityPoliciesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $securityPoliciesClient->resumeOperation($operationName, 'setLabels');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $securityPoliciesClient->close();
+     * }
+     * ```
+     *
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    {
+        $request = new SetLabelsSecurityPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

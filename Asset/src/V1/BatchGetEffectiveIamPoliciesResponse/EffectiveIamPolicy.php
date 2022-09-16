@@ -65,7 +65,7 @@ class EffectiveIamPolicy extends \Google\Protobuf\Internal\Message
      *           are computed. This is one of the
      *           [BatchGetEffectiveIamPoliciesRequest.names][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest.names]
      *           the caller provides in the request.
-     *     @type \Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy\PolicyInfo[]|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type array<\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy\PolicyInfo>|\Google\Protobuf\Internal\RepeatedField $policies
      *           The effective policies for the
      *           [full_resource_name][google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.full_resource_name].
      *           These policies include the policy set on the
@@ -178,7 +178,7 @@ class EffectiveIamPolicy extends \Google\Protobuf\Internal\Message
      * if policies[i+1] exists.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.BatchGetEffectiveIamPoliciesResponse.EffectiveIamPolicy.PolicyInfo policies = 2;</code>
-     * @param \Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy\PolicyInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse\EffectiveIamPolicy\PolicyInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPolicies($var)

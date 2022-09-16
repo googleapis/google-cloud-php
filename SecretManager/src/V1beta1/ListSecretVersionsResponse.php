@@ -42,7 +42,7 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecretManager\V1beta1\SecretVersion[]|\Google\Protobuf\Internal\RepeatedField $versions
+     *     @type array<\Google\Cloud\SecretManager\V1beta1\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $versions
      *           The list of [SecretVersions][google.cloud.secrets.v1beta1.SecretVersion] sorted in reverse by
      *           create_time (newest first).
      *     @type string $next_page_token
@@ -74,7 +74,7 @@ class ListSecretVersionsResponse extends \Google\Protobuf\Internal\Message
      * create_time (newest first).
      *
      * Generated from protobuf field <code>repeated .google.cloud.secrets.v1beta1.SecretVersion versions = 1;</code>
-     * @param \Google\Cloud\SecretManager\V1beta1\SecretVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecretManager\V1beta1\SecretVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersions($var)

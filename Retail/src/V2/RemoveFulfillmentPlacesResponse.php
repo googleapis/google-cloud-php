@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there
- * is no meaningful response populated from the [RemoveFulfillmentPlaces][]
+ * is no meaningful response populated from the
+ * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
  * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveFulfillmentPlacesResponse</code>

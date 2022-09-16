@@ -47,7 +47,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           `projects/project/locations/location/targets/my-target`). The location of
      *           the `Target` is inferred to be the same as the location of the
      *           `DeliveryPipeline` that contains this `Stage`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Skaffold profiles to use when rendering the manifest for this stage's
      *           `Target`.
      * }
@@ -110,7 +110,7 @@ class Stage extends \Google\Protobuf\Internal\Message
      * `Target`.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProfiles($var)

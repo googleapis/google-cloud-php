@@ -21,6 +21,12 @@ class GetMigratingVmRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * Optional. The level of details of the migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $view = 0;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class GetMigratingVmRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the MigratingVm.
+     *     @type int $view
+     *           Optional. The level of details of the migrating VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +67,32 @@ class GetMigratingVmRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The level of details of the migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
+    }
+
+    /**
+     * Optional. The level of details of the migrating VM.
+     *
+     * Generated from protobuf field <code>.google.cloud.vmmigration.v1.MigratingVmView view = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\VMMigration\V1\MigratingVmView::class);
+        $this->view = $var;
 
         return $this;
     }

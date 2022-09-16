@@ -62,7 +62,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      *           Required. URI for this repository.
      *     @type string $distribution
      *           Required. Distribution of this repository.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $components
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $components
      *           Required. List of components for this repository. Must contain at
      *           least one item.
      *     @type string $gpg_key
@@ -170,7 +170,7 @@ class AptRepository extends \Google\Protobuf\Internal\Message
      * least one item.
      *
      * Generated from protobuf field <code>repeated string components = 4 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setComponents($var)

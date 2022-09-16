@@ -84,7 +84,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      *           amplitude of the normal native signal amplitude. We strongly recommend not
      *           to exceed +10 (dB) as there's usually no effective increase in loudness for
      *           any value greater than that.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $effects_profile_id
      *           Optional. An identifier which selects 'audio effects' profiles that are
      *           applied on (post synthesized) text to speech. Effects are applied on top of
      *           each other in the order they are given.
@@ -218,7 +218,7 @@ class SynthesizeSpeechConfig extends \Google\Protobuf\Internal\Message
      * each other in the order they are given.
      *
      * Generated from protobuf field <code>repeated string effects_profile_id = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEffectsProfileId($var)

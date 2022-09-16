@@ -89,7 +89,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -120,7 +120,7 @@ class FoldersClientTest extends GeneratedTest
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
-        $response = $client->createFolder($folder);
+        $response = $gapicClient->createFolder($folder);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -163,7 +163,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -188,7 +188,7 @@ class FoldersClientTest extends GeneratedTest
         $folder = new Folder();
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
-        $response = $client->createFolder($folder);
+        $response = $gapicClient->createFolder($folder);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -222,7 +222,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -250,8 +250,8 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
-        $response = $client->deleteFolder($formattedName);
+        $formattedName = $gapicClient->folderName('[FOLDER]');
+        $response = $gapicClient->deleteFolder($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -294,7 +294,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -316,8 +316,8 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
-        $response = $client->deleteFolder($formattedName);
+        $formattedName = $gapicClient->folderName('[FOLDER]');
+        $response = $gapicClient->deleteFolder($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -345,7 +345,7 @@ class FoldersClientTest extends GeneratedTest
     public function getFolderTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -361,8 +361,8 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
-        $response = $client->getFolder($formattedName);
+        $formattedName = $gapicClient->folderName('[FOLDER]');
+        $response = $gapicClient->getFolder($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -380,7 +380,7 @@ class FoldersClientTest extends GeneratedTest
     public function getFolderExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -395,10 +395,10 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
+        $formattedName = $gapicClient->folderName('[FOLDER]');
         try {
-            $client->getFolder($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getFolder($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -415,7 +415,7 @@ class FoldersClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -428,7 +428,7 @@ class FoldersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -446,7 +446,7 @@ class FoldersClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -463,8 +463,8 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -481,7 +481,7 @@ class FoldersClientTest extends GeneratedTest
     public function listFoldersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -497,7 +497,7 @@ class FoldersClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listFolders($parent);
+        $response = $gapicClient->listFolders($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -518,7 +518,7 @@ class FoldersClientTest extends GeneratedTest
     public function listFoldersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -535,8 +535,8 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listFolders($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listFolders($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -559,7 +559,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -587,9 +587,9 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
+        $formattedName = $gapicClient->folderName('[FOLDER]');
         $destinationParent = 'destinationParent-1362053637';
-        $response = $client->moveFolder($formattedName, $destinationParent);
+        $response = $gapicClient->moveFolder($formattedName, $destinationParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -634,7 +634,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -656,9 +656,9 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
+        $formattedName = $gapicClient->folderName('[FOLDER]');
         $destinationParent = 'destinationParent-1362053637';
-        $response = $client->moveFolder($formattedName, $destinationParent);
+        $response = $gapicClient->moveFolder($formattedName, $destinationParent);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -686,7 +686,7 @@ class FoldersClientTest extends GeneratedTest
     public function searchFoldersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -700,7 +700,7 @@ class FoldersClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setFolders($folders);
         $transport->addResponse($expectedResponse);
-        $response = $client->searchFolders();
+        $response = $gapicClient->searchFolders();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -719,7 +719,7 @@ class FoldersClientTest extends GeneratedTest
     public function searchFoldersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -734,8 +734,8 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->searchFolders();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchFolders();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -752,7 +752,7 @@ class FoldersClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -766,7 +766,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -786,7 +786,7 @@ class FoldersClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -804,8 +804,8 @@ class FoldersClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -822,7 +822,7 @@ class FoldersClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -832,7 +832,7 @@ class FoldersClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -852,7 +852,7 @@ class FoldersClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -870,8 +870,8 @@ class FoldersClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -894,7 +894,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -922,8 +922,8 @@ class FoldersClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
-        $response = $client->undeleteFolder($formattedName);
+        $formattedName = $gapicClient->folderName('[FOLDER]');
+        $response = $gapicClient->undeleteFolder($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -966,7 +966,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -988,8 +988,8 @@ class FoldersClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->folderName('[FOLDER]');
-        $response = $client->undeleteFolder($formattedName);
+        $formattedName = $gapicClient->folderName('[FOLDER]');
+        $response = $gapicClient->undeleteFolder($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1023,7 +1023,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1055,7 +1055,7 @@ class FoldersClientTest extends GeneratedTest
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
         $updateMask = new FieldMask();
-        $response = $client->updateFolder($folder, $updateMask);
+        $response = $gapicClient->updateFolder($folder, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1100,7 +1100,7 @@ class FoldersClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1126,7 +1126,7 @@ class FoldersClientTest extends GeneratedTest
         $folderParent = 'folderParent-1307212104';
         $folder->setParent($folderParent);
         $updateMask = new FieldMask();
-        $response = $client->updateFolder($folder, $updateMask);
+        $response = $gapicClient->updateFolder($folder, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

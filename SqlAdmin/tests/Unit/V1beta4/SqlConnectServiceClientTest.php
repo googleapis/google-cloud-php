@@ -73,14 +73,14 @@ class SqlConnectServiceClientTest extends GeneratedTest
     public function generateEphemeralCertTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GenerateEphemeralCertResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->generateEphemeralCert();
+        $response = $gapicClient->generateEphemeralCert();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -96,7 +96,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
     public function generateEphemeralCertExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -111,8 +111,8 @@ class SqlConnectServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->generateEphemeralCert();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->generateEphemeralCert();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -129,7 +129,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
     public function getConnectSettingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -140,7 +140,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
         $expectedResponse->setKind($kind);
         $expectedResponse->setRegion($region);
         $transport->addResponse($expectedResponse);
-        $response = $client->getConnectSettings();
+        $response = $gapicClient->getConnectSettings();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -156,7 +156,7 @@ class SqlConnectServiceClientTest extends GeneratedTest
     public function getConnectSettingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -171,8 +171,8 @@ class SqlConnectServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getConnectSettings();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getConnectSettings();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

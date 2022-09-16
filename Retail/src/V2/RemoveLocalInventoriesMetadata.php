@@ -11,7 +11,8 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Metadata related to the progress of the RemoveLocalInventories operation.
  * Currently empty because there is no meaningful metadata populated from the
- * [RemoveLocalInventories][] method.
+ * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveLocalInventoriesMetadata</code>
  */

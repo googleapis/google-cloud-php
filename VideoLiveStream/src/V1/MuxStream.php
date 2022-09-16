@@ -60,7 +60,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      *           Supported container formats:
      *           - `fmp4` - the corresponding file extension is `.m4s`
      *           - `ts` - the corresponding file extension is `.ts`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $elementary_streams
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $elementary_streams
      *           List of `ElementaryStream` [key][google.cloud.video.livestream.v1.ElementaryStream.key]s multiplexed in this
      *           stream.
      *           - For `fmp4` container, must contain either one video or one audio stream.
@@ -156,7 +156,7 @@ class MuxStream extends \Google\Protobuf\Internal\Message
      * video stream.
      *
      * Generated from protobuf field <code>repeated string elementary_streams = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setElementaryStreams($var)

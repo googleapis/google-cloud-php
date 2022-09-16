@@ -76,12 +76,12 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      *           Optional. All [Certificates][google.cloud.security.privateca.v1beta1.Certificate] issued by the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority]
      *           will use the provided configuration values, overwriting any requested
      *           configuration values.
-     *     @type \Google\Cloud\Security\PrivateCA\V1beta1\Subject[]|\Google\Protobuf\Internal\RepeatedField $allowed_locations_and_organizations
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1beta1\Subject>|\Google\Protobuf\Internal\RepeatedField $allowed_locations_and_organizations
      *           Optional. If any [Subject][google.cloud.security.privateca.v1beta1.Subject] is specified here, then all
      *           [Certificates][google.cloud.security.privateca.v1beta1.Certificate] issued by the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must
      *           match at least one listed [Subject][google.cloud.security.privateca.v1beta1.Subject]. If a [Subject][google.cloud.security.privateca.v1beta1.Subject] has an empty
      *           field, any value will be allowed for that field.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $allowed_common_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $allowed_common_names
      *           Optional. If any value is specified here, then all
      *           [Certificates][google.cloud.security.privateca.v1beta1.Certificate] issued by the [CertificateAuthority][google.cloud.security.privateca.v1beta1.CertificateAuthority] must
      *           match at least one listed value. If no value is specified, all values
@@ -196,7 +196,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * field, any value will be allowed for that field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1beta1.Subject allowed_locations_and_organizations = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1beta1\Subject[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1beta1\Subject>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedLocationsAndOrganizations($var)
@@ -228,7 +228,7 @@ class CertificateAuthorityPolicy extends \Google\Protobuf\Internal\Message
      * will be allowed for this fied. Glob patterns are also supported.
      *
      * Generated from protobuf field <code>repeated string allowed_common_names = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedCommonNames($var)

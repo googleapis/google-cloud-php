@@ -27,7 +27,7 @@ class PreconfiguredWafSet extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\WafExpressionSet[]|\Google\Protobuf\Internal\RepeatedField $expression_sets
+     *     @type array<\Google\Cloud\Compute\V1\WafExpressionSet>|\Google\Protobuf\Internal\RepeatedField $expression_sets
      *           List of entities that are currently supported for WAF rules.
      * }
      */
@@ -51,7 +51,7 @@ class PreconfiguredWafSet extends \Google\Protobuf\Internal\Message
      * List of entities that are currently supported for WAF rules.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.WafExpressionSet expression_sets = 474011032;</code>
-     * @param \Google\Cloud\Compute\V1\WafExpressionSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\WafExpressionSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExpressionSets($var)

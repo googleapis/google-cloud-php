@@ -166,7 +166,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $admin_enabled
      *           Administrative status of the interconnect. When this is set to true, the Interconnect is functional and can carry traffic. When set to false, no packets can be carried over the interconnect and no BGP routes are exchanged over it. By default, the status is set to true.
-     *     @type \Google\Cloud\Compute\V1\InterconnectCircuitInfo[]|\Google\Protobuf\Internal\RepeatedField $circuit_infos
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $circuit_infos
      *           [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
@@ -174,7 +174,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           Customer name, to put in the Letter of Authorization as the party authorized to request a crossconnect.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type \Google\Cloud\Compute\V1\InterconnectOutageNotification[]|\Google\Protobuf\Internal\RepeatedField $expected_outages
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $expected_outages
      *           [Output Only] A list of outages expected for this Interconnect.
      *     @type string $google_ip_address
      *           [Output Only] IP address configured on the Google side of the Interconnect link. This can be used only for ping tests.
@@ -182,7 +182,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      *           [Output Only] Google reference ID to be used when raising support tickets with Google or otherwise to debug backend connectivity issues.
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $interconnect_attachments
      *           [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
      *     @type string $interconnect_type
      *           Type of interconnect, which can take one of the following values: - PARTNER: A partner-managed interconnection shared between customers though a partner. - DEDICATED: A dedicated physical interconnection with the customer. Note that a value IT_PRIVATE has been deprecated in favor of DEDICATED.
@@ -272,7 +272,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of CircuitInfo objects, that describe the individual circuits in this LAG.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectCircuitInfo circuit_infos = 164839855;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectCircuitInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectCircuitInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCircuitInfos($var)
@@ -406,7 +406,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of outages expected for this Interconnect.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectOutageNotification expected_outages = 264484123;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectOutageNotification[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectOutageNotification>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExpectedOutages($var)
@@ -540,7 +540,7 @@ class Interconnect extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of the URLs of all InterconnectAttachments configured to use this Interconnect.
      *
      * Generated from protobuf field <code>repeated string interconnect_attachments = 425388415;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInterconnectAttachments($var)

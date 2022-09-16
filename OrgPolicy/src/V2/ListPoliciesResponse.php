@@ -38,7 +38,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\OrgPolicy\V2\Policy[]|\Google\Protobuf\Internal\RepeatedField $policies
+     *     @type array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $policies
      *           All `Policies` that exist on the resource. It will be empty if no
      *           `Policies` are set.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class ListPoliciesResponse extends \Google\Protobuf\Internal\Message
      * `Policies` are set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.orgpolicy.v2.Policy policies = 1;</code>
-     * @param \Google\Cloud\OrgPolicy\V2\Policy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OrgPolicy\V2\Policy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPolicies($var)

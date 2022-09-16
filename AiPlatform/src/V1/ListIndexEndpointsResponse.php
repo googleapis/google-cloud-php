@@ -35,7 +35,7 @@ class ListIndexEndpointsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\IndexEndpoint[]|\Google\Protobuf\Internal\RepeatedField $index_endpoints
+     *     @type array<\Google\Cloud\AIPlatform\V1\IndexEndpoint>|\Google\Protobuf\Internal\RepeatedField $index_endpoints
      *           List of IndexEndpoints in the requested page.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListIndexEndpointsResponse extends \Google\Protobuf\Internal\Message
      * List of IndexEndpoints in the requested page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.IndexEndpoint index_endpoints = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\IndexEndpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\IndexEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIndexEndpoints($var)

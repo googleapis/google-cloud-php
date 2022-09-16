@@ -99,7 +99,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      *           quotas. Specifically, you will be charged for (max_replica_count *
      *           number of cores in the selected machine type) and (max_replica_count *
      *           number of GPUs per replica in the selected machine type).
-     *     @type \Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec[]|\Google\Protobuf\Internal\RepeatedField $autoscaling_metric_specs
+     *     @type array<\Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec>|\Google\Protobuf\Internal\RepeatedField $autoscaling_metric_specs
      *           Immutable. The metric specifications that overrides a resource
      *           utilization metric (CPU utilization, accelerator's duty cycle, and so on)
      *           target value (default to 60 if not set). At most one entry is allowed per
@@ -289,7 +289,7 @@ class DedicatedResources extends \Google\Protobuf\Internal\Message
      * [autoscaling_metric_specs.target][google.cloud.aiplatform.v1.AutoscalingMetricSpec.target] to `80`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.AutoscalingMetricSpec autoscaling_metric_specs = 4 [(.google.api.field_behavior) = IMMUTABLE];</code>
-     * @param \Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\AutoscalingMetricSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAutoscalingMetricSpecs($var)

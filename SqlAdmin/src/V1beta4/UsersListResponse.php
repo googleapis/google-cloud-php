@@ -44,7 +44,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $kind
      *           This is always <b>sql#usersList</b>.
-     *     @type \Google\Cloud\Sql\V1beta4\User[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Sql\V1beta4\User>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of user resources in the instance.
      *     @type string $next_page_token
      *           An identifier that uniquely identifies the operation. You can use this
@@ -98,7 +98,7 @@ class UsersListResponse extends \Google\Protobuf\Internal\Message
      * List of user resources in the instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.User items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\User[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\User>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * An optional description. Provide this property when creating the disk.
      *
      * Generated from protobuf field <code>optional string description = 422937596;</code>
@@ -65,6 +72,12 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      */
     private $provisioned_iops = null;
     /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     */
+    private $resource_manager_tags;
+    /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
@@ -101,6 +114,9 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           The architecture of the attached disk. Valid values are arm64 or x86_64.
+     *           Check the Architecture enum for the list of possible values.
      *     @type string $description
      *           An optional description. Provide this property when creating the disk.
      *     @type string $disk_name
@@ -111,14 +127,16 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      *           Specifies the disk type to use to create the instance. If not specified, the default is pd-standard, specified using the full URL. For example: https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/pd-standard For a full list of acceptable values, see Persistent disk types. If you define this field, you can provide either the full or partial URL. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /diskTypes/diskType - projects/project/zones/zone/diskTypes/diskType - zones/zone/diskTypes/diskType Note that for InstanceTemplate, this is the name of the disk type, not URL.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
      *           A list of publicly visible licenses. Reserved for Google's use.
      *     @type string $on_update_action
      *           Specifies which action to take on instance update with this disk. Default is to use the existing disk.
      *           Check the OnUpdateAction enum for the list of possible values.
      *     @type int|string $provisioned_iops
      *           Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk documentation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_manager_tags
+     *           Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *     @type string $source_image
      *           The source image to create this disk. When creating a new instance, one of initializeParams.sourceImage or initializeParams.sourceSnapshot or disks.source is required except for local SSD. To create a disk with one of the public operating system images, specify the image by its family name. For example, specify family/debian-9 to use the latest Debian 9 image: projects/debian-cloud/global/images/family/debian-9 Alternatively, use a specific version of a public operating system image: projects/debian-cloud/global/images/debian-9-stretch-vYYYYMMDD To create a disk with a custom image that you created, specify the image name in the following format: global/images/my-custom-image You can also specify a custom image by its image family, which returns the latest version of the image in that family. Replace the image name with family/family-name: global/images/family/my-image-family If the source image is deleted later, this field will not be set.
@@ -133,6 +151,44 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * The architecture of the attached disk. Valid values are arm64 or x86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**
@@ -320,7 +376,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * A list of publicly visible licenses. Reserved for Google's use.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenses($var)
@@ -406,6 +462,32 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceManagerTags()
+    {
+        return $this->resource_manager_tags;
+    }
+
+    /**
+     * Resource manager tags to be bound to the disk. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_manager_tags = 377671164;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceManagerTags($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_manager_tags = $arr;
+
+        return $this;
+    }
+
+    /**
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
@@ -420,7 +502,7 @@ class AttachedDiskInitializeParams extends \Google\Protobuf\Internal\Message
      * Resource policies applied to this disk for automatic snapshot creations. Specified using the full or partial URL. For instance template, specify only the resource policy name.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)

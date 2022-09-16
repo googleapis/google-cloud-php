@@ -61,7 +61,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      *           The title that identifies this compliance check.
      *     @type string $description
      *           A description about this compliance check.
-     *     @type \Grafeas\V1\ComplianceVersion[]|\Google\Protobuf\Internal\RepeatedField $version
+     *     @type array<\Grafeas\V1\ComplianceVersion>|\Google\Protobuf\Internal\RepeatedField $version
      *           The OS and config versions the benchmark applies to.
      *     @type string $rationale
      *           A rationale for the existence of this compliance check.
@@ -144,7 +144,7 @@ class ComplianceNote extends \Google\Protobuf\Internal\Message
      * The OS and config versions the benchmark applies to.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.ComplianceVersion version = 3;</code>
-     * @param \Grafeas\V1\ComplianceVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\ComplianceVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersion($var)

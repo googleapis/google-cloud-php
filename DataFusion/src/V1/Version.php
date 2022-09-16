@@ -51,7 +51,7 @@ class Version extends \Google\Protobuf\Internal\Message
      *           The version number of the Data Fusion instance, such as '6.0.1.0'.
      *     @type bool $default_version
      *           Whether this is currently the default version for Cloud Data Fusion
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $available_features
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $available_features
      *           Represents a list of available feature names for a given version.
      *     @type int $type
      *           Type represents the release availability of the version
@@ -129,7 +129,7 @@ class Version extends \Google\Protobuf\Internal\Message
      * Represents a list of available feature names for a given version.
      *
      * Generated from protobuf field <code>repeated string available_features = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAvailableFeatures($var)

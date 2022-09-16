@@ -33,7 +33,7 @@ class SchemaRestrictionResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\ResponseMetaData\SchemaRestrictionResponse\ActiveMetricRestriction[]|\Google\Protobuf\Internal\RepeatedField $active_metric_restrictions
+     *     @type array<\Google\Analytics\Data\V1beta\ResponseMetaData\SchemaRestrictionResponse\ActiveMetricRestriction>|\Google\Protobuf\Internal\RepeatedField $active_metric_restrictions
      *           All restrictions actively enforced in creating the report. For example,
      *           `purchaseRevenue` always has the restriction type `REVENUE_DATA`.
      *           However, this active response restriction is only populated if the user's
@@ -66,7 +66,7 @@ class SchemaRestrictionResponse extends \Google\Protobuf\Internal\Message
      * custom role disallows access to `REVENUE_DATA`.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.ResponseMetaData.SchemaRestrictionResponse.ActiveMetricRestriction active_metric_restrictions = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\ResponseMetaData\SchemaRestrictionResponse\ActiveMetricRestriction[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\ResponseMetaData\SchemaRestrictionResponse\ActiveMetricRestriction>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActiveMetricRestrictions($var)

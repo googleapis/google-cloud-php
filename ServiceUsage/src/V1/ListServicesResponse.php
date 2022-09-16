@@ -35,7 +35,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ServiceUsage\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           The available services for the requested project.
      *     @type string $next_page_token
      *           Token that can be passed to `ListServices` to resume a paginated
@@ -62,7 +62,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The available services for the requested project.
      *
      * Generated from protobuf field <code>repeated .google.api.serviceusage.v1.Service services = 1;</code>
-     * @param \Google\Cloud\ServiceUsage\V1\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceUsage\V1\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)

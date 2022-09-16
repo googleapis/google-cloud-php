@@ -46,7 +46,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           Check the ConsumeReservationType enum for the list of possible values.
      *     @type string $key
      *           Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify googleapis.com/reservation-name as the key and specify the name of your reservation as its value.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      * }
      */
@@ -144,7 +144,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or "projects/different-project/reservations/some-reservation-name" to target a shared reservation in the same zone but in a different project.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

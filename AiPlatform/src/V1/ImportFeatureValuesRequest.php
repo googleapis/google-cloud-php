@@ -88,7 +88,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $entity_id_field
      *           Source column that holds entity IDs. If not provided, entity IDs are
      *           extracted from the column named `entity_id`.
-     *     @type \Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec[]|\Google\Protobuf\Internal\RepeatedField $feature_specs
+     *     @type array<\Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec>|\Google\Protobuf\Internal\RepeatedField $feature_specs
      *           Required. Specifications defining which Feature values to import from the entity. The
      *           request fails if no feature_specs are provided, and having multiple
      *           feature_specs for one Feature is not allowed.
@@ -336,7 +336,7 @@ class ImportFeatureValuesRequest extends \Google\Protobuf\Internal\Message
      * feature_specs for one Feature is not allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.ImportFeatureValuesRequest.FeatureSpec feature_specs = 8 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\ImportFeatureValuesRequest\FeatureSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatureSpecs($var)

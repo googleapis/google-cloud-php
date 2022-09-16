@@ -34,7 +34,7 @@ class ListApprovalRequestsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AccessApproval\V1\ApprovalRequest[]|\Google\Protobuf\Internal\RepeatedField $approval_requests
+     *     @type array<\Google\Cloud\AccessApproval\V1\ApprovalRequest>|\Google\Protobuf\Internal\RepeatedField $approval_requests
      *           Approval request details.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more.
@@ -60,7 +60,7 @@ class ListApprovalRequestsResponse extends \Google\Protobuf\Internal\Message
      * Approval request details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.accessapproval.v1.ApprovalRequest approval_requests = 1;</code>
-     * @param \Google\Cloud\AccessApproval\V1\ApprovalRequest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AccessApproval\V1\ApprovalRequest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setApprovalRequests($var)

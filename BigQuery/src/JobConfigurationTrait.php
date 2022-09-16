@@ -120,7 +120,7 @@ trait JobConfigurationTrait
      *        **Defaults to** a location specified in the client configuration,
      *        if provided, or through location metadata fetched by a network
      *        request
-     *        (by calling {@see Google\Cloud\BigQuery\Table::reload()}, for example).
+     *        (by calling {@see Table::reload()}, for example).
      * @return JobConfigurationInterface
      */
     public function location($location)

@@ -30,7 +30,7 @@ class EventConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $annotation_spec_sets
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_sets
      *           Required. The list of annotation spec set resource name. Similar to video
      *           classification, we support selecting event from multiple AnnotationSpecSet
      *           at the same time.
@@ -60,7 +60,7 @@ class EventConfig extends \Google\Protobuf\Internal\Message
      * at the same time.
      *
      * Generated from protobuf field <code>repeated string annotation_spec_sets = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAnnotationSpecSets($var)

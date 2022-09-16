@@ -33,7 +33,7 @@ class ResourcePoliciesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\ResourcePolicy[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array<\Google\Cloud\Compute\V1\ResourcePolicy>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           A list of resourcePolicies contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of resourcePolicies when the list is empty.
@@ -59,7 +59,7 @@ class ResourcePoliciesScopedList extends \Google\Protobuf\Internal\Message
      * A list of resourcePolicies contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ResourcePolicy resource_policies = 22220385;</code>
-     * @param \Google\Cloud\Compute\V1\ResourcePolicy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\ResourcePolicy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)

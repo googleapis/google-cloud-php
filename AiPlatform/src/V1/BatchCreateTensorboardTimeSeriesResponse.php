@@ -28,7 +28,7 @@ class BatchCreateTensorboardTimeSeriesResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries[]|\Google\Protobuf\Internal\RepeatedField $tensorboard_time_series
+     *     @type array<\Google\Cloud\AIPlatform\V1\TensorboardTimeSeries>|\Google\Protobuf\Internal\RepeatedField $tensorboard_time_series
      *           The created TensorboardTimeSeries.
      * }
      */
@@ -52,7 +52,7 @@ class BatchCreateTensorboardTimeSeriesResponse extends \Google\Protobuf\Internal
      * The created TensorboardTimeSeries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TensorboardTimeSeries tensorboard_time_series = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\TensorboardTimeSeries[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TensorboardTimeSeries>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTensorboardTimeSeries($var)

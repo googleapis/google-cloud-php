@@ -52,9 +52,9 @@ class EntityFilter extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $kinds
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $kinds
      *           If empty, then this represents all kinds.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $namespace_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $namespace_ids
      *           An empty list represents all namespaces. This is the preferred
      *           usage for projects that don't use namespaces.
      *           An empty string element represents the default namespace. This should be
@@ -83,7 +83,7 @@ class EntityFilter extends \Google\Protobuf\Internal\Message
      * If empty, then this represents all kinds.
      *
      * Generated from protobuf field <code>repeated string kinds = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setKinds($var)
@@ -119,7 +119,7 @@ class EntityFilter extends \Google\Protobuf\Internal\Message
      * Each namespace in this list must be unique.
      *
      * Generated from protobuf field <code>repeated string namespace_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNamespaceIds($var)

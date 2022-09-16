@@ -31,7 +31,7 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus[]|\Google\Protobuf\Internal\RepeatedField $replicas
+     *     @type array<\Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus>|\Google\Protobuf\Internal\RepeatedField $replicas
      *           Output only. The list of replica statuses for the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      * }
      */
@@ -55,7 +55,7 @@ class UserManagedStatus extends \Google\Protobuf\Internal\Message
      * Output only. The list of replica statuses for the [SecretVersion][google.cloud.secretmanager.v1.SecretVersion].
      *
      * Generated from protobuf field <code>repeated .google.cloud.secretmanager.v1.ReplicationStatus.UserManagedStatus.ReplicaStatus replicas = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecretManager\V1\ReplicationStatus\UserManagedStatus\ReplicaStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setReplicas($var)

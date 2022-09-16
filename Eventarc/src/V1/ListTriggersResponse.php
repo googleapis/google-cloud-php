@@ -41,12 +41,12 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Eventarc\V1\Trigger[]|\Google\Protobuf\Internal\RepeatedField $triggers
+     *     @type array<\Google\Cloud\Eventarc\V1\Trigger>|\Google\Protobuf\Internal\RepeatedField $triggers
      *           The requested triggers, up to the number specified in `page_size`.
      *     @type string $next_page_token
      *           A page token that can be sent to ListTriggers to request the next page.
      *           If this is empty, then there are no more pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Unreachable resources, if any.
      * }
      */
@@ -70,7 +70,7 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
      * The requested triggers, up to the number specified in `page_size`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.Trigger triggers = 1;</code>
-     * @param \Google\Cloud\Eventarc\V1\Trigger[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Eventarc\V1\Trigger>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTriggers($var)
@@ -124,7 +124,7 @@ class ListTriggersResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources, if any.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

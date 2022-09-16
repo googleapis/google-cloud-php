@@ -37,7 +37,7 @@ class ListTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[]|\Google\Protobuf\Internal\RepeatedField $transfer_runs
+     *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $transfer_runs
      *           Output only. The stored pipeline transfer runs.
      *     @type string $next_page_token
      *           Output only. The next-pagination token. For multiple-page list results,
@@ -66,7 +66,7 @@ class ListTransferRunsResponse extends \Google\Protobuf\Internal\Message
      * Output only. The stored pipeline transfer runs.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.datatransfer.v1.TransferRun transfer_runs = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\BigQuery\DataTransfer\V1\TransferRun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\DataTransfer\V1\TransferRun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferRuns($var)

@@ -34,7 +34,7 @@ class ListEvaluationJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DataLabeling\V1beta1\EvaluationJob[]|\Google\Protobuf\Internal\RepeatedField $evaluation_jobs
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\EvaluationJob>|\Google\Protobuf\Internal\RepeatedField $evaluation_jobs
      *           The list of evaluation jobs to return.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -60,7 +60,7 @@ class ListEvaluationJobsResponse extends \Google\Protobuf\Internal\Message
      * The list of evaluation jobs to return.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.EvaluationJob evaluation_jobs = 1;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\EvaluationJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\EvaluationJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvaluationJobs($var)

@@ -139,9 +139,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Output only. The job status. Additional application-specific
      *           status information may be contained in the <code>type_job</code>
      *           and <code>yarn_applications</code> fields.
-     *     @type \Google\Cloud\Dataproc\V1\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $status_history
+     *     @type array<\Google\Cloud\Dataproc\V1\JobStatus>|\Google\Protobuf\Internal\RepeatedField $status_history
      *           Output only. The previous job status.
-     *     @type \Google\Cloud\Dataproc\V1\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $yarn_applications
+     *     @type array<\Google\Cloud\Dataproc\V1\YarnApplication>|\Google\Protobuf\Internal\RepeatedField $yarn_applications
      *           Output only. The collection of YARN applications spun up by this job.
      *           **Beta** Feature: This report is available for testing purposes only. It
      *           may be changed before final release.
@@ -561,7 +561,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * Output only. The previous job status.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.JobStatus status_history = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataproc\V1\JobStatus[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\JobStatus>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatusHistory($var)
@@ -591,7 +591,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * may be changed before final release.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.YarnApplication yarn_applications = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Dataproc\V1\YarnApplication[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataproc\V1\YarnApplication>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setYarnApplications($var)

@@ -78,7 +78,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $segments
      *           Video segments to annotate. The segments may overlap and are not required
      *           to be contiguous or span the whole video. If unspecified, each video is
      *           treated as a single segment.
@@ -124,7 +124,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegments($var)

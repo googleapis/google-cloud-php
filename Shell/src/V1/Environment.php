@@ -119,7 +119,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *     @type int $ssh_port
      *           Output only. Port to which clients can connect to initiate SSH sessions
      *           with the environment.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $public_keys
      *           Output only. Public keys associated with the environment. Clients can
      *           connect to this environment via SSH only if they possess a private key
      *           corresponding to at least one of these public keys. Keys can be added to or
@@ -383,7 +383,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * methods.
      *
      * Generated from protobuf field <code>repeated string public_keys = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPublicKeys($var)

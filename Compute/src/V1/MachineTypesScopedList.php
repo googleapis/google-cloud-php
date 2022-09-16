@@ -33,7 +33,7 @@ class MachineTypesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\MachineType[]|\Google\Protobuf\Internal\RepeatedField $machine_types
+     *     @type array<\Google\Cloud\Compute\V1\MachineType>|\Google\Protobuf\Internal\RepeatedField $machine_types
      *           [Output Only] A list of machine types contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the machine types list is empty.
@@ -59,7 +59,7 @@ class MachineTypesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of machine types contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.MachineType machine_types = 79720065;</code>
-     * @param \Google\Cloud\Compute\V1\MachineType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\MachineType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMachineTypes($var)

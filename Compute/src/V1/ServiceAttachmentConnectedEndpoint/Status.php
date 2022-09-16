@@ -32,6 +32,12 @@ class Status
      */
     const CLOSED = 380163436;
     /**
+     * The connection has been accepted by the producer, but the producer needs to take further action before the forwarding rule can serve traffic.
+     *
+     * Generated from protobuf enum <code>NEEDS_ATTENTION = 344491452;</code>
+     */
+    const NEEDS_ATTENTION = 344491452;
+    /**
      * The connection is pending acceptance by the producer.
      *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
@@ -52,6 +58,7 @@ class Status
         self::UNDEFINED_STATUS => 'UNDEFINED_STATUS',
         self::ACCEPTED => 'ACCEPTED',
         self::CLOSED => 'CLOSED',
+        self::NEEDS_ATTENTION => 'NEEDS_ATTENTION',
         self::PENDING => 'PENDING',
         self::REJECTED => 'REJECTED',
         self::STATUS_UNSPECIFIED => 'STATUS_UNSPECIFIED',

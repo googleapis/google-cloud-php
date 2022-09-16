@@ -33,7 +33,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroup[]|\Google\Protobuf\Internal\RepeatedField $network_endpoint_groups
+     *     @type array<\Google\Cloud\Compute\V1\NetworkEndpointGroup>|\Google\Protobuf\Internal\RepeatedField $network_endpoint_groups
      *           [Output Only] The list of network endpoint groups that are contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that replaces the list of network endpoint groups when the list is empty.
@@ -59,7 +59,7 @@ class NetworkEndpointGroupsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of network endpoint groups that are contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpointGroup network_endpoint_groups = 29346733;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkEndpointGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkEndpointGroups($var)

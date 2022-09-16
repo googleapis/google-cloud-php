@@ -27,19 +27,30 @@
 namespace Google\Cloud\NetworkSecurity\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
+
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
-use Google\ApiCore\RequestParamsHeaderDescriptor;
 
+use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy;
 use Google\Cloud\NetworkSecurity\V1beta1\ClientTlsPolicy;
 use Google\Cloud\NetworkSecurity\V1beta1\CreateAuthorizationPolicyRequest;
@@ -65,7 +76,9 @@ use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description:
+ * Service Description: Network Security API provides resources to configure authentication and
+ * authorization policies. Refer to per API resource documentation for more
+ * information.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -73,7 +86,7 @@ use Google\Protobuf\FieldMask;
  * ```
  * $networkSecurityClient = new NetworkSecurityClient();
  * try {
- *     $formattedParent = $networkSecurityClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+ *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
  *     $authorizationPolicyId = 'authorization_policy_id';
  *     $authorizationPolicy = new AuthorizationPolicy();
  *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
@@ -494,7 +507,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->authorizationPolicyName('[PROJECT]', '[LOCATION]', '[AUTHORIZATION_POLICY]');
+     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     $authorizationPolicyId = 'authorization_policy_id';
      *     $authorizationPolicy = new AuthorizationPolicy();
      *     $operationResponse = $networkSecurityClient->createAuthorizationPolicy($formattedParent, $authorizationPolicyId, $authorizationPolicy);
@@ -539,10 +552,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -584,7 +596,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->clientTlsPolicyName('[PROJECT]', '[LOCATION]', '[CLIENT_TLS_POLICY]');
+     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     $clientTlsPolicyId = 'client_tls_policy_id';
      *     $clientTlsPolicy = new ClientTlsPolicy();
      *     $operationResponse = $networkSecurityClient->createClientTlsPolicy($formattedParent, $clientTlsPolicyId, $clientTlsPolicy);
@@ -620,18 +632,18 @@ class NetworkSecurityGapicClient
      *
      * @param string          $parent            Required. The parent resource of the ClientTlsPolicy. Must be in
      *                                           the format `projects/&#42;/locations/{location}`.
-     * @param string          $clientTlsPolicyId Required. Short name of the ClientTlsPolicy resource to be created. This value should
-     *                                           be 1-63 characters long, containing only letters, numbers, hyphens, and
-     *                                           underscores, and should not start with a number. E.g. "client_mtls_policy".
+     * @param string          $clientTlsPolicyId Required. Short name of the ClientTlsPolicy resource to be created. This
+     *                                           value should be 1-63 characters long, containing only letters, numbers,
+     *                                           hyphens, and underscores, and should not start with a number. E.g.
+     *                                           "client_mtls_policy".
      * @param ClientTlsPolicy $clientTlsPolicy   Required. ClientTlsPolicy resource to be created.
      * @param array           $optionalArgs      {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -673,7 +685,7 @@ class NetworkSecurityGapicClient
      * ```
      * $networkSecurityClient = new NetworkSecurityClient();
      * try {
-     *     $formattedParent = $networkSecurityClient->serverTlsPolicyName('[PROJECT]', '[LOCATION]', '[SERVER_TLS_POLICY]');
+     *     $formattedParent = $networkSecurityClient->locationName('[PROJECT]', '[LOCATION]');
      *     $serverTlsPolicyId = 'server_tls_policy_id';
      *     $serverTlsPolicy = new ServerTlsPolicy();
      *     $operationResponse = $networkSecurityClient->createServerTlsPolicy($formattedParent, $serverTlsPolicyId, $serverTlsPolicy);
@@ -709,18 +721,18 @@ class NetworkSecurityGapicClient
      *
      * @param string          $parent            Required. The parent resource of the ServerTlsPolicy. Must be in
      *                                           the format `projects/&#42;/locations/{location}`.
-     * @param string          $serverTlsPolicyId Required. Short name of the ServerTlsPolicy resource to be created. This value should
-     *                                           be 1-63 characters long, containing only letters, numbers, hyphens, and
-     *                                           underscores, and should not start with a number. E.g. "server_mtls_policy".
+     * @param string          $serverTlsPolicyId Required. Short name of the ServerTlsPolicy resource to be created. This
+     *                                           value should be 1-63 characters long, containing only letters, numbers,
+     *                                           hyphens, and underscores, and should not start with a number. E.g.
+     *                                           "server_mtls_policy".
      * @param ServerTlsPolicy $serverTlsPolicy   Required. ServerTlsPolicy resource to be created.
      * @param array           $optionalArgs      {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -792,16 +804,15 @@ class NetworkSecurityGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     *                             `projects/{project}/locations/{location}/authorizationPolicies/*`.
+     * @param string $name         Required. A name of the AuthorizationPolicy to delete. Must be in the
+     *                             format `projects/{project}/locations/{location}/authorizationPolicies/*`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -873,10 +884,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -948,10 +958,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1000,10 +1009,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy
@@ -1052,10 +1060,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\NetworkSecurity\V1beta1\ClientTlsPolicy
@@ -1104,10 +1111,9 @@ class NetworkSecurityGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\NetworkSecurity\V1beta1\ServerTlsPolicy
@@ -1178,10 +1184,9 @@ class NetworkSecurityGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1259,10 +1264,9 @@ class NetworkSecurityGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1340,10 +1344,9 @@ class NetworkSecurityGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -1430,10 +1433,9 @@ class NetworkSecurityGapicClient
      *           the full request. A field will be overwritten if it is in the mask. If the
      *           user does not provide a mask then all fields will be overwritten.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1521,10 +1523,9 @@ class NetworkSecurityGapicClient
      *           mask. If the user does not provide a mask then all fields will be
      *           overwritten.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1612,10 +1613,9 @@ class NetworkSecurityGapicClient
      *           mask. If the user does not provide a mask then all fields will be
      *           overwritten.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -1649,6 +1649,352 @@ class NetworkSecurityGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $networkSecurityClient = new NetworkSecurityClient();
+     * try {
+     *     $response = $networkSecurityClient->getLocation();
+     * } finally {
+     *     $networkSecurityClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $networkSecurityClient = new NetworkSecurityClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $networkSecurityClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $networkSecurityClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $networkSecurityClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $networkSecurityClient = new NetworkSecurityClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $networkSecurityClient->getIamPolicy($resource);
+     * } finally {
+     *     $networkSecurityClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $networkSecurityClient = new NetworkSecurityClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $networkSecurityClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $networkSecurityClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $networkSecurityClient = new NetworkSecurityClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $networkSecurityClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $networkSecurityClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

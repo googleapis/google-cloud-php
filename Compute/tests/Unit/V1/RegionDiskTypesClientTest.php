@@ -73,7 +73,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -104,7 +104,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $diskType = 'diskType93009052';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($diskType, $project, $region);
+        $response = $gapicClient->get($diskType, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -126,7 +126,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -145,8 +145,8 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($diskType, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($diskType, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -163,7 +163,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -186,7 +186,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -209,7 +209,7 @@ class RegionDiskTypesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -227,8 +227,8 @@ class RegionDiskTypesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

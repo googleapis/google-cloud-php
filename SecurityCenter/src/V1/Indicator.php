@@ -37,6 +37,12 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature signatures = 3;</code>
      */
     private $signatures;
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     */
+    private $uris;
 
     /**
      * Constructor.
@@ -44,13 +50,15 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ip_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ip_addresses
      *           List of ip addresses associated to the Finding.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $domains
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $domains
      *           List of domains associated to the Finding.
-     *     @type \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature[]|\Google\Protobuf\Internal\RepeatedField $signatures
+     *     @type array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $signatures
      *           The list of matched signatures indicating that the given
      *           process is present in the environment.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $uris
+     *           The list of URIs associated to the Findings.
      * }
      */
     public function __construct($data = NULL) {
@@ -73,7 +81,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * List of ip addresses associated to the Finding.
      *
      * Generated from protobuf field <code>repeated string ip_addresses = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIpAddresses($var)
@@ -99,7 +107,7 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * List of domains associated to the Finding.
      *
      * Generated from protobuf field <code>repeated string domains = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomains($var)
@@ -127,13 +135,39 @@ class Indicator extends \Google\Protobuf\Internal\Message
      * process is present in the environment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Indicator.ProcessSignature signatures = 3;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSignatures($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Indicator\ProcessSignature::class);
         $this->signatures = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getUris()
+    {
+        return $this->uris;
+    }
+
+    /**
+     * The list of URIs associated to the Findings.
+     *
+     * Generated from protobuf field <code>repeated string uris = 4;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setUris($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->uris = $arr;
 
         return $this;
     }

@@ -36,7 +36,7 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           Required. The URI to be checked for matches.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $threat_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
      *           Required. The ThreatLists to search in.
      * }
      */
@@ -86,7 +86,7 @@ class SearchUrisRequest extends \Google\Protobuf\Internal\Message
      * Required. The ThreatLists to search in.
      *
      * Generated from protobuf field <code>repeated .google.cloud.webrisk.v1beta1.ThreatType threat_types = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setThreatTypes($var)

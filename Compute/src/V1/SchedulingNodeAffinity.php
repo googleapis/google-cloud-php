@@ -46,7 +46,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      *     @type string $operator
      *           Defines the operation of node selection. Valid operators are IN for affinity and NOT_IN for anti-affinity.
      *           Check the Operator enum for the list of possible values.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Corresponds to the label values of Node resource.
      * }
      */
@@ -144,7 +144,7 @@ class SchedulingNodeAffinity extends \Google\Protobuf\Internal\Message
      * Corresponds to the label values of Node resource.
      *
      * Generated from protobuf field <code>repeated string values = 249928994;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

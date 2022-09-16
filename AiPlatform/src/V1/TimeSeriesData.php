@@ -48,7 +48,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      *     @type int $value_type
      *           Required. Immutable. The value type of this time series. All the values in this time series data
      *           must match this value type.
-     *     @type \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Data points in this time series.
      * }
      */
@@ -128,7 +128,7 @@ class TimeSeriesData extends \Google\Protobuf\Internal\Message
      * Required. Data points in this time series.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.TimeSeriesDataPoint values = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\TimeSeriesDataPoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

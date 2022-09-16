@@ -41,7 +41,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exempted_members
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exempted_members
      *           Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *     @type bool $ignore_child_exemptions
      *           This is deprecated and has no effect. Do not use.
@@ -70,7 +70,7 @@ class AuditLogConfig extends \Google\Protobuf\Internal\Message
      * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      *
      * Generated from protobuf field <code>repeated string exempted_members = 232615576;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExemptedMembers($var)

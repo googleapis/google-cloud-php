@@ -59,7 +59,7 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
      *           Upper bound on the size of the equivalence classes in this bucket.
      *     @type int|string $bucket_size
      *           Total number of equivalence classes in this bucket.
-     *     @type \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass[]|\Google\Protobuf\Internal\RepeatedField $bucket_values
+     *     @type array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $bucket_values
      *           Sample of equivalence classes in this bucket. The total number of
      *           classes returned per bucket is capped at 20.
      *     @type int|string $bucket_value_count
@@ -166,7 +166,7 @@ class KAnonymityHistogramBucket extends \Google\Protobuf\Internal\Message
      * classes returned per bucket is capped at 20.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.AnalyzeDataSourceRiskDetails.KAnonymityResult.KAnonymityEquivalenceClass bucket_values = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\AnalyzeDataSourceRiskDetails\KAnonymityResult\KAnonymityEquivalenceClass>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBucketValues($var)

@@ -62,7 +62,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           notifications. Must be of the format: `projects/{project}/topics/{topic}`.
      *           Not matching this format results in an
      *           [INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $event_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $event_types
      *           Event types for which a notification is desired. If empty, send
      *           notifications for all event types.
      *     @type int $payload_format
@@ -123,7 +123,7 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * notifications for all event types.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.NotificationConfig.EventType event_types = 2;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEventTypes($var)

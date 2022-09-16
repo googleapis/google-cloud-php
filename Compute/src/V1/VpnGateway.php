@@ -118,7 +118,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      *     @type string $stack_type
      *           The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.
      *           Check the StackType enum for the list of possible values.
-     *     @type \Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface[]|\Google\Protobuf\Internal\RepeatedField $vpn_interfaces
+     *     @type array<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $vpn_interfaces
      *           The list of VPN interfaces associated with this VPN gateway.
      * }
      */
@@ -530,7 +530,7 @@ class VpnGateway extends \Google\Protobuf\Internal\Message
      * The list of VPN interfaces associated with this VPN gateway.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VpnGatewayVpnGatewayInterface vpn_interfaces = 91842181;</code>
-     * @param \Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VpnGatewayVpnGatewayInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVpnInterfaces($var)

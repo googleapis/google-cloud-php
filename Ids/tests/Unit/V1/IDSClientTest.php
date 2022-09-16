@@ -87,7 +87,7 @@ class IDSClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -119,14 +119,14 @@ class IDSClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $endpointId = 'endpointId-1135808507';
         $endpoint = new Endpoint();
         $endpointNetwork = 'endpointNetwork1670861529';
         $endpoint->setNetwork($endpointNetwork);
         $endpointSeverity = Severity::SEVERITY_UNSPECIFIED;
         $endpoint->setSeverity($endpointSeverity);
-        $response = $client->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $gapicClient->createEndpoint($formattedParent, $endpointId, $endpoint);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -173,7 +173,7 @@ class IDSClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -195,14 +195,14 @@ class IDSClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $endpointId = 'endpointId-1135808507';
         $endpoint = new Endpoint();
         $endpointNetwork = 'endpointNetwork1670861529';
         $endpoint->setNetwork($endpointNetwork);
         $endpointSeverity = Severity::SEVERITY_UNSPECIFIED;
         $endpoint->setSeverity($endpointSeverity);
-        $response = $client->createEndpoint($formattedParent, $endpointId, $endpoint);
+        $response = $gapicClient->createEndpoint($formattedParent, $endpointId, $endpoint);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -236,7 +236,7 @@ class IDSClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -256,8 +256,8 @@ class IDSClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $client->deleteEndpoint($formattedName);
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $response = $gapicClient->deleteEndpoint($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -300,7 +300,7 @@ class IDSClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -322,8 +322,8 @@ class IDSClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $client->deleteEndpoint($formattedName);
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $response = $gapicClient->deleteEndpoint($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -351,7 +351,7 @@ class IDSClientTest extends GeneratedTest
     public function getEndpointTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -371,8 +371,8 @@ class IDSClientTest extends GeneratedTest
         $expectedResponse->setTrafficLogs($trafficLogs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
-        $response = $client->getEndpoint($formattedName);
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $response = $gapicClient->getEndpoint($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -390,7 +390,7 @@ class IDSClientTest extends GeneratedTest
     public function getEndpointExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -405,10 +405,10 @@ class IDSClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
+        $formattedName = $gapicClient->endpointName('[PROJECT]', '[LOCATION]', '[ENDPOINT]');
         try {
-            $client->getEndpoint($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEndpoint($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -425,7 +425,7 @@ class IDSClientTest extends GeneratedTest
     public function listEndpointsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -440,8 +440,8 @@ class IDSClientTest extends GeneratedTest
         $expectedResponse->setEndpoints($endpoints);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listEndpoints($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listEndpoints($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -462,7 +462,7 @@ class IDSClientTest extends GeneratedTest
     public function listEndpointsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -477,10 +477,10 @@ class IDSClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listEndpoints($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listEndpoints($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

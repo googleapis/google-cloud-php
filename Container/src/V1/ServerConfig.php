@@ -60,15 +60,15 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $default_cluster_version
      *           Version of Kubernetes the service deploys by default.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_node_versions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_node_versions
      *           List of valid node upgrade target versions, in descending order.
      *     @type string $default_image_type
      *           Default image type.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_image_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_image_types
      *           List of valid image types.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $valid_master_versions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $valid_master_versions
      *           List of valid master versions, in descending order.
-     *     @type \Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig[]|\Google\Protobuf\Internal\RepeatedField $channels
+     *     @type array<\Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig>|\Google\Protobuf\Internal\RepeatedField $channels
      *           List of release channel configurations.
      * }
      */
@@ -118,7 +118,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid node upgrade target versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_node_versions = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidNodeVersions($var)
@@ -170,7 +170,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid image types.
      *
      * Generated from protobuf field <code>repeated string valid_image_types = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidImageTypes($var)
@@ -196,7 +196,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of valid master versions, in descending order.
      *
      * Generated from protobuf field <code>repeated string valid_master_versions = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValidMasterVersions($var)
@@ -222,7 +222,7 @@ class ServerConfig extends \Google\Protobuf\Internal\Message
      * List of release channel configurations.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.ServerConfig.ReleaseChannelConfig channels = 9;</code>
-     * @param \Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\ServerConfig\ReleaseChannelConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChannels($var)

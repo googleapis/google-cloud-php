@@ -91,7 +91,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Note: This field is equivalent to the 'metadata' field in the v1beta1 API.
      *           They have the same syntax and read/write to the same location in Service
      *           Directory.
-     *     @type \Google\Cloud\ServiceDirectory\V1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Output only. Endpoints associated with this service. Returned on
      *           LookupService.Resolve. Control plane clients should use
      *           RegistrationService.ListEndpoints.
@@ -215,7 +215,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * RegistrationService.ListEndpoints.
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ServiceDirectory\V1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceDirectory\V1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndpoints($var)

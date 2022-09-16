@@ -47,7 +47,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult[]|\Google\Protobuf\Internal\RepeatedField $list_findings_results
+     *     @type array<\Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult>|\Google\Protobuf\Internal\RepeatedField $list_findings_results
      *           Findings matching the list request.
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Time used for executing the list request.
@@ -78,7 +78,7 @@ class ListFindingsResponse extends \Google\Protobuf\Internal\Message
      * Findings matching the list request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1p1beta1.ListFindingsResponse.ListFindingsResult list_findings_results = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1p1beta1\ListFindingsResponse\ListFindingsResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setListFindingsResults($var)

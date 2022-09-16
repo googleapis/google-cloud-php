@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DoubleArray extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of bool values.
+     * A list of double values.
      *
      * Generated from protobuf field <code>repeated double values = 1;</code>
      */
@@ -28,8 +28,8 @@ class DoubleArray extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $values
-     *           A list of bool values.
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $values
+     *           A list of double values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class DoubleArray extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of bool values.
+     * A list of double values.
      *
      * Generated from protobuf field <code>repeated double values = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -49,10 +49,10 @@ class DoubleArray extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of bool values.
+     * A list of double values.
      *
      * Generated from protobuf field <code>repeated double values = 1;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

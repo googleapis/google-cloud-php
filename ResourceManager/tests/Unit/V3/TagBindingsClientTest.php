@@ -86,7 +86,7 @@ class TagBindingsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -113,7 +113,7 @@ class TagBindingsClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $tagBinding = new TagBinding();
-        $response = $client->createTagBinding($tagBinding);
+        $response = $gapicClient->createTagBinding($tagBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -156,7 +156,7 @@ class TagBindingsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -179,7 +179,7 @@ class TagBindingsClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $tagBinding = new TagBinding();
-        $response = $client->createTagBinding($tagBinding);
+        $response = $gapicClient->createTagBinding($tagBinding);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -213,7 +213,7 @@ class TagBindingsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -233,8 +233,8 @@ class TagBindingsClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->tagBindingName('[TAG_BINDING]');
-        $response = $client->deleteTagBinding($formattedName);
+        $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
+        $response = $gapicClient->deleteTagBinding($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -277,7 +277,7 @@ class TagBindingsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -299,8 +299,8 @@ class TagBindingsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tagBindingName('[TAG_BINDING]');
-        $response = $client->deleteTagBinding($formattedName);
+        $formattedName = $gapicClient->tagBindingName('[TAG_BINDING]');
+        $response = $gapicClient->deleteTagBinding($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -328,7 +328,7 @@ class TagBindingsClientTest extends GeneratedTest
     public function listTagBindingsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -344,7 +344,7 @@ class TagBindingsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $parent = 'parent-995424086';
-        $response = $client->listTagBindings($parent);
+        $response = $gapicClient->listTagBindings($parent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -365,7 +365,7 @@ class TagBindingsClientTest extends GeneratedTest
     public function listTagBindingsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -382,8 +382,8 @@ class TagBindingsClientTest extends GeneratedTest
         // Mock request
         $parent = 'parent-995424086';
         try {
-            $client->listTagBindings($parent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTagBindings($parent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

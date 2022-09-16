@@ -44,7 +44,8 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Optional. Set of label tags associated with the AuthorizationPolicy resource.
+     * Optional. Set of label tags associated with the AuthorizationPolicy
+     * resource.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -57,10 +58,11 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $action = 0;
     /**
-     * Optional. List of rules to match. Note that at least one of the rules must match in
-     * order for the action specified in the 'action' field to be taken. A rule is
-     * a match if there is a matching source and destination. If left blank, the
-     * action specified in the `action` field will be applied on every request.
+     * Optional. List of rules to match. Note that at least one of the rules must
+     * match in order for the action specified in the 'action' field to be taken.
+     * A rule is a match if there is a matching source and destination. If left
+     * blank, the action specified in the `action` field will be applied on every
+     * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -82,15 +84,17 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The timestamp when the resource was updated.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. Set of label tags associated with the AuthorizationPolicy resource.
+     *           Optional. Set of label tags associated with the AuthorizationPolicy
+     *           resource.
      *     @type int $action
      *           Required. The action to take when a rule match is found. Possible values
      *           are "ALLOW" or "DENY".
-     *     @type \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule[]|\Google\Protobuf\Internal\RepeatedField $rules
-     *           Optional. List of rules to match. Note that at least one of the rules must match in
-     *           order for the action specified in the 'action' field to be taken. A rule is
-     *           a match if there is a matching source and destination. If left blank, the
-     *           action specified in the `action` field will be applied on every request.
+     *     @type array<\Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $rules
+     *           Optional. List of rules to match. Note that at least one of the rules must
+     *           match in order for the action specified in the 'action' field to be taken.
+     *           A rule is a match if there is a matching source and destination. If left
+     *           blank, the action specified in the `action` field will be applied on every
+     *           request.
      * }
      */
     public function __construct($data = NULL) {
@@ -225,7 +229,8 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set of label tags associated with the AuthorizationPolicy resource.
+     * Optional. Set of label tags associated with the AuthorizationPolicy
+     * resource.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -236,7 +241,8 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Set of label tags associated with the AuthorizationPolicy resource.
+     * Optional. Set of label tags associated with the AuthorizationPolicy
+     * resource.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -279,10 +285,11 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of rules to match. Note that at least one of the rules must match in
-     * order for the action specified in the 'action' field to be taken. A rule is
-     * a match if there is a matching source and destination. If left blank, the
-     * action specified in the `action` field will be applied on every request.
+     * Optional. List of rules to match. Note that at least one of the rules must
+     * match in order for the action specified in the 'action' field to be taken.
+     * A rule is a match if there is a matching source and destination. If left
+     * blank, the action specified in the `action` field will be applied on every
+     * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -293,13 +300,14 @@ class AuthorizationPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. List of rules to match. Note that at least one of the rules must match in
-     * order for the action specified in the 'action' field to be taken. A rule is
-     * a match if there is a matching source and destination. If left blank, the
-     * action specified in the `action` field will be applied on every request.
+     * Optional. List of rules to match. Note that at least one of the rules must
+     * match in order for the action specified in the 'action' field to be taken.
+     * A rule is a match if there is a matching source and destination. If left
+     * blank, the action specified in the `action` field will be applied on every
+     * request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networksecurity.v1beta1.AuthorizationPolicy.Rule rules = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy\Rule>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRules($var)

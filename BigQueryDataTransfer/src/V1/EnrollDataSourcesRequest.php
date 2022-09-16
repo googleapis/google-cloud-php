@@ -40,7 +40,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           The name of the project resource in the form:
      *           `projects/{project_id}`
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $data_source_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
      *           Data sources that are enrolled. It is required to provide at least one
      *           data source id.
      * }
@@ -95,7 +95,7 @@ class EnrollDataSourcesRequest extends \Google\Protobuf\Internal\Message
      * data source id.
      *
      * Generated from protobuf field <code>repeated string data_source_ids = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataSourceIds($var)

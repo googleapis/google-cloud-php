@@ -28,7 +28,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataflow\V1beta3\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $snapshots
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\Snapshot>|\Google\Protobuf\Internal\RepeatedField $snapshots
      *           Returned snapshots.
      * }
      */
@@ -52,7 +52,7 @@ class ListSnapshotsResponse extends \Google\Protobuf\Internal\Message
      * Returned snapshots.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Snapshot snapshots = 1;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\Snapshot[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\Snapshot>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSnapshots($var)

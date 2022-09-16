@@ -15,11 +15,10 @@ class AnnotationSpec
           return;
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-÷
-1google/cloud/automl/v1beta1/annotation_spec.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"Ö
+Ù
+1google/cloud/automl/v1beta1/annotation_spec.protogoogle.cloud.automl.v1beta1"Ö
 AnnotationSpec
 name (	
 display_name (	

@@ -89,7 +89,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -123,10 +123,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $backup = new Backup();
         $backupId = 'backupId1355353272';
-        $response = $client->createBackup($formattedParent, $backup, $backupId);
+        $response = $gapicClient->createBackup($formattedParent, $backup, $backupId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -173,7 +173,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -195,10 +195,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $backup = new Backup();
         $backupId = 'backupId1355353272';
-        $response = $client->createBackup($formattedParent, $backup, $backupId);
+        $response = $gapicClient->createBackup($formattedParent, $backup, $backupId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -232,7 +232,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -260,10 +260,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
-        $response = $client->createInstance($formattedParent, $instanceId, $instance);
+        $response = $gapicClient->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -310,7 +310,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -332,10 +332,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $instanceId = 'instanceId-2101995259';
         $instance = new Instance();
-        $response = $client->createInstance($formattedParent, $instanceId, $instance);
+        $response = $gapicClient->createInstance($formattedParent, $instanceId, $instance);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -369,7 +369,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -389,8 +389,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $response = $client->deleteBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+        $response = $gapicClient->deleteBackup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -433,7 +433,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -455,8 +455,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $response = $client->deleteBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+        $response = $gapicClient->deleteBackup($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -490,7 +490,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -510,8 +510,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->deleteInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->deleteInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -554,7 +554,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -576,8 +576,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->deleteInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->deleteInstance($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -605,7 +605,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function getBackupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -627,8 +627,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setDownloadBytes($downloadBytes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
-        $response = $client->getBackup($formattedName);
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+        $response = $gapicClient->getBackup($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -646,7 +646,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function getBackupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -661,10 +661,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
+        $formattedName = $gapicClient->backupName('[PROJECT]', '[LOCATION]', '[BACKUP]');
         try {
-            $client->getBackup($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBackup($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -681,7 +681,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -697,8 +697,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->getInstance($formattedName);
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->getInstance($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -716,7 +716,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -731,10 +731,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $client->getInstance($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInstance($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -751,7 +751,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function listBackupsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -766,8 +766,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setBackups($backups);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listBackups($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listBackups($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -788,7 +788,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function listBackupsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -803,10 +803,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listBackups($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listBackups($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -823,7 +823,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -838,8 +838,8 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $expectedResponse->setInstances($instances);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listInstances($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listInstances($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -860,7 +860,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -875,10 +875,10 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listInstances($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInstances($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -901,7 +901,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -929,9 +929,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $fileShare = 'fileShare2143984476';
-        $response = $client->restoreInstance($formattedName, $fileShare);
+        $response = $gapicClient->restoreInstance($formattedName, $fileShare);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -976,7 +976,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -998,9 +998,9 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         $fileShare = 'fileShare2143984476';
-        $response = $client->restoreInstance($formattedName, $fileShare);
+        $response = $gapicClient->restoreInstance($formattedName, $fileShare);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1034,7 +1034,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1070,7 +1070,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         // Mock request
         $backup = new Backup();
         $updateMask = new FieldMask();
-        $response = $client->updateBackup($backup, $updateMask);
+        $response = $gapicClient->updateBackup($backup, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1115,7 +1115,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1139,7 +1139,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         // Mock request
         $backup = new Backup();
         $updateMask = new FieldMask();
-        $response = $client->updateBackup($backup, $updateMask);
+        $response = $gapicClient->updateBackup($backup, $updateMask);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1173,7 +1173,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1200,7 +1200,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->updateInstance();
+        $response = $gapicClient->updateInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1241,7 +1241,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1262,7 +1262,7 @@ class CloudFilestoreManagerClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->updateInstance();
+        $response = $gapicClient->updateInstance();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

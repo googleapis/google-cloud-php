@@ -97,7 +97,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -133,7 +133,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $osPolicyAssignment = new OSPolicyAssignment();
         $osPolicyAssignmentOsPolicies = [];
         $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
@@ -146,7 +146,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
         $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
         $osPolicyAssignmentId = 'osPolicyAssignmentId-1092208901';
-        $response = $client->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
+        $response = $gapicClient->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -193,7 +193,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -215,7 +215,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $osPolicyAssignment = new OSPolicyAssignment();
         $osPolicyAssignmentOsPolicies = [];
         $osPolicyAssignment->setOsPolicies($osPolicyAssignmentOsPolicies);
@@ -228,7 +228,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
         $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
         $osPolicyAssignmentId = 'osPolicyAssignmentId-1092208901';
-        $response = $client->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
+        $response = $gapicClient->createOSPolicyAssignment($formattedParent, $osPolicyAssignment, $osPolicyAssignmentId);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -262,7 +262,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -282,8 +282,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $client->deleteOSPolicyAssignment($formattedName);
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $response = $gapicClient->deleteOSPolicyAssignment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -326,7 +326,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -348,8 +348,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $client->deleteOSPolicyAssignment($formattedName);
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $response = $gapicClient->deleteOSPolicyAssignment($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -377,7 +377,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getInventoryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -387,8 +387,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->getInventory($formattedName);
+        $formattedName = $gapicClient->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->getInventory($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -406,7 +406,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getInventoryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -421,10 +421,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->inventoryName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $client->getInventory($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInventory($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -441,7 +441,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getOSPolicyAssignmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -465,8 +465,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setUid($uid);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $client->getOSPolicyAssignment($formattedName);
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $response = $gapicClient->getOSPolicyAssignment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -484,7 +484,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getOSPolicyAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -499,10 +499,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
         try {
-            $client->getOSPolicyAssignment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getOSPolicyAssignment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -519,7 +519,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getOSPolicyAssignmentReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -535,8 +535,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setLastRunId($lastRunId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
-        $response = $client->getOSPolicyAssignmentReport($formattedName);
+        $formattedName = $gapicClient->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
+        $response = $gapicClient->getOSPolicyAssignmentReport($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -554,7 +554,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getOSPolicyAssignmentReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -569,10 +569,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
+        $formattedName = $gapicClient->oSPolicyAssignmentReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
         try {
-            $client->getOSPolicyAssignmentReport($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getOSPolicyAssignmentReport($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -589,7 +589,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getVulnerabilityReportTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -599,8 +599,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
-        $response = $client->getVulnerabilityReport($formattedName);
+        $formattedName = $gapicClient->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $response = $gapicClient->getVulnerabilityReport($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -618,7 +618,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function getVulnerabilityReportExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -633,10 +633,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+        $formattedName = $gapicClient->vulnerabilityReportName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
         try {
-            $client->getVulnerabilityReport($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getVulnerabilityReport($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -653,7 +653,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listInventoriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -668,8 +668,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setInventories($inventories);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
-        $response = $client->listInventories($formattedParent);
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
+        $response = $gapicClient->listInventories($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -690,7 +690,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listInventoriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -705,10 +705,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
         try {
-            $client->listInventories($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInventories($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -725,7 +725,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentReportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -740,8 +740,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setOsPolicyAssignmentReports($osPolicyAssignmentReports);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
-        $response = $client->listOSPolicyAssignmentReports($formattedParent);
+        $formattedParent = $gapicClient->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
+        $response = $gapicClient->listOSPolicyAssignmentReports($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -762,7 +762,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentReportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -777,10 +777,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
+        $formattedParent = $gapicClient->instanceOSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[INSTANCE]', '[ASSIGNMENT]');
         try {
-            $client->listOSPolicyAssignmentReports($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listOSPolicyAssignmentReports($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -797,7 +797,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentRevisionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -812,8 +812,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setOsPolicyAssignments($osPolicyAssignments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
-        $response = $client->listOSPolicyAssignmentRevisions($formattedName);
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $response = $gapicClient->listOSPolicyAssignmentRevisions($formattedName);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -834,7 +834,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentRevisionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -849,10 +849,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
+        $formattedName = $gapicClient->oSPolicyAssignmentName('[PROJECT]', '[LOCATION]', '[OS_POLICY_ASSIGNMENT]');
         try {
-            $client->listOSPolicyAssignmentRevisions($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listOSPolicyAssignmentRevisions($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -869,7 +869,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -884,8 +884,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setOsPolicyAssignments($osPolicyAssignments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listOSPolicyAssignments($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listOSPolicyAssignments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -906,7 +906,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listOSPolicyAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -921,10 +921,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listOSPolicyAssignments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listOSPolicyAssignments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -941,7 +941,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listVulnerabilityReportsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -956,8 +956,8 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $expectedResponse->setVulnerabilityReports($vulnerabilityReports);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
-        $response = $client->listVulnerabilityReports($formattedParent);
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
+        $response = $gapicClient->listVulnerabilityReports($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -978,7 +978,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
     public function listVulnerabilityReportsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -993,10 +993,10 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
+        $formattedParent = $gapicClient->instanceName('[PROJECT]', '[ZONE]', '[INSTANCE]');
         try {
-            $client->listVulnerabilityReports($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listVulnerabilityReports($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1019,7 +1019,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1066,7 +1066,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $rolloutMinWaitDuration = new Duration();
         $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
         $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $response = $client->updateOSPolicyAssignment($osPolicyAssignment);
+        $response = $gapicClient->updateOSPolicyAssignment($osPolicyAssignment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1109,7 +1109,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1142,7 +1142,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $rolloutMinWaitDuration = new Duration();
         $osPolicyAssignmentRollout->setMinWaitDuration($rolloutMinWaitDuration);
         $osPolicyAssignment->setRollout($osPolicyAssignmentRollout);
-        $response = $client->updateOSPolicyAssignment($osPolicyAssignment);
+        $response = $gapicClient->updateOSPolicyAssignment($osPolicyAssignment);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

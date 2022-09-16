@@ -28,7 +28,7 @@ class PivotDimensionHeader extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Data\V1beta\DimensionValue[]|\Google\Protobuf\Internal\RepeatedField $dimension_values
+     *     @type array<\Google\Analytics\Data\V1beta\DimensionValue>|\Google\Protobuf\Internal\RepeatedField $dimension_values
      *           Values of multiple dimensions in a pivot.
      * }
      */
@@ -52,7 +52,7 @@ class PivotDimensionHeader extends \Google\Protobuf\Internal\Message
      * Values of multiple dimensions in a pivot.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionValue dimension_values = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\DimensionValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DimensionValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensionValues($var)

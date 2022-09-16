@@ -71,7 +71,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      *           be updated, but it cannot be removed after it is set.
      *     @type \Google\Protobuf\BoolValue $require_ssl
      *           Whether SSL connections over IP are enforced or not.
-     *     @type \Google\Cloud\Sql\V1beta4\AclEntry[]|\Google\Protobuf\Internal\RepeatedField $authorized_networks
+     *     @type array<\Google\Cloud\Sql\V1beta4\AclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
      *           The list of external networks that are allowed to connect to the instance
      *           using the IP. In 'CIDR' notation, also known as 'slash' notation (for
      *           example: `157.197.200.0/24`).
@@ -266,7 +266,7 @@ class IpConfiguration extends \Google\Protobuf\Internal\Message
      * example: `157.197.200.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.AclEntry authorized_networks = 4;</code>
-     * @param \Google\Cloud\Sql\V1beta4\AclEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\AclEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuthorizedNetworks($var)

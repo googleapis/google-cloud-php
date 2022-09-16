@@ -30,7 +30,7 @@ class FeatureNoiseSigma extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AIPlatform\V1\FeatureNoiseSigma\NoiseSigmaForFeature[]|\Google\Protobuf\Internal\RepeatedField $noise_sigma
+     *     @type array<\Google\Cloud\AIPlatform\V1\FeatureNoiseSigma\NoiseSigmaForFeature>|\Google\Protobuf\Internal\RepeatedField $noise_sigma
      *           Noise sigma per feature. No noise is added to features that are not set.
      * }
      */
@@ -54,7 +54,7 @@ class FeatureNoiseSigma extends \Google\Protobuf\Internal\Message
      * Noise sigma per feature. No noise is added to features that are not set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.FeatureNoiseSigma.NoiseSigmaForFeature noise_sigma = 1;</code>
-     * @param \Google\Cloud\AIPlatform\V1\FeatureNoiseSigma\NoiseSigmaForFeature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\FeatureNoiseSigma\NoiseSigmaForFeature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNoiseSigma($var)

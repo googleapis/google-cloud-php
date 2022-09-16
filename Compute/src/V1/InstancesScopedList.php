@@ -33,7 +33,7 @@ class InstancesScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Compute\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           [Output Only] A list of instances contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] Informational warning which replaces the list of instances when the list is empty.
@@ -59,7 +59,7 @@ class InstancesScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of instances contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Instance instances = 29097598;</code>
-     * @param \Google\Cloud\Compute\V1\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

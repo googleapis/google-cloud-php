@@ -42,7 +42,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      *           A unique ID for a specific instance of this message, typically assigned
      *           by the client for tracking purpose. If empty, the server may choose to
      *           generate one instead.
-     *     @type \Google\Cloud\ServiceManagement\V1\ConfigFile[]|\Google\Protobuf\Internal\RepeatedField $files
+     *     @type array<\Google\Cloud\ServiceManagement\V1\ConfigFile>|\Google\Protobuf\Internal\RepeatedField $files
      *           Set of source configuration files that are used to generate a service
      *           configuration (`google.api.Service`).
      * }
@@ -99,7 +99,7 @@ class ConfigSource extends \Google\Protobuf\Internal\Message
      * configuration (`google.api.Service`).
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ConfigFile files = 2;</code>
-     * @param \Google\Cloud\ServiceManagement\V1\ConfigFile[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceManagement\V1\ConfigFile>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFiles($var)

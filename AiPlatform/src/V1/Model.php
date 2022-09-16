@@ -301,7 +301,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           A new version is committed when a new model version is uploaded or
      *           trained under an existing model id. It is an auto-incrementing decimal
      *           number in string representation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $version_aliases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_aliases
      *           User provided version aliases so that a model version can be referenced via
      *           alias (i.e.
      *           projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}
@@ -342,7 +342,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Immutable. An additional information about the Model; the schema of the metadata can
      *           be found in [metadata_schema][google.cloud.aiplatform.v1.Model.metadata_schema_uri].
      *           Unset if the Model does not have any additional information.
-     *     @type \Google\Cloud\AIPlatform\V1\Model\ExportFormat[]|\Google\Protobuf\Internal\RepeatedField $supported_export_formats
+     *     @type array<\Google\Cloud\AIPlatform\V1\Model\ExportFormat>|\Google\Protobuf\Internal\RepeatedField $supported_export_formats
      *           Output only. The formats in which this Model may be exported. If empty, this Model is
      *           not available for export.
      *     @type string $training_pipeline
@@ -358,7 +358,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Immutable. The path to the directory containing the Model artifact and any of its
      *           supporting files.
      *           Not present for AutoML Models.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_deployment_resources_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_deployment_resources_types
      *           Output only. When this Model is deployed, its prediction resources are described by the
      *           `prediction_resources` field of the [Endpoint.deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models] object.
      *           Because not all Models support all resource configuration types, the
@@ -370,7 +370,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           using a [BatchPredictionJob][google.cloud.aiplatform.v1.BatchPredictionJob], if it has at least one entry each in
      *           [supported_input_storage_formats][google.cloud.aiplatform.v1.Model.supported_input_storage_formats] and
      *           [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_input_storage_formats
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_input_storage_formats
      *           Output only. The formats this Model supports in
      *           [BatchPredictionJob.input_config][google.cloud.aiplatform.v1.BatchPredictionJob.input_config]. If
      *           [PredictSchemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri] exists, the instances
@@ -401,7 +401,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           [supported_deployment_resources_types][google.cloud.aiplatform.v1.Model.supported_deployment_resources_types], it could serve online
      *           predictions by using [PredictionService.Predict][google.cloud.aiplatform.v1.PredictionService.Predict] or
      *           [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $supported_output_storage_formats
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $supported_output_storage_formats
      *           Output only. The formats this Model supports in
      *           [BatchPredictionJob.output_config][google.cloud.aiplatform.v1.BatchPredictionJob.output_config]. If both
      *           [PredictSchemata.instance_schema_uri][google.cloud.aiplatform.v1.PredictSchemata.instance_schema_uri] and
@@ -431,7 +431,7 @@ class Model extends \Google\Protobuf\Internal\Message
      *           Output only. Timestamp when this Model was uploaded into Vertex AI.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Timestamp when this Model was most recently updated.
-     *     @type \Google\Cloud\AIPlatform\V1\DeployedModelRef[]|\Google\Protobuf\Internal\RepeatedField $deployed_models
+     *     @type array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $deployed_models
      *           Output only. The pointers to DeployedModels created from this Model. Note that
      *           Model could have been deployed to Endpoints in different Locations.
      *     @type \Google\Cloud\AIPlatform\V1\ExplanationSpec $explanation_spec
@@ -562,7 +562,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * model.
      *
      * Generated from protobuf field <code>repeated string version_aliases = 29;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVersionAliases($var)
@@ -868,7 +868,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * not available for export.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.ExportFormat supported_export_formats = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\Model\ExportFormat[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\Model\ExportFormat>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedExportFormats($var)
@@ -1016,7 +1016,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [supported_output_storage_formats][google.cloud.aiplatform.v1.Model.supported_output_storage_formats].
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.Model.DeploymentResourcesType supported_deployment_resources_types = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedDeploymentResourcesTypes($var)
@@ -1100,7 +1100,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
      *
      * Generated from protobuf field <code>repeated string supported_input_storage_formats = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedInputStorageFormats($var)
@@ -1174,7 +1174,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * [PredictionService.Explain][google.cloud.aiplatform.v1.PredictionService.Explain].
      *
      * Generated from protobuf field <code>repeated string supported_output_storage_formats = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedOutputStorageFormats($var)
@@ -1274,7 +1274,7 @@ class Model extends \Google\Protobuf\Internal\Message
      * Model could have been deployed to Endpoints in different Locations.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.DeployedModelRef deployed_models = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\AIPlatform\V1\DeployedModelRef[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AIPlatform\V1\DeployedModelRef>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDeployedModels($var)

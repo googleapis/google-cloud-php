@@ -40,7 +40,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      *     @type string $key
      *           Required. A unique key that will be sent back to the agent if this
      *           response is given.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $synonyms
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $synonyms
      *           Optional. A list of synonyms that can also be used to trigger this
      *           item in dialog.
      * }
@@ -95,7 +95,7 @@ class SelectItemInfo extends \Google\Protobuf\Internal\Message
      * item in dialog.
      *
      * Generated from protobuf field <code>repeated string synonyms = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSynonyms($var)

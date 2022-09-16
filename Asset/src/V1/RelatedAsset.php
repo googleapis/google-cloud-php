@@ -76,7 +76,7 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      *           See [Supported asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      *           for more information.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ancestors
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ancestors
      *           The ancestors of an asset in Google Cloud [resource
      *           hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy),
      *           represented as a list of relative resource names. An ancestry path starts
@@ -181,7 +181,7 @@ class RelatedAsset extends \Google\Protobuf\Internal\Message
      * Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
      *
      * Generated from protobuf field <code>repeated string ancestors = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAncestors($var)

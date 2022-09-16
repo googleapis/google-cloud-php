@@ -83,7 +83,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $text
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text
      *           The textual values of this custom attribute. For example, `["yellow",
      *           "green"]` when the key is "color".
      *           Empty string is not allowed. Otherwise, an INVALID_ARGUMENT error is
@@ -91,7 +91,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
      *           [numbers][google.cloud.retail.v2.CustomAttribute.numbers] should be set.
      *           Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $numbers
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $numbers
      *           The numerical values of this custom attribute. For example, `[2.3, 15.4]`
      *           when the key is "lengths_cm".
      *           Exactly one of [text][google.cloud.retail.v2.CustomAttribute.text] or
@@ -159,7 +159,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string text = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setText($var)
@@ -193,7 +193,7 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      * Otherwise, an INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated double numbers = 2;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNumbers($var)

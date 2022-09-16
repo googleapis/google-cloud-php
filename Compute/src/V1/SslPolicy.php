@@ -78,6 +78,12 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     private $profile = null;
     /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    private $region = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -98,11 +104,11 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $custom_features
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_features
      *           A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $enabled_features
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $enabled_features
      *           [Output Only] The list of features enabled in the SSL policy.
      *     @type string $fingerprint
      *           Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a SslPolicy. An up-to-date fingerprint must be provided in order to update the SslPolicy, otherwise the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve an SslPolicy.
@@ -118,9 +124,11 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $profile
      *           Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
      *           Check the Profile enum for the list of possible values.
+     *     @type string $region
+     *           [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
-     *     @type \Google\Cloud\Compute\V1\Warnings[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           [Output Only] If potential misconfigurations are detected for this SSL policy, this field will be populated with warning messages.
      * }
      */
@@ -180,7 +188,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * A list of features enabled when the selected profile is CUSTOM. The method returns the set of features that can be specified in this list. This field must be empty if the profile is not CUSTOM.
      *
      * Generated from protobuf field <code>repeated string custom_features = 34789707;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCustomFeatures($var)
@@ -242,7 +250,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * [Output Only] The list of features enabled in the SSL policy.
      *
      * Generated from protobuf field <code>repeated string enabled_features = 469017467;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEnabledFeatures($var)
@@ -474,6 +482,42 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -524,7 +568,7 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      * [Output Only] If potential misconfigurations are detected for this SSL policy, this field will be populated with warning messages.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Warnings warnings = 498091095;</code>
-     * @param \Google\Cloud\Compute\V1\Warnings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarnings($var)

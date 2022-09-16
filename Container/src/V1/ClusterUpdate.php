@@ -320,7 +320,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *           desired_node_pool_id. If there is only one pool in the
      *           cluster and desired_node_pool_id is not provided then
      *           the change applies to that single node pool.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $desired_locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $desired_locations
      *           The desired list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           cluster's nodes should be located.
@@ -824,7 +824,7 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * pools and will result in nodes being added and/or removed.
      *
      * Generated from protobuf field <code>repeated string desired_locations = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDesiredLocations($var)

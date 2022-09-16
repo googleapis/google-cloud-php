@@ -165,7 +165,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. The number of turns in the conversation.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis $latest_analysis
      *           Output only. The conversation's latest analysis, if one exists.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[]|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
      *           Output only. The annotations that were generated during the customer and agent
      *           interaction.
      *     @type array|\Google\Protobuf\Internal\MapField $dialogflow_intents
@@ -711,7 +711,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRuntimeAnnotations($var)

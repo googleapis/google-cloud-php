@@ -34,7 +34,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell[]|\Google\Protobuf\Internal\RepeatedField $cells
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell>|\Google\Protobuf\Internal\RepeatedField $cells
      *           Optional. List of cells that make up this row.
      *     @type bool $divider_after
      *           Optional. Whether to add a visual divider after this row.
@@ -60,7 +60,7 @@ class TableCardRow extends \Google\Protobuf\Internal\Message
      * Optional. List of cells that make up this row.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.TableCardCell cells = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\TableCardCell>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCells($var)

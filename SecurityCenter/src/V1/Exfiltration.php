@@ -40,11 +40,11 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\ExfilResource[]|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $sources
      *           If there are multiple sources, then the data is considered "joined" between
      *           them. For instance, BigQuery can join multiple tables, and each
      *           table would be considered a source.
-     *     @type \Google\Cloud\SecurityCenter\V1\ExfilResource[]|\Google\Protobuf\Internal\RepeatedField $targets
+     *     @type array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $targets
      *           If there are multiple targets, each target would get a complete copy of the
      *           "joined" source data.
      * }
@@ -73,7 +73,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * table would be considered a source.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource sources = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\ExfilResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSources($var)
@@ -101,7 +101,7 @@ class Exfiltration extends \Google\Protobuf\Internal\Message
      * "joined" source data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.ExfilResource targets = 2;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\ExfilResource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\ExfilResource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargets($var)

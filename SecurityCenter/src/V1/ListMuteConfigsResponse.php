@@ -35,7 +35,7 @@ class ListMuteConfigsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\SecurityCenter\V1\MuteConfig[]|\Google\Protobuf\Internal\RepeatedField $mute_configs
+     *     @type array<\Google\Cloud\SecurityCenter\V1\MuteConfig>|\Google\Protobuf\Internal\RepeatedField $mute_configs
      *           The mute configs from the specified parent.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListMuteConfigsResponse extends \Google\Protobuf\Internal\Message
      * The mute configs from the specified parent.
      *
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.MuteConfig mute_configs = 1;</code>
-     * @param \Google\Cloud\SecurityCenter\V1\MuteConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\SecurityCenter\V1\MuteConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMuteConfigs($var)

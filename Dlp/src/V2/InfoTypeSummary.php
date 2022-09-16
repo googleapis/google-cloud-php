@@ -21,6 +21,13 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InfoType info_type = 1;</code>
      */
     private $info_type = null;
+    /**
+     * Approximate percentage of non-null rows that contained data detected by
+     * this infotype.
+     *
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     */
+    private $estimated_prevalence = 0;
 
     /**
      * Constructor.
@@ -30,6 +37,9 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
      *           The infoType.
+     *     @type int $estimated_prevalence
+     *           Approximate percentage of non-null rows that contained data detected by
+     *           this infotype.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +79,34 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\InfoType::class);
         $this->info_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Approximate percentage of non-null rows that contained data detected by
+     * this infotype.
+     *
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     * @return int
+     */
+    public function getEstimatedPrevalence()
+    {
+        return $this->estimated_prevalence;
+    }
+
+    /**
+     * Approximate percentage of non-null rows that contained data detected by
+     * this infotype.
+     *
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEstimatedPrevalence($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->estimated_prevalence = $var;
 
         return $this;
     }

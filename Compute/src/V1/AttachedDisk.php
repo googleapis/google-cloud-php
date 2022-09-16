@@ -16,6 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class AttachedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
+     * [Output Only] The architecture of the attached disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     */
+    private $architecture = null;
+    /**
      * Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *
      * Generated from protobuf field <code>optional bool auto_delete = 464761403;</code>
@@ -46,6 +53,12 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     private $disk_size_gb = null;
     /**
+     * [Input Only] Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     *
+     * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
+     */
+    private $force_attach = null;
+    /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
@@ -64,7 +77,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      */
     private $initialize_params = null;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. For most machine types, the default is SCSI. Local SSDs can use either NVME or SCSI. In certain configurations, persistent disks can use NVMe. For more information, see About persistent disks.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -115,6 +128,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $architecture
+     *           [Output Only] The architecture of the attached disk. Valid values are ARM64 or X86_64.
+     *           Check the Architecture enum for the list of possible values.
      *     @type bool $auto_delete
      *           Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      *     @type bool $boot
@@ -125,18 +141,20 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *           Encrypts or decrypts a disk using a customer-supplied encryption key. If you are creating a new disk, this field encrypts the new disk using an encryption key that you provide. If you are attaching an existing disk that is already encrypted, this field decrypts the disk using the customer-supplied encryption key. If you encrypt a disk using a customer-supplied key, you must provide the same key again when you attempt to use this resource at a later time. For example, you must provide the key when you create a snapshot or an image from the disk or when you attach the disk to a virtual machine instance. If you do not provide an encryption key, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later. Instance templates do not store customer-supplied encryption keys, so you cannot use your own keys to encrypt disks in a managed instance group.
      *     @type int|string $disk_size_gb
      *           The size of the disk in GB.
-     *     @type \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $guest_os_features
+     *     @type bool $force_attach
+     *           [Input Only] Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     *     @type array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $guest_os_features
      *           A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *     @type int $index
      *           [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      *     @type \Google\Cloud\Compute\V1\AttachedDiskInitializeParams $initialize_params
      *           [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      *     @type string $interface
-     *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     *           Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. For most machine types, the default is SCSI. Local SSDs can use either NVME or SCSI. In certain configurations, persistent disks can use NVMe. For more information, see About persistent disks.
      *           Check the Interface enum for the list of possible values.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#attachedDisk for attached disks.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $licenses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $licenses
      *           [Output Only] Any valid publicly visible licenses.
      *     @type string $mode
      *           The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode.
@@ -153,6 +171,44 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * [Output Only] The architecture of the attached disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @return string
+     */
+    public function getArchitecture()
+    {
+        return isset($this->architecture) ? $this->architecture : '';
+    }
+
+    public function hasArchitecture()
+    {
+        return isset($this->architecture);
+    }
+
+    public function clearArchitecture()
+    {
+        unset($this->architecture);
+    }
+
+    /**
+     * [Output Only] The architecture of the attached disk. Valid values are ARM64 or X86_64.
+     * Check the Architecture enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string architecture = 302803283;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setArchitecture($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->architecture = $var;
+
+        return $this;
     }
 
     /**
@@ -336,6 +392,42 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Input Only] Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     *
+     * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
+     * @return bool
+     */
+    public function getForceAttach()
+    {
+        return isset($this->force_attach) ? $this->force_attach : false;
+    }
+
+    public function hasForceAttach()
+    {
+        return isset($this->force_attach);
+    }
+
+    public function clearForceAttach()
+    {
+        unset($this->force_attach);
+    }
+
+    /**
+     * [Input Only] Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.
+     *
+     * Generated from protobuf field <code>optional bool force_attach = 142758425;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setForceAttach($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->force_attach = $var;
+
+        return $this;
+    }
+
+    /**
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
@@ -350,7 +442,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.GuestOsFeature guest_os_features = 79294545;</code>
-     * @param \Google\Cloud\Compute\V1\GuestOsFeature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\GuestOsFeature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGuestOsFeatures($var)
@@ -434,7 +526,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. For most machine types, the default is SCSI. Local SSDs can use either NVME or SCSI. In certain configurations, persistent disks can use NVMe. For more information, see About persistent disks.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -456,7 +548,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance.
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. For most machine types, the default is SCSI. Local SSDs can use either NVME or SCSI. In certain configurations, persistent disks can use NVMe. For more information, see About persistent disks.
      * Check the Interface enum for the list of possible values.
      *
      * Generated from protobuf field <code>optional string interface = 502623545;</code>
@@ -522,7 +614,7 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      * [Output Only] Any valid publicly visible licenses.
      *
      * Generated from protobuf field <code>repeated string licenses = 337642578;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLicenses($var)

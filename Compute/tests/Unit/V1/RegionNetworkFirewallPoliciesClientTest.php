@@ -90,7 +90,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -110,7 +110,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->addAssociation($firewallPolicy, $firewallPolicyAssociationResource, $project, $region);
+        $response = $gapicClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -159,7 +159,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -185,7 +185,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyAssociationResource = new FirewallPolicyAssociation();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->addAssociation($firewallPolicy, $firewallPolicyAssociationResource, $project, $region);
+        $response = $gapicClient->addAssociation($firewallPolicy, $firewallPolicyAssociationResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -217,7 +217,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -237,7 +237,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyRuleResource = new FirewallPolicyRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->addRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
+        $response = $gapicClient->addRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -286,7 +286,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -312,7 +312,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyRuleResource = new FirewallPolicyRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->addRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
+        $response = $gapicClient->addRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -344,7 +344,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -363,7 +363,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->cloneRules($firewallPolicy, $project, $region);
+        $response = $gapicClient->cloneRules($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -410,7 +410,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -435,7 +435,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->cloneRules($firewallPolicy, $project, $region);
+        $response = $gapicClient->cloneRules($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -467,7 +467,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -486,7 +486,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($firewallPolicy, $project, $region);
+        $response = $gapicClient->delete($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -533,7 +533,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -558,7 +558,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($firewallPolicy, $project, $region);
+        $response = $gapicClient->delete($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -584,7 +584,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -621,7 +621,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($firewallPolicy, $project, $region);
+        $response = $gapicClient->get($firewallPolicy, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -643,7 +643,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -662,8 +662,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($firewallPolicy, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($firewallPolicy, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -680,7 +680,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getAssociationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -701,7 +701,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->getAssociation($firewallPolicy, $project, $region);
+        $response = $gapicClient->getAssociation($firewallPolicy, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -723,7 +723,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getAssociationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -742,8 +742,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->getAssociation($firewallPolicy, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAssociation($firewallPolicy, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -760,7 +760,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getEffectiveFirewallsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -771,7 +771,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $network = 'network1843485230';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->getEffectiveFirewalls($network, $project, $region);
+        $response = $gapicClient->getEffectiveFirewalls($network, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -793,7 +793,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getEffectiveFirewallsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -812,8 +812,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->getEffectiveFirewalls($network, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getEffectiveFirewalls($network, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -830,7 +830,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -847,7 +847,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($project, $region, $resource);
+        $response = $gapicClient->getIamPolicy($project, $region, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -869,7 +869,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -888,8 +888,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($project, $region, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($project, $region, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -906,7 +906,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getRuleTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -935,7 +935,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->getRule($firewallPolicy, $project, $region);
+        $response = $gapicClient->getRule($firewallPolicy, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -957,7 +957,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function getRuleExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -976,8 +976,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->getRule($firewallPolicy, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRule($firewallPolicy, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1000,7 +1000,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1019,7 +1019,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyResource = new FirewallPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($firewallPolicyResource, $project, $region);
+        $response = $gapicClient->insert($firewallPolicyResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1066,7 +1066,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1091,7 +1091,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyResource = new FirewallPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($firewallPolicyResource, $project, $region);
+        $response = $gapicClient->insert($firewallPolicyResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1117,7 +1117,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1138,7 +1138,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1161,7 +1161,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1179,8 +1179,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1203,7 +1203,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1223,7 +1223,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyResource = new FirewallPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($firewallPolicy, $firewallPolicyResource, $project, $region);
+        $response = $gapicClient->patch($firewallPolicy, $firewallPolicyResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1272,7 +1272,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1298,7 +1298,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyResource = new FirewallPolicy();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($firewallPolicy, $firewallPolicyResource, $project, $region);
+        $response = $gapicClient->patch($firewallPolicy, $firewallPolicyResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1330,7 +1330,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1350,7 +1350,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyRuleResource = new FirewallPolicyRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patchRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
+        $response = $gapicClient->patchRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1399,7 +1399,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1425,7 +1425,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicyRuleResource = new FirewallPolicyRule();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patchRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
+        $response = $gapicClient->patchRule($firewallPolicy, $firewallPolicyRuleResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1457,7 +1457,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1476,7 +1476,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->removeAssociation($firewallPolicy, $project, $region);
+        $response = $gapicClient->removeAssociation($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1523,7 +1523,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1548,7 +1548,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->removeAssociation($firewallPolicy, $project, $region);
+        $response = $gapicClient->removeAssociation($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1580,7 +1580,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1599,7 +1599,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->removeRule($firewallPolicy, $project, $region);
+        $response = $gapicClient->removeRule($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -1646,7 +1646,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1671,7 +1671,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $firewallPolicy = 'firewallPolicy1035044177';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->removeRule($firewallPolicy, $project, $region);
+        $response = $gapicClient->removeRule($firewallPolicy, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -1697,7 +1697,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1715,7 +1715,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
-        $response = $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+        $response = $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1739,7 +1739,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1759,8 +1759,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
         $resource = 'resource-341064690';
         try {
-            $client->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1777,7 +1777,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1789,7 +1789,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
-        $response = $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+        $response = $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1813,7 +1813,7 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1833,8 +1833,8 @@ class RegionNetworkFirewallPoliciesClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $testPermissionsRequestResource = new TestPermissionsRequest();
         try {
-            $client->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($project, $region, $resource, $testPermissionsRequestResource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

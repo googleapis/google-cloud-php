@@ -29,7 +29,7 @@ class IntValueCondition extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Required. Matches values of the parent parameter of 'INTEGER' type.
      *           All values must lie in `integer_value_spec` of parent parameter.
      * }
@@ -56,7 +56,7 @@ class IntValueCondition extends \Google\Protobuf\Internal\Message
      * All values must lie in `integer_value_spec` of parent parameter.
      *
      * Generated from protobuf field <code>repeated int64 values = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

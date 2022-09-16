@@ -36,7 +36,7 @@ class ListGcpUserAccessBindingsResponse extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding[]|\Google\Protobuf\Internal\RepeatedField $gcp_user_access_bindings
+     *     @type array<\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding>|\Google\Protobuf\Internal\RepeatedField $gcp_user_access_bindings
      *           [GcpUserAccessBinding]
      *           [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *     @type string $next_page_token
@@ -65,7 +65,7 @@ class ListGcpUserAccessBindingsResponse extends \Google\Protobuf\Internal\Messag
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.GcpUserAccessBinding gcp_user_access_bindings = 1;</code>
-     * @param \Google\Identity\AccessContextManager\V1\GcpUserAccessBinding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\GcpUserAccessBinding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGcpUserAccessBindings($var)

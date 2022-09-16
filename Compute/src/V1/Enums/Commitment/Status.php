@@ -34,6 +34,8 @@ class Status
 
     const ACTIVE = 'ACTIVE';
 
+    const CANCELLED = 'CANCELLED';
+
     const CREATING = 'CREATING';
 
     const EXPIRED = 'EXPIRED';

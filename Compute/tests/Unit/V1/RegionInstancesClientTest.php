@@ -82,7 +82,7 @@ class RegionInstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -101,7 +101,7 @@ class RegionInstancesClientTest extends GeneratedTest
         $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
+        $response = $gapicClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -148,7 +148,7 @@ class RegionInstancesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -173,7 +173,7 @@ class RegionInstancesClientTest extends GeneratedTest
         $bulkInsertInstanceResourceResource = new BulkInsertInstanceResource();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
+        $response = $gapicClient->bulkInsert($bulkInsertInstanceResourceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

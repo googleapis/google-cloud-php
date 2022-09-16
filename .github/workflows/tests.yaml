@@ -3,36 +3,31 @@ on:
   push:
     branches: [ main ]
   pull_request:
-    types: [labeled, opened, synchronize, reopened]
   workflow_dispatch:
 
 jobs:
   test:
-    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     strategy:
       matrix:
         platform: [ubuntu-latest, windows-latest]
-        php: [ "7.0", "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
+        php: [ "7.1", "7.2", "7.3", "7.4", "8.0", "8.1" ]
         phpunit-filename: [phpunit]
-        grpc-version: [grpc]
         include:
           - platform: ubuntu-latest
             php: "5.6"
             phpunit-filename: phpunit-php5
-            grpc-version: grpc
+          - platform: ubuntu-latest
+            php: "7.0"
+            phpunit-filename: phpunit
     name: PHP ${{ matrix.php }} Unit Test (${{ matrix.platform }})
     runs-on: ${{ matrix.platform }}
     steps:
-    - if: ${{ github.event.action == 'labeled' }}
-      uses: actions-ecosystem/action-remove-labels@v1
-      with:
-        labels: gh:run-tests
     - uses: actions/checkout@v3
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
         php-version: ${{ matrix.php }}
-        extensions: ${{ matrix.grpc-version }}
+        extensions: grpc
     - name: Install Dependencies
       uses: nick-invision/retry@v2
       with:
@@ -48,7 +43,6 @@ jobs:
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
 
   style:
-    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     runs-on: ubuntu-latest
     name: PHP Style Check
     steps:
@@ -67,7 +61,6 @@ jobs:
       run: dev/sh/style
 
   docs:
-    if: ${{ github.event.action != 'labeled' || github.event.label.name == 'gh:run-tests' }}
     runs-on: ubuntu-latest
     name: Generate Documentation (Dry Run)
     steps:

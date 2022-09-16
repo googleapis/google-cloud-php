@@ -41,12 +41,12 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Video\LiveStream\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Cloud\Video\LiveStream\V1\Event>|\Google\Protobuf\Internal\RepeatedField $events
      *           A list of events.
      *     @type string $next_page_token
      *           Token to retrieve the next page of results, or empty if there are no more
      *           results in the list.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached.
      * }
      */
@@ -70,7 +70,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * A list of events.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.livestream.v1.Event events = 1;</code>
-     * @param \Google\Cloud\Video\LiveStream\V1\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\LiveStream\V1\Event>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)
@@ -124,7 +124,7 @@ class ListEventsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

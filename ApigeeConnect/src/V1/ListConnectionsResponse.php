@@ -36,7 +36,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ApigeeConnect\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type array<\Google\Cloud\ApigeeConnect\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
      *           A list of clients.
      *     @type string $next_page_token
      *           A token that can be sent as `page_token` to retrieve the next page.
@@ -63,7 +63,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * A list of clients.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeconnect.v1.Connection connections = 1;</code>
-     * @param \Google\Cloud\ApigeeConnect\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApigeeConnect\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnections($var)

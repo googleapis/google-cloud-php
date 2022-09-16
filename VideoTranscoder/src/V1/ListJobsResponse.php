@@ -40,11 +40,11 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Video\Transcoder\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Video\Transcoder\V1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           List of jobs in the specified region.
      *     @type string $next_page_token
      *           The pagination token.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           List of regions that could not be reached.
      * }
      */
@@ -68,7 +68,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * List of jobs in the specified region.
      *
      * Generated from protobuf field <code>repeated .google.cloud.video.transcoder.v1.Job jobs = 1;</code>
-     * @param \Google\Cloud\Video\Transcoder\V1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Video\Transcoder\V1\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)
@@ -120,7 +120,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * List of regions that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

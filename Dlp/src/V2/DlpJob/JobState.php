@@ -39,7 +39,7 @@ class JobState
      */
     const DONE = 3;
     /**
-     * The job was canceled before it could complete.
+     * The job was canceled before it could be completed.
      *
      * Generated from protobuf enum <code>CANCELED = 4;</code>
      */
@@ -53,7 +53,7 @@ class JobState
     /**
      * The job is currently accepting findings via hybridInspect.
      * A hybrid job in ACTIVE state may continue to have findings added to it
-     * through calling of hybridInspect. After the job has finished no more
+     * through the calling of hybridInspect. After the job has finished no more
      * calls to hybridInspect may be made. ACTIVE jobs can transition to DONE.
      *
      * Generated from protobuf enum <code>ACTIVE = 6;</code>

@@ -53,7 +53,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      *           Required. The target GKE NodePool.
      *           Format:
      *           'projects/{project}/locations/{location}/clusters/{cluster}/nodePools/{node_pool}'
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $roles
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $roles
      *           Required. The types of role for a GKE NodePool
      *     @type \Google\Cloud\Dataproc\V1\GkeNodePoolConfig $node_pool_config
      *           Optional. The configuration for the GKE NodePool.
@@ -116,7 +116,7 @@ class GkeNodePoolTarget extends \Google\Protobuf\Internal\Message
      * Required. The types of role for a GKE NodePool
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.GkeNodePoolTarget.Role roles = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoles($var)

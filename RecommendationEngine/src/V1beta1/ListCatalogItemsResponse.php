@@ -35,7 +35,7 @@ class ListCatalogItemsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[]|\Google\Protobuf\Internal\RepeatedField $catalog_items
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $catalog_items
      *           The catalog items.
      *     @type string $next_page_token
      *           If empty, the list is complete. If nonempty, the token to pass to the next
@@ -62,7 +62,7 @@ class ListCatalogItemsResponse extends \Google\Protobuf\Internal\Message
      * The catalog items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem catalog_items = 1;</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCatalogItems($var)

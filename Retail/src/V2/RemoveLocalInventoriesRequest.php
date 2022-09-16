@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [RemoveLocalInventories][] method.
+ * Request message for
+ * [ProductService.RemoveLocalInventories][google.cloud.retail.v2.ProductService.RemoveLocalInventories]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveLocalInventoriesRequest</code>
  */
@@ -66,7 +68,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      *           If the caller does not have permission to access the
      *           [Product][google.cloud.retail.v2.Product], regardless of whether or not it
      *           exists, a PERMISSION_DENIED error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
      *           Required. A list of place IDs to have their inventory deleted.
      *           At most 3000 place IDs are allowed per request.
      *     @type \Google\Protobuf\Timestamp $remove_time
@@ -140,7 +142,7 @@ class RemoveLocalInventoriesRequest extends \Google\Protobuf\Internal\Message
      * At most 3000 place IDs are allowed per request.
      *
      * Generated from protobuf field <code>repeated string place_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPlaceIds($var)

@@ -40,11 +40,11 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataflow\V1beta3\JobMessage[]|\Google\Protobuf\Internal\RepeatedField $job_messages
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\JobMessage>|\Google\Protobuf\Internal\RepeatedField $job_messages
      *           Messages in ascending timestamp order.
      *     @type string $next_page_token
      *           The token to obtain the next page of results if there are more.
-     *     @type \Google\Cloud\Dataflow\V1beta3\AutoscalingEvent[]|\Google\Protobuf\Internal\RepeatedField $autoscaling_events
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\AutoscalingEvent>|\Google\Protobuf\Internal\RepeatedField $autoscaling_events
      *           Autoscaling events in ascending timestamp order.
      * }
      */
@@ -68,7 +68,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Messages in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.JobMessage job_messages = 1;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\JobMessage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\JobMessage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobMessages($var)
@@ -120,7 +120,7 @@ class ListJobMessagesResponse extends \Google\Protobuf\Internal\Message
      * Autoscaling events in ascending timestamp order.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.AutoscalingEvent autoscaling_events = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\AutoscalingEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\AutoscalingEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAutoscalingEvents($var)

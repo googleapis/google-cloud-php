@@ -40,7 +40,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      *     @type string $subscription
      *           Required. The subscription whose message is being acknowledged.
      *           Format is `projects/{project}/subscriptions/{sub}`.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ack_ids
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ack_ids
      *           Required. The acknowledgment ID for the messages being acknowledged that
      *           was returned by the Pub/Sub system in the `Pull` response. Must not be
      *           empty.
@@ -98,7 +98,7 @@ class AcknowledgeRequest extends \Google\Protobuf\Internal\Message
      * empty.
      *
      * Generated from protobuf field <code>repeated string ack_ids = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAckIds($var)

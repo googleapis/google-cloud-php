@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for deleting a Listing.
+ * Message for deleting a listing.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.DeleteListingRequest</code>
  */

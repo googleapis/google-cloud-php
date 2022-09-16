@@ -207,7 +207,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           Language code should be in BCP-47 format, such as "en-US" or "sr-Latn".
      *           For more information, see
      *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $companies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $companies
      *           This filter specifies the company entities to search against.
      *           If a value isn't specified, jobs are searched for against all
      *           companies.
@@ -219,7 +219,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           If tenant id is unspecified, the default tenant is used. For
      *           example, "projects/foo/companies/bar".
      *           At most 20 company filters are allowed.
-     *     @type \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $location_filters
+     *     @type array<\Google\Cloud\Talent\V4beta1\LocationFilter>|\Google\Protobuf\Internal\RepeatedField $location_filters
      *           The location filter specifies geo-regions containing the jobs to
      *           search against. See [LocationFilter][google.cloud.talent.v4beta1.LocationFilter] for more information.
      *           If a location value isn't specified, jobs fitting the other search
@@ -229,7 +229,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           [LocationFilter.distance_in_miles][google.cloud.talent.v4beta1.LocationFilter.distance_in_miles] parameter, the maximum provided
      *           distance is used for all locations.
      *           At most 5 location filters are allowed.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $job_categories
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $job_categories
      *           The category filter specifies the categories of jobs to search against.
      *           See [JobCategory][google.cloud.talent.v4beta1.JobCategory] for more information.
      *           If a value isn't specified, jobs from any category are searched against.
@@ -241,7 +241,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           Note: This only works when you specify a [CommuteMethod][google.cloud.talent.v4beta1.CommuteMethod]. In this case,
      *           [location_filters][google.cloud.talent.v4beta1.JobQuery.location_filters] is ignored.
      *            Currently we don't support sorting by commute time.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $company_display_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $company_display_names
      *           This filter specifies the company [Company.display_name][google.cloud.talent.v4beta1.Company.display_name]
      *           of the jobs to search against. The company name must match the value
      *           exactly.
@@ -290,14 +290,14 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *           service attempts to correct a misspelled query,
      *           for example, "enginee" is corrected to "engineer".
      *           Defaults to false: a spell check is performed.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $employment_types
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $employment_types
      *           The employment type filter specifies the employment type of jobs to
      *           search against, such as [EmploymentType.FULL_TIME][google.cloud.talent.v4beta1.EmploymentType.FULL_TIME].
      *           If a value isn't specified, jobs in the search results includes any
      *           employment type.
      *           If multiple values are specified, jobs in the search results include
      *           any of the specified employment types.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
      *           This filter specifies the locale of jobs to search against,
      *           for example, "en-US".
      *           If a value isn't specified, the search results can contain jobs in any
@@ -309,7 +309,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Talent\V4beta1\TimestampRange $publish_time_range
      *           Jobs published within a range specified by this filter are searched
      *           against.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $excluded_jobs
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $excluded_jobs
      *           This filter specifies a list of job names to be excluded during search.
      *           At most 400 excluded job names are allowed.
      * }
@@ -422,7 +422,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * At most 20 company filters are allowed.
      *
      * Generated from protobuf field <code>repeated string companies = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompanies($var)
@@ -464,7 +464,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * At most 5 location filters are allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.LocationFilter location_filters = 3;</code>
-     * @param \Google\Cloud\Talent\V4beta1\LocationFilter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\LocationFilter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocationFilters($var)
@@ -498,7 +498,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * categories are searched against.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.JobCategory job_categories = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobCategories($var)
@@ -604,7 +604,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * At most 20 company display name filters are allowed.
      *
      * Generated from protobuf field <code>repeated string company_display_names = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCompanyDisplayNames($var)
@@ -774,7 +774,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * any of the specified employment types.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.EmploymentType employment_types = 10;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEmploymentTypes($var)
@@ -814,7 +814,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * At most 10 language code filters are allowed.
      *
      * Generated from protobuf field <code>repeated string language_codes = 11;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)
@@ -880,7 +880,7 @@ class JobQuery extends \Google\Protobuf\Internal\Message
      * At most 400 excluded job names are allowed.
      *
      * Generated from protobuf field <code>repeated string excluded_jobs = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludedJobs($var)

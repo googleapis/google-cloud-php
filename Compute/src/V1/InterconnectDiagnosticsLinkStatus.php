@@ -55,7 +55,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $arp_caches
+     *     @type array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $arp_caches
      *           A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP neighbor entries seen on this link. This will be empty if the link is bundled
      *     @type string $circuit_id
      *           The unique ID for this link assigned during turn up by Google.
@@ -88,7 +88,7 @@ class InterconnectDiagnosticsLinkStatus extends \Google\Protobuf\Internal\Messag
      * A list of InterconnectDiagnostics.ARPEntry objects, describing the ARP neighbor entries seen on this link. This will be empty if the link is bundled
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InterconnectDiagnosticsARPEntry arp_caches = 414591761;</code>
-     * @param \Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InterconnectDiagnosticsARPEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArpCaches($var)

@@ -9,10 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Referencing the visual context of the entity in the
- * [Document.pages][google.cloud.documentai.v1.Document.pages]. Page anchors
- * can be cross-page, consist of multiple bounding polygons and optionally
- * reference specific layout element types.
+ * Referencing the visual context of the entity in the [Document.pages][google.cloud.documentai.v1.Document.pages].
+ * Page anchors can be cross-page, consist of multiple bounding polygons and
+ * optionally reference specific layout element types.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.PageAnchor</code>
  */
@@ -31,7 +30,7 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef[]|\Google\Protobuf\Internal\RepeatedField $page_refs
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef>|\Google\Protobuf\Internal\RepeatedField $page_refs
      *           One or more references to visual page elements
      * }
      */
@@ -55,7 +54,7 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
      * One or more references to visual page elements
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.PageAnchor.PageRef page_refs = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPageRefs($var)

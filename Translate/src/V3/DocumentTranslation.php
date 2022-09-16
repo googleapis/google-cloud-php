@@ -46,7 +46,7 @@ class DocumentTranslation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $byte_stream_outputs
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $byte_stream_outputs
      *           The array of translated documents. It is expected to be size 1 for now. We
      *           may produce multiple translated documents in the future for other type of
      *           file formats.
@@ -84,7 +84,7 @@ class DocumentTranslation extends \Google\Protobuf\Internal\Message
      * file formats.
      *
      * Generated from protobuf field <code>repeated bytes byte_stream_outputs = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setByteStreamOutputs($var)

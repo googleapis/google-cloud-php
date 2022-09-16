@@ -86,7 +86,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function bindDeviceToGatewayTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -94,10 +94,10 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new BindDeviceToGatewayResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
-        $response = $client->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+        $response = $gapicClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -119,7 +119,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function bindDeviceToGatewayExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -134,12 +134,12 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
         try {
-            $client->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->bindDeviceToGateway($formattedParent, $gatewayId, $deviceId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -156,7 +156,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function createDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -172,9 +172,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setBlocked($blocked);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
-        $response = $client->createDevice($formattedParent, $device);
+        $response = $gapicClient->createDevice($formattedParent, $device);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -194,7 +194,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function createDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -209,11 +209,11 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $device = new Device();
         try {
-            $client->createDevice($formattedParent, $device);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createDevice($formattedParent, $device);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -230,7 +230,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function createDeviceRegistryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -242,9 +242,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deviceRegistry = new DeviceRegistry();
-        $response = $client->createDeviceRegistry($formattedParent, $deviceRegistry);
+        $response = $gapicClient->createDeviceRegistry($formattedParent, $deviceRegistry);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -264,7 +264,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function createDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -279,11 +279,11 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $deviceRegistry = new DeviceRegistry();
         try {
-            $client->createDeviceRegistry($formattedParent, $deviceRegistry);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createDeviceRegistry($formattedParent, $deviceRegistry);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -300,7 +300,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function deleteDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -308,8 +308,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $client->deleteDevice($formattedName);
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $gapicClient->deleteDevice($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -326,7 +326,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function deleteDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -341,10 +341,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         try {
-            $client->deleteDevice($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteDevice($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -361,7 +361,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function deleteDeviceRegistryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -369,8 +369,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $client->deleteDeviceRegistry($formattedName);
+        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $gapicClient->deleteDeviceRegistry($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -387,7 +387,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function deleteDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -402,10 +402,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         try {
-            $client->deleteDeviceRegistry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteDeviceRegistry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -438,8 +438,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setBlocked($blocked);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $response = $client->getDevice($formattedName);
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $response = $gapicClient->getDevice($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -457,7 +457,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -472,10 +472,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         try {
-            $client->getDevice($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDevice($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -492,7 +492,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getDeviceRegistryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -504,8 +504,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setName($name2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $response = $client->getDeviceRegistry($formattedName);
+        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $response = $gapicClient->getDeviceRegistry($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -523,7 +523,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -538,10 +538,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedName = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         try {
-            $client->getDeviceRegistry($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDeviceRegistry($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -558,7 +558,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -571,7 +571,7 @@ class DeviceManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -589,7 +589,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -606,8 +606,8 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -624,7 +624,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceConfigVersionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -632,8 +632,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new ListDeviceConfigVersionsResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $response = $client->listDeviceConfigVersions($formattedName);
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $response = $gapicClient->listDeviceConfigVersions($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -651,7 +651,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceConfigVersionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -666,10 +666,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         try {
-            $client->listDeviceConfigVersions($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDeviceConfigVersions($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -686,7 +686,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceRegistriesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -701,8 +701,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setDeviceRegistries($deviceRegistries);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDeviceRegistries($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDeviceRegistries($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -723,7 +723,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceRegistriesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -738,10 +738,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDeviceRegistries($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDeviceRegistries($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -758,7 +758,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceStatesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -766,8 +766,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new ListDeviceStatesResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-        $response = $client->listDeviceStates($formattedName);
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $response = $gapicClient->listDeviceStates($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -785,7 +785,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDeviceStatesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -800,10 +800,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         try {
-            $client->listDeviceStates($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDeviceStates($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -820,7 +820,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDevicesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -835,8 +835,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setDevices($devices);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
-        $response = $client->listDevices($formattedParent);
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $response = $gapicClient->listDevices($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -857,7 +857,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function listDevicesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -872,10 +872,10 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         try {
-            $client->listDevices($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDevices($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -892,7 +892,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function modifyCloudToDeviceConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -904,9 +904,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse->setBinaryData($binaryData2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $response = $client->modifyCloudToDeviceConfig($formattedName, $binaryData);
+        $response = $gapicClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -926,7 +926,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function modifyCloudToDeviceConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -941,11 +941,11 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
         try {
-            $client->modifyCloudToDeviceConfig($formattedName, $binaryData);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -962,7 +962,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function sendCommandToDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -970,9 +970,9 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new SendCommandToDeviceResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
-        $response = $client->sendCommandToDevice($formattedName, $binaryData);
+        $response = $gapicClient->sendCommandToDevice($formattedName, $binaryData);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -992,7 +992,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function sendCommandToDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1007,11 +1007,11 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
+        $formattedName = $gapicClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
         $binaryData = '40';
         try {
-            $client->sendCommandToDevice($formattedName, $binaryData);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->sendCommandToDevice($formattedName, $binaryData);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1028,7 +1028,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1042,7 +1042,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1062,7 +1062,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1080,8 +1080,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1098,7 +1098,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1108,7 +1108,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1128,7 +1128,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1146,8 +1146,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1164,7 +1164,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function unbindDeviceFromGatewayTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1172,10 +1172,10 @@ class DeviceManagerClientTest extends GeneratedTest
         $expectedResponse = new UnbindDeviceFromGatewayResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
-        $response = $client->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
+        $response = $gapicClient->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1197,7 +1197,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function unbindDeviceFromGatewayExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1212,12 +1212,12 @@ class DeviceManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
+        $formattedParent = $gapicClient->registryName('[PROJECT]', '[LOCATION]', '[REGISTRY]');
         $gatewayId = 'gatewayId955798774';
         $deviceId = 'deviceId25209764';
         try {
-            $client->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->unbindDeviceFromGateway($formattedParent, $gatewayId, $deviceId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1234,7 +1234,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function updateDeviceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1252,7 +1252,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $device = new Device();
         $updateMask = new FieldMask();
-        $response = $client->updateDevice($device, $updateMask);
+        $response = $gapicClient->updateDevice($device, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1272,7 +1272,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function updateDeviceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1290,8 +1290,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $device = new Device();
         $updateMask = new FieldMask();
         try {
-            $client->updateDevice($device, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateDevice($device, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1308,7 +1308,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function updateDeviceRegistryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1322,7 +1322,7 @@ class DeviceManagerClientTest extends GeneratedTest
         // Mock request
         $deviceRegistry = new DeviceRegistry();
         $updateMask = new FieldMask();
-        $response = $client->updateDeviceRegistry($deviceRegistry, $updateMask);
+        $response = $gapicClient->updateDeviceRegistry($deviceRegistry, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1342,7 +1342,7 @@ class DeviceManagerClientTest extends GeneratedTest
     public function updateDeviceRegistryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1360,8 +1360,8 @@ class DeviceManagerClientTest extends GeneratedTest
         $deviceRegistry = new DeviceRegistry();
         $updateMask = new FieldMask();
         try {
-            $client->updateDeviceRegistry($deviceRegistry, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateDeviceRegistry($deviceRegistry, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

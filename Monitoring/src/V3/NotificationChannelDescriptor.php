@@ -96,11 +96,11 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      *           A human-readable description of the notification channel
      *           type. The description may include a description of the properties
      *           of the channel and pointers to external documentation.
-     *     @type \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $labels
+     *     @type array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $labels
      *           The set of labels that must be defined to identify a particular
      *           channel of the corresponding type. Each label includes a
      *           description for how that field should be populated.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_tiers
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_tiers
      *           The tiers that support this notification channel; the project service tier
      *           must be one of the supported_tiers.
      *     @type int $launch_stage
@@ -253,7 +253,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * description for how that field should be populated.
      *
      * Generated from protobuf field <code>repeated .google.api.LabelDescriptor labels = 4;</code>
-     * @param \Google\Api\LabelDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\LabelDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLabels($var)
@@ -283,7 +283,7 @@ class NotificationChannelDescriptor extends \Google\Protobuf\Internal\Message
      * must be one of the supported_tiers.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.ServiceTier supported_tiers = 5 [deprecated = true];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

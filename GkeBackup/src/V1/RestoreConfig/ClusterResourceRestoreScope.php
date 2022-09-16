@@ -31,7 +31,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[]|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
+     *     @type array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $selected_group_kinds
      *           A list of "types" of cluster-scoped resources to be restored from the
      *           Backup.  An empty list means that NO cluster-scoped resources will be
      *           restored. Note that Namespaces and PersistentVolume restoration is
@@ -64,7 +64,7 @@ class ClusterResourceRestoreScope extends \Google\Protobuf\Internal\Message
      * handled separately and is not governed by this field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.RestoreConfig.GroupKind selected_group_kinds = 1;</code>
-     * @param \Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\RestoreConfig\GroupKind>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSelectedGroupKinds($var)

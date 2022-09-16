@@ -34,7 +34,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $phrases
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $phrases
      *           Optional. A list of strings containing words and phrases "hints" so that
      *           the speech recognition is more likely to recognize them. This can be used
      *           to improve the accuracy for specific words and phrases, for example, if
@@ -73,7 +73,7 @@ class SpeechContext extends \Google\Protobuf\Internal\Message
      * [usage limits](https://cloud.google.com/speech/limits#content).
      *
      * Generated from protobuf field <code>repeated string phrases = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPhrases($var)

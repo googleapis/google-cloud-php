@@ -39,13 +39,17 @@ use Google\Cloud\Compute\V1\BackendServiceGroupHealth;
 use Google\Cloud\Compute\V1\BackendServiceList;
 use Google\Cloud\Compute\V1\DeleteRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetHealthRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\InsertRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListRegionBackendServicesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchRegionBackendServiceRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
+use Google\Cloud\Compute\V1\SetIamPolicyRegionBackendServiceRequest;
 use Google\Cloud\Compute\V1\UpdateRegionBackendServiceRequest;
 
 /**
@@ -320,10 +324,9 @@ class RegionBackendServicesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -372,10 +375,9 @@ class RegionBackendServicesGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Compute\V1\BackendService
@@ -422,10 +424,9 @@ class RegionBackendServicesGapicClient
      *     Optional.
      *
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\Cloud\Compute\V1\BackendServiceGroupHealth
@@ -446,6 +447,59 @@ class RegionBackendServicesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('GetHealth', BackendServiceGroupHealth::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * Sample code:
+     * ```
+     * $regionBackendServicesClient = new RegionBackendServicesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $resource = 'resource';
+     *     $response = $regionBackendServicesClient->getIamPolicy($project, $region, $resource);
+     * } finally {
+     *     $regionBackendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $region       The name of the region for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $optionsRequestedPolicyVersion
+     *           Requested IAM Policy version.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($project, $region, $resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRegionBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
+            $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -496,10 +550,9 @@ class RegionBackendServicesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -570,10 +623,9 @@ class RegionBackendServicesGapicClient
      *     @type bool $returnPartialSuccess
      *           Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\PagedListResponse
@@ -663,10 +715,9 @@ class RegionBackendServicesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse
@@ -691,6 +742,56 @@ class RegionBackendServicesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * Sample code:
+     * ```
+     * $regionBackendServicesClient = new RegionBackendServicesClient();
+     * try {
+     *     $project = 'project';
+     *     $region = 'region';
+     *     $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+     *     $resource = 'resource';
+     *     $response = $regionBackendServicesClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+     * } finally {
+     *     $regionBackendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $region                         The name of the region for this request.
+     * @param RegionSetPolicyRequest $regionSetPolicyRequestResource The body resource for this request
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRegionBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setRegion($region);
+        $request->setRegionSetPolicyRequestResource($regionSetPolicyRequestResource);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['region'] = $region;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**
@@ -743,10 +844,9 @@ class RegionBackendServicesGapicClient
      *     @type string $requestId
      *           An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).
      *     @type RetrySettings|array $retrySettings
-     *           Retry settings to use for this call. Can be a
-     *           {@see Google\ApiCore\RetrySettings} object, or an associative array of retry
-     *           settings parameters. See the documentation on
-     *           {@see Google\ApiCore\RetrySettings} for example usage.
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
      * }
      *
      * @return \Google\ApiCore\OperationResponse

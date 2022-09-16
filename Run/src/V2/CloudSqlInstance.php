@@ -32,7 +32,7 @@ class CloudSqlInstance extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The Cloud SQL instance connection names, as can be found in
      *           https://console.cloud.google.com/sql/instances. Visit
      *           https://cloud.google.com/sql/docs/mysql/connect-run for more information on
@@ -68,7 +68,7 @@ class CloudSqlInstance extends \Google\Protobuf\Internal\Message
      * {project}:{location}:{instance}
      *
      * Generated from protobuf field <code>repeated string instances = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)

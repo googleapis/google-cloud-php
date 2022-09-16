@@ -150,10 +150,10 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           `VisitRequest`. Can be omitted if it is the same as `arrival_waypoint`.
      *           If the shipment model has duration distance matrices,
      *           `departure_waypoint` must not be specified.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Specifies tags attached to the visit request.
      *           Empty or duplicate strings are not allowed.
-     *     @type \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $time_windows
+     *     @type array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $time_windows
      *           Time windows which constrain the arrival time at a visit.
      *           Note that a vehicle may depart outside of the arrival time window, i.e.
      *           arrival time + duration do not need to be inside a time window. This can
@@ -180,7 +180,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *           [VisitRequest][google.cloud.optimization.v1.Shipment.VisitRequest] instead of the whole [Shipment][google.cloud.optimization.v1.Shipment].
      *           The demands listed here are added to the demands listed in
      *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $visit_types
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $visit_types
      *           Specifies the types of the visit. This may be used to allocate additional
      *           time required for a vehicle to complete this visit (see
      *           [Vehicle.extra_visit_duration_for_visit_type][google.cloud.optimization.v1.Vehicle.extra_visit_duration_for_visit_type]).
@@ -188,7 +188,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      *     @type string $label
      *           Specifies a label for this `VisitRequest`. This label is reported in the
      *           response as `visit_label` in the corresponding [ShipmentRoute.Visit][google.cloud.optimization.v1.ShipmentRoute.Visit].
-     *     @type \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $demands
+     *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $demands
      *           Deprecated: Use [VisitRequest.load_demands][] instead.
      * }
      */
@@ -378,7 +378,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * Empty or duplicate strings are not allowed.
      *
      * Generated from protobuf field <code>repeated string tags = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -424,7 +424,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * be set if there is a single time window.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.TimeWindow time_windows = 6;</code>
-     * @param \Google\Cloud\Optimization\V1\TimeWindow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\TimeWindow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeWindows($var)
@@ -562,7 +562,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * A type can only appear once.
      *
      * Generated from protobuf field <code>repeated string visit_types = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVisitTypes($var)
@@ -618,7 +618,7 @@ class VisitRequest extends \Google\Protobuf\Internal\Message
      * Deprecated: Use [VisitRequest.load_demands][] instead.
      *
      * Generated from protobuf field <code>repeated .google.cloud.optimization.v1.CapacityQuantity demands = 9 [deprecated = true];</code>
-     * @param \Google\Cloud\Optimization\V1\CapacityQuantity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

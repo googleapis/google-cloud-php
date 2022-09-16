@@ -43,7 +43,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<\Google\Cloud\Talent\V4beta1\Job>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           The Jobs for a given company.
      *           The maximum number of items returned is based on the limit field
      *           provided in the request.
@@ -78,7 +78,7 @@ class ListJobsResponse extends \Google\Protobuf\Internal\Message
      * provided in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.Job jobs = 1;</code>
-     * @param \Google\Cloud\Talent\V4beta1\Job[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\Job>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)

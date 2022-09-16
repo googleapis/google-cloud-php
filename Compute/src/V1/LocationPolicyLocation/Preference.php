@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\LocationPolicyLocation;
 use UnexpectedValueException;
 
 /**
- * Preference for a given location.
+ * Preference for a given location. Set to either ALLOW or DENY.
  *
  * Protobuf type <code>google.cloud.compute.v1.LocationPolicyLocation.Preference</code>
  */

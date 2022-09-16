@@ -60,7 +60,7 @@ class NetworkList extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           [Output Only] Unique identifier for the resource; defined by the server.
-     *     @type \Google\Cloud\Compute\V1\Network[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\Network>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of Network resources.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#networkList for lists of networks.
@@ -128,7 +128,7 @@ class NetworkList extends \Google\Protobuf\Internal\Message
      * A list of Network resources.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.Network items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\Network[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\Network>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

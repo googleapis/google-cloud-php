@@ -19,11 +19,12 @@
 namespace Google\Cloud\BigQuery\DataExchange\V1beta1;
 
 /**
- * The AnalyticsHubService API facilitates data sharing within and across
- * organizations. It allows data providers to publish Listings --- a
- * discoverable and searchable SKU representing a dataset. Data consumers can
- * subscribe to Listings. Upon subscription, AnalyticsHub provisions a "Linked
- * Datasets" surfacing the data in the consumer's project.
+ * The `AnalyticsHubService` API facilitates data sharing within and across
+ * organizations. It allows data providers to publish listings that reference
+ * shared datasets. With Analytics Hub, users can discover and search for
+ * listings that they have access to. Subscribers can view and subscribe to
+ * listings. When you subscribe to a listing, Analytics Hub creates a linked
+ * dataset in your project.
  */
 class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -37,7 +38,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists DataExchanges in a given project and location.
+     * Lists all data exchanges in a given project and location.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\ListDataExchangesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -52,7 +53,8 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists DataExchanges from projects in a given organization and location.
+     * Lists all data exchanges from projects in a given organization and
+     * location.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\ListOrgDataExchangesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -67,7 +69,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets details of a single DataExchange.
+     * Gets the details of a data exchange.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\GetDataExchangeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -82,7 +84,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new DataExchange in a given project and location.
+     * Creates a new data exchange.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateDataExchangeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -97,7 +99,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the parameters of a single DataExchange.
+     * Updates an existing data exchange.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateDataExchangeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -112,7 +114,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a single DataExchange.
+     * Deletes an existing data exchange.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DeleteDataExchangeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -127,7 +129,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists Listings in a given project and location.
+     * Lists all listings in a given project and location.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\ListListingsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -142,7 +144,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets details of a single Listing.
+     * Gets the details of a listing.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\GetListingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -157,7 +159,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new Listing in a given project and location.
+     * Creates a new listing.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\CreateListingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -172,7 +174,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the parameters of a single Listing.
+     * Updates an existing listing.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\UpdateListingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -187,8 +189,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes a single Listing, as long as there are no subscriptions
-     * associated with the source of this Listing.
+     * Deletes a listing.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\DeleteListingRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -203,10 +204,11 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Subscribes to a single Listing.
+     * Subscribes to a listing.
      *
-     * Data Exchange currently supports one type of Listing: a BigQuery dataset.
-     * Upon subscription to a Listing for a BigQuery dataset, Data Exchange
+     * Currently, with Analytics Hub, you can create listings that
+     * reference only BigQuery datasets.
+     * Upon subscription to a listing for a BigQuery dataset, Analytics Hub
      * creates a linked dataset in the subscriber's project.
      * @param \Google\Cloud\BigQuery\DataExchange\V1beta1\SubscribeListingRequest $argument input argument
      * @param array $metadata metadata
@@ -222,7 +224,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets the IAM policy for a dataExchange or a listing.
+     * Gets the IAM policy.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -237,7 +239,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Sets the IAM policy for a dataExchange or a listing.
+     * Sets the IAM policy.
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -252,8 +254,7 @@ class AnalyticsHubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Returns the permissions that a caller has on a specified dataExchange or
-     * listing.
+     * Returns the permissions that a caller has.
      * @param \Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

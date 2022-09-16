@@ -9,11 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Document represents the canonical document resource in Document Understanding
- * AI.
- * It is an interchange format that provides insights into documents and allows
- * for collaboration between users and Document Understanding AI to iterate and
- * optimize for quality.
+ * Document represents the canonical document resource in Document AI. It is an
+ * interchange format that provides insights into documents and allows for
+ * collaboration between users and Document AI to iterate and optimize for
+ * quality.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document</code>
  */
@@ -34,7 +33,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $text = '';
     /**
-     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
      */
@@ -46,24 +45,22 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $pages;
     /**
-     * A list of entities detected on
-     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
-     * shards, entities in this list may cross shard boundaries.
+     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
+     * entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      */
     private $entities;
     /**
-     * Relationship among
-     * [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      */
     private $entity_relations;
     /**
-     * A list of text corrections made to [Document.text].  This is usually
-     * used for annotating corrections to OCR mistakes.  Text changes for a given
-     * revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to [Document.text].  This is
+     * usually used for annotating corrections to OCR mistakes.  Text changes for
+     * a given revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
      */
@@ -82,7 +79,7 @@ class Document extends \Google\Protobuf\Internal\Message
      */
     private $error = null;
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
      */
@@ -111,28 +108,26 @@ class Document extends \Google\Protobuf\Internal\Message
      *           https://www.iana.org/assignments/media-types/media-types.xhtml.
      *     @type string $text
      *           Optional. UTF-8 encoded text in reading order from the document.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Style[]|\Google\Protobuf\Internal\RepeatedField $text_styles
-     *           Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $text_styles
+     *           Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page>|\Google\Protobuf\Internal\RepeatedField $pages
      *           Visual page layout for the [Document][google.cloud.documentai.v1.Document].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $entities
-     *           A list of entities detected on
-     *           [Document.text][google.cloud.documentai.v1.Document.text]. For document
-     *           shards, entities in this list may cross shard boundaries.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\EntityRelation[]|\Google\Protobuf\Internal\RepeatedField $entity_relations
-     *           Relationship among
-     *           [Document.entities][google.cloud.documentai.v1.Document.entities].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\TextChange[]|\Google\Protobuf\Internal\RepeatedField $text_changes
-     *           A list of text corrections made to [Document.text].  This is usually
-     *           used for annotating corrections to OCR mistakes.  Text changes for a given
-     *           revision may not overlap with each other.
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $entities
+     *           A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
+     *           entities in this list may cross shard boundaries.
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $entity_relations
+     *           Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $text_changes
+     *           Placeholder.  A list of text corrections made to [Document.text].  This is
+     *           usually used for annotating corrections to OCR mistakes.  Text changes for
+     *           a given revision may not overlap with each other.
      *     @type \Google\Cloud\DocumentAI\V1\Document\ShardInfo $shard_info
      *           Information about the sharding if this document is sharded part of a larger
      *           document. If the document is not sharded, this message is not specified.
      *     @type \Google\Rpc\Status $error
      *           Any error that occurred while processing this document.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Revision[]|\Google\Protobuf\Internal\RepeatedField $revisions
-     *           Revision history of this document.
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Revision>|\Google\Protobuf\Internal\RepeatedField $revisions
+     *           Placeholder. Revision history of this document.
      * }
      */
     public function __construct($data = NULL) {
@@ -271,7 +266,7 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -282,10 +277,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
+     * Placeholder.  Styles for the [Document.text][google.cloud.documentai.v1.Document.text].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Style text_styles = 5;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Style[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Style>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTextStyles($var)
@@ -311,7 +306,7 @@ class Document extends \Google\Protobuf\Internal\Message
      * Visual page layout for the [Document][google.cloud.documentai.v1.Document].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page pages = 6;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPages($var)
@@ -323,9 +318,8 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on
-     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
-     * shards, entities in this list may cross shard boundaries.
+     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
+     * entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -336,12 +330,11 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of entities detected on
-     * [Document.text][google.cloud.documentai.v1.Document.text]. For document
-     * shards, entities in this list may cross shard boundaries.
+     * A list of entities detected on [Document.text][google.cloud.documentai.v1.Document.text]. For document shards,
+     * entities in this list may cross shard boundaries.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Entity entities = 7;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Entity[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Entity>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntities($var)
@@ -353,8 +346,7 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relationship among
-     * [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -365,11 +357,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relationship among
-     * [Document.entities][google.cloud.documentai.v1.Document.entities].
+     * Placeholder.  Relationship among [Document.entities][google.cloud.documentai.v1.Document.entities].
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.EntityRelation entity_relations = 8;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\EntityRelation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\EntityRelation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntityRelations($var)
@@ -381,9 +372,9 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of text corrections made to [Document.text].  This is usually
-     * used for annotating corrections to OCR mistakes.  Text changes for a given
-     * revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to [Document.text].  This is
+     * usually used for annotating corrections to OCR mistakes.  Text changes for
+     * a given revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -394,12 +385,12 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of text corrections made to [Document.text].  This is usually
-     * used for annotating corrections to OCR mistakes.  Text changes for a given
-     * revision may not overlap with each other.
+     * Placeholder.  A list of text corrections made to [Document.text].  This is
+     * usually used for annotating corrections to OCR mistakes.  Text changes for
+     * a given revision may not overlap with each other.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.TextChange text_changes = 14;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\TextChange[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\TextChange>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTextChanges($var)
@@ -485,7 +476,7 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -496,10 +487,10 @@ class Document extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Revision revisions = 13;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Revision[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Revision>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRevisions($var)

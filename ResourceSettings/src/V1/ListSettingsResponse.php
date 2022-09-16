@@ -34,7 +34,7 @@ class ListSettingsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ResourceSettings\V1\Setting[]|\Google\Protobuf\Internal\RepeatedField $settings
+     *     @type array<\Google\Cloud\ResourceSettings\V1\Setting>|\Google\Protobuf\Internal\RepeatedField $settings
      *           A list of settings that are available at the specified Cloud resource.
      *     @type string $next_page_token
      *           Unused. A page token used to retrieve the next page.
@@ -60,7 +60,7 @@ class ListSettingsResponse extends \Google\Protobuf\Internal\Message
      * A list of settings that are available at the specified Cloud resource.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcesettings.v1.Setting settings = 1;</code>
-     * @param \Google\Cloud\ResourceSettings\V1\Setting[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ResourceSettings\V1\Setting>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSettings($var)

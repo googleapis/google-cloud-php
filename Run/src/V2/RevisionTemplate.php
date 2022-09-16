@@ -122,10 +122,10 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      *           the service. The service account represents the identity of the running
      *           revision, and determines what permissions the revision has. If not
      *           provided, the revision will use the project's default service account.
-     *     @type \Google\Cloud\Run\V2\Container[]|\Google\Protobuf\Internal\RepeatedField $containers
+     *     @type array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $containers
      *           Holds the single container that defines the unit of execution for this
      *           Revision.
-     *     @type \Google\Cloud\Run\V2\Volume[]|\Google\Protobuf\Internal\RepeatedField $volumes
+     *     @type array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           A list of Volumes to make available to containers.
      *     @type int $execution_environment
      *           The sandbox environment to host this Revision.
@@ -381,7 +381,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * Revision.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Container containers = 10;</code>
-     * @param \Google\Cloud\Run\V2\Container[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Container>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContainers($var)
@@ -407,7 +407,7 @@ class RevisionTemplate extends \Google\Protobuf\Internal\Message
      * A list of Volumes to make available to containers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Volume volumes = 11;</code>
-     * @param \Google\Cloud\Run\V2\Volume[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Run\V2\Volume>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumes($var)

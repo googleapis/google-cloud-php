@@ -35,7 +35,7 @@ class ListRegistrationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Domains\V1beta1\Registration[]|\Google\Protobuf\Internal\RepeatedField $registrations
+     *     @type array<\Google\Cloud\Domains\V1beta1\Registration>|\Google\Protobuf\Internal\RepeatedField $registrations
      *           A list of `Registration`s.
      *     @type string $next_page_token
      *           When present, there are more results to retrieve. Set `page_token` to this
@@ -62,7 +62,7 @@ class ListRegistrationsResponse extends \Google\Protobuf\Internal\Message
      * A list of `Registration`s.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.Registration registrations = 1;</code>
-     * @param \Google\Cloud\Domains\V1beta1\Registration[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Domains\V1beta1\Registration>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegistrations($var)

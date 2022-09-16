@@ -38,7 +38,7 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\GkeBackup\V1\VolumeBackup[]|\Google\Protobuf\Internal\RepeatedField $volume_backups
+     *     @type array<\Google\Cloud\GkeBackup\V1\VolumeBackup>|\Google\Protobuf\Internal\RepeatedField $volume_backups
      *           The list of VolumeBackups matching the given criteria.
      *     @type string $next_page_token
      *           A token which may be sent as
@@ -68,7 +68,7 @@ class ListVolumeBackupsResponse extends \Google\Protobuf\Internal\Message
      * The list of VolumeBackups matching the given criteria.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gkebackup.v1.VolumeBackup volume_backups = 1;</code>
-     * @param \Google\Cloud\GkeBackup\V1\VolumeBackup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\GkeBackup\V1\VolumeBackup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setVolumeBackups($var)

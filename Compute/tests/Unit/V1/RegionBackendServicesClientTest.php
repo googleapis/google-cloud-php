@@ -33,8 +33,10 @@ use Google\Cloud\Compute\V1\BackendServiceList;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\RegionBackendServicesClient;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
+use Google\Cloud\Compute\V1\RegionSetPolicyRequest;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 use Google\Rpc\Code;
 use stdClass;
@@ -85,7 +87,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -104,7 +106,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($backendService, $project, $region);
+        $response = $gapicClient->delete($backendService, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -151,7 +153,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -176,7 +178,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->delete($backendService, $project, $region);
+        $response = $gapicClient->delete($backendService, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -202,12 +204,13 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $affinityCookieTtlSec = 1777486694;
+        $compressionMode = 'compressionMode-2051962660';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
@@ -229,6 +232,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $timeoutSec = 2067488653;
         $expectedResponse = new BackendService();
         $expectedResponse->setAffinityCookieTtlSec($affinityCookieTtlSec);
+        $expectedResponse->setCompressionMode($compressionMode);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);
@@ -253,7 +257,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendService = 'backendService306946058';
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->get($backendService, $project, $region);
+        $response = $gapicClient->get($backendService, $project, $region);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -275,7 +279,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -294,8 +298,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->get($backendService, $project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($backendService, $project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -312,7 +316,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function getHealthTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -326,7 +330,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         $resourceGroupReferenceResource = new ResourceGroupReference();
-        $response = $client->getHealth($backendService, $project, $region, $resourceGroupReferenceResource);
+        $response = $gapicClient->getHealth($backendService, $project, $region, $resourceGroupReferenceResource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -350,7 +354,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function getHealthExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -370,8 +374,84 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $region = 'region-934795532';
         $resourceGroupReferenceResource = new ResourceGroupReference();
         try {
-            $client->getHealth($backendService, $project, $region, $resourceGroupReferenceResource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getHealth($backendService, $project, $region, $resourceGroupReferenceResource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($project, $region, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->getIamPolicy($project, $region, $resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -394,7 +474,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -413,7 +493,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($backendServiceResource, $project, $region);
+        $response = $gapicClient->insert($backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -460,7 +540,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -485,7 +565,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->insert($backendServiceResource, $project, $region);
+        $response = $gapicClient->insert($backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -511,7 +591,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -534,7 +614,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->list($project, $region);
+        $response = $gapicClient->list($project, $region);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -557,7 +637,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -575,8 +655,8 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $project = 'project-309310695';
         $region = 'region-934795532';
         try {
-            $client->list($project, $region);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project, $region);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -599,7 +679,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -619,7 +699,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($backendService, $backendServiceResource, $project, $region);
+        $response = $gapicClient->patch($backendService, $backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -668,7 +748,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -694,7 +774,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->patch($backendService, $backendServiceResource, $project, $region);
+        $response = $gapicClient->patch($backendService, $backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {
@@ -717,6 +797,86 @@ class RegionBackendServicesClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $etag = 'etag3123477';
+        $iamOwned = false;
+        $version = 351608024;
+        $expectedResponse = new Policy();
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setIamOwned($iamOwned);
+        $expectedResponse->setVersion($version);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+        $resource = 'resource-341064690';
+        $response = $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.compute.v1.RegionBackendServices/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getProject();
+        $this->assertProtobufEquals($project, $actualValue);
+        $actualValue = $actualRequestObject->getRegion();
+        $this->assertProtobufEquals($region, $actualValue);
+        $actualValue = $actualRequestObject->getRegionSetPolicyRequestResource();
+        $this->assertProtobufEquals($regionSetPolicyRequestResource, $actualValue);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $project = 'project-309310695';
+        $region = 'region-934795532';
+        $regionSetPolicyRequestResource = new RegionSetPolicyRequest();
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->setIamPolicy($project, $region, $regionSetPolicyRequestResource, $resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -726,7 +886,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -746,7 +906,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->update($backendService, $backendServiceResource, $project, $region);
+        $response = $gapicClient->update($backendService, $backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $apiRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($apiRequests));
@@ -795,7 +955,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -821,7 +981,7 @@ class RegionBackendServicesClientTest extends GeneratedTest
         $backendServiceResource = new BackendService();
         $project = 'project-309310695';
         $region = 'region-934795532';
-        $response = $client->update($backendService, $backendServiceResource, $project, $region);
+        $response = $gapicClient->update($backendService, $backendServiceResource, $project, $region);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         try {

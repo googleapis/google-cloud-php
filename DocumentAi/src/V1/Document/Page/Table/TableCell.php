@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TableCell extends \Google\Protobuf\Internal\Message
 {
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      */
@@ -48,13 +47,12 @@ class TableCell extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DocumentAI\V1\Document\Page\Layout $layout
-     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     *           [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *     @type int $row_span
      *           How many rows this cell spans.
      *     @type int $col_span
      *           How many columns this cell spans.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      * }
      */
@@ -64,8 +62,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Page\Layout|null
@@ -86,8 +83,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for
-     * [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
+     * [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [TableCell][google.cloud.documentai.v1.Document.Page.Table.TableCell].
      *
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.Layout layout = 1;</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Page\Layout $var
@@ -168,7 +164,7 @@ class TableCell extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 4;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetectedLanguages($var)

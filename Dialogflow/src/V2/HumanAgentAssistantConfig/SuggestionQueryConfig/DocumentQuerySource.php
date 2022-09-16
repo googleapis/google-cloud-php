@@ -32,7 +32,7 @@ class DocumentQuerySource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $documents
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $documents
      *           Required. Knowledge documents to query from. Format:
      *           `projects/<Project ID>/locations/<Location
      *           ID>/knowledgeBases/<KnowledgeBase ID>/documents/<Document ID>`.
@@ -65,7 +65,7 @@ class DocumentQuerySource extends \Google\Protobuf\Internal\Message
      * Currently, at most 5 documents are supported.
      *
      * Generated from protobuf field <code>repeated string documents = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDocuments($var)

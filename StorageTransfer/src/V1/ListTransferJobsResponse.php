@@ -34,7 +34,7 @@ class ListTransferJobsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\StorageTransfer\V1\TransferJob[]|\Google\Protobuf\Internal\RepeatedField $transfer_jobs
+     *     @type array<\Google\Cloud\StorageTransfer\V1\TransferJob>|\Google\Protobuf\Internal\RepeatedField $transfer_jobs
      *           A list of transfer jobs.
      *     @type string $next_page_token
      *           The list next page token.
@@ -60,7 +60,7 @@ class ListTransferJobsResponse extends \Google\Protobuf\Internal\Message
      * A list of transfer jobs.
      *
      * Generated from protobuf field <code>repeated .google.storagetransfer.v1.TransferJob transfer_jobs = 1;</code>
-     * @param \Google\Cloud\StorageTransfer\V1\TransferJob[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\StorageTransfer\V1\TransferJob>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTransferJobs($var)

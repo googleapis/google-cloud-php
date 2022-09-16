@@ -263,6 +263,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'UpgradeAppliance' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\VMMigration\V1\UpgradeApplianceResponse',
+                    'metadataReturnType' => '\Google\Cloud\VMMigration\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'ListCloneJobs' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

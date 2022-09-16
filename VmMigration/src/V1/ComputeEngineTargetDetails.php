@@ -113,6 +113,18 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, string> metadata = 16;</code>
      */
     private $metadata;
+    /**
+     * Additional licenses to assign to the VM.
+     *
+     * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
+     */
+    private $additional_licenses;
+    /**
+     * The hostname to assign to the VM.
+     *
+     * Generated from protobuf field <code>string hostname = 18;</code>
+     */
+    private $hostname = '';
 
     /**
      * Constructor.
@@ -130,9 +142,9 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *           The machine type series to create the VM with.
      *     @type string $machine_type
      *           The machine type to create the VM with.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $network_tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $network_tags
      *           A map of network tags to associate with the VM.
-     *     @type \Google\Cloud\VMMigration\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $network_interfaces
+     *     @type array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $network_interfaces
      *           List of NICs connected to this VM.
      *     @type string $service_account
      *           The service account to associate the VM with.
@@ -153,6 +165,10 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      *           The VM Boot Option, as set in the source vm.
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
      *           The metadata key/value pairs to assign to the VM.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $additional_licenses
+     *           Additional licenses to assign to the VM.
+     *     @type string $hostname
+     *           The hostname to assign to the VM.
      * }
      */
     public function __construct($data = NULL) {
@@ -305,7 +321,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * A map of network tags to associate with the VM.
      *
      * Generated from protobuf field <code>repeated string network_tags = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkTags($var)
@@ -331,7 +347,7 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
      * List of NICs connected to this VM.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vmmigration.v1.NetworkInterface network_interfaces = 7;</code>
-     * @param \Google\Cloud\VMMigration\V1\NetworkInterface[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VMMigration\V1\NetworkInterface>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkInterfaces($var)
@@ -594,6 +610,58 @@ class ComputeEngineTargetDetails extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->metadata = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Additional licenses to assign to the VM.
+     *
+     * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdditionalLicenses()
+    {
+        return $this->additional_licenses;
+    }
+
+    /**
+     * Additional licenses to assign to the VM.
+     *
+     * Generated from protobuf field <code>repeated string additional_licenses = 17;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdditionalLicenses($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->additional_licenses = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The hostname to assign to the VM.
+     *
+     * Generated from protobuf field <code>string hostname = 18;</code>
+     * @return string
+     */
+    public function getHostname()
+    {
+        return $this->hostname;
+    }
+
+    /**
+     * The hostname to assign to the VM.
+     *
+     * Generated from protobuf field <code>string hostname = 18;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setHostname($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->hostname = $var;
 
         return $this;
     }
