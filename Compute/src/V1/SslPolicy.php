@@ -78,6 +78,12 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      */
     private $profile = null;
     /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    private $region = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -118,6 +124,8 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $profile
      *           Profile specifies the set of SSL features that can be used by the load balancer when negotiating SSL with clients. This can be one of COMPATIBLE, MODERN, RESTRICTED, or CUSTOM. If using CUSTOM, the set of SSL features to enable must be specified in the customFeatures field.
      *           Check the Profile enum for the list of possible values.
+     *     @type string $region
+     *           [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type array<\Google\Cloud\Compute\V1\Warnings>|\Google\Protobuf\Internal\RepeatedField $warnings
@@ -469,6 +477,42 @@ class SslPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional SSL policy resides. This field is not applicable to global SSL policies.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

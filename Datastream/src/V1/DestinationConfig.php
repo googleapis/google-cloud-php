@@ -35,6 +35,8 @@ class DestinationConfig extends \Google\Protobuf\Internal\Message
      *           Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`
      *     @type \Google\Cloud\Datastream\V1\GcsDestinationConfig $gcs_destination_config
      *           A configuration for how data should be loaded to Cloud Storage.
+     *     @type \Google\Cloud\Datastream\V1\BigQueryDestinationConfig $bigquery_destination_config
+     *           BigQuery destination configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +99,37 @@ class DestinationConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\GcsDestinationConfig::class);
         $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * BigQuery destination configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig bigquery_destination_config = 101;</code>
+     * @return \Google\Cloud\Datastream\V1\BigQueryDestinationConfig|null
+     */
+    public function getBigqueryDestinationConfig()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasBigqueryDestinationConfig()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * BigQuery destination configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.BigQueryDestinationConfig bigquery_destination_config = 101;</code>
+     * @param \Google\Cloud\Datastream\V1\BigQueryDestinationConfig $var
+     * @return $this
+     */
+    public function setBigqueryDestinationConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\BigQueryDestinationConfig::class);
+        $this->writeOneof(101, $var);
 
         return $this;
     }

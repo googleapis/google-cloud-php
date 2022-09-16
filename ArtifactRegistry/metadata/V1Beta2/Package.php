@@ -15,11 +15,10 @@ class Package
           return;
         }
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ω
-6google/devtools/artifactregistry/v1beta2/package.proto(google.devtools.artifactregistry.v1beta2google/api/annotations.proto"è
+ü
+6google/devtools/artifactregistry/v1beta2/package.proto(google.devtools.artifactregistry.v1beta2"è
 Package
 name (	
 display_name (	/

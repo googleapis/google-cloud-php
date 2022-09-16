@@ -14,12 +14,11 @@ class AnnotationSpecSet
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Resource::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ó
-;google/cloud/datalabeling/v1beta1/annotation_spec_set.proto!google.cloud.datalabeling.v1beta1google/api/resource.proto"¦
+¸
+;google/cloud/datalabeling/v1beta1/annotation_spec_set.proto!google.cloud.datalabeling.v1beta1"¦
 AnnotationSpecSet
 name (	
 display_name (	

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
+ * The request for
+ * [ListInstances][google.spanner.admin.instance.v1.InstanceAdmin.ListInstances].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.ListInstancesRequest</code>
  */
@@ -31,8 +32,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     private $page_size = 0;
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
-     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
+     * from a previous
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      */
@@ -73,8 +75,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *           to the server's maximum allowed page size.
      *     @type string $page_token
      *           If non-empty, `page_token` should contain a
-     *           [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
-     *           previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     *           [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
+     *           from a previous
+     *           [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *     @type string $filter
      *           An expression for filtering the results of the request. Filter rules are
      *           case insensitive. The fields eligible for filtering are:
@@ -157,8 +160,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
-     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
+     * from a previous
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @return string
@@ -170,8 +174,9 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * If non-empty, `page_token` should contain a
-     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token] from a
-     * previous [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
+     * [next_page_token][google.spanner.admin.instance.v1.ListInstancesResponse.next_page_token]
+     * from a previous
+     * [ListInstancesResponse][google.spanner.admin.instance.v1.ListInstancesResponse].
      *
      * Generated from protobuf field <code>string page_token = 3;</code>
      * @param string $var

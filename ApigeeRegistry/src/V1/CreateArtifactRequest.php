@@ -17,7 +17,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,7 +47,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The parent, which owns this collection of artifacts.
-     *           Format: {parent}
+     *           Format: `{parent}`
      *     @type \Google\Cloud\ApigeeRegistry\V1\Artifact $artifact
      *           Required. The artifact to create.
      *     @type string $artifact_id
@@ -65,7 +65,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -77,7 +77,7 @@ class CreateArtifactRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The parent, which owns this collection of artifacts.
-     * Format: {parent}
+     * Format: `{parent}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
