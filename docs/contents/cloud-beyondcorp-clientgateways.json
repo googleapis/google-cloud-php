@@ -1,0 +1,11 @@
+{
+    "title": "BeyondCorpClientGateways",
+    "defaultService": "beyondcorpclientgateways\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "beyondcorpclientgateways\/readme"
+        }
+    ],
+    "pattern": "beyondcorpclientgateways\/\\w{1,}"
+}
