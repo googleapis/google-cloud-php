@@ -100,6 +100,19 @@ class Index extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. Stats of the index resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexStats index_stats = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $index_stats = null;
+    /**
+     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
+     * used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $index_update_method = 0;
 
     /**
      * Constructor.
@@ -151,6 +164,11 @@ class Index extends \Google\Protobuf\Internal\Message
      *           timestamp, yet that does not mean their results are not already reflected
      *           in the Index. Result of any successfully completed Operation on the Index
      *           is reflected in it.
+     *     @type \Google\Cloud\AIPlatform\V1\IndexStats $index_stats
+     *           Output only. Stats of the index resource.
+     *     @type int $index_update_method
+     *           Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
+     *           used by default.
      * }
      */
     public function __construct($data = NULL) {
@@ -492,6 +510,70 @@ class Index extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Stats of the index resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexStats index_stats = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\IndexStats|null
+     */
+    public function getIndexStats()
+    {
+        return $this->index_stats;
+    }
+
+    public function hasIndexStats()
+    {
+        return isset($this->index_stats);
+    }
+
+    public function clearIndexStats()
+    {
+        unset($this->index_stats);
+    }
+
+    /**
+     * Output only. Stats of the index resource.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.IndexStats index_stats = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\IndexStats $var
+     * @return $this
+     */
+    public function setIndexStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\IndexStats::class);
+        $this->index_stats = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
+     * used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getIndexUpdateMethod()
+    {
+        return $this->index_update_method;
+    }
+
+    /**
+     * Immutable. The update method to use with this Index. If not set, BATCH_UPDATE will be
+     * used by default.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.Index.IndexUpdateMethod index_update_method = 16 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIndexUpdateMethod($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\Index\IndexUpdateMethod::class);
+        $this->index_update_method = $var;
 
         return $this;
     }
