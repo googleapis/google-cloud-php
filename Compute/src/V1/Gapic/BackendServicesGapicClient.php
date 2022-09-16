@@ -44,14 +44,18 @@ use Google\Cloud\Compute\V1\DeleteBackendServiceRequest;
 use Google\Cloud\Compute\V1\DeleteSignedUrlKeyBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetBackendServiceRequest;
 use Google\Cloud\Compute\V1\GetHealthBackendServiceRequest;
+use Google\Cloud\Compute\V1\GetIamPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetPolicyRequest;
 use Google\Cloud\Compute\V1\InsertBackendServiceRequest;
 use Google\Cloud\Compute\V1\ListBackendServicesRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchBackendServiceRequest;
+use Google\Cloud\Compute\V1\Policy;
 use Google\Cloud\Compute\V1\ResourceGroupReference;
 use Google\Cloud\Compute\V1\SecurityPolicyReference;
 use Google\Cloud\Compute\V1\SetEdgeSecurityPolicyBackendServiceRequest;
+use Google\Cloud\Compute\V1\SetIamPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\SetSecurityPolicyBackendServiceRequest;
 use Google\Cloud\Compute\V1\SignedUrlKey;
 use Google\Cloud\Compute\V1\UpdateBackendServiceRequest;
@@ -681,6 +685,55 @@ class BackendServicesGapicClient
     }
 
     /**
+     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     *
+     * Sample code:
+     * ```
+     * $backendServicesClient = new BackendServicesClient();
+     * try {
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $backendServicesClient->getIamPolicy($project, $resource);
+     * } finally {
+     *     $backendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param string $project      Project ID for this request.
+     * @param string $resource     Name or id of the resource for this request.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $optionsRequestedPolicyVersion
+     *           Requested IAM Policy version.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($project, $resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['optionsRequestedPolicyVersion'])) {
+            $request->setOptionsRequestedPolicyVersion($optionalArgs['optionsRequestedPolicyVersion']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
      * Creates a BackendService resource in the specified project using the data included in the request. For more information, see Backend services overview .
      *
      * Sample code:
@@ -983,6 +1036,52 @@ class BackendServicesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('SetEdgeSecurityPolicy', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
+     *
+     * Sample code:
+     * ```
+     * $backendServicesClient = new BackendServicesClient();
+     * try {
+     *     $globalSetPolicyRequestResource = new GlobalSetPolicyRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $response = $backendServicesClient->setIamPolicy($globalSetPolicyRequestResource, $project, $resource);
+     * } finally {
+     *     $backendServicesClient->close();
+     * }
+     * ```
+     *
+     * @param GlobalSetPolicyRequest $globalSetPolicyRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Compute\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($globalSetPolicyRequestResource, $project, $resource, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyBackendServiceRequest();
+        $requestParamHeaders = [];
+        $request->setGlobalSetPolicyRequestResource($globalSetPolicyRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request)->wait();
     }
 
     /**

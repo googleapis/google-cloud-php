@@ -209,6 +209,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $name = 'name3373707';
         $proxyBind = true;
         $proxyHeader = 'proxyHeader-1987109506';
+        $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
         $service = 'service1984153269';
         $expectedResponse = new TargetTcpProxy();
@@ -219,6 +220,7 @@ class TargetTcpProxiesClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setProxyBind($proxyBind);
         $expectedResponse->setProxyHeader($proxyHeader);
+        $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);
         $expectedResponse->setService($service);
         $transport->addResponse($expectedResponse);

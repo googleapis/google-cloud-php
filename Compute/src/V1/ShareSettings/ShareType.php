@@ -26,6 +26,12 @@ class ShareType
      */
     const LOCAL = 72607563;
     /**
+     * Shared-reservation is open to entire Organization
+     *
+     * Generated from protobuf enum <code>ORGANIZATION = 274978099;</code>
+     */
+    const ORGANIZATION = 274978099;
+    /**
      * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>SHARE_TYPE_UNSPECIFIED = 494771730;</code>
@@ -41,6 +47,7 @@ class ShareType
     private static $valueToName = [
         self::UNDEFINED_SHARE_TYPE => 'UNDEFINED_SHARE_TYPE',
         self::LOCAL => 'LOCAL',
+        self::ORGANIZATION => 'ORGANIZATION',
         self::SHARE_TYPE_UNSPECIFIED => 'SHARE_TYPE_UNSPECIFIED',
         self::SPECIFIC_PROJECTS => 'SPECIFIC_PROJECTS',
     ];
