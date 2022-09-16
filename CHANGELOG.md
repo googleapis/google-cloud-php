@@ -1,5 +1,192 @@
 # Changelog
 
+## 1.0.0
+
+<details><summary>google/cloud-apigee-registry 0.3.0</summary>
+
+
+
+### Features
+
+* [ApigeeRegistry] added support for `force` field for API and API version deletion ([#5460](https://github.com/googleapis/google-cloud-php/issues/5460)) ([95ee84a](https://github.com/googleapis/google-cloud-php/commit/95ee84ad8bfbf36c6c1d27d476d2edd07605b362))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.11</summary>
+
+
+
+### Bug Fixes
+
+* update sample code for automl create dataset ([#5481](https://github.com/googleapis/google-cloud-php/issues/5481)) ([bf75ee4](https://github.com/googleapis/google-cloud-php/commit/bf75ee4e437437e6ece417adde82cdae14e41071))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.2.0</summary>
+
+
+
+### Features
+
+* introduce beyondcorp appconnections ([#5497](https://github.com/googleapis/google-cloud-php/issues/5497)) ([93808ce](https://github.com/googleapis/google-cloud-php/commit/93808cea63ebe634b9577cf3664d53ba083cc13d))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 1.0.0</summary>
+
+
+
+### ⚠ BREAKING CHANGES
+
+* [BigQueryDataExchange] update BigQuery Analytics Hub API v1beta1 client (#5480)
+
+### Features
+
+* [BigQueryDataExchange] update BigQuery Analytics Hub API v1beta1 client ([#5480](https://github.com/googleapis/google-cloud-php/issues/5480)) ([7750cfd](https://github.com/googleapis/google-cloud-php/commit/7750cfd83fa4066c4d5e1854b70864b8ee239ac4))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.20.0</summary>
+
+
+
+### Features
+
+* [Bigtable] Publish CBT deletion_protection field in Table, UpdateTableRequest, and UpdateTable API in **stable** proto to external customers ([#5496](https://github.com/googleapis/google-cloud-php/issues/5496)) ([5d57d2f](https://github.com/googleapis/google-cloud-php/commit/5d57d2f7b552f5914d02ba1917f0f125c9965e96))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-datastream 0.3.0</summary>
+
+
+
+### Features
+
+* [Datastream] added support for BigQuery destination and PostgreSQL source types ([#5467](https://github.com/googleapis/google-cloud-php/issues/5467)) ([efc3f70](https://github.com/googleapis/google-cloud-php/commit/efc3f70ad5f659ec7785b394585742d73e828b84))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.8.0</summary>
+
+
+
+### Features
+
+* [Dlp] add Deidentify action ([#5486](https://github.com/googleapis/google-cloud-php/issues/5486)) ([3e9efba](https://github.com/googleapis/google-cloud-php/commit/3e9efba8415a4ba7759bfadcae712f8d869e4e15))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.25.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Firestore] update count up_to field type in aggregation queries ([#5468](https://github.com/googleapis/google-cloud-php/issues/5468)) ([8244b93](https://github.com/googleapis/google-cloud-php/commit/8244b9367b3b8af0d3a65e5bdd6371152d02535e))
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.9</summary>
+
+
+
+### Bug Fixes
+
+* add conflict for psr/log v3 as it introduces void return types ([#5484](https://github.com/googleapis/google-cloud-php/issues/5484)) ([abc727d](https://github.com/googleapis/google-cloud-php/commit/abc727d0636651ce78a9752b523ce7e6cf4f9a93))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.7</summary>
+
+
+
+### Bug Fixes
+
+* [RecommendationEngine] Fix recommendationengine resource name configuration ([#5494](https://github.com/googleapis/google-cloud-php/issues/5494)) ([80fa459](https://github.com/googleapis/google-cloud-php/commit/80fa45973dd51e7ad940f2592046c8e008b05533))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.11.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] serviceAccountKeyName, serviceAccountDelegationInfo, and principalSubject attributes added to the existing access attribute. ([#5457](https://github.com/googleapis/google-cloud-php/issues/5457)) ([b120ba3](https://github.com/googleapis/google-cloud-php/commit/b120ba3d121d0d51163886c68f59c3326f75680a))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.53.0</summary>
+
+
+
+### Features
+
+* [Spanner] Adds auto-generated CL for googleapis for jsonb ([#5474](https://github.com/googleapis/google-cloud-php/issues/5474)) ([51163cd](https://github.com/googleapis/google-cloud-php/commit/51163cd55a6ee3c974db71cae5eaf1d39c4e5ed6))
+
+
+### Bug Fixes
+
+* improve docs/throw more relevant error in regards to memory utilization for session pool ([#5470](https://github.com/googleapis/google-cloud-php/issues/5470)) ([69162b2](https://github.com/googleapis/google-cloud-php/commit/69162b2c46130b89f9d5c9e27cf9f671e387087f))
+
+
+### Miscellaneous Chores
+
+* **main:** release 0.189.0 ([9816370](https://github.com/googleapis/google-cloud-php/commit/9816370fb05bf566ac4edb696eb2bc61e850875a))
+
+</details>
+
 ## 0.189.0
 
 <details><summary>google/cloud-apigee-registry 0.2.0</summary>
