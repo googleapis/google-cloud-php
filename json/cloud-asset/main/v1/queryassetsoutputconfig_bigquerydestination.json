@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/queryassetsoutputconfig_bigquerydestination","type":"","title":"Google\\Cloud\\Asset\\V1\\QueryAssetsOutputConfig_BigQueryDestination","name":"QueryAssetsOutputConfig_BigQueryDestination","description":"<p>This class is deprecated. Use Google\\Cloud\\Asset\\V1\\QueryAssetsOutputConfig\\BigQueryDestination instead.<\/p>","examples":[],"resources":[],"methods":[]}
