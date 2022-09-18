@@ -24,10 +24,6 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -44,7 +40,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -57,7 +53,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, display_name, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the most recent version of the
+     * - `create_time`: corresponds to the time the most recent version of the
      * resource was created.
      * - `state`: corresponds to the state of the resource.
      * - `name`: corresponds to resource name.
@@ -88,10 +84,6 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *             `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      *           + Projects scope, no location specified (defaults to global):<br/>
      *             `projects/`<var>PROJECT_ID</var>
-     *           + Organizations scope, location specified:<br/>
-     *             `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     *           + Organizations scope, no location specified (defaults to global):<br/>
-     *             `organizations/`<var>ORG_ID</var>
      *           The following example `parent` string specifies a parent project with the
      *           identifier `example-project`, and specifies the `europe-west3` location
      *           for processing data:
@@ -100,7 +92,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *           Page token to continue retrieval. Comes from previous call
      *           to `ListStoredInfoTypes`.
      *     @type int $page_size
-     *           Size of the page, can be limited by server. If zero server returns
+     *           Size of the page, can be limited by the server. If zero server returns
      *           a page of max size 100.
      *     @type string $order_by
      *           Comma separated list of fields to order by,
@@ -109,7 +101,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *           insignificant.
      *           Example: `name asc, display_name, create_time desc`
      *           Supported fields are:
-     *           - `create_time`: corresponds to time the most recent version of the
+     *           - `create_time`: corresponds to the time the most recent version of the
      *           resource was created.
      *           - `state`: corresponds to the state of the resource.
      *           - `name`: corresponds to resource name.
@@ -132,10 +124,6 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -158,10 +146,6 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      *   `projects/`<var>PROJECT_ID</var>`/locations/`<var>LOCATION_ID</var>
      * + Projects scope, no location specified (defaults to global):<br/>
      *   `projects/`<var>PROJECT_ID</var>
-     * + Organizations scope, location specified:<br/>
-     *   `organizations/`<var>ORG_ID</var>`/locations/`<var>LOCATION_ID</var>
-     * + Organizations scope, no location specified (defaults to global):<br/>
-     *   `organizations/`<var>ORG_ID</var>
      * The following example `parent` string specifies a parent project with the
      * identifier `example-project`, and specifies the `europe-west3` location
      * for processing data:
@@ -208,7 +192,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -220,7 +204,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -242,7 +226,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, display_name, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the most recent version of the
+     * - `create_time`: corresponds to the time the most recent version of the
      * resource was created.
      * - `state`: corresponds to the state of the resource.
      * - `name`: corresponds to resource name.
@@ -263,7 +247,7 @@ class ListStoredInfoTypesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc, display_name, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the most recent version of the
+     * - `create_time`: corresponds to the time the most recent version of the
      * resource was created.
      * - `state`: corresponds to the state of the resource.
      * - `name`: corresponds to resource name.

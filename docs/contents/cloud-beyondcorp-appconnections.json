@@ -1,0 +1,11 @@
+{
+    "title": "BeyondCorpAppConnections",
+    "defaultService": "beyondcorpappconnections\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "beyondcorpappconnections\/readme"
+        }
+    ],
+    "pattern": "beyondcorpappconnections\/\\w{1,}"
+}

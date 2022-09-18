@@ -30,8 +30,8 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
     private $input_config = null;
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *
@@ -52,8 +52,8 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
      *           Required. The desired input location of the data.
      *     @type string $notification_pubsub_topic
      *           Pub/Sub topic for receiving notification. If this field is set,
-     *           when the import is finished, a notification will be sent to
-     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           when the import is finished, a notification is sent to
+     *           specified Pub/Sub topic. The message data is JSON string of a
      *           [Operation][google.longrunning.Operation].
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      * }
@@ -129,8 +129,8 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *
@@ -144,8 +144,8 @@ class ImportCompletionDataRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *

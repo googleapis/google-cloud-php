@@ -289,6 +289,71 @@ class StorageTransferServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function deleteTransferJobTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $jobName = 'jobName-1615239731';
+        $projectId = 'projectId-1969970175';
+        $gapicClient->deleteTransferJob($jobName, $projectId);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.storagetransfer.v1.StorageTransferService/DeleteTransferJob', $actualFuncCall);
+        $actualValue = $actualRequestObject->getJobName();
+        $this->assertProtobufEquals($jobName, $actualValue);
+        $actualValue = $actualRequestObject->getProjectId();
+        $this->assertProtobufEquals($projectId, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function deleteTransferJobExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $jobName = 'jobName-1615239731';
+        $projectId = 'projectId-1969970175';
+        try {
+            $gapicClient->deleteTransferJob($jobName, $projectId);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function getAgentPoolTest()
     {
         $transport = $this->createTransport();

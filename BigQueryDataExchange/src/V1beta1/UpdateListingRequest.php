@@ -16,10 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class UpdateListingRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * Listing resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request.
+     * Required. Field mask specifies the fields to update in the listing resource. The
+     * fields specified in the `updateMask` are relative to the resource and are
+     * not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,10 +37,9 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. Field mask is used to specify the fields to be overwritten in the
-     *           Listing resource by the update.
-     *           The fields specified in the update_mask are relative to the resource, not
-     *           the full request.
+     *           Required. Field mask specifies the fields to update in the listing resource. The
+     *           fields specified in the `updateMask` are relative to the resource and are
+     *           not a full request.
      *     @type \Google\Cloud\BigQuery\DataExchange\V1beta1\Listing $listing
      *           Required. The listing to update.
      * }
@@ -52,10 +50,9 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * Listing resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request.
+     * Required. Field mask specifies the fields to update in the listing resource. The
+     * fields specified in the `updateMask` are relative to the resource and are
+     * not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -76,10 +73,9 @@ class UpdateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the
-     * Listing resource by the update.
-     * The fields specified in the update_mask are relative to the resource, not
-     * the full request.
+     * Required. Field mask specifies the fields to update in the listing resource. The
+     * fields specified in the `updateMask` are relative to the resource and are
+     * not a full request.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

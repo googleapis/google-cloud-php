@@ -109,4 +109,34 @@ class IndexServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Add/update Datapoints into an Index.
+     * @param \Google\Cloud\AIPlatform\V1\UpsertDatapointsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpsertDatapoints(\Google\Cloud\AIPlatform\V1\UpsertDatapointsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.IndexService/UpsertDatapoints',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Remove Datapoints from an Index.
+     * @param \Google\Cloud\AIPlatform\V1\RemoveDatapointsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RemoveDatapoints(\Google\Cloud\AIPlatform\V1\RemoveDatapointsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.IndexService/RemoveDatapoints',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\RemoveDatapointsResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

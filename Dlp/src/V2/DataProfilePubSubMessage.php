@@ -9,10 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The message that will be published to a Pub/Sub topic.
+ * Pub/Sub topic message for a DataProfileAction.PubSubNotification event.
  * To receive a message of protocol buffer schema type, convert the message data
  * to an object of this proto class.
- * https://cloud.google.com/pubsub/docs/samples/pubsub-subscribe-proto-messages
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DataProfilePubSubMessage</code>
  */

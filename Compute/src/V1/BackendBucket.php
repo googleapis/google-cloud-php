@@ -28,6 +28,13 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      */
     private $cdn_policy = null;
     /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     */
+    private $compression_mode = null;
+    /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
      * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
@@ -92,6 +99,9 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
      *           Cloud Storage bucket name.
      *     @type \Google\Cloud\Compute\V1\BackendBucketCdnPolicy $cdn_policy
      *           Cloud CDN configuration for this BackendBucket.
+     *     @type string $compression_mode
+     *           Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     *           Check the CompressionMode enum for the list of possible values.
      *     @type string $creation_timestamp
      *           [Output Only] Creation timestamp in RFC3339 text format.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $custom_response_headers
@@ -185,6 +195,44 @@ class BackendBucket extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\BackendBucketCdnPolicy::class);
         $this->cdn_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @return string
+     */
+    public function getCompressionMode()
+    {
+        return isset($this->compression_mode) ? $this->compression_mode : '';
+    }
+
+    public function hasCompressionMode()
+    {
+        return isset($this->compression_mode);
+    }
+
+    public function clearCompressionMode()
+    {
+        unset($this->compression_mode);
+    }
+
+    /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompressionMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->compression_mode = $var;
 
         return $this;
     }

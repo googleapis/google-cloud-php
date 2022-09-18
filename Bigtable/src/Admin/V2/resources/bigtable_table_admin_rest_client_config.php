@@ -298,6 +298,22 @@ return [
                     'update_mask',
                 ],
             ],
+            'UpdateTable' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{table.name=projects/*/instances/*/tables/*}',
+                'body' => 'table',
+                'placeholders' => [
+                    'table.name' => [
+                        'getters' => [
+                            'getTable',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'CancelOperation' => [

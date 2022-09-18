@@ -43,6 +43,11 @@ return [
                     'resourcesGetMethod' => 'getPartitions',
                 ],
             ],
+            'RunAggregationQuery' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+            ],
             'RunQuery' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',

@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for requesting list of DataExchanges from projects in an organization
- * and location.
+ * Message for requesting the list of data exchanges from projects in an
+ * organization and location.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.ListOrgDataExchangesRequest</code>
  */
