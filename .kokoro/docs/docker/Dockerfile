@@ -101,4 +101,6 @@ RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
   && python3.8 -m pip
 
 # Install docsuploader
-RUN python3.8 -m pip install gcp-docuploader
+COPY requirements.txt .
+RUN python3.8 -m pip install --require-hashes -r requirements.txt
+
