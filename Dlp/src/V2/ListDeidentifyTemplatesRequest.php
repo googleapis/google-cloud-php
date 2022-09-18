@@ -44,7 +44,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -57,10 +57,10 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the template was created.
-     * - `update_time`: corresponds to time the template was last updated.
-     * - `name`: corresponds to template's name.
-     * - `display_name`: corresponds to template's display name.
+     * - `create_time`: corresponds to the time the template was created.
+     * - `update_time`: corresponds to the time the template was last updated.
+     * - `name`: corresponds to the template's name.
+     * - `display_name`: corresponds to the template's display name.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
@@ -99,7 +99,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           Page token to continue retrieval. Comes from previous call
      *           to `ListDeidentifyTemplates`.
      *     @type int $page_size
-     *           Size of the page, can be limited by server. If zero server returns
+     *           Size of the page, can be limited by the server. If zero server returns
      *           a page of max size 100.
      *     @type string $order_by
      *           Comma separated list of fields to order by,
@@ -108,10 +108,10 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      *           insignificant.
      *           Example: `name asc,update_time, create_time desc`
      *           Supported fields are:
-     *           - `create_time`: corresponds to time the template was created.
-     *           - `update_time`: corresponds to time the template was last updated.
-     *           - `name`: corresponds to template's name.
-     *           - `display_name`: corresponds to template's display name.
+     *           - `create_time`: corresponds to the time the template was created.
+     *           - `update_time`: corresponds to the time the template was last updated.
+     *           - `name`: corresponds to the template's name.
+     *           - `display_name`: corresponds to the template's display name.
      *     @type string $location_id
      *           Deprecated. This field has no effect.
      * }
@@ -206,7 +206,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -218,7 +218,7 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Size of the page, can be limited by server. If zero server returns
+     * Size of the page, can be limited by the server. If zero server returns
      * a page of max size 100.
      *
      * Generated from protobuf field <code>int32 page_size = 3;</code>
@@ -240,10 +240,10 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the template was created.
-     * - `update_time`: corresponds to time the template was last updated.
-     * - `name`: corresponds to template's name.
-     * - `display_name`: corresponds to template's display name.
+     * - `create_time`: corresponds to the time the template was created.
+     * - `update_time`: corresponds to the time the template was last updated.
+     * - `name`: corresponds to the template's name.
+     * - `display_name`: corresponds to the template's display name.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @return string
@@ -260,10 +260,10 @@ class ListDeidentifyTemplatesRequest extends \Google\Protobuf\Internal\Message
      * insignificant.
      * Example: `name asc,update_time, create_time desc`
      * Supported fields are:
-     * - `create_time`: corresponds to time the template was created.
-     * - `update_time`: corresponds to time the template was last updated.
-     * - `name`: corresponds to template's name.
-     * - `display_name`: corresponds to template's display name.
+     * - `create_time`: corresponds to the time the template was created.
+     * - `update_time`: corresponds to the time the template was last updated.
+     * - `name`: corresponds to the template's name.
+     * - `display_name`: corresponds to the template's display name.
      *
      * Generated from protobuf field <code>string order_by = 4;</code>
      * @param string $var

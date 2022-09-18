@@ -28,7 +28,7 @@ class OutputSchema
      */
     const BASIC_COLUMNS = 1;
     /**
-     * Schema tailored to findings from scanning Google Cloud Storage.
+     * Schema tailored to findings from scanning Cloud Storage.
      *
      * Generated from protobuf enum <code>GCS_COLUMNS = 2;</code>
      */

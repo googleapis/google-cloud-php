@@ -41,6 +41,12 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
+     * A list of available versions for the infotype.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.VersionDescription versions = 9;</code>
+     */
+    private $versions;
+    /**
      * The category of the infoType.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeCategory categories = 10;</code>
@@ -62,6 +68,8 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Description of the infotype. Translated when language is provided in the
      *           request.
+     *     @type array<\Google\Cloud\Dlp\V2\VersionDescription>|\Google\Protobuf\Internal\RepeatedField $versions
+     *           A list of available versions for the infotype.
      *     @type array<\Google\Cloud\Dlp\V2\InfoTypeCategory>|\Google\Protobuf\Internal\RepeatedField $categories
      *           The category of the infoType.
      * }
@@ -173,6 +181,32 @@ class InfoTypeDescription extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->description = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of available versions for the infotype.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.VersionDescription versions = 9;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getVersions()
+    {
+        return $this->versions;
+    }
+
+    /**
+     * A list of available versions for the infotype.
+     *
+     * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.VersionDescription versions = 9;</code>
+     * @param array<\Google\Cloud\Dlp\V2\VersionDescription>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setVersions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dlp\V2\VersionDescription::class);
+        $this->versions = $arr;
 
         return $this;
     }

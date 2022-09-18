@@ -40,8 +40,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     private $numbers;
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -57,8 +57,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
     protected $searchable = null;
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -99,8 +99,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           Otherwise, an INVALID_ARGUMENT error is returned.
      *     @type bool $searchable
      *           This field is normally ignored unless
-     *           [AttributesConfig.attribute_config_level][] of the
-     *           [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     *           [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     *           of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      *           attribute configuration, see [Configuration
      *           modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -111,8 +111,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
      *           set. Otherwise, a INVALID_ARGUMENT error is returned.
      *     @type bool $indexable
      *           This field is normally ignored unless
-     *           [AttributesConfig.attribute_config_level][] of the
-     *           [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     *           [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     *           of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      *           'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      *           attribute configuration, see [Configuration
      *           modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -206,8 +206,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -241,8 +241,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -268,8 +268,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).
@@ -307,8 +307,8 @@ class CustomAttribute extends \Google\Protobuf\Internal\Message
 
     /**
      * This field is normally ignored unless
-     * [AttributesConfig.attribute_config_level][] of the
-     * [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
+     * [AttributesConfig.attribute_config_level][google.cloud.retail.v2.AttributesConfig.attribute_config_level]
+     * of the [Catalog][google.cloud.retail.v2.Catalog] is set to the deprecated
      * 'PRODUCT_LEVEL_ATTRIBUTE_CONFIG' mode. For information about product-level
      * attribute configuration, see [Configuration
      * modes](https://cloud.google.com/retail/docs/attribute-config#config-modes).

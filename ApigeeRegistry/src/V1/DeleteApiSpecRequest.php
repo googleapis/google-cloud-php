@@ -17,7 +17,7 @@ class DeleteApiSpecRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The name of the spec to delete.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -38,7 +38,7 @@ class DeleteApiSpecRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The name of the spec to delete.
-     *           Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;
+     *           Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
      *     @type bool $force
      *           If set to true, any child resources will also be deleted.
      *           (Otherwise, the request will only work if there are no child resources.)
@@ -51,7 +51,7 @@ class DeleteApiSpecRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the spec to delete.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,7 +63,7 @@ class DeleteApiSpecRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The name of the spec to delete.
-     * Format: projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;
+     * Format: `projects/&#42;&#47;locations/&#42;&#47;apis/&#42;&#47;versions/&#42;&#47;specs/&#42;`
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

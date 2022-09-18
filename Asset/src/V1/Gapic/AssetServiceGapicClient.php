@@ -62,9 +62,12 @@ use Google\Cloud\Asset\V1\ListAssetsResponse;
 use Google\Cloud\Asset\V1\ListFeedsRequest;
 use Google\Cloud\Asset\V1\ListFeedsResponse;
 use Google\Cloud\Asset\V1\ListSavedQueriesRequest;
-
 use Google\Cloud\Asset\V1\ListSavedQueriesResponse;
+
 use Google\Cloud\Asset\V1\OutputConfig;
+use Google\Cloud\Asset\V1\QueryAssetsOutputConfig;
+use Google\Cloud\Asset\V1\QueryAssetsRequest;
+use Google\Cloud\Asset\V1\QueryAssetsResponse;
 use Google\Cloud\Asset\V1\SavedQuery;
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesRequest;
 use Google\Cloud\Asset\V1\SearchAllIamPoliciesResponse;
@@ -1888,6 +1891,153 @@ class AssetServiceGapicClient
     }
 
     /**
+     * Issue a job that queries assets using a SQL statement compatible with
+     * [BigQuery Standard
+     * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     *
+     * If the query execution finishes within timeout and there's no pagination,
+     * the full query results will be returned in the `QueryAssetsResponse`.
+     *
+     * Otherwise, full query results can be obtained by issuing extra requests
+     * with the `job_reference` from the a previous `QueryAssets` call.
+     *
+     * Note, the query result has approximately 10 GB limitation enforced by
+     * BigQuery
+     * https://cloud.google.com/bigquery/docs/best-practices-performance-output,
+     * queries return larger results will result in errors.
+     *
+     * Sample code:
+     * ```
+     * $assetServiceClient = new AssetServiceClient();
+     * try {
+     *     $parent = 'parent';
+     *     $response = $assetServiceClient->queryAssets($parent);
+     * } finally {
+     *     $assetServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The relative name of the root asset. This can only be an
+     *                             organization number (such as "organizations/123"), a project ID (such as
+     *                             "projects/my-project-id"), or a project number (such as "projects/12345"),
+     *                             or a folder number (such as "folders/123").
+     *
+     *                             Only assets belonging to the `parent` will be returned.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $statement
+     *           Optional. A SQL statement that's compatible with [BigQuery Standard
+     *           SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     *     @type string $jobReference
+     *           Optional. Reference to the query job, which is from the
+     *           `QueryAssetsResponse` of previous `QueryAssets` call.
+     *     @type int $pageSize
+     *           Optional. The maximum number of rows to return in the results. Responses
+     *           are limited to 10 MB and 1000 rows.
+     *
+     *           By default, the maximum row count is 1000. When the byte or row count limit
+     *           is reached, the rest of the query results will be paginated.
+     *
+     *           The field will be ignored when [output_config] is specified.
+     *     @type string $pageToken
+     *           Optional. A page token received from previous `QueryAssets`.
+     *
+     *           The field will be ignored when [output_config] is specified.
+     *     @type Duration $timeout
+     *           Optional. Specifies the maximum amount of time that the client is willing
+     *           to wait for the query to complete. By default, this limit is 5 min for the
+     *           first query, and 1 minute for the following queries. If the query is
+     *           complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
+     *           false.
+     *
+     *           Like BigQuery [jobs.query
+     *           API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
+     *           The call is not guaranteed to wait for the specified timeout; it typically
+     *           returns after around 200 seconds (200,000 milliseconds), even if the query
+     *           is not complete.
+     *
+     *           The field will be ignored when [output_config] is specified.
+     *     @type TimeWindow $readTimeWindow
+     *           Optional. [start_time] is required. [start_time] must be less than
+     *           [end_time] Defaults [end_time] to now if [start_time] is set and
+     *           [end_time] isn't. Maximum permitted time range is 7 days.
+     *     @type Timestamp $readTime
+     *           Optional. Queries cloud assets as they appeared at the specified point in
+     *           time.
+     *     @type QueryAssetsOutputConfig $outputConfig
+     *           Optional. Destination where the query results will be saved.
+     *
+     *           When this field is specified, the query results won't be saved in the
+     *           [QueryAssetsResponse.query_result]. Instead
+     *           [QueryAssetsResponse.output_config] will be set.
+     *
+     *           Meanwhile, [QueryAssetsResponse.job_reference] will be set and can be used
+     *           to check the status of the query job when passed to a following
+     *           [QueryAssets] API call.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Asset\V1\QueryAssetsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function queryAssets($parent, array $optionalArgs = [])
+    {
+        $request = new QueryAssetsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['statement'])) {
+            $request->setStatement($optionalArgs['statement']);
+        }
+
+        if (isset($optionalArgs['jobReference'])) {
+            $request->setJobReference($optionalArgs['jobReference']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['timeout'])) {
+            $request->setTimeout($optionalArgs['timeout']);
+        }
+
+        if (isset($optionalArgs['readTimeWindow'])) {
+            $request->setReadTimeWindow($optionalArgs['readTimeWindow']);
+        }
+
+        if (isset($optionalArgs['readTime'])) {
+            $request->setReadTime($optionalArgs['readTime']);
+        }
+
+        if (isset($optionalArgs['outputConfig'])) {
+            $request->setOutputConfig($optionalArgs['outputConfig']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'QueryAssets',
+            QueryAssetsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Searches all IAM policies within the specified scope, such as a project,
      * folder, or organization. The caller must be granted the
      * `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
@@ -1939,8 +2089,8 @@ class AssetServiceGapicClient
      *           compared against each Cloud IAM policy binding, including its principals,
      *           roles, and Cloud IAM conditions. The returned Cloud IAM policies will only
      *           contain the bindings that match your query. To learn more about the IAM
-     *           policy structure, see [IAM policy
-     *           doc](https://cloud.google.com/iam/docs/policies#structure).
+     *           policy structure, see the [IAM policy
+     *           documentation](https://cloud.google.com/iam/help/allow-policies/structure).
      *
      *           Examples:
      *
@@ -2129,6 +2279,14 @@ class AssetServiceGapicClient
      *           * `labels.env:*` to find Cloud resources that have a label "env".
      *           * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
      *           encryption key whose name contains the word "key".
+     *           * `relationships:instance-group-1` to find Cloud resources that have
+     *           relationships with "instance-group-1" in the related resource name.
+     *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
+     *           have relationships of type "INSTANCE_TO_INSTANCEGROUP".
+     *           * `relationships.INSTANCE_TO_INSTANCEGROUP:instance-group-1` to find
+     *           compute instances that have relationships with "instance-group-1" in the
+     *           compute instance group resource name, for relationship type
+     *           "INSTANCE_TO_INSTANCEGROUP".
      *           * `state:ACTIVE` to find Cloud resources whose state contains "ACTIVE" as a
      *           word.
      *           * `NOT state:ACTIVE` to find Cloud resources whose state doesn't contain

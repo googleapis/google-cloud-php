@@ -206,7 +206,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $processes;
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key
+     * Output only. Map containing the points of contact for the given finding. The key
      * represents the type of contact, while the value contains a list of all the
      * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
@@ -233,6 +233,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
      */
     private $compliances;
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $parent_display_name = '';
     /**
      * Contains more detail about the finding.
      *
@@ -270,6 +277,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Kubernetes kubernetes = 43;</code>
      */
     private $kubernetes = null;
+    /**
+     * Database associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Database database = 44;</code>
+     */
+    private $database = null;
 
     /**
      * Constructor.
@@ -371,7 +384,7 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
-     *           Output only. Map containing the point of contacts for the given finding. The key
+     *           Output only. Map containing the points of contact for the given finding. The key
      *           represents the type of contact, while the value contains a list of all the
      *           contacts that pertain. Please refer to:
      *           https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
@@ -390,6 +403,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $compliances
      *           Contains compliance information for security standards associated to the
      *           finding.
+     *     @type string $parent_display_name
+     *           Output only. The human readable display name of the finding source such as
+     *           "Event Threat Detection" or "Security Health Analytics".
      *     @type string $description
      *           Contains more detail about the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
@@ -403,6 +419,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           for both Kubernetes and non-Kubernetes containers.
      *     @type \Google\Cloud\SecurityCenter\V1\Kubernetes $kubernetes
      *           Kubernetes resources associated with the finding.
+     *     @type \Google\Cloud\SecurityCenter\V1\Database $database
+     *           Database associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1183,7 +1201,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key
+     * Output only. Map containing the points of contact for the given finding. The key
      * represents the type of contact, while the value contains a list of all the
      * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
@@ -1209,7 +1227,7 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the point of contacts for the given finding. The key
+     * Output only. Map containing the points of contact for the given finding. The key
      * represents the type of contact, while the value contains a list of all the
      * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
@@ -1262,6 +1280,34 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Compliance::class);
         $this->compliances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getParentDisplayName()
+    {
+        return $this->parent_display_name;
+    }
+
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_display_name = $var;
 
         return $this;
     }
@@ -1440,6 +1486,42 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Kubernetes::class);
         $this->kubernetes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Database associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Database database = 44;</code>
+     * @return \Google\Cloud\SecurityCenter\V1\Database|null
+     */
+    public function getDatabase()
+    {
+        return $this->database;
+    }
+
+    public function hasDatabase()
+    {
+        return isset($this->database);
+    }
+
+    public function clearDatabase()
+    {
+        unset($this->database);
+    }
+
+    /**
+     * Database associated with the finding.
+     *
+     * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Database database = 44;</code>
+     * @param \Google\Cloud\SecurityCenter\V1\Database $var
+     * @return $this
+     */
+    public function setDatabase($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Database::class);
+        $this->database = $var;
 
         return $this;
     }

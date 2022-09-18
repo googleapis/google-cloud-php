@@ -15,26 +15,28 @@ use UnexpectedValueException;
 class OverwriteWhen
 {
     /**
-     * Indicate the option is not set.
+     * Overwrite behavior is unspecified.
      *
      * Generated from protobuf enum <code>OVERWRITE_WHEN_UNSPECIFIED = 0;</code>
      */
     const OVERWRITE_WHEN_UNSPECIFIED = 0;
     /**
-     * Overwrite destination object with source if the two objects are
-     * different.
+     * Overwrites destination objects with the source objects, only if the
+     * objects have the same name but different HTTP ETags or checksum values.
      *
      * Generated from protobuf enum <code>DIFFERENT = 1;</code>
      */
     const DIFFERENT = 1;
     /**
-     * Never overwrite destination object.
+     * Never overwrites a destination object if a source object has the
+     * same name. In this case, the source object is not transferred.
      *
      * Generated from protobuf enum <code>NEVER = 2;</code>
      */
     const NEVER = 2;
     /**
-     * Always overwrite destination object.
+     * Always overwrite the destination object with the source object, even if
+     * the HTTP Etags or checksum values are the same.
      *
      * Generated from protobuf enum <code>ALWAYS = 3;</code>
      */

@@ -53,8 +53,7 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * Output only. In case of error, the details of the error in a user-friendly
-     * format.
+     * Output only. In case of error, the details of the error in a user-friendly format.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Error error = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -85,8 +84,7 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
      *     @type int $state
      *           Output only. The state of the Private Connection.
      *     @type \Google\Cloud\Datastream\V1\Error $error
-     *           Output only. In case of error, the details of the error in a user-friendly
-     *           format.
+     *           Output only. In case of error, the details of the error in a user-friendly format.
      *     @type \Google\Cloud\Datastream\V1\VpcPeeringConfig $vpc_peering_config
      *           VPC Peering Config.
      * }
@@ -273,8 +271,7 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. In case of error, the details of the error in a user-friendly
-     * format.
+     * Output only. In case of error, the details of the error in a user-friendly format.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Error error = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\Datastream\V1\Error|null
@@ -295,8 +292,7 @@ class PrivateConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. In case of error, the details of the error in a user-friendly
-     * format.
+     * Output only. In case of error, the details of the error in a user-friendly format.
      *
      * Generated from protobuf field <code>.google.cloud.datastream.v1.Error error = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\Datastream\V1\Error $var

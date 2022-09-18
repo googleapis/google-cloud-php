@@ -447,6 +447,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $bucketName = 'bucketName283610048';
+        $compressionMode = 'compressionMode-2051962660';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $edgeSecurityPolicy = 'edgeSecurityPolicy-1032704881';
@@ -457,6 +458,7 @@ class BackendBucketsClientTest extends GeneratedTest
         $selfLink = 'selfLink-1691268851';
         $expectedResponse = new BackendBucket();
         $expectedResponse->setBucketName($bucketName);
+        $expectedResponse->setCompressionMode($compressionMode);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setEdgeSecurityPolicy($edgeSecurityPolicy);

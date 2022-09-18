@@ -38,6 +38,7 @@ use Google\Cloud\Compute\V1\DeleteInterconnectRequest;
 use Google\Cloud\Compute\V1\GetDiagnosticsInterconnectRequest;
 use Google\Cloud\Compute\V1\GetInterconnectRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertInterconnectRequest;
 use Google\Cloud\Compute\V1\Interconnect;
 use Google\Cloud\Compute\V1\InterconnectList;
@@ -45,6 +46,7 @@ use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
 use Google\Cloud\Compute\V1\ListInterconnectsRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\PatchInterconnectRequest;
+use Google\Cloud\Compute\V1\SetLabelsInterconnectRequest;
 
 /**
  * Service Description: The Interconnects API.
@@ -654,5 +656,74 @@ class InterconnectsGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('Patch', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
+    }
+
+    /**
+     * Sets the labels on an Interconnect. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * Sample code:
+     * ```
+     * $interconnectsClient = new InterconnectsClient();
+     * try {
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $interconnectsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $interconnectsClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $interconnectsClient->resumeOperation($operationName, 'setLabels');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $interconnectsClient->close();
+     * }
+     * ```
+     *
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    {
+        $request = new SetLabelsInterconnectRequest();
+        $requestParamHeaders = [];
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

@@ -440,9 +440,19 @@
                                 "listIndexes"
                             ]
                         },
+                        "RemoveDatapoints": {
+                            "methods": [
+                                "removeDatapoints"
+                            ]
+                        },
                         "UpdateIndex": {
                             "methods": [
                                 "updateIndex"
+                            ]
+                        },
+                        "UpsertDatapoints": {
+                            "methods": [
+                                "upsertDatapoints"
                             ]
                         },
                         "GetLocation": {

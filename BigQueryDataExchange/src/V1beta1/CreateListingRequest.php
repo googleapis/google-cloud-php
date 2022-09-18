@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Message for creating a Listing.
+ * Message for creating a listing.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.CreateListingRequest</code>
  */
@@ -23,7 +23,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Required. The ID of the Listing to create.
+     * Required. The ID of the listing to create.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
      * Should not use characters that require URL-escaping, or characters
      * outside of ASCII, spaces.
@@ -49,7 +49,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
      *           Required. The parent resource path of the listing.
      *           e.g. `projects/myproject/locations/US/dataExchanges/123`.
      *     @type string $listing_id
-     *           Required. The ID of the Listing to create.
+     *           Required. The ID of the listing to create.
      *           Must contain only Unicode letters, numbers (0-9), underscores (_).
      *           Should not use characters that require URL-escaping, or characters
      *           outside of ASCII, spaces.
@@ -92,7 +92,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Listing to create.
+     * Required. The ID of the listing to create.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
      * Should not use characters that require URL-escaping, or characters
      * outside of ASCII, spaces.
@@ -107,7 +107,7 @@ class CreateListingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The ID of the Listing to create.
+     * Required. The ID of the listing to create.
      * Must contain only Unicode letters, numbers (0-9), underscores (_).
      * Should not use characters that require URL-escaping, or characters
      * outside of ASCII, spaces.

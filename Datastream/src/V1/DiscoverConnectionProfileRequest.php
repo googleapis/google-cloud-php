@@ -48,6 +48,8 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
      *           Oracle RDBMS to enrich with child data objects and metadata.
      *     @type \Google\Cloud\Datastream\V1\MysqlRdbms $mysql_rdbms
      *           MySQL RDBMS to enrich with child data objects and metadata.
+     *     @type \Google\Cloud\Datastream\V1\PostgresqlRdbms $postgresql_rdbms
+     *           PostgreSQL RDBMS to enrich with child data objects and metadata.
      * }
      */
     public function __construct($data = NULL) {
@@ -267,6 +269,37 @@ class DiscoverConnectionProfileRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\MysqlRdbms::class);
         $this->writeOneof(101, $var);
+
+        return $this;
+    }
+
+    /**
+     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102;</code>
+     * @return \Google\Cloud\Datastream\V1\PostgresqlRdbms|null
+     */
+    public function getPostgresqlRdbms()
+    {
+        return $this->readOneof(102);
+    }
+
+    public function hasPostgresqlRdbms()
+    {
+        return $this->hasOneof(102);
+    }
+
+    /**
+     * PostgreSQL RDBMS to enrich with child data objects and metadata.
+     *
+     * Generated from protobuf field <code>.google.cloud.datastream.v1.PostgresqlRdbms postgresql_rdbms = 102;</code>
+     * @param \Google\Cloud\Datastream\V1\PostgresqlRdbms $var
+     * @return $this
+     */
+    public function setPostgresqlRdbms($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Datastream\V1\PostgresqlRdbms::class);
+        $this->writeOneof(102, $var);
 
         return $this;
     }

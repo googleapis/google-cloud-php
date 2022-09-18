@@ -171,6 +171,22 @@ class StorageTransferServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Deletes a transfer job. Deleting a transfer job sets its status to
+     * [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
+     * @param \Google\Cloud\StorageTransfer\V1\DeleteTransferJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteTransferJob(\Google\Cloud\StorageTransfer\V1\DeleteTransferJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.storagetransfer.v1.StorageTransferService/DeleteTransferJob',
+        $argument,
+        ['\Google\Protobuf\GPBEmpty', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates an agent pool resource.
      * @param \Google\Cloud\StorageTransfer\V1\CreateAgentPoolRequest $argument input argument
      * @param array $metadata metadata

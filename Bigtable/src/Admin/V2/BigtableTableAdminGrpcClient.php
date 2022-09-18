@@ -106,6 +106,21 @@ class BigtableTableAdminGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Updates a specified table.
+     * @param \Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateTable(\Google\Cloud\Bigtable\Admin\V2\UpdateTableRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.admin.v2.BigtableTableAdmin/UpdateTable',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Permanently deletes a specified table and all of its data.
      * @param \Google\Cloud\Bigtable\Admin\V2\DeleteTableRequest $argument input argument
      * @param array $metadata metadata

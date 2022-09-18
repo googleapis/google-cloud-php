@@ -24,23 +24,23 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * * Cloud Storage files: `gs://{bucket}/{path}`
      * * Datastore namespace: {namespace}
      * Nested names could be absent if the embedded object has no string
-     * identifier (for an example an image contained within a document).
+     * identifier (for example, an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      */
     private $container_name = '';
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Finding container modification timestamp, if applicable. For Cloud Storage,
+     * this field contains the last file modification timestamp. For a BigQuery
+     * table, this field contains the last_modified_time property. For Datastore,
+     * this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 6;</code>
      */
     private $container_timestamp = null;
     /**
-     * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * Finding container version, if available
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string container_version = 7;</code>
      */
@@ -61,7 +61,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *           * Cloud Storage files: `gs://{bucket}/{path}`
      *           * Datastore namespace: {namespace}
      *           Nested names could be absent if the embedded object has no string
-     *           identifier (for an example an image contained within a document).
+     *           identifier (for example, an image contained within a document).
      *     @type \Google\Cloud\Dlp\V2\RecordLocation $record_location
      *           Location within a row or record of a database table.
      *     @type \Google\Cloud\Dlp\V2\ImageLocation $image_location
@@ -71,13 +71,13 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\MetadataLocation $metadata_location
      *           Location within the metadata for inspected content.
      *     @type \Google\Protobuf\Timestamp $container_timestamp
-     *           Findings container modification timestamp, if applicable.
-     *           For Google Cloud Storage contains last file modification timestamp.
-     *           For BigQuery table contains last_modified_time property.
-     *           For Datastore - not populated.
+     *           Finding container modification timestamp, if applicable. For Cloud Storage,
+     *           this field contains the last file modification timestamp. For a BigQuery
+     *           table, this field contains the last_modified_time property. For Datastore,
+     *           this field isn't populated.
      *     @type string $container_version
-     *           Findings container version, if available
-     *           ("generation" for Google Cloud Storage).
+     *           Finding container version, if available
+     *           ("generation" for Cloud Storage).
      * }
      */
     public function __construct($data = NULL) {
@@ -93,7 +93,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * * Cloud Storage files: `gs://{bucket}/{path}`
      * * Datastore namespace: {namespace}
      * Nested names could be absent if the embedded object has no string
-     * identifier (for an example an image contained within a document).
+     * identifier (for example, an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      * @return string
@@ -111,7 +111,7 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
      * * Cloud Storage files: `gs://{bucket}/{path}`
      * * Datastore namespace: {namespace}
      * Nested names could be absent if the embedded object has no string
-     * identifier (for an example an image contained within a document).
+     * identifier (for example, an image contained within a document).
      *
      * Generated from protobuf field <code>string container_name = 1;</code>
      * @param string $var
@@ -250,10 +250,10 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Finding container modification timestamp, if applicable. For Cloud Storage,
+     * this field contains the last file modification timestamp. For a BigQuery
+     * table, this field contains the last_modified_time property. For Datastore,
+     * this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -274,10 +274,10 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container modification timestamp, if applicable.
-     * For Google Cloud Storage contains last file modification timestamp.
-     * For BigQuery table contains last_modified_time property.
-     * For Datastore - not populated.
+     * Finding container modification timestamp, if applicable. For Cloud Storage,
+     * this field contains the last file modification timestamp. For a BigQuery
+     * table, this field contains the last_modified_time property. For Datastore,
+     * this field isn't populated.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp container_timestamp = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -292,8 +292,8 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * Finding container version, if available
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string container_version = 7;</code>
      * @return string
@@ -304,8 +304,8 @@ class ContentLocation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Findings container version, if available
-     * ("generation" for Google Cloud Storage).
+     * Finding container version, if available
+     * ("generation" for Cloud Storage).
      *
      * Generated from protobuf field <code>string container_version = 7;</code>
      * @param string $var
