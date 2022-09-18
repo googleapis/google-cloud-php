@@ -26,6 +26,6 @@ trait VisibilityTrait
 
     public function isInherited(): bool
     {
-        return $this->xmlNode->inherited_from;
+        return (bool) $this->xmlNode->inherited_from;
     }
 }
