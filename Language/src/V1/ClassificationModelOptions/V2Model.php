@@ -20,7 +20,7 @@ class V2Model extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions.V2Model.ContentCategoriesVersion content_categories_version = 1;</code>
      */
-    protected $content_categories_version = 0;
+    private $content_categories_version = 0;
 
     /**
      * Constructor.

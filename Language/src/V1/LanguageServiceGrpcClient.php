@@ -16,7 +16,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-//
 namespace Google\Cloud\Language\V1;
 
 /**
@@ -67,8 +66,10 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Finds entities, similar to [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities] in the text and analyzes
-     * sentiment associated with each entity and its mentions.
+     * Finds entities, similar to
+     * [AnalyzeEntities][google.cloud.language.v1.LanguageService.AnalyzeEntities]
+     * in the text and analyzes sentiment associated with each entity and its
+     * mentions.
      * @param \Google\Cloud\Language\V1\AnalyzeEntitySentimentRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
