@@ -85,6 +85,11 @@
                                 "listSavedQueries"
                             ]
                         },
+                        "QueryAssets": {
+                            "methods": [
+                                "queryAssets"
+                            ]
+                        },
                         "SearchAllIamPolicies": {
                             "methods": [
                                 "searchAllIamPolicies"

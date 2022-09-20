@@ -37,9 +37,9 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
      */
     private $metadata;
     /**
-     * Name of the query record.
+     * The name of the answer record.
      * Format:
-     * projects/{project}/locations/{location}/queryRecords/{query_record}
+     * projects/{project}/locations/{location}/answerRecords/{answer_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      */
@@ -61,9 +61,9 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
      *           Map that contains metadata about the Smart Reply and the document from
      *           which it originates.
      *     @type string $query_record
-     *           Name of the query record.
+     *           The name of the answer record.
      *           Format:
-     *           projects/{project}/locations/{location}/queryRecords/{query_record}
+     *           projects/{project}/locations/{location}/answerRecords/{answer_record}
      * }
      */
     public function __construct($data = NULL) {
@@ -156,9 +156,9 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the query record.
+     * The name of the answer record.
      * Format:
-     * projects/{project}/locations/{location}/queryRecords/{query_record}
+     * projects/{project}/locations/{location}/answerRecords/{answer_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      * @return string
@@ -169,9 +169,9 @@ class SmartReplyData extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Name of the query record.
+     * The name of the answer record.
      * Format:
-     * projects/{project}/locations/{location}/queryRecords/{query_record}
+     * projects/{project}/locations/{location}/answerRecords/{answer_record}
      *
      * Generated from protobuf field <code>string query_record = 4;</code>
      * @param string $var

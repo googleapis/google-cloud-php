@@ -59,6 +59,12 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      */
     private $proxy_header = null;
     /**
+     * [Output Only] URL of the region where the regional TCP proxy resides. This field is not applicable to global TCP proxy.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     */
+    private $region = null;
+    /**
      * [Output Only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>optional string self_link = 456214797;</code>
@@ -92,6 +98,8 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
      *     @type string $proxy_header
      *           Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.
      *           Check the ProxyHeader enum for the list of possible values.
+     *     @type string $region
+     *           [Output Only] URL of the region where the regional TCP proxy resides. This field is not applicable to global TCP proxy.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $service
@@ -353,6 +361,42 @@ class TargetTcpProxy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->proxy_header = $var;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional TCP proxy resides. This field is not applicable to global TCP proxy.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @return string
+     */
+    public function getRegion()
+    {
+        return isset($this->region) ? $this->region : '';
+    }
+
+    public function hasRegion()
+    {
+        return isset($this->region);
+    }
+
+    public function clearRegion()
+    {
+        unset($this->region);
+    }
+
+    /**
+     * [Output Only] URL of the region where the regional TCP proxy resides. This field is not applicable to global TCP proxy.
+     *
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setRegion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->region = $var;
 
         return $this;
     }

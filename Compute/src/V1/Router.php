@@ -40,7 +40,7 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $description = null;
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      */
@@ -109,7 +109,7 @@ class Router extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of this resource. Provide this property when you create the resource.
      *     @type bool $encrypted_interconnect_router
-     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     *           Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *     @type int|string $id
      *           [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *     @type array<\Google\Cloud\Compute\V1\RouterInterface>|\Google\Protobuf\Internal\RepeatedField $interfaces
@@ -268,7 +268,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @return bool
@@ -289,7 +289,7 @@ class Router extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments). Not currently available publicly. 
+     * Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).
      *
      * Generated from protobuf field <code>optional bool encrypted_interconnect_router = 297996575;</code>
      * @param bool $var

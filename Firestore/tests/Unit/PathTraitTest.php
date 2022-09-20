@@ -151,6 +151,7 @@ class PathTraitTest extends TestCase
         return [
             [self::COLLECTION],
             [self::ROOT],
+            [''],
             [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
             [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
         ];

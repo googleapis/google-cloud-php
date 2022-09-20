@@ -88,6 +88,12 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 6;</code>
      */
     private $order_by = '';
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     */
+    private $read_mask = null;
 
     /**
      * Constructor.
@@ -148,6 +154,8 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
      *             * `update_time`
      *             * `end_time`
      *             * `start_time`
+     *     @type \Google\Protobuf\FieldMask $read_mask
+     *           Mask specifying which fields to read.
      * }
      */
     public function __construct($data = NULL) {
@@ -367,6 +375,42 @@ class ListPipelineJobsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getReadMask()
+    {
+        return $this->read_mask;
+    }
+
+    public function hasReadMask()
+    {
+        return isset($this->read_mask);
+    }
+
+    public function clearReadMask()
+    {
+        unset($this->read_mask);
+    }
+
+    /**
+     * Mask specifying which fields to read.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask read_mask = 7;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setReadMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->read_mask = $var;
 
         return $this;
     }

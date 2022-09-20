@@ -164,8 +164,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $mute_update_time = null;
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -206,9 +206,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      */
     private $processes;
     /**
-     * Output only. Map containing the point of contacts for the given finding.
-     * The key represents the type of contact, while the value contains a list of
-     * all the contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -233,6 +233,13 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.Compliance compliances = 34;</code>
      */
     private $compliances;
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $parent_display_name = '';
     /**
      * Contains more detail about the finding.
      *
@@ -359,8 +366,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $mute_update_time
      *           Output only. The most recent time this finding was muted or unmuted.
      *     @type array|\Google\Protobuf\Internal\MapField $external_systems
-     *           Output only. Third party SIEM/SOAR fields within SCC, contains external
-     *           system information and external system finding fields.
+     *           Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     *           information and external system finding fields.
      *     @type \Google\Cloud\SecurityCenter\V1\MitreAttack $mitre_attack
      *           MITRE ATT&CK tactics and techniques related to this finding.
      *           See: https://attack.mitre.org
@@ -377,9 +384,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Process>|\Google\Protobuf\Internal\RepeatedField $processes
      *           Represents operating system processes associated with the Finding.
      *     @type array|\Google\Protobuf\Internal\MapField $contacts
-     *           Output only. Map containing the point of contacts for the given finding.
-     *           The key represents the type of contact, while the value contains a list of
-     *           all the contacts that pertain. Please refer to:
+     *           Output only. Map containing the points of contact for the given finding. The key
+     *           represents the type of contact, while the value contains a list of all the
+     *           contacts that pertain. Please refer to:
      *           https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *               {
      *                 "security": {
@@ -396,6 +403,9 @@ class Finding extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\SecurityCenter\V1\Compliance>|\Google\Protobuf\Internal\RepeatedField $compliances
      *           Contains compliance information for security standards associated to the
      *           finding.
+     *     @type string $parent_display_name
+     *           Output only. The human readable display name of the finding source such as
+     *           "Event Threat Detection" or "Security Health Analytics".
      *     @type string $description
      *           Contains more detail about the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Exfiltration $exfiltration
@@ -1003,8 +1013,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -1015,8 +1025,8 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Third party SIEM/SOAR fields within SCC, contains external
-     * system information and external system finding fields.
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system
+     * information and external system finding fields.
      *
      * Generated from protobuf field <code>map<string, .google.cloud.securitycenter.v1.ExternalSystem> external_systems = 22 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -1191,9 +1201,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the point of contacts for the given finding.
-     * The key represents the type of contact, while the value contains a list of
-     * all the contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -1217,9 +1227,9 @@ class Finding extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Map containing the point of contacts for the given finding.
-     * The key represents the type of contact, while the value contains a list of
-     * all the contacts that pertain. Please refer to:
+     * Output only. Map containing the points of contact for the given finding. The key
+     * represents the type of contact, while the value contains a list of all the
+     * contacts that pertain. Please refer to:
      * https://cloud.google.com/resource-manager/docs/managing-notification-contacts#notification-categories
      *     {
      *       "security": {
@@ -1270,6 +1280,34 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\Compliance::class);
         $this->compliances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getParentDisplayName()
+    {
+        return $this->parent_display_name;
+    }
+
+    /**
+     * Output only. The human readable display name of the finding source such as
+     * "Event Threat Detection" or "Security Health Analytics".
+     *
+     * Generated from protobuf field <code>string parent_display_name = 36 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParentDisplayName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent_display_name = $var;
 
         return $this;
     }

@@ -147,7 +147,7 @@ class CatalogServiceGapicClient
     private static function getCatalogItemPathNameTemplate()
     {
         if (self::$catalogItemPathNameTemplate == null) {
-            self::$catalogItemPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path=**}');
+            self::$catalogItemPathNameTemplate = new PathTemplate('projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}');
         }
 
         return self::$catalogItemPathNameTemplate;
@@ -214,7 +214,7 @@ class CatalogServiceGapicClient
      * The following name formats are supported:
      * Template: Pattern
      * - catalog: projects/{project}/locations/{location}/catalogs/{catalog}
-     * - catalogItemPath: projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path=**}
+     * - catalogItemPath: projects/{project}/locations/{location}/catalogs/{catalog}/catalogItems/{catalog_item_path}
      *
      * The optional $template argument can be supplied to specify a particular pattern,
      * and must match one of the templates listed above. If no $template argument is
