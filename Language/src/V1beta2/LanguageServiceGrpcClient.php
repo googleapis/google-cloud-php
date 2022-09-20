@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
 //
 namespace Google\Cloud\Language\V1beta2;
 
@@ -84,7 +83,7 @@ class LanguageServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Analyzes the syntax of the text and provides sentence boundaries and
-     * tokenization along with part-of-speech tags, dependency trees, and other
+     * tokenization along with part of speech tags, dependency trees, and other
      * properties.
      * @param \Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest $argument input argument
      * @param array $metadata metadata
