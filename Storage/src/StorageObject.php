@@ -322,10 +322,10 @@ class StorageObject
 
         return new StorageObject(
             $this->connection,
-            $response['name'],
-            $response['bucket'],
-            $response['generation'],
-            $response + ['requesterProjectId' => $this->identity['userProject']],
+            $response['resource']['name'],
+            $response['resource']['bucket'],
+            $response['resource']['generation'],
+            $response['resource'] + ['requesterProjectId' => $this->identity['userProject']],
             $key,
             $keySHA256
         );
