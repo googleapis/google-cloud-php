@@ -31,7 +31,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * The name of the Model resoure that produces the predictions via this job,
+     * The name of the Model resource that produces the predictions via this job,
      * must share the same ancestor Location.
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.
@@ -234,7 +234,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           Required. The user-defined name of this BatchPredictionJob.
      *     @type string $model
-     *           The name of the Model resoure that produces the predictions via this job,
+     *           The name of the Model resource that produces the predictions via this job,
      *           must share the same ancestor Location.
      *           Starting this job has no impact on any existing deployments of the Model
      *           and their resources.
@@ -397,7 +397,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Model resoure that produces the predictions via this job,
+     * The name of the Model resource that produces the predictions via this job,
      * must share the same ancestor Location.
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.
@@ -414,7 +414,7 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the Model resoure that produces the predictions via this job,
+     * The name of the Model resource that produces the predictions via this job,
      * must share the same ancestor Location.
      * Starting this job has no impact on any existing deployments of the Model
      * and their resources.

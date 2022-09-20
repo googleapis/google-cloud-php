@@ -803,6 +803,11 @@
                                 "queryExecutionInputsAndOutputs"
                             ]
                         },
+                        "RemoveContextChildren": {
+                            "methods": [
+                                "removeContextChildren"
+                            ]
+                        },
                         "UpdateArtifact": {
                             "methods": [
                                 "updateArtifact"

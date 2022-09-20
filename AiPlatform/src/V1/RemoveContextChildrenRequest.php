@@ -9,11 +9,12 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [MetadataService.AddContextChildren][google.cloud.aiplatform.v1.MetadataService.AddContextChildren].
+ * Request message for
+ * [MetadataService.DeleteContextChildrenRequest][].
  *
- * Generated from protobuf message <code>google.cloud.aiplatform.v1.AddContextChildrenRequest</code>
+ * Generated from protobuf message <code>google.cloud.aiplatform.v1.RemoveContextChildrenRequest</code>
  */
-class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
+class RemoveContextChildrenRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the parent Context.
@@ -22,7 +23,7 @@ class AddContextChildrenRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string context = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
-    protected $context = '';
+    private $context = '';
     /**
      * The resource names of the child Contexts.
      *
