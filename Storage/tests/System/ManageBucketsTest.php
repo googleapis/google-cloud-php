@@ -180,16 +180,10 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertTrue($bucket->info()['autoclass']['enabled']);
 
         // test disabling autoclass
-        $autoclassConfig['autoclass']['enable'] = false;
+        $autoclassConfig['autoclass']['enabled'] = false;
         $bucket->update($autoclassConfig);
         $this->assertArrayHasKey('autoclass', $bucket->info());
         $this->assertFalse($bucket->info()['autoclass']['enabled']);
-
-        // test re-enabling autoclass
-        $autoclassConfig['autoclass']['enable'] = true;
-        $bucket->update($autoclassConfig);
-        $this->assertArrayHasKey('autoclass', $bucket->info());
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
     }
 
     public function lifecycleRules()
