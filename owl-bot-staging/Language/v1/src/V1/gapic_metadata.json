@@ -1,0 +1,48 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.language.v1",
+    "libraryPackage": "Google\\Cloud\\Language\\V1",
+    "services": {
+        "LanguageService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "LanguageServiceGapicClient",
+                    "rpcs": {
+                        "AnalyzeEntities": {
+                            "methods": [
+                                "analyzeEntities"
+                            ]
+                        },
+                        "AnalyzeEntitySentiment": {
+                            "methods": [
+                                "analyzeEntitySentiment"
+                            ]
+                        },
+                        "AnalyzeSentiment": {
+                            "methods": [
+                                "analyzeSentiment"
+                            ]
+                        },
+                        "AnalyzeSyntax": {
+                            "methods": [
+                                "analyzeSyntax"
+                            ]
+                        },
+                        "AnnotateText": {
+                            "methods": [
+                                "annotateText"
+                            ]
+                        },
+                        "ClassifyText": {
+                            "methods": [
+                                "classifyText"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
