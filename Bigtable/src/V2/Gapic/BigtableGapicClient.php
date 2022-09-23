@@ -53,6 +53,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
@@ -324,11 +325,11 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $tableName    Required. The unique name of the table to which the conditional mutation should be
-     *                             applied.
-     *                             Values are of the form
+     * @param string $tableName    Required. The unique name of the table to which the conditional mutation
+     *                             should be applied. Values are of the form
      *                             `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be applied.
+     * @param string $rowKey       Required. The key of the row to which the conditional mutation should be
+     *                             applied.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -413,13 +414,13 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string     $tableName    Required. The unique name of the table to which the mutation should be applied.
-     *                                 Values are of the form
+     * @param string     $tableName    Required. The unique name of the table to which the mutation should be
+     *                                 applied. Values are of the form
      *                                 `projects/<project>/instances/<instance>/tables/<table>`.
      * @param string     $rowKey       Required. The key of the row to which the mutation should be applied.
-     * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries are applied
-     *                                 in order, meaning that earlier mutations can be masked by later ones.
-     *                                 Must contain at least one entry and at most 100000.
+     * @param Mutation[] $mutations    Required. Changes to be atomically applied to the specified row. Entries
+     *                                 are applied in order, meaning that earlier mutations can be masked by later
+     *                                 ones. Must contain at least one entry and at most 100000.
      * @param array      $optionalArgs {
      *     Optional.
      *
@@ -480,7 +481,8 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string  $tableName    Required. The unique name of the table to which the mutations should be applied.
+     * @param string  $tableName    Required. The unique name of the table to which the mutations should be
+     *                              applied.
      * @param Entry[] $entries      Required. The row keys and corresponding mutations to be applied in bulk.
      *                              Each entry is applied as an atomic mutation, but the entries may be
      *                              applied in arbitrary order (even between entries for the same row).
@@ -537,8 +539,9 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The unique name of the instance to check permissions for as well as
-     *                             respond. Values are of the form `projects/<project>/instances/<instance>`.
+     * @param string $name         Required. The unique name of the instance to check permissions for as well
+     *                             as respond. Values are of the form
+     *                             `projects/<project>/instances/<instance>`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -596,14 +599,14 @@ class BigtableGapicClient
      * }
      * ```
      *
-     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules should be
-     *                                            applied.
-     *                                            Values are of the form
+     * @param string                $tableName    Required. The unique name of the table to which the read/modify/write rules
+     *                                            should be applied. Values are of the form
      *                                            `projects/<project>/instances/<instance>/tables/<table>`.
-     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be applied.
-     * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be transformed
-     *                                            into writes. Entries are applied in order, meaning that earlier rules will
-     *                                            affect the results of later ones.
+     * @param string                $rowKey       Required. The key of the row to which the read/modify/write rules should be
+     *                                            applied.
+     * @param ReadModifyWriteRule[] $rules        Required. Rules specifying how the specified row's contents are to be
+     *                                            transformed into writes. Entries are applied in order, meaning that earlier
+     *                                            rules will affect the results of later ones.
      * @param array                 $optionalArgs {
      *     Optional.
      *
@@ -672,8 +675,8 @@ class BigtableGapicClient
      *     Optional.
      *
      *     @type string $appProfileId
-     *           This value specifies routing for replication. If not specified, the
-     *           "default" application profile will be used.
+     *           This value specifies routing for replication. This API only accepts the
+     *           empty value of app_profile_id.
      *     @type RowSet $rows
      *           The row keys and/or ranges to read sequentially. If not specified, reads
      *           from all rows.
@@ -683,6 +686,9 @@ class BigtableGapicClient
      *     @type int $rowsLimit
      *           The read will stop after committing to N rows' worth of results. The
      *           default (zero) is to return all results.
+     *     @type int $requestStatsView
+     *           The view into RequestStats, as described above.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -717,6 +723,10 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['rowsLimit'])) {
             $request->setRowsLimit($optionalArgs['rowsLimit']);
+        }
+
+        if (isset($optionalArgs['requestStatsView'])) {
+            $request->setRequestStatsView($optionalArgs['requestStatsView']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
