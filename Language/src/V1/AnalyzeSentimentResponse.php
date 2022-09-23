@@ -24,8 +24,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1.Document.language] field
-     * for more details.
+     * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      *
      * Generated from protobuf field <code>string language = 2;</code>
      */
@@ -48,8 +47,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
      *     @type string $language
      *           The language of the text, which will be the same as the language specified
      *           in the request or, if not specified, the automatically-detected language.
-     *           See [Document.language][google.cloud.language.v1.Document.language] field
-     *           for more details.
+     *           See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      *     @type array<\Google\Cloud\Language\V1\Sentence>|\Google\Protobuf\Internal\RepeatedField $sentences
      *           The sentiment for all the sentences in the document.
      * }
@@ -98,8 +96,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1.Document.language] field
-     * for more details.
+     * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      *
      * Generated from protobuf field <code>string language = 2;</code>
      * @return string
@@ -112,8 +109,7 @@ class AnalyzeSentimentResponse extends \Google\Protobuf\Internal\Message
     /**
      * The language of the text, which will be the same as the language specified
      * in the request or, if not specified, the automatically-detected language.
-     * See [Document.language][google.cloud.language.v1.Document.language] field
-     * for more details.
+     * See [Document.language][google.cloud.language.v1.Document.language] field for more details.
      *
      * Generated from protobuf field <code>string language = 2;</code>
      * @param string $var
