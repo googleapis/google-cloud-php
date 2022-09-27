@@ -9,16 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies a Dataproc metric config
+ * Dataproc metric config.
  *
  * Generated from protobuf message <code>google.cloud.dataproc.v1.DataprocMetricConfig</code>
  */
 class DataprocMetricConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Configuration set of metrics to collect from the cluster
+     * Required. Metrics sources to enable.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.DataprocMetricConfig.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $metrics;
 
@@ -28,8 +28,8 @@ class DataprocMetricConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type array<\Google\Cloud\Dataproc\V1\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
-     *           Configuration set of metrics to collect from the cluster
+     *     @type array<\Google\Cloud\Dataproc\V1\DataprocMetricConfig\Metric>|\Google\Protobuf\Internal\RepeatedField $metrics
+     *           Required. Metrics sources to enable.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,9 +38,9 @@ class DataprocMetricConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration set of metrics to collect from the cluster
+     * Required. Metrics sources to enable.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.DataprocMetricConfig.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getMetrics()
@@ -49,15 +49,15 @@ class DataprocMetricConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Configuration set of metrics to collect from the cluster
+     * Required. Metrics sources to enable.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param array<\Google\Cloud\Dataproc\V1\Metric>|\Google\Protobuf\Internal\RepeatedField $var
+     * Generated from protobuf field <code>repeated .google.cloud.dataproc.v1.DataprocMetricConfig.Metric metrics = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param array<\Google\Cloud\Dataproc\V1\DataprocMetricConfig\Metric>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)
     {
-        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\Metric::class);
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Dataproc\V1\DataprocMetricConfig\Metric::class);
         $this->metrics = $arr;
 
         return $this;

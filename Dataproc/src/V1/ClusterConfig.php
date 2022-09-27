@@ -138,9 +138,9 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      */
     private $metastore_config = null;
     /**
-     * Optional. Dataproc metrics configuration.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $dataproc_metric_config = null;
 
@@ -217,7 +217,7 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dataproc\V1\MetastoreConfig $metastore_config
      *           Optional. Metastore configuration.
      *     @type \Google\Cloud\Dataproc\V1\DataprocMetricConfig $dataproc_metric_config
-     *           Optional. Dataproc metrics configuration.
+     *           Optional. The config for Dataproc metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -776,9 +776,9 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Dataproc metrics configuration.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Dataproc\V1\DataprocMetricConfig|null
      */
     public function getDataprocMetricConfig()
@@ -797,9 +797,9 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Dataproc metrics configuration.
+     * Optional. The config for Dataproc metrics.
      *
-     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 21 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Dataproc\V1\DataprocMetricConfig $var
      * @return $this
      */

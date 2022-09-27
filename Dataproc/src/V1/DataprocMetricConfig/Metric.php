@@ -23,7 +23,7 @@ class Metric extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig.MetricSource metric_source = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $metric_source = 0;
+    private $metric_source = 0;
     /**
      * Optional. Specify one or more [available OSS metrics]
      * (https://cloud.google.com/dataproc/docs/guides/monitoring#available_oss_metrics)
