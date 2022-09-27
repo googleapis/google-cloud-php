@@ -89,18 +89,18 @@ RUN wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumento
   && chmod +x /usr/local/bin/phpdoc
 
 # Install Python3
-RUN wget https://www.python.org/ftp/python/3.8.11/Python-3.8.11.tgz \
-    && tar -xvf Python-3.8.11.tgz \
-    && ./Python-3.8.11/configure --enable-optimizations \
+RUN wget https://www.python.org/ftp/python/3.9.14/Python-3.9.14.tgz \
+    && tar -xvf Python-3.9.14.tgz \
+    && ./Python-3.9.14/configure --enable-optimizations \
     && make altinstall
 
 # Install pip
 RUN wget -O /tmp/get-pip.py 'https://bootstrap.pypa.io/get-pip.py' \
-  && python3.8 /tmp/get-pip.py \
+  && python3.9 /tmp/get-pip.py \
   && rm /tmp/get-pip.py \
-  && python3.8 -m pip
+  && python3.9 -m pip
 
 # Install docsuploader
 COPY requirements.txt .
-RUN python3.8 -m pip install --require-hashes -r requirements.txt
+RUN python3.9 -m pip install --require-hashes -r requirements.txt
 

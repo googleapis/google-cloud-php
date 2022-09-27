@@ -67,8 +67,8 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.8'
-    - run: pip install gcp-docuploader
+        python-version: '3.9'
+    - run: pip install --require-hashes -r .kokoro/docs/docker/requirements.txt
     - name: Setup PHP
       uses: shivammathur/setup-php@verbose
       with:
