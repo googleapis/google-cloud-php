@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Spanner;
 
+use Google\Cloud\Core\JsonTrait;
 use Google\Cloud\Spanner\V1\TypeAnnotationCode;
 use JsonSerializable;
 
@@ -27,13 +28,16 @@ use JsonSerializable;
  *
  * Example:
  * ```
- * use Google\Cloud\Spanner\PgJsonB;
- *
- * $pgJsonb = new PgJsonB('{}');
+ * use Google\Cloud\Spanner\SpannerClient;
+ * 
+ * $spanner = new SpannerClient();
+ * $pgJsonb = $spanner->pgJsonb('{}');
  * ```
  */
 class PgJsonB implements ValueInterface, TypeAnnotationInterface
 {
+    use JsonTrait;
+
     /**
      * @var string|null
      */
@@ -47,7 +51,7 @@ class PgJsonB implements ValueInterface, TypeAnnotationInterface
         // null shouldn't be casted to an empty string
         if (!is_null($value)) {
             if (is_array($value) || $value instanceof JsonSerializable) {
-                $value = json_encode($value);
+                $value = self::jsonEncode($value);
             } else {
                 $value = (string) $value;
             }

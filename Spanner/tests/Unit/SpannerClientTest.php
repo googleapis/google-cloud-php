@@ -412,9 +412,10 @@ class SpannerClientTest extends TestCase
         $arrVal = $this->client->pgJsonb(["a" => 1, "b" => 2]);
         $this->assertInstanceOf(PgJsonB::class, $arrVal);
 
-        $stub = $this->createMock('JsonSerializable');
-        $stub->method('jsonSerialize')->willReturn(["a" => 1, "b" => null]);
-        $objVal = $this->client->pgJsonb($stub);
+        $stub = $this->prophesize('stdClass');
+        $stub->willImplement('JsonSerializable');
+        $stub->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
+        $objVal = $this->client->pgJsonb($stub->reveal());
         $this->assertInstanceOf(PgJsonB::class, $objVal);
     }
 

@@ -40,20 +40,21 @@ class PgJsonBTest extends TestCase
 
     public function validValueProvider()
     {
-        $obj = $this->createMock('JsonSerializable');
-        $obj->method('jsonSerialize')->willReturn(["a" => 1, "b" => null]);
+        $obj = $this->prophesize('stdClass');
+        $obj->willImplement('JsonSerializable');
+        $obj->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
 
         return
             [
                 // strings
                 ['{}', '{}'],
                 ['{"a":1, "b":2}', '{"a":1, "b":2}'],
-                // null value shouldn't be casted
+                // // null value shouldn't be casted
                 [null, null],
-                // arrays should be converted to JSON
+                // // arrays should be converted to JSON
                 [["a"=>1.1, "b"=>"2"], '{"a":1.1,"b":"2"}'],
                 // JsonSerializable should be used after a json_encode call
-                [$obj, '{"a":1,"b":null}']
+                [$obj->reveal(), '{"a":1,"b":null}']
             ];
     }
 
@@ -74,5 +75,26 @@ class PgJsonBTest extends TestCase
 
         $this->assertEquals($expected, (string) $val);
         $this->assertEquals($expected, $val->formatAsString());
+    }
+
+    public function invalidValueProvider()
+    {
+        return
+            [
+                ["\xB1\x31"],
+                [NAN],
+                [INF],
+                [fopen('php://temp', 'r')],
+            ];
+    }
+
+    /**
+     * @dataProvider invalidValueProvider
+     */
+    public function testInvalidValues($value)
+    {
+        $this->expectException('\InvalidArgumentException');
+
+        $obj = new PgJsonB([$value]);
     }
 }
