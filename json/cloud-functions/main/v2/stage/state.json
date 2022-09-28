@@ -1,0 +1,1 @@
+{"id":"functions\/v2\/stage\/state","type":"","title":"Google\\Cloud\\Functions\\V2\\Stage\\State","name":"State","description":"<p>Possible states for a Stage<\/p>\n<p>Protobuf type <code>google.cloud.functions.v2.Stage.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
