@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Google Cloud Storage location for input content.
- * format.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.GcsSource</code>
  */
@@ -43,9 +42,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event_ga360`: Using
      *   https://support.google.com/analytics/answer/3437719.
      * Supported values for control imports:
-     * * 'control' (default): One JSON [Control][] per line.
+     * * `control` (default): One JSON [Control][google.cloud.retail.v2.Control]
+     * per line.
      * Supported values for catalog attribute imports:
-     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
+     * * `catalog_attribute` (default): One CSV
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      */
@@ -80,9 +81,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      *           * `user_event_ga360`: Using
      *             https://support.google.com/analytics/answer/3437719.
      *           Supported values for control imports:
-     *           * 'control' (default): One JSON [Control][] per line.
+     *           * `control` (default): One JSON [Control][google.cloud.retail.v2.Control]
+     *           per line.
      *           Supported values for catalog attribute imports:
-     *           * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
+     *           * `catalog_attribute` (default): One CSV
+     *           [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] per line.
      * }
      */
     public function __construct($data = NULL) {
@@ -144,9 +147,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event_ga360`: Using
      *   https://support.google.com/analytics/answer/3437719.
      * Supported values for control imports:
-     * * 'control' (default): One JSON [Control][] per line.
+     * * `control` (default): One JSON [Control][google.cloud.retail.v2.Control]
+     * per line.
      * Supported values for catalog attribute imports:
-     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
+     * * `catalog_attribute` (default): One CSV
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      * @return string
@@ -170,9 +175,11 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * `user_event_ga360`: Using
      *   https://support.google.com/analytics/answer/3437719.
      * Supported values for control imports:
-     * * 'control' (default): One JSON [Control][] per line.
+     * * `control` (default): One JSON [Control][google.cloud.retail.v2.Control]
+     * per line.
      * Supported values for catalog attribute imports:
-     * * 'catalog_attribute' (default): One CSV [CatalogAttribute][] per line.
+     * * `catalog_attribute` (default): One CSV
+     * [CatalogAttribute][google.cloud.retail.v2.CatalogAttribute] per line.
      *
      * Generated from protobuf field <code>string data_schema = 2;</code>
      * @param string $var

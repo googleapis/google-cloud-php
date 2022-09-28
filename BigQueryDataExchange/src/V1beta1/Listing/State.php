@@ -7,7 +7,7 @@ namespace Google\Cloud\BigQuery\DataExchange\V1beta1\Listing;
 use UnexpectedValueException;
 
 /**
- * State of the Listing
+ * State of the listing.
  *
  * Protobuf type <code>google.cloud.bigquery.dataexchange.v1beta1.Listing.State</code>
  */
@@ -21,7 +21,7 @@ class State
     const STATE_UNSPECIFIED = 0;
     /**
      * Subscribable state. Users with dataexchange.listings.subscribe permission
-     * can subscribe to this Listing.
+     * can subscribe to this listing.
      *
      * Generated from protobuf enum <code>ACTIVE = 1;</code>
      */

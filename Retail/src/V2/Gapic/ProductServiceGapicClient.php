@@ -414,6 +414,13 @@ class ProductServiceGapicClient
      * or
      * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
+     *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
      *
@@ -575,6 +582,13 @@ class ProductServiceGapicClient
      * and
      * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
      * has no effect on local inventories.
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
@@ -957,8 +971,8 @@ class ProductServiceGapicClient
      *     @type ImportErrorsConfig $errorsConfig
      *           The desired location of errors incurred during the Import.
      *     @type FieldMask $updateMask
-     *           Indicates which fields in the provided imported 'products' to update. If
-     *           not set, will by default update all fields.
+     *           Indicates which fields in the provided imported `products` to update. If
+     *           not set, all fields are updated.
      *     @type int $reconciliationMode
      *           The mode of reconciliation between existing products and the products to be
      *           imported. Defaults to
@@ -966,21 +980,16 @@ class ProductServiceGapicClient
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\ImportProductsRequest\ReconciliationMode}
      *     @type string $notificationPubsubTopic
      *           Full Pub/Sub topic name for receiving notification. If this field is set,
-     *           when the import is finished, a notification will be sent to
-     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           when the import is finished, a notification is sent to
+     *           specified Pub/Sub topic. The message data is JSON string of a
      *           [Operation][google.longrunning.Operation].
      *
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`. It has
      *           to be within the same project as
      *           [ImportProductsRequest.parent][google.cloud.retail.v2.ImportProductsRequest.parent].
-     *           Make sure that both
-     *           `cloud-retail-customer-data-access&#64;system.gserviceaccount.com` and
-     *           `service-<project number>&#64;gcp-sa-retail.iam.gserviceaccount.com`
-     *           have the `pubsub.topics.publish` IAM permission on the topic.
-     *
-     *           Only supported when
-     *           [ImportProductsRequest.reconciliation_mode][google.cloud.retail.v2.ImportProductsRequest.reconciliation_mode]
-     *           is set to `FULL`.
+     *           Make sure that `service-<project
+     *           number>&#64;gcp-sa-retail.iam.gserviceaccount.com` has the
+     *           `pubsub.topics.publish` IAM permission on the topic.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1192,6 +1201,13 @@ class ProductServiceGapicClient
      * or
      * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
+     *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
      *
@@ -1347,6 +1363,13 @@ class ProductServiceGapicClient
      * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
      * has no effect on local inventories.
      *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
+     *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.
      *
@@ -1493,6 +1516,13 @@ class ProductServiceGapicClient
      * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
      * and
      * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
      *
      * This feature is only available for users who have Retail Search enabled.
      * Please enable Retail Search on Cloud Console before using this feature.

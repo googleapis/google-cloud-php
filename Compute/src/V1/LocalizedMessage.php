@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class LocalizedMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The locale used following the specification defined at http://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      */
@@ -35,7 +35,7 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $locale
-     *           The locale used following the specification defined at http://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     *           The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
      *     @type string $message
      *           The localized error message in the above locale.
      * }
@@ -46,7 +46,7 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The locale used following the specification defined at http://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      * @return string
@@ -67,7 +67,7 @@ class LocalizedMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The locale used following the specification defined at http://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
+     * The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: "en-US", "fr-CH", "es-MX"
      *
      * Generated from protobuf field <code>optional string locale = 513150554;</code>
      * @param string $var

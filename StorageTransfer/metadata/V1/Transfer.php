@@ -23,7 +23,7 @@ class Transfer
         \GPBMetadata\Google\Storagetransfer\V1\TransferTypes::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ç!
+‰"
 (google/storagetransfer/v1/transfer.protogoogle.storagetransfer.v1google/api/client.protogoogle/api/field_behavior.proto#google/longrunning/operations.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto.google/storagetransfer/v1/transfer_types.proto"9
 GetGoogleServiceAccountRequest
 
@@ -37,6 +37,10 @@ project_id (	B‡AA
 transfer_job (2&.google.storagetransfer.v1.TransferJobB‡AB
 update_transfer_job_field_mask (2.google.protobuf.FieldMask"G
 GetTransferJobRequest
+job_name (	B‡A
+
+project_id (	B‡A"J
+DeleteTransferJobRequest
 job_name (	B‡A
 
 project_id (	B‡A"U
@@ -79,7 +83,7 @@ project_id (	B‡A
 page_token (	"l
 ListAgentPoolsResponse9
 agent_pools (2$.google.storagetransfer.v1.AgentPool
-next_page_token (	2Ü
+next_page_token (	2ë
 StorageTransferServiceµ
 GetGoogleServiceAccount9.google.storagetransfer.v1.GetGoogleServiceAccountRequest/.google.storagetransfer.v1.GoogleServiceAccount".Ç”‰ì(&/v1/googleServiceAccounts/{project_id}ò
 CreateTransferJob3.google.storagetransfer.v1.CreateTransferJobRequest&.google.storagetransfer.v1.TransferJob"&Ç”‰ì "/v1/transferJobs:transfer_jobõ
@@ -89,7 +93,8 @@ page_token (	"l
 PauseTransferOperation8.google.storagetransfer.v1.PauseTransferOperationRequest.google.protobuf.Empty"1Ç”‰ì+"&/v1/{name=transferOperations/**}:pause:*†
 ResumeTransferOperation9.google.storagetransfer.v1.ResumeTransferOperationRequest.google.protobuf.Empty"2Ç”‰ì,"\'/v1/{name=transferOperations/**}:resume:*Ω
 RunTransferJob0.google.storagetransfer.v1.RunTransferJobRequest.google.longrunning.Operation"ZÇ”‰ì\'""/v1/{job_name=transferJobs/**}:run:* A*
-google.protobuf.EmptyTransferOperationÃ
+google.protobuf.EmptyTransferOperationà
+DeleteTransferJob3.google.storagetransfer.v1.DeleteTransferJobRequest.google.protobuf.Empty"&Ç”‰ì */v1/{job_name=transferJobs/**}Ã
 CreateAgentPool1.google.storagetransfer.v1.CreateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"`Ç”‰ì4"&/v1/projects/{project_id=*}/agentPools:
 agent_pool⁄A#project_id,agent_pool,agent_pool_id∆
 UpdateAgentPool1.google.storagetransfer.v1.UpdateAgentPoolRequest$.google.storagetransfer.v1.AgentPool"ZÇ”‰ì;2-/v1/{agent_pool.name=projects/*/agentPools/*}:

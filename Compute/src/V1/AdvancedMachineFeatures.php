@@ -33,6 +33,12 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional int32 threads_per_core = 352611671;</code>
      */
     private $threads_per_core = null;
+    /**
+     * The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.
+     *
+     * Generated from protobuf field <code>optional int32 visible_core_count = 193198684;</code>
+     */
+    private $visible_core_count = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
      *           Whether to enable UEFI networking for instance creation.
      *     @type int $threads_per_core
      *           The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
+     *     @type int $visible_core_count
+     *           The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.
      * }
      */
     public function __construct($data = NULL) {
@@ -157,6 +165,42 @@ class AdvancedMachineFeatures extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->threads_per_core = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.
+     *
+     * Generated from protobuf field <code>optional int32 visible_core_count = 193198684;</code>
+     * @return int
+     */
+    public function getVisibleCoreCount()
+    {
+        return isset($this->visible_core_count) ? $this->visible_core_count : 0;
+    }
+
+    public function hasVisibleCoreCount()
+    {
+        return isset($this->visible_core_count);
+    }
+
+    public function clearVisibleCoreCount()
+    {
+        unset($this->visible_core_count);
+    }
+
+    /**
+     * The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.
+     *
+     * Generated from protobuf field <code>optional int32 visible_core_count = 193198684;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setVisibleCoreCount($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->visible_core_count = $var;
 
         return $this;
     }

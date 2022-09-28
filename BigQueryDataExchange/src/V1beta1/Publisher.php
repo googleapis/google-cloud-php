@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Contains details of the Publisher.
+ * Contains details of the listing publisher.
  *
  * Generated from protobuf message <code>google.cloud.bigquery.dataexchange.v1beta1.Publisher</code>
  */
 class Publisher extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the listing Publisher.
+     * Optional. Name of the listing publisher.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $name = '';
     /**
-     * Optional. Email or URL of the listing Publisher.
+     * Optional. Email or URL of the listing publisher.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -36,9 +36,9 @@ class Publisher extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the listing Publisher.
+     *           Optional. Name of the listing publisher.
      *     @type string $primary_contact
-     *           Optional. Email or URL of the listing Publisher.
+     *           Optional. Email or URL of the listing publisher.
      *           Max Length: 1000 bytes.
      * }
      */
@@ -48,7 +48,7 @@ class Publisher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the listing Publisher.
+     * Optional. Name of the listing publisher.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -59,7 +59,7 @@ class Publisher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the listing Publisher.
+     * Optional. Name of the listing publisher.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -74,7 +74,7 @@ class Publisher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Email or URL of the listing Publisher.
+     * Optional. Email or URL of the listing publisher.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -86,7 +86,7 @@ class Publisher extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Email or URL of the listing Publisher.
+     * Optional. Email or URL of the listing publisher.
      * Max Length: 1000 bytes.
      *
      * Generated from protobuf field <code>string primary_contact = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

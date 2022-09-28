@@ -70,6 +70,20 @@ return [
                     ],
                 ],
             ],
+            'DeleteTransferJob' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{job_name=transferJobs/**}',
+                'placeholders' => [
+                    'job_name' => [
+                        'getters' => [
+                            'getJobName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'project_id',
+                ],
+            ],
             'GetAgentPool' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/agentPools/*}',

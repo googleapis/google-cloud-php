@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
+ * The request for
+ * [GetInstance][google.spanner.admin.instance.v1.InstanceAdmin.GetInstance].
  *
  * Generated from protobuf message <code>google.spanner.admin.instance.v1.GetInstanceRequest</code>
  */
@@ -23,9 +24,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * If field_mask is present, specifies the subset of [Instance][google.spanner.admin.instance.v1.Instance] fields that
-     * should be returned.
-     * If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
+     * If field_mask is present, specifies the subset of
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
+     * returned. If absent, all
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      */
@@ -41,9 +43,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
      *           Required. The name of the requested instance. Values are of the form
      *           `projects/<project>/instances/<instance>`.
      *     @type \Google\Protobuf\FieldMask $field_mask
-     *           If field_mask is present, specifies the subset of [Instance][google.spanner.admin.instance.v1.Instance] fields that
-     *           should be returned.
-     *           If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
+     *           If field_mask is present, specifies the subset of
+     *           [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
+     *           returned. If absent, all
+     *           [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -80,9 +83,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If field_mask is present, specifies the subset of [Instance][google.spanner.admin.instance.v1.Instance] fields that
-     * should be returned.
-     * If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
+     * If field_mask is present, specifies the subset of
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
+     * returned. If absent, all
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @return \Google\Protobuf\FieldMask|null
@@ -103,9 +107,10 @@ class GetInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If field_mask is present, specifies the subset of [Instance][google.spanner.admin.instance.v1.Instance] fields that
-     * should be returned.
-     * If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
+     * If field_mask is present, specifies the subset of
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
+     * returned. If absent, all
+     * [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
      * @param \Google\Protobuf\FieldMask $var

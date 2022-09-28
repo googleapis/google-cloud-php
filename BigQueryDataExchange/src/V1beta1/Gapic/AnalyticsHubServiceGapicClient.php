@@ -27,9 +27,10 @@
 namespace Google\Cloud\BigQuery\DataExchange\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-use Google\ApiCore\GapicClientTrait;
 
+use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -61,15 +62,20 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\GPBEmpty;
 
 /**
- * Service Description: The AnalyticsHubService API facilitates data sharing within and across
- * organizations. It allows data providers to publish Listings --- a
- * discoverable and searchable SKU representing a dataset. Data consumers can
- * subscribe to Listings. Upon subscription, AnalyticsHub provisions a "Linked
- * Datasets" surfacing the data in the consumer's project.
+ * Service Description: The `AnalyticsHubService` API facilitates data sharing within and across
+ * organizations. It allows data providers to publish listings that reference
+ * shared datasets. With Analytics Hub, users can discover and search for
+ * listings that they have access to. Subscribers can view and subscribe to
+ * listings. When you subscribe to a listing, Analytics Hub creates a linked
+ * dataset in your project.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -389,7 +395,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Creates a new DataExchange in a given project and location.
+     * Creates a new data exchange.
      *
      * Sample code:
      * ```
@@ -404,14 +410,14 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string       $parent         Required. The parent resource path of the DataExchange.
+     * @param string       $parent         Required. The parent resource path of the data exchange.
      *                                     e.g. `projects/myproject/locations/US`.
-     * @param string       $dataExchangeId Required. The ID of the DataExchange to create.
+     * @param string       $dataExchangeId Required. The ID of the data exchange.
      *                                     Must contain only Unicode letters, numbers (0-9), underscores (_).
      *                                     Should not use characters that require URL-escaping, or characters
      *                                     outside of ASCII, spaces.
      *                                     Max length: 100 bytes.
-     * @param DataExchange $dataExchange   Required. The DataExchange to create.
+     * @param DataExchange $dataExchange   Required. The data exchange to create.
      * @param array        $optionalArgs   {
      *     Optional.
      *
@@ -454,7 +460,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Creates a new Listing in a given project and location.
+     * Creates a new listing.
      *
      * Sample code:
      * ```
@@ -471,7 +477,7 @@ class AnalyticsHubServiceGapicClient
      *
      * @param string  $parent       Required. The parent resource path of the listing.
      *                              e.g. `projects/myproject/locations/US/dataExchanges/123`.
-     * @param string  $listingId    Required. The ID of the Listing to create.
+     * @param string  $listingId    Required. The ID of the listing to create.
      *                              Must contain only Unicode letters, numbers (0-9), underscores (_).
      *                              Should not use characters that require URL-escaping, or characters
      *                              outside of ASCII, spaces.
@@ -519,7 +525,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Deletes a single DataExchange.
+     * Deletes an existing data exchange.
      *
      * Sample code:
      * ```
@@ -532,8 +538,8 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the DataExchange to delete.
-     *                             e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * @param string $name         Required. The full name of the data exchange resource that you want to delete.
+     *                             For example, `projects/myproject/locations/US/dataExchanges/123`.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -568,8 +574,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Deletes a single Listing, as long as there are no subscriptions
-     * associated with the source of this Listing.
+     * Deletes a listing.
      *
      * Sample code:
      * ```
@@ -618,7 +623,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Gets details of a single DataExchange.
+     * Gets the details of a data exchange.
      *
      * Sample code:
      * ```
@@ -631,7 +636,7 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The resource name of the DataExchange.
+     * @param string $name         Required. The resource name of the data exchange.
      *                             e.g. `projects/myproject/locations/US/dataExchanges/123`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -669,7 +674,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Gets the IAM policy for a dataExchange or a listing.
+     * Gets the IAM policy.
      *
      * Sample code:
      * ```
@@ -727,7 +732,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Gets details of a single Listing.
+     * Gets the details of a listing.
      *
      * Sample code:
      * ```
@@ -778,7 +783,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Lists DataExchanges in a given project and location.
+     * Lists all data exchanges in a given project and location.
      *
      * Sample code:
      * ```
@@ -803,7 +808,7 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent resource path of the DataExchanges.
+     * @param string $parent       Required. The parent resource path of the data exchanges.
      *                             e.g. `projects/myproject/locations/US`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -858,7 +863,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Lists Listings in a given project and location.
+     * Lists all listings in a given project and location.
      *
      * Sample code:
      * ```
@@ -938,7 +943,8 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Lists DataExchanges from projects in a given organization and location.
+     * Lists all data exchanges from projects in a given organization and
+     * location.
      *
      * Sample code:
      * ```
@@ -1020,7 +1026,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Sets the IAM policy for a dataExchange or a listing.
+     * Sets the IAM policy.
      *
      * Sample code:
      * ```
@@ -1087,10 +1093,11 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Subscribes to a single Listing.
+     * Subscribes to a listing.
      *
-     * Data Exchange currently supports one type of Listing: a BigQuery dataset.
-     * Upon subscription to a Listing for a BigQuery dataset, Data Exchange
+     * Currently, with Analytics Hub, you can create listings that
+     * reference only BigQuery datasets.
+     * Upon subscription to a listing for a BigQuery dataset, Analytics Hub
      * creates a linked dataset in the subscriber's project.
      *
      * Sample code:
@@ -1104,7 +1111,7 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Resource name of the listing to subscribe to.
+     * @param string $name         Required. Resource name of the listing that you want to subscribe to.
      *                             e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
      * @param array  $optionalArgs {
      *     Optional.
@@ -1150,8 +1157,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Returns the permissions that a caller has on a specified dataExchange or
-     * listing.
+     * Returns the permissions that a caller has.
      *
      * Sample code:
      * ```
@@ -1211,7 +1217,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Updates the parameters of a single DataExchange.
+     * Updates an existing data exchange.
      *
      * Sample code:
      * ```
@@ -1225,11 +1231,10 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask    $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                   DataExchange resource by the update.
-     *                                   The fields specified in the update_mask are relative to the resource, not
-     *                                   the full request.
-     * @param DataExchange $dataExchange Required. The DataExchange to update.
+     * @param FieldMask    $updateMask   Required. Field mask specifies the fields to update in the data exchange
+     *                                   resource. The fields specified in the
+     *                                   `updateMask` are relative to the resource and are not a full request.
+     * @param DataExchange $dataExchange Required. The data exchange to update.
      * @param array        $optionalArgs {
      *     Optional.
      *
@@ -1270,7 +1275,7 @@ class AnalyticsHubServiceGapicClient
     }
 
     /**
-     * Updates the parameters of a single Listing.
+     * Updates an existing listing.
      *
      * Sample code:
      * ```
@@ -1284,10 +1289,9 @@ class AnalyticsHubServiceGapicClient
      * }
      * ```
      *
-     * @param FieldMask $updateMask   Required. Field mask is used to specify the fields to be overwritten in the
-     *                                Listing resource by the update.
-     *                                The fields specified in the update_mask are relative to the resource, not
-     *                                the full request.
+     * @param FieldMask $updateMask   Required. Field mask specifies the fields to update in the listing resource. The
+     *                                fields specified in the `updateMask` are relative to the resource and are
+     *                                not a full request.
      * @param Listing   $listing      Required. The listing to update.
      * @param array     $optionalArgs {
      *     Optional.
@@ -1326,5 +1330,149 @@ class AnalyticsHubServiceGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     $response = $analyticsHubServiceClient->getLocation();
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $analyticsHubServiceClient = new AnalyticsHubServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $analyticsHubServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $analyticsHubServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $analyticsHubServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
     }
 }
