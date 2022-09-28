@@ -42,17 +42,24 @@ use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\SetIamPolicyRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\DeleteInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\GetInstanceRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsRequest;
+use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigOperationsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstanceConfigsResponse;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\ListInstancesResponse;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigRequest;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceRequest;
 use Google\LongRunning\Operation;
@@ -554,6 +561,144 @@ class InstanceAdminGapicClient
     }
 
     /**
+     * Creates an instance config and begins preparing it to be used. The
+     * returned [long-running operation][google.longrunning.Operation]
+     * can be used to track the progress of preparing the new
+     * instance config. The instance config name is assigned by the caller. If the
+     * named instance config already exists, `CreateInstanceConfig` returns
+     * `ALREADY_EXISTS`.
+     *
+     * Immediately after the request returns:
+     *
+     * * The instance config is readable via the API, with all requested
+     * attributes. The instance config's
+     * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
+     * field is set to true. Its state is `CREATING`.
+     *
+     * While the operation is pending:
+     *
+     * * Cancelling the operation renders the instance config immediately
+     * unreadable via the API.
+     * * Except for deleting the creating resource, all other attempts to modify
+     * the instance config are rejected.
+     *
+     * Upon completion of the returned operation:
+     *
+     * * Instances can be created using the instance configuration.
+     * * The instance config's
+     * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
+     * field becomes false. Its state becomes `READY`.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format
+     * `<instance_config_name>/operations/<operation_id>` and can be used to track
+     * creation of the instance config. The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
+     * successful.
+     *
+     * Authorization requires `spanner.instanceConfigs.create` permission on
+     * the resource
+     * [parent][google.spanner.admin.instance.v1.CreateInstanceConfigRequest.parent].
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     $instanceConfigId = 'instance_config_id';
+     *     $instanceConfig = new InstanceConfig();
+     *     $operationResponse = $instanceAdminClient->createInstanceConfig($formattedParent, $instanceConfigId, $instanceConfig);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->createInstanceConfig($formattedParent, $instanceConfigId, $instanceConfig);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'createInstanceConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string         $parent           Required. The name of the project in which to create the instance config.
+     *                                         Values are of the form `projects/<project>`.
+     * @param string         $instanceConfigId Required. The ID of the instance config to create.  Valid identifiers are
+     *                                         of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64
+     *                                         characters in length. The `custom-` prefix is required to avoid name
+     *                                         conflicts with Google managed configurations.
+     * @param InstanceConfig $instanceConfig   Required. The InstanceConfig proto of the configuration to create.
+     *                                         instance_config.name must be
+     *                                         `<parent>/instanceConfigs/<instance_config_id>`.
+     *                                         instance_config.base_config must be a Google managed configuration name,
+     *                                         e.g. <parent>/instanceConfigs/us-east1, <parent>/instanceConfigs/nam3.
+     * @param array          $optionalArgs     {
+     *     Optional.
+     *
+     *     @type bool $validateOnly
+     *           An option to validate, but not actually execute, a request,
+     *           and provide the same response.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function createInstanceConfig(
+        $parent,
+        $instanceConfigId,
+        $instanceConfig,
+        array $optionalArgs = []
+    ) {
+        $request = new CreateInstanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $request->setInstanceConfigId($instanceConfigId);
+        $request->setInstanceConfig($instanceConfig);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'CreateInstanceConfig',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
      * Deletes an instance.
      *
      * Immediately upon completion of the request:
@@ -604,6 +749,80 @@ class InstanceAdminGapicClient
             : $requestParams->getHeader();
         return $this->startCall(
             'DeleteInstance',
+            GPBEmpty::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Deletes the instance config. Deletion is only allowed when no
+     * instances are using the configuration. If any instances are using
+     * the config, returns `FAILED_PRECONDITION`.
+     *
+     * Only user managed configurations can be deleted.
+     *
+     * Authorization requires `spanner.instanceConfigs.delete` permission on
+     * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $formattedName = $instanceAdminClient->instanceConfigName('[PROJECT]', '[INSTANCE_CONFIG]');
+     *     $instanceAdminClient->deleteInstanceConfig($formattedName);
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. The name of the instance configuration to be deleted.
+     *                             Values are of the form
+     *                             `projects/<project>/instanceConfigs/<instance_config>`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $etag
+     *           Used for optimistic concurrency control as a way to help prevent
+     *           simultaneous deletes of an instance config from overwriting each
+     *           other. If not empty, the API
+     *           only deletes the instance config when the etag provided matches the current
+     *           status of the requested instance config. Otherwise, deletes the instance
+     *           config without checking the current status of the requested instance
+     *           config.
+     *     @type bool $validateOnly
+     *           An option to validate, but not actually execute, a request,
+     *           and provide the same response.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function deleteInstanceConfig($name, array $optionalArgs = [])
+    {
+        $request = new DeleteInstanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['etag'])) {
+            $request->setEtag($optionalArgs['etag']);
+        }
+
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'DeleteInstanceConfig',
             GPBEmpty::class,
             $optionalArgs,
             $request
@@ -690,9 +909,10 @@ class InstanceAdminGapicClient
      *     Optional.
      *
      *     @type FieldMask $fieldMask
-     *           If field_mask is present, specifies the subset of [Instance][google.spanner.admin.instance.v1.Instance] fields that
-     *           should be returned.
-     *           If absent, all [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
+     *           If field_mask is present, specifies the subset of
+     *           [Instance][google.spanner.admin.instance.v1.Instance] fields that should be
+     *           returned. If absent, all
+     *           [Instance][google.spanner.admin.instance.v1.Instance] fields are returned.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -774,6 +994,144 @@ class InstanceAdminGapicClient
             $optionalArgs,
             $request
         )->wait();
+    }
+
+    /**
+     * Lists the user-managed instance config [long-running
+     * operations][google.longrunning.Operation] in the given project. An instance
+     * config operation has a name of the form
+     * `projects/<project>/instanceConfigs/<instance_config>/operations/<operation>`.
+     * The long-running operation
+     * [metadata][google.longrunning.Operation.metadata] field type
+     * `metadata.type_url` describes the type of the metadata. Operations returned
+     * include those that have completed/failed/canceled within the last 7 days,
+     * and pending operations. Operations returned are ordered by
+     * `operation.metadata.value.start_time` in descending order starting
+     * from the most recently started operation.
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $formattedParent = $instanceAdminClient->projectName('[PROJECT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $instanceAdminClient->listInstanceConfigOperations($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The project of the instance config operations.
+     *                             Values are of the form `projects/<project>`.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $filter
+     *           An expression that filters the list of returned operations.
+     *
+     *           A filter expression consists of a field name, a
+     *           comparison operator, and a value for filtering.
+     *           The value must be a string, a number, or a boolean. The comparison operator
+     *           must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`.
+     *           Colon `:` is the contains operator. Filter rules are not case sensitive.
+     *
+     *           The following fields in the [Operation][google.longrunning.Operation]
+     *           are eligible for filtering:
+     *
+     *           * `name` - The name of the long-running operation
+     *           * `done` - False if the operation is in progress, else true.
+     *           * `metadata.&#64;type` - the type of metadata. For example, the type string
+     *           for
+     *           [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata]
+     *           is
+     *           `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`.
+     *           * `metadata.<field_name>` - any field in metadata.value.
+     *           `metadata.&#64;type` must be specified first, if filtering on metadata
+     *           fields.
+     *           * `error` - Error associated with the long-running operation.
+     *           * `response.&#64;type` - the type of response.
+     *           * `response.<field_name>` - any field in response.value.
+     *
+     *           You can combine multiple expressions by enclosing each expression in
+     *           parentheses. By default, expressions are combined with AND logic. However,
+     *           you can specify AND, OR, and NOT logic explicitly.
+     *
+     *           Here are a few examples:
+     *
+     *           * `done:true` - The operation is complete.
+     *           * `(metadata.&#64;type=` \
+     *           `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata)
+     *           AND` \
+     *           `(metadata.instance_config.name:custom-config) AND` \
+     *           `(metadata.progress.start_time < \"2021-03-28T14:50:00Z\") AND` \
+     *           `(error:*)` - Return operations where:
+     *           * The operation's metadata type is
+     *           [CreateInstanceConfigMetadata][google.spanner.admin.instance.v1.CreateInstanceConfigMetadata].
+     *           * The instance config name contains "custom-config".
+     *           * The operation started before 2021-03-28T14:50:00Z.
+     *           * The operation resulted in an error.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listInstanceConfigOperations(
+        $parent,
+        array $optionalArgs = []
+    ) {
+        $request = new ListInstanceConfigOperationsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListInstanceConfigOperations',
+            $optionalArgs,
+            ListInstanceConfigOperationsResponse::class,
+            $request
+        );
     }
 
     /**
@@ -1104,9 +1462,9 @@ class InstanceAdminGapicClient
      * Until completion of the returned operation:
      *
      * * Cancelling the operation sets its metadata's
-     * [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time], and begins
-     * restoring resources to their pre-request values. The operation
-     * is guaranteed to succeed at undoing all resource changes,
+     * [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceMetadata.cancel_time],
+     * and begins restoring resources to their pre-request values. The
+     * operation is guaranteed to succeed at undoing all resource changes,
      * after which point it terminates with a `CANCELLED` status.
      * * All other attempts to modify the instance are rejected.
      * * Reading the instance via the API continues to give the pre-request
@@ -1169,11 +1527,14 @@ class InstanceAdminGapicClient
      * ```
      *
      * @param Instance  $instance     Required. The instance to update, which must always include the instance
-     *                                name.  Otherwise, only fields mentioned in [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask] need be included.
-     * @param FieldMask $fieldMask    Required. A mask specifying which fields in [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
+     *                                name.  Otherwise, only fields mentioned in
+     *                                [field_mask][google.spanner.admin.instance.v1.UpdateInstanceRequest.field_mask]
+     *                                need be included.
+     * @param FieldMask $fieldMask    Required. A mask specifying which fields in
+     *                                [Instance][google.spanner.admin.instance.v1.Instance] should be updated.
      *                                The field mask must always be specified; this prevents any future fields in
-     *                                [Instance][google.spanner.admin.instance.v1.Instance] from being erased accidentally by clients that do not know
-     *                                about them.
+     *                                [Instance][google.spanner.admin.instance.v1.Instance] from being erased
+     *                                accidentally by clients that do not know about them.
      * @param array     $optionalArgs {
      *     Optional.
      *
@@ -1205,6 +1566,147 @@ class InstanceAdminGapicClient
             : $requestParams->getHeader();
         return $this->startOperationsCall(
             'UpdateInstance',
+            $optionalArgs,
+            $request,
+            $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Updates an instance config. The returned
+     * [long-running operation][google.longrunning.Operation] can be used to track
+     * the progress of updating the instance. If the named instance config does
+     * not exist, returns `NOT_FOUND`.
+     *
+     * Only user managed configurations can be updated.
+     *
+     * Immediately after the request returns:
+     *
+     * * The instance config's
+     * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
+     * field is set to true.
+     *
+     * While the operation is pending:
+     *
+     * * Cancelling the operation sets its metadata's
+     * [cancel_time][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata.cancel_time].
+     * The operation is guaranteed to succeed at undoing all changes, after
+     * which point it terminates with a `CANCELLED` status.
+     * * All other attempts to modify the instance config are rejected.
+     * * Reading the instance config via the API continues to give the
+     * pre-request values.
+     *
+     * Upon completion of the returned operation:
+     *
+     * * Creating instances using the instance configuration uses the new
+     * values.
+     * * The instance config's new values are readable via the API.
+     * * The instance config's
+     * [reconciling][google.spanner.admin.instance.v1.InstanceConfig.reconciling]
+     * field becomes false.
+     *
+     * The returned [long-running operation][google.longrunning.Operation] will
+     * have a name of the format
+     * `<instance_config_name>/operations/<operation_id>` and can be used to track
+     * the instance config modification.  The
+     * [metadata][google.longrunning.Operation.metadata] field type is
+     * [UpdateInstanceConfigMetadata][google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata].
+     * The [response][google.longrunning.Operation.response] field type is
+     * [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig], if
+     * successful.
+     *
+     * Authorization requires `spanner.instanceConfigs.update` permission on
+     * the resource [name][google.spanner.admin.instance.v1.InstanceConfig.name].
+     *
+     * Sample code:
+     * ```
+     * $instanceAdminClient = new InstanceAdminClient();
+     * try {
+     *     $instanceConfig = new InstanceConfig();
+     *     $updateMask = new FieldMask();
+     *     $operationResponse = $instanceAdminClient->updateInstanceConfig($instanceConfig, $updateMask);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $instanceAdminClient->updateInstanceConfig($instanceConfig, $updateMask);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $instanceAdminClient->resumeOperation($operationName, 'updateInstanceConfig');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $instanceAdminClient->close();
+     * }
+     * ```
+     *
+     * @param InstanceConfig $instanceConfig Required. The user instance config to update, which must always include the
+     *                                       instance config name. Otherwise, only fields mentioned in
+     *                                       [update_mask][google.spanner.admin.instance.v1.UpdateInstanceConfigRequest.update_mask]
+     *                                       need be included. To prevent conflicts of concurrent updates,
+     *                                       [etag][google.spanner.admin.instance.v1.InstanceConfig.reconciling] can
+     *                                       be used.
+     * @param FieldMask      $updateMask     Required. A mask specifying which fields in
+     *                                       [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig] should be
+     *                                       updated. The field mask must always be specified; this prevents any future
+     *                                       fields in [InstanceConfig][google.spanner.admin.instance.v1.InstanceConfig]
+     *                                       from being erased accidentally by clients that do not know about them. Only
+     *                                       display_name and labels can be updated.
+     * @param array          $optionalArgs   {
+     *     Optional.
+     *
+     *     @type bool $validateOnly
+     *           An option to validate, but not actually execute, a request,
+     *           and provide the same response.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function updateInstanceConfig(
+        $instanceConfig,
+        $updateMask,
+        array $optionalArgs = []
+    ) {
+        $request = new UpdateInstanceConfigRequest();
+        $requestParamHeaders = [];
+        $request->setInstanceConfig($instanceConfig);
+        $request->setUpdateMask($updateMask);
+        $requestParamHeaders[
+            'instance_config.name'
+        ] = $instanceConfig->getName();
+        if (isset($optionalArgs['validateOnly'])) {
+            $request->setValidateOnly($optionalArgs['validateOnly']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startOperationsCall(
+            'UpdateInstanceConfig',
             $optionalArgs,
             $request,
             $this->getOperationsClient()

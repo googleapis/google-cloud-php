@@ -73,7 +73,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Non-existent product ids are allowed.
      * The [type][google.cloud.retail.v2.Product.type] of the members must be
      * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise an
      * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
      * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
      * return.
@@ -455,6 +455,14 @@ class Product extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.retail.v2.Product variants = 31 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $variants;
+    /**
+     * Output only. A list of local inventories specific to different places.
+     * This is only available for users who have Retail Search enabled, and it can
+     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $local_inventories;
     protected $expiration;
 
     /**
@@ -536,7 +544,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Non-existent product ids are allowed.
      *           The [type][google.cloud.retail.v2.Product.type] of the members must be
      *           either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
-     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     *           [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise an
      *           INVALID_ARGUMENT error is thrown. Should not set it for other types. A
      *           maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
      *           return.
@@ -810,6 +818,10 @@ class Product extends \Google\Protobuf\Internal\Message
      *           Note: This field is OUTPUT_ONLY for
      *           [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct].
      *           Do not set this field in API requests.
+     *     @type array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $local_inventories
+     *           Output only. A list of local inventories specific to different places.
+     *           This is only available for users who have Retail Search enabled, and it can
+     *           be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
      * }
      */
     public function __construct($data = NULL) {
@@ -1098,7 +1110,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Non-existent product ids are allowed.
      * The [type][google.cloud.retail.v2.Product.type] of the members must be
      * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise an
      * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
      * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
      * return.
@@ -1118,7 +1130,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * Non-existent product ids are allowed.
      * The [type][google.cloud.retail.v2.Product.type] of the members must be
      * either [Type.PRIMARY][google.cloud.retail.v2.Product.Type.PRIMARY] or
-     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise and
+     * [Type.VARIANT][google.cloud.retail.v2.Product.Type.VARIANT] otherwise an
      * INVALID_ARGUMENT error is thrown. Should not set it for other types. A
      * maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is
      * return.
@@ -2350,6 +2362,36 @@ class Product extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\Product::class);
         $this->variants = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. A list of local inventories specific to different places.
+     * This is only available for users who have Retail Search enabled, and it can
+     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getLocalInventories()
+    {
+        return $this->local_inventories;
+    }
+
+    /**
+     * Output only. A list of local inventories specific to different places.
+     * This is only available for users who have Retail Search enabled, and it can
+     * be managed by [AddLocalInventories][] and [RemoveLocalInventories][] APIs.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.retail.v2.LocalInventory local_inventories = 35 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<\Google\Cloud\Retail\V2\LocalInventory>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setLocalInventories($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Retail\V2\LocalInventory::class);
+        $this->local_inventories = $arr;
 
         return $this;
     }

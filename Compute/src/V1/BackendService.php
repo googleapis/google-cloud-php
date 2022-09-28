@@ -38,6 +38,13 @@ class BackendService extends \Google\Protobuf\Internal\Message
      */
     private $circuit_breakers = null;
     /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     */
+    private $compression_mode = null;
+    /**
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ConnectionDraining connection_draining = 461096747;</code>
      */
     private $connection_draining = null;
@@ -255,6 +262,9 @@ class BackendService extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\BackendServiceCdnPolicy $cdn_policy
      *           Cloud CDN configuration for this BackendService. Only available for specified load balancer types.
      *     @type \Google\Cloud\Compute\V1\CircuitBreakers $circuit_breakers
+     *     @type string $compression_mode
+     *           Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     *           Check the CompressionMode enum for the list of possible values.
      *     @type \Google\Cloud\Compute\V1\ConnectionDraining $connection_draining
      *     @type \Google\Cloud\Compute\V1\BackendServiceConnectionTrackingPolicy $connection_tracking_policy
      *           Connection Tracking configuration for this BackendService. Connection tracking policy settings are only available for Network Load Balancing and Internal TCP/UDP Load Balancing.
@@ -458,6 +468,44 @@ class BackendService extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\CircuitBreakers::class);
         $this->circuit_breakers = $var;
+
+        return $this;
+    }
+
+    /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @return string
+     */
+    public function getCompressionMode()
+    {
+        return isset($this->compression_mode) ? $this->compression_mode : '';
+    }
+
+    public function hasCompressionMode()
+    {
+        return isset($this->compression_mode);
+    }
+
+    public function clearCompressionMode()
+    {
+        unset($this->compression_mode);
+    }
+
+    /**
+     * Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header.
+     * Check the CompressionMode enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string compression_mode = 95520988;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCompressionMode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->compression_mode = $var;
 
         return $this;
     }

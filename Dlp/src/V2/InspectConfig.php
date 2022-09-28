@@ -42,6 +42,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Configuration to control the number of findings returned.
      * This is not used for data profiling.
+     * When redacting sensitive data from images, finding limits don't apply. They
+     * can cause unexpected or inconsistent results, where only some data is
+     * redacted. Don't include finding limits in
+     * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
+     * requests. Otherwise, Cloud DLP returns an error.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      */
@@ -106,6 +111,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $limits
      *           Configuration to control the number of findings returned.
      *           This is not used for data profiling.
+     *           When redacting sensitive data from images, finding limits don't apply. They
+     *           can cause unexpected or inconsistent results, where only some data is
+     *           redacted. Don't include finding limits in
+     *           [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
+     *           requests. Otherwise, Cloud DLP returns an error.
      *     @type bool $include_quote
      *           When true, a contextual quote from the data that triggered a finding is
      *           included in the response; see [Finding.quote][google.privacy.dlp.v2.Finding.quote].
@@ -204,6 +214,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Configuration to control the number of findings returned.
      * This is not used for data profiling.
+     * When redacting sensitive data from images, finding limits don't apply. They
+     * can cause unexpected or inconsistent results, where only some data is
+     * redacted. Don't include finding limits in
+     * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
+     * requests. Otherwise, Cloud DLP returns an error.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @return \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits|null
@@ -226,6 +241,11 @@ class InspectConfig extends \Google\Protobuf\Internal\Message
     /**
      * Configuration to control the number of findings returned.
      * This is not used for data profiling.
+     * When redacting sensitive data from images, finding limits don't apply. They
+     * can cause unexpected or inconsistent results, where only some data is
+     * redacted. Don't include finding limits in
+     * [RedactImage][google.privacy.dlp.v2.DlpService.RedactImage]
+     * requests. Otherwise, Cloud DLP returns an error.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.InspectConfig.FindingLimits limits = 3;</code>
      * @param \Google\Cloud\Dlp\V2\InspectConfig\FindingLimits $var

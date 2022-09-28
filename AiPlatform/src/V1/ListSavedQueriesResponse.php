@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of SavedQueries that matches the specified filter in the
-     * request.
+     * A list of SavedQueries that match the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 1;</code>
      */
@@ -36,8 +35,7 @@ class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $saved_queries
-     *           A list of SavedQueries that matches the specified filter in the
-     *           request.
+     *           A list of SavedQueries that match the specified filter in the request.
      *     @type string $next_page_token
      *           The standard List next-page token.
      * }
@@ -48,8 +46,7 @@ class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of SavedQueries that matches the specified filter in the
-     * request.
+     * A list of SavedQueries that match the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -60,8 +57,7 @@ class ListSavedQueriesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of SavedQueries that matches the specified filter in the
-     * request.
+     * A list of SavedQueries that match the specified filter in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.aiplatform.v1.SavedQuery saved_queries = 1;</code>
      * @param array<\Google\Cloud\AIPlatform\V1\SavedQuery>|\Google\Protobuf\Internal\RepeatedField $var

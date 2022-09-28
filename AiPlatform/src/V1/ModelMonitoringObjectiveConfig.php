@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Next ID: 8
+ * The objective configuration for model monitoring, including the information
+ * needed to detect anomalies for one particular model.
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.ModelMonitoringObjectiveConfig</code>
  */

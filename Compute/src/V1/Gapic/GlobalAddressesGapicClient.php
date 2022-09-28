@@ -39,9 +39,11 @@ use Google\Cloud\Compute\V1\AddressList;
 use Google\Cloud\Compute\V1\DeleteGlobalAddressRequest;
 use Google\Cloud\Compute\V1\GetGlobalAddressRequest;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
+use Google\Cloud\Compute\V1\GlobalSetLabelsRequest;
 use Google\Cloud\Compute\V1\InsertGlobalAddressRequest;
 use Google\Cloud\Compute\V1\ListGlobalAddressesRequest;
 use Google\Cloud\Compute\V1\Operation;
+use Google\Cloud\Compute\V1\SetLabelsGlobalAddressRequest;
 
 /**
  * Service Description: The GlobalAddresses API.
@@ -533,5 +535,74 @@ class GlobalAddressesGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->getPagedListResponse('List', $optionalArgs, AddressList::class, $request);
+    }
+
+    /**
+     * Sets the labels on a GlobalAddress. To learn more about labels, read the Labeling Resources documentation.
+     *
+     * Sample code:
+     * ```
+     * $globalAddressesClient = new GlobalAddressesClient();
+     * try {
+     *     $globalSetLabelsRequestResource = new GlobalSetLabelsRequest();
+     *     $project = 'project';
+     *     $resource = 'resource';
+     *     $operationResponse = $globalAddressesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $globalAddressesClient->setLabels($globalSetLabelsRequestResource, $project, $resource);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $globalAddressesClient->resumeOperation($operationName, 'setLabels');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         // if creating/modifying, retrieve the target resource
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $globalAddressesClient->close();
+     * }
+     * ```
+     *
+     * @param GlobalSetLabelsRequest $globalSetLabelsRequestResource The body resource for this request
+     * @param string                 $project                        Project ID for this request.
+     * @param string                 $resource                       Name or id of the resource for this request.
+     * @param array                  $optionalArgs                   {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setLabels($globalSetLabelsRequestResource, $project, $resource, array $optionalArgs = [])
+    {
+        $request = new SetLabelsGlobalAddressRequest();
+        $requestParamHeaders = [];
+        $request->setGlobalSetLabelsRequestResource($globalSetLabelsRequestResource);
+        $request->setProject($project);
+        $request->setResource($resource);
+        $requestParamHeaders['project'] = $project;
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('SetLabels', $optionalArgs, $request, $this->getOperationsClient(), null, Operation::class)->wait();
     }
 }

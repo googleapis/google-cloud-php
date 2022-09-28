@@ -29,7 +29,7 @@ use JsonSerializable;
  * Example:
  * ```
  * use Google\Cloud\Spanner\SpannerClient;
- * 
+ *
  * $spanner = new SpannerClient();
  * $pgJsonb = $spanner->pgJsonb('{}');
  * ```

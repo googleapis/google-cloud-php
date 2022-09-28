@@ -60,6 +60,13 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.PipelineFailurePolicy failure_policy = 4;</code>
      */
     private $failure_policy = 0;
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     */
+    private $input_artifacts;
 
     /**
      * Constructor.
@@ -95,6 +102,9 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      *           However, if a pipeline is set to PIPELINE_FAILURE_POLICY_FAIL_FAST, it
      *           will stop scheduling any new tasks when a task has failed. Any scheduled
      *           tasks will continue to completion.
+     *     @type array|\Google\Protobuf\Internal\MapField $input_artifacts
+     *           The runtime artifacts of the PipelineJob. The key will be the input
+     *           artifact name and the value would be one of the InputArtifact.
      * }
      */
     public function __construct($data = NULL) {
@@ -246,6 +256,34 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\AIPlatform\V1\PipelineFailurePolicy::class);
         $this->failure_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getInputArtifacts()
+    {
+        return $this->input_artifacts;
+    }
+
+    /**
+     * The runtime artifacts of the PipelineJob. The key will be the input
+     * artifact name and the value would be one of the InputArtifact.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.aiplatform.v1.PipelineJob.RuntimeConfig.InputArtifact> input_artifacts = 5;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setInputArtifacts($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\AIPlatform\V1\PipelineJob\RuntimeConfig\InputArtifact::class);
+        $this->input_artifacts = $arr;
 
         return $this;
     }

@@ -33,6 +33,8 @@ use Google\Cloud\AIPlatform\V1\Index;
 use Google\Cloud\AIPlatform\V1\IndexServiceClient;
 
 use Google\Cloud\AIPlatform\V1\ListIndexesResponse;
+use Google\Cloud\AIPlatform\V1\RemoveDatapointsResponse;
+use Google\Cloud\AIPlatform\V1\UpsertDatapointsResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -485,6 +487,68 @@ class IndexServiceClientTest extends GeneratedTest
     /**
      * @test
      */
+    public function removeDatapointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RemoveDatapointsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $response = $gapicClient->removeDatapoints($formattedIndex);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.IndexService/RemoveDatapoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndex();
+        $this->assertProtobufEquals($formattedIndex, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function removeDatapointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        try {
+            $gapicClient->removeDatapoints($formattedIndex);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
     public function updateIndexTest()
     {
         $operationsTransport = $this->createTransport();
@@ -615,6 +679,68 @@ class IndexServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function upsertDatapointsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new UpsertDatapointsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        $response = $gapicClient->upsertDatapoints($formattedIndex);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.IndexService/UpsertDatapoints', $actualFuncCall);
+        $actualValue = $actualRequestObject->getIndex();
+        $this->assertProtobufEquals($formattedIndex, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function upsertDatapointsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedIndex = $gapicClient->indexName('[PROJECT]', '[LOCATION]', '[INDEX]');
+        try {
+            $gapicClient->upsertDatapoints($formattedIndex);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 
     /**

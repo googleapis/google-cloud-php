@@ -156,7 +156,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Boost specification to boost certain products. See more details at this
      * [user guide](https://cloud.google.com/retail/docs/boosting).
-     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * Notice that if both
+     * [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     * and
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * are set, the boost conditions from both places are evaluated. If a search
      * request matches multiple boost conditions, the final boost score is equal
@@ -268,6 +270,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     private $search_mode = 0;
     /**
      * The specification for personalization.
+     * Notice that if both
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     * and
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * are set.
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * will override
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.PersonalizationSpec personalization_spec = 32;</code>
      */
@@ -393,7 +403,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Retail\V2\SearchRequest\BoostSpec $boost_spec
      *           Boost specification to boost certain products. See more details at this
      *           [user guide](https://cloud.google.com/retail/docs/boosting).
-     *           Notice that if both [ServingConfig.boost_control_ids][] and
+     *           Notice that if both
+     *           [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     *           and
      *           [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      *           are set, the boost conditions from both places are evaluated. If a search
      *           request matches multiple boost conditions, the final boost score is equal
@@ -485,6 +497,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
      *           request triggers both product search and faceted search.
      *     @type \Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec $personalization_spec
      *           The specification for personalization.
+     *           Notice that if both
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     *           and
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           are set.
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           will override
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels applied to a resource must meet the following requirements:
      *           * Each resource can have multiple labels, up to a maximum of 64.
@@ -994,7 +1014,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Boost specification to boost certain products. See more details at this
      * [user guide](https://cloud.google.com/retail/docs/boosting).
-     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * Notice that if both
+     * [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     * and
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * are set, the boost conditions from both places are evaluated. If a search
      * request matches multiple boost conditions, the final boost score is equal
@@ -1021,7 +1043,9 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
     /**
      * Boost specification to boost certain products. See more details at this
      * [user guide](https://cloud.google.com/retail/docs/boosting).
-     * Notice that if both [ServingConfig.boost_control_ids][] and
+     * Notice that if both
+     * [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     * and
      * [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      * are set, the boost conditions from both places are evaluated. If a search
      * request matches multiple boost conditions, the final boost score is equal
@@ -1309,6 +1333,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The specification for personalization.
+     * Notice that if both
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     * and
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * are set.
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * will override
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.PersonalizationSpec personalization_spec = 32;</code>
      * @return \Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec|null
@@ -1330,6 +1362,14 @@ class SearchRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The specification for personalization.
+     * Notice that if both
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     * and
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * are set.
+     * [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     * will override
+     * [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
      *
      * Generated from protobuf field <code>.google.cloud.retail.v2.SearchRequest.PersonalizationSpec personalization_spec = 32;</code>
      * @param \Google\Cloud\Retail\V2\SearchRequest\PersonalizationSpec $var
