@@ -29,5 +29,10 @@ class Fixtures
     {
         return __DIR__ . '/fixtures/instance.json';
     }
+
+    public static function INSTANCE_CONFIG_FIXTURE()
+    {
+        return __DIR__ . '/fixtures/instanceConfig.json';
+    }
 }
 //@codingStandardsIgnoreEnd
