@@ -61,7 +61,7 @@ class NamespaceToc
             'items' => [],
         ];
 
-        // Organize into "Services", "Types", and "Enums" for version namespaces
+        // Organize into "Services", "Messages", and "Enums" for version namespaces
         // e.g. "\Google\Cloud\Vision\V1"
         if ($this->isVersionNamespace) {
             $tocArray['name'] = $this->namespace;
@@ -72,11 +72,11 @@ class NamespaceToc
                     'items' => $services,
                 ];
             }
-            if ($types = $this->getTypesToc()) {
+            if ($messages = $this->getMessagesToc()) {
                 $tocArray['items'][] = [
-                    'name' => 'Types',
-                    'uid'  => 'types:' . $this->namespace,
-                    'items' => $types,
+                    'name' => 'Messages',
+                    'uid'  => 'messages:' . $this->namespace,
+                    'items' => $messages,
                 ];
             }
             if ($enums = $this->getEnumsToc()) {
@@ -122,28 +122,28 @@ class NamespaceToc
         ];
     }
 
-    protected function getTypesToc(): array
+    protected function getMessagesToc(): array
     {
         // Get a list of all protobuf messages
-        $types = [];
+        $messages = [];
         foreach ($this->items as $item) {
             if ($item instanceof ClassToc && $item->isProtobufMessageClass()) {
-                $types[] = $item->toToc();
+                $messages[] = $item->toToc();
             } elseif ($item instanceof NamespaceToc) {
-                $types = array_merge($types, $item->getTypesToc());
+                $messages = array_merge($messages, $item->getMessagesToc());
             }
         }
 
         // Do not wrap in namespace if none exist or we're in top level namespace
-        if (!$types || $this->isVersionNamespace) {
-            return $types;
+        if (!$messages || $this->isVersionNamespace) {
+            return $messages;
         }
 
         return [
             [
                 'name' => $this->name,
                 'uid'  => 'ns:' . $this->namespace,
-                'items' => $types,
+                'items' => $messages,
             ],
         ];
     }

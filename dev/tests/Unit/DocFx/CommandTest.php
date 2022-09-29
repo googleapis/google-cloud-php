@@ -19,6 +19,7 @@ namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Dev\ComponentManager;
+use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
@@ -81,6 +82,35 @@ class CommandTest extends TestCase
         }
 
         $this->assertTrue(true, 'file contents match');
+    }
+
+    public function testOverviewPage()
+    {
+        $overview1 = new OverviewPage("# Not beta\n\n", $beta = false);
+        $this->assertEquals("# Not beta\n\n", $overview1->getContents());
+        $tocItem1 = $overview1->getTocItem();
+        $this->assertArrayNotHasKey('status', $tocItem1);
+
+        $overview2 = new OverviewPage("No header\n\n", $beta = true);
+        $this->assertEquals("No header\n\n", $overview2->getContents());
+        $tocItem2 = $overview2->getTocItem();
+        $this->assertArrayHasKey('status', $tocItem2);
+        $this->assertEquals('beta', $tocItem2['status']);
+
+        $overview3 = new OverviewPage("# No newline", $beta = true);
+        $this->assertEquals('# No newline', $overview3->getContents());
+        $tocItem3 = $overview3->getTocItem();
+        $this->assertArrayHasKey('status', $tocItem3);
+        $this->assertEquals('beta', $tocItem3['status']);
+
+        $overview4 = new OverviewPage("# Yes beta\nend.", $beta = true);
+        $this->assertStringContainsString('pre-GA', $overview4->getContents());
+        $this->assertStringStartsWith("# Yes beta\n", $overview4->getContents());
+        $this->assertStringEndsWith("\nend.", $overview4->getContents());
+
+        $tocItem4 = $overview4->getTocItem();
+        $this->assertArrayHasKey('status', $tocItem4);
+        $this->assertEquals('beta', $tocItem4['status']);
     }
 
     public function provideDoxFxFiles()

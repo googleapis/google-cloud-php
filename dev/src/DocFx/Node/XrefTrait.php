@@ -83,7 +83,7 @@ trait XrefTrait
      *  - [link][google.cloud.automl.v1.SomeClass]
      *  - [link][google.cloud.automl.v1.SomeClass.some_property]
      *  - [link][google.cloud.automl.v1.SomeClass.SomeNestedClass]
-     *  - [link][google.cloud.automl.v1.SomeServiceClass.SomeMethod]
+     *  - [link][google.cloud.automl.v1.SomeServiceClass.SomeRpcMethod]
      */
     private function replaceProtoRef(string $description): string
     {

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocFx;
+namespace Google\Cloud\Dev\DocFx\Page;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Toc\NamespaceToc;
@@ -24,7 +24,7 @@ use SimpleXMLElement;
 /**
  * Class to determine the tree for DocFX rendering
  */
-class Pages
+class PageTree
 {
     private array $pages;
     private string $filePath;
@@ -134,14 +134,14 @@ class Pages
 
     public function getProtoPackages(): array
     {
-        $serviceNames = [];
+        $protoPackages = [];
         foreach ($this->pages as $page) {
             $classNode = $page->getClassNode();
             if ($classNode->isServiceClass()) {
-                $serviceNames[$classNode->getProtoPackage()] = ltrim($classNode->getNamespace(), '\\');
+                $protoPackages[$classNode->getProtoPackage()] = ltrim($classNode->getNamespace(), '\\');
             }
         }
-        return $serviceNames;
+        return $protoPackages;
     }
 
     public function getTocItems(): array

@@ -38,6 +38,7 @@ trait DocblockTrait
 
         $content = $this->replaceSeeTag($content);
         $content = $this->replaceProtoRef($content);
+        $content = $this->stripSnippetTag($content);
 
         return $content;
     }
@@ -66,5 +67,10 @@ trait DocblockTrait
         $docblockNode = $this->xmlNode->docblock;
 
         return $docblockNode->description;
+    }
+
+    private function stripSnippetTag(string $content): string
+    {
+        return preg_replace('/\/\/\[snippet=.*\]/', '', $content);
     }
 }

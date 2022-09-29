@@ -16,8 +16,8 @@
           uid: \Google\Cloud\Vision\V1\ProductSearchClient
           name: ProductSearchClient
     -
-      name: Types
-      uid: 'types:Google\Cloud\Vision\V1'
+      name: Messages
+      uid: 'messages:Google\Cloud\Vision\V1'
       items:
         -
           uid: \Google\Cloud\Vision\V1\AddProductToProductSetRequest

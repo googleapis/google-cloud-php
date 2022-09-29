@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-namespace Google\Cloud\Dev\DocFx;
+namespace Google\Cloud\Dev\DocFx\Page;
 
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 

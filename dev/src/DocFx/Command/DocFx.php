@@ -25,8 +25,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
-use Google\Cloud\Dev\DocFx\Pages;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
+use Google\Cloud\Dev\DocFx\Page\PageTree;
+use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 
 class DocFx extends Command
 {
@@ -77,7 +78,6 @@ class DocFx extends Command
             throw new RuntimeException('provided path to structure.xml does not exist');
         }
 
-        $releaseLevel = $this->getReleaseLevel();
         $namespaces = $this->getNamespaces();
 
         if (!is_dir($outDir)) {
@@ -95,7 +95,7 @@ class DocFx extends Command
 
         $tocItems = [];
         foreach ($namespaces as $namespace) {
-            $pages = new Pages($xml, $namespace);
+            $pages = new PageTree($xml, $namespace);
             $pageList = $pages->getPages();
             XrefTrait::$protoPackagesToPhpNamespaces = $pages->getProtoPackages();
 
@@ -114,17 +114,15 @@ class DocFx extends Command
             $tocItems = array_merge($tocItems, $pages->getTocItems());
         }
 
-        // Add an "overview" file if it exists
-        $overviewFile = sprintf('%s/README.md', $componentPath);
-        if (file_exists($overviewFile)) {
-            $overviewFileMarkdown = file_get_contents($overviewFile);
-            if ($releaseLevel === 'beta') {
-                $overviewFileMarkdown = $this->addMarkdownBetaNotice($overviewFileMarkdown);
-            }
-            $outFile = sprintf('%s/index.md', $outDir);
-            file_put_contents($outFile, $overviewFileMarkdown);
+        if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
+            $overview = new OverviewPage(
+                file_get_contents($overviewFile),
+                $this->getReleaseLevel() === 'beta'
+            );
+            $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
+            file_put_contents($outFile, $overview->getContents());
             // Add "overview" as the first item on the TOC
-            array_unshift($tocItems, ['name' => 'Overview', 'href' => 'index.md']);
+            array_unshift($tocItems, $overview->getTocItem());
         }
 
         // Write the TOC to a file
@@ -269,23 +267,5 @@ class DocFx extends Command
     private function getIssueTracker(): string
     {
         return sprintf('https://github.com/%s/issues', $this->getRepo());
-    }
-
-    private function addMarkdownBetaNotice(string $markdown): string
-    {
-        $betaText = '<aside class="beta"><p><strong>Beta</strong></p><p>' .
-            'This library is covered by the <a href="/terms/service-terms#1">Pre-GA Offerings Terms</a> ' .
-            'of the  Terms of Service. Pre-GA libraries might have limited support, ' .
-            'and changes to pre-GA libraries might not be compatible with other pre-GA versions. ' .
-            'For more information, see the ' .
-            '<a href="/products#product-launch-stages">launch stage descriptions</a>.' .
-            '</p></aside>' . PHP_EOL;
-
-        if (0 === strpos($markdown, '#') && $newlinePos = strpos($markdown, "\n")) {
-            return substr($markdown, 0, $newlinePos) . "\n\n" . $betaText .
-                substr($markdown, $newlinePos + 1);
-        }
-
-        return $markdown;
     }
 }
