@@ -59,6 +59,4 @@ class AnalysisCompleted extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(AnalysisCompleted::class, \Grafeas\V1\DiscoveryOccurrence_AnalysisCompleted::class);
 
