@@ -34,7 +34,7 @@ use JsonSerializable;
  * $pgJsonb = $spanner->pgJsonb('{}');
  * ```
  */
-class PgJsonB implements ValueInterface, TypeAnnotationInterface
+class PgJsonb implements ValueInterface, TypeAnnotationInterface
 {
     use JsonTrait;
 

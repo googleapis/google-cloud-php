@@ -18,20 +18,20 @@
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
-use Google\Cloud\Spanner\PgJsonB;
+use Google\Cloud\Spanner\PgJsonb;
 
 /**
  * @group spanner
  */
-class PgJsonBTest extends SnippetTestCase
+class PgJsonbTest extends SnippetTestCase
 {
     public function testClass()
     {
-        $expected = new PgJsonB('{}');
-        $snippet = $this->snippetFromClass(PgJsonB::class);
+        $expected = new PgJsonb('{}');
+        $snippet = $this->snippetFromClass(PgJsonb::class);
         $res = $snippet->invoke('pgJsonb');
 
-        $this->assertInstanceOf(PgJsonB::class, $res->returnVal());
+        $this->assertInstanceOf(PgJsonb::class, $res->returnVal());
         $this->assertEquals($expected, $res->returnVal());
     }
 }

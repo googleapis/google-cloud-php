@@ -43,7 +43,7 @@ class ValueMapper
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_NUMERIC = 'pgNumeric';
-    const TYPE_PG_JSONB = 'pgJsonB';
+    const TYPE_PG_JSONB = 'pgJsonb';
 
     /**
      * @var array
@@ -75,7 +75,7 @@ class ValueMapper
      */
     private static $typeToClassMap = [
         self::TYPE_PG_NUMERIC => PgNumeric::class,
-        self::TYPE_PG_JSONB => JsonB::class,
+        self::TYPE_PG_JSONB => PgJsonb::class,
     ];
 
     /*
@@ -324,7 +324,7 @@ class ValueMapper
 
             case self::TYPE_JSON:
                 if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_JSONB) {
-                    $value = new PgJsonB($value);
+                    $value = new PgJsonb($value);
                 }
                 break;
 

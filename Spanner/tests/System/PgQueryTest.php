@@ -23,7 +23,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\PgNumeric;
-use Google\Cloud\Spanner\PgJsonB;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
@@ -455,10 +455,10 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertCount($currentNullCount + 1, iterator_to_array($res));
     }
 
-    public function testBindPgJsonBParameter()
+    public function testBindPgJsonbParameter()
     {
         $str = '{"a": "hello", "b": "world"}';
-        $val = new PgJsonB($str);
+        $val = new PgJsonb($str);
 
         self::$database->runTransaction(function (Transaction $t) use ($val) {
             $t->executeUpdate(
@@ -483,12 +483,12 @@ class PgQueryTest extends SpannerPgTestCase
         $res = self::$database->execute('SELECT data FROM ' . self::TABLE_NAME . ' WHERE id = 11');
 
         $row = $res->rows()->current();
-        $this->assertInstanceOf(PgJsonB::class, $row['data']);
+        $this->assertInstanceOf(PgJsonb::class, $row['data']);
         $this->assertEquals($str, $val->formatAsString());
         $this->assertEquals($str, (string)$val->get());
     }
 
-    public function testBindJsonBParameterNull()
+    public function testBindJsonbParameterNull()
     {
         $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE data IS NULL');
         $currentCount = count(iterator_to_array($res));
@@ -602,12 +602,12 @@ class PgQueryTest extends SpannerPgTestCase
             // pg_jsonb
             [
                 [
-                    new PgJsonB('{}'),
-                    new PgJsonB('{"a": "b"}'),
-                    new PgJsonB(["a" => "b"])
+                    new PgJsonb('{}'),
+                    new PgJsonb('{"a": "b"}'),
+                    new PgJsonb(["a" => "b"])
                 ],
                 ['{}', '{"a": "b"}', '{"a": "b"}'],
-                PgJsonB::class,
+                PgJsonb::class,
                 function (array $res) {
                     foreach ($res as $idx => $val) {
                         $res[$idx] = $val->get();
