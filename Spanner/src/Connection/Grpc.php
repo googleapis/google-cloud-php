@@ -1317,6 +1317,41 @@ class Grpc implements ConnectionInterface
     /**
      * @param array $args
      * @param bool $required
+     * @return InstanceConfig
+     */
+    private function instanceConfigObject(array &$args, $required = false)
+    {
+        return $this->serializer->decodeMessage(
+            new InstanceConfig(),
+            $this->instanceConfigArray($args, $required)
+        );
+    }
+
+    /**
+     * @param array $args
+     * @param bool $required
+     * @return array
+     */
+    private function instanceConfigArray(array &$args, $required = false)
+    {
+        $argsCopy = $args;
+        return array_intersect_key([
+            'name' => $this->pluck('name', $args, $required),
+            'baseConfig' => $this->pluck('baseConfig', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'configType' => $this->pluck('configType', $args, $required),
+            'replicas' => $this->pluck('replicas', $args, $required),
+            'optionalReplicas' => $this->pluck('optionalReplicas', $args, $required),
+            'leaderOptions' => $this->pluck('leaderOptions', $args, $required),
+            'reconciling' => $this->pluck('reconciling', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->pluck('labels', $args, $required),
+        ], $argsCopy);
+    }
+
+    /**
+     * @param array $args
+     * @param bool $required
      * @return Instance
      */
     private function instanceObject(array &$args, $required = false)
