@@ -131,6 +131,8 @@ class AdminTest extends SpannerTestCase
 
     public function testCustomerManagedInstanceConfigurations()
     {
+        $this->skipEmulatorTests();
+        
         $client = self::$client;
 
         // Custom instance configuration IDs must start with 'custom' and may not contain any underscores.

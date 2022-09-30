@@ -144,7 +144,6 @@ class GrpcTest extends TestCase
     public function testUpdateInstanceConfig()
     {
         list ($args, $config, $fieldMask) = $this->instanceConfig(false);
-
         $this->assertCallCorrect('updateInstanceConfig', $args, $this->expectResourceHeader(self::CONFIG, [
             $config, $fieldMask
         ]), $this->lro, null);
@@ -1418,9 +1417,7 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            if ($key !== 'name') {
-                $mask[] = Serializer::toSnakeCase($key);
-            }
+            $mask[] = Serializer::toSnakeCase($key);
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
@@ -1459,9 +1456,7 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            if ($key !== 'name') {
-                $mask[] = Serializer::toSnakeCase($key);
-            }
+            $mask[] = Serializer::toSnakeCase($key);
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);

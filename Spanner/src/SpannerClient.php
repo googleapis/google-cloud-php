@@ -35,9 +35,12 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
+use Google\ApiCore\ValidationException;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -275,6 +278,8 @@ class SpannerClient
      *
      * Example:
      * ```
+     * use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
+     *
      * $operation = $spanner->createInstanceConfiguration($baseInstanceConfig,
      *     // The replicas for the custom instance configuration must include all the replicas of the base
      *     // configuration, in addition to at least one from the list of optional replicas of the base
