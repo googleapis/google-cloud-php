@@ -1,0 +1,1 @@
+{"id":"batch\/v1\/lifecyclepolicy\/action","type":"","title":"Google\\Cloud\\Batch\\V1\\LifecyclePolicy\\Action","name":"Action","description":"<p>Action on task failures based on different conditions.<\/p>\n<p>Protobuf type <code>google.cloud.batch.v1.LifecyclePolicy.Action<\/code><\/p>","examples":[],"resources":[],"methods":[]}
