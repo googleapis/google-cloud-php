@@ -401,6 +401,14 @@
             ]
         },
         {
+            "id": "cloud-batch",
+            "name": "google/cloud-batch",
+            "defaultService": "batch/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-beyondcorp-appconnections",
             "name": "google/cloud-beyondcorp-appconnections",
             "defaultService": "beyondcorpappconnections/readme",
