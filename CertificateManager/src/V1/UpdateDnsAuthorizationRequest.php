@@ -22,8 +22,8 @@ class UpdateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
      */
     private $dns_authorization = null;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition,
-     * see
+     * Required. The update mask applies to the resource. For the `FieldMask`
+     * definition, see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -39,8 +39,8 @@ class UpdateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\CertificateManager\V1\DnsAuthorization $dns_authorization
      *           Required. A definition of the dns authorization to update.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Required. The update mask applies to the resource. For the `FieldMask` definition,
-     *           see
+     *           Required. The update mask applies to the resource. For the `FieldMask`
+     *           definition, see
      *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      * }
      */
@@ -86,8 +86,8 @@ class UpdateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition,
-     * see
+     * Required. The update mask applies to the resource. For the `FieldMask`
+     * definition, see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -109,8 +109,8 @@ class UpdateDnsAuthorizationRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition,
-     * see
+     * Required. The update mask applies to the resource. For the `FieldMask`
+     * definition, see
      * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
