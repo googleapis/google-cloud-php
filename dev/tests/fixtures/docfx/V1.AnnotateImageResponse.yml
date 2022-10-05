@@ -122,7 +122,7 @@ items:
           description: 'If present, product search has completed successfully.'
         -
           id: '↳ error'
-          var_type: Google\Rpc\Status
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: 'If set, represents the error message for the operation. Note that filled-in image annotations are guaranteed to be correct, even when `error` is set.'
         -
           id: '↳ context'
@@ -741,7 +741,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Rpc\Status
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: ''
       return:
         type:

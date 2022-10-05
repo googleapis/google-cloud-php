@@ -39,7 +39,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ color'
-          var_type: Google\Type\Color
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>'
           description: 'RGB components of the color.'
         -
           id: '↳ score'
@@ -98,7 +98,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Type\Color
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>'
           description: ''
       return:
         type:

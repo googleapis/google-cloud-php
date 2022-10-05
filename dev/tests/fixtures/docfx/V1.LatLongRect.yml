@@ -38,11 +38,11 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ min_lat_lng'
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: 'Min lat/long pair.'
         -
           id: '↳ max_lat_lng'
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: 'Max lat/long pair.'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::getMinLatLng()'
@@ -93,7 +93,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
       return:
         type:
@@ -147,7 +147,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
       return:
         type:

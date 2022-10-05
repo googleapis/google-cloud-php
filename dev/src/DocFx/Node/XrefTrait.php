@@ -163,8 +163,8 @@ trait XrefTrait
             case 0 === strpos($uid, '\Google\Iam\\'):
             case 0 === strpos($uid, '\Google\Rpc\\'):
             case 0 === strpos($uid, '\Google\Type\\'):
-                // @TODO: link to reference docs for common protos
-                return $name;
+                $extLinkRoot = 'https://googleapis.github.io/common-protos-php#';
+                break;
             default:
                 $extLinkRoot = '';
         }

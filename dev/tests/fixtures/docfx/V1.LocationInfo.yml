@@ -34,7 +34,7 @@ items:
           description: 'Optional. Data for populating the Message object.'
         -
           id: '↳ lat_lng'
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: 'lat/long location coordinates.'
   -
     uid: '\Google\Cloud\Vision\V1\LocationInfo::getLatLng()'
@@ -85,7 +85,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Type\LatLng
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
       return:
         type:

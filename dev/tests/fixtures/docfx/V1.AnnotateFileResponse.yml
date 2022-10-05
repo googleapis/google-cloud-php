@@ -55,7 +55,7 @@ items:
           description: 'This field gives the total number of pages in the file.'
         -
           id: '↳ error'
-          var_type: Google\Rpc\Status
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: 'If set, represents the error message for the failed request. The `responses` field will not be set in this case.'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getInputConfig()'
@@ -238,7 +238,7 @@ items:
       parameters:
         -
           id: var
-          var_type: Google\Rpc\Status
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: ''
       return:
         type:

@@ -42,7 +42,7 @@ items:
           description: 'The list of reference_images that are imported successfully.'
         -
           id: '↳ statuses'
-          var_type: 'array&lt;Google\Rpc\Status&gt;'
+          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
           description: 'The rpc status for each ImportProductSet request, including both successes and errors. The number of statuses here matches the number of lines in the csv file, and statuses[i] stores the success or failure status of processing the i-th line of the csv, starting from line 0.'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsResponse::getReferenceImages()'
@@ -123,7 +123,7 @@ items:
       parameters:
         -
           id: var
-          var_type: 'array&lt;Google\Rpc\Status&gt;'
+          var_type: 'array&lt;<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>&gt;'
           description: ''
       return:
         type:
