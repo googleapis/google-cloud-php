@@ -59,7 +59,7 @@ class ReferenceImage extends \Google\Protobuf\Internal\Message
      *     @type string $uri
      *           Required. The Google Cloud Storage URI of the reference image.
      *           The URI must start with `gs://`.
-     *     @type \Google\Cloud\Vision\V1\BoundingPoly[]|\Google\Protobuf\Internal\RepeatedField $bounding_polys
+     *     @type array<\Google\Cloud\Vision\V1\BoundingPoly>|\Google\Protobuf\Internal\RepeatedField $bounding_polys
      *           Optional. Bounding polygons around the areas of interest in the reference image.
      *           If this field is empty, the system will try to detect regions of
      *           interest. At most 10 bounding polygons will be used.
@@ -161,7 +161,7 @@ class ReferenceImage extends \Google\Protobuf\Internal\Message
      * is not).
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.BoundingPoly bounding_polys = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Vision\V1\BoundingPoly[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\BoundingPoly>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBoundingPolys($var)
