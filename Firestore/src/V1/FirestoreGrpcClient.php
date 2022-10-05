@@ -180,6 +180,32 @@ class FirestoreGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Runs an aggregation query.
+     *
+     * Rather than producing [Document][google.firestore.v1.Document] results like [Firestore.RunQuery][google.firestore.v1.Firestore.RunQuery],
+     * this API allows running an aggregation to produce a series of
+     * [AggregationResult][google.firestore.v1.AggregationResult] server-side.
+     *
+     * High-Level Example:
+     *
+     * ```
+     * -- Return the number of documents in table given a filter.
+     * SELECT COUNT(*) FROM ( SELECT * FROM k where a = true );
+     * ```
+     * @param \Google\Cloud\Firestore\V1\RunAggregationQueryRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\ServerStreamingCall
+     */
+    public function RunAggregationQuery(\Google\Cloud\Firestore\V1\RunAggregationQueryRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_serverStreamRequest('/google.firestore.v1.Firestore/RunAggregationQuery',
+        $argument,
+        ['\Google\Cloud\Firestore\V1\RunAggregationQueryResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Partitions a query by returning partition cursors that can be used to run
      * the query in parallel. The returned partition cursors are split points that
      * can be used by RunQuery as starting/end points for the query results.

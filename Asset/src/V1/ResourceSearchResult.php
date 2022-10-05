@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * A result of Resource Search, containing information of a cloud resource.
+ * Next ID: 29
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.ResourceSearchResult</code>
  */

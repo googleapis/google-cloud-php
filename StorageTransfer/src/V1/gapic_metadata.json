@@ -25,6 +25,11 @@
                                 "deleteAgentPool"
                             ]
                         },
+                        "DeleteTransferJob": {
+                            "methods": [
+                                "deleteTransferJob"
+                            ]
+                        },
                         "GetAgentPool": {
                             "methods": [
                                 "getAgentPool"

@@ -10,6 +10,21 @@
                 "grpc": {
                     "libraryClient": "CatalogServiceGapicClient",
                     "rpcs": {
+                        "AddCatalogAttribute": {
+                            "methods": [
+                                "addCatalogAttribute"
+                            ]
+                        },
+                        "GetAttributesConfig": {
+                            "methods": [
+                                "getAttributesConfig"
+                            ]
+                        },
+                        "GetCompletionConfig": {
+                            "methods": [
+                                "getCompletionConfig"
+                            ]
+                        },
                         "GetDefaultBranch": {
                             "methods": [
                                 "getDefaultBranch"
@@ -20,14 +35,34 @@
                                 "listCatalogs"
                             ]
                         },
+                        "RemoveCatalogAttribute": {
+                            "methods": [
+                                "removeCatalogAttribute"
+                            ]
+                        },
+                        "ReplaceCatalogAttribute": {
+                            "methods": [
+                                "replaceCatalogAttribute"
+                            ]
+                        },
                         "SetDefaultBranch": {
                             "methods": [
                                 "setDefaultBranch"
                             ]
                         },
+                        "UpdateAttributesConfig": {
+                            "methods": [
+                                "updateAttributesConfig"
+                            ]
+                        },
                         "UpdateCatalog": {
                             "methods": [
                                 "updateCatalog"
+                            ]
+                        },
+                        "UpdateCompletionConfig": {
+                            "methods": [
+                                "updateCompletionConfig"
                             ]
                         }
                     }
@@ -47,6 +82,40 @@
                         "ImportCompletionData": {
                             "methods": [
                                 "importCompletionData"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ControlService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ControlServiceGapicClient",
+                    "rpcs": {
+                        "CreateControl": {
+                            "methods": [
+                                "createControl"
+                            ]
+                        },
+                        "DeleteControl": {
+                            "methods": [
+                                "deleteControl"
+                            ]
+                        },
+                        "GetControl": {
+                            "methods": [
+                                "getControl"
+                            ]
+                        },
+                        "ListControls": {
+                            "methods": [
+                                "listControls"
+                            ]
+                        },
+                        "UpdateControl": {
+                            "methods": [
+                                "updateControl"
                             ]
                         }
                     }
@@ -139,6 +208,50 @@
                         "Search": {
                             "methods": [
                                 "search"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ServingConfigService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServingConfigServiceGapicClient",
+                    "rpcs": {
+                        "AddControl": {
+                            "methods": [
+                                "addControl"
+                            ]
+                        },
+                        "CreateServingConfig": {
+                            "methods": [
+                                "createServingConfig"
+                            ]
+                        },
+                        "DeleteServingConfig": {
+                            "methods": [
+                                "deleteServingConfig"
+                            ]
+                        },
+                        "GetServingConfig": {
+                            "methods": [
+                                "getServingConfig"
+                            ]
+                        },
+                        "ListServingConfigs": {
+                            "methods": [
+                                "listServingConfigs"
+                            ]
+                        },
+                        "RemoveControl": {
+                            "methods": [
+                                "removeControl"
+                            ]
+                        },
+                        "UpdateServingConfig": {
+                            "methods": [
+                                "updateServingConfig"
                             ]
                         }
                     }

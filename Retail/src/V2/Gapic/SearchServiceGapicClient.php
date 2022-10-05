@@ -418,7 +418,9 @@ class SearchServiceGapicClient
      *           Boost specification to boost certain products. See more details at this
      *           [user guide](https://cloud.google.com/retail/docs/boosting).
      *
-     *           Notice that if both [ServingConfig.boost_control_ids][] and
+     *           Notice that if both
+     *           [ServingConfig.boost_control_ids][google.cloud.retail.v2.ServingConfig.boost_control_ids]
+     *           and
      *           [SearchRequest.boost_spec][google.cloud.retail.v2.SearchRequest.boost_spec]
      *           are set, the boost conditions from both places are evaluated. If a search
      *           request matches multiple boost conditions, the final boost score is equal
@@ -517,6 +519,15 @@ class SearchServiceGapicClient
      *           For allowed values, use constants defined on {@see \Google\Cloud\Retail\V2\SearchRequest\SearchMode}
      *     @type PersonalizationSpec $personalizationSpec
      *           The specification for personalization.
+     *
+     *           Notice that if both
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec]
+     *           and
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           are set.
+     *           [SearchRequest.personalization_spec][google.cloud.retail.v2.SearchRequest.personalization_spec]
+     *           will override
+     *           [ServingConfig.personalization_spec][google.cloud.retail.v2.ServingConfig.personalization_spec].
      *     @type array $labels
      *           The labels applied to a resource must meet the following requirements:
      *

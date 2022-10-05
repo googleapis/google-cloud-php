@@ -15,6 +15,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
+     */
+    private $json_custom_config = null;
+    /**
      * 
      * Check the JsonParsing enum for the list of possible values.
      *
@@ -35,6 +41,8 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig $json_custom_config
+     *           Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
      *     @type string $json_parsing
      *           
      *           Check the JsonParsing enum for the list of possible values.
@@ -46,6 +54,42 @@ class SecurityPolicyAdvancedOptionsConfig extends \Google\Protobuf\Internal\Mess
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Compute\V1\Compute::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
+     * @return \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig|null
+     */
+    public function getJsonCustomConfig()
+    {
+        return $this->json_custom_config;
+    }
+
+    public function hasJsonCustomConfig()
+    {
+        return isset($this->json_custom_config);
+    }
+
+    public function clearJsonCustomConfig()
+    {
+        unset($this->json_custom_config);
+    }
+
+    /**
+     * Custom configuration to apply the JSON parsing. Only applicable when json_parsing is set to STANDARD.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SecurityPolicyAdvancedOptionsConfigJsonCustomConfig json_custom_config = 111570105;</code>
+     * @param \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig $var
+     * @return $this
+     */
+    public function setJsonCustomConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyAdvancedOptionsConfigJsonCustomConfig::class);
+        $this->json_custom_config = $var;
+
+        return $this;
     }
 
     /**

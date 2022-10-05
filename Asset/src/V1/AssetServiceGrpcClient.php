@@ -266,6 +266,34 @@ class AssetServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Issue a job that queries assets using a SQL statement compatible with
+     * [BigQuery Standard
+     * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
+     *
+     * If the query execution finishes within timeout and there's no pagination,
+     * the full query results will be returned in the `QueryAssetsResponse`.
+     *
+     * Otherwise, full query results can be obtained by issuing extra requests
+     * with the `job_reference` from the a previous `QueryAssets` call.
+     *
+     * Note, the query result has approximately 10 GB limitation enforced by
+     * BigQuery
+     * https://cloud.google.com/bigquery/docs/best-practices-performance-output,
+     * queries return larger results will result in errors.
+     * @param \Google\Cloud\Asset\V1\QueryAssetsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function QueryAssets(\Google\Cloud\Asset\V1\QueryAssetsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.asset.v1.AssetService/QueryAssets',
+        $argument,
+        ['\Google\Cloud\Asset\V1\QueryAssetsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a saved query in a parent project/folder/organization.
      * @param \Google\Cloud\Asset\V1\CreateSavedQueryRequest $argument input argument
      * @param array $metadata metadata

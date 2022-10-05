@@ -29,6 +29,21 @@
                 }
             },
             "methods": {
+                "AddCatalogAttribute": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetAttributesConfig": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "GetCompletionConfig": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "GetDefaultBranch": {
                     "timeout_millis": 5000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -39,12 +54,32 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "RemoveCatalogAttribute": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ReplaceCatalogAttribute": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "SetDefaultBranch": {
                     "timeout_millis": 5000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "UpdateAttributesConfig": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "UpdateCatalog": {
+                    "timeout_millis": 5000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "UpdateCompletionConfig": {
                     "timeout_millis": 5000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

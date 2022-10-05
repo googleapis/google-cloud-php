@@ -1009,6 +1009,8 @@ class PipelineServiceGapicClient
      *           * `update_time`
      *           * `end_time`
      *           * `start_time`
+     *     @type FieldMask $readMask
+     *           Mask specifying which fields to read.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1039,6 +1041,10 @@ class PipelineServiceGapicClient
 
         if (isset($optionalArgs['orderBy'])) {
             $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        if (isset($optionalArgs['readMask'])) {
+            $request->setReadMask($optionalArgs['readMask']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

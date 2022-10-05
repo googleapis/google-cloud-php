@@ -9,6 +9,10 @@
         {
             "title": "CloudFunctionsServiceClient (v1)",
             "type": "functions\/v1\/cloudfunctionsserviceclient"
+        },
+        {
+            "title": "FunctionServiceClient (v2)",
+            "type": "functions\/v2\/functionserviceclient"
         }
     ],
     "pattern": "functions\/\\w{1,}"
