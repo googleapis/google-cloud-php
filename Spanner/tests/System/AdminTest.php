@@ -132,7 +132,7 @@ class AdminTest extends SpannerTestCase
     public function testCustomerManagedInstanceConfigurations()
     {
         $this->skipEmulatorTests();
-        
+
         $client = self::$client;
 
         // Custom instance configuration IDs must start with 'custom' and may not contain any underscores.
@@ -141,13 +141,15 @@ class AdminTest extends SpannerTestCase
         // Find the first instance configuration that has at least one optional replica. This indicates that it is a
         // Google Managed multi-region config that can be used as the base config for a customer managed configuration.
         $configurations = iterator_to_array($client->instanceConfigurations());
-        $baseConfig = array_filter($configurations, function ($configuration) {
-            return !empty($configuration->info()['optionalReplicas']);
-        });
+        foreach ($configurations as $key => $configuration) {
+            if (!empty($configuration->info()['optionalReplicas'])) {
+                $baseConfig = $configuration;
+                break;
+            }
+        }
         if (empty($baseConfig)) {
             $this->fail('No suitable base configuration found to create a custom instance config');
         }
-        $baseConfig = $baseConfig[0];
 
         $customConfiguration = $client->instanceConfiguration($customConfigId);
         // Add all base config replicas + optional replicas, and set a random replica as the default leader.

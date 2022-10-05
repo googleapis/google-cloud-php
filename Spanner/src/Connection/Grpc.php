@@ -1315,6 +1315,8 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * Converts a PHP array to an InstanceConfig proto message.
+     *
      * @param array $args
      * @param bool $required
      * @return InstanceConfig
@@ -1328,6 +1330,8 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * Creates a PHP array with only the fields that are relevant for an InstanceConfig.
+     *
      * @param array $args
      * @param bool $required
      * @return array
@@ -1398,7 +1402,9 @@ class Grpc implements ConnectionInterface
     {
         $mask = [];
         foreach (array_keys($instanceArray) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
         return $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
     }
