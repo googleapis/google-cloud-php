@@ -1417,7 +1417,9 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
@@ -1456,7 +1458,9 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
