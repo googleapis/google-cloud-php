@@ -359,4 +359,64 @@ class CertificateManagerGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Lists CertificateIssuanceConfigs in a given project and location.
+     * @param \Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function ListCertificateIssuanceConfigs(\Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.certificatemanager.v1.CertificateManager/ListCertificateIssuanceConfigs',
+        $argument,
+        ['\Google\Cloud\CertificateManager\V1\ListCertificateIssuanceConfigsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets details of a single CertificateIssuanceConfig.
+     * @param \Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetCertificateIssuanceConfig(\Google\Cloud\CertificateManager\V1\GetCertificateIssuanceConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.certificatemanager.v1.CertificateManager/GetCertificateIssuanceConfig',
+        $argument,
+        ['\Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Creates a new CertificateIssuanceConfig in a given project and location.
+     * @param \Google\Cloud\CertificateManager\V1\CreateCertificateIssuanceConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function CreateCertificateIssuanceConfig(\Google\Cloud\CertificateManager\V1\CreateCertificateIssuanceConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.certificatemanager.v1.CertificateManager/CreateCertificateIssuanceConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Deletes a single CertificateIssuanceConfig.
+     * @param \Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteCertificateIssuanceConfig(\Google\Cloud\CertificateManager\V1\DeleteCertificateIssuanceConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.certificatemanager.v1.CertificateManager/DeleteCertificateIssuanceConfig',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }
