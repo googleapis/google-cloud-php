@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/answerfeedback\/correctnesslevel","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\AnswerFeedback\\CorrectnessLevel","name":"CorrectnessLevel","description":"<p>The correctness level of an answer.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.AnswerFeedback.CorrectnessLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

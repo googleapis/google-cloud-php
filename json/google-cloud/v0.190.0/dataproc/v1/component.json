@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/component","type":"","title":"Google\\Cloud\\Dataproc\\V1\\Component","name":"Component","description":"<p>Cluster components that can be activated.<\/p>\n<p>Protobuf type <code>google.cloud.dataproc.v1.Component<\/code><\/p>","examples":[],"resources":[],"methods":[]}

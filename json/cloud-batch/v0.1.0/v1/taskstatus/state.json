@@ -1,0 +1,1 @@
+{"id":"batch\/v1\/taskstatus\/state","type":"","title":"Google\\Cloud\\Batch\\V1\\TaskStatus\\State","name":"State","description":"<p>Task states.<\/p>\n<p>Protobuf type <code>google.cloud.batch.v1.TaskStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

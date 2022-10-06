@@ -1,0 +1,1 @@
+{"id":"batch\/v1\/logspolicy\/destination","type":"","title":"Google\\Cloud\\Batch\\V1\\LogsPolicy\\Destination","name":"Destination","description":"<p>The destination (if any) for logs.<\/p>\n<p>Protobuf type <code>google.cloud.batch.v1.LogsPolicy.Destination<\/code><\/p>","examples":[],"resources":[],"methods":[]}

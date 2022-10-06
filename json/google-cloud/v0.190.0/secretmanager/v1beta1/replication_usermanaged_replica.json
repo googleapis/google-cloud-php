@@ -1,0 +1,1 @@
+{"id":"secretmanager\/v1beta1\/replication_usermanaged_replica","type":"","title":"Google\\Cloud\\SecretManager\\V1beta1\\Replication_UserManaged_Replica","name":"Replication_UserManaged_Replica","description":"<p>This class is deprecated. Use Google\\Cloud\\SecretManager\\V1beta1\\Replication\\UserManaged\\Replica instead.<\/p>","examples":[],"resources":[],"methods":[]}

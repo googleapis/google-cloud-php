@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/packetintervals\/type","type":"","title":"Google\\Cloud\\Compute\\V1\\PacketIntervals\\Type","name":"Type","description":"<p>The type of packets for which inter-packet intervals were computed.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.PacketIntervals.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

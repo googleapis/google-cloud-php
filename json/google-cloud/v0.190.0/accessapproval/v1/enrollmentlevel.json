@@ -1,0 +1,1 @@
+{"id":"accessapproval\/v1\/enrollmentlevel","type":"","title":"Google\\Cloud\\AccessApproval\\V1\\EnrollmentLevel","name":"EnrollmentLevel","description":"<p>Represents the type of enrollment for a given service to Access Approval.<\/p>\n<p>Protobuf type <code>google.cloud.accessapproval.v1.EnrollmentLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

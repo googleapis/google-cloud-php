@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/migrationjob\/state","type":"","title":"Google\\Cloud\\CloudDms\\V1\\MigrationJob\\State","name":"State","description":"<p>The current migration job states.<\/p>\n<p>Protobuf type <code>google.cloud.clouddms.v1.MigrationJob.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

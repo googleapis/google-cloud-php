@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/searchcatalogrequest_scope","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\SearchCatalogRequest_Scope","name":"SearchCatalogRequest_Scope","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\SearchCatalogRequest\\Scope instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"functions\/v2\/listruntimesresponse\/runtimestage","type":"","title":"Google\\Cloud\\Functions\\V2\\ListRuntimesResponse\\RuntimeStage","name":"RuntimeStage","description":"<p>The various stages that a runtime can be in.<\/p>\n<p>Protobuf type <code>google.cloud.functions.v2.ListRuntimesResponse.RuntimeStage<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"build\/v1\/workerpool\/status","type":"","title":"Google\\Cloud\\Build\\V1\\WorkerPool\\Status","name":"Status","description":"<p><code>WorkerPool<\/code> status<\/p>\n<p>Protobuf type <code>google.devtools.cloudbuild.v1.WorkerPool.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

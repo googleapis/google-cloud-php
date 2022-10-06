@@ -1,0 +1,1 @@
+{"id":"managedidentities\/v1\/trust_state","type":"","title":"Google\\Cloud\\ManagedIdentities\\V1\\Trust_State","name":"Trust_State","description":"<p>This class is deprecated. Use Google\\Cloud\\ManagedIdentities\\V1\\Trust\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

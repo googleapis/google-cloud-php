@@ -1,0 +1,1 @@
+{"id":"managedidentities\/v1\/domain_state","type":"","title":"Google\\Cloud\\ManagedIdentities\\V1\\Domain_State","name":"Domain_State","description":"<p>This class is deprecated. Use Google\\Cloud\\ManagedIdentities\\V1\\Domain\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

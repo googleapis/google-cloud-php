@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/encryptionstatus","type":"","title":"Google\\Cloud\\Dlp\\V2\\EncryptionStatus","name":"EncryptionStatus","description":"<p>How a resource is encrypted.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.EncryptionStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

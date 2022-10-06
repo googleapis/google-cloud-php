@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_subject_authtype","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_Subject_AuthType","name":"Kubernetes_Subject_AuthType","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\Subject\\AuthType instead.<\/p>","examples":[],"resources":[],"methods":[]}

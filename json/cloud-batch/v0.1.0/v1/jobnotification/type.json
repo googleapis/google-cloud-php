@@ -1,0 +1,1 @@
+{"id":"batch\/v1\/jobnotification\/type","type":"","title":"Google\\Cloud\\Batch\\V1\\JobNotification\\Type","name":"Type","description":"<p>The message type.<\/p>\n<p>Protobuf type <code>google.cloud.batch.v1.JobNotification.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

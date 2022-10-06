@@ -1,0 +1,1 @@
+{"id":"errorreporting\/v1beta1\/resolutionstatus","type":"","title":"Google\\Cloud\\ErrorReporting\\V1beta1\\ResolutionStatus","name":"ResolutionStatus","description":"<p>Resolution status of an error group.<\/p>\n<p>Protobuf type <code>google.devtools.clouderrorreporting.v1beta1.ResolutionStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

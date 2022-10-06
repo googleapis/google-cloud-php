@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/image\/sourcetype","type":"","title":"Google\\Cloud\\Compute\\V1\\Image\\SourceType","name":"SourceType","description":"<p>The type of the image used to create this disk. The default and only valid value is RAW.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Image.SourceType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

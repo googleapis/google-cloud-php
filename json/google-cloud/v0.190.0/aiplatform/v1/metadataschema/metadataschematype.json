@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/metadataschema\/metadataschematype","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\MetadataSchema\\MetadataSchemaType","name":"MetadataSchemaType","description":"<p>Describes the type of the MetadataSchema.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.MetadataSchema.MetadataSchemaType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

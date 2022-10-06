@@ -1,0 +1,1 @@
+{"id":"analyticsdata\/v1beta\/filter\/stringfilter\/matchtype","type":"","title":"Google\\Analytics\\Data\\V1beta\\Filter\\StringFilter\\MatchType","name":"MatchType","description":"<p>The match type of a string filter<\/p>\n<p>Protobuf type <code>google.analytics.data.v1beta.Filter.StringFilter.MatchType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

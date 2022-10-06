@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodepool_upgradesettings","type":"","title":"Google\\Cloud\\Container\\V1\\NodePool_UpgradeSettings","name":"NodePool_UpgradeSettings","description":"<p>This class is deprecated. Use Google\\Cloud\\Container\\V1\\NodePool\\UpgradeSettings instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_binding","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_Binding","name":"Kubernetes_Binding","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\Binding instead.<\/p>","examples":[],"resources":[],"methods":[]}

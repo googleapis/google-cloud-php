@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/savedattacheddisk\/mode","type":"","title":"Google\\Cloud\\Compute\\V1\\SavedAttachedDisk\\Mode","name":"Mode","description":"<p>The mode in which this disk is attached to the source instance, either READ_WRITE or READ_ONLY.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.SavedAttachedDisk.Mode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

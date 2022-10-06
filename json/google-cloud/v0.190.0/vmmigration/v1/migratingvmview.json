@@ -1,0 +1,1 @@
+{"id":"vmmigration\/v1\/migratingvmview","type":"","title":"Google\\Cloud\\VMMigration\\V1\\MigratingVmView","name":"MigratingVmView","description":"<p>Controls the level of details of a Migrating VM.<\/p>\n<p>Protobuf type <code>google.cloud.vmmigration.v1.MigratingVmView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

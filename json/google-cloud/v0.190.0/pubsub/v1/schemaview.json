@@ -1,0 +1,1 @@
+{"id":"pubsub\/v1\/schemaview","type":"","title":"Google\\Cloud\\PubSub\\V1\\SchemaView","name":"SchemaView","description":"<p>View of Schema object fields to be returned by GetSchema and ListSchemas.<\/p>\n<p>Protobuf type <code>google.pubsub.v1.SchemaView<\/code><\/p>","examples":[],"resources":[],"methods":[]}

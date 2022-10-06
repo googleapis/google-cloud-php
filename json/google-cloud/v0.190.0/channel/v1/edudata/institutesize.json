@@ -1,0 +1,1 @@
+{"id":"channel\/v1\/edudata\/institutesize","type":"","title":"Google\\Cloud\\Channel\\V1\\EduData\\InstituteSize","name":"InstituteSize","description":"<p>Number of students and staff the institute has.<\/p>\n<p>Protobuf type <code>google.cloud.channel.v1.EduData.InstituteSize<\/code><\/p>","examples":[],"resources":[],"methods":[]}

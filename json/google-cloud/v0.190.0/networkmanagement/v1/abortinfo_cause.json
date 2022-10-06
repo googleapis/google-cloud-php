@@ -1,0 +1,1 @@
+{"id":"networkmanagement\/v1\/abortinfo_cause","type":"","title":"Google\\Cloud\\NetworkManagement\\V1\\AbortInfo_Cause","name":"AbortInfo_Cause","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkManagement\\V1\\AbortInfo\\Cause instead.<\/p>","examples":[],"resources":[],"methods":[]}

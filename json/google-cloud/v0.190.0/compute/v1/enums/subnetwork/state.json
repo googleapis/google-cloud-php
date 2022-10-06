@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/subnetwork\/state","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Subnetwork\\State","name":"State","description":"<p>State contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Subnetwork.State descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

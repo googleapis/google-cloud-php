@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_node","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_Node","name":"Kubernetes_Node","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\Node instead.<\/p>","examples":[],"resources":[],"methods":[]}

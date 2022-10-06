@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/action\/category","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Action\\Category","name":"Category","description":"<p>The category of issues.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Action.Category<\/code><\/p>","examples":[],"resources":[],"methods":[]}

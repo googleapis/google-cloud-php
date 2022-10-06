@@ -1,0 +1,1 @@
+{"id":"automl\/v1beta1\/float64stats_histogrambucket","type":"","title":"Google\\Cloud\\AutoMl\\V1beta1\\Float64Stats_HistogramBucket","name":"Float64Stats_HistogramBucket","description":"<p>This class is deprecated. Use Google\\Cloud\\AutoMl\\V1beta1\\Float64Stats\\HistogramBucket instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"functions\/v2\/pbfunction\/state","type":"","title":"Google\\Cloud\\Functions\\V2\\PBFunction\\State","name":"State","description":"<p>Describes the current state of the function.<\/p>\n<p>Protobuf type <code>google.cloud.functions.v2.Function.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

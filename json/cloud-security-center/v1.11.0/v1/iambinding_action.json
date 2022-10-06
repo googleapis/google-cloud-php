@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/iambinding_action","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\IamBinding_Action","name":"IamBinding_Action","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\IamBinding\\Action instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"documentai\/v1\/reviewdocumentresponse\/state","type":"","title":"Google\\Cloud\\DocumentAI\\V1\\ReviewDocumentResponse\\State","name":"State","description":"<p>Possible states of the review operation.<\/p>\n<p>Protobuf type <code>google.cloud.documentai.v1.ReviewDocumentResponse.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
