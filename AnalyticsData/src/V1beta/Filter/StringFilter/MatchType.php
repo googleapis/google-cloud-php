@@ -44,13 +44,13 @@ class MatchType
      */
     const CONTAINS = 4;
     /**
-     * Full regular expression match with the string value.
+     * Full match for the regular expression with the string value.
      *
      * Generated from protobuf enum <code>FULL_REGEXP = 5;</code>
      */
     const FULL_REGEXP = 5;
     /**
-     * Partial regular expression match with the string value.
+     * Partial match for the regular expression with the string value.
      *
      * Generated from protobuf enum <code>PARTIAL_REGEXP = 6;</code>
      */
