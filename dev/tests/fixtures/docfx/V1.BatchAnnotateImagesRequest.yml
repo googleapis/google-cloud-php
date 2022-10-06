@@ -53,9 +53,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setRequests()'
     name: setRequests
@@ -74,9 +74,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::getParent()'
     name: getParent
@@ -98,9 +98,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\BatchAnnotateImagesRequest::setParent()'
     name: setParent
@@ -127,6 +127,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

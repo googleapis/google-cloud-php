@@ -32,14 +32,7 @@ class MethodNode
     public function getReturnType(): string
     {
         if ($returnType = $this->getReturnTypeTag()) {
-            $types = explode('|', $returnType);
-            // Remove "|null" type from return types because this breaks DocFX linkage
-            // and adding manual tags (e.g. "<xref>") is HTML-escaped.
-            // (we will mark these as "nullable" in the return description.)
-            if (2 === count($types) && $types[1] == 'null') {
-                array_pop($types);
-            }
-            return $this->normalizeTypedVariables(implode('|', $types), false);
+            return $this->normalizeTypedVariables($returnType);
         }
         return '';
     }
@@ -57,12 +50,6 @@ class MethodNode
             }
         }
 
-        if ($returnType = $this->getReturnTypeTag()) {
-            $types = explode('|', $returnType);
-            if (2 === count($types) && $types[1] == 'null') {
-                return 'Nullable';
-            }
-        }
         return '';
     }
 

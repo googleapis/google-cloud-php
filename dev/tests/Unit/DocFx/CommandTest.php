@@ -54,6 +54,10 @@ class CommandTest extends TestCase
         $left  = self::$fixturesDir . '/' . $file;
         $right = self::$tmpDir . '/' . $file;
         if (file_get_contents($left) !== file_get_contents($right)) {
+            if ('1' === getenv('UPDATE_FIXTURES')) {
+                file_put_contents(self::$fixturesDir . '/' . $file, file_get_contents($right));
+                $this->markTestIncomplete('Updated fixture ' . $file);
+            }
             $output = shell_exec(sprintf('git diff --no-index %s %s --color=always', $left, $right));
             $this->assertTrue(false, $output);
         }

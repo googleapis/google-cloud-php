@@ -71,9 +71,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setUrl()'
     name: setUrl
@@ -92,9 +92,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getScore()'
     name: getScore
@@ -108,9 +108,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setScore()'
     name: setScore
@@ -129,9 +129,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getPageTitle()'
     name: getPageTitle
@@ -145,9 +145,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setPageTitle()'
     name: setPageTitle
@@ -166,9 +166,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getFullMatchingImages()'
     name: getFullMatchingImages
@@ -184,9 +184,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setFullMatchingImages()'
     name: setFullMatchingImages
@@ -207,9 +207,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::getPartialMatchingImages()'
     name: getPartialMatchingImages
@@ -227,9 +227,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection\WebPage::setPartialMatchingImages()'
     name: setPartialMatchingImages
@@ -252,6 +252,6 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -64,9 +64,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setName()'
     name: setName
@@ -89,9 +89,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::getUri()'
     name: getUri
@@ -107,9 +107,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setUri()'
     name: setUri
@@ -130,9 +130,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::getBoundingPolys()'
     name: getBoundingPolys
@@ -153,9 +153,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ReferenceImage::setBoundingPolys()'
     name: setBoundingPolys
@@ -181,6 +181,6 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -61,9 +61,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setRequests()'
     name: setRequests
@@ -82,9 +82,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageRequest">Google\Cloud\Vision\V1\AnnotateImageRequest</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getOutputConfig()'
     name: getOutputConfig
@@ -98,10 +98,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\OutputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::hasOutputConfig()'
     name: hasOutputConfig
@@ -136,9 +135,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::getParent()'
     name: getParent
@@ -160,9 +159,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest::setParent()'
     name: setParent
@@ -189,6 +188,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

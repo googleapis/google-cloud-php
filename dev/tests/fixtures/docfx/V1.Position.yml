@@ -62,9 +62,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\Position::setX()'
     name: setX
@@ -83,9 +83,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Position::getY()'
     name: getY
@@ -99,9 +99,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\Position::setY()'
     name: setY
@@ -120,9 +120,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Position::getZ()'
     name: getZ
@@ -136,9 +136,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\Position::setZ()'
     name: setZ
@@ -157,6 +157,6 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

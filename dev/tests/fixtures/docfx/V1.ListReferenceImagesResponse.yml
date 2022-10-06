@@ -59,9 +59,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setReferenceImages()'
     name: setReferenceImages
@@ -80,9 +80,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getPageSize()'
     name: getPageSize
@@ -96,9 +96,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setPageSize()'
     name: setPageSize
@@ -117,9 +117,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::getNextPageToken()'
     name: getNextPageToken
@@ -133,9 +133,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ListReferenceImagesResponse::setNextPageToken()'
     name: setNextPageToken
@@ -154,6 +154,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

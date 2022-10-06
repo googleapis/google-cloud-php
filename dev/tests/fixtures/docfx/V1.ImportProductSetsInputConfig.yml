@@ -50,10 +50,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource">Google\Cloud\Vision\V1\ImportProductSetsGcsSource</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::hasGcsSource()'
     name: hasGcsSource
@@ -81,9 +80,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource">Google\Cloud\Vision\V1\ImportProductSetsGcsSource</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImportProductSetsInputConfig::getSource()'
     name: getSource
@@ -93,6 +92,6 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string

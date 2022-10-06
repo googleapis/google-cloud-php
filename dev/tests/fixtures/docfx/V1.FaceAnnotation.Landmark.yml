@@ -55,9 +55,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::setType()'
     name: setType
@@ -76,9 +76,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::getPosition()'
     name: getPosition
@@ -92,10 +92,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Position
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Position">Google\Cloud\Vision\V1\Position</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation\Landmark::hasPosition()'
     name: hasPosition
@@ -130,6 +129,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Position">Google\Cloud\Vision\V1\Position</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

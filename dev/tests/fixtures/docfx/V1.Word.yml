@@ -69,10 +69,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Word::hasProperty()'
     name: hasProperty
@@ -107,9 +106,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Word::getBoundingBox()'
     name: getBoundingBox
@@ -138,10 +137,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Word::hasBoundingBox()'
     name: hasBoundingBox
@@ -191,9 +189,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Word::getSymbols()'
     name: getSymbols
@@ -209,9 +207,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\Word::setSymbols()'
     name: setSymbols
@@ -232,9 +230,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Symbol">Google\Cloud\Vision\V1\Symbol</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Word::getConfidence()'
     name: getConfidence
@@ -248,9 +246,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\Word::setConfidence()'
     name: setConfidence
@@ -269,6 +267,6 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

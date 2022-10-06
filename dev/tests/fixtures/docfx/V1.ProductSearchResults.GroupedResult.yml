@@ -62,10 +62,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -100,9 +99,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getResults()'
     name: getResults
@@ -116,9 +115,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::setResults()'
     name: setResults
@@ -137,9 +136,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::getObjectAnnotations()'
     name: getObjectAnnotations
@@ -153,9 +152,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult::setObjectAnnotations()'
     name: setObjectAnnotations
@@ -174,6 +173,6 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation">Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

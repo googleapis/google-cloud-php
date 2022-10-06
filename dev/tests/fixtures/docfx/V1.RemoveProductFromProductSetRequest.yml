@@ -56,9 +56,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::setName()'
     name: setName
@@ -80,9 +80,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::getProduct()'
     name: getProduct
@@ -99,9 +99,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest::setProduct()'
     name: setProduct
@@ -123,6 +123,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

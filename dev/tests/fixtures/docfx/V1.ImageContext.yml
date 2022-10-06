@@ -87,10 +87,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\LatLongRect
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasLatLongRect()'
     name: hasLatLongRect
@@ -125,9 +124,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\LatLongRect">Google\Cloud\Vision\V1\LatLongRect</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getLanguageHints()'
     name: getLanguageHints
@@ -148,9 +147,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::setLanguageHints()'
     name: setLanguageHints
@@ -176,9 +175,9 @@ items:
           id: var
           var_type: 'string[]'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getCropHintsParams()'
     name: getCropHintsParams
@@ -192,10 +191,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\CropHintsParams
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasCropHintsParams()'
     name: hasCropHintsParams
@@ -230,9 +228,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsParams">Google\Cloud\Vision\V1\CropHintsParams</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getProductSearchParams()'
     name: getProductSearchParams
@@ -246,10 +244,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSearchParams
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasProductSearchParams()'
     name: hasProductSearchParams
@@ -284,9 +281,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchParams">Google\Cloud\Vision\V1\ProductSearchParams</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getWebDetectionParams()'
     name: getWebDetectionParams
@@ -300,10 +297,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\WebDetectionParams
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasWebDetectionParams()'
     name: hasWebDetectionParams
@@ -338,9 +334,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetectionParams">Google\Cloud\Vision\V1\WebDetectionParams</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::getTextDetectionParams()'
     name: getTextDetectionParams
@@ -354,10 +350,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\TextDetectionParams
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ImageContext::hasTextDetectionParams()'
     name: hasTextDetectionParams
@@ -392,6 +387,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\TextDetectionParams">Google\Cloud\Vision\V1\TextDetectionParams</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -61,10 +61,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Product
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::hasProduct()'
     name: hasProduct
@@ -99,9 +98,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getScore()'
     name: getScore
@@ -116,9 +115,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setScore()'
     name: setScore
@@ -138,9 +137,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::getImage()'
     name: getImage
@@ -155,9 +154,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\Result::setImage()'
     name: setImage
@@ -177,6 +176,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

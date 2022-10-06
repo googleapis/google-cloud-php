@@ -69,10 +69,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -109,9 +108,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::getProductSet()'
     name: getProductSet
@@ -128,9 +127,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::setProductSet()'
     name: setProductSet
@@ -152,9 +151,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::getProductCategories()'
     name: getProductCategories
@@ -174,9 +173,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::setProductCategories()'
     name: setProductCategories
@@ -201,9 +200,9 @@ items:
           id: var
           var_type: 'string[]'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::getFilter()'
     name: getFilter
@@ -224,9 +223,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchParams::setFilter()'
     name: setFilter
@@ -252,6 +251,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -71,10 +71,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\InputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasInputConfig()'
     name: hasInputConfig
@@ -109,9 +108,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getFeatures()'
     name: getFeatures
@@ -125,9 +124,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::setFeatures()'
     name: setFeatures
@@ -146,9 +145,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getImageContext()'
     name: getImageContext
@@ -162,10 +161,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImageContext
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasImageContext()'
     name: hasImageContext
@@ -200,9 +198,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::getOutputConfig()'
     name: getOutputConfig
@@ -216,10 +214,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\OutputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncAnnotateFileRequest::hasOutputConfig()'
     name: hasOutputConfig
@@ -254,6 +251,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

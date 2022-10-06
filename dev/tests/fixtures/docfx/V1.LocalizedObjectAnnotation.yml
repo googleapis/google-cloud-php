@@ -73,9 +73,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setMid()'
     name: setMid
@@ -94,9 +94,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getLanguageCode()'
     name: getLanguageCode
@@ -112,9 +112,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setLanguageCode()'
     name: setLanguageCode
@@ -135,9 +135,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getName()'
     name: getName
@@ -151,9 +151,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setName()'
     name: setName
@@ -172,9 +172,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getScore()'
     name: getScore
@@ -188,9 +188,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::setScore()'
     name: setScore
@@ -209,9 +209,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::getBoundingPoly()'
     name: getBoundingPoly
@@ -225,10 +225,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LocalizedObjectAnnotation::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -263,6 +262,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -68,10 +68,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSetPurgeConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSetPurgeConfig">Google\Cloud\Vision\V1\ProductSetPurgeConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasProductSetPurgeConfig()'
     name: hasProductSetPurgeConfig
@@ -98,9 +97,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSetPurgeConfig">Google\Cloud\Vision\V1\ProductSetPurgeConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getDeleteOrphanProducts()'
     name: getDeleteOrphanProducts
@@ -115,9 +114,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - bool
+      returns:
+        -
+          var_type: bool
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::hasDeleteOrphanProducts()'
     name: hasDeleteOrphanProducts
@@ -145,9 +144,9 @@ items:
           id: var
           var_type: bool
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getParent()'
     name: getParent
@@ -163,9 +162,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setParent()'
     name: setParent
@@ -186,9 +185,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getForce()'
     name: getForce
@@ -203,9 +202,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - bool
+      returns:
+        -
+          var_type: bool
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::setForce()'
     name: setForce
@@ -225,9 +224,9 @@ items:
           id: var
           var_type: bool
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\PurgeProductsRequest::getTarget()'
     name: getTarget
@@ -237,6 +236,6 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string

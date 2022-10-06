@@ -61,9 +61,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\Feature::setType()'
     name: setType
@@ -82,9 +82,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Feature::getMaxResults()'
     name: getMaxResults
@@ -99,9 +99,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\Feature::setMaxResults()'
     name: setMaxResults
@@ -121,9 +121,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Feature::getModel()'
     name: getModel
@@ -140,9 +140,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\Feature::setModel()'
     name: setModel
@@ -164,6 +164,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

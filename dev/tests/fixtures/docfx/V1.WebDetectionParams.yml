@@ -47,9 +47,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - bool
+      returns:
+        -
+          var_type: bool
   -
     uid: '\Google\Cloud\Vision\V1\WebDetectionParams::setIncludeGeoResults()'
     name: setIncludeGeoResults
@@ -68,6 +68,6 @@ items:
           id: var
           var_type: bool
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

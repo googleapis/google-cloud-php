@@ -141,9 +141,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setFaceAnnotations()'
     name: setFaceAnnotations
@@ -162,9 +162,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation">Google\Cloud\Vision\V1\FaceAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLandmarkAnnotations()'
     name: getLandmarkAnnotations
@@ -178,9 +178,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLandmarkAnnotations()'
     name: setLandmarkAnnotations
@@ -199,9 +199,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLogoAnnotations()'
     name: getLogoAnnotations
@@ -215,9 +215,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLogoAnnotations()'
     name: setLogoAnnotations
@@ -236,9 +236,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLabelAnnotations()'
     name: getLabelAnnotations
@@ -252,9 +252,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLabelAnnotations()'
     name: setLabelAnnotations
@@ -273,9 +273,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getLocalizedObjectAnnotations()'
     name: getLocalizedObjectAnnotations
@@ -291,9 +291,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setLocalizedObjectAnnotations()'
     name: setLocalizedObjectAnnotations
@@ -314,9 +314,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\LocalizedObjectAnnotation">Google\Cloud\Vision\V1\LocalizedObjectAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getTextAnnotations()'
     name: getTextAnnotations
@@ -330,9 +330,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::setTextAnnotations()'
     name: setTextAnnotations
@@ -351,9 +351,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\EntityAnnotation">Google\Cloud\Vision\V1\EntityAnnotation</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getFullTextAnnotation()'
     name: getFullTextAnnotation
@@ -371,10 +371,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\TextAnnotation
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">Google\Cloud\Vision\V1\TextAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasFullTextAnnotation()'
     name: hasFullTextAnnotation
@@ -413,9 +412,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation">Google\Cloud\Vision\V1\TextAnnotation</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getSafeSearchAnnotation()'
     name: getSafeSearchAnnotation
@@ -429,10 +428,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\SafeSearchAnnotation
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">Google\Cloud\Vision\V1\SafeSearchAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasSafeSearchAnnotation()'
     name: hasSafeSearchAnnotation
@@ -467,9 +465,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\SafeSearchAnnotation">Google\Cloud\Vision\V1\SafeSearchAnnotation</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getImagePropertiesAnnotation()'
     name: getImagePropertiesAnnotation
@@ -483,10 +481,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImageProperties
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">Google\Cloud\Vision\V1\ImageProperties</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasImagePropertiesAnnotation()'
     name: hasImagePropertiesAnnotation
@@ -521,9 +518,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageProperties">Google\Cloud\Vision\V1\ImageProperties</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getCropHintsAnnotation()'
     name: getCropHintsAnnotation
@@ -537,10 +534,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\CropHintsAnnotation
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">Google\Cloud\Vision\V1\CropHintsAnnotation</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasCropHintsAnnotation()'
     name: hasCropHintsAnnotation
@@ -575,9 +571,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\CropHintsAnnotation">Google\Cloud\Vision\V1\CropHintsAnnotation</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getWebDetection()'
     name: getWebDetection
@@ -591,10 +587,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\WebDetection
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">Google\Cloud\Vision\V1\WebDetection</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasWebDetection()'
     name: hasWebDetection
@@ -629,9 +624,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\WebDetection">Google\Cloud\Vision\V1\WebDetection</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getProductSearchResults()'
     name: getProductSearchResults
@@ -645,10 +640,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSearchResults
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">Google\Cloud\Vision\V1\ProductSearchResults</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasProductSearchResults()'
     name: hasProductSearchResults
@@ -683,9 +677,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults">Google\Cloud\Vision\V1\ProductSearchResults</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getError()'
     name: getError
@@ -702,10 +696,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Rpc\Status
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasError()'
     name: hasError
@@ -743,9 +736,9 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::getContext()'
     name: getContext
@@ -760,10 +753,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImageAnnotationContext
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">Google\Cloud\Vision\V1\ImageAnnotationContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageResponse::hasContext()'
     name: hasContext
@@ -799,6 +791,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageAnnotationContext">Google\Cloud\Vision\V1\ImageAnnotationContext</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

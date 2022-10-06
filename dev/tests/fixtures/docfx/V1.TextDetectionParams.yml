@@ -56,9 +56,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - bool
+      returns:
+        -
+          var_type: bool
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setEnableTextDetectionConfidenceScore()'
     name: setEnableTextDetectionConfidenceScore
@@ -79,9 +79,9 @@ items:
           id: var
           var_type: bool
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::getAdvancedOcrOptions()'
     name: getAdvancedOcrOptions
@@ -95,9 +95,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\TextDetectionParams::setAdvancedOcrOptions()'
     name: setAdvancedOcrOptions
@@ -116,6 +116,6 @@ items:
           id: var
           var_type: 'string[]'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

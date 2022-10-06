@@ -59,9 +59,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\Property::setName()'
     name: setName
@@ -80,9 +80,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Property::getValue()'
     name: getValue
@@ -96,9 +96,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\Property::setValue()'
     name: setValue
@@ -117,9 +117,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Property::getUint64Value()'
     name: getUint64Value
@@ -133,9 +133,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int|string
+      returns:
+        -
+          var_type: int|string
   -
     uid: '\Google\Cloud\Vision\V1\Property::setUint64Value()'
     name: setUint64Value
@@ -154,6 +154,6 @@ items:
           id: var
           var_type: int|string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

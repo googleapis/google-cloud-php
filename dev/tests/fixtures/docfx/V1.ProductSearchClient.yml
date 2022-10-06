@@ -94,10 +94,10 @@ items:
           id: location
           var_type: string
           description: ''
-      return:
-        type:
-          - string
-        description: 'The formatted location resource.'
+      returns:
+        -
+          var_type: string
+          description: 'The formatted location resource.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productName()'
     name: productName
@@ -123,10 +123,10 @@ items:
           id: product
           var_type: string
           description: ''
-      return:
-        type:
-          - string
-        description: 'The formatted product resource.'
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product resource.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::productSetName()'
     name: productSetName
@@ -152,10 +152,10 @@ items:
           id: productSet
           var_type: string
           description: ''
-      return:
-        type:
-          - string
-        description: 'The formatted product_set resource.'
+      returns:
+        -
+          var_type: string
+          description: 'The formatted product_set resource.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::referenceImageName()'
     name: referenceImageName
@@ -185,10 +185,10 @@ items:
           id: referenceImage
           var_type: string
           description: ''
-      return:
-        type:
-          - string
-        description: 'The formatted reference_image resource.'
+      returns:
+        -
+          var_type: string
+          description: 'The formatted reference_image resource.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::parseName()'
     name: parseName
@@ -222,10 +222,10 @@ items:
           id: template
           var_type: string
           description: 'Optional name of template to match'
-      return:
-        type:
-          - array
-        description: 'An associative array from name component IDs to component values.'
+      returns:
+        -
+          var_type: array
+          description: 'An associative array from name component IDs to component values.'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getOperationsClient()'
     name: getOperationsClient
@@ -236,9 +236,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\ApiCore\LongRunning\OperationsClient
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::resumeOperation()'
     name: resumeOperation
@@ -262,9 +262,9 @@ items:
           id: methodName
           var_type: string
           description: 'The name of the method used to start the operation'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::__construct()'
     name: __construct
@@ -414,9 +414,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Product
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::createProductSet()'
     name: createProductSet
@@ -466,9 +466,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSet
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::createReferenceImage()'
     name: createReferenceImage
@@ -531,9 +531,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ReferenceImage
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::deleteProduct()'
     name: deleteProduct
@@ -691,9 +691,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Product
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getProductSet()'
     name: getProductSet
@@ -733,9 +733,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSet
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::getReferenceImage()'
     name: getReferenceImage
@@ -775,9 +775,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ReferenceImage
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::importProductSets()'
     name: importProductSets
@@ -853,9 +853,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProductSets()'
     name: listProductSets
@@ -916,9 +916,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\PagedListResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProducts()'
     name: listProducts
@@ -978,9 +978,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\PagedListResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listProductsInProductSet()'
     name: listProductsInProductSet
@@ -1042,9 +1042,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\PagedListResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::listReferenceImages()'
     name: listReferenceImages
@@ -1106,9 +1106,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\PagedListResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/PagedListResponse">Google\ApiCore\PagedListResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::purgeProducts()'
     name: purgeProducts
@@ -1202,9 +1202,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::removeProductFromProductSet()'
     name: removeProductFromProductSet
@@ -1299,9 +1299,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Product
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::updateProductSet()'
     name: updateProductSet
@@ -1349,9 +1349,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSet
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchClient::SERVICE_NAME'
     name: SERVICE_NAME

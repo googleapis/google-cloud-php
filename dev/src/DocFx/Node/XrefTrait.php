@@ -23,12 +23,9 @@ trait XrefTrait
 
     /**
      * @param string $type            The parameter type to replace
-     * @param bool   $replaceWithLink False for return types, as docfx HTML-escapes return values
      */
-    private function normalizeTypedVariables(
-        string $type,
-        bool $replaceWithLink = true
-    ): string {
+    private function normalizeTypedVariables(string $type): string
+    {
         $types = explode('|', $type);
 
         // Remove redundant "RepeatedField" type for protobuf parameters
@@ -41,15 +38,15 @@ trait XrefTrait
                 // Reformat "ClassName[]" to "array<ClassName>"
                 if ('[]' === substr($type, -2)) {
                     $type = substr($type, 0, -2);
-                    $types[$i] = $this->normalizeArrayType($type, $replaceWithLink);
-                } elseif ($replaceWithLink) {
+                    $types[$i] = $this->normalizeArrayType($type);
+                } else {
                     $types[$i] = $this->replaceUidWithLink($type);
                 }
             } elseif (0 === strpos($type, 'array<\\')) {
                 $types[$i] = preg_replace_callback(
                     '/^array<([^ ]*)>$/',
-                    function ($matches) use ($replaceWithLink) {
-                        return $this->normalizeArrayType($matches[1], $replaceWithLink);
+                    function ($matches) {
+                        return $this->normalizeArrayType($matches[1]);
                     },
                     $type
                 );
@@ -59,11 +56,11 @@ trait XrefTrait
         return implode('|', $types);
     }
 
-    private function normalizeArrayType(string $type, bool $replaceWithLink): string
+    private function normalizeArrayType(string $type): string
     {
         return sprintf(
             htmlentities('array<%s>'),
-            $replaceWithLink ? $this->replaceUidWithLink($type) : $type
+            $this->replaceUidWithLink($type)
         );
     }
 

@@ -63,10 +63,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Timestamp
-        description: Nullable
+      returns:
+        -
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::hasIndexTime()'
     name: hasIndexTime
@@ -103,9 +102,9 @@ items:
           id: var
           var_type: Google\Protobuf\Timestamp
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getResults()'
     name: getResults
@@ -119,9 +118,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setResults()'
     name: setResults
@@ -140,9 +139,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\Result">Google\Cloud\Vision\V1\ProductSearchResults\Result</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::getProductGroupedResults()'
     name: getProductGroupedResults
@@ -159,9 +158,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults::setProductGroupedResults()'
     name: setProductGroupedResults
@@ -183,6 +182,6 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult">Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

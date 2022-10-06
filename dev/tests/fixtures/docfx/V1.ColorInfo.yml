@@ -62,10 +62,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Type\Color
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::hasColor()'
     name: hasColor
@@ -100,9 +99,9 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/Color">Google\Type\Color</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::getScore()'
     name: getScore
@@ -116,9 +115,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::setScore()'
     name: setScore
@@ -137,9 +136,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::getPixelFraction()'
     name: getPixelFraction
@@ -155,9 +154,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\ColorInfo::setPixelFraction()'
     name: setPixelFraction
@@ -178,6 +177,6 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

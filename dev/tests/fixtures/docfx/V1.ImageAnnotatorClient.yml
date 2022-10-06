@@ -113,9 +113,9 @@ items:
           id: imageInput
           var_type: resource|string
           description: 'An image to configure with the given settings. This parameter will accept a resource, a string of bytes, or the URI of an image in a publicly-accessible web location.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Image
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::annotateImage()'
     name: annotateImage
@@ -158,9 +158,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::faceDetection()'
     name: faceDetection
@@ -195,9 +195,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::landmarkDetection()'
     name: landmarkDetection
@@ -232,9 +232,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::logoDetection()'
     name: logoDetection
@@ -269,9 +269,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::labelDetection()'
     name: labelDetection
@@ -306,9 +306,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::textDetection()'
     name: textDetection
@@ -343,9 +343,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::documentTextDetection()'
     name: documentTextDetection
@@ -380,9 +380,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::safeSearchDetection()'
     name: safeSearchDetection
@@ -417,9 +417,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::imagePropertiesDetection()'
     name: imagePropertiesDetection
@@ -454,9 +454,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::cropHintsDetection()'
     name: cropHintsDetection
@@ -491,9 +491,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::webDetection()'
     name: webDetection
@@ -528,9 +528,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::objectLocalization()'
     name: objectLocalization
@@ -565,9 +565,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::productSearch()'
     name: productSearch
@@ -615,9 +615,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\AnnotateImageResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::getOperationsClient()'
     name: getOperationsClient
@@ -628,9 +628,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\ApiCore\LongRunning\OperationsClient
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/LongRunning/OperationsClient">Google\ApiCore\LongRunning\OperationsClient</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::resumeOperation()'
     name: resumeOperation
@@ -654,9 +654,9 @@ items:
           id: methodName
           var_type: string
           description: 'The name of the method used to start the operation'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::__construct()'
     name: __construct
@@ -778,9 +778,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::asyncBatchAnnotateImages()'
     name: asyncBatchAnnotateImages
@@ -858,9 +858,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\ApiCore\OperationResponse
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/gax-php#Google/ApiCore/OperationResponse">Google\ApiCore\OperationResponse</a>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateFiles()'
     name: batchAnnotateFiles
@@ -907,9 +907,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateFilesResponse">Google\Cloud\Vision\V1\BatchAnnotateFilesResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::batchAnnotateImages()'
     name: batchAnnotateImages
@@ -949,9 +949,9 @@ items:
           id: '↳ retrySettings'
           var_type: RetrySettings|array
           description: 'Retry settings to use for this call. Can be a <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> object, or an associative array of retry settings parameters. See the documentation on <a href="https://googleapis.github.io/gax-php#Google/ApiCore/RetrySettings">Google\ApiCore\RetrySettings</a> for example usage.'
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BatchAnnotateImagesResponse">Google\Cloud\Vision\V1\BatchAnnotateImagesResponse</xref>'
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotatorClient::SERVICE_NAME'
     name: SERVICE_NAME

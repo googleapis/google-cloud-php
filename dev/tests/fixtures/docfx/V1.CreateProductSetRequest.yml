@@ -63,9 +63,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setParent()'
     name: setParent
@@ -86,9 +86,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSet()'
     name: getProductSet
@@ -102,10 +102,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ProductSet
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::hasProductSet()'
     name: hasProductSet
@@ -140,9 +139,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ProductSet">Google\Cloud\Vision\V1\ProductSet</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::getProductSetId()'
     name: getProductSetId
@@ -159,9 +158,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\CreateProductSetRequest::setProductSetId()'
     name: setProductSetId
@@ -183,6 +182,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

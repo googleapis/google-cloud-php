@@ -49,10 +49,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\OutputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse::hasOutputConfig()'
     name: hasOutputConfig
@@ -87,6 +86,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\OutputConfig">Google\Cloud\Vision\V1\OutputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

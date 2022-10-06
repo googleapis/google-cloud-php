@@ -77,9 +77,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setWebEntities()'
     name: setWebEntities
@@ -98,9 +98,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebEntity">Google\Cloud\Vision\V1\WebDetection\WebEntity</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getFullMatchingImages()'
     name: getFullMatchingImages
@@ -116,9 +116,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setFullMatchingImages()'
     name: setFullMatchingImages
@@ -139,9 +139,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getPartialMatchingImages()'
     name: getPartialMatchingImages
@@ -158,9 +158,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPartialMatchingImages()'
     name: setPartialMatchingImages
@@ -182,9 +182,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getPagesWithMatchingImages()'
     name: getPagesWithMatchingImages
@@ -198,9 +198,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setPagesWithMatchingImages()'
     name: setPagesWithMatchingImages
@@ -219,9 +219,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebPage">Google\Cloud\Vision\V1\WebDetection\WebPage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getVisuallySimilarImages()'
     name: getVisuallySimilarImages
@@ -235,9 +235,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setVisuallySimilarImages()'
     name: setVisuallySimilarImages
@@ -256,9 +256,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebImage">Google\Cloud\Vision\V1\WebDetection\WebImage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::getBestGuessLabels()'
     name: getBestGuessLabels
@@ -274,9 +274,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\WebDetection::setBestGuessLabels()'
     name: setBestGuessLabels
@@ -297,6 +297,6 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\WebDetection\WebLabel">Google\Cloud\Vision\V1\WebDetection\WebLabel</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

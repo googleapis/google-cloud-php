@@ -54,9 +54,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setUri()'
     name: setUri
@@ -75,9 +75,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::getPageNumber()'
     name: getPageNumber
@@ -92,9 +92,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\ImageAnnotationContext::setPageNumber()'
     name: setPageNumber
@@ -114,6 +114,6 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

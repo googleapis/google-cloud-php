@@ -57,10 +57,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Type\LatLng
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::hasMinLatLng()'
     name: hasMinLatLng
@@ -95,9 +94,9 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::getMaxLatLng()'
     name: getMaxLatLng
@@ -111,10 +110,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Type\LatLng
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LatLongRect::hasMaxLatLng()'
     name: hasMaxLatLng
@@ -149,6 +147,6 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -97,8 +97,9 @@ class Page
                 }
             }
             if ($returnType = $method->getReturnType()) {
-                $methodItem['syntax']['return'] = array_filter([
-                    'type' => [$returnType],
+                $methodItem['syntax']['returns'] = [];
+                $methodItem['syntax']['returns'][] = array_filter([
+                    'var_type' => $returnType,
                     'description' => $method->getReturnDescription(),
                 ]);
             }

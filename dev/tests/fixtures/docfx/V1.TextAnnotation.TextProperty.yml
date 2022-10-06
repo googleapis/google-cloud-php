@@ -55,9 +55,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::setDetectedLanguages()'
     name: setDetectedLanguages
@@ -76,9 +76,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage">Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::getDetectedBreak()'
     name: getDetectedBreak
@@ -92,10 +92,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\TextProperty::hasDetectedBreak()'
     name: hasDetectedBreak
@@ -130,6 +129,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak">Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

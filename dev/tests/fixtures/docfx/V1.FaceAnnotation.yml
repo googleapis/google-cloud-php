@@ -142,10 +142,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasBoundingPoly()'
     name: hasBoundingPoly
@@ -187,9 +186,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getFdBoundingPoly()'
     name: getFdBoundingPoly
@@ -208,10 +207,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::hasFdBoundingPoly()'
     name: hasFdBoundingPoly
@@ -251,9 +249,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarks()'
     name: getLandmarks
@@ -267,9 +265,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarks()'
     name: setLandmarks
@@ -288,9 +286,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\FaceAnnotation\Landmark">Google\Cloud\Vision\V1\FaceAnnotation\Landmark</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getRollAngle()'
     name: getRollAngle
@@ -306,9 +304,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setRollAngle()'
     name: setRollAngle
@@ -329,9 +327,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getPanAngle()'
     name: getPanAngle
@@ -347,9 +345,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setPanAngle()'
     name: setPanAngle
@@ -370,9 +368,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getTiltAngle()'
     name: getTiltAngle
@@ -387,9 +385,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setTiltAngle()'
     name: setTiltAngle
@@ -409,9 +407,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getDetectionConfidence()'
     name: getDetectionConfidence
@@ -425,9 +423,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setDetectionConfidence()'
     name: setDetectionConfidence
@@ -446,9 +444,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getLandmarkingConfidence()'
     name: getLandmarkingConfidence
@@ -462,9 +460,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setLandmarkingConfidence()'
     name: setLandmarkingConfidence
@@ -483,9 +481,9 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getJoyLikelihood()'
     name: getJoyLikelihood
@@ -499,9 +497,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setJoyLikelihood()'
     name: setJoyLikelihood
@@ -520,9 +518,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getSorrowLikelihood()'
     name: getSorrowLikelihood
@@ -536,9 +534,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSorrowLikelihood()'
     name: setSorrowLikelihood
@@ -557,9 +555,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getAngerLikelihood()'
     name: getAngerLikelihood
@@ -573,9 +571,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setAngerLikelihood()'
     name: setAngerLikelihood
@@ -594,9 +592,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getSurpriseLikelihood()'
     name: getSurpriseLikelihood
@@ -610,9 +608,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setSurpriseLikelihood()'
     name: setSurpriseLikelihood
@@ -631,9 +629,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getUnderExposedLikelihood()'
     name: getUnderExposedLikelihood
@@ -647,9 +645,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setUnderExposedLikelihood()'
     name: setUnderExposedLikelihood
@@ -668,9 +666,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getBlurredLikelihood()'
     name: getBlurredLikelihood
@@ -684,9 +682,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setBlurredLikelihood()'
     name: setBlurredLikelihood
@@ -705,9 +703,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::getHeadwearLikelihood()'
     name: getHeadwearLikelihood
@@ -721,9 +719,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\FaceAnnotation::setHeadwearLikelihood()'
     name: setHeadwearLikelihood
@@ -742,6 +740,6 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -66,9 +66,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::setState()'
     name: setState
@@ -87,9 +87,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getSubmitTime()'
     name: getSubmitTime
@@ -103,10 +103,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Timestamp
-        description: Nullable
+      returns:
+        -
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasSubmitTime()'
     name: hasSubmitTime
@@ -141,9 +140,9 @@ items:
           id: var
           var_type: Google\Protobuf\Timestamp
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::getEndTime()'
     name: getEndTime
@@ -158,10 +157,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Timestamp
-        description: Nullable
+      returns:
+        -
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\BatchOperationMetadata::hasEndTime()'
     name: hasEndTime
@@ -197,6 +195,6 @@ items:
           id: var
           var_type: Google\Protobuf\Timestamp
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

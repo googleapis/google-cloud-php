@@ -69,10 +69,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\InputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasInputConfig()'
     name: hasInputConfig
@@ -107,9 +106,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getFeatures()'
     name: getFeatures
@@ -123,9 +122,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setFeatures()'
     name: setFeatures
@@ -144,9 +143,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getImageContext()'
     name: getImageContext
@@ -160,10 +159,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImageContext
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::hasImageContext()'
     name: hasImageContext
@@ -198,9 +196,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::getPages()'
     name: getPages
@@ -224,9 +222,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileRequest::setPages()'
     name: setPages
@@ -255,6 +253,6 @@ items:
           id: var
           var_type: 'int[]'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

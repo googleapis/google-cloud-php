@@ -65,9 +65,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setMid()'
     name: setMid
@@ -86,9 +86,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getLanguageCode()'
     name: getLanguageCode
@@ -104,9 +104,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setLanguageCode()'
     name: setLanguageCode
@@ -127,9 +127,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getName()'
     name: getName
@@ -143,9 +143,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setName()'
     name: setName
@@ -164,9 +164,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::getScore()'
     name: getScore
@@ -180,9 +180,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation::setScore()'
     name: setScore
@@ -201,6 +201,6 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

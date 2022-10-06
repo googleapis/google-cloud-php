@@ -53,9 +53,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setType()'
     name: setType
@@ -74,9 +74,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::getIsPrefix()'
     name: getIsPrefix
@@ -90,9 +90,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - bool
+      returns:
+        -
+          var_type: bool
   -
     uid: '\Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak::setIsPrefix()'
     name: setIsPrefix
@@ -111,6 +111,6 @@ items:
           id: var
           var_type: bool
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

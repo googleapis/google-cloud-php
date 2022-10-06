@@ -69,10 +69,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::hasProperty()'
     name: hasProperty
@@ -107,9 +106,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\TextAnnotation\TextProperty">Google\Cloud\Vision\V1\TextAnnotation\TextProperty</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::getBoundingBox()'
     name: getBoundingBox
@@ -138,10 +137,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\BoundingPoly
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::hasBoundingBox()'
     name: hasBoundingBox
@@ -191,9 +189,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\BoundingPoly">Google\Cloud\Vision\V1\BoundingPoly</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::getText()'
     name: getText
@@ -207,9 +205,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::setText()'
     name: setText
@@ -228,9 +226,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::getConfidence()'
     name: getConfidence
@@ -244,9 +242,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - float
+      returns:
+        -
+          var_type: float
   -
     uid: '\Google\Cloud\Vision\V1\Symbol::setConfidence()'
     name: setConfidence
@@ -265,6 +263,6 @@ items:
           id: var
           var_type: float
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

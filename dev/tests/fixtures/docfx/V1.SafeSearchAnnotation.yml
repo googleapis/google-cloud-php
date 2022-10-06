@@ -75,9 +75,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setAdult()'
     name: setAdult
@@ -98,9 +98,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getSpoof()'
     name: getSpoof
@@ -116,9 +116,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setSpoof()'
     name: setSpoof
@@ -139,9 +139,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getMedical()'
     name: getMedical
@@ -155,9 +155,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setMedical()'
     name: setMedical
@@ -176,9 +176,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getViolence()'
     name: getViolence
@@ -192,9 +192,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setViolence()'
     name: setViolence
@@ -213,9 +213,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::getRacy()'
     name: getRacy
@@ -232,9 +232,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\SafeSearchAnnotation::setRacy()'
     name: setRacy
@@ -256,6 +256,6 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

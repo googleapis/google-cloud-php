@@ -64,9 +64,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setParent()'
     name: setParent
@@ -88,9 +88,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImage()'
     name: getReferenceImage
@@ -106,10 +106,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ReferenceImage
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::hasReferenceImage()'
     name: hasReferenceImage
@@ -146,9 +145,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ReferenceImage">Google\Cloud\Vision\V1\ReferenceImage</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::getReferenceImageId()'
     name: getReferenceImageId
@@ -165,9 +164,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\CreateReferenceImageRequest::setReferenceImageId()'
     name: setReferenceImageId
@@ -189,6 +188,6 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

@@ -49,10 +49,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Type\LatLng
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\LocationInfo::hasLatLng()'
     name: hasLatLng
@@ -87,6 +86,6 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Type/LatLng">Google\Type\LatLng</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

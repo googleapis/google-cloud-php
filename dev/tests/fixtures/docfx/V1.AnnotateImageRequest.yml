@@ -64,10 +64,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Image
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImage()'
     name: hasImage
@@ -102,9 +101,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Image">Google\Cloud\Vision\V1\Image</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getFeatures()'
     name: getFeatures
@@ -118,9 +117,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::setFeatures()'
     name: setFeatures
@@ -139,9 +138,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\Feature">Google\Cloud\Vision\V1\Feature</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::getImageContext()'
     name: getImageContext
@@ -155,10 +154,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\ImageContext
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateImageRequest::hasImageContext()'
     name: hasImageContext
@@ -193,6 +191,6 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\ImageContext">Google\Cloud\Vision\V1\ImageContext</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

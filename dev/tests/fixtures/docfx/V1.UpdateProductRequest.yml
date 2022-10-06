@@ -59,10 +59,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\Product
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::hasProduct()'
     name: hasProduct
@@ -99,9 +98,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\Product">Google\Cloud\Vision\V1\Product</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::getUpdateMask()'
     name: getUpdateMask
@@ -120,10 +119,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\FieldMask
-        description: Nullable
+      returns:
+        -
+          var_type: Google\Protobuf\FieldMask|null
   -
     uid: '\Google\Cloud\Vision\V1\UpdateProductRequest::hasUpdateMask()'
     name: hasUpdateMask
@@ -163,6 +161,6 @@ items:
           id: var
           var_type: Google\Protobuf\FieldMask
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

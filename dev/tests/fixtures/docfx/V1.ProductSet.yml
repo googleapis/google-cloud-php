@@ -75,9 +75,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::setName()'
     name: setName
@@ -100,9 +100,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::getDisplayName()'
     name: getDisplayName
@@ -117,9 +117,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - string
+      returns:
+        -
+          var_type: string
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::setDisplayName()'
     name: setDisplayName
@@ -139,9 +139,9 @@ items:
           id: var
           var_type: string
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::getIndexTime()'
     name: getIndexTime
@@ -160,10 +160,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Timestamp
-        description: Nullable
+      returns:
+        -
+          var_type: Google\Protobuf\Timestamp|null
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexTime()'
     name: hasIndexTime
@@ -203,9 +202,9 @@ items:
           id: var
           var_type: Google\Protobuf\Timestamp
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::getIndexError()'
     name: getIndexError
@@ -222,10 +221,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Rpc\Status
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\ProductSet::hasIndexError()'
     name: hasIndexError
@@ -263,6 +261,6 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this

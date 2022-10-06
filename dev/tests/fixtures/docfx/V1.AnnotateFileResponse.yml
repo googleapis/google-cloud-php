@@ -70,10 +70,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Cloud\Vision\V1\InputConfig
-        description: Nullable
+      returns:
+        -
+          var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::hasInputConfig()'
     name: hasInputConfig
@@ -108,9 +107,9 @@ items:
           id: var
           var_type: '<xref uid="\Google\Cloud\Vision\V1\InputConfig">Google\Cloud\Vision\V1\InputConfig</xref>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getResponses()'
     name: getResponses
@@ -125,9 +124,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Protobuf\Internal\RepeatedField
+      returns:
+        -
+          var_type: Google\Protobuf\Internal\RepeatedField
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setResponses()'
     name: setResponses
@@ -147,9 +146,9 @@ items:
           id: var
           var_type: 'array&lt;<xref uid="\Google\Cloud\Vision\V1\AnnotateImageResponse">Google\Cloud\Vision\V1\AnnotateImageResponse</xref>&gt;'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getTotalPages()'
     name: getTotalPages
@@ -163,9 +162,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - int
+      returns:
+        -
+          var_type: int
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::setTotalPages()'
     name: setTotalPages
@@ -184,9 +183,9 @@ items:
           id: var
           var_type: int
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::getError()'
     name: getError
@@ -201,10 +200,9 @@ items:
     langs:
       - php
     syntax:
-      return:
-        type:
-          - \Google\Rpc\Status
-        description: Nullable
+      returns:
+        -
+          var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>|null'
   -
     uid: '\Google\Cloud\Vision\V1\AnnotateFileResponse::hasError()'
     name: hasError
@@ -240,6 +238,6 @@ items:
           id: var
           var_type: '<a href="https://googleapis.github.io/common-protos-php#Google/Rpc/Status">Google\Rpc\Status</a>'
           description: ''
-      return:
-        type:
-          - $this
+      returns:
+        -
+          var_type: $this
