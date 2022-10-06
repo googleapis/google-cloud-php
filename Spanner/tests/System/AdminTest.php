@@ -129,8 +129,7 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals($db->ddl()[0], $stmt);
     }
 
-    public function testCustomerManagedInstanceConfigurations()
-    {
+    public function testCreateCustomerManagedInstanceConfiguration() {
         $this->skipEmulatorTests();
 
         $client = self::$client;
@@ -167,11 +166,22 @@ class AdminTest extends SpannerTestCase
             $customConfiguration->delete();
         });
 
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testCreateCustomerManagedInstanceConfiguration
+     */
+    public function testListCustomerManagedInstanceConfigurations($customConfigId) {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
         // Verify that we have one customer-managed instance configuration with the generated name.
         $configurations = iterator_to_array($client->instanceConfigurations());
         $customConfigurations = array_filter(
             $configurations,
-            function ($configuration) use ($customConfigId, $baseConfig) {
+            function ($configuration) use ($customConfigId) {
                 return $configuration->info()['configType'] === Type::USER_MANAGED
                     && $this->parseInstanceConfigName($configuration->name()) === $customConfigId;
             }
@@ -180,6 +190,18 @@ class AdminTest extends SpannerTestCase
         $customConfiguration = current($customConfigurations);
         $this->assertEquals($customConfigId, $customConfiguration->info()['displayName']);
 
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testListCustomerManagedInstanceConfigurations
+     */
+    public function testUpdateCustomerManagedInstanceConfiguration($customConfigId) {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
+
+        $customConfiguration = $client->instanceConfiguration($customConfigId);
         // Update the display name and labels of the custom instance configuration.
         $op = $customConfiguration->update([
             'displayName' => 'New display name',
@@ -189,6 +211,17 @@ class AdminTest extends SpannerTestCase
         $customConfiguration->reload();
         $this->assertEquals('New display name', $customConfiguration->info()['displayName']);
         $this->assertEquals(['label1' => 'foo', 'label2' => 'bar'], $customConfiguration->info()['labels']);
+
+        return $customConfigId;
+    }
+
+    /**
+     * @depends testCreateCustomerManagedInstanceConfiguration
+     */
+    public function testListCustomerManagedInstanceConfigurationOperations() {
+        $this->skipEmulatorTests();
+
+        $client = self::$client;
 
         // List instance config operations and verify that at least one operation is present.
         $operations = iterator_to_array($client->instanceConfigOperations());
