@@ -129,7 +129,8 @@ class AdminTest extends SpannerTestCase
         $this->assertEquals($db->ddl()[0], $stmt);
     }
 
-    public function testCreateCustomerManagedInstanceConfiguration() {
+    public function testCreateCustomerManagedInstanceConfiguration()
+    {
         $this->skipEmulatorTests();
 
         $client = self::$client;
@@ -172,7 +173,8 @@ class AdminTest extends SpannerTestCase
     /**
      * @depends testCreateCustomerManagedInstanceConfiguration
      */
-    public function testListCustomerManagedInstanceConfigurations($customConfigId) {
+    public function testListCustomerManagedInstanceConfigurations($customConfigId)
+    {
         $this->skipEmulatorTests();
 
         $client = self::$client;
@@ -196,7 +198,8 @@ class AdminTest extends SpannerTestCase
     /**
      * @depends testListCustomerManagedInstanceConfigurations
      */
-    public function testUpdateCustomerManagedInstanceConfiguration($customConfigId) {
+    public function testUpdateCustomerManagedInstanceConfiguration($customConfigId)
+    {
         $this->skipEmulatorTests();
 
         $client = self::$client;
@@ -218,7 +221,8 @@ class AdminTest extends SpannerTestCase
     /**
      * @depends testCreateCustomerManagedInstanceConfiguration
      */
-    public function testListCustomerManagedInstanceConfigurationOperations() {
+    public function testListCustomerManagedInstanceConfigurationOperations()
+    {
         $this->skipEmulatorTests();
 
         $client = self::$client;
