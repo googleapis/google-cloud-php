@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class RequestStats extends \Google\Protobuf\Internal\Message
 {
-    protected $stats;
+    protected $stats_view;
 
     /**
      * Constructor.
@@ -26,11 +26,7 @@ class RequestStats extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Bigtable\V2\ReadEfficiencyStats $read_efficiency_stats
-     *           Available with the
-     *           ReadRowsRequest.RequestStatsView.REQUEST_STATS_EFFICIENCY view, see
-     *           package google.bigtable.v2.
-     *     @type \Google\Cloud\Bigtable\V2\AllReadStats $all_read_stats
+     *     @type \Google\Cloud\Bigtable\V2\FullReadStatsView $full_read_stats_view
      *           Available with the ReadRowsRequest.RequestStatsView.REQUEST_STATS_FULL
      *           view, see package google.bigtable.v2.
      * }
@@ -41,69 +37,34 @@ class RequestStats extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Available with the
-     * ReadRowsRequest.RequestStatsView.REQUEST_STATS_EFFICIENCY view, see
-     * package google.bigtable.v2.
+     * Available with the ReadRowsRequest.RequestStatsView.REQUEST_STATS_FULL
+     * view, see package google.bigtable.v2.
      *
-     * Generated from protobuf field <code>.google.bigtable.v2.ReadEfficiencyStats read_efficiency_stats = 1;</code>
-     * @return \Google\Cloud\Bigtable\V2\ReadEfficiencyStats|null
+     * Generated from protobuf field <code>.google.bigtable.v2.FullReadStatsView full_read_stats_view = 1;</code>
+     * @return \Google\Cloud\Bigtable\V2\FullReadStatsView|null
      */
-    public function getReadEfficiencyStats()
+    public function getFullReadStatsView()
     {
         return $this->readOneof(1);
     }
 
-    public function hasReadEfficiencyStats()
+    public function hasFullReadStatsView()
     {
         return $this->hasOneof(1);
     }
 
     /**
-     * Available with the
-     * ReadRowsRequest.RequestStatsView.REQUEST_STATS_EFFICIENCY view, see
-     * package google.bigtable.v2.
+     * Available with the ReadRowsRequest.RequestStatsView.REQUEST_STATS_FULL
+     * view, see package google.bigtable.v2.
      *
-     * Generated from protobuf field <code>.google.bigtable.v2.ReadEfficiencyStats read_efficiency_stats = 1;</code>
-     * @param \Google\Cloud\Bigtable\V2\ReadEfficiencyStats $var
+     * Generated from protobuf field <code>.google.bigtable.v2.FullReadStatsView full_read_stats_view = 1;</code>
+     * @param \Google\Cloud\Bigtable\V2\FullReadStatsView $var
      * @return $this
      */
-    public function setReadEfficiencyStats($var)
+    public function setFullReadStatsView($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\ReadEfficiencyStats::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\FullReadStatsView::class);
         $this->writeOneof(1, $var);
-
-        return $this;
-    }
-
-    /**
-     * Available with the ReadRowsRequest.RequestStatsView.REQUEST_STATS_FULL
-     * view, see package google.bigtable.v2.
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.AllReadStats all_read_stats = 2;</code>
-     * @return \Google\Cloud\Bigtable\V2\AllReadStats|null
-     */
-    public function getAllReadStats()
-    {
-        return $this->readOneof(2);
-    }
-
-    public function hasAllReadStats()
-    {
-        return $this->hasOneof(2);
-    }
-
-    /**
-     * Available with the ReadRowsRequest.RequestStatsView.REQUEST_STATS_FULL
-     * view, see package google.bigtable.v2.
-     *
-     * Generated from protobuf field <code>.google.bigtable.v2.AllReadStats all_read_stats = 2;</code>
-     * @param \Google\Cloud\Bigtable\V2\AllReadStats $var
-     * @return $this
-     */
-    public function setAllReadStats($var)
-    {
-        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\AllReadStats::class);
-        $this->writeOneof(2, $var);
 
         return $this;
     }
@@ -111,9 +72,9 @@ class RequestStats extends \Google\Protobuf\Internal\Message
     /**
      * @return string
      */
-    public function getStats()
+    public function getStatsView()
     {
-        return $this->whichOneof("stats");
+        return $this->whichOneof("stats_view");
     }
 
 }

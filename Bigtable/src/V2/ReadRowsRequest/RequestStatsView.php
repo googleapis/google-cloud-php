@@ -28,23 +28,16 @@ class RequestStatsView
      */
     const REQUEST_STATS_NONE = 1;
     /**
-     * Include stats related to the efficiency of the read.
-     *
-     * Generated from protobuf enum <code>REQUEST_STATS_EFFICIENCY = 2;</code>
-     */
-    const REQUEST_STATS_EFFICIENCY = 2;
-    /**
      * Include the full set of available RequestStats in the response,
      * applicable to this read.
      *
-     * Generated from protobuf enum <code>REQUEST_STATS_FULL = 3;</code>
+     * Generated from protobuf enum <code>REQUEST_STATS_FULL = 2;</code>
      */
-    const REQUEST_STATS_FULL = 3;
+    const REQUEST_STATS_FULL = 2;
 
     private static $valueToName = [
         self::REQUEST_STATS_VIEW_UNSPECIFIED => 'REQUEST_STATS_VIEW_UNSPECIFIED',
         self::REQUEST_STATS_NONE => 'REQUEST_STATS_NONE',
-        self::REQUEST_STATS_EFFICIENCY => 'REQUEST_STATS_EFFICIENCY',
         self::REQUEST_STATS_FULL => 'REQUEST_STATS_FULL',
     ];
 
