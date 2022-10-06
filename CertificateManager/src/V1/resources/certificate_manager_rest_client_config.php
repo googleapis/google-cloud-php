@@ -18,6 +18,21 @@ return [
                     'certificate_id',
                 ],
             ],
+            'CreateCertificateIssuanceConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/certificateIssuanceConfigs',
+                'body' => 'certificate_issuance_config',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'certificate_issuance_config_id',
+                ],
+            ],
             'CreateCertificateMap' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/certificateMaps',
@@ -74,6 +89,17 @@ return [
                     ],
                 ],
             ],
+            'DeleteCertificateIssuanceConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/certificateIssuanceConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteCertificateMap' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/certificateMaps/*}',
@@ -118,6 +144,17 @@ return [
                     ],
                 ],
             ],
+            'GetCertificateIssuanceConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/certificateIssuanceConfigs/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetCertificateMap' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/certificateMaps/*}',
@@ -147,6 +184,17 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListCertificateIssuanceConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/certificateIssuanceConfigs',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],

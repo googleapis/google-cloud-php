@@ -47,10 +47,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
-     * Output only. The list of Subject Alternative Names of dnsName type defined in the
-     * certificate (see RFC 5280 4.2.1.6).
-     * Managed certificates that haven't been provisioned yet have this field
-     * populated with a value of the managed.domains field.
+     * Output only. The list of Subject Alternative Names of dnsName type defined
+     * in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
+     * haven't been provisioned yet have this field populated with a value of the
+     * managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,10 +97,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\CertificateManager\V1\Certificate\ManagedCertificate $managed
      *           If set, contains configuration and state of a managed certificate.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $san_dnsnames
-     *           Output only. The list of Subject Alternative Names of dnsName type defined in the
-     *           certificate (see RFC 5280 4.2.1.6).
-     *           Managed certificates that haven't been provisioned yet have this field
-     *           populated with a value of the managed.domains field.
+     *           Output only. The list of Subject Alternative Names of dnsName type defined
+     *           in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
+     *           haven't been provisioned yet have this field populated with a value of the
+     *           managed.domains field.
      *     @type string $pem_certificate
      *           Output only. The PEM-encoded certificate chain.
      *     @type \Google\Protobuf\Timestamp $expire_time
@@ -329,10 +329,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of Subject Alternative Names of dnsName type defined in the
-     * certificate (see RFC 5280 4.2.1.6).
-     * Managed certificates that haven't been provisioned yet have this field
-     * populated with a value of the managed.domains field.
+     * Output only. The list of Subject Alternative Names of dnsName type defined
+     * in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
+     * haven't been provisioned yet have this field populated with a value of the
+     * managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -343,10 +343,10 @@ class Certificate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The list of Subject Alternative Names of dnsName type defined in the
-     * certificate (see RFC 5280 4.2.1.6).
-     * Managed certificates that haven't been provisioned yet have this field
-     * populated with a value of the managed.domains field.
+     * Output only. The list of Subject Alternative Names of dnsName type defined
+     * in the certificate (see RFC 5280 4.2.1.6). Managed certificates that
+     * haven't been provisioned yet have this field populated with a value of the
+     * managed.domains field.
      *
      * Generated from protobuf field <code>repeated string san_dnsnames = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

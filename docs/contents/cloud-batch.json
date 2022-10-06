@@ -1,0 +1,11 @@
+{
+    "title": "Batch",
+    "defaultService": "batch\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "batch\/readme"
+        }
+    ],
+    "pattern": "batch\/\\w{1,}"
+}

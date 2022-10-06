@@ -16,15 +16,15 @@ use Google\Protobuf\Internal\GPBUtil;
 class IpConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An external IP address.
+     * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1;</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ip_address = '';
     /**
-     * Ports.
+     * Output only. Ports.
      *
-     * Generated from protobuf field <code>repeated uint32 ports = 3;</code>
+     * Generated from protobuf field <code>repeated uint32 ports = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $ports;
 
@@ -35,9 +35,9 @@ class IpConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $ip_address
-     *           An external IP address.
+     *           Output only. An external IP address.
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $ports
-     *           Ports.
+     *           Output only. Ports.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,9 +46,9 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An external IP address.
+     * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1;</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getIpAddress()
@@ -57,9 +57,9 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An external IP address.
+     * Output only. An external IP address.
      *
-     * Generated from protobuf field <code>string ip_address = 1;</code>
+     * Generated from protobuf field <code>string ip_address = 1 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */
@@ -72,9 +72,9 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ports.
+     * Output only. Ports.
      *
-     * Generated from protobuf field <code>repeated uint32 ports = 3;</code>
+     * Generated from protobuf field <code>repeated uint32 ports = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
      */
     public function getPorts()
@@ -83,9 +83,9 @@ class IpConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Ports.
+     * Output only. Ports.
      *
-     * Generated from protobuf field <code>repeated uint32 ports = 3;</code>
+     * Generated from protobuf field <code>repeated uint32 ports = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
