@@ -23,6 +23,7 @@ use Google\Cloud\Spanner\Bytes;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\PgNumeric;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Spanner\Transaction;
 use Google\Cloud\Spanner\V1\RequestOptions\Priority;
@@ -55,6 +56,7 @@ class PgQueryTest extends SpannerPgTestCase
                 bytes_col bytea,
                 created_at timestamptz,
                 dt date,
+                data jsonb,
                 PRIMARY KEY (id)
             )'
         )->pollUntilComplete();
@@ -70,6 +72,7 @@ class PgQueryTest extends SpannerPgTestCase
                 'age' => 22,
                 'bytes_col' => new Bytes('hello'),
                 'created_at' => self::$timestampVal,
+                'data' => '{"a": "hello", "b": "world"}',
                 'dt' => '2020-01-01'
             ],
             [
@@ -79,6 +82,7 @@ class PgQueryTest extends SpannerPgTestCase
                 'rating' => 5.0,
                 'age' => 26,
                 'created_at' => self::$timestampVal,
+                'data' => '{}',
                 'dt' => '2021-01-01'
             ]
         ]);
@@ -271,7 +275,7 @@ class PgQueryTest extends SpannerPgTestCase
         $val = new PgNumeric($str);
 
         // try to fetch the value
-        $res = self::$database->execute('SELECT age FROM test WHERE age = $1', [
+        $res = self::$database->execute('SELECT age FROM ' . self::TABLE_NAME . ' WHERE age = $1', [
             'parameters' => [
                 'p1' => $val
             ]
@@ -451,6 +455,69 @@ class PgQueryTest extends SpannerPgTestCase
         $this->assertCount($currentNullCount + 1, iterator_to_array($res));
     }
 
+    public function testBindPgJsonbParameter()
+    {
+        $str = '{"a": "hello", "b": "world"}';
+        $val = new PgJsonb($str);
+
+        self::$database->runTransaction(function (Transaction $t) use ($val) {
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TABLE_NAME . '(id, name, registered, data) '
+                . 'VALUES($1, $2, $3, $4)',
+                [
+                    'parameters' => [
+                        'p1' => 11,
+                        'p2' => 'Bill',
+                        'p3' => true,
+                        'p4' => $val
+                    ],
+                    'types' => [
+                        'p4' => Database::TYPE_PG_JSONB
+                    ]
+                ]
+            );
+            $t->commit();
+        });
+
+        // try to fetch the value
+        $res = self::$database->execute('SELECT data FROM ' . self::TABLE_NAME . ' WHERE id = 11');
+
+        $row = $res->rows()->current();
+        $this->assertInstanceOf(PgJsonb::class, $row['data']);
+        $this->assertEquals($str, $val->formatAsString());
+        $this->assertEquals($str, (string)$val->get());
+    }
+
+    public function testBindJsonbParameterNull()
+    {
+        $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE data IS NULL');
+        $currentCount = count(iterator_to_array($res));
+
+        // insert a value with a pg.jsonb param binded to null
+        self::$database->runTransaction(function (Transaction $t) {
+            $t->executeUpdate(
+                'INSERT INTO ' . self::TABLE_NAME . '(id, name, registered, data) '
+                . 'VALUES($1, $2, $3, $4)',
+                [
+                    'parameters' => [
+                        'p1' => 12,
+                        'p2' => 'Bill',
+                        'p3' => true,
+                        'p4' => null
+                    ],
+                    'types' => [
+                        'p4' => Database::TYPE_PG_JSONB
+                    ]
+                ]
+            );
+            $t->commit();
+        });
+
+        $res = self::$database->execute('SELECT * FROM ' . self::TABLE_NAME . ' WHERE data IS NULL');
+
+        $this->assertCount($currentCount + 1, iterator_to_array($res));
+    }
+
     public function arrayTypesProvider()
     {
         return [
@@ -531,6 +598,23 @@ class PgQueryTest extends SpannerPgTestCase
 
                     return $res;
                 }
+            ],
+            // pg_jsonb
+            [
+                [
+                    new PgJsonb('{}'),
+                    new PgJsonb('{"a": "b"}'),
+                    new PgJsonb(["a" => "b"])
+                ],
+                ['{}', '{"a": "b"}', '{"a": "b"}'],
+                PgJsonb::class,
+                function (array $res) {
+                    foreach ($res as $idx => $val) {
+                        $res[$idx] = $val->get();
+                    }
+
+                    return $res;
+                }
             ]
         ];
     }
@@ -575,6 +659,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_PG_NUMERIC],
+            [Database::TYPE_PG_JSONB],
         ];
     }
 
@@ -610,6 +695,7 @@ class PgQueryTest extends SpannerPgTestCase
             [Database::TYPE_TIMESTAMP],
             [Database::TYPE_DATE],
             [Database::TYPE_PG_NUMERIC],
+            [Database::TYPE_PG_JSONB],
         ];
     }
 
