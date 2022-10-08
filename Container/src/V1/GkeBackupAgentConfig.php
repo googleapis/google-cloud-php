@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for controlling master global access settings.
+ * Configuration for the Backup for GKE Agent.
  *
- * Generated from protobuf message <code>google.container.v1.PrivateClusterMasterGlobalAccessConfig</code>
+ * Generated from protobuf message <code>google.container.v1.GkeBackupAgentConfig</code>
  */
-class PrivateClusterMasterGlobalAccessConfig extends \Google\Protobuf\Internal\Message
+class GkeBackupAgentConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whenever master is accessible globally or not.
+     * Whether the Backup for GKE agent is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    protected $enabled = false;
+    private $enabled = false;
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class PrivateClusterMasterGlobalAccessConfig extends \Google\Protobuf\Internal\M
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whenever master is accessible globally or not.
+     *           Whether the Backup for GKE agent is enabled for this cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class PrivateClusterMasterGlobalAccessConfig extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Whenever master is accessible globally or not.
+     * Whether the Backup for GKE agent is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @return bool
@@ -49,7 +49,7 @@ class PrivateClusterMasterGlobalAccessConfig extends \Google\Protobuf\Internal\M
     }
 
     /**
-     * Whenever master is accessible globally or not.
+     * Whether the Backup for GKE agent is enabled for this cluster.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @param bool $var
