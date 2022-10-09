@@ -43,6 +43,7 @@ class ValueMapper
     const TYPE_NUMERIC = TypeCode::NUMERIC;
     const TYPE_JSON = TypeCode::JSON;
     const TYPE_PG_NUMERIC = 'pgNumeric';
+    const TYPE_PG_JSONB = 'pgJsonb';
 
     /**
      * @var array
@@ -60,6 +61,7 @@ class ValueMapper
         self::TYPE_NUMERIC,
         self::TYPE_JSON,
         self::TYPE_PG_NUMERIC,
+        self::TYPE_PG_JSONB,
     ];
 
     /*
@@ -73,6 +75,7 @@ class ValueMapper
      */
     private static $typeToClassMap = [
         self::TYPE_PG_NUMERIC => PgNumeric::class,
+        self::TYPE_PG_JSONB => PgJsonb::class,
     ];
 
     /*
@@ -83,6 +86,7 @@ class ValueMapper
      */
     private static $typeCodes = [
         self::TYPE_PG_NUMERIC => self::TYPE_NUMERIC,
+        self::TYPE_PG_JSONB => self::TYPE_JSON,
     ];
 
     /*
@@ -93,6 +97,7 @@ class ValueMapper
      */
     private static $typeAnnotations = [
         self::TYPE_PG_NUMERIC => TypeAnnotationCode::PG_NUMERIC,
+        self::TYPE_PG_JSONB => TypeAnnotationCode::PG_JSONB,
     ];
 
     /**
@@ -314,6 +319,12 @@ class ValueMapper
                     $value = new PgNumeric($value);
                 } else {
                     $value = new Numeric($value);
+                }
+                break;
+
+            case self::TYPE_JSON:
+                if (isset($type['typeAnnotation']) && $type['typeAnnotation'] === TypeAnnotationCode::PG_JSONB) {
+                    $value = new PgJsonb($value);
                 }
                 break;
 
