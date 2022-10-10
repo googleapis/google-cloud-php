@@ -204,6 +204,10 @@ Contributions to this library are always welcome and highly encouraged.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more information on how to get started.
 
+However, this is not an official support channel. If you have support questions, 
+file a support request through the normal Google support channels, 
+or post questions on a forum such as [StackOverflow](http://stackoverflow.com/questions/tagged/google-cloud-platform+php).
+
 ## License
 
 Apache 2.0 - See [LICENSE](LICENSE) for more information.
