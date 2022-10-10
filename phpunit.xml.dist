@@ -14,7 +14,7 @@
     </exclude>
   </coverage>
   <testsuites>
-    <testsuite name="Unit Tests">
+    <testsuite name="Unit Test Suite">
       <directory>*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
     </testsuite>
