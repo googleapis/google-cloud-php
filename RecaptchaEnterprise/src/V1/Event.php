@@ -14,44 +14,43 @@ use Google\Protobuf\Internal\GPBUtil;
 class Event extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA client-side integration
+     * on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $token = '';
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA on your site and generate
+     * the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $site_key = '';
     /**
-     * Optional. The user agent present in the request from the user's device
-     * related to this event.
+     * Optional. The user agent present in the request from the user's device related to
+     * this event.
      *
      * Generated from protobuf field <code>string user_agent = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user_agent = '';
     /**
-     * Optional. The IP address in the request from the user's device related to
-     * this event.
+     * Optional. The IP address in the request from the user's device related to this event.
      *
      * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $user_ip_address = '';
     /**
-     * Optional. The expected action for this type of event. This should be the
-     * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * Optional. The expected action for this type of event. This should be the same action
+     * provided at token generation time on client-side platforms already
+     * integrated with recaptcha enterprise.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $expected_action = '';
     /**
-     * Optional. Optional unique stable hashed user identifier for the request.
-     * The identifier should ideally be hashed using sha256 with stable secret.
+     * Optional. Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,24 +63,23 @@ class Event extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $token
-     *           Optional. The user response token provided by the reCAPTCHA client-side
-     *           integration on your site.
+     *           Optional. The user response token provided by the reCAPTCHA client-side integration
+     *           on your site.
      *     @type string $site_key
-     *           Optional. The site key that was used to invoke reCAPTCHA on your site and
-     *           generate the token.
+     *           Optional. The site key that was used to invoke reCAPTCHA on your site and generate
+     *           the token.
      *     @type string $user_agent
-     *           Optional. The user agent present in the request from the user's device
-     *           related to this event.
-     *     @type string $user_ip_address
-     *           Optional. The IP address in the request from the user's device related to
+     *           Optional. The user agent present in the request from the user's device related to
      *           this event.
+     *     @type string $user_ip_address
+     *           Optional. The IP address in the request from the user's device related to this event.
      *     @type string $expected_action
-     *           Optional. The expected action for this type of event. This should be the
-     *           same action provided at token generation time on client-side platforms
-     *           already integrated with recaptcha enterprise.
+     *           Optional. The expected action for this type of event. This should be the same action
+     *           provided at token generation time on client-side platforms already
+     *           integrated with recaptcha enterprise.
      *     @type string $hashed_account_id
-     *           Optional. Optional unique stable hashed user identifier for the request.
-     *           The identifier should ideally be hashed using sha256 with stable secret.
+     *           Optional. Unique stable hashed user identifier for the request. The identifier must
+     *           be hashed using hmac-sha256 with stable secret.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,8 +88,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA client-side integration
+     * on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -102,8 +100,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user response token provided by the reCAPTCHA client-side
-     * integration on your site.
+     * Optional. The user response token provided by the reCAPTCHA client-side integration
+     * on your site.
      *
      * Generated from protobuf field <code>string token = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -118,8 +116,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA on your site and generate
+     * the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -130,8 +128,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The site key that was used to invoke reCAPTCHA on your site and
-     * generate the token.
+     * Optional. The site key that was used to invoke reCAPTCHA on your site and generate
+     * the token.
      *
      * Generated from protobuf field <code>string site_key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -146,8 +144,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user agent present in the request from the user's device
-     * related to this event.
+     * Optional. The user agent present in the request from the user's device related to
+     * this event.
      *
      * Generated from protobuf field <code>string user_agent = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -158,8 +156,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The user agent present in the request from the user's device
-     * related to this event.
+     * Optional. The user agent present in the request from the user's device related to
+     * this event.
      *
      * Generated from protobuf field <code>string user_agent = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -174,8 +172,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address in the request from the user's device related to
-     * this event.
+     * Optional. The IP address in the request from the user's device related to this event.
      *
      * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -186,8 +183,7 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The IP address in the request from the user's device related to
-     * this event.
+     * Optional. The IP address in the request from the user's device related to this event.
      *
      * Generated from protobuf field <code>string user_ip_address = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -202,9 +198,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The expected action for this type of event. This should be the
-     * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * Optional. The expected action for this type of event. This should be the same action
+     * provided at token generation time on client-side platforms already
+     * integrated with recaptcha enterprise.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -215,9 +211,9 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The expected action for this type of event. This should be the
-     * same action provided at token generation time on client-side platforms
-     * already integrated with recaptcha enterprise.
+     * Optional. The expected action for this type of event. This should be the same action
+     * provided at token generation time on client-side platforms already
+     * integrated with recaptcha enterprise.
      *
      * Generated from protobuf field <code>string expected_action = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -232,8 +228,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier for the request.
-     * The identifier should ideally be hashed using sha256 with stable secret.
+     * Optional. Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -244,8 +240,8 @@ class Event extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Optional unique stable hashed user identifier for the request.
-     * The identifier should ideally be hashed using sha256 with stable secret.
+     * Optional. Unique stable hashed user identifier for the request. The identifier must
+     * be hashed using hmac-sha256 with stable secret.
      *
      * Generated from protobuf field <code>bytes hashed_account_id = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

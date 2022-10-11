@@ -41,14 +41,15 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $token_properties = null;
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
      */
     private $account_defender_assessment = null;
     /**
-     * Password leak verification info.
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      */
@@ -70,10 +71,11 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties $token_properties
      *           Output only. Properties of the provided event token.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
-     *           Assessment returned by Account Defender when a hashed_account_id is
+     *           Assessment returned by account defender when a hashed_account_id is
      *           provided.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $private_password_leak_verification
-     *           Password leak verification info.
+     *           The private password leak verification field contains the parameters that
+     *           are used to to check for leaks privately without sharing user credentials.
      * }
      */
     public function __construct($data = NULL) {
@@ -218,7 +220,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
@@ -240,7 +242,7 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Assessment returned by Account Defender when a hashed_account_id is
+     * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment account_defender_assessment = 6;</code>
@@ -256,7 +258,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Password leak verification info.
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      * @return \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification|null
@@ -277,7 +280,8 @@ class Assessment extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Password leak verification info.
+     * The private password leak verification field contains the parameters that
+     * are used to to check for leaks privately without sharing user credentials.
      *
      * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.PrivatePasswordLeakVerification private_password_leak_verification = 8;</code>
      * @param \Google\Cloud\RecaptchaEnterprise\V1\PrivatePasswordLeakVerification $var

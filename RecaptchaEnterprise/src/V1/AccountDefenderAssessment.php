@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Account Defender risk assessment.
+ * Account defender risk assessment.
  *
  * Generated from protobuf message <code>google.cloud.recaptchaenterprise.v1.AccountDefenderAssessment</code>
  */

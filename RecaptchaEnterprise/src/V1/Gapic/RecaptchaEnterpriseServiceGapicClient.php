@@ -53,6 +53,8 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
 use Google\Cloud\RecaptchaEnterprise\V1\MigrateKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyRequest;
+use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsRequest;
 use Google\Cloud\RecaptchaEnterprise\V1\SearchRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\UpdateKeyRequest;
@@ -435,20 +437,19 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             "projects/{project}/assessments/{assessment}".
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
-     *                             be left empty to provide reasons that apply to an event without concluding
-     *                             whether the event is legitimate or fraudulent.
+     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can be left
+     *                             empty to provide reasons that apply to an event without concluding whether
+     *                             the event is legitimate or fraudulent.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int[] $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the
-     *           Event.
+     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
      *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
      *     @type string $hashedAccountId
-     *           Optional. Optional unique stable hashed user identifier to apply to the
-     *           assessment. This is an alternative to setting the hashed_account_id in
+     *           Optional. Unique stable hashed user identifier to apply to the assessment.
+     *           This is an alternative to setting the hashed_account_id in
      *           CreateAssessment, for example when the account identifier is not yet known
      *           in the initial request. It is recommended that the identifier is hashed
      *           using hmac-sha256 with stable secret.
@@ -826,7 +827,7 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
-     * Get the memberships in a group of related accounts.
+     * Get memberships in a group of related accounts.
      *
      * Sample code:
      * ```
@@ -931,8 +932,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to list related account groups from, in
-     *                             the format "projects/{project}".
+     * @param string $parent       Required. The name of the project to list related account groups from, in the format
+     *                             "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1038,6 +1039,57 @@ class RecaptchaEnterpriseServiceGapicClient
     }
 
     /**
+     * Returns the secret key related to the specified public key.
+     * You must use the legacy secret key only in a 3rd party integration with
+     * legacy reCAPTCHA.
+     *
+     * Sample code:
+     * ```
+     * $recaptchaEnterpriseServiceClient = new RecaptchaEnterpriseServiceClient();
+     * try {
+     *     $formattedKey = $recaptchaEnterpriseServiceClient->keyName('[PROJECT]', '[KEY]');
+     *     $response = $recaptchaEnterpriseServiceClient->retrieveLegacySecretKey($formattedKey);
+     * } finally {
+     *     $recaptchaEnterpriseServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $key          Required. The public key name linked to the requested secret key in the format
+     *                             "projects/{project}/keys/{key}".
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function retrieveLegacySecretKey($key, array $optionalArgs = [])
+    {
+        $request = new RetrieveLegacySecretKeyRequest();
+        $requestParamHeaders = [];
+        $request->setKey($key);
+        $requestParamHeaders['key'] = $key;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RetrieveLegacySecretKey',
+            RetrieveLegacySecretKeyResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Search group memberships related to a given account.
      *
      * Sample code:
@@ -1063,15 +1115,15 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project to search related account group
-     *                             memberships from, in the format "projects/{project}".
+     * @param string $project      Required. The name of the project to search related account group memberships from.
+     *                             Specify the project name in the following format: "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier we should search
-     *           connections to. The identifier should correspond to a `hashed_account_id`
-     *           provided in a previous CreateAssessment or AnnotateAssessment call.
+     *           Optional. The unique stable hashed user identifier we should search connections to.
+     *           The identifier should correspond to a `hashed_account_id` provided in a
+     *           previous `CreateAssessment` or `AnnotateAssessment` call.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1144,8 +1196,8 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. The mask to control which fields of the key get updated. If the
-     *           mask is not present, all fields will be updated.
+     *           Optional. The mask to control which fields of the key get updated. If the mask is not
+     *           present, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

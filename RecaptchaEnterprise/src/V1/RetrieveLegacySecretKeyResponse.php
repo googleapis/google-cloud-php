@@ -24,7 +24,7 @@ class RetrieveLegacySecretKeyResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string legacy_secret_key = 1;</code>
      */
-    protected $legacy_secret_key = '';
+    private $legacy_secret_key = '';
 
     /**
      * Constructor.

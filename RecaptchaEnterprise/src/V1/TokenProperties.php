@@ -36,7 +36,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      */
     private $create_time = null;
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      */
@@ -65,7 +65,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The timestamp corresponding to the generation of the token.
      *     @type string $hostname
-     *           The hostname of the page on which the token was generated.
+     *           The hostname of the page on which the token was generated (Web keys only).
      *     @type string $action
      *           Action name provided at token generation.
      * }
@@ -172,7 +172,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      * @return string
@@ -183,7 +183,7 @@ class TokenProperties extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hostname of the page on which the token was generated.
+     * The hostname of the page on which the token was generated (Web keys only).
      *
      * Generated from protobuf field <code>string hostname = 4;</code>
      * @param string $var
