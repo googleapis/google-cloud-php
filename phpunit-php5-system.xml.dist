@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="./Core/system-bootstrap.php" colors="true">
   <testsuites>
-    <testsuite>
+    <testsuite name="PHP5 System Test Suite">
       <directory>*/tests/System</directory>
       <directory>tests/System</directory>
       <exclude>./Compute/tests/System/*</exclude>
