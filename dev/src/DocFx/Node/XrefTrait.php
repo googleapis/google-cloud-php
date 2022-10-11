@@ -139,7 +139,7 @@ trait XrefTrait
 
     private function replaceUidWithLink(string $uid, string $name = null): string
     {
-        // Remove proceeding "\" from namespace
+        // Remove preceeding "\" from namespace
         $name = $name ?: ltrim($uid, '\\');
 
         // Check for external package namespaces
