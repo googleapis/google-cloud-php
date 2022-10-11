@@ -23,23 +23,24 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      */
     private $domain = '';
     /**
-     * State of the domain for managed certificate issuance.
+     * Output only. State of the domain for managed certificate issuance.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $state = 0;
     /**
-     * Output only. Reason for failure of the authorization attempt for the domain.
+     * Output only. Reason for failure of the authorization attempt for the
+     * domain.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason failure_reason = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $failure_reason = 0;
     /**
-     * Human readable explanation for reaching the state. Provided to help
-     * address the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation for reaching the state.
+     * Provided to help address the configuration issues. Not guaranteed to be
+     * stable. For programmatic access use FailureReason enum.
      *
-     * Generated from protobuf field <code>string details = 4;</code>
+     * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $details = '';
 
@@ -52,13 +53,14 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
      *     @type string $domain
      *           Domain name of the authorization attempt.
      *     @type int $state
-     *           State of the domain for managed certificate issuance.
+     *           Output only. State of the domain for managed certificate issuance.
      *     @type int $failure_reason
-     *           Output only. Reason for failure of the authorization attempt for the domain.
+     *           Output only. Reason for failure of the authorization attempt for the
+     *           domain.
      *     @type string $details
-     *           Human readable explanation for reaching the state. Provided to help
-     *           address the configuration issues.
-     *           Not guaranteed to be stable. For programmatic access use Reason enum.
+     *           Output only. Human readable explanation for reaching the state.
+     *           Provided to help address the configuration issues. Not guaranteed to be
+     *           stable. For programmatic access use FailureReason enum.
      * }
      */
     public function __construct($data = NULL) {
@@ -93,9 +95,9 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of the domain for managed certificate issuance.
+     * Output only. State of the domain for managed certificate issuance.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
      */
     public function getState()
@@ -104,9 +106,9 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * State of the domain for managed certificate issuance.
+     * Output only. State of the domain for managed certificate issuance.
      *
-     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.State state = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
      */
@@ -119,7 +121,8 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reason for failure of the authorization attempt for the domain.
+     * Output only. Reason for failure of the authorization attempt for the
+     * domain.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason failure_reason = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -130,7 +133,8 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Reason for failure of the authorization attempt for the domain.
+     * Output only. Reason for failure of the authorization attempt for the
+     * domain.
      *
      * Generated from protobuf field <code>.google.cloud.certificatemanager.v1.Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason failure_reason = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -145,11 +149,11 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable explanation for reaching the state. Provided to help
-     * address the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation for reaching the state.
+     * Provided to help address the configuration issues. Not guaranteed to be
+     * stable. For programmatic access use FailureReason enum.
      *
-     * Generated from protobuf field <code>string details = 4;</code>
+     * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
      */
     public function getDetails()
@@ -158,11 +162,11 @@ class AuthorizationAttemptInfo extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Human readable explanation for reaching the state. Provided to help
-     * address the configuration issues.
-     * Not guaranteed to be stable. For programmatic access use Reason enum.
+     * Output only. Human readable explanation for reaching the state.
+     * Provided to help address the configuration issues. Not guaranteed to be
+     * stable. For programmatic access use FailureReason enum.
      *
-     * Generated from protobuf field <code>string details = 4;</code>
+     * Generated from protobuf field <code>string details = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
      * @return $this
      */

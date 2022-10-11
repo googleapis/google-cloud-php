@@ -90,7 +90,7 @@ class SpannerClient
     use LROTrait;
     use ValidateTrait;
 
-    const VERSION = '1.52.0';
+    const VERSION = '1.53.0';
 
     const FULL_CONTROL_SCOPE = 'https://www.googleapis.com/auth/spanner.data';
     const ADMIN_SCOPE = 'https://www.googleapis.com/auth/spanner.admin';
@@ -628,6 +628,21 @@ class SpannerClient
     public function pgNumeric($value)
     {
         return new PgNumeric($value);
+    }
+
+    /**
+     * Represents a value with a data type of
+     * [PG JSONB](https://cloud.google.com/spanner/docs/reference/postgresql/data-types) for the
+     * Postgres Dialect database.
+     *
+     * Example:
+     * ```
+     * $pgJsonb = $spanner->pgJsonb('{}');
+     * ```
+     */
+    public function pgJsonb($value)
+    {
+        return new PgJsonb($value);
     }
 
     /**

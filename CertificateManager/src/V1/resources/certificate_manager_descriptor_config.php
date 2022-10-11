@@ -13,6 +13,16 @@ return [
                     'totalPollTimeoutMillis' => '300000',
                 ],
             ],
+            'CreateCertificateIssuanceConfig' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig',
+                    'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'CreateCertificateMap' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\CertificateManager\V1\CertificateMap',
@@ -44,6 +54,16 @@ return [
                 ],
             ],
             'DeleteCertificate' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Protobuf\GPBEmpty',
+                    'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'DeleteCertificateIssuanceConfig' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\CertificateManager\V1\OperationMetadata',
@@ -121,6 +141,16 @@ return [
                     'pollDelayMultiplier' => '1.5',
                     'maxPollDelayMillis' => '5000',
                     'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
+            'ListCertificateIssuanceConfigs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getCertificateIssuanceConfigs',
                 ],
             ],
             'ListCertificateMapEntries' => [

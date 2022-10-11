@@ -1,5 +1,182 @@
 # Changelog
 
+## 0.190.0
+
+<details><summary>google/cloud-access-approval 0.5.2</summary>
+
+
+
+### Documentation
+
+* [AccessApproval] added Cloud Dataproc and Secret Manager to the list of supported services ([#5472](https://github.com/googleapis/google-cloud-php/issues/5472)) ([8f5c793](https://github.com/googleapis/google-cloud-php/commit/8f5c793abb53143031c38c7ba26ee46b73d5b7a4))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.8.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add read_mask to ListPipelineJobsRequest in aiplatform v1 pipeline_service ([#5466](https://github.com/googleapis/google-cloud-php/issues/5466)) ([693ab7b](https://github.com/googleapis/google-cloud-php/commit/693ab7bc72dfea59ee6e3436f710d8afba8c6ecf))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.2.1</summary>
+
+
+
+### Bug Fixes
+
+* [ApigeeRegistry] additional error codes added to service configuration for retry ([#5485](https://github.com/googleapis/google-cloud-php/issues/5485)) ([5c6c7b6](https://github.com/googleapis/google-cloud-php/commit/5c6c7b607cc4f31693909e6fafeb32e5fe2fbfaa))
+
+</details>
+
+<details><summary>google/cloud-asset 1.8.0</summary>
+
+
+
+### Features
+
+* [Asset] Release of query system ([#5444](https://github.com/googleapis/google-cloud-php/issues/5444)) ([c68eb36](https://github.com/googleapis/google-cloud-php/commit/c68eb3617cd2aa15436227e57508ea52961efcbc))
+
+</details>
+
+<details><summary>google/cloud-batch 0.1.0</summary>
+
+
+
+### Features
+
+* Introduce batch ([#5519](https://github.com/googleapis/google-cloud-php/issues/5519)) ([54e773d](https://github.com/googleapis/google-cloud-php/commit/54e773d68ea1c7c946135c43866acd1c8d7564c9))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.3.0</summary>
+
+
+
+### Features
+
+* [CertificateManager] added support for Private Trust to Certificate Manager API ([#5530](https://github.com/googleapis/google-cloud-php/issues/5530)) ([b69fb8d](https://github.com/googleapis/google-cloud-php/commit/b69fb8d7e2d87a78575485cae961e0389f5352a7))
+
+</details>
+
+<details><summary>google/cloud-compute 1.3.0</summary>
+
+
+
+### Features
+
+* [Compute] Update Compute Engine API to revision 20220831 ([#729](https://github.com/googleapis/google-cloud-php/issues/729)) ([#5506](https://github.com/googleapis/google-cloud-php/issues/5506)) ([cc3f16c](https://github.com/googleapis/google-cloud-php/commit/cc3f16c8f7304c9d7800ee9baaf93ecdf04e45f4))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 0.2.8</summary>
+
+
+
+### Documentation
+
+* [ContactCenterInsights] Updating comments ([#5461](https://github.com/googleapis/google-cloud-php/issues/5461)) ([fd4d33a](https://github.com/googleapis/google-cloud-php/commit/fd4d33ab767ae813a12692a5ace917938355e39d))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* [DataCatalog] remove unused proto imports ([#5425](https://github.com/googleapis/google-cloud-php/issues/5425)) ([a1cef1c](https://github.com/googleapis/google-cloud-php/commit/a1cef1cd770e756f60f21d9c13d89442be92790a))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.16.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* [Datastore] update count up_to field type in aggregation queries ([#5469](https://github.com/googleapis/google-cloud-php/issues/5469)) ([7363cb2](https://github.com/googleapis/google-cloud-php/commit/7363cb21d33921367eafc61d9f7805f4a11a2a89))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.26.0</summary>
+
+
+
+### Features
+
+* [Firestore] add firestore aggregation query apis to the stable googleapis branch ([#5493](https://github.com/googleapis/google-cloud-php/issues/5493)) ([826499f](https://github.com/googleapis/google-cloud-php/commit/826499f96feadb64e87181e48e49c0e421de73ee))
+
+
+### Bug Fixes
+
+* Null trim parameter in PathTrait ([#5492](https://github.com/googleapis/google-cloud-php/issues/5492)) ([f460faf](https://github.com/googleapis/google-cloud-php/commit/f460fafbecdb99265070c750e3408c514010f13a))
+
+</details>
+
+<details><summary>google/cloud-functions 0.5.0</summary>
+
+
+
+### Features
+
+* Introduce functions v2 ([#5520](https://github.com/googleapis/google-cloud-php/issues/5520)) ([3855984](https://github.com/googleapis/google-cloud-php/commit/385598491e82a483224d77f08aa91cae22576420))
+
+</details>
+
+<details><summary>google/cloud-retail 0.7.0</summary>
+
+
+
+### Features
+
+* [Retail] release Control and ServingConfig serivces to v2 version ([#5463](https://github.com/googleapis/google-cloud-php/issues/5463)) ([99cfb48](https://github.com/googleapis/google-cloud-php/commit/99cfb48ca26905d9f7cfc8887b1bcaf077aaca6e))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.11.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Added parent display name i.e. source display name for a finding as one of the finding attributes ([#5505](https://github.com/googleapis/google-cloud-php/issues/5505)) ([ac4ebc8](https://github.com/googleapis/google-cloud-php/commit/ac4ebc817cb6066b91b41c6a0f29040fbd383447))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.53.0</summary>
+
+
+
+### Features
+
+* [Spanner] Add custom instance config operations ([#5495](https://github.com/googleapis/google-cloud-php/issues/5495)) ([651df28](https://github.com/googleapis/google-cloud-php/commit/651df28099a8aaad050874e7a1888a846ac607f2))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 0.3.0</summary>
+
+
+
+### Features
+
+* [StorageTransfer] add DeleteTransferJob operation ([#5490](https://github.com/googleapis/google-cloud-php/issues/5490)) ([a7aa320](https://github.com/googleapis/google-cloud-php/commit/a7aa320b18a66f68a177be246fdeacd5bd59ff86))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 0.3.0</summary>
+
+
+
+### Features
+
+* [VpcAccess] Adds support for configuring scaling settings ([#5465](https://github.com/googleapis/google-cloud-php/issues/5465)) ([83e318b](https://github.com/googleapis/google-cloud-php/commit/83e318b5a528e0191489bf75a532eff31ca0bc5c))
+
+</details>
+
 ## 0.189.0
 
 <details><summary>google/cloud-apigee-registry 0.2.0</summary>
