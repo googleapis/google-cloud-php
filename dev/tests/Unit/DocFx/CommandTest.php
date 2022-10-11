@@ -42,7 +42,7 @@ class CommandTest extends TestCase
 
     /**
      * @depends testGenerateDocFxFiles
-     * @dataProvider provideDoxFxFiles
+     * @dataProvider provideDocFxFiles
      */
     public function testDocFxFiles(string $file)
     {
@@ -117,7 +117,7 @@ class CommandTest extends TestCase
         $this->assertEquals('beta', $tocItem4['status']);
     }
 
-    public function provideDoxFxFiles()
+    public function provideDocFxFiles()
     {
         $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
         $tmpDir = sys_get_temp_dir() . '/' . rand();

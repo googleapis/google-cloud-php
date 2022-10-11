@@ -74,10 +74,6 @@ class DocFx extends Command
                 : sprintf('Default structure.xml file "%s" not found.', $xml));
         }
 
-        if (!file_exists($xml)) {
-            throw new RuntimeException('provided path to structure.xml does not exist');
-        }
-
         $namespaces = $this->getNamespaces();
 
         if (!is_dir($outDir)) {

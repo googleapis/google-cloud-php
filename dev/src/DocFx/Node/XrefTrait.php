@@ -154,9 +154,9 @@ trait XrefTrait
                 // @TODO: link to reference docs for Protobuf
                 return $name;
             case 0 === strpos($uid, '\Google\Api\\'):
-            case 0 === strpos($uid, '\Google\Cloud\\Iam\\'):
-            case 0 === strpos($uid, '\Google\Cloud\\Location\\'):
-            case 0 === strpos($uid, '\Google\Cloud\\Logging\\'):
+            case 0 === strpos($uid, '\Google\Cloud\Iam\V1\\'):
+            case 0 === strpos($uid, '\Google\Cloud\Location\\'):
+            case 0 === strpos($uid, '\Google\Cloud\Logging\Type\\'):
             case 0 === strpos($uid, '\Google\Iam\\'):
             case 0 === strpos($uid, '\Google\Rpc\\'):
             case 0 === strpos($uid, '\Google\Type\\'):

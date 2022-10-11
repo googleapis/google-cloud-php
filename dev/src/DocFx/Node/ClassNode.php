@@ -93,12 +93,12 @@ class ClassNode
     public function isInternal(): bool
     {
         if (!$this->xmlNode->docblock) {
-            return '';
+            return false;
         }
 
         foreach ($this->xmlNode->docblock->tag as $tag) {
             if ((string) $tag['name'] === 'internal') {
-                return 'true';
+                return true;
             }
         }
 
