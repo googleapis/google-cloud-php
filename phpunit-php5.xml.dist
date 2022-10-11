@@ -3,7 +3,7 @@
   bootstrap="./Core/unit-bootstrap.php"
   colors="true">
   <testsuites>
-    <testsuite>
+    <testsuite name="PHP5 Unit Test Suite">
       <directory>*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
       <exclude>./Compute/tests/Unit/*</exclude>
