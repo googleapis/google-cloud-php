@@ -27,6 +27,18 @@ return [
                     ],
                 ],
             ],
+            'ArchiveAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}:archive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ArchiveCustomDimension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
@@ -152,6 +164,18 @@ return [
                     'name' => [
                         'getters' => [
                             'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'body' => 'audience',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
                         ],
                     ],
                 ],
@@ -415,6 +439,28 @@ return [
                     ],
                 ],
             ],
+            'GetAttributionSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/attributionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAudience' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetConversionEvent' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
@@ -572,6 +618,17 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accounts',
             ],
+            'ListAudiences' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListConversionEvents' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -700,6 +757,18 @@ return [
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
                 'body' => '*',
             ],
+            'RunAccessReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{entity=properties/*}:runAccessReport',
+                'body' => '*',
+                'placeholders' => [
+                    'entity' => [
+                        'getters' => [
+                            'getEntity',
+                        ],
+                    ],
+                ],
+            ],
             'SearchChangeHistoryEvents' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{account=accounts/*}:searchChangeHistoryEvents',
@@ -720,6 +789,38 @@ return [
                     'account.name' => [
                         'getters' => [
                             'getAccount',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateAttributionSettings' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{attribution_settings.name=properties/*/attributionSettings}',
+                'body' => 'attribution_settings',
+                'placeholders' => [
+                    'attribution_settings.name' => [
+                        'getters' => [
+                            'getAttributionSettings',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateAudience' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{audience.name=properties/*/audiences/*}',
+                'body' => 'audience',
+                'placeholders' => [
+                    'audience.name' => [
+                        'getters' => [
+                            'getAudience',
                             'getName',
                         ],
                     ],
