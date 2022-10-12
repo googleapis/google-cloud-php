@@ -41,7 +41,7 @@ class VisionClientTest extends TestCase
 
     public function set_up()
     {
-        $this->client = TestHelpers::stub(VisionClient::class);
+        $this->client = TestHelpers::stub(VisionClient::class, [['suppressKeyFileNotice' => true]]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
 
