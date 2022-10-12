@@ -59,6 +59,19 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string empty_reason = 7;</code>
      */
     private $empty_reason = null;
+    /**
+     * If `subjectToThresholding` is true, this report is subject to thresholding
+     * and only returns data that meets the minimum aggregation thresholds. It is
+     * possible for a request to be subject to thresholding thresholding and no
+     * data is absent from the report, and this happens when all data is above the
+     * thresholds. To learn more, see [Data
+     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
+     * Demographics and
+     * Interests](https://support.google.com/analytics/answer/2799357).
+     *
+     * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
+     */
+    private $subject_to_thresholding = null;
 
     /**
      * Constructor.
@@ -90,6 +103,15 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
      *           "America/New_York" or "Asia/Tokyo".
      *     @type string $empty_reason
      *           If empty reason is specified, the report is empty for this reason.
+     *     @type bool $subject_to_thresholding
+     *           If `subjectToThresholding` is true, this report is subject to thresholding
+     *           and only returns data that meets the minimum aggregation thresholds. It is
+     *           possible for a request to be subject to thresholding thresholding and no
+     *           data is absent from the report, and this happens when all data is above the
+     *           thresholds. To learn more, see [Data
+     *           thresholds](https://support.google.com/analytics/answer/9383630) and [About
+     *           Demographics and
+     *           Interests](https://support.google.com/analytics/answer/2799357).
      * }
      */
     public function __construct($data = NULL) {
@@ -291,6 +313,56 @@ class ResponseMetaData extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->empty_reason = $var;
+
+        return $this;
+    }
+
+    /**
+     * If `subjectToThresholding` is true, this report is subject to thresholding
+     * and only returns data that meets the minimum aggregation thresholds. It is
+     * possible for a request to be subject to thresholding thresholding and no
+     * data is absent from the report, and this happens when all data is above the
+     * thresholds. To learn more, see [Data
+     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
+     * Demographics and
+     * Interests](https://support.google.com/analytics/answer/2799357).
+     *
+     * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
+     * @return bool
+     */
+    public function getSubjectToThresholding()
+    {
+        return isset($this->subject_to_thresholding) ? $this->subject_to_thresholding : false;
+    }
+
+    public function hasSubjectToThresholding()
+    {
+        return isset($this->subject_to_thresholding);
+    }
+
+    public function clearSubjectToThresholding()
+    {
+        unset($this->subject_to_thresholding);
+    }
+
+    /**
+     * If `subjectToThresholding` is true, this report is subject to thresholding
+     * and only returns data that meets the minimum aggregation thresholds. It is
+     * possible for a request to be subject to thresholding thresholding and no
+     * data is absent from the report, and this happens when all data is above the
+     * thresholds. To learn more, see [Data
+     * thresholds](https://support.google.com/analytics/answer/9383630) and [About
+     * Demographics and
+     * Interests](https://support.google.com/analytics/answer/2799357).
+     *
+     * Generated from protobuf field <code>optional bool subject_to_thresholding = 8;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSubjectToThresholding($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->subject_to_thresholding = $var;
 
         return $this;
     }
