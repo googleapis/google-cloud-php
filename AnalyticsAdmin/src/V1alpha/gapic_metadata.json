@@ -20,6 +20,11 @@
                                 "approveDisplayVideo360AdvertiserLinkProposal"
                             ]
                         },
+                        "ArchiveAudience": {
+                            "methods": [
+                                "archiveAudience"
+                            ]
+                        },
                         "ArchiveCustomDimension": {
                             "methods": [
                                 "archiveCustomDimension"
@@ -58,6 +63,11 @@
                         "CancelDisplayVideo360AdvertiserLinkProposal": {
                             "methods": [
                                 "cancelDisplayVideo360AdvertiserLinkProposal"
+                            ]
+                        },
+                        "CreateAudience": {
+                            "methods": [
+                                "createAudience"
                             ]
                         },
                         "CreateConversionEvent": {
@@ -170,6 +180,16 @@
                                 "getAccount"
                             ]
                         },
+                        "GetAttributionSettings": {
+                            "methods": [
+                                "getAttributionSettings"
+                            ]
+                        },
+                        "GetAudience": {
+                            "methods": [
+                                "getAudience"
+                            ]
+                        },
                         "GetConversionEvent": {
                             "methods": [
                                 "getConversionEvent"
@@ -245,6 +265,11 @@
                                 "listAccounts"
                             ]
                         },
+                        "ListAudiences": {
+                            "methods": [
+                                "listAudiences"
+                            ]
+                        },
                         "ListConversionEvents": {
                             "methods": [
                                 "listConversionEvents"
@@ -305,6 +330,11 @@
                                 "provisionAccountTicket"
                             ]
                         },
+                        "RunAccessReport": {
+                            "methods": [
+                                "runAccessReport"
+                            ]
+                        },
                         "SearchChangeHistoryEvents": {
                             "methods": [
                                 "searchChangeHistoryEvents"
@@ -313,6 +343,16 @@
                         "UpdateAccount": {
                             "methods": [
                                 "updateAccount"
+                            ]
+                        },
+                        "UpdateAttributionSettings": {
+                            "methods": [
+                                "updateAttributionSettings"
+                            ]
+                        },
+                        "UpdateAudience": {
+                            "methods": [
+                                "updateAudience"
                             ]
                         },
                         "UpdateCustomDimension": {
