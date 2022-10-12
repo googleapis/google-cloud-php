@@ -16,7 +16,9 @@
 FAILED_FILE=$(mktemp -d)/failed
 for DIR in $(find * -maxdepth 0 -type d -name '[A-Z]*'); do {
     echo "Running $DIR Unit Tests"
-    composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
+    composer config minimum-stability dev -d ${DIR}
+    composer config repositories.local path "../Core" -d ${DIR}
+    composer require -q --no-interaction --no-ansi --no-progress "google/cloud-core:*" -d ${DIR}
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         continue
