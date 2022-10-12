@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/audienceeventtrigger\/logcondition","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\AudienceEventTrigger\\LogCondition","name":"LogCondition","description":"<p>Determines when to log the event.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.AudienceEventTrigger.LogCondition<\/code><\/p>","examples":[],"resources":[],"methods":[]}
