@@ -14,6 +14,8 @@ class AnalyticsAdmin
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Analytics\Admin\V1Alpha\AccessReport::initOnce();
+        \GPBMetadata\Google\Analytics\Admin\V1Alpha\Audience::initOnce();
         \GPBMetadata\Google\Analytics\Admin\V1Alpha\Resources::initOnce();
         \GPBMetadata\Google\Api\Annotations::initOnce();
         \GPBMetadata\Google\Api\Client::initOnce();
@@ -24,8 +26,28 @@ class AnalyticsAdmin
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-∏Á
-4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alphagoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"P
+•É
+4google/analytics/admin/v1alpha/analytics_admin.protogoogle.analytics.admin.v1alpha-google/analytics/admin/v1alpha/audience.proto.google/analytics/admin/v1alpha/resources.protogoogle/api/annotations.protogoogle/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"§
+RunAccessReportRequest
+entity (	C
+
+dimensions (2/.google.analytics.admin.v1alpha.AccessDimension=
+metrics (2,.google.analytics.admin.v1alpha.AccessMetricD
+date_ranges (2/.google.analytics.admin.v1alpha.AccessDateRangeP
+dimension_filter (26.google.analytics.admin.v1alpha.AccessFilterExpressionM
+metric_filter (26.google.analytics.admin.v1alpha.AccessFilterExpression
+offset (
+limit (
+	time_zone	 (	@
+	order_bys
+ (2-.google.analytics.admin.v1alpha.AccessOrderBy
+return_entity_quota ("ø
+RunAccessReportResponseP
+dimension_headers (25.google.analytics.admin.v1alpha.AccessDimensionHeaderJ
+metric_headers (22.google.analytics.admin.v1alpha.AccessMetricHeader7
+rows (2).google.analytics.admin.v1alpha.AccessRow
+	row_count (:
+quota (2+.google.analytics.admin.v1alpha.AccessQuota"P
 GetAccountRequest;
 name (	B-‡A˙A\'
 %analyticsadmin.googleapis.com/Account"R
@@ -340,7 +362,32 @@ page_token (	"t
 next_page_token (	"V
 GetDataStreamRequest>
 name (	B0‡A˙A*
-(analyticsadmin.googleapis.com/DataStream2 Ä
+(analyticsadmin.googleapis.com/DataStream"R
+GetAudienceRequest<
+name (	B.‡A˙A(
+&analyticsadmin.googleapis.com/Audience"}
+ListAudiencesRequest>
+parent (	B.‡A˙A(&analyticsadmin.googleapis.com/Audience
+	page_size (
+
+page_token (	"m
+ListAudiencesResponse;
+	audiences (2(.google.analytics.admin.v1alpha.Audience
+next_page_token (	"ò
+CreateAudienceRequest>
+parent (	B.‡A˙A(&analyticsadmin.googleapis.com/Audience?
+audience (2(.google.analytics.admin.v1alpha.AudienceB‡A"é
+UpdateAudienceRequest?
+audience (2(.google.analytics.admin.v1alpha.AudienceB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A"V
+ArchiveAudienceRequest<
+name (	B.‡A˙A(&analyticsadmin.googleapis.com/Audience"h
+GetAttributionSettingsRequestG
+name (	B9‡A˙A3
+1analyticsadmin.googleapis.com/AttributionSettings"∞
+ UpdateAttributionSettingsRequestV
+attribution_settings (23.google.analytics.admin.v1alpha.AttributionSettingsB‡A4
+update_mask (2.google.protobuf.FieldMaskB‡A2åç
 AnalyticsAdminServiceì
 
 GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytics.admin.v1alpha.Account")Ç”‰ì/v1alpha/{name=accounts/*}⁄Anameî
@@ -413,7 +460,15 @@ GetAccount1.google.analytics.admin.v1alpha.GetAccountRequest\'.google.analytic
 DeleteDataStream7.google.analytics.admin.v1alpha.DeleteDataStreamRequest.google.protobuf.Empty"9Ç”‰ì,**/v1alpha/{name=properties/*/dataStreams/*}⁄Anameﬁ
 UpdateDataStream7.google.analytics.admin.v1alpha.UpdateDataStreamRequest*.google.analytics.admin.v1alpha.DataStream"eÇ”‰ìE26/v1alpha/{data_stream.name=properties/*/dataStreams/*}:data_stream⁄Adata_stream,update_maskø
 ListDataStreams6.google.analytics.admin.v1alpha.ListDataStreamsRequest7.google.analytics.admin.v1alpha.ListDataStreamsResponse";Ç”‰ì,*/v1alpha/{parent=properties/*}/dataStreams⁄Aparent¨
-GetDataStream4.google.analytics.admin.v1alpha.GetDataStreamRequest*.google.analytics.admin.v1alpha.DataStream"9Ç”‰ì,*/v1alpha/{name=properties/*/dataStreams/*}⁄Aname¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
+GetDataStream4.google.analytics.admin.v1alpha.GetDataStreamRequest*.google.analytics.admin.v1alpha.DataStream"9Ç”‰ì,*/v1alpha/{name=properties/*/dataStreams/*}⁄Aname§
+GetAudience2.google.analytics.admin.v1alpha.GetAudienceRequest(.google.analytics.admin.v1alpha.Audience"7Ç”‰ì*(/v1alpha/{name=properties/*/audiences/*}⁄Aname∑
+ListAudiences4.google.analytics.admin.v1alpha.ListAudiencesRequest5.google.analytics.admin.v1alpha.ListAudiencesResponse"9Ç”‰ì*(/v1alpha/{parent=properties/*}/audiences⁄Aparentø
+CreateAudience5.google.analytics.admin.v1alpha.CreateAudienceRequest(.google.analytics.admin.v1alpha.Audience"LÇ”‰ì4"(/v1alpha/{parent=properties/*}/audiences:audience⁄Aparent,audienceÕ
+UpdateAudience5.google.analytics.admin.v1alpha.UpdateAudienceRequest(.google.analytics.admin.v1alpha.Audience"ZÇ”‰ì=21/v1alpha/{audience.name=properties/*/audiences/*}:audience⁄Aaudience,update_maskû
+ArchiveAudience6.google.analytics.admin.v1alpha.ArchiveAudienceRequest.google.protobuf.Empty";Ç”‰ì5"0/v1alpha/{name=properties/*/audiences/*}:archive:*Õ
+GetAttributionSettings=.google.analytics.admin.v1alpha.GetAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"?Ç”‰ì20/v1alpha/{name=properties/*/attributionSettings}⁄Anameõ
+UpdateAttributionSettings@.google.analytics.admin.v1alpha.UpdateAttributionSettingsRequest3.google.analytics.admin.v1alpha.AttributionSettings"ÜÇ”‰ì]2E/v1alpha/{attribution_settings.name=properties/*/attributionSettings}:attribution_settings⁄A attribution_settings,update_maskΩ
+RunAccessReport6.google.analytics.admin.v1alpha.RunAccessReportRequest7.google.analytics.admin.v1alpha.RunAccessReportResponse"9Ç”‰ì3"./v1alpha/{entity=properties/*}:runAccessReport:*¸ Aanalyticsadmin.googleapis.com“Aÿhttps://www.googleapis.com/auth/analytics.edit,https://www.googleapis.com/auth/analytics.manage.users,https://www.googleapis.com/auth/analytics.manage.users.readonly,https://www.googleapis.com/auth/analytics.readonlyBÄ
 "com.google.analytics.admin.v1alphaBAnalyticsAdminProtoPZCgoogle.golang.org/genproto/googleapis/analytics/admin/v1alpha;adminbproto3'
         , true);
 
