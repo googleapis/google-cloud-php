@@ -759,9 +759,15 @@ class BetaAnalyticsDataGapicClient
     }
 
     /**
-     * The Google Analytics Realtime API returns a customized report of realtime
-     * event data for your property. These reports show events and usage from the
-     * last 30 minutes.
+     * Returns a customized report of realtime event data for your property.
+     * Events appear in realtime reports seconds after they have been sent to
+     * the Google Analytics. Realtime reports show events and usage data for the
+     * periods of time ranging from the present moment to 30 minutes ago (up to
+     * 60 minutes for Google Analytics 360 properties).
+     *
+     * For a guide to constructing realtime requests & understanding responses,
+     * see [Creating a Realtime
+     * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-basics).
      *
      * Sample code:
      * ```
@@ -788,12 +794,10 @@ class BetaAnalyticsDataGapicClient
      *     @type Metric[] $metrics
      *           The metrics requested and displayed.
      *     @type FilterExpression $dimensionFilter
-     *           The filter clause of dimensions. Dimensions must be requested to be used in
-     *           this filter. Metrics cannot be used in this filter.
+     *           The filter clause of dimensions. Metrics cannot be used in this filter.
      *     @type FilterExpression $metricFilter
      *           The filter clause of metrics. Applied at post aggregation phase, similar to
-     *           SQL having-clause. Metrics must be requested to be used in this filter.
-     *           Dimensions cannot be used in this filter.
+     *           SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int $limit
      *           The number of rows to return. If unspecified, 10,000 rows are returned. The
      *           API returns a maximum of 100,000 rows per request, no matter how many you
@@ -903,6 +907,10 @@ class BetaAnalyticsDataGapicClient
      * event count. Dimensions break down metrics across some common criteria,
      * such as country or event name.
      *
+     * For a guide to constructing requests & understanding responses, see
+     * [Creating a
+     * Report](https://developers.google.com/analytics/devguides/reporting/data/v1/basics).
+     *
      * Sample code:
      * ```
      * $betaAnalyticsDataClient = new BetaAnalyticsDataClient();
@@ -941,8 +949,8 @@ class BetaAnalyticsDataGapicClient
      *           Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters)
      *           for examples. Metrics cannot be used in this filter.
      *     @type FilterExpression $metricFilter
-     *           The filter clause of metrics. Applied at post aggregation phase, similar to
-     *           SQL having-clause. Dimensions cannot be used in this filter.
+     *           The filter clause of metrics. Applied after aggregating the report's rows,
+     *           similar to SQL having-clause. Dimensions cannot be used in this filter.
      *     @type int $offset
      *           The row count of the start row. The first row is counted as row 0.
      *

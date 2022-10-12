@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * To express dimension or metric filters.
- * The fields in the same FilterExpression need to be either all dimensions or
- * all metrics.
+ * To express dimension or metric filters. The fields in the same
+ * FilterExpression need to be either all dimensions or all metrics.
  *
  * Generated from protobuf message <code>google.analytics.data.v1beta.FilterExpression</code>
  */
@@ -32,9 +31,8 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
      *     @type \Google\Analytics\Data\V1beta\FilterExpression $not_expression
      *           The FilterExpression is NOT of not_expression.
      *     @type \Google\Analytics\Data\V1beta\Filter $filter
-     *           A primitive filter.
-     *           All fields in filter in same FilterExpression needs to be either all
-     *           dimensions or metrics.
+     *           A primitive filter. In the same FilterExpression, all of the filter's
+     *           field names need to be either all dimensions or all metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -136,9 +134,8 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A primitive filter.
-     * All fields in filter in same FilterExpression needs to be either all
-     * dimensions or metrics.
+     * A primitive filter. In the same FilterExpression, all of the filter's
+     * field names need to be either all dimensions or all metrics.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.Filter filter = 4;</code>
      * @return \Google\Analytics\Data\V1beta\Filter|null
@@ -154,9 +151,8 @@ class FilterExpression extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A primitive filter.
-     * All fields in filter in same FilterExpression needs to be either all
-     * dimensions or metrics.
+     * A primitive filter. In the same FilterExpression, all of the filter's
+     * field names need to be either all dimensions or all metrics.
      *
      * Generated from protobuf field <code>.google.analytics.data.v1beta.Filter filter = 4;</code>
      * @param \Google\Analytics\Data\V1beta\Filter $var
