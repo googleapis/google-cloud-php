@@ -29,6 +29,21 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string display_name = 2;</code>
      */
     private $display_name = '';
+    /**
+     * The property's property type.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 3;</code>
+     */
+    private $property_type = 0;
+    /**
+     * Resource name of this property's logical parent.
+     * Note: The Property-Moving UI can be used to change the parent.
+     * Format: accounts/{account}, properties/{property}
+     * Example: "accounts/100", "properties/200"
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     */
+    private $parent = '';
 
     /**
      * Constructor.
@@ -42,6 +57,13 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
      *           Example: "properties/1000"
      *     @type string $display_name
      *           Display name for the property referred to in this property summary.
+     *     @type int $property_type
+     *           The property's property type.
+     *     @type string $parent
+     *           Resource name of this property's logical parent.
+     *           Note: The Property-Moving UI can be used to change the parent.
+     *           Format: accounts/{account}, properties/{property}
+     *           Example: "accounts/100", "properties/200"
      * }
      */
     public function __construct($data = NULL) {
@@ -101,6 +123,64 @@ class PropertySummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->display_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The property's property type.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 3;</code>
+     * @return int
+     */
+    public function getPropertyType()
+    {
+        return $this->property_type;
+    }
+
+    /**
+     * The property's property type.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.PropertyType property_type = 3;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPropertyType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Analytics\Admin\V1alpha\PropertyType::class);
+        $this->property_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Resource name of this property's logical parent.
+     * Note: The Property-Moving UI can be used to change the parent.
+     * Format: accounts/{account}, properties/{property}
+     * Example: "accounts/100", "properties/200"
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @return string
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * Resource name of this property's logical parent.
+     * Note: The Property-Moving UI can be used to change the parent.
+     * Format: accounts/{account}, properties/{property}
+     * Example: "accounts/100", "properties/200"
+     *
+     * Generated from protobuf field <code>string parent = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setParent($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->parent = $var;
 
         return $this;
     }

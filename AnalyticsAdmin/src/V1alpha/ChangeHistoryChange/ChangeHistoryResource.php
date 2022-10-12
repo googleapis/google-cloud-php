@@ -52,6 +52,8 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
      *           A snapshot of a data retention settings resource in change history.
      *     @type \Google\Analytics\Admin\V1alpha\DataStream $data_stream
      *           A snapshot of a DataStream resource in change history.
+     *     @type \Google\Analytics\Admin\V1alpha\AttributionSettings $attribution_settings
+     *           A snapshot of AttributionSettings resource in change history.
      * }
      */
     public function __construct($data = NULL) {
@@ -462,6 +464,37 @@ class ChangeHistoryResource extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\DataStream::class);
         $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * A snapshot of AttributionSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings attribution_settings = 20;</code>
+     * @return \Google\Analytics\Admin\V1alpha\AttributionSettings|null
+     */
+    public function getAttributionSettings()
+    {
+        return $this->readOneof(20);
+    }
+
+    public function hasAttributionSettings()
+    {
+        return $this->hasOneof(20);
+    }
+
+    /**
+     * A snapshot of AttributionSettings resource in change history.
+     *
+     * Generated from protobuf field <code>.google.analytics.admin.v1alpha.AttributionSettings attribution_settings = 20;</code>
+     * @param \Google\Analytics\Admin\V1alpha\AttributionSettings $var
+     * @return $this
+     */
+    public function setAttributionSettings($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Analytics\Admin\V1alpha\AttributionSettings::class);
+        $this->writeOneof(20, $var);
 
         return $this;
     }

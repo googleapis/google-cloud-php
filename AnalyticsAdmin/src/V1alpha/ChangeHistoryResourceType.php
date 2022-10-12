@@ -92,11 +92,23 @@ class ChangeHistoryResourceType
      */
     const DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL = 15;
     /**
+     * SearchAds360Link resource
+     *
+     * Generated from protobuf enum <code>SEARCH_ADS_360_LINK = 16;</code>
+     */
+    const SEARCH_ADS_360_LINK = 16;
+    /**
      * DataStream resource
      *
      * Generated from protobuf enum <code>DATA_STREAM = 18;</code>
      */
     const DATA_STREAM = 18;
+    /**
+     * AttributionSettings resource
+     *
+     * Generated from protobuf enum <code>ATTRIBUTION_SETTINGS = 20;</code>
+     */
+    const ATTRIBUTION_SETTINGS = 20;
 
     private static $valueToName = [
         self::CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED => 'CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED',
@@ -112,7 +124,9 @@ class ChangeHistoryResourceType
         self::DATA_RETENTION_SETTINGS => 'DATA_RETENTION_SETTINGS',
         self::DISPLAY_VIDEO_360_ADVERTISER_LINK => 'DISPLAY_VIDEO_360_ADVERTISER_LINK',
         self::DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL => 'DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL',
+        self::SEARCH_ADS_360_LINK => 'SEARCH_ADS_360_LINK',
         self::DATA_STREAM => 'DATA_STREAM',
+        self::ATTRIBUTION_SETTINGS => 'ATTRIBUTION_SETTINGS',
     ];
 
     public static function name($value)
