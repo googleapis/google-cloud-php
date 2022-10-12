@@ -22,12 +22,12 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      */
     private $info_type = null;
     /**
-     * Approximate percentage of non-null rows that contained data detected by
-     * this infotype.
+     * Not populated for predicted infotypes.
      *
-     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2 [deprecated = true];</code>
+     * @deprecated
      */
-    private $estimated_prevalence = 0;
+    protected $estimated_prevalence = 0;
 
     /**
      * Constructor.
@@ -38,8 +38,7 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\InfoType $info_type
      *           The infoType.
      *     @type int $estimated_prevalence
-     *           Approximate percentage of non-null rows that contained data detected by
-     *           this infotype.
+     *           Not populated for predicted infotypes.
      * }
      */
     public function __construct($data = NULL) {
@@ -84,27 +83,29 @@ class InfoTypeSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Approximate percentage of non-null rows that contained data detected by
-     * this infotype.
+     * Not populated for predicted infotypes.
      *
-     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2 [deprecated = true];</code>
      * @return int
+     * @deprecated
      */
     public function getEstimatedPrevalence()
     {
+        @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
         return $this->estimated_prevalence;
     }
 
     /**
-     * Approximate percentage of non-null rows that contained data detected by
-     * this infotype.
+     * Not populated for predicted infotypes.
      *
-     * Generated from protobuf field <code>int32 estimated_prevalence = 2;</code>
+     * Generated from protobuf field <code>int32 estimated_prevalence = 2 [deprecated = true];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setEstimatedPrevalence($var)
     {
+        @trigger_error('estimated_prevalence is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->estimated_prevalence = $var;
 
