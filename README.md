@@ -5,7 +5,7 @@
 
 PHP Version  | Status
 ------------ | ------
-PHP 7.2 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php72.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php72.html)
+PHP 7.4 | [![Kokoro CI](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.svg)](https://storage.googleapis.com/cloud-devrel-public/php/badges/google-cloud-php/php74.html)
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud/v/stable)](https://packagist.org/packages/google/cloud) [![Packagist](https://img.shields.io/packagist/dm/google/cloud.svg)](https://packagist.org/packages/google/cloud)
 
@@ -203,6 +203,10 @@ and requests with a higher priority.
 Contributions to this library are always welcome and highly encouraged.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more information on how to get started.
+
+This repository is not an official support channel. If you have support questions, 
+file a support request through the normal Google support channels, 
+or post questions on a forum such as [StackOverflow](http://stackoverflow.com/questions/tagged/google-cloud-platform+php).
 
 ## License
 
