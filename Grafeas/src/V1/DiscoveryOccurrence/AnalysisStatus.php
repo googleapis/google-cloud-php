@@ -39,6 +39,12 @@ class AnalysisStatus
      */
     const FINISHED_SUCCESS = 3;
     /**
+     * Analysis has completed.
+     *
+     * Generated from protobuf enum <code>COMPLETE = 3;</code>
+     */
+    const COMPLETE = 3;
+    /**
      * Analysis has finished unsuccessfully, the analysis itself is in a bad
      * state.
      *
@@ -46,7 +52,7 @@ class AnalysisStatus
      */
     const FINISHED_FAILED = 4;
     /**
-     * The resource is known not to be supported
+     * The resource is known not to be supported.
      *
      * Generated from protobuf enum <code>FINISHED_UNSUPPORTED = 5;</code>
      */
@@ -57,6 +63,7 @@ class AnalysisStatus
         self::PENDING => 'PENDING',
         self::SCANNING => 'SCANNING',
         self::FINISHED_SUCCESS => 'FINISHED_SUCCESS',
+        self::COMPLETE => 'COMPLETE',
         self::FINISHED_FAILED => 'FINISHED_FAILED',
         self::FINISHED_UNSUPPORTED => 'FINISHED_UNSUPPORTED',
     ];
