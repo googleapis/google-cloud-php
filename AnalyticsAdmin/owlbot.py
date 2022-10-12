@@ -26,9 +26,13 @@ logging.basicConfig(level=logging.DEBUG)
 src = Path(f"../{php.STAGING_DIR}/AnalyticsAdmin").resolve()
 dest = Path().resolve()
 
-php.owlbot_main(src=src, dest=dest)
-
-
+php.owlbot_main(
+    src=src,
+    dest=dest,
+    copy_excludes=[
+        src / "V1beta/[A-Z]*_*.php"
+    ]
+)
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
