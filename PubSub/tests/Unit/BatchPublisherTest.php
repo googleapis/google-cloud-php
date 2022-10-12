@@ -80,7 +80,9 @@ class BatchPublisherTest extends TestCase
 
     public function testPublishDeferred()
     {
-        $client = TestHelpers::stub(PubSubClient::class, [], [
+        $client = TestHelpers::stub(PubSubClient::class, [
+            ['suppressKeyFileNotice' => true, 'projectId' => 'example-project']
+        ], [
             'encode', 'connection'
         ]);
         $client->___setProperty('encode', false);

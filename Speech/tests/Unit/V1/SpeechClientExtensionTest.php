@@ -21,6 +21,7 @@ use Google\ApiCore\BidiStream;
 use Google\ApiCore\Call;
 use Google\ApiCore\Testing\MockBidiStreamingCall;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Speech\V1\RecognitionAudio;
 use Google\Cloud\Speech\V1\RecognitionConfig;
 use Google\Cloud\Speech\V1\RecognitionConfig_AudioEncoding;
@@ -46,6 +47,7 @@ class SpeechClientExtensionTest extends TestCase
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new SpeechClient([
             'transport' => $this->transport->reveal(),
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
     }
 

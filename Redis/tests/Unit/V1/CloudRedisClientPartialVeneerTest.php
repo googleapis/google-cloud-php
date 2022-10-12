@@ -18,6 +18,7 @@
 namespace Google\Cloud\Redis\Tests\Unit\V1;
 
 use Google\ApiCore\Transport\GrpcTransport;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Redis\V1\CloudRedisClient;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -42,13 +43,13 @@ class CloudRedisClientPartialVeneerTest extends TestCase
         $this->expectException('InvalidArgumentException');
 
         new CloudRedisClient([
-            'transport' => 'rest'
+            'transport' => 'rest',
         ]);
     }
 
     public function testTransportDefaultsToGrpc()
     {
-        $client = new CloudRedisPartial();
+        $client = new CloudRedisPartial(['credentials' => new InsecureCredentialsWrapper()]);
         $this->assertFalse(isset($client->initialOptions['transport']));
         $this->assertInstanceOf(GrpcTransport::class, $client->transport());
     }
