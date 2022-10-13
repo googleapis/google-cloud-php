@@ -1,0 +1,45 @@
+<method final="false" abstract="false" static="false" namespace="\Google\Cloud\Vision\V1" line="64" visibility="public" returnByReference="false">
+    <name>__construct</name>
+    <full_name>\Google\Cloud\Vision\V1\AnnotateFileResponse::__construct()</full_name>
+    <value></value>
+    <argument line="64" by_reference="false">
+        <name>image</name>
+        <default>NULL</default>
+        <type>Image</type>
+    </argument>
+    <argument line="64" by_reference="false">
+        <name>data</name>
+        <default>NULL</default>
+        <type>array</type>
+    </argument>
+
+    <docblock line="64">
+        <description>Constructor.</description>
+        <long-description></long-description>
+        <tag
+            name="param"
+            description="Individual responses to [images][google.cloud.vision.v1.AnnotateImageResponse.image] found in the file."
+            variable="image"
+            type="Image"
+        />
+        <tag
+            name="param"
+            description="{
+    Optional. Data for populating the Message object.
+
+    @type \Google\Cloud\Vision\V1\InputConfig $input_config
+          Information about the file for which this response is generated.
+    @type \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
+          Individual responses to images found within the file. This field will be
+          empty if the `error` field is set. Takes an [Image][google.cloud.vision.v1.Image] object.
+    @type int $total_pages
+          This field gives the total number of pages in the file.
+    @type \Google\Rpc\Status $error
+          If set, represents the error message for the failed request. The
+          `responses` field will not be set in this case.
+}"
+            variable="data"
+            type="array"
+        />
+    </docblock>
+</method>
