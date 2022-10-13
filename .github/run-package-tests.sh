@@ -13,13 +13,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+
+# first argument can be a directory
+DIRS=$(find * -maxdepth 0 -type d -name '[A-Z]*')
+if [ "$#" -eq 1 ]; then
+    DIRS=$1
+elif [ "$#" -ne 0 ]; then
+    echo "usage: run-package-tests.sh [DIR]"
+    exit 1;
+fi
+
 FAILED_FILE=$(mktemp -d)/failed
-for DIR in $(find * -maxdepth 0 -type d -name '[A-Z]*'); do {
+for DIR in $DIRS; do {
     echo "Running $DIR Unit Tests"
     if grep -q 'google/cloud-core' ${DIR}/composer.json; then
         composer config minimum-stability dev -d ${DIR}
         composer config repositories.local path "../Core" -d ${DIR}
-        composer require -q --no-interaction --no-ansi --no-progress "google/cloud-core:*" -d ${DIR}
+        composer require -q --no-interaction --no-ansi --no-progress "google/cloud-core:*" "google/cloud-storage:*" -d ${DIR}
     else
         composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
     fi

@@ -144,7 +144,6 @@ class ModelTest extends SnippetTestCase
     {
         $storage = TestHelpers::stub(StorageClient::class);
         $storageConnection = $this->prophesize(StorageConnection::class);
-        $storageConnection->projectId()->willReturn(self::PROJECT_ID);
         $storage->___setProperty('connection', $storageConnection->reveal());
 
         $snippet = $this->snippetFromMethod(Model::class, 'extract');
