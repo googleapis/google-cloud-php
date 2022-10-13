@@ -25,20 +25,17 @@ fi
 # Use "composer-local.json" to avoid unwanted changes
 export COMPOSER=composer-local.json
 
-# Update composer to use local packages
-for DIR in $DIRS; do {
+FAILED_FILE=$(mktemp -d)/failed
+for DIR in ${DIRS}; do {
     cp ${DIR}/composer.json ${DIR}/composer-local.json
+    # Update composer to use local packages
     for i in bigquery,BigQuery core,Core logging,Logging, pubsub,PubSub storage,Storage; do
         IFS=","; set -- $i;
         if grep -q "\"google/cloud-$1\":" ${DIR}/composer.json; then
             composer config repositories.$1 "{\"type\": \"path\", \"url\": \"../$2\", \"options\":{\"versions\":{\"google/cloud-$1\":\"1.100\"}}}" -d ${DIR}
         fi
     done
-}; done
 
-# Run tests
-FAILED_FILE=$(mktemp -d)/failed
-for DIR in $DIRS; do {
     echo "Running $DIR Unit Tests"
     composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
     if [ $? != 0 ]; then
