@@ -16,11 +16,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input document.
+     * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $document = null;
+    /**
+     * Model options to use for classification. Defaults to v1 options if not
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
+     */
+    private $classification_model_options = null;
 
     /**
      * Constructor.
@@ -29,7 +36,10 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Language\V1\Document $document
-     *           Input document.
+     *           Required. Input document.
+     *     @type \Google\Cloud\Language\V1\ClassificationModelOptions $classification_model_options
+     *           Model options to use for classification. Defaults to v1 options if not
+     *           specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +48,7 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Language\V1\Document|null
@@ -59,7 +69,7 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input document.
+     * Required. Input document.
      *
      * Generated from protobuf field <code>.google.cloud.language.v1.Document document = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Language\V1\Document $var
@@ -69,6 +79,44 @@ class ClassifyTextRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\Document::class);
         $this->document = $var;
+
+        return $this;
+    }
+
+    /**
+     * Model options to use for classification. Defaults to v1 options if not
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
+     * @return \Google\Cloud\Language\V1\ClassificationModelOptions|null
+     */
+    public function getClassificationModelOptions()
+    {
+        return $this->classification_model_options;
+    }
+
+    public function hasClassificationModelOptions()
+    {
+        return isset($this->classification_model_options);
+    }
+
+    public function clearClassificationModelOptions()
+    {
+        unset($this->classification_model_options);
+    }
+
+    /**
+     * Model options to use for classification. Defaults to v1 options if not
+     * specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.language.v1.ClassificationModelOptions classification_model_options = 3;</code>
+     * @param \Google\Cloud\Language\V1\ClassificationModelOptions $var
+     * @return $this
+     */
+    public function setClassificationModelOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Language\V1\ClassificationModelOptions::class);
+        $this->classification_model_options = $var;
 
         return $this;
     }

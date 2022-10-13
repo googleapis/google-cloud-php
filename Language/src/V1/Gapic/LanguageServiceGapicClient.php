@@ -44,6 +44,7 @@ use Google\Cloud\Language\V1\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1\AnnotateTextRequest;
 use Google\Cloud\Language\V1\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1\AnnotateTextResponse;
+use Google\Cloud\Language\V1\ClassificationModelOptions;
 use Google\Cloud\Language\V1\ClassifyTextRequest;
 use Google\Cloud\Language\V1\ClassifyTextResponse;
 use Google\Cloud\Language\V1\Document;
@@ -195,7 +196,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -238,7 +239,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -280,7 +281,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -324,7 +325,7 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -368,8 +369,8 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
-     * @param Features $features     The enabled features.
+     * @param Document $document     Required. Input document.
+     * @param Features $features     Required. The enabled features.
      * @param array    $optionalArgs {
      *     Optional.
      *
@@ -412,10 +413,13 @@ class LanguageServiceGapicClient
      * }
      * ```
      *
-     * @param Document $document     Input document.
+     * @param Document $document     Required. Input document.
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type ClassificationModelOptions $classificationModelOptions
+     *           Model options to use for classification. Defaults to v1 options if not
+     *           specified.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -430,6 +434,10 @@ class LanguageServiceGapicClient
     {
         $request = new ClassifyTextRequest();
         $request->setDocument($document);
+        if (isset($optionalArgs['classificationModelOptions'])) {
+            $request->setClassificationModelOptions($optionalArgs['classificationModelOptions']);
+        }
+
         return $this->startCall('ClassifyText', ClassifyTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

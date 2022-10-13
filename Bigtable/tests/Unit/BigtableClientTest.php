@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\Unit;
 
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Bigtable\Table;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
@@ -33,7 +34,7 @@ class BigtableClientTest extends TestCase
     public function set_up()
     {
         $this->client = TestHelpers::stub(BigtableClient::class, [
-            ['projectId' => 'my-project']
+            ['projectId' => 'my-project', 'credentials' => new InsecureCredentialsWrapper()]
         ]);
     }
 

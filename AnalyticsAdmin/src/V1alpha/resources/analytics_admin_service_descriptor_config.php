@@ -33,6 +33,16 @@ return [
                     'resourcesGetMethod' => 'getAccounts',
                 ],
             ],
+            'ListAudiences' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getAudiences',
+                ],
+            ],
             'ListConversionEvents' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

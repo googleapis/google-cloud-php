@@ -16,8 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class Filter extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The dimension name or metric name. Must be a name defined in dimensions
-     * or metrics.
+     * The dimension name or metric name.
+     * In most methods, dimensions & metrics can be used for the first time in
+     * this field. However in a RunPivotReportRequest, this field must be
+     * additionally specified by name in the RunPivotReportRequest's dimensions or
+     * metrics.
      *
      * Generated from protobuf field <code>string field_name = 1;</code>
      */
@@ -31,8 +34,11 @@ class Filter extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $field_name
-     *           The dimension name or metric name. Must be a name defined in dimensions
-     *           or metrics.
+     *           The dimension name or metric name.
+     *           In most methods, dimensions & metrics can be used for the first time in
+     *           this field. However in a RunPivotReportRequest, this field must be
+     *           additionally specified by name in the RunPivotReportRequest's dimensions or
+     *           metrics.
      *     @type \Google\Analytics\Data\V1beta\Filter\StringFilter $string_filter
      *           Strings related filter.
      *     @type \Google\Analytics\Data\V1beta\Filter\InListFilter $in_list_filter
@@ -49,8 +55,11 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimension name or metric name. Must be a name defined in dimensions
-     * or metrics.
+     * The dimension name or metric name.
+     * In most methods, dimensions & metrics can be used for the first time in
+     * this field. However in a RunPivotReportRequest, this field must be
+     * additionally specified by name in the RunPivotReportRequest's dimensions or
+     * metrics.
      *
      * Generated from protobuf field <code>string field_name = 1;</code>
      * @return string
@@ -61,8 +70,11 @@ class Filter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The dimension name or metric name. Must be a name defined in dimensions
-     * or metrics.
+     * The dimension name or metric name.
+     * In most methods, dimensions & metrics can be used for the first time in
+     * this field. However in a RunPivotReportRequest, this field must be
+     * additionally specified by name in the RunPivotReportRequest's dimensions or
+     * metrics.
      *
      * Generated from protobuf field <code>string field_name = 1;</code>
      * @param string $var
