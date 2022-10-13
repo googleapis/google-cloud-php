@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\BatchOperationMetadata
     name: BatchOperationMetadata
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: BatchOperationMetadata
     summary: |
       Metadata for the batch operations such as the current state.

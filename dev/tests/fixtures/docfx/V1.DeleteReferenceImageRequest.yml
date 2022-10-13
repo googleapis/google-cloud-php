@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
     name: DeleteReferenceImageRequest
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: DeleteReferenceImageRequest
     summary: |
       Request message for the `DeleteReferenceImage` method.

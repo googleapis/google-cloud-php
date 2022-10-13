@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Vertex
     name: Vertex
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Vertex
     summary: |
       A vertex represents a 2D point in the image.

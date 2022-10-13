@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
     name: DetectedLanguage
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: DetectedLanguage
     summary: |
       Detected language for a structural component.

@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSet
     name: ProductSet
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ProductSet
     summary: |
       A ProductSet contains Products. A ProductSet can contain a maximum of 1

@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Word
     name: Word
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Word
     summary: |
       A word representation.

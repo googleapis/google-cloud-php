@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Paragraph
     name: Paragraph
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Paragraph
     summary: |
       Structural unit of text representing a number of words in certain order.

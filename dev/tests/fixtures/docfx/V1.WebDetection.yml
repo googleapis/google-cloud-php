@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\WebDetection
     name: WebDetection
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: WebDetection
     summary: |
       Relevant information for the image from the Internet.

@@ -26,7 +26,8 @@ class Page
 {
     public function __construct(
         private ClassNode $classNode,
-        private string $filePath
+        private string $filePath,
+        private string $friendlyApiName,
     ) {}
 
     public function getClassNode(): ClassNode
@@ -63,6 +64,7 @@ class Page
         return array_filter([
             'uid' => $this->classNode->getFullname(),
             'name' => $this->classNode->getName(),
+            'friendlyApiName' => $this->friendlyApiName,
             'id' => $this->classNode->getName(),
             'summary' => $this->classNode->getContent(),
             'status' => $this->classNode->getStatus(),

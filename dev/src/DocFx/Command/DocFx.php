@@ -94,8 +94,9 @@ class DocFx extends Command
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
         $tocItems = [];
+        $friendlyApiName = $this->getFriendlyApiName();
         foreach ($namespaces as $namespace) {
-            $pages = new PageTree($xml, $namespace);
+            $pages = new PageTree($xml, $namespace, $friendlyApiName);
             $pageList = $pages->getPages();
             XrefTrait::$protoPackagesToPhpNamespaces = $pages->getProtoPackages();
 
@@ -232,6 +233,14 @@ class DocFx extends Command
             throw new RuntimeException('composer.json does not contain "name"');
         }
         return $this->composerJson['name'];
+    }
+
+    private function getFriendlyApiName(): string
+    {
+        if (empty($this->composerJson['description'])) {
+            throw new RuntimeException('composer.json does not contain "description"');
+        }
+        return $this->composerJson['description'];
     }
 
     private function getNamespaces(): array

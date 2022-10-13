@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\InputConfig
     name: InputConfig
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: InputConfig
     summary: |
       The desired input location and metadata.

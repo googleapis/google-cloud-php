@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Symbol
     name: Symbol
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Symbol
     summary: |
       A single symbol representation.

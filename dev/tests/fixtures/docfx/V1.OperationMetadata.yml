@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\OperationMetadata
     name: OperationMetadata
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: OperationMetadata
     summary: |
       Contains metadata for the BatchAnnotateImages operation.

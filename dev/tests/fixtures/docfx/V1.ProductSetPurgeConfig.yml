@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
     name: ProductSetPurgeConfig
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ProductSetPurgeConfig
     summary: |
       Config to control which ProductSet contains the Products to be deleted.

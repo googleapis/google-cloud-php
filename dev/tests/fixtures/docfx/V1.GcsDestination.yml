@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\GcsDestination
     name: GcsDestination
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: GcsDestination
     summary: |
       The Google Cloud Storage location where the output will be written to.

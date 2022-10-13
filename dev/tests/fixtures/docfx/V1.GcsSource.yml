@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\GcsSource
     name: GcsSource
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: GcsSource
     summary: |
       The Google Cloud Storage location where the input will be read from.

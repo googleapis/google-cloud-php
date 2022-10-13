@@ -31,7 +31,8 @@ class PageTree
 
     public function __construct(
         private string $xmlPath,
-        private string $namespace
+        private string $namespace,
+        private string $friendlyApiName
     ) {}
 
     public function getPages(): array
@@ -87,7 +88,7 @@ class PageTree
                 continue;
             }
 
-            $pages[$fullName] = new Page($classNode, $file['path']);
+            $pages[$fullName] = new Page($classNode, $file['path'], $this->friendlyApiName);
         }
 
         /**

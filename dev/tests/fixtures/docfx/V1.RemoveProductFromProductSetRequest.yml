@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
     name: RemoveProductFromProductSetRequest
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: RemoveProductFromProductSetRequest
     summary: |
       Request message for the `RemoveProductFromProductSet` method.

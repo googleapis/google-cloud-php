@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImageSource
     name: ImageSource
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ImageSource
     summary: |
       External image source (Google Cloud Storage or web URL image location).

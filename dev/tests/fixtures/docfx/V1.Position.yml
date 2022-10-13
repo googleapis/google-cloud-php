@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Position
     name: Position
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Position
     summary: |
       A 3D position in the image, used primarily for Face detection landmarks.

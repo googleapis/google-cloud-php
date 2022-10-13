@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
     name: LocalizedObjectAnnotation
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: LocalizedObjectAnnotation
     summary: |
       Set of detected objects with bounding boxes.

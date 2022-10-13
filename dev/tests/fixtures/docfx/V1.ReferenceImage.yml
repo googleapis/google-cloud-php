@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ReferenceImage
     name: ReferenceImage
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ReferenceImage
     summary: |
       A `ReferenceImage` represents a product image and its associated metadata,

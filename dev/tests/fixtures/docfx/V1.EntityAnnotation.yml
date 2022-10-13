@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\EntityAnnotation
     name: EntityAnnotation
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: EntityAnnotation
     summary: |
       Set of detected entity features.

@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\TextDetectionParams
     name: TextDetectionParams
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: TextDetectionParams
     summary: |
       Parameters for text detections. This is used to control TEXT_DETECTION and

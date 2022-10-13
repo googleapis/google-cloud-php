@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
     name: State
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: State
     summary: |
       Enumerates the possible states that the batch request can be in.

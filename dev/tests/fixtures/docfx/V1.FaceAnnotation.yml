@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\FaceAnnotation
     name: FaceAnnotation
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: FaceAnnotation
     summary: |
       A face annotation object contains the results of face detection.

@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Product
     name: Product
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Product
     summary: |
       A Product contains ReferenceImages.

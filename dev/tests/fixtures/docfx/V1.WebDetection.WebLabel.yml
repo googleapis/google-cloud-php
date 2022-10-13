@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\WebDetection\WebLabel
     name: WebLabel
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: WebLabel
     summary: |
       Label to provide extra metadata for the web detection.

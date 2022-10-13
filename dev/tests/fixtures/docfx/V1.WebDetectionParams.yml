@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\WebDetectionParams
     name: WebDetectionParams
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: WebDetectionParams
     summary: |
       Parameters for web detection request.

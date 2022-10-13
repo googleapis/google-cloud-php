@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\OperationMetadata\State
     name: State
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: State
     summary: |
       Batch operation states.

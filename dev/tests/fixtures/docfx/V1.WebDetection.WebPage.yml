@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\WebDetection\WebPage
     name: WebPage
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: WebPage
     summary: |
       Metadata for web pages.

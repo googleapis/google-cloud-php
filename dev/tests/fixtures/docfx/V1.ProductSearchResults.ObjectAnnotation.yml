@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
     name: ObjectAnnotation
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ObjectAnnotation
     summary: |
       Prediction for what the object in the bounding box is.

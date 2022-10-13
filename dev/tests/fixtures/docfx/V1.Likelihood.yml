@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Likelihood
     name: Likelihood
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: Likelihood
     summary: |
       A bucketized representation of likelihood, which is intended to give clients

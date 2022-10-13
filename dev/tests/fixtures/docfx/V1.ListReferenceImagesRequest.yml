@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
     name: ListReferenceImagesRequest
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: ListReferenceImagesRequest
     summary: |
       Request message for the `ListReferenceImages` method.

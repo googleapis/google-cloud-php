@@ -3,6 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\AnnotateFileRequest
     name: AnnotateFileRequest
+    friendlyApiName: 'Cloud Vision Client for PHP'
     id: AnnotateFileRequest
     summary: |
       A request to annotate one single file, e.g. a PDF, TIFF or GIF file.
