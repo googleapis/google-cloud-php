@@ -2,6 +2,7 @@
 build/
 composer.phar
 composer.lock
+composer-local.json
 docs/json/**/*
 vendor/
 .idea/

@@ -22,17 +22,30 @@ elif [ "$#" -ne 0 ]; then
     echo "usage: run-package-tests.sh [DIR]"
     exit 1;
 fi
-
+export COMPOSER=composer-local.json
 FAILED_FILE=$(mktemp -d)/failed
+# update composer.json to use local packages
+for DIR in $DIRS; do {
+    cp ${DIR}/composer.json ${DIR}/composer-local.json
+    if grep -q '"google/cloud-core":' ${DIR}/composer.json; then
+        composer config minimum-stability dev -d ${DIR}
+        composer config repositories.core path "../Core" -d ${DIR}
+        composer require -q --no-update --no-interaction "google/cloud-core:*" -d ${DIR}
+    fi
+    if grep -q '"google/cloud-storage":' ${DIR}/composer.json; then
+        composer config minimum-stability dev -d ${DIR}
+        composer config repositories.storage path "../Logging" -d ${DIR}
+        composer require -q --no-update --no-interaction "google/cloud-storage:*" -d ${DIR}
+    fi
+    if grep -q '"google/cloud-logging":' ${DIR}/composer.json; then
+        composer config minimum-stability dev -d ${DIR}
+        composer config repositories.logging path "../Logging" -d ${DIR}
+        composer require -q --no-update --no-interaction "google/cloud-logging:*" -d ${DIR}
+    fi
+}; done
 for DIR in $DIRS; do {
     echo "Running $DIR Unit Tests"
-    if grep -q 'google/cloud-core' ${DIR}/composer.json; then
-        composer config minimum-stability dev -d ${DIR}
-        composer config repositories.local path "../Core" -d ${DIR}
-        composer require -q --no-interaction --no-ansi --no-progress "google/cloud-core:*" "google/cloud-storage:*" -d ${DIR}
-    else
-        composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
-    fi
+    composer -q --no-interaction --no-ansi --no-progress update -d ${DIR};
     if [ $? != 0 ]; then
         echo "$DIR: composer install failed" >> "${FAILED_FILE}"
         continue
