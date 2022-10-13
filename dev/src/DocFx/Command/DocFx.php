@@ -48,6 +48,10 @@ class DocFx extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        if (PHP_VERSION_ID < 80000) {
+            throw new RuntimeException('This command must be run on PHP 8.0 or above');
+        }
+
         $component = $input->getOption('component') ?: basename(getcwd());
         $componentPath = $this->checkComponent($component);
         $output->writeln(sprintf('Generating documentation for <options=bold;fg=white>%s</>', $component));
