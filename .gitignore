@@ -3,6 +3,8 @@ build/
 composer.phar
 composer.lock
 composer-local.json
+composer-local.lock
+.phpunit.result.cache
 docs/json/**/*
 vendor/
 .idea/
