@@ -42,7 +42,7 @@ class SpeechClientTest extends TestCase
     public function set_up()
     {
         $this->client = TestHelpers::stub(SpeechClient::class, [
-            ['languageCode' => 'en-US']
+            ['languageCode' => 'en-US', 'suppressKeyFileNotice' => true]
         ]);
         $this->connection = $this->prophesize(ConnectionInterface::class);
     }
@@ -51,7 +51,7 @@ class SpeechClientTest extends TestCase
     {
         $this->expectException('\InvalidArgumentException');
 
-        $client = TestHelpers::stub(SpeechClient::class);
+        $client = TestHelpers::stub(SpeechClient::class, [['suppressKeyFileNotice' => true]]);
         $client->recognize(self::GCS_URI);
     }
 

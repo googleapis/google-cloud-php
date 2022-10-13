@@ -46,6 +46,7 @@ use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
 use Google\Cloud\Language\V1beta2\AnnotateTextResponse;
+use Google\Cloud\Language\V1beta2\ClassificationModelOptions;
 use Google\Cloud\Language\V1beta2\ClassifyTextRequest;
 use Google\Cloud\Language\V1beta2\ClassifyTextResponse;
 use Google\Cloud\Language\V1beta2\Document;
@@ -323,7 +324,7 @@ class LanguageServiceGapicClient
 
     /**
      * Analyzes the syntax of the text and provides sentence boundaries and
-     * tokenization along with part-of-speech tags, dependency trees, and other
+     * tokenization along with part of speech tags, dependency trees, and other
      * properties.
      *
      * Sample code:
@@ -433,6 +434,9 @@ class LanguageServiceGapicClient
      * @param array    $optionalArgs {
      *     Optional.
      *
+     *     @type ClassificationModelOptions $classificationModelOptions
+     *           Model options to use for classification. Defaults to v1 options if not
+     *           specified.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -449,6 +453,10 @@ class LanguageServiceGapicClient
     {
         $request = new ClassifyTextRequest();
         $request->setDocument($document);
+        if (isset($optionalArgs['classificationModelOptions'])) {
+            $request->setClassificationModelOptions($optionalArgs['classificationModelOptions']);
+        }
+
         return $this->startCall('ClassifyText', ClassifyTextResponse::class, $optionalArgs, $request)->wait();
     }
 }

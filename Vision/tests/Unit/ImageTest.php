@@ -42,7 +42,7 @@ class ImageTest extends TestCase
 
     public function testWithStorage()
     {
-        $storage = new StorageClient;
+        $storage = new StorageClient(['suppressKeyFileNotice' => true]);
         $bucket = $storage->bucket('test-bucket');
         $object = $bucket->object('test-object.jpg');
 

@@ -69,7 +69,8 @@ class DatastoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $client = TestHelpers::stub(DatastoreClient::class, [[
-            'transport' => 'grpc'
+            'projectId' => self::PROJECT,
+            'transport' => 'grpc',
         ]]);
 
         $this->assertInstanceOf(Grpc::class, $client->___getProperty('connection'));
@@ -80,7 +81,8 @@ class DatastoreClientTest extends TestCase
         $this->checkAndSkipGrpcTests();
 
         $client = TestHelpers::stub(DatastoreClient::class, [[
-            'transport' => 'rest'
+            'projectId' => self::PROJECT,
+            'transport' => 'rest',
         ]]);
 
         $this->assertInstanceOf(Rest::class, $client->___getProperty('connection'));

@@ -19,6 +19,7 @@ namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
@@ -52,6 +53,7 @@ class ImageAnnotatorClientExtensionTest extends TestCase
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([
             'transport' => $this->transport->reveal(),
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
     }
 
