@@ -20,7 +20,7 @@ class HTTPGetAction extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string path = 1;</code>
      */
-    protected $path = '';
+    private $path = '';
     /**
      * Custom headers to set in the request. HTTP allows repeated headers.
      *

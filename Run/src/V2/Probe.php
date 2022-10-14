@@ -26,7 +26,7 @@ class Probe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 initial_delay_seconds = 1;</code>
      */
-    protected $initial_delay_seconds = 0;
+    private $initial_delay_seconds = 0;
     /**
      * Number of seconds after which the probe times out.
      * Defaults to 1 second. Minimum value is 1. Maximum value is 3600.
@@ -36,7 +36,7 @@ class Probe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 timeout_seconds = 2;</code>
      */
-    protected $timeout_seconds = 0;
+    private $timeout_seconds = 0;
     /**
      * How often (in seconds) to perform the probe.
      * Default to 10 seconds. Minimum value is 1. Maximum value for liveness probe
@@ -45,14 +45,14 @@ class Probe extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 period_seconds = 3;</code>
      */
-    protected $period_seconds = 0;
+    private $period_seconds = 0;
     /**
      * Minimum consecutive failures for the probe to be considered failed after
      * having succeeded. Defaults to 3. Minimum value is 1.
      *
      * Generated from protobuf field <code>int32 failure_threshold = 4;</code>
      */
-    protected $failure_threshold = 0;
+    private $failure_threshold = 0;
     protected $probe_type;
 
     /**

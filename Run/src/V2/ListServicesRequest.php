@@ -18,7 +18,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location and project to list resources on.
      * Location must be a valid GCP region, and may not be the "-" wildcard.
-     * Format: projects/{projectnumber}/locations/{location}
+     * Format: projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -52,7 +52,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The location and project to list resources on.
      *           Location must be a valid GCP region, and may not be the "-" wildcard.
-     *           Format: projects/{projectnumber}/locations/{location}
+     *           Format: projects/{project}/locations/{location}
      *     @type int $page_size
      *           Maximum number of Services to return in this call.
      *     @type string $page_token
@@ -70,7 +70,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location and project to list resources on.
      * Location must be a valid GCP region, and may not be the "-" wildcard.
-     * Format: projects/{projectnumber}/locations/{location}
+     * Format: projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -83,7 +83,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The location and project to list resources on.
      * Location must be a valid GCP region, and may not be the "-" wildcard.
-     * Format: projects/{projectnumber}/locations/{location}
+     * Format: projects/{project}/locations/{location}
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
