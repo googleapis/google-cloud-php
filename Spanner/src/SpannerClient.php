@@ -35,9 +35,12 @@ use Google\Cloud\Spanner\Connection\LongRunningConnection;
 use Google\Cloud\Spanner\Session\SessionPoolInterface;
 use Google\Cloud\Spanner\Numeric;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
 use Google\Cloud\Spanner\V1\SpannerClient as GapicSpannerClient;
 use Psr\Cache\CacheItemPoolInterface;
 use Psr\Http\StreamInterface;
+use Google\ApiCore\ValidationException;
 
 /**
  * Cloud Spanner is a highly scalable, transactional, managed, NewSQL
@@ -271,6 +274,68 @@ class SpannerClient
     }
 
     /**
+     * Create a new instance configuration.
+     *
+     * Example:
+     * ```
+     * use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
+     *
+     * $operation = $spanner->createInstanceConfiguration(
+     *     $baseInstanceConfig,
+     *     'custom-instance-config',
+     *     // The replicas for the custom instance configuration must include all the replicas of the base
+     *     // configuration, in addition to at least one from the list of optional replicas of the base
+     *     // configuration.
+     *     array_merge(
+     *         $baseInstanceConfig->info()['replicas'],
+     *         [
+     *             new ReplicaInfo([
+     *                 'location' => 'us-east1',
+     *                 'type' => ReplicaInfo\ReplicaType::READ_ONLY,
+     *                 'defaultLeaderLocation' => false
+     *             ])
+     *         ]
+     *     ),
+     *     [
+     *         'displayName' => 'This is a display name',
+     *         'labels' => ['cloud_spanner_samples' => true]
+     *     ]
+     * );
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstanceconfigrequest CreateInstanceConfigRequest
+     *
+     * @param InstanceConfiguration $baseConfig The base configuration to extend for this custom instance configuration.
+     * @param string $name The configuration name. Should be prefixed with "custom-".
+     * @param ReplicaInfo[]|array $replicas The replica information for the new instance configuration. This array must
+     *           contain all the replicas from the base configuration, plus at least one from list of optional replicas
+     *           of the base configuration. One of the replicas must be set as the default leader location.
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type string $displayName **Defaults to** the value of $name.
+     *     @type array $leaderOptions Allowed values of the "default_leader" schema option for databases in
+     *           instances that use this instance configuration. **Defaults to** the leader options of the base
+     *           configuration. Please note it may be possible for the default value to be an empty array when
+     *           lazy loading the base configuration. To ensure the default value matches the upstream values
+     *           please make sure to trigger a network request on the base configuration with either
+     *           {@see InstanceConfiguration::reload()} or {@see InstanceConfiguration::info()}.
+     *     @type array $labels For more information, see
+     *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
+     *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
+     *           response. **Defaults to** `false`.
+     * }
+     * @return LongRunningOperation<InstanceConfiguration>
+     * @throws ValidationException
+     */
+    public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
+    {
+        $config = $this->instanceConfiguration($name);
+        return $config->create($baseConfig, $replicas, $options);
+    }
+
+    /**
      * List all available instance configurations.
      *
      * Example:
@@ -335,9 +400,59 @@ class SpannerClient
      * @param array $config [optional] The configuration details.
      * @return InstanceConfiguration
      */
-    public function instanceConfiguration($name, array $config = [])
+    public function instanceConfiguration($name, array $options = [])
     {
-        return new InstanceConfiguration($this->connection, $this->projectId, $name, $config);
+        return new InstanceConfiguration(
+            $this->connection,
+            $this->projectId,
+            $name,
+            $options,
+            $this->lroConnection
+        );
+    }
+
+    /**
+     * Lists instance configuration operations for the project.
+     *
+     * Example:
+     * ```
+     * $instanceConfigOperations = $spanner->instanceConfigOperations();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     @type int $pageSize
+     *          The maximum number of resources contained in the underlying API
+     *          response. The API may return fewer values in a page, even if
+     *          there are additional values to be retrieved.
+     *     @type int $resultLimit Limit the number of results returned in total.
+     *           **Defaults to** `0` (return all results).
+     *     @type string $pageToken
+     *          A page token is used to specify a page of values to be returned.
+     *          If no page token is specified (the default), the first page
+     *          of values will be returned. Any page token used here must have
+     *          been generated by a previous call to the API.
+     * }
+     *
+     * @return ItemIterator<LongRunningOperation>
+     */
+    public function instanceConfigOperations(array $options = [])
+    {
+        $resultLimit = $this->pluck('resultLimit', $options, false);
+        return new ItemIterator(
+            new PageIterator(
+                function (array $operation) {
+                    return $this->resumeOperation($operation['name'], $operation);
+                },
+                [$this->connection, 'listInstanceConfigOperations'],
+                ['projectName' => InstanceAdminClient::projectName($this->projectId)] + $options,
+                [
+                    'itemsKey' => 'operations',
+                    'resultLimit' => $resultLimit
+                ]
+            )
+        );
     }
 
     /**
