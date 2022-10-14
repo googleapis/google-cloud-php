@@ -141,7 +141,7 @@ class AdminTest extends SpannerTestCase
         // Find the first instance configuration that has at least one optional replica. This indicates that it is a
         // Google Managed multi-region config that can be used as the base config for a customer managed configuration.
         $configurations = iterator_to_array($client->instanceConfigurations());
-        foreach ($configurations as $key => $configuration) {
+        foreach ($configurations as $configuration) {
             if (!empty($configuration->info()['optionalReplicas'])) {
                 $baseConfig = $configuration;
                 break;

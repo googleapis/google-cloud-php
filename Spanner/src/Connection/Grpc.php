@@ -1402,7 +1402,7 @@ class Grpc implements ConnectionInterface
     {
         $mask = [];
         foreach (array_keys($instanceArray) as $key) {
-            if ($key != "name") {
+            if ($key !== 'name') {
                 $mask[] = Serializer::toSnakeCase($key);
             }
         }
@@ -1513,7 +1513,6 @@ class Grpc implements ConnectionInterface
             return $this->instanceAdminClient;
         }
         //@codeCoverageIgnoreEnd
-
         $this->instanceAdminClient = $this->constructGapic(InstanceAdminClient::class, $this->grpcConfig);
 
         return $this->instanceAdminClient;

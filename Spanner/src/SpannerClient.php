@@ -280,16 +280,20 @@ class SpannerClient
      * ```
      * use Google\Cloud\Spanner\Admin\Instance\V1\ReplicaInfo;
      *
-     * $operation = $spanner->createInstanceConfiguration($baseInstanceConfig,
+     * $operation = $spanner->createInstanceConfiguration(
+     *     $baseInstanceConfig,
+     *     'custom-instance-config',
      *     // The replicas for the custom instance configuration must include all the replicas of the base
      *     // configuration, in addition to at least one from the list of optional replicas of the base
      *     // configuration.
      *     array_merge(
      *         $baseInstanceConfig->info()['replicas'],
-     *         [new ReplicaInfo([
-     *             'location' => 'us-east1',
-     *             'type' => ReplicaInfo\ReplicaType::READ_ONLY,
-     *             'defaultLeaderLocation' => false])
+     *         [
+     *             new ReplicaInfo([
+     *                 'location' => 'us-east1',
+     *                 'type' => ReplicaInfo\ReplicaType::READ_ONLY,
+     *                 'defaultLeaderLocation' => false
+     *             ])
      *         ]
      *     ),
      *     [
@@ -302,23 +306,27 @@ class SpannerClient
      * @codingStandardsIgnoreStart
      * @see https://cloud.google.com/spanner/docs/reference/rpc/google.spanner.admin.instance.v1#createinstanceconfigrequest CreateInstanceConfigRequest
      *
-     * @param InstanceConfiguration $baseConfig The base configuration to extend for this custom instance configuration
-     * @param ReplicaInfo[] $replicas The replica information for the new instance configuration. This array must
+     * @param InstanceConfiguration $baseConfig The base configuration to extend for this custom instance configuration.
+     * @param string $name The configuration name. Should be prefixed with "custom-".
+     * @param ReplicaInfo[]|array $replicas The replica information for the new instance configuration. This array must
      *           contain all the replicas from the base configuration, plus at least one from list of optional replicas
      *           of the base configuration. One of the replicas must be set as the default leader location.
      * @param array $options [optional] {
-     *     Configuration options
+     *     Configuration options.
      *
-     * @type string $displayName **Defaults to** the value of $name.
-     * @type array $leaderOptions Allowed values of the "default_leader" schema option for databases in
+     *     @type string $displayName **Defaults to** the value of $name.
+     *     @type array $leaderOptions Allowed values of the "default_leader" schema option for databases in
      *           instances that use this instance configuration. **Defaults to** the leader options of the base
-     *           configuration.
-     * @type array $labels For more information, see
+     *           configuration. Please note it may be possible for the default value to be an empty array when
+     *           lazy loading the base configuration. To ensure the default value matches the upstream values
+     *           please make sure to trigger a network request on the base configuration with either
+     *           {@see InstanceConfiguration::reload()} or {@see InstanceConfiguration::info()}.
+     *     @type array $labels For more information, see
      *           [Using labels to organize Google Cloud Platform resources](https://cloudplatform.googleblog.com/2015/10/using-labels-to-organize-Google-Cloud-Platform-resources.html).
-     * @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
-     *           response
+     *     @type bool $validateOnly An option to validate, but not actually execute, the request, and provide the same
+     *           response. **Defaults to** `false`.
      * }
-     * @return LongRunningOperation<InstanceConfig>
+     * @return LongRunningOperation<InstanceConfiguration>
      * @throws ValidationException
      */
     public function createInstanceConfiguration(InstanceConfiguration $baseConfig, $name, array $replicas, array $options = [])
@@ -392,15 +400,14 @@ class SpannerClient
      * @param array $config [optional] The configuration details.
      * @return InstanceConfiguration
      */
-    public function instanceConfiguration($name, array $config = [])
+    public function instanceConfiguration($name, array $options = [])
     {
         return new InstanceConfiguration(
             $this->connection,
-            $this->lroConnection,
-            $this->lroCallables,
             $this->projectId,
             $name,
-            $config
+            $options,
+            $this->lroConnection
         );
     }
 

@@ -49,10 +49,10 @@ class InstanceConfigurationTest extends TestCase
         $this->connection = $this->getConnStub();
         $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT_ID,
-            self::NAME
+            self::NAME,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         ]);
     }
 
@@ -72,11 +72,10 @@ class InstanceConfigurationTest extends TestCase
         $info = ['foo' => 'bar'];
         $config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT_ID,
             self::NAME,
-            $info
+            $info,
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         ]);
 
         $this->assertEquals($info, $config->info());

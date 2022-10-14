@@ -49,10 +49,10 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->connection = $this->getConnStub();
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
-            [],
             self::PROJECT,
-            self::CONFIG
+            self::CONFIG,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
         ], ['connection', 'lroConnection']);
     }
 
@@ -70,20 +70,22 @@ class InstanceConfigurationTest extends SnippetTestCase
 
     public function testCreate()
     {
-        $baseConfig = $this->prophesize(InstanceConfiguration::class);
-        $baseConfig->name()->willReturn(InstanceAdminClient::instanceConfigName(self::PROJECT, 'foo'));
-        $baseConfig->info()->willReturn(['leaderOptions' => '']);
-
         $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'create');
-        $snippet->addLocal('baseConfig', $baseConfig->reveal());
-        $snippet->addLocal('options', []);
-        $snippet->addLocal('instanceConfig', $this->config);
-
         $this->connection->createInstanceConfig(Argument::any())
             ->shouldBeCalled()
             ->willReturn(['name' => 'operations/foo']);
-
-        $this->config->___setProperty('connection', $this->connection->reveal());
+        $dummyConnection = $this->connection->reveal();
+        $baseConfig = new InstanceConfiguration(
+            $dummyConnection,
+            self::PROJECT,
+            self::CONFIG,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+        );
+        $this->config->___setProperty('connection', $dummyConnection);
+        $snippet->addLocal('baseConfig', $baseConfig);
+        $snippet->addLocal('options', []);
+        $snippet->addLocal('instanceConfig', $this->config);
 
         $res = $snippet->invoke('operation');
         $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
