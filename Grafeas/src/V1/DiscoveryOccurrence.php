@@ -28,6 +28,17 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     private $analysis_status = 0;
     /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     */
+    private $analysis_completed = null;
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     */
+    private $analysis_error;
+    /**
      * When an error is encountered this will contain a LocalizedMessage under
      * details to show to the user. The LocalizedMessage is output only and
      * populated by the API.
@@ -64,6 +75,10 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           Whether the resource is continuously analyzed.
      *     @type int $analysis_status
      *           The status of discovery for the resource.
+     *     @type \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted $analysis_completed
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $analysis_error
+     *           Indicates any errors encountered during analysis of a resource. There
+     *           could be 0 or more of these errors.
      *     @type \Google\Rpc\Status $analysis_status_error
      *           When an error is encountered this will contain a LocalizedMessage under
      *           details to show to the user. The LocalizedMessage is output only and
@@ -129,6 +144,66 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Grafeas\V1\DiscoveryOccurrence\AnalysisStatus::class);
         $this->analysis_status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     * @return \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted|null
+     */
+    public function getAnalysisCompleted()
+    {
+        return $this->analysis_completed;
+    }
+
+    public function hasAnalysisCompleted()
+    {
+        return isset($this->analysis_completed);
+    }
+
+    public function clearAnalysisCompleted()
+    {
+        unset($this->analysis_completed);
+    }
+
+    /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     * @param \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted $var
+     * @return $this
+     */
+    public function setAnalysisCompleted($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted::class);
+        $this->analysis_completed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnalysisError()
+    {
+        return $this->analysis_error;
+    }
+
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnalysisError($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->analysis_error = $arr;
 
         return $this;
     }

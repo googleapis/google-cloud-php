@@ -1,0 +1,379 @@
+-
+  name: Overview
+  href: index.md
+-
+  name: Google\Cloud\Vision\V1
+  uid: 'ns:Google\Cloud\Vision\V1'
+  items:
+    -
+      name: Services
+      uid: 'services:Google\Cloud\Vision\V1'
+      items:
+        -
+          uid: \Google\Cloud\Vision\V1\ImageAnnotatorClient
+          name: ImageAnnotatorClient
+        -
+          uid: \Google\Cloud\Vision\V1\ProductSearchClient
+          name: ProductSearchClient
+    -
+      name: Messages
+      uid: 'messages:Google\Cloud\Vision\V1'
+      items:
+        -
+          uid: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
+          name: AddProductToProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AnnotateFileRequest
+          name: AnnotateFileRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AnnotateFileResponse
+          name: AnnotateFileResponse
+        -
+          uid: \Google\Cloud\Vision\V1\AnnotateImageRequest
+          name: AnnotateImageRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AnnotateImageResponse
+          name: AnnotateImageResponse
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
+          name: AsyncAnnotateFileRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+          name: AsyncAnnotateFileResponse
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
+          name: AsyncBatchAnnotateFilesRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse
+          name: AsyncBatchAnnotateFilesResponse
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
+          name: AsyncBatchAnnotateImagesRequest
+        -
+          uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+          name: AsyncBatchAnnotateImagesResponse
+        -
+          uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
+          name: BatchAnnotateFilesRequest
+        -
+          uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
+          name: BatchAnnotateFilesResponse
+        -
+          uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
+          name: BatchAnnotateImagesRequest
+        -
+          uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
+          name: BatchAnnotateImagesResponse
+        -
+          uid: \Google\Cloud\Vision\V1\BatchOperationMetadata
+          name: BatchOperationMetadata
+        -
+          uid: \Google\Cloud\Vision\V1\Block
+          name: Block
+        -
+          uid: \Google\Cloud\Vision\V1\BoundingPoly
+          name: BoundingPoly
+        -
+          uid: \Google\Cloud\Vision\V1\ColorInfo
+          name: ColorInfo
+        -
+          uid: \Google\Cloud\Vision\V1\CreateProductRequest
+          name: CreateProductRequest
+        -
+          uid: \Google\Cloud\Vision\V1\CreateProductSetRequest
+          name: CreateProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+          name: CreateReferenceImageRequest
+        -
+          uid: \Google\Cloud\Vision\V1\CropHint
+          name: CropHint
+        -
+          uid: \Google\Cloud\Vision\V1\CropHintsAnnotation
+          name: CropHintsAnnotation
+        -
+          uid: \Google\Cloud\Vision\V1\CropHintsParams
+          name: CropHintsParams
+        -
+          uid: \Google\Cloud\Vision\V1\DeleteProductRequest
+          name: DeleteProductRequest
+        -
+          uid: \Google\Cloud\Vision\V1\DeleteProductSetRequest
+          name: DeleteProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+          name: DeleteReferenceImageRequest
+        -
+          uid: \Google\Cloud\Vision\V1\DominantColorsAnnotation
+          name: DominantColorsAnnotation
+        -
+          uid: \Google\Cloud\Vision\V1\EntityAnnotation
+          name: EntityAnnotation
+        -
+          uid: \Google\Cloud\Vision\V1\FaceAnnotation
+          name: FaceAnnotation
+        -
+          name: FaceAnnotation
+          uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+              name: Landmark
+        -
+          uid: \Google\Cloud\Vision\V1\Feature
+          name: Feature
+        -
+          uid: \Google\Cloud\Vision\V1\GcsDestination
+          name: GcsDestination
+        -
+          uid: \Google\Cloud\Vision\V1\GcsSource
+          name: GcsSource
+        -
+          uid: \Google\Cloud\Vision\V1\GetProductRequest
+          name: GetProductRequest
+        -
+          uid: \Google\Cloud\Vision\V1\GetProductSetRequest
+          name: GetProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\GetReferenceImageRequest
+          name: GetReferenceImageRequest
+        -
+          uid: \Google\Cloud\Vision\V1\Image
+          name: Image
+        -
+          uid: \Google\Cloud\Vision\V1\ImageAnnotationContext
+          name: ImageAnnotationContext
+        -
+          uid: \Google\Cloud\Vision\V1\ImageContext
+          name: ImageContext
+        -
+          uid: \Google\Cloud\Vision\V1\ImageProperties
+          name: ImageProperties
+        -
+          uid: \Google\Cloud\Vision\V1\ImageSource
+          name: ImageSource
+        -
+          uid: \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
+          name: ImportProductSetsGcsSource
+        -
+          uid: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
+          name: ImportProductSetsInputConfig
+        -
+          uid: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+          name: ImportProductSetsRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+          name: ImportProductSetsResponse
+        -
+          uid: \Google\Cloud\Vision\V1\InputConfig
+          name: InputConfig
+        -
+          uid: \Google\Cloud\Vision\V1\LatLongRect
+          name: LatLongRect
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductSetsRequest
+          name: ListProductSetsRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductSetsResponse
+          name: ListProductSetsResponse
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+          name: ListProductsInProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
+          name: ListProductsInProductSetResponse
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductsRequest
+          name: ListProductsRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ListProductsResponse
+          name: ListProductsResponse
+        -
+          uid: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+          name: ListReferenceImagesRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+          name: ListReferenceImagesResponse
+        -
+          uid: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
+          name: LocalizedObjectAnnotation
+        -
+          uid: \Google\Cloud\Vision\V1\LocationInfo
+          name: LocationInfo
+        -
+          uid: \Google\Cloud\Vision\V1\NormalizedVertex
+          name: NormalizedVertex
+        -
+          uid: \Google\Cloud\Vision\V1\OperationMetadata
+          name: OperationMetadata
+        -
+          uid: \Google\Cloud\Vision\V1\OutputConfig
+          name: OutputConfig
+        -
+          uid: \Google\Cloud\Vision\V1\Page
+          name: Page
+        -
+          uid: \Google\Cloud\Vision\V1\Paragraph
+          name: Paragraph
+        -
+          uid: \Google\Cloud\Vision\V1\Position
+          name: Position
+        -
+          uid: \Google\Cloud\Vision\V1\Product
+          name: Product
+        -
+          uid: \Google\Cloud\Vision\V1\ProductSearchParams
+          name: ProductSearchParams
+        -
+          uid: \Google\Cloud\Vision\V1\ProductSearchResults
+          name: ProductSearchResults
+        -
+          name: ProductSearchResults
+          uid: 'ns:Google\Cloud\Vision\V1\ProductSearchResults'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
+              name: GroupedResult
+            -
+              uid: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+              name: ObjectAnnotation
+            -
+              uid: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+              name: Result
+        -
+          uid: \Google\Cloud\Vision\V1\ProductSet
+          name: ProductSet
+        -
+          uid: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
+          name: ProductSetPurgeConfig
+        -
+          name: Product
+          uid: 'ns:Google\Cloud\Vision\V1\Product'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\Product\KeyValue
+              name: KeyValue
+        -
+          uid: \Google\Cloud\Vision\V1\Property
+          name: Property
+        -
+          uid: \Google\Cloud\Vision\V1\PurgeProductsRequest
+          name: PurgeProductsRequest
+        -
+          uid: \Google\Cloud\Vision\V1\ReferenceImage
+          name: ReferenceImage
+        -
+          uid: \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
+          name: RemoveProductFromProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\SafeSearchAnnotation
+          name: SafeSearchAnnotation
+        -
+          uid: \Google\Cloud\Vision\V1\Symbol
+          name: Symbol
+        -
+          uid: \Google\Cloud\Vision\V1\TextAnnotation
+          name: TextAnnotation
+        -
+          name: TextAnnotation
+          uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+              name: DetectedBreak
+            -
+              uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+              name: DetectedLanguage
+            -
+              uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+              name: TextProperty
+        -
+          uid: \Google\Cloud\Vision\V1\TextDetectionParams
+          name: TextDetectionParams
+        -
+          uid: \Google\Cloud\Vision\V1\UpdateProductRequest
+          name: UpdateProductRequest
+        -
+          uid: \Google\Cloud\Vision\V1\UpdateProductSetRequest
+          name: UpdateProductSetRequest
+        -
+          uid: \Google\Cloud\Vision\V1\Vertex
+          name: Vertex
+        -
+          uid: \Google\Cloud\Vision\V1\WebDetection
+          name: WebDetection
+        -
+          uid: \Google\Cloud\Vision\V1\WebDetectionParams
+          name: WebDetectionParams
+        -
+          name: WebDetection
+          uid: 'ns:Google\Cloud\Vision\V1\WebDetection'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+              name: WebEntity
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetection\WebImage
+              name: WebImage
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+              name: WebLabel
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetection\WebPage
+              name: WebPage
+        -
+          uid: \Google\Cloud\Vision\V1\Word
+          name: Word
+    -
+      name: Enums
+      uid: 'enums:Google\Cloud\Vision\V1'
+      items:
+        -
+          name: BatchOperationMetadata
+          uid: 'ns:Google\Cloud\Vision\V1\BatchOperationMetadata'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+              name: State
+        -
+          name: Block
+          uid: 'ns:Google\Cloud\Vision\V1\Block'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\Block\BlockType
+              name: BlockType
+        -
+          name: FaceAnnotation
+          uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation'
+          items:
+            -
+              name: Landmark
+              uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation\Landmark'
+              items:
+                - { uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type, name: Type }
+        -
+          name: Feature
+          uid: 'ns:Google\Cloud\Vision\V1\Feature'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\Feature\Type
+              name: Type
+        -
+          uid: \Google\Cloud\Vision\V1\Likelihood
+          name: Likelihood
+        -
+          name: OperationMetadata
+          uid: 'ns:Google\Cloud\Vision\V1\OperationMetadata'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\OperationMetadata\State
+              name: State
+        -
+          name: TextAnnotation
+          uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation'
+          items:
+            -
+              name: DetectedBreak
+              uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak'
+              items:
+                - { uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType, name: BreakType }
