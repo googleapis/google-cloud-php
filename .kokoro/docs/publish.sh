@@ -9,7 +9,8 @@ elif [ "$#" -ne 0 ]; then
 fi
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-PROJECT_DIR=${SCRIPT_DIR%/*}/..
+PROJECT_DIR=${SCRIPT_DIR%/*}
+PROJECT_DIR=${PROJECT_DIR%/*}
 
 # Run "composer install" if it hasn't been run yet
 if [ ! -d 'vendor/' ]; then
