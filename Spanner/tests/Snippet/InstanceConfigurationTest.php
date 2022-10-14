@@ -17,6 +17,8 @@
 
 namespace Google\Cloud\Spanner\Tests\Snippet;
 
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
+use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\Snippet\SnippetTestCase;
 use Google\Cloud\Core\Testing\TestHelpers;
@@ -48,8 +50,10 @@ class InstanceConfigurationTest extends SnippetTestCase
         $this->config = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT,
-            self::CONFIG
-        ]);
+            self::CONFIG,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+        ], ['connection', 'lroConnection']);
     }
 
     public function testClass()
@@ -62,6 +66,56 @@ class InstanceConfigurationTest extends SnippetTestCase
             InstanceAdminClient::instanceConfigName(self::PROJECT, self::CONFIG),
             $res->returnVal()->name()
         );
+    }
+
+    public function testCreate()
+    {
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'create');
+        $this->connection->createInstanceConfig(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn(['name' => 'operations/foo']);
+        $dummyConnection = $this->connection->reveal();
+        $baseConfig = new InstanceConfiguration(
+            $dummyConnection,
+            self::PROJECT,
+            self::CONFIG,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
+        );
+        $this->config->___setProperty('connection', $dummyConnection);
+        $snippet->addLocal('baseConfig', $baseConfig);
+        $snippet->addLocal('options', []);
+        $snippet->addLocal('instanceConfig', $this->config);
+
+        $res = $snippet->invoke('operation');
+        $this->assertInstanceOf(LongRunningOperation::class, $res->returnVal());
+    }
+
+    public function testUpdate()
+    {
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'update');
+        $snippet->addLocal('instanceConfig', $this->config);
+
+        $this->connection->updateInstanceConfig(Argument::any())
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->config->___setProperty('connection', $this->connection->reveal());
+        $snippet->invoke();
+    }
+
+    public function testDelete()
+    {
+        $snippet = $this->snippetFromMethod(InstanceConfiguration::class, 'delete');
+        $snippet->addLocal('instanceConfig', $this->config);
+
+        $this->connection->deleteInstanceConfig(Argument::any())
+            ->shouldBeCalled();
+
+        $this->config->___setProperty('connection', $this->connection->reveal());
+        $snippet->invoke();
     }
 
     public function testName()

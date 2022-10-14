@@ -36,9 +36,12 @@ use Google\Cloud\Spanner\Admin\Database\V1\OptimizeRestoredDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
 use Google\Cloud\Spanner\Admin\Database\V1\UpdateDatabaseDdlMetadata;
+use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\CreateInstanceMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
+use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceConfigMetadata;
 use Google\Cloud\Spanner\Admin\Instance\V1\UpdateInstanceMetadata;
 use Google\Cloud\Spanner\Operation;
 use Google\Cloud\Spanner\SpannerClient as ManualSpannerClient;
@@ -132,6 +135,14 @@ class Grpc implements ConnectionInterface
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.CreateDatabaseMetadata',
             'message' => CreateDatabaseMetadata::class
         ], [
+            'method' => 'createInstanceConfig',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata',
+            'message' => CreateInstanceConfigMetadata::class
+        ], [
+            'method' => 'updateInstanceConfig',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.UpdateInstanceConfigMetadata',
+            'message' => UpdateInstanceConfigMetadata::class
+        ], [
             'method' => 'createInstance',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceMetadata',
             'message' => CreateInstanceMetadata::class
@@ -163,6 +174,14 @@ class Grpc implements ConnectionInterface
             'method' => 'createDatabase',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.database.v1.Database',
             'message' => Database::class
+        ], [
+            'method' => 'createInstanceConfig',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
+            'message' => InstanceConfig::class
+        ], [
+            'method' => 'updateInstanceConfig',
+            'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.InstanceConfig',
+            'message' => InstanceConfig::class
         ], [
             'method' => 'createInstance',
             'typeUrl' => 'type.googleapis.com/google.spanner.admin.instance.v1.Instance',
@@ -273,6 +292,74 @@ class Grpc implements ConnectionInterface
             $this->pluck('name', $args),
             $this->addResourcePrefixHeader($args, $projectName)
         ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function createInstanceConfig(array $args)
+    {
+        $instanceConfigName = $args['name'];
+
+        $instanceConfig = $this->instanceConfigObject($args, true);
+        $res = $this->send([$this->getInstanceAdminClient(), 'createInstanceConfig'], [
+            $this->pluck('projectName', $args),
+            $this->pluck('instanceConfigId', $args),
+            $instanceConfig,
+            $this->addResourcePrefixHeader($args, $instanceConfigName)
+        ]);
+
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function updateInstanceConfig(array $args)
+    {
+        $instanceConfigName = $args['name'];
+
+        $instanceConfigArray = $this->instanceConfigArray($args);
+
+        $fieldMask = $this->fieldMask($instanceConfigArray);
+
+        $instanceConfigObject = $this->serializer->decodeMessage(new InstanceConfig(), $instanceConfigArray);
+
+        $res = $this->send([$this->getInstanceAdminClient(), 'updateInstanceConfig'], [
+            $instanceConfigObject,
+            $fieldMask,
+            $this->addResourcePrefixHeader($args, $instanceConfigName)
+        ]);
+
+        return $this->operationToArray($res, $this->serializer, $this->lroResponseMappers);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function deleteInstanceConfig(array $args)
+    {
+        $instanceConfigName = $this->pluck('name', $args);
+        return $this->send([$this->getInstanceAdminClient(), 'deleteInstanceConfig'], [
+            $instanceConfigName,
+            $this->addResourcePrefixHeader($args, $instanceConfigName)
+        ]);
+    }
+
+    /**
+     * @param array $args
+     */
+    public function listInstanceConfigOperations(array $args)
+    {
+        $projectName = $this->pluck('projectName', $args);
+        $result = $this->send([$this->getInstanceAdminClient(), 'listInstanceConfigOperations'], [
+            $projectName,
+            $this->addResourcePrefixHeader($args, $projectName)
+        ]);
+        foreach ($result['operations'] as $index => $operation) {
+            $result['operations'][$index] = $this->deserializeOperationArray($operation);
+        }
+        return $result;
     }
 
     /**
@@ -1228,6 +1315,45 @@ class Grpc implements ConnectionInterface
     }
 
     /**
+     * Converts a PHP array to an InstanceConfig proto message.
+     *
+     * @param array $args
+     * @param bool $required
+     * @return InstanceConfig
+     */
+    private function instanceConfigObject(array &$args, $required = false)
+    {
+        return $this->serializer->decodeMessage(
+            new InstanceConfig(),
+            $this->instanceConfigArray($args, $required)
+        );
+    }
+
+    /**
+     * Creates a PHP array with only the fields that are relevant for an InstanceConfig.
+     *
+     * @param array $args
+     * @param bool $required
+     * @return array
+     */
+    private function instanceConfigArray(array &$args, $required = false)
+    {
+        $argsCopy = $args;
+        return array_intersect_key([
+            'name' => $this->pluck('name', $args, $required),
+            'baseConfig' => $this->pluck('baseConfig', $args, $required),
+            'displayName' => $this->pluck('displayName', $args, $required),
+            'configType' => $this->pluck('configType', $args, $required),
+            'replicas' => $this->pluck('replicas', $args, $required),
+            'optionalReplicas' => $this->pluck('optionalReplicas', $args, $required),
+            'leaderOptions' => $this->pluck('leaderOptions', $args, $required),
+            'reconciling' => $this->pluck('reconciling', $args, $required),
+            'state' => $this->pluck('state', $args, $required),
+            'labels' => $this->pluck('labels', $args, $required),
+        ], $argsCopy);
+    }
+
+    /**
      * @param array $args
      * @param bool $required
      * @return Instance
@@ -1276,7 +1402,9 @@ class Grpc implements ConnectionInterface
     {
         $mask = [];
         foreach (array_keys($instanceArray) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key !== 'name') {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
         return $this->serializer->decodeMessage(new FieldMask(), ['paths' => $mask]);
     }
@@ -1385,7 +1513,6 @@ class Grpc implements ConnectionInterface
             return $this->instanceAdminClient;
         }
         //@codeCoverageIgnoreEnd
-
         $this->instanceAdminClient = $this->constructGapic(InstanceAdminClient::class, $this->grpcConfig);
 
         return $this->instanceAdminClient;
