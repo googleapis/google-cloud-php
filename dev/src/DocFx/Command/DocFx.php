@@ -127,7 +127,12 @@ class DocFx extends Command
         }
 
         // Write the TOC to a file
-        $tocYaml = Yaml::dump($tocItems, $inline, $indent, $flags);
+        $componentToc = [
+            'uid' => $this->getComponentUid(),
+            'name' => $this->getDistributionName(),
+            'items' => $tocItems,
+        ];
+        $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
         $outFile = sprintf('%s/toc.yml', $outDir);
         file_put_contents($outFile, $tocYaml);
 
@@ -233,6 +238,18 @@ class DocFx extends Command
             throw new RuntimeException('composer.json does not contain "name"');
         }
         return $this->composerJson['name'];
+    }
+
+    /**
+     * Formats distribution name like
+     *   - google-cloud-policy-troubleshooter
+     *   - google-cloud-vision
+     *   - google-grafeas
+     *   - google-analytics-data
+     */
+    private function getComponentUid(): string
+    {
+        return str_replace('/', '-', $this->getDistributionName());
     }
 
     private function getFriendlyApiName(): string
