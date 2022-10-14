@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Wraps a URI that might be displaying phishing content.
+ * Wraps a URI that might be displaying malicious content.
  *
  * Generated from protobuf message <code>google.cloud.webrisk.v1.Submission</code>
  */
 class Submission extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The URI that is being reported for phishing content to be analyzed.
+     * Required. The URI that is being reported for malicious content to be analyzed.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -29,7 +29,7 @@ class Submission extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           Required. The URI that is being reported for phishing content to be analyzed.
+     *           Required. The URI that is being reported for malicious content to be analyzed.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class Submission extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI that is being reported for phishing content to be analyzed.
+     * Required. The URI that is being reported for malicious content to be analyzed.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -49,7 +49,7 @@ class Submission extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The URI that is being reported for phishing content to be analyzed.
+     * Required. The URI that is being reported for malicious content to be analyzed.
      *
      * Generated from protobuf field <code>string uri = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

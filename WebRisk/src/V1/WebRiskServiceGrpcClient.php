@@ -97,7 +97,8 @@ class WebRiskServiceGrpcClient extends \Grpc\BaseStub {
      * content, the site will be added to the [Google's Social Engineering
      * lists](https://support.google.com/webmasters/answer/6350487/) in order to
      * protect users that could get exposed to this threat in the future. Only
-     * projects with CREATE_SUBMISSION_USERS visibility can use this method.
+     * allowlisted projects can use this method during Early Access. Please reach
+     * out to Sales or your customer engineer to obtain access.
      * @param \Google\Cloud\WebRisk\V1\CreateSubmissionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
