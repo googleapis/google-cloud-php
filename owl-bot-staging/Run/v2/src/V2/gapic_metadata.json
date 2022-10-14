@@ -1,0 +1,82 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.run.v2",
+    "libraryPackage": "Google\\Cloud\\Run\\V2",
+    "services": {
+        "Revisions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "RevisionsGapicClient",
+                    "rpcs": {
+                        "DeleteRevision": {
+                            "methods": [
+                                "deleteRevision"
+                            ]
+                        },
+                        "GetRevision": {
+                            "methods": [
+                                "getRevision"
+                            ]
+                        },
+                        "ListRevisions": {
+                            "methods": [
+                                "listRevisions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Services": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ServicesGapicClient",
+                    "rpcs": {
+                        "CreateService": {
+                            "methods": [
+                                "createService"
+                            ]
+                        },
+                        "DeleteService": {
+                            "methods": [
+                                "deleteService"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetService": {
+                            "methods": [
+                                "getService"
+                            ]
+                        },
+                        "ListServices": {
+                            "methods": [
+                                "listServices"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateService": {
+                            "methods": [
+                                "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
