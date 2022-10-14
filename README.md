@@ -105,6 +105,7 @@ $bucket->upload(
 // Download and store an object from the bucket locally.
 $object = $bucket->object('file_backup.txt');
 $object->downloadToFile('/data/file_backup.txt');
+```
 
 ### Authentication
 
