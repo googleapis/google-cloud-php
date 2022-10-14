@@ -15,6 +15,15 @@ use Google\Protobuf\Internal\GPBUtil;
  */
 class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
 {
+    /**
+     * Set this field true if users want Batch to help fetch drivers from a
+     * third party location and install them for GPUs specified in
+     * policy.accelerators or instance_template on their behalf. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
+     */
+    private $install_gpu_drivers = false;
     protected $policy_template;
 
     /**
@@ -29,6 +38,11 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
      *           Name of an instance template used to create VMs.
      *           Named the field as 'instance_template' instead of 'template' to avoid
      *           c++ keyword conflict.
+     *     @type bool $install_gpu_drivers
+     *           Set this field true if users want Batch to help fetch drivers from a
+     *           third party location and install them for GPUs specified in
+     *           policy.accelerators or instance_template on their behalf. Default is
+     *           false.
      * }
      */
     public function __construct($data = NULL) {
@@ -98,6 +112,38 @@ class InstancePolicyOrTemplate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->writeOneof(2, $var);
+
+        return $this;
+    }
+
+    /**
+     * Set this field true if users want Batch to help fetch drivers from a
+     * third party location and install them for GPUs specified in
+     * policy.accelerators or instance_template on their behalf. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
+     * @return bool
+     */
+    public function getInstallGpuDrivers()
+    {
+        return $this->install_gpu_drivers;
+    }
+
+    /**
+     * Set this field true if users want Batch to help fetch drivers from a
+     * third party location and install them for GPUs specified in
+     * policy.accelerators or instance_template on their behalf. Default is
+     * false.
+     *
+     * Generated from protobuf field <code>bool install_gpu_drivers = 3;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setInstallGpuDrivers($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->install_gpu_drivers = $var;
 
         return $this;
     }
