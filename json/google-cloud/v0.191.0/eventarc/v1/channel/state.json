@@ -1,0 +1,1 @@
+{"id":"eventarc\/v1\/channel\/state","type":"","title":"Google\\Cloud\\Eventarc\\V1\\Channel\\State","name":"State","description":"<p>State lists all the possible states of a Channel<\/p>\n<p>Protobuf type <code>google.cloud.eventarc.v1.Channel.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

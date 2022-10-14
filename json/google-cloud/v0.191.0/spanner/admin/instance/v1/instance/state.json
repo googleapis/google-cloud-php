@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/instance\/v1\/instance\/state","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Instance\\V1\\Instance\\State","name":"State","description":"<p>Indicates the current state of the instance.<\/p>\n<p>Protobuf type <code>google.spanner.admin.instance.v1.Instance.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

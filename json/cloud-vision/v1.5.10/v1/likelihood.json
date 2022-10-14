@@ -1,0 +1,1 @@
+{"id":"vision\/v1\/likelihood","type":"","title":"Google\\Cloud\\Vision\\V1\\Likelihood","name":"Likelihood","description":"<p>A bucketized representation of likelihood, which is intended to give clients\nhighly stable results across model upgrades.<\/p>\n<p>Protobuf type <code>google.cloud.vision.v1.Likelihood<\/code><\/p>","examples":[],"resources":[],"methods":[]}

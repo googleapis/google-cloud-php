@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/routinespec\/routinetype","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\RoutineSpec\\RoutineType","name":"RoutineType","description":"<p>The fine-grained type of the routine.<\/p>\n<p>Protobuf type <code>google.cloud.datacatalog.v1.RoutineSpec.RoutineType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

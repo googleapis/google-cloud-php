@@ -1,0 +1,1 @@
+{"id":"dlp\/v2\/relationaloperator","type":"","title":"Google\\Cloud\\Dlp\\V2\\RelationalOperator","name":"RelationalOperator","description":"<p>Operators available for comparing the value of fields.<\/p>\n<p>Protobuf type <code>google.privacy.dlp.v2.RelationalOperator<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/instance\/v1\/instanceconfig\/type","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Instance\\V1\\InstanceConfig\\Type","name":"Type","description":"<p>The type of this configuration.<\/p>\n<p>Protobuf type <code>google.spanner.admin.instance.v1.InstanceConfig.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

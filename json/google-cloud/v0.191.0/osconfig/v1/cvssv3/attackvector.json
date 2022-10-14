@@ -1,0 +1,1 @@
+{"id":"osconfig\/v1\/cvssv3\/attackvector","type":"","title":"Google\\Cloud\\OsConfig\\V1\\CVSSv3\\AttackVector","name":"AttackVector","description":"<p>This metric reflects the context by which vulnerability exploitation is\npossible.<\/p>\n<p>Protobuf type <code>google.cloud.osconfig.v1.CVSSv3.AttackVector<\/code><\/p>","examples":[],"resources":[],"methods":[]}

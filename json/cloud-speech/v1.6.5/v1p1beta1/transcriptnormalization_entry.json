@@ -1,0 +1,1 @@
+{"id":"speech\/v1p1beta1\/transcriptnormalization_entry","type":"","title":"Google\\Cloud\\Speech\\V1p1beta1\\TranscriptNormalization_Entry","name":"TranscriptNormalization_Entry","description":"<p>This class is deprecated. Use Google\\Cloud\\Speech\\V1p1beta1\\TranscriptNormalization\\Entry instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"asset\/v1\/iampolicyanalysisresult_identitylist","type":"","title":"Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisResult_IdentityList","name":"IamPolicyAnalysisResult_IdentityList","description":"<p>This class is deprecated. Use Google\\Cloud\\Asset\\V1\\IamPolicyAnalysisResult\\IdentityList instead.<\/p>","examples":[],"resources":[],"methods":[]}

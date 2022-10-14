@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/intent_message_mediacontent","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\Intent_Message_MediaContent","name":"Intent_Message_MediaContent","description":"<p>This class is deprecated. Use Google\\Cloud\\Dialogflow\\V2\\Intent\\Message\\MediaContent instead.<\/p>","examples":[],"resources":[],"methods":[]}

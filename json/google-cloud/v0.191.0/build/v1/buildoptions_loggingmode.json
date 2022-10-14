@@ -1,0 +1,1 @@
+{"id":"build\/v1\/buildoptions_loggingmode","type":"","title":"Google\\Cloud\\Build\\V1\\BuildOptions_LoggingMode","name":"BuildOptions_LoggingMode","description":"<p>This class is deprecated. Use Google\\Cloud\\Build\\V1\\BuildOptions\\LoggingMode instead.<\/p>","examples":[],"resources":[],"methods":[]}

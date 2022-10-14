@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/interconnectlocation\/continent","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\InterconnectLocation\\Continent","name":"Continent","description":"<p>Continent contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.InterconnectLocation.Continent descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/accessnumericfilter\/operation","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\AccessNumericFilter\\Operation","name":"Operation","description":"<p>The operation applied to a numeric filter.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.AccessNumericFilter.Operation<\/code><\/p>","examples":[],"resources":[],"methods":[]}

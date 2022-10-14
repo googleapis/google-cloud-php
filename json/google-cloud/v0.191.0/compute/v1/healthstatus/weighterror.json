@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/healthstatus\/weighterror","type":"","title":"Google\\Cloud\\Compute\\V1\\HealthStatus\\WeightError","name":"WeightError","description":"<p>Protobuf type <code>google.cloud.compute.v1.HealthStatus.WeightError<\/code><\/p>","examples":[],"resources":[],"methods":[]}

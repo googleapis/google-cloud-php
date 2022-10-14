@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/nodetemplate\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\NodeTemplate\\Status","name":"Status","description":"<p>[Output Only] The status of the node template. One of the following values: CREATING, READY, and DELETING.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.NodeTemplate.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

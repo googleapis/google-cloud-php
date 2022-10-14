@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes_accessreview","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes_AccessReview","name":"Kubernetes_AccessReview","description":"<p>This class is deprecated. Use Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\AccessReview instead.<\/p>","examples":[],"resources":[],"methods":[]}

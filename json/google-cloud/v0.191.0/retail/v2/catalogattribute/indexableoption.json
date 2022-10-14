@@ -1,0 +1,1 @@
+{"id":"retail\/v2\/catalogattribute\/indexableoption","type":"","title":"Google\\Cloud\\Retail\\V2\\CatalogAttribute\\IndexableOption","name":"IndexableOption","description":"<p>The status of the indexable option of a catalog attribute.<\/p>\n<p>Protobuf type <code>google.cloud.retail.v2.CatalogAttribute.IndexableOption<\/code><\/p>","examples":[],"resources":[],"methods":[]}
