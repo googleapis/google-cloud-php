@@ -132,7 +132,7 @@ class DocFx extends Command
             'name' => $this->getDistributionName(),
             'items' => $tocItems,
         ];
-        $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
+        $tocYaml = Yaml::dump($componentToc, $inline, $indent, $flags);
         $outFile = sprintf('%s/toc.yml', $outDir);
         file_put_contents($outFile, $tocYaml);
 
