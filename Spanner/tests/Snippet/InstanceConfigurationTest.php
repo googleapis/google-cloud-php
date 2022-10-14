@@ -80,7 +80,7 @@ class InstanceConfigurationTest extends SnippetTestCase
             self::PROJECT,
             self::CONFIG,
             [],
-            $this->prophesize(LongRunningConnectionInterface::class)->reveal(),
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         );
         $this->config->___setProperty('connection', $dummyConnection);
         $snippet->addLocal('baseConfig', $baseConfig);
