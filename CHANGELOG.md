@@ -1,5 +1,163 @@
 # Changelog
 
+## 0.191.0
+
+<details><summary>google/analytics-admin 0.7.0</summary>
+
+
+
+### Features
+
+* [AnalyticsAdmin] add `RunAccessReport` method to the Admin API v1alpha ([#5438](https://github.com/googleapis/google-cloud-php/issues/5438)) ([a9ed87d](https://github.com/googleapis/google-cloud-php/commit/a9ed87d81e1dd7b1435a546ec472996670a6578a))
+
+</details>
+
+<details><summary>google/analytics-data 0.9.0</summary>
+
+
+
+### Features
+
+* [AnalyticsData] add `subject_to_thresholding` field to `ResponseMetadata` type ([#5537](https://github.com/googleapis/google-cloud-php/issues/5537)) ([81f23b0](https://github.com/googleapis/google-cloud-php/commit/81f23b006bddf6581b3ffa5ef042a5646c2fc408))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.19.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-common-protos 0.3.6</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-core 1.47.3</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.16.4</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.7.1</summary>
+
+
+
+### Bug Fixes
+
+* [Dlp] deprecate extra field to avoid confusion ([#5525](https://github.com/googleapis/google-cloud-php/issues/5525)) ([e69dd8c](https://github.com/googleapis/google-cloud-php/commit/e69dd8ce8946842d37b845353d028713375852be))
+
+</details>
+
+<details><summary>google/cloud-filestore 0.1.7</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/grafeas 0.4.0</summary>
+
+
+
+### Features
+
+* [Grafeas] add new analysis status and cvss version fields ([#5526](https://github.com/googleapis/google-cloud-php/issues/5526)) ([993b152](https://github.com/googleapis/google-cloud-php/commit/993b1525031b3ac60bf3c2791b81175041a82402))
+
+</details>
+
+<details><summary>google/cloud-language 0.27.0</summary>
+
+
+
+### Features
+
+* [Language] Add support for V1 and V2 classification models for the V1Beta2 API ([#5516](https://github.com/googleapis/google-cloud-php/issues/5516)) ([b061dda](https://github.com/googleapis/google-cloud-php/commit/b061dda8d41ed5f78431f5eb780238ef77eae63a))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.39.1</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.54.0</summary>
+
+
+
+### Features
+
+* **Spanner:** Add support for PG JSONB ([#5482](https://github.com/googleapis/google-cloud-php/issues/5482)) ([a7a8bb3](https://github.com/googleapis/google-cloud-php/commit/a7a8bb37d9cde9ab416692a356f030b3fcab6145))
+* Support customer managed instance configurations ([#5523](https://github.com/googleapis/google-cloud-php/issues/5523)) ([33861f2](https://github.com/googleapis/google-cloud-php/commit/33861f204bd64094c8bcba7b0d4cb70c698e5bd3))
+
+
+### Miscellaneous Chores
+
+* **Spanner:** Removed JSONB array system tests ([#5543](https://github.com/googleapis/google-cloud-php/issues/5543)) ([b81351d](https://github.com/googleapis/google-cloud-php/commit/b81351d162bf0d8552ecc76235dc77bb975fd0e8))
+
+</details>
+
+<details><summary>google/cloud-speech 1.6.5</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
+<details><summary>google/cloud-vision 1.5.10</summary>
+
+
+
+### Miscellaneous Chores
+
+* Add action to run individual package tests ([#5325](https://github.com/googleapis/google-cloud-php/issues/5325)) ([50db1b5](https://github.com/googleapis/google-cloud-php/commit/50db1b5ea308815360ca62ac110d658e163f5700))
+
+</details>
+
 ## 0.190.0
 
 <details><summary>google/cloud-access-approval 0.5.2</summary>
