@@ -44,6 +44,8 @@ class PageTree
 
         $isDiregapic = false;
 
+        $protoPackages = [];
+
         foreach ($structure->file as $file) {
             // only document classes for now
             if (!isset($file->class[0])) {
@@ -68,19 +70,23 @@ class PageTree
                 continue;
             }
 
-            // Manually skip protobuf enums in favor of Gapic enums.
+            // Manually skip protobuf enums in favor of Gapic enums (see below).
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
             $isDiregapic = $isDiregapic || $classNode->isGapicEnumClass();
 
-            $fullName = $classNode->getFullname();
-
             // Manually skip Grpc classes
             // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
+            $fullName = $classNode->getFullname();
             if (
                 'GrpcClient' === substr($fullName, -10)
                 && '\Grpc\BaseStub' === $classNode->getExtends()
             ) {
                 continue;
+            }
+
+            // Create a map of protobuf package names to PHP namespaces (see below).
+            if ($classNode->isServiceClass()) {
+                $protoPackages[$classNode->getProtoPackage()] = ltrim($classNode->getNamespace(), '\\');
             }
 
             // Skip classes that are in the structure.xml but not a part of this namespace
@@ -101,6 +107,13 @@ class PageTree
                     unset($pages[$className]);
                 }
             }
+        }
+
+        /**
+         * Set a map of protobuf package names to PHP namespaces for Xrefs.
+         */
+        foreach ($pages as $page) {
+            $page->getClassNode()->setProtoPackages($protoPackages);
         }
 
         // Sort pages alphabetically by full class name
@@ -131,18 +144,6 @@ class PageTree
         }
 
         return $pages;
-    }
-
-    public function getProtoPackages(): array
-    {
-        $protoPackages = [];
-        foreach ($this->pages as $page) {
-            $classNode = $page->getClassNode();
-            if ($classNode->isServiceClass()) {
-                $protoPackages[$classNode->getProtoPackage()] = ltrim($classNode->getNamespace(), '\\');
-            }
-        }
-        return $protoPackages;
     }
 
     public function getTocItems(): array

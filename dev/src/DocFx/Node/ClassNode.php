@@ -25,6 +25,7 @@ class ClassNode
     use NameTrait;
 
     private $childNode;
+    private array $protoPackages = [];
 
     public function __construct(
         private SimpleXMLElement $xmlNode
@@ -72,14 +73,18 @@ class ClassNode
 
     public function getStatus(): string
     {
-        if (!$this->xmlNode->docblock) {
-            return '';
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ((string) $tag['name'] === 'deprecated') {
+                    return 'deprecated';
+                }
+            }
         }
 
-        foreach ($this->xmlNode->docblock->tag as $tag) {
-            if ((string) $tag['name'] === 'deprecated') {
-                return 'deprecated';
-            }
+        // If the namespace contains a segment like "V1alpha1/" or "/V1p1beta1/"
+        $regex = '/\\\V[0-9](p[0-9])?(beta|alpha)[0-9]?(\\\.*)?$/';
+        if (preg_match($regex, $this->getNamespace())) {
+            return 'beta';
         }
 
         return '';
@@ -109,7 +114,7 @@ class ClassNode
     {
         $methods = [];
         foreach ($this->xmlNode->method as $methodNode) {
-            $method = new MethodNode($methodNode);
+            $method = new MethodNode($methodNode, $this->protoPackages);
             if ($method->isPublic() && !$method->isInherited()) {
                 $methods[] = $method;
             }
@@ -129,7 +134,7 @@ class ClassNode
     {
         $constants = [];
         foreach ($this->xmlNode->constant as $constantNode) {
-            $constant = new ConstantNode($constantNode);
+            $constant = new ConstantNode($constantNode, $this->protoPackages);
             if ($constant->isPublic() && !$constant->isInherited()) {
                 $constants[] = $constant;
             }
@@ -166,5 +171,10 @@ class ClassNode
             }
         }
         return null;
+    }
+
+    public function setProtoPackages(array $protoPackages)
+    {
+        $this->protoPackages = $protoPackages;
     }
 }

@@ -55,10 +55,6 @@ class OverviewPage
             'href' => 'index.md'
         ];
 
-        if ($this->isBeta) {
-            $tocItem['status'] = 'beta';
-        }
-
         return $tocItem;
     }
 
