@@ -5,6 +5,30 @@
     "protoPackage": "google.cloud.channel.v1",
     "libraryPackage": "Google\\Cloud\\Channel\\V1",
     "services": {
+        "CloudChannelReportsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudChannelReportsServiceGapicClient",
+                    "rpcs": {
+                        "FetchReportResults": {
+                            "methods": [
+                                "fetchReportResults"
+                            ]
+                        },
+                        "ListReports": {
+                            "methods": [
+                                "listReports"
+                            ]
+                        },
+                        "RunReportJob": {
+                            "methods": [
+                                "runReportJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "CloudChannelService": {
             "clients": {
                 "grpc": {

@@ -42,12 +42,12 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * The super admin of the resold customer generates this token to
+     * Optional. The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5;</code>
+     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $auth_token = '';
     /**
@@ -89,7 +89,7 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
      *           [CloudChannelService.ListTransferableSkus][google.cloud.channel.v1.CloudChannelService.ListTransferableSkus] call.
      *           Optional.
      *     @type string $auth_token
-     *           The super admin of the resold customer generates this token to
+     *           Optional. The super admin of the resold customer generates this token to
      *           authorize a reseller to access their Cloud Identity and purchase
      *           entitlements on their behalf. You can omit this token after authorization.
      *           See https://support.google.com/a/answer/7643790 for more details.
@@ -268,12 +268,12 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The super admin of the resold customer generates this token to
+     * Optional. The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5;</code>
+     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getAuthToken()
@@ -282,12 +282,12 @@ class ListTransferableSkusRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The super admin of the resold customer generates this token to
+     * Optional. The super admin of the resold customer generates this token to
      * authorize a reseller to access their Cloud Identity and purchase
      * entitlements on their behalf. You can omit this token after authorization.
      * See https://support.google.com/a/answer/7643790 for more details.
      *
-     * Generated from protobuf field <code>string auth_token = 5;</code>
+     * Generated from protobuf field <code>string auth_token = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

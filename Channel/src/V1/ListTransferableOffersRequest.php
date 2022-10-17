@@ -45,11 +45,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      */
     private $sku = '';
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $language_code = '';
     protected $transferred_customer_identity;
@@ -79,7 +79,7 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
      *     @type string $sku
      *           Required. The SKU to look up Offers for.
      *     @type string $language_code
-     *           The BCP-47 language code. For example, "en-US". The
+     *           Optional. The BCP-47 language code. For example, "en-US". The
      *           response will localize in the corresponding language code, if specified.
      *           The default value is "en-US".
      * }
@@ -268,11 +268,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getLanguageCode()
@@ -281,11 +281,11 @@ class ListTransferableOffersRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code. For example, "en-US". The
+     * Optional. The BCP-47 language code. For example, "en-US". The
      * response will localize in the corresponding language code, if specified.
      * The default value is "en-US".
      *
-     * Generated from protobuf field <code>string language_code = 7;</code>
+     * Generated from protobuf field <code>string language_code = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */
