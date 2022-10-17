@@ -172,21 +172,66 @@ class NodeTest extends TestCase
     public function testProtoRefWithXrefUsingPackageName()
     {
         $description = '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]';
+        $protoPackages = ['google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2'];
 
         $xref = new class {
             use XrefTrait;
+            public $protoPackages;
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
             }
         };
 
-        XrefTrait::$protoPackagesToPhpNamespaces = [
-            'google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2',
-        ];
+        $xref->protoPackages = $protoPackages;
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
             $xref->replace($description)
         );
+
+        $classNode = new ClassNode(new SimpleXMLElement(sprintf(
+            '<class><docblock><description>%s</description></docblock></class>',
+            $description
+        )));
+
+        $classNode->setProtoPackages($protoPackages);
+
+        $this->assertEquals(
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            $classNode->getContent()
+        );
+    }
+
+    /**
+     * @dataProvider provideClassNodeStatusByVersion
+     */
+    public function testClassNodeStatusByVersion(string $version, string $status)
+    {
+        $serviceXml = str_replace(
+            '\Google\Cloud\Vision\V1',
+            '\Google\Cloud\Vision\\' . $version,
+            file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml'));
+        $class = new ClassNode(new SimpleXMLElement($serviceXml));
+
+        $this->assertTrue($class->isServiceClass());
+        $this->assertEquals($status, $class->getStatus());
+    }
+
+    public function provideClassNodeStatusByVersion()
+    {
+        return [
+            ['V1alpha', 'beta'],
+            ['V1beta', 'beta'],
+            ['V1alpha1', 'beta'],
+            ['V1beta1', 'beta'],
+            ['V1p1beta1', 'beta'],
+            ['V1p1alpha1', 'beta'],
+            ['V2p2beta2', 'beta'],
+            ['V1beta1\Foo', 'beta'],
+            ['V1beta\Foo', 'beta'],
+            ['V1', ''],
+            ['V1p1zeta1', ''],
+            ['V1z1beta', ''],
+        ];
     }
 }

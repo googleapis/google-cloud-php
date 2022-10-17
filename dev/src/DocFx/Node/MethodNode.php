@@ -26,7 +26,8 @@ class MethodNode
     use VisibilityTrait;
 
     public function __construct(
-        private SimpleXMLElement $xmlNode
+        private SimpleXMLElement $xmlNode,
+        private array $protoPackages = []
     ) {}
 
     public function getReturnType(): string
