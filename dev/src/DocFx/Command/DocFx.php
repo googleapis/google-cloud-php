@@ -113,10 +113,11 @@ class DocFx extends Command
             $tocItems = array_merge($tocItems, $pages->getTocItems());
         }
 
+        $releaseLevel = $this->getReleaseLevel();
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $this->getReleaseLevel() === 'beta'
+                $releaseLevel === 'beta'
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -125,11 +126,12 @@ class DocFx extends Command
         }
 
         // Write the TOC to a file
-        $componentToc = [
+        $componentToc = array_filter([
             'uid' => $this->getComponentUid(),
             'name' => $this->getDistributionName(),
+            'status' => $releaseLevel === 'beta' ? 'beta' : '',
             'items' => $tocItems,
-        ];
+        ]);
         $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
         $outFile = sprintf('%s/toc.yml', $outDir);
         file_put_contents($outFile, $tocYaml);
