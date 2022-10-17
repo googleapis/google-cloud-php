@@ -191,7 +191,7 @@ class NodeTest extends TestCase
     }
 
     /**
-     * @dataProvider provideClassNodeStatus
+     * @dataProvider provideClassNodeStatusByVersion
      */
     public function testClassNodeStatusByVersion(string $version, string $status)
     {
