@@ -88,7 +88,7 @@ class DocFx extends Command
         $output->write(sprintf('Writing output to <fg=white>%s</>... ', $outDir));
 
         // YAML dump configuration
-        $inline = 9; // The level where you switch to inline YAML
+        $inline = 11; // The level where you switch to inline YAML
         $indent = 2; // The amount of spaces to use for indentation of nested nodes
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 

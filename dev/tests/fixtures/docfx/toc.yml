@@ -120,7 +120,9 @@
               name: FaceAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation'
               items:
-                - { uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark, name: Landmark }
+                -
+                  uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
+                  name: Landmark
             -
               uid: \Google\Cloud\Vision\V1\Feature
               name: Feature
@@ -233,9 +235,15 @@
               name: ProductSearchResults
               uid: 'ns:Google\Cloud\Vision\V1\ProductSearchResults'
               items:
-                - { uid: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult, name: GroupedResult }
-                - { uid: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation, name: ObjectAnnotation }
-                - { uid: \Google\Cloud\Vision\V1\ProductSearchResults\Result, name: Result }
+                -
+                  uid: \Google\Cloud\Vision\V1\ProductSearchResults\GroupedResult
+                  name: GroupedResult
+                -
+                  uid: \Google\Cloud\Vision\V1\ProductSearchResults\ObjectAnnotation
+                  name: ObjectAnnotation
+                -
+                  uid: \Google\Cloud\Vision\V1\ProductSearchResults\Result
+                  name: Result
             -
               uid: \Google\Cloud\Vision\V1\ProductSet
               name: ProductSet
@@ -246,7 +254,9 @@
               name: Product
               uid: 'ns:Google\Cloud\Vision\V1\Product'
               items:
-                - { uid: \Google\Cloud\Vision\V1\Product\KeyValue, name: KeyValue }
+                -
+                  uid: \Google\Cloud\Vision\V1\Product\KeyValue
+                  name: KeyValue
             -
               uid: \Google\Cloud\Vision\V1\Property
               name: Property
@@ -272,9 +282,15 @@
               name: TextAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation'
               items:
-                - { uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak, name: DetectedBreak }
-                - { uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage, name: DetectedLanguage }
-                - { uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty, name: TextProperty }
+                -
+                  uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
+                  name: DetectedBreak
+                -
+                  uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedLanguage
+                  name: DetectedLanguage
+                -
+                  uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
+                  name: TextProperty
             -
               uid: \Google\Cloud\Vision\V1\TextDetectionParams
               name: TextDetectionParams
@@ -297,10 +313,18 @@
               name: WebDetection
               uid: 'ns:Google\Cloud\Vision\V1\WebDetection'
               items:
-                - { uid: \Google\Cloud\Vision\V1\WebDetection\WebEntity, name: WebEntity }
-                - { uid: \Google\Cloud\Vision\V1\WebDetection\WebImage, name: WebImage }
-                - { uid: \Google\Cloud\Vision\V1\WebDetection\WebLabel, name: WebLabel }
-                - { uid: \Google\Cloud\Vision\V1\WebDetection\WebPage, name: WebPage }
+                -
+                  uid: \Google\Cloud\Vision\V1\WebDetection\WebEntity
+                  name: WebEntity
+                -
+                  uid: \Google\Cloud\Vision\V1\WebDetection\WebImage
+                  name: WebImage
+                -
+                  uid: \Google\Cloud\Vision\V1\WebDetection\WebLabel
+                  name: WebLabel
+                -
+                  uid: \Google\Cloud\Vision\V1\WebDetection\WebPage
+                  name: WebPage
             -
               uid: \Google\Cloud\Vision\V1\Word
               name: Word
@@ -312,22 +336,32 @@
               name: BatchOperationMetadata
               uid: 'ns:Google\Cloud\Vision\V1\BatchOperationMetadata'
               items:
-                - { uid: \Google\Cloud\Vision\V1\BatchOperationMetadata\State, name: State }
+                -
+                  uid: \Google\Cloud\Vision\V1\BatchOperationMetadata\State
+                  name: State
             -
               name: Block
               uid: 'ns:Google\Cloud\Vision\V1\Block'
               items:
-                - { uid: \Google\Cloud\Vision\V1\Block\BlockType, name: BlockType }
+                -
+                  uid: \Google\Cloud\Vision\V1\Block\BlockType
+                  name: BlockType
             -
               name: FaceAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation'
               items:
-                - { name: Landmark, uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation\Landmark', items: [{ uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type, name: Type }] }
+                -
+                  name: Landmark
+                  uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation\Landmark'
+                  items:
+                    - { uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type, name: Type }
             -
               name: Feature
               uid: 'ns:Google\Cloud\Vision\V1\Feature'
               items:
-                - { uid: \Google\Cloud\Vision\V1\Feature\Type, name: Type }
+                -
+                  uid: \Google\Cloud\Vision\V1\Feature\Type
+                  name: Type
             -
               uid: \Google\Cloud\Vision\V1\Likelihood
               name: Likelihood
@@ -335,9 +369,15 @@
               name: OperationMetadata
               uid: 'ns:Google\Cloud\Vision\V1\OperationMetadata'
               items:
-                - { uid: \Google\Cloud\Vision\V1\OperationMetadata\State, name: State }
+                -
+                  uid: \Google\Cloud\Vision\V1\OperationMetadata\State
+                  name: State
             -
               name: TextAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation'
               items:
-                - { name: DetectedBreak, uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak', items: [{ uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType, name: BreakType }] }
+                -
+                  name: DetectedBreak
+                  uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak'
+                  items:
+                    - { uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak\BreakType, name: BreakType }
