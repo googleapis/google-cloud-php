@@ -172,21 +172,33 @@ class NodeTest extends TestCase
     public function testProtoRefWithXrefUsingPackageName()
     {
         $description = '[ListBackups][google.bigtable.admin.v2.BigtableTableAdmin.ListBackups]';
+        $protoPackages = ['google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2'];
 
         $xref = new class {
             use XrefTrait;
+            public $protoPackages;
             public function replace(string $description) {
                 return $this->replaceProtoRef($description);
             }
         };
 
-        XrefTrait::$protoPackagesToPhpNamespaces = [
-            'google.bigtable.admin.v2' => 'Google\\Cloud\\Bigtable\\Admin\\V2',
-        ];
+        $xref->protoPackages = $protoPackages;
 
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
             $xref->replace($description)
+        );
+
+        $classNode = new ClassNode(new SimpleXMLElement(sprintf(
+            '<class><docblock><description>%s</description></docblock></class>',
+            $description
+        )));
+
+        $classNode->setProtoPackages($protoPackages);
+
+        $this->assertEquals(
+            '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
+            $classNode->getContent()
         );
     }
 

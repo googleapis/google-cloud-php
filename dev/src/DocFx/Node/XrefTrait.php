@@ -19,8 +19,6 @@ namespace Google\Cloud\Dev\DocFx\Node;
 
 trait XrefTrait
 {
-    public static $protoPackagesToPhpNamespaces = [];
-
     /**
      * @param string $type            The parameter type to replace
      */
@@ -106,7 +104,7 @@ trait XrefTrait
 
                 // Check the package name against the proto packages for this component (see Command\DocFx)
                 $namespace =
-                    XrefTrait::$protoPackagesToPhpNamespaces[$package]
+                    $this->protoPackages[$package]
                     ?? str_replace(' ', '\\', ucwords(str_replace('.', ' ', $package)));
 
                 $classParts = explode('.', $class);

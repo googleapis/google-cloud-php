@@ -25,6 +25,7 @@ class ClassNode
     use NameTrait;
 
     private $childNode;
+    private array $protoPackages = [];
 
     public function __construct(
         private SimpleXMLElement $xmlNode
@@ -113,7 +114,7 @@ class ClassNode
     {
         $methods = [];
         foreach ($this->xmlNode->method as $methodNode) {
-            $method = new MethodNode($methodNode);
+            $method = new MethodNode($methodNode, $this->protoPackages);
             if ($method->isPublic() && !$method->isInherited()) {
                 $methods[] = $method;
             }
@@ -133,7 +134,7 @@ class ClassNode
     {
         $constants = [];
         foreach ($this->xmlNode->constant as $constantNode) {
-            $constant = new ConstantNode($constantNode);
+            $constant = new ConstantNode($constantNode, $this->protoPackages);
             if ($constant->isPublic() && !$constant->isInherited()) {
                 $constants[] = $constant;
             }
@@ -170,5 +171,10 @@ class ClassNode
             }
         }
         return null;
+    }
+
+    public function setProtoPackages(array $protoPackages)
+    {
+        $this->protoPackages = $protoPackages;
     }
 }

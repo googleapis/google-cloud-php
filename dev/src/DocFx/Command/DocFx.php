@@ -25,7 +25,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
-use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 
@@ -98,7 +97,6 @@ class DocFx extends Command
         foreach ($namespaces as $namespace) {
             $pages = new PageTree($xml, $namespace, $friendlyApiName);
             $pageList = $pages->getPages();
-            XrefTrait::$protoPackagesToPhpNamespaces = $pages->getProtoPackages();
 
             foreach ($pageList as $page) {
                 $docFxArray = ['items' => $page->getItems()];
