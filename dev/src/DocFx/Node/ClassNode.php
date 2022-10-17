@@ -72,14 +72,18 @@ class ClassNode
 
     public function getStatus(): string
     {
-        if (!$this->xmlNode->docblock) {
-            return '';
+        if ($this->xmlNode->docblock) {
+            foreach ($this->xmlNode->docblock->tag as $tag) {
+                if ((string) $tag['name'] === 'deprecated') {
+                    return 'deprecated';
+                }
+            }
         }
 
-        foreach ($this->xmlNode->docblock->tag as $tag) {
-            if ((string) $tag['name'] === 'deprecated') {
-                return 'deprecated';
-            }
+        // If the namespace contains a segment like "V1alpha1/" or "/V1p1beta1/"
+        $regex = '/\\\V[0-9](p[0-9])?(beta|alpha)[0-9]?(\\\.*)?$/';
+        if (preg_match($regex, $this->getNamespace())) {
+            return 'beta';
         }
 
         return '';
