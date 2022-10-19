@@ -67,7 +67,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\LatLongRect $lat_long_rect
      *           Not used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_hints
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_hints
      *           List of languages to use for TEXT_DETECTION. In most cases, an empty value
      *           yields the best results since it enables automatic language detection. For
      *           languages based on the Latin alphabet, setting `language_hints` is not
@@ -156,7 +156,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * [supported languages](https://cloud.google.com/vision/docs/languages).
      *
      * Generated from protobuf field <code>repeated string language_hints = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageHints($var)

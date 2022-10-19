@@ -24,6 +24,12 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool enable_text_detection_confidence_score = 9;</code>
      */
     private $enable_text_detection_confidence_score = false;
+    /**
+     * A list of advanced OCR options to fine-tune OCR behavior.
+     *
+     * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+     */
+    private $advanced_ocr_options;
 
     /**
      * Constructor.
@@ -35,6 +41,8 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
      *           By default, Cloud Vision API only includes confidence score for
      *           DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence
      *           score for TEXT_DETECTION as well.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $advanced_ocr_options
+     *           A list of advanced OCR options to fine-tune OCR behavior.
      * }
      */
     public function __construct($data = NULL) {
@@ -68,6 +76,32 @@ class TextDetectionParams extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->enable_text_detection_confidence_score = $var;
+
+        return $this;
+    }
+
+    /**
+     * A list of advanced OCR options to fine-tune OCR behavior.
+     *
+     * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAdvancedOcrOptions()
+    {
+        return $this->advanced_ocr_options;
+    }
+
+    /**
+     * A list of advanced OCR options to fine-tune OCR behavior.
+     *
+     * Generated from protobuf field <code>repeated string advanced_ocr_options = 11;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAdvancedOcrOptions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->advanced_ocr_options = $arr;
 
         return $this;
     }
