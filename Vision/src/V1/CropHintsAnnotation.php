@@ -28,7 +28,7 @@ class CropHintsAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\CropHint[]|\Google\Protobuf\Internal\RepeatedField $crop_hints
+     *     @type array<\Google\Cloud\Vision\V1\CropHint>|\Google\Protobuf\Internal\RepeatedField $crop_hints
      *           Crop hint results.
      * }
      */
@@ -52,7 +52,7 @@ class CropHintsAnnotation extends \Google\Protobuf\Internal\Message
      * Crop hint results.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.CropHint crop_hints = 1;</code>
-     * @param \Google\Cloud\Vision\V1\CropHint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\CropHint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCropHints($var)
