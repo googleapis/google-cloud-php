@@ -7,20 +7,20 @@ return [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Vision\V1\ImportProductSetsResponse',
                     'metadataReturnType' => '\Google\Cloud\Vision\V1\BatchOperationMetadata',
-                    'initialPollDelayMillis' => '20000',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '45000',
-                    'totalPollTimeoutMillis' => '86400000',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'PurgeProducts' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Protobuf\GPBEmpty',
                     'metadataReturnType' => '\Google\Cloud\Vision\V1\BatchOperationMetadata',
-                    'initialPollDelayMillis' => '20000',
+                    'initialPollDelayMillis' => '500',
                     'pollDelayMultiplier' => '1.5',
-                    'maxPollDelayMillis' => '45000',
-                    'totalPollTimeoutMillis' => '86400000',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
                 ],
             ],
             'ListProductSets' => [

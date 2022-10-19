@@ -85,7 +85,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or
      *           "general-v1". The legacy categories "homegoods", "apparel", and "toys" are
      *           still supported, but these should not be used for new products.
-     *     @type \Google\Cloud\Vision\V1\Product\KeyValue[]|\Google\Protobuf\Internal\RepeatedField $product_labels
+     *     @type array<\Google\Cloud\Vision\V1\Product\KeyValue>|\Google\Protobuf\Internal\RepeatedField $product_labels
      *           Key-value pairs that can be attached to a product. At query time,
      *           constraints can be specified based on the product_labels.
      *           Note that integer values can be provided as strings, e.g. "1199". Only
@@ -256,7 +256,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * will refuse to work for that ProductSet.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Product.KeyValue product_labels = 5;</code>
-     * @param \Google\Cloud\Vision\V1\Product\KeyValue[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Product\KeyValue>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProductLabels($var)
