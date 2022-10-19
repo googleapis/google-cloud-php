@@ -3,11 +3,11 @@ build/
 composer.phar
 composer.lock
 composer-local.*
-.phpunit.result.cache
 docs/json/**/*
 vendor/
 .idea/
 *.iml
+.phpunit.result.cache
 
 # do not delete
 keys/
