@@ -2,8 +2,7 @@
 build/
 composer.phar
 composer.lock
-composer-local.json
-composer-local.lock
+composer-local.*
 .phpunit.result.cache
 docs/json/**/*
 vendor/
