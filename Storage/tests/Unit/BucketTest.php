@@ -348,27 +348,6 @@ class BucketTest extends TestCase
         $this->assertTrue($bucket->info()['versioning']['enabled']);
     }
 
-    public function testUpdateAutoclassConfig()
-    {
-        $autoclassConfig = [
-            'autoclass' => [
-                'enabled' => true,
-            ],
-        ];
-        $this->connection->patchBucket(Argument::any())->willReturn(
-            ['name' => 'bucket'] +
-            $autoclassConfig +
-            ['autoclass' => ['toggleTime' => '2022-09-18T01:01:01.045123456Z']]
-        );
-        $bucket = $this->getBucket([
-            'name' => 'bucket',
-        ] + $autoclassConfig);
-
-        $bucket->update($autoclassConfig);
-
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
-    }
-
     public function testUpdatesDataWithLifecycleBuilder()
     {
         $lifecycleArr = ['test' => 'test'];
