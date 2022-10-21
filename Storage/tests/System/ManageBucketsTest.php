@@ -163,29 +163,6 @@ class ManageBucketsTest extends StorageTestCase
         $this->assertEquals($lifecycle->toArray(), $bucket->info()['lifecycle']);
     }
 
-    public function testUpdateBucketWithAutoclassConfig()
-    {
-        $autoclassConfig = [
-            'autoclass' => [
-                'enabled' => true,
-            ],
-        ];
-
-        $bucket = self::createBucket(
-            self::$client,
-            uniqid(self::TESTING_PREFIX),
-            $autoclassConfig
-        );
-        $this->assertArrayHasKey('autoclass', $bucket->info());
-        $this->assertTrue($bucket->info()['autoclass']['enabled']);
-
-        // test disabling autoclass
-        $autoclassConfig['autoclass']['enabled'] = false;
-        $bucket->update($autoclassConfig);
-        $this->assertArrayHasKey('autoclass', $bucket->info());
-        $this->assertFalse($bucket->info()['autoclass']['enabled']);
-    }
-
     public function lifecycleRules()
     {
         return [
