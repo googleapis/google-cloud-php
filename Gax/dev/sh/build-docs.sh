@@ -48,12 +48,13 @@ function buildDocs() {
 }
 
 # Remove "v" from start of string if it exists
+GIT_TAG_NUMBER=$GIT_TAG_NAME
 if [[ ${GIT_TAG_NAME::1} == "v" ]]
 then
-  GIT_TAG_NAME="${GIT_TAG_NAME:1}"
+  GIT_TAG_NUMBER="${GIT_TAG_NAME:1}"
 fi
 
-checkVersionFile ${GIT_TAG_NAME}
+checkVersionFile ${GIT_TAG_NUMBER}
 downloadDoctum
 buildDocs ${GIT_TAG_NAME}
 
