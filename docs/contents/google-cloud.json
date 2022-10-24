@@ -111,6 +111,7 @@
         "cloud-secret-manager",
         "cloud-security-center",
         "cloud-security-private-ca",
+        "cloud-security-public-ca",
         "cloud-service-control",
         "cloud-service-directory",
         "cloud-service-management",
