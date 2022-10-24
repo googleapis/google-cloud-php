@@ -212,6 +212,14 @@
             ]
         },
         {
+            "id": "cloud-api-keys",
+            "name": "google/cloud-api-keys",
+            "defaultService": "apikeys/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-apigee-connect",
             "name": "google/cloud-apigee-connect",
             "defaultService": "apigeeconnect/readme",
