@@ -6,7 +6,9 @@
     "autoload": {
         "psr-4": {
             "Google\\Cloud\\GSuiteAddOns\\": "src",
-            "GPBMetadata\\Google\\Cloud\\Gsuiteaddons\\": "metadata"
+            "Google\\Apps\\Script\\Type\\": "external/protos",
+            "GPBMetadata\\Google\\Cloud\\Gsuiteaddons\\": "metadata",
+            "GPBMetadata\\Google\\Apps\\Script\\Type\\": "external/metadata"
         }
     },
     "extra": {

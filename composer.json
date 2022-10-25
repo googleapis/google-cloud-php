@@ -221,6 +221,7 @@
             "GPBMetadata\\Google\\Api\\Servicemanagement\\": "ServiceManagement/metadata",
             "GPBMetadata\\Google\\Api\\Serviceusage\\": "ServiceUsage/metadata",
             "GPBMetadata\\Google\\Appengine\\": "AppEngineAdmin/metadata",
+            "GPBMetadata\\Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/metadata",
             "GPBMetadata\\Google\\Bigtable\\": "Bigtable/metadata",
             "GPBMetadata\\Google\\Cloud\\Accessapproval\\": "AccessApproval/metadata",
             "GPBMetadata\\Google\\Cloud\\Aiplatform\\": "AiPlatform/metadata",
@@ -353,6 +354,7 @@
             "Google\\Analytics\\Admin\\": "AnalyticsAdmin/src",
             "Google\\Analytics\\Data\\": "AnalyticsData/src",
             "Google\\ApiCore\\LongRunning\\": "LongRunning/src/ApiCore/LongRunning",
+            "Google\\Apps\\Script\\Type\\": "GSuiteAddOns/external/protos",
             "Google\\Cloud\\": [
                 "src",
                 "CommonProtos/src"
