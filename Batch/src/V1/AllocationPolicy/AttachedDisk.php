@@ -18,7 +18,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
 {
     /**
      * Device name that the guest operating system will see.
-     * If not specified, this is default to the disk name.
+     * It is used by Runnable.volumes field to mount disks. So please specify
+     * the device_name if you want Batch to help mount the disk, and it should
+     * match the device_name field in volumes.
      *
      * Generated from protobuf field <code>string device_name = 3;</code>
      */
@@ -36,7 +38,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
      *           Name of an existing PD.
      *     @type string $device_name
      *           Device name that the guest operating system will see.
-     *           If not specified, this is default to the disk name.
+     *           It is used by Runnable.volumes field to mount disks. So please specify
+     *           the device_name if you want Batch to help mount the disk, and it should
+     *           match the device_name field in volumes.
      * }
      */
     public function __construct($data = NULL) {
@@ -104,7 +108,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
 
     /**
      * Device name that the guest operating system will see.
-     * If not specified, this is default to the disk name.
+     * It is used by Runnable.volumes field to mount disks. So please specify
+     * the device_name if you want Batch to help mount the disk, and it should
+     * match the device_name field in volumes.
      *
      * Generated from protobuf field <code>string device_name = 3;</code>
      * @return string
@@ -116,7 +122,9 @@ class AttachedDisk extends \Google\Protobuf\Internal\Message
 
     /**
      * Device name that the guest operating system will see.
-     * If not specified, this is default to the disk name.
+     * It is used by Runnable.volumes field to mount disks. So please specify
+     * the device_name if you want Batch to help mount the disk, and it should
+     * match the device_name field in volumes.
      *
      * Generated from protobuf field <code>string device_name = 3;</code>
      * @param string $var
