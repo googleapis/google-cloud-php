@@ -137,6 +137,12 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataproc.v1.MetastoreConfig metastore_config = 20 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $metastore_config = null;
+    /**
+     * Optional. The config for Dataproc metrics.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $dataproc_metric_config = null;
 
     /**
      * Constructor.
@@ -210,6 +216,8 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
      *           Optional. Port/endpoint configuration for this cluster
      *     @type \Google\Cloud\Dataproc\V1\MetastoreConfig $metastore_config
      *           Optional. Metastore configuration.
+     *     @type \Google\Cloud\Dataproc\V1\DataprocMetricConfig $dataproc_metric_config
+     *           Optional. The config for Dataproc metrics.
      * }
      */
     public function __construct($data = NULL) {
@@ -763,6 +771,42 @@ class ClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\MetastoreConfig::class);
         $this->metastore_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The config for Dataproc metrics.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Dataproc\V1\DataprocMetricConfig|null
+     */
+    public function getDataprocMetricConfig()
+    {
+        return $this->dataproc_metric_config;
+    }
+
+    public function hasDataprocMetricConfig()
+    {
+        return isset($this->dataproc_metric_config);
+    }
+
+    public function clearDataprocMetricConfig()
+    {
+        unset($this->dataproc_metric_config);
+    }
+
+    /**
+     * Optional. The config for Dataproc metrics.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataproc.v1.DataprocMetricConfig dataproc_metric_config = 23 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Dataproc\V1\DataprocMetricConfig $var
+     * @return $this
+     */
+    public function setDataprocMetricConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataproc\V1\DataprocMetricConfig::class);
+        $this->dataproc_metric_config = $var;
 
         return $this;
     }
