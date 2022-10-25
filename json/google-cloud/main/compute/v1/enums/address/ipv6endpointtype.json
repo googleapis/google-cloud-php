@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/address\/ipv6endpointtype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Address\\Ipv6EndpointType","name":"Ipv6EndpointType","description":"<p>Ipv6EndpointType contains string constants that represent the names of each\nvalue in the google.cloud.compute.v1.Address.Ipv6EndpointType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}
