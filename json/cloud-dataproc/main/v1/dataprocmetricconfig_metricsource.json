@@ -1,0 +1,1 @@
+{"id":"dataproc\/v1\/dataprocmetricconfig_metricsource","type":"","title":"Google\\Cloud\\Dataproc\\V1\\DataprocMetricConfig_MetricSource","name":"DataprocMetricConfig_MetricSource","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataproc\\V1\\DataprocMetricConfig\\MetricSource instead.<\/p>","examples":[],"resources":[],"methods":[]}
