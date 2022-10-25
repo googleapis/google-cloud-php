@@ -86,8 +86,10 @@ class ExponentialBackoff
                 }
 
                 if ($retryAttempt >= $this->retries) {
+                    exit('here');
                     break;
                 }
+                exit('here2');
 
                 $delayFunction($calcDelayFunction($retryAttempt));
                 $retryAttempt++;
