@@ -39,6 +39,32 @@ class Participant extends \Google\Protobuf\Internal\Message
      */
     private $sip_recording_media_label = '';
     /**
+     * Optional. Obfuscated user id that should be associated with the created participant.
+     * You can specify a user id as follows:
+     * 1. If you set this field in
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
+     *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
+     *    Dialogflow adds the obfuscated user id with the participant.
+     * 2. If you set this field in
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
+     *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     * Dialogflow returns an error if you try to add a user id for a
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
+     * Dialogflow uses this user id for billing and measurement purposes. For
+     * example, Dialogflow determines whether a user in one conversation returned
+     * in a later conversation.
+     * Note:
+     * * Please never pass raw user ids to Dialogflow. Always obfuscate your user
+     *   id first.
+     * * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a
+     *   hash function like SHA-512.
+     * * The length of the user id must be <= 256 characters.
+     *
+     * Generated from protobuf field <code>string obfuscated_external_user_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $obfuscated_external_user_id = '';
+    /**
      * Optional. Key-value filters on the metadata of documents returned by article
      * suggestion. If specified, article suggestion only returns suggested
      * documents that match all filters in their [Document.metadata][google.cloud.dialogflow.v2.Document.metadata]. Multiple
@@ -77,6 +103,28 @@ class Participant extends \Google\Protobuf\Internal\Message
      *           Optional. Label applied to streams representing this participant in SIPREC
      *           XML metadata and SDP. This is used to assign transcriptions from that
      *           media stream to this participant. This field can be updated.
+     *     @type string $obfuscated_external_user_id
+     *           Optional. Obfuscated user id that should be associated with the created participant.
+     *           You can specify a user id as follows:
+     *           1. If you set this field in
+     *              [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
+     *              [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
+     *              Dialogflow adds the obfuscated user id with the participant.
+     *           2. If you set this field in
+     *              [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
+     *              [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
+     *              Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     *           Dialogflow returns an error if you try to add a user id for a
+     *           non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
+     *           Dialogflow uses this user id for billing and measurement purposes. For
+     *           example, Dialogflow determines whether a user in one conversation returned
+     *           in a later conversation.
+     *           Note:
+     *           * Please never pass raw user ids to Dialogflow. Always obfuscate your user
+     *             id first.
+     *           * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a
+     *             hash function like SHA-512.
+     *           * The length of the user id must be <= 256 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $documents_metadata_filters
      *           Optional. Key-value filters on the metadata of documents returned by article
      *           suggestion. If specified, article suggestion only returns suggested
@@ -185,6 +233,72 @@ class Participant extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->sip_recording_media_label = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Obfuscated user id that should be associated with the created participant.
+     * You can specify a user id as follows:
+     * 1. If you set this field in
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
+     *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
+     *    Dialogflow adds the obfuscated user id with the participant.
+     * 2. If you set this field in
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
+     *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     * Dialogflow returns an error if you try to add a user id for a
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
+     * Dialogflow uses this user id for billing and measurement purposes. For
+     * example, Dialogflow determines whether a user in one conversation returned
+     * in a later conversation.
+     * Note:
+     * * Please never pass raw user ids to Dialogflow. Always obfuscate your user
+     *   id first.
+     * * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a
+     *   hash function like SHA-512.
+     * * The length of the user id must be <= 256 characters.
+     *
+     * Generated from protobuf field <code>string obfuscated_external_user_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getObfuscatedExternalUserId()
+    {
+        return $this->obfuscated_external_user_id;
+    }
+
+    /**
+     * Optional. Obfuscated user id that should be associated with the created participant.
+     * You can specify a user id as follows:
+     * 1. If you set this field in
+     *    [CreateParticipantRequest][google.cloud.dialogflow.v2.CreateParticipantRequest.participant] or
+     *    [UpdateParticipantRequest][google.cloud.dialogflow.v2.UpdateParticipantRequest.participant],
+     *    Dialogflow adds the obfuscated user id with the participant.
+     * 2. If you set this field in
+     *    [AnalyzeContent][google.cloud.dialogflow.v2.AnalyzeContentRequest.obfuscated_external_user_id] or
+     *    [StreamingAnalyzeContent][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest.obfuscated_external_user_id],
+     *    Dialogflow will update [Participant.obfuscated_external_user_id][google.cloud.dialogflow.v2.Participant.obfuscated_external_user_id].
+     * Dialogflow returns an error if you try to add a user id for a
+     * non-[END_USER][google.cloud.dialogflow.v2.Participant.Role.END_USER] participant.
+     * Dialogflow uses this user id for billing and measurement purposes. For
+     * example, Dialogflow determines whether a user in one conversation returned
+     * in a later conversation.
+     * Note:
+     * * Please never pass raw user ids to Dialogflow. Always obfuscate your user
+     *   id first.
+     * * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a
+     *   hash function like SHA-512.
+     * * The length of the user id must be <= 256 characters.
+     *
+     * Generated from protobuf field <code>string obfuscated_external_user_id = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setObfuscatedExternalUserId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->obfuscated_external_user_id = $var;
 
         return $this;
     }

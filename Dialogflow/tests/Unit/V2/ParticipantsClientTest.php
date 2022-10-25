@@ -23,14 +23,19 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
+
+use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
+
 use Google\Cloud\Dialogflow\V2\AnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\ListParticipantsResponse;
 use Google\Cloud\Dialogflow\V2\Participant;
 use Google\Cloud\Dialogflow\V2\ParticipantsClient;
+use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentRequest;
+use Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse;
 use Google\Cloud\Dialogflow\V2\SuggestArticlesResponse;
 use Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse;
 use Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse;
@@ -151,9 +156,11 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
+        $obfuscatedExternalUserId = 'obfuscatedExternalUserId-263618122';
         $expectedResponse = new Participant();
         $expectedResponse->setName($name);
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
+        $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedParent = $gapicClient->conversationName('[PROJECT]', '[CONVERSATION]');
@@ -221,9 +228,11 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock response
         $name2 = 'name2-1052831874';
         $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
+        $obfuscatedExternalUserId = 'obfuscatedExternalUserId-263618122';
         $expectedResponse = new Participant();
         $expectedResponse->setName($name2);
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
+        $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
@@ -336,6 +345,110 @@ class ParticipantsClientTest extends GeneratedTest
         try {
             $gapicClient->listParticipants($formattedParent);
             // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingAnalyzeContentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $replyText = 'replyText-549180062';
+        $expectedResponse = new StreamingAnalyzeContentResponse();
+        $expectedResponse->setReplyText($replyText);
+        $transport->addResponse($expectedResponse);
+        $replyText2 = 'replyText2518940821';
+        $expectedResponse2 = new StreamingAnalyzeContentResponse();
+        $expectedResponse2->setReplyText($replyText2);
+        $transport->addResponse($expectedResponse2);
+        $replyText3 = 'replyText3518940822';
+        $expectedResponse3 = new StreamingAnalyzeContentResponse();
+        $expectedResponse3->setReplyText($replyText3);
+        $transport->addResponse($expectedResponse3);
+        // Mock request
+        $formattedParticipant = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request = new StreamingAnalyzeContentRequest();
+        $request->setParticipant($formattedParticipant);
+        $formattedParticipant2 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request2 = new StreamingAnalyzeContentRequest();
+        $request2->setParticipant($formattedParticipant2);
+        $formattedParticipant3 = $gapicClient->participantName('[PROJECT]', '[CONVERSATION]', '[PARTICIPANT]');
+        $request3 = new StreamingAnalyzeContentRequest();
+        $request3->setParticipant($formattedParticipant3);
+        $bidi = $gapicClient->streamingAnalyzeContent();
+        $this->assertInstanceOf(BidiStream::class, $bidi);
+        $bidi->write($request);
+        $responses = [];
+        $responses[] = $bidi->read();
+        $bidi->writeAll([
+            $request2,
+            $request3,
+        ]);
+        foreach ($bidi->closeWriteAndReadAll() as $response) {
+            $responses[] = $response;
+        }
+
+        $expectedResponses = [];
+        $expectedResponses[] = $expectedResponse;
+        $expectedResponses[] = $expectedResponse2;
+        $expectedResponses[] = $expectedResponse3;
+        $this->assertEquals($expectedResponses, $responses);
+        $createStreamRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($createStreamRequests));
+        $streamFuncCall = $createStreamRequests[0]->getFuncCall();
+        $streamRequestObject = $createStreamRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.dialogflow.v2.Participants/StreamingAnalyzeContent', $streamFuncCall);
+        $this->assertNull($streamRequestObject);
+        $callObjects = $transport->popCallObjects();
+        $this->assertSame(1, count($callObjects));
+        $bidiCall = $callObjects[0];
+        $writeRequests = $bidiCall->popReceivedCalls();
+        $expectedRequests = [];
+        $expectedRequests[] = $request;
+        $expectedRequests[] = $request2;
+        $expectedRequests[] = $request3;
+        $this->assertEquals($expectedRequests, $writeRequests);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function streamingAnalyzeContentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->setStreamingStatus($status);
+        $this->assertTrue($transport->isExhausted());
+        $bidi = $gapicClient->streamingAnalyzeContent();
+        $results = $bidi->closeWriteAndReadAll();
+        try {
+            iterator_to_array($results);
+            // If the close stream method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -557,9 +670,11 @@ class ParticipantsClientTest extends GeneratedTest
         // Mock response
         $name = 'name3373707';
         $sipRecordingMediaLabel = 'sipRecordingMediaLabel-1522741274';
+        $obfuscatedExternalUserId = 'obfuscatedExternalUserId-263618122';
         $expectedResponse = new Participant();
         $expectedResponse->setName($name);
         $expectedResponse->setSipRecordingMediaLabel($sipRecordingMediaLabel);
+        $expectedResponse->setObfuscatedExternalUserId($obfuscatedExternalUserId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $participant = new Participant();
