@@ -90,6 +90,34 @@ class Container extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.VolumeMount volume_mounts = 8;</code>
      */
     private $volume_mounts;
+    /**
+     * Container's working directory.
+     * If not specified, the container runtime's default will be used, which
+     * might be configured in the container image.
+     *
+     * Generated from protobuf field <code>string working_dir = 9;</code>
+     */
+    private $working_dir = '';
+    /**
+     * Periodic probe of container liveness.
+     * Container will be restarted if the probe fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
+     */
+    private $liveness_probe = null;
+    /**
+     * Startup probe of application within the container.
+     * All other probes are disabled if a startup probe is provided, until it
+     * succeeds. Container will not be added to service endpoints if the probe
+     * fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
+     */
+    private $startup_probe = null;
 
     /**
      * Constructor.
@@ -136,6 +164,22 @@ class Container extends \Google\Protobuf\Internal\Message
      *           through the PORT environment variable for the container to listen on.
      *     @type array<\Google\Cloud\Run\V2\VolumeMount>|\Google\Protobuf\Internal\RepeatedField $volume_mounts
      *           Volume to mount into the container's filesystem.
+     *     @type string $working_dir
+     *           Container's working directory.
+     *           If not specified, the container runtime's default will be used, which
+     *           might be configured in the container image.
+     *     @type \Google\Cloud\Run\V2\Probe $liveness_probe
+     *           Periodic probe of container liveness.
+     *           Container will be restarted if the probe fails.
+     *           More info:
+     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *     @type \Google\Cloud\Run\V2\Probe $startup_probe
+     *           Startup probe of application within the container.
+     *           All other probes are disabled if a startup probe is provided, until it
+     *           succeeds. Container will not be added to service endpoints if the probe
+     *           fails.
+     *           More info:
+     *           https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
      * }
      */
     public function __construct($data = NULL) {
@@ -403,6 +447,124 @@ class Container extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Run\V2\VolumeMount::class);
         $this->volume_mounts = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Container's working directory.
+     * If not specified, the container runtime's default will be used, which
+     * might be configured in the container image.
+     *
+     * Generated from protobuf field <code>string working_dir = 9;</code>
+     * @return string
+     */
+    public function getWorkingDir()
+    {
+        return $this->working_dir;
+    }
+
+    /**
+     * Container's working directory.
+     * If not specified, the container runtime's default will be used, which
+     * might be configured in the container image.
+     *
+     * Generated from protobuf field <code>string working_dir = 9;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWorkingDir($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->working_dir = $var;
+
+        return $this;
+    }
+
+    /**
+     * Periodic probe of container liveness.
+     * Container will be restarted if the probe fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
+     * @return \Google\Cloud\Run\V2\Probe|null
+     */
+    public function getLivenessProbe()
+    {
+        return $this->liveness_probe;
+    }
+
+    public function hasLivenessProbe()
+    {
+        return isset($this->liveness_probe);
+    }
+
+    public function clearLivenessProbe()
+    {
+        unset($this->liveness_probe);
+    }
+
+    /**
+     * Periodic probe of container liveness.
+     * Container will be restarted if the probe fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe liveness_probe = 10;</code>
+     * @param \Google\Cloud\Run\V2\Probe $var
+     * @return $this
+     */
+    public function setLivenessProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
+        $this->liveness_probe = $var;
+
+        return $this;
+    }
+
+    /**
+     * Startup probe of application within the container.
+     * All other probes are disabled if a startup probe is provided, until it
+     * succeeds. Container will not be added to service endpoints if the probe
+     * fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
+     * @return \Google\Cloud\Run\V2\Probe|null
+     */
+    public function getStartupProbe()
+    {
+        return $this->startup_probe;
+    }
+
+    public function hasStartupProbe()
+    {
+        return isset($this->startup_probe);
+    }
+
+    public function clearStartupProbe()
+    {
+        unset($this->startup_probe);
+    }
+
+    /**
+     * Startup probe of application within the container.
+     * All other probes are disabled if a startup probe is provided, until it
+     * succeeds. Container will not be added to service endpoints if the probe
+     * fails.
+     * More info:
+     * https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.Probe startup_probe = 11;</code>
+     * @param \Google\Cloud\Run\V2\Probe $var
+     * @return $this
+     */
+    public function setStartupProbe($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\Probe::class);
+        $this->startup_probe = $var;
 
         return $this;
     }
