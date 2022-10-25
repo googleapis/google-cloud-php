@@ -29,11 +29,16 @@ class ListHyperparameterTuningJobsRequest extends \Google\Protobuf\Internal\Mess
      *   * `state` supports `=`, `!=` comparisons.
      *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
      *     `create_time` must be in RFC 3339 format.
+     *   * `labels` supports general map functions that is:
+     *     `labels.key=value` - key:value equality
+     *     `labels.key:* - key existence
      * Some examples of using the filter are:
      *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
      *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
      *   * `NOT display_name="my_job"`
      *   * `create_time>"2021-05-18T00:00:00Z"`
+     *   * `labels.keyA=valueA`
+     *   * `labels.keyB:*`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -76,11 +81,16 @@ class ListHyperparameterTuningJobsRequest extends \Google\Protobuf\Internal\Mess
      *             * `state` supports `=`, `!=` comparisons.
      *             * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
      *               `create_time` must be in RFC 3339 format.
+     *             * `labels` supports general map functions that is:
+     *               `labels.key=value` - key:value equality
+     *               `labels.key:* - key existence
      *           Some examples of using the filter are:
      *             * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
      *             * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
      *             * `NOT display_name="my_job"`
      *             * `create_time>"2021-05-18T00:00:00Z"`
+     *             * `labels.keyA=valueA`
+     *             * `labels.keyB:*`
      *     @type int $page_size
      *           The standard list page size.
      *     @type string $page_token
@@ -132,11 +142,16 @@ class ListHyperparameterTuningJobsRequest extends \Google\Protobuf\Internal\Mess
      *   * `state` supports `=`, `!=` comparisons.
      *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
      *     `create_time` must be in RFC 3339 format.
+     *   * `labels` supports general map functions that is:
+     *     `labels.key=value` - key:value equality
+     *     `labels.key:* - key existence
      * Some examples of using the filter are:
      *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
      *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
      *   * `NOT display_name="my_job"`
      *   * `create_time>"2021-05-18T00:00:00Z"`
+     *   * `labels.keyA=valueA`
+     *   * `labels.keyB:*`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -153,11 +168,16 @@ class ListHyperparameterTuningJobsRequest extends \Google\Protobuf\Internal\Mess
      *   * `state` supports `=`, `!=` comparisons.
      *   * `create_time` supports `=`, `!=`,`<`, `<=`,`>`, `>=` comparisons.
      *     `create_time` must be in RFC 3339 format.
+     *   * `labels` supports general map functions that is:
+     *     `labels.key=value` - key:value equality
+     *     `labels.key:* - key existence
      * Some examples of using the filter are:
      *   * `state="JOB_STATE_SUCCEEDED" AND display_name:"my_job_*"`
      *   * `state!="JOB_STATE_FAILED" OR display_name="my_job"`
      *   * `NOT display_name="my_job"`
      *   * `create_time>"2021-05-18T00:00:00Z"`
+     *   * `labels.keyA=valueA`
+     *   * `labels.keyB:*`
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

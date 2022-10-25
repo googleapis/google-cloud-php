@@ -310,6 +310,23 @@ class MetadataServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Remove a set of children contexts from a parent Context. If any of the
+     * child Contexts were NOT added to the parent Context, they are
+     * simply skipped.
+     * @param \Google\Cloud\AIPlatform\V1\RemoveContextChildrenRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RemoveContextChildren(\Google\Cloud\AIPlatform\V1\RemoveContextChildrenRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.MetadataService/RemoveContextChildren',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Retrieves Artifacts and Executions within the specified Context, connected
      * by Event edges and returned as a LineageSubgraph.
      * @param \Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest $argument input argument
