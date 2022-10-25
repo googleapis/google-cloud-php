@@ -89,6 +89,10 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      */
     private $network_endpoint_type = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     */
+    private $psc_data = null;
+    /**
      * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *
      * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
@@ -156,6 +160,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *     @type string $network_endpoint_type
      *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
      *           Check the NetworkEndpointType enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $psc_data
      *     @type string $psc_target_service
      *           The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *     @type string $region
@@ -595,6 +600,38 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->network_endpoint_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData|null
+     */
+    public function getPscData()
+    {
+        return $this->psc_data;
+    }
+
+    public function hasPscData()
+    {
+        return isset($this->psc_data);
+    }
+
+    public function clearPscData()
+    {
+        unset($this->psc_data);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $var
+     * @return $this
+     */
+    public function setPscData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData::class);
+        $this->psc_data = $var;
 
         return $this;
     }

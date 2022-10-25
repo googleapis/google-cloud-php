@@ -22,30 +22,19 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyRuleRateLimitOptions;
+namespace Google\Cloud\Compute\V1\Enums\InstanceGroupManager;
 
 /**
- * EnforceOnKey contains string constants that represent the names of each value in
- * the google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions.EnforceOnKey
+ * ListManagedInstancesResults contains string constants that represent the names
+ * of each value in the
+ * google.cloud.compute.v1.InstanceGroupManager.ListManagedInstancesResults
  * descriptor.
  */
-class EnforceOnKey
+class ListManagedInstancesResults
 {
-    const UNDEFINED_ENFORCE_ON_KEY = 'UNDEFINED_ENFORCE_ON_KEY';
+    const UNDEFINED_LIST_MANAGED_INSTANCES_RESULTS = 'UNDEFINED_LIST_MANAGED_INSTANCES_RESULTS';
 
-    const ALL = 'ALL';
+    const PAGELESS = 'PAGELESS';
 
-    const HTTP_COOKIE = 'HTTP_COOKIE';
-
-    const HTTP_HEADER = 'HTTP_HEADER';
-
-    const HTTP_PATH = 'HTTP_PATH';
-
-    const IP = 'IP';
-
-    const REGION_CODE = 'REGION_CODE';
-
-    const SNI = 'SNI';
-
-    const XFF_IP = 'XFF_IP';
+    const PAGINATED = 'PAGINATED';
 }
