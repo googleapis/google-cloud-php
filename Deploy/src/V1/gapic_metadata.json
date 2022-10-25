@@ -10,6 +10,11 @@
                 "grpc": {
                     "libraryClient": "CloudDeployGapicClient",
                     "rpcs": {
+                        "AbandonRelease": {
+                            "methods": [
+                                "abandonRelease"
+                            ]
+                        },
                         "ApproveRollout": {
                             "methods": [
                                 "approveRollout"
@@ -55,6 +60,11 @@
                                 "getDeliveryPipeline"
                             ]
                         },
+                        "GetJobRun": {
+                            "methods": [
+                                "getJobRun"
+                            ]
+                        },
                         "GetRelease": {
                             "methods": [
                                 "getRelease"
@@ -75,6 +85,11 @@
                                 "listDeliveryPipelines"
                             ]
                         },
+                        "ListJobRuns": {
+                            "methods": [
+                                "listJobRuns"
+                            ]
+                        },
                         "ListReleases": {
                             "methods": [
                                 "listReleases"
@@ -90,6 +105,11 @@
                                 "listTargets"
                             ]
                         },
+                        "RetryJob": {
+                            "methods": [
+                                "retryJob"
+                            ]
+                        },
                         "UpdateDeliveryPipeline": {
                             "methods": [
                                 "updateDeliveryPipeline"
@@ -98,6 +118,31 @@
                         "UpdateTarget": {
                             "methods": [
                                 "updateTarget"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

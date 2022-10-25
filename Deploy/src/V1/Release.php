@@ -62,6 +62,12 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $labels;
     /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $abandoned = false;
+    /**
      * Output only. Time at which the `Release` was created.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -176,6 +182,8 @@ class Release extends \Google\Protobuf\Internal\Message
      *           * Keys must start with a lowercase letter or international character.
      *           * Each resource is limited to a maximum of 64 labels.
      *           Both keys and values are additionally constrained to be <= 128 bytes.
+     *     @type bool $abandoned
+     *           Output only. Indicates whether this is an abandoned release.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the `Release` was created.
      *     @type \Google\Protobuf\Timestamp $render_start_time
@@ -369,6 +377,32 @@ class Release extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getAbandoned()
+    {
+        return $this->abandoned;
+    }
+
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAbandoned($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->abandoned = $var;
 
         return $this;
     }
