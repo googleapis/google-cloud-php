@@ -112,6 +112,24 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
                 'body' => 'notification_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/notificationConfigs',
+                        'body' => 'notification_config',
+                        'queryParams' => [
+                            'config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
+                        'body' => 'notification_config',
+                        'queryParams' => [
+                            'config_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -180,6 +198,16 @@ return [
             'DeleteNotificationConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/notificationConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/notificationConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -245,6 +273,16 @@ return [
             'GetNotificationConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/notificationConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/notificationConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -410,6 +448,16 @@ return [
             'ListNotificationConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/notificationConfigs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -627,6 +675,18 @@ return [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{notification_config.name=organizations/*/notificationConfigs/*}',
                 'body' => 'notification_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{notification_config.name=folders/*/notificationConfigs/*}',
+                        'body' => 'notification_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{notification_config.name=projects/*/notificationConfigs/*}',
+                        'body' => 'notification_config',
+                    ],
+                ],
                 'placeholders' => [
                     'notification_config.name' => [
                         'getters' => [
