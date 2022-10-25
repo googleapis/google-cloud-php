@@ -3,6 +3,6 @@
     "release_level": "beta",
     "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-gsuite-addons/latest",
     "library_type": "GAPIC_AUTO",
-    "product_documentation": "https://developers.google.com/workspace/add-ons/overview/docs",
+    "product_documentation": "https://developers.google.com/workspace/add-ons/overview",
     "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
 }
