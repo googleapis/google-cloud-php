@@ -48,6 +48,7 @@ use Google\Cloud\AIPlatform\V1\MetadataStore;
 use Google\Cloud\AIPlatform\V1\PurgeArtifactsResponse;
 use Google\Cloud\AIPlatform\V1\PurgeContextsResponse;
 use Google\Cloud\AIPlatform\V1\PurgeExecutionsResponse;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -2482,6 +2483,68 @@ class MetadataServiceClientTest extends GeneratedTest
         $formattedExecution = $gapicClient->executionName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[EXECUTION]');
         try {
             $gapicClient->queryExecutionInputsAndOutputs($formattedExecution);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function removeContextChildrenTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new RemoveContextChildrenResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+        $response = $gapicClient->removeContextChildren($formattedContext);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.MetadataService/RemoveContextChildren', $actualFuncCall);
+        $actualValue = $actualRequestObject->getContext();
+        $this->assertProtobufEquals($formattedContext, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function removeContextChildrenExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedContext = $gapicClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+        try {
+            $gapicClient->removeContextChildren($formattedContext);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {

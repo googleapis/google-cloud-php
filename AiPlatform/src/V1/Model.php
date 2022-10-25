@@ -287,6 +287,13 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_source_info = null;
 
     /**
      * Constructor.
@@ -466,6 +473,9 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelSourceInfo $model_source_info
+     *           Output only. Source of a model. It can either be automl training pipeline, custom
+     *           training pipeline, BigQuery ML, or existing Vertex AI Model.
      * }
      */
     public function __construct($data = NULL) {
@@ -1453,6 +1463,44 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelSourceInfo|null
+     */
+    public function getModelSourceInfo()
+    {
+        return $this->model_source_info;
+    }
+
+    public function hasModelSourceInfo()
+    {
+        return isset($this->model_source_info);
+    }
+
+    public function clearModelSourceInfo()
+    {
+        unset($this->model_source_info);
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelSourceInfo $var
+     * @return $this
+     */
+    public function setModelSourceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelSourceInfo::class);
+        $this->model_source_info = $var;
 
         return $this;
     }

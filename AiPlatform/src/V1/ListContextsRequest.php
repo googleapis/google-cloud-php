@@ -72,6 +72,17 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string filter = 4;</code>
      */
     private $filter = '';
+    /**
+     * How the list of messages is ordered. Specify the values to order by and an
+     * ordering operation. The default sorting order is ascending. To specify
+     * descending order for a field, users append a " desc" suffix; for example:
+     * "foo desc, bar".
+     * Subfields are specified with a `.` character, such as foo.bar.
+     * see https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5;</code>
+     */
+    private $order_by = '';
 
     /**
      * Constructor.
@@ -120,6 +131,13 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
      *           Each of the above supported filters can be combined together using
      *           logical operators (`AND` & `OR`).
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $order_by
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -293,6 +311,42 @@ class ListContextsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->filter = $var;
+
+        return $this;
+    }
+
+    /**
+     * How the list of messages is ordered. Specify the values to order by and an
+     * ordering operation. The default sorting order is ascending. To specify
+     * descending order for a field, users append a " desc" suffix; for example:
+     * "foo desc, bar".
+     * Subfields are specified with a `.` character, such as foo.bar.
+     * see https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5;</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * How the list of messages is ordered. Specify the values to order by and an
+     * ordering operation. The default sorting order is ascending. To specify
+     * descending order for a field, users append a " desc" suffix; for example:
+     * "foo desc, bar".
+     * Subfields are specified with a `.` character, such as foo.bar.
+     * see https://google.aip.dev/132#ordering for more details.
+     *
+     * Generated from protobuf field <code>string order_by = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

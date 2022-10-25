@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents the spec of a CustomJob.
- * Next Id: 15
  *
  * Generated from protobuf message <code>google.cloud.aiplatform.v1.CustomJobSpec</code>
  */
