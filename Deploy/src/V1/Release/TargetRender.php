@@ -36,6 +36,12 @@ class TargetRender extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.deploy.v1.Release.TargetRender.FailureCause failure_cause = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $failure_cause = 0;
+    /**
+     * Output only. Additional information about the render failure, if available.
+     *
+     * Generated from protobuf field <code>string failure_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $failure_message = '';
 
     /**
      * Constructor.
@@ -52,6 +58,8 @@ class TargetRender extends \Google\Protobuf\Internal\Message
      *     @type int $failure_cause
      *           Output only. Reason this render failed. This will always be unspecified while the
      *           render in progress.
+     *     @type string $failure_message
+     *           Output only. Additional information about the render failure, if available.
      * }
      */
     public function __construct($data = NULL) {
@@ -139,6 +147,32 @@ class TargetRender extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Deploy\V1\Release\TargetRender\FailureCause::class);
         $this->failure_cause = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Additional information about the render failure, if available.
+     *
+     * Generated from protobuf field <code>string failure_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getFailureMessage()
+    {
+        return $this->failure_message;
+    }
+
+    /**
+     * Output only. Additional information about the render failure, if available.
+     *
+     * Generated from protobuf field <code>string failure_message = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFailureMessage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->failure_message = $var;
 
         return $this;
     }
