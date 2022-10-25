@@ -27,7 +27,7 @@ jobs:
             command: composer update
         - id: getTag
           name: Get Tag
-          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+          run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
         - name: Run Subtree Split and Release
           env:
             tagName: ${{ steps.getTag.outputs.tag }}
