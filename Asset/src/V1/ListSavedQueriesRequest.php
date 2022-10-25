@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The parent project/folder/organization whose savedQueries are to
-     * be listed. It can only be using project/folder/organization number (such as
+     * Required. The parent project/folder/organization whose savedQueries are to be
+     * listed. It can only be using project/folder/organization number (such as
      * "folders/12345")", or a project ID (such as "projects/my-project-id").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -35,9 +35,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * Optional. The maximum number of saved queries to return per page. The
-     * service may return fewer than this value. If unspecified, at most 50 will
-     * be returned.
+     * Optional. The maximum number of saved queries to return per page. The service may
+     * return fewer than this value. If unspecified, at most 50 will be returned.
      *  The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -60,8 +59,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The parent project/folder/organization whose savedQueries are to
-     *           be listed. It can only be using project/folder/organization number (such as
+     *           Required. The parent project/folder/organization whose savedQueries are to be
+     *           listed. It can only be using project/folder/organization number (such as
      *           "folders/12345")", or a project ID (such as "projects/my-project-id").
      *     @type string $filter
      *           Optional. The expression to filter resources.
@@ -71,9 +70,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
      *           combinations. The expression may also contain regular expressions.
      *           See https://google.aip.dev/160 for more information on the grammar.
      *     @type int $page_size
-     *           Optional. The maximum number of saved queries to return per page. The
-     *           service may return fewer than this value. If unspecified, at most 50 will
-     *           be returned.
+     *           Optional. The maximum number of saved queries to return per page. The service may
+     *           return fewer than this value. If unspecified, at most 50 will be returned.
      *            The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     @type string $page_token
      *           Optional. A page token, received from a previous `ListSavedQueries` call.
@@ -88,8 +86,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent project/folder/organization whose savedQueries are to
-     * be listed. It can only be using project/folder/organization number (such as
+     * Required. The parent project/folder/organization whose savedQueries are to be
+     * listed. It can only be using project/folder/organization number (such as
      * "folders/12345")", or a project ID (such as "projects/my-project-id").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -101,8 +99,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The parent project/folder/organization whose savedQueries are to
-     * be listed. It can only be using project/folder/organization number (such as
+     * Required. The parent project/folder/organization whose savedQueries are to be
+     * listed. It can only be using project/folder/organization number (such as
      * "folders/12345")", or a project ID (such as "projects/my-project-id").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -154,9 +152,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of saved queries to return per page. The
-     * service may return fewer than this value. If unspecified, at most 50 will
-     * be returned.
+     * Optional. The maximum number of saved queries to return per page. The service may
+     * return fewer than this value. If unspecified, at most 50 will be returned.
      *  The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -168,9 +165,8 @@ class ListSavedQueriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of saved queries to return per page. The
-     * service may return fewer than this value. If unspecified, at most 50 will
-     * be returned.
+     * Optional. The maximum number of saved queries to return per page. The service may
+     * return fewer than this value. If unspecified, at most 50 will be returned.
      *  The maximum value is 1000; values above 1000 will be coerced to 1000.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
