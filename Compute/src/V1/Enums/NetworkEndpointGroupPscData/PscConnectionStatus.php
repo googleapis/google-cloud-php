@@ -22,30 +22,27 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyRuleRateLimitOptions;
+namespace Google\Cloud\Compute\V1\Enums\NetworkEndpointGroupPscData;
 
 /**
- * EnforceOnKey contains string constants that represent the names of each value in
- * the google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions.EnforceOnKey
+ * PscConnectionStatus contains string constants that represent the names of each
+ * value in the
+ * google.cloud.compute.v1.NetworkEndpointGroupPscData.PscConnectionStatus
  * descriptor.
  */
-class EnforceOnKey
+class PscConnectionStatus
 {
-    const UNDEFINED_ENFORCE_ON_KEY = 'UNDEFINED_ENFORCE_ON_KEY';
+    const UNDEFINED_PSC_CONNECTION_STATUS = 'UNDEFINED_PSC_CONNECTION_STATUS';
 
-    const ALL = 'ALL';
+    const ACCEPTED = 'ACCEPTED';
 
-    const HTTP_COOKIE = 'HTTP_COOKIE';
+    const CLOSED = 'CLOSED';
 
-    const HTTP_HEADER = 'HTTP_HEADER';
+    const NEEDS_ATTENTION = 'NEEDS_ATTENTION';
 
-    const HTTP_PATH = 'HTTP_PATH';
+    const PENDING = 'PENDING';
 
-    const IP = 'IP';
+    const REJECTED = 'REJECTED';
 
-    const REGION_CODE = 'REGION_CODE';
-
-    const SNI = 'SNI';
-
-    const XFF_IP = 'XFF_IP';
+    const STATUS_UNSPECIFIED = 'STATUS_UNSPECIFIED';
 }

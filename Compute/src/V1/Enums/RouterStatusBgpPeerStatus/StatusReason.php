@@ -22,30 +22,17 @@
  * Updates to the above are reflected here through a refresh process.
  */
 
-namespace Google\Cloud\Compute\V1\Enums\SecurityPolicyRuleRateLimitOptions;
+namespace Google\Cloud\Compute\V1\Enums\RouterStatusBgpPeerStatus;
 
 /**
- * EnforceOnKey contains string constants that represent the names of each value in
- * the google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions.EnforceOnKey
- * descriptor.
+ * StatusReason contains string constants that represent the names of each value in
+ * the google.cloud.compute.v1.RouterStatusBgpPeerStatus.StatusReason descriptor.
  */
-class EnforceOnKey
+class StatusReason
 {
-    const UNDEFINED_ENFORCE_ON_KEY = 'UNDEFINED_ENFORCE_ON_KEY';
+    const UNDEFINED_STATUS_REASON = 'UNDEFINED_STATUS_REASON';
 
-    const ALL = 'ALL';
+    const MD5_AUTH_INTERNAL_PROBLEM = 'MD5_AUTH_INTERNAL_PROBLEM';
 
-    const HTTP_COOKIE = 'HTTP_COOKIE';
-
-    const HTTP_HEADER = 'HTTP_HEADER';
-
-    const HTTP_PATH = 'HTTP_PATH';
-
-    const IP = 'IP';
-
-    const REGION_CODE = 'REGION_CODE';
-
-    const SNI = 'SNI';
-
-    const XFF_IP = 'XFF_IP';
+    const STATUS_REASON_UNSPECIFIED = 'STATUS_REASON_UNSPECIFIED';
 }

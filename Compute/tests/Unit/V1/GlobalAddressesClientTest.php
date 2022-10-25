@@ -207,6 +207,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $id = 3355;
         $ipVersion = 'ipVersion-1315653184';
+        $ipv6EndpointType = 'ipv6EndpointType-2049982644';
         $kind = 'kind3292052';
         $name = 'name3373707';
         $network = 'network1843485230';
@@ -224,6 +225,7 @@ class GlobalAddressesClientTest extends GeneratedTest
         $expectedResponse->setDescription($description);
         $expectedResponse->setId($id);
         $expectedResponse->setIpVersion($ipVersion);
+        $expectedResponse->setIpv6EndpointType($ipv6EndpointType);
         $expectedResponse->setKind($kind);
         $expectedResponse->setName($name);
         $expectedResponse->setNetwork($network);

@@ -82,6 +82,13 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
+     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Check the ListManagedInstancesResults enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
+     */
+    private $list_managed_instances_results = null;
+    /**
      * The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -176,6 +183,9 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
      *           The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.
      *     @type string $kind
      *           [Output Only] The resource type, which is always compute#instanceGroupManager for managed instance groups.
+     *     @type string $list_managed_instances_results
+     *           Pagination behavior of the listManagedInstances API method for this managed instance group.
+     *           Check the ListManagedInstancesResults enum for the list of possible values.
      *     @type string $name
      *           The name of the managed instance group. The name must be 1-63 characters long, and comply with RFC1035.
      *     @type array<\Google\Cloud\Compute\V1\NamedPort>|\Google\Protobuf\Internal\RepeatedField $named_ports
@@ -587,6 +597,44 @@ class InstanceGroupManager extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Check the ListManagedInstancesResults enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
+     * @return string
+     */
+    public function getListManagedInstancesResults()
+    {
+        return isset($this->list_managed_instances_results) ? $this->list_managed_instances_results : '';
+    }
+
+    public function hasListManagedInstancesResults()
+    {
+        return isset($this->list_managed_instances_results);
+    }
+
+    public function clearListManagedInstancesResults()
+    {
+        unset($this->list_managed_instances_results);
+    }
+
+    /**
+     * Pagination behavior of the listManagedInstances API method for this managed instance group.
+     * Check the ListManagedInstancesResults enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string list_managed_instances_results = 296047156;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setListManagedInstancesResults($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->list_managed_instances_results = $var;
 
         return $this;
     }

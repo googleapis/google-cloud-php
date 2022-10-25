@@ -496,6 +496,10 @@ class Metric
      */
     const STATIC_BYOIP_ADDRESSES = 275809649;
     /**
+     * Generated from protobuf enum <code>STATIC_EXTERNAL_IPV6_ADDRESS_RANGES = 472346774;</code>
+     */
+    const STATIC_EXTERNAL_IPV6_ADDRESS_RANGES = 472346774;
+    /**
      * Generated from protobuf enum <code>SUBNETWORKS = 421330469;</code>
      */
     const SUBNETWORKS = 421330469;
@@ -672,6 +676,7 @@ class Metric
         self::SSL_CERTIFICATES => 'SSL_CERTIFICATES',
         self::STATIC_ADDRESSES => 'STATIC_ADDRESSES',
         self::STATIC_BYOIP_ADDRESSES => 'STATIC_BYOIP_ADDRESSES',
+        self::STATIC_EXTERNAL_IPV6_ADDRESS_RANGES => 'STATIC_EXTERNAL_IPV6_ADDRESS_RANGES',
         self::SUBNETWORKS => 'SUBNETWORKS',
         self::T2A_CPUS => 'T2A_CPUS',
         self::T2D_CPUS => 'T2D_CPUS',
