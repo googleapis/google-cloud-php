@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/phase\/state","type":"","title":"Google\\Cloud\\Deploy\\V1\\Phase\\State","name":"State","description":"<p>Valid states of a Phase.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.Phase.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
