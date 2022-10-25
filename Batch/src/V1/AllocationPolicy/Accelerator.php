@@ -29,6 +29,8 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      */
     private $count = 0;
     /**
+     * Deprecated: please use instances[0].install_gpu_drivers instead.
+     *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3 [deprecated = true];</code>
      * @deprecated
      */
@@ -46,6 +48,7 @@ class Accelerator extends \Google\Protobuf\Internal\Message
      *     @type int|string $count
      *           The number of accelerators of this type.
      *     @type bool $install_gpu_drivers
+     *           Deprecated: please use instances[0].install_gpu_drivers instead.
      * }
      */
     public function __construct($data = NULL) {
@@ -108,6 +111,8 @@ class Accelerator extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: please use instances[0].install_gpu_drivers instead.
+     *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3 [deprecated = true];</code>
      * @return bool
      * @deprecated
@@ -119,6 +124,8 @@ class Accelerator extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Deprecated: please use instances[0].install_gpu_drivers instead.
+     *
      * Generated from protobuf field <code>bool install_gpu_drivers = 3 [deprecated = true];</code>
      * @param bool $var
      * @return $this
