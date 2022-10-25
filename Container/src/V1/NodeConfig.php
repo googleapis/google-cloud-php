@@ -267,6 +267,12 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
      */
     private $confidential_nodes = null;
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     */
+    private $logging_config = null;
 
     /**
      * Constructor.
@@ -414,6 +420,8 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
      *           Confidential nodes config.
      *           All the nodes in the node pool will be Confidential VM once enabled.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
+     *           Logging configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -1391,6 +1399,42 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
         $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->logging_config = $var;
 
         return $this;
     }

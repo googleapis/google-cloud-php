@@ -293,6 +293,12 @@ class Cluster extends \Google\Protobuf\Internal\Message
      */
     private $mesh_certificates = null;
     /**
+     * Configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig cost_management_config = 45;</code>
+     */
+    private $cost_management_config = null;
+    /**
      * Notification configuration of the cluster.
      *
      * Generated from protobuf field <code>.google.container.v1.NotificationConfig notification_config = 49;</code>
@@ -646,6 +652,8 @@ class Cluster extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\MeshCertificates $mesh_certificates
      *           Configuration for issuance of mTLS keys and certificates to Kubernetes
      *           pods.
+     *     @type \Google\Cloud\Container\V1\CostManagementConfig $cost_management_config
+     *           Configuration for the fine-grained cost management feature.
      *     @type \Google\Cloud\Container\V1\NotificationConfig $notification_config
      *           Notification configuration of the cluster.
      *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
@@ -1990,6 +1998,42 @@ class Cluster extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\MeshCertificates::class);
         $this->mesh_certificates = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig cost_management_config = 45;</code>
+     * @return \Google\Cloud\Container\V1\CostManagementConfig|null
+     */
+    public function getCostManagementConfig()
+    {
+        return $this->cost_management_config;
+    }
+
+    public function hasCostManagementConfig()
+    {
+        return isset($this->cost_management_config);
+    }
+
+    public function clearCostManagementConfig()
+    {
+        unset($this->cost_management_config);
+    }
+
+    /**
+     * Configuration for the fine-grained cost management feature.
+     *
+     * Generated from protobuf field <code>.google.container.v1.CostManagementConfig cost_management_config = 45;</code>
+     * @param \Google\Cloud\Container\V1\CostManagementConfig $var
+     * @return $this
+     */
+    public function setCostManagementConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\CostManagementConfig::class);
+        $this->cost_management_config = $var;
 
         return $this;
     }
