@@ -32,11 +32,18 @@ class ExecutionReason
      * Generated from protobuf enum <code>NON_ZERO_EXIT_CODE = 2;</code>
      */
     const NON_ZERO_EXIT_CODE = 2;
+    /**
+     * The execution was cancelled by users.
+     *
+     * Generated from protobuf enum <code>CANCELLED = 3;</code>
+     */
+    const CANCELLED = 3;
 
     private static $valueToName = [
         self::EXECUTION_REASON_UNDEFINED => 'EXECUTION_REASON_UNDEFINED',
         self::JOB_STATUS_SERVICE_POLLING_ERROR => 'JOB_STATUS_SERVICE_POLLING_ERROR',
         self::NON_ZERO_EXIT_CODE => 'NON_ZERO_EXIT_CODE',
+        self::CANCELLED => 'CANCELLED',
     ];
 
     public static function name($value)
