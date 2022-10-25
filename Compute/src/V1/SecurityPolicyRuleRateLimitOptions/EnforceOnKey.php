@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\SecurityPolicyRuleRateLimitOptions;
 use UnexpectedValueException;
 
 /**
- * Determines the key to enforce the rate_limit_threshold on. Possible values are: - ALL: A single rate limit threshold is applied to all the requests matching this rule. This is the default value if this field 'enforce_on_key' is not configured. - IP: The source IP address of the request is the key. Each IP has this limit enforced separately. - HTTP_HEADER: The value of the HTTP header whose name is configured under "enforce_on_key_name". The key value is truncated to the first 128 bytes of the header value. If no such header is present in the request, the key type defaults to ALL. - XFF_IP: The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP header. If no such header is present or the value is not a valid IP, the key defaults to the source IP address of the request i.e. key type IP. - HTTP_COOKIE: The value of the HTTP cookie whose name is configured under "enforce_on_key_name". The key value is truncated to the first 128 bytes of the cookie value. If no such cookie is present in the request, the key type defaults to ALL. 
+ * Determines the key to enforce the rate_limit_threshold on. Possible values are: - ALL: A single rate limit threshold is applied to all the requests matching this rule. This is the default value if this field 'enforce_on_key' is not configured. - IP: The source IP address of the request is the key. Each IP has this limit enforced separately. - HTTP_HEADER: The value of the HTTP header whose name is configured under "enforce_on_key_name". The key value is truncated to the first 128 bytes of the header value. If no such header is present in the request, the key type defaults to ALL. - XFF_IP: The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP header. If no such header is present or the value is not a valid IP, the key defaults to the source IP address of the request i.e. key type IP. - HTTP_COOKIE: The value of the HTTP cookie whose name is configured under "enforce_on_key_name". The key value is truncated to the first 128 bytes of the cookie value. If no such cookie is present in the request, the key type defaults to ALL. - HTTP_PATH: The URL path of the HTTP request. The key value is truncated to the first 128 bytes. - SNI: Server name indication in the TLS session of the HTTPS request. The key value is truncated to the first 128 bytes. The key type defaults to ALL on a HTTP session. - REGION_CODE: The country/region from which the request originates. 
  *
  * Protobuf type <code>google.cloud.compute.v1.SecurityPolicyRuleRateLimitOptions.EnforceOnKey</code>
  */
@@ -32,9 +32,21 @@ class EnforceOnKey
      */
     const HTTP_HEADER = 91597348;
     /**
+     * Generated from protobuf enum <code>HTTP_PATH = 311503228;</code>
+     */
+    const HTTP_PATH = 311503228;
+    /**
      * Generated from protobuf enum <code>IP = 2343;</code>
      */
     const IP = 2343;
+    /**
+     * Generated from protobuf enum <code>REGION_CODE = 79559768;</code>
+     */
+    const REGION_CODE = 79559768;
+    /**
+     * Generated from protobuf enum <code>SNI = 82254;</code>
+     */
+    const SNI = 82254;
     /**
      * Generated from protobuf enum <code>XFF_IP = 438707118;</code>
      */
@@ -45,7 +57,10 @@ class EnforceOnKey
         self::ALL => 'ALL',
         self::HTTP_COOKIE => 'HTTP_COOKIE',
         self::HTTP_HEADER => 'HTTP_HEADER',
+        self::HTTP_PATH => 'HTTP_PATH',
         self::IP => 'IP',
+        self::REGION_CODE => 'REGION_CODE',
+        self::SNI => 'SNI',
         self::XFF_IP => 'XFF_IP',
     ];
 

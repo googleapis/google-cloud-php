@@ -54,6 +54,13 @@ class Address extends \Google\Protobuf\Internal\Message
      */
     private $ip_version = null;
     /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     */
+    private $ipv6_endpoint_type = null;
+    /**
      * [Output Only] Type of the resource. Always compute#address for addresses.
      *
      * Generated from protobuf field <code>optional string kind = 3292052;</code>
@@ -143,6 +150,9 @@ class Address extends \Google\Protobuf\Internal\Message
      *     @type string $ip_version
      *           The IP version that will be used by this address. Valid options are IPV4 or IPV6. This can only be specified for a global address.
      *           Check the IpVersion enum for the list of possible values.
+     *     @type string $ipv6_endpoint_type
+     *           The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     *           Check the Ipv6EndpointType enum for the list of possible values.
      *     @type string $kind
      *           [Output Only] Type of the resource. Always compute#address for addresses.
      *     @type string $name
@@ -391,6 +401,44 @@ class Address extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->ip_version = $var;
+
+        return $this;
+    }
+
+    /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     * @return string
+     */
+    public function getIpv6EndpointType()
+    {
+        return isset($this->ipv6_endpoint_type) ? $this->ipv6_endpoint_type : '';
+    }
+
+    public function hasIpv6EndpointType()
+    {
+        return isset($this->ipv6_endpoint_type);
+    }
+
+    public function clearIpv6EndpointType()
+    {
+        unset($this->ipv6_endpoint_type);
+    }
+
+    /**
+     * The endpoint type of this address, which should be VM or NETLB. This is used for deciding which type of endpoint this address can be used after the external IPv6 address reservation.
+     * Check the Ipv6EndpointType enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string ipv6_endpoint_type = 97501004;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6EndpointType($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_endpoint_type = $var;
 
         return $this;
     }
