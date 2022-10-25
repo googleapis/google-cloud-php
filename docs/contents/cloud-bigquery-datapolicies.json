@@ -1,0 +1,15 @@
+{
+    "title": "BigQueryDataPolicies",
+    "defaultService": "bigquerydatapolicies\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigquerydatapolicies\/readme"
+        },
+        {
+            "title": "DataPolicyServiceClient (v1beta1)",
+            "type": "bigquerydatapolicies\/v1beta1\/datapolicyserviceclient"
+        }
+    ],
+    "pattern": "bigquerydatapolicies\/\\w{1,}"
+}

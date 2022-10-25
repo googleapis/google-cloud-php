@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/bigquery/datapolicies/v1beta1/.*-php/(.*)
+      dest: /owl-bot-staging/BigQueryDataPolicies/v1beta1/$1
+api-name: BigQueryDataPolicies
