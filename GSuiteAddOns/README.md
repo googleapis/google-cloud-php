@@ -34,4 +34,4 @@ This component is considered beta. As such, it should be expected to be mostly s
 
 ### Next Steps
 
-1. Understand the [official documentation](https://developers.google.com/workspace/add-ons/overview/docs).
+1. Understand the [official documentation](https://developers.google.com/workspace/add-ons/overview).
