@@ -7,7 +7,7 @@ namespace Google\Cloud\WebRisk\V1;
 use UnexpectedValueException;
 
 /**
- * The type of threat. This maps dirrectly to the threat list a threat may
+ * The type of threat. This maps directly to the threat list a threat may
  * belong to.
  *
  * Protobuf type <code>google.cloud.webrisk.v1.ThreatType</code>
@@ -15,7 +15,7 @@ use UnexpectedValueException;
 class ThreatType
 {
     /**
-     * Unknown.
+     * No entries should match this threat type. This threat type is unused.
      *
      * Generated from protobuf enum <code>THREAT_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -38,12 +38,20 @@ class ThreatType
      * Generated from protobuf enum <code>UNWANTED_SOFTWARE = 3;</code>
      */
     const UNWANTED_SOFTWARE = 3;
+    /**
+     * A list of extended coverage social engineering URIs targeting any
+     * platform.
+     *
+     * Generated from protobuf enum <code>SOCIAL_ENGINEERING_EXTENDED_COVERAGE = 4;</code>
+     */
+    const SOCIAL_ENGINEERING_EXTENDED_COVERAGE = 4;
 
     private static $valueToName = [
         self::THREAT_TYPE_UNSPECIFIED => 'THREAT_TYPE_UNSPECIFIED',
         self::MALWARE => 'MALWARE',
         self::SOCIAL_ENGINEERING => 'SOCIAL_ENGINEERING',
         self::UNWANTED_SOFTWARE => 'UNWANTED_SOFTWARE',
+        self::SOCIAL_ENGINEERING_EXTENDED_COVERAGE => 'SOCIAL_ENGINEERING_EXTENDED_COVERAGE',
     ];
 
     public static function name($value)
