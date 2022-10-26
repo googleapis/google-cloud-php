@@ -9,24 +9,24 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration for a Google Cloud CDN key.
+ * Configuration for a Media CDN key.
  *
- * Generated from protobuf message <code>google.cloud.video.stitcher.v1.GoogleCdnKey</code>
+ * Generated from protobuf message <code>google.cloud.video.stitcher.v1.MediaCdnKey</code>
  */
-class GoogleCdnKey extends \Google\Protobuf\Internal\Message
+class MediaCdnKey extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Input only. Secret for this Google Cloud CDN key.
+     * Input only. 64-byte ed25519 private key for this Media CDN key.
      *
      * Generated from protobuf field <code>bytes private_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
-    protected $private_key = '';
+    private $private_key = '';
     /**
-     * The public name of the Google Cloud CDN key.
+     * The keyset name of the Media CDN key.
      *
      * Generated from protobuf field <code>string key_name = 2;</code>
      */
-    protected $key_name = '';
+    private $key_name = '';
 
     /**
      * Constructor.
@@ -35,9 +35,9 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $private_key
-     *           Input only. Secret for this Google Cloud CDN key.
+     *           Input only. 64-byte ed25519 private key for this Media CDN key.
      *     @type string $key_name
-     *           The public name of the Google Cloud CDN key.
+     *           The keyset name of the Media CDN key.
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Secret for this Google Cloud CDN key.
+     * Input only. 64-byte ed25519 private key for this Media CDN key.
      *
      * Generated from protobuf field <code>bytes private_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -57,7 +57,7 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Input only. Secret for this Google Cloud CDN key.
+     * Input only. 64-byte ed25519 private key for this Media CDN key.
      *
      * Generated from protobuf field <code>bytes private_key = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -72,7 +72,7 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The public name of the Google Cloud CDN key.
+     * The keyset name of the Media CDN key.
      *
      * Generated from protobuf field <code>string key_name = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class GoogleCdnKey extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The public name of the Google Cloud CDN key.
+     * The keyset name of the Media CDN key.
      *
      * Generated from protobuf field <code>string key_name = 2;</code>
      * @param string $var
