@@ -43,6 +43,8 @@ class CdnKey extends \Google\Protobuf\Internal\Message
      *           The configuration for a Google Cloud CDN key.
      *     @type \Google\Cloud\Video\Stitcher\V1\AkamaiCdnKey $akamai_cdn_key
      *           The configuration for an Akamai CDN key.
+     *     @type \Google\Cloud\Video\Stitcher\V1\MediaCdnKey $media_cdn_key
+     *           The configuration for a Media CDN key.
      *     @type string $name
      *           The resource name of the CDN key, in the form of
      *           `projects/{project}/locations/{location}/cdnKeys/{id}`.
@@ -114,6 +116,37 @@ class CdnKey extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\AkamaiCdnKey::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * The configuration for a Media CDN key.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey media_cdn_key = 8;</code>
+     * @return \Google\Cloud\Video\Stitcher\V1\MediaCdnKey|null
+     */
+    public function getMediaCdnKey()
+    {
+        return $this->readOneof(8);
+    }
+
+    public function hasMediaCdnKey()
+    {
+        return $this->hasOneof(8);
+    }
+
+    /**
+     * The configuration for a Media CDN key.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.stitcher.v1.MediaCdnKey media_cdn_key = 8;</code>
+     * @param \Google\Cloud\Video\Stitcher\V1\MediaCdnKey $var
+     * @return $this
+     */
+    public function setMediaCdnKey($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Stitcher\V1\MediaCdnKey::class);
+        $this->writeOneof(8, $var);
 
         return $this;
     }
