@@ -42,6 +42,18 @@ class ClassToc
         return $this->classNode->isServiceClass();
     }
 
+    public function isRequestClass(): bool
+    {
+        return $this->isProtobufMessageClass()
+            && 'Request' === substr($this->classNode->getName(), -7);
+    }
+
+    public function isResponseClass(): bool
+    {
+        return $this->isProtobufMessageClass()
+            && 'Response' === substr($this->classNode->getName(), -8);
+    }
+
     public function isProtobufMessageClass(): bool
     {
         // returns true if the class extends \Google\Protobuf\Internal\Message

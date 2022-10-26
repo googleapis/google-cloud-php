@@ -72,6 +72,20 @@ class NamespaceToc
                     'items' => $services,
                 ];
             }
+            if ($requests = $this->getRequestsToc()) {
+                $tocArray['items'][] = [
+                    'name' => 'Requests',
+                    'uid'  => 'requests:' . $this->namespace,
+                    'items' => $requests,
+                ];
+            }
+            if ($responses = $this->getResponsesToc()) {
+                $tocArray['items'][] = [
+                    'name' => 'Responses',
+                    'uid'  => 'responses:' . $this->namespace,
+                    'items' => $responses,
+                ];
+            }
             if ($messages = $this->getMessagesToc()) {
                 $tocArray['items'][] = [
                     'name' => 'Messages',
@@ -122,12 +136,68 @@ class NamespaceToc
         ];
     }
 
+    protected function getRequestsToc(): array
+    {
+        // Get a list of all Service classes
+        $requests = [];
+        foreach ($this->items as $item) {
+            if ($item instanceof ClassToc && $item->isRequestClass()) {
+                $requests[] = $item->toToc();
+            } elseif ($item instanceof NamespaceToc) {
+                $requests = array_merge($requests, $item->getRequestsToc());
+            }
+        }
+
+        // Do not wrap in namespace if none exist or we're in top level namespace
+        if (!$requests || $this->isVersionNamespace) {
+            return $requests;
+        }
+
+        return [
+            [
+                'name' => $this->name,
+                'uid'  => 'request:' . $this->namespace,
+                'items' => $requests,
+            ],
+        ];
+    }
+
+    protected function getResponsesToc(): array
+    {
+        // Get a list of all Service classes
+        $responses = [];
+        foreach ($this->items as $item) {
+            if ($item instanceof ClassToc && $item->isResponseClass()) {
+                $responses[] = $item->toToc();
+            } elseif ($item instanceof NamespaceToc) {
+                $responses = array_merge($responses, $item->getResponsesToc());
+            }
+        }
+
+        // Do not wrap in namespace if none exist or we're in top level namespace
+        if (!$responses || $this->isVersionNamespace) {
+            return $responses;
+        }
+
+        return [
+            [
+                'name' => $this->name,
+                'uid'  => 'response:' . $this->namespace,
+                'items' => $responses,
+            ],
+        ];
+    }
+
     protected function getMessagesToc(): array
     {
         // Get a list of all protobuf messages
         $messages = [];
         foreach ($this->items as $item) {
-            if ($item instanceof ClassToc && $item->isProtobufMessageClass()) {
+            if ($item instanceof ClassToc
+                && $item->isProtobufMessageClass()
+                && !$item->isRequestClass()
+                && !$item->isResponseClass()
+            ) {
                 $messages[] = $item->toToc();
             } elseif ($item instanceof NamespaceToc) {
                 $messages = array_merge($messages, $item->getMessagesToc());

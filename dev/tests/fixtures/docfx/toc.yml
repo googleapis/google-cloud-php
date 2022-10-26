@@ -20,8 +20,8 @@
               uid: \Google\Cloud\Vision\V1\ProductSearchClient
               name: ProductSearchClient
         -
-          name: Messages
-          uid: 'messages:Google\Cloud\Vision\V1'
+          name: Requests
+          uid: 'requests:Google\Cloud\Vision\V1'
           items:
             -
               uid: \Google\Cloud\Vision\V1\AddProductToProductSetRequest
@@ -30,44 +30,121 @@
               uid: \Google\Cloud\Vision\V1\AnnotateFileRequest
               name: AnnotateFileRequest
             -
-              uid: \Google\Cloud\Vision\V1\AnnotateFileResponse
-              name: AnnotateFileResponse
-            -
               uid: \Google\Cloud\Vision\V1\AnnotateImageRequest
               name: AnnotateImageRequest
-            -
-              uid: \Google\Cloud\Vision\V1\AnnotateImageResponse
-              name: AnnotateImageResponse
             -
               uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileRequest
               name: AsyncAnnotateFileRequest
             -
-              uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
-              name: AsyncAnnotateFileResponse
-            -
               uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
               name: AsyncBatchAnnotateFilesRequest
-            -
-              uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse
-              name: AsyncBatchAnnotateFilesResponse
             -
               uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesRequest
               name: AsyncBatchAnnotateImagesRequest
             -
-              uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
-              name: AsyncBatchAnnotateImagesResponse
-            -
               uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesRequest
               name: BatchAnnotateFilesRequest
-            -
-              uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
-              name: BatchAnnotateFilesResponse
             -
               uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
               name: BatchAnnotateImagesRequest
             -
+              uid: \Google\Cloud\Vision\V1\CreateProductRequest
+              name: CreateProductRequest
+            -
+              uid: \Google\Cloud\Vision\V1\CreateProductSetRequest
+              name: CreateProductSetRequest
+            -
+              uid: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
+              name: CreateReferenceImageRequest
+            -
+              uid: \Google\Cloud\Vision\V1\DeleteProductRequest
+              name: DeleteProductRequest
+            -
+              uid: \Google\Cloud\Vision\V1\DeleteProductSetRequest
+              name: DeleteProductSetRequest
+            -
+              uid: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
+              name: DeleteReferenceImageRequest
+            -
+              uid: \Google\Cloud\Vision\V1\GetProductRequest
+              name: GetProductRequest
+            -
+              uid: \Google\Cloud\Vision\V1\GetProductSetRequest
+              name: GetProductSetRequest
+            -
+              uid: \Google\Cloud\Vision\V1\GetReferenceImageRequest
+              name: GetReferenceImageRequest
+            -
+              uid: \Google\Cloud\Vision\V1\ImportProductSetsRequest
+              name: ImportProductSetsRequest
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductSetsRequest
+              name: ListProductSetsRequest
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
+              name: ListProductsInProductSetRequest
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductsRequest
+              name: ListProductsRequest
+            -
+              uid: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
+              name: ListReferenceImagesRequest
+            -
+              uid: \Google\Cloud\Vision\V1\PurgeProductsRequest
+              name: PurgeProductsRequest
+            -
+              uid: \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
+              name: RemoveProductFromProductSetRequest
+            -
+              uid: \Google\Cloud\Vision\V1\UpdateProductRequest
+              name: UpdateProductRequest
+            -
+              uid: \Google\Cloud\Vision\V1\UpdateProductSetRequest
+              name: UpdateProductSetRequest
+        -
+          name: Responses
+          uid: 'responses:Google\Cloud\Vision\V1'
+          items:
+            -
+              uid: \Google\Cloud\Vision\V1\AnnotateFileResponse
+              name: AnnotateFileResponse
+            -
+              uid: \Google\Cloud\Vision\V1\AnnotateImageResponse
+              name: AnnotateImageResponse
+            -
+              uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
+              name: AsyncAnnotateFileResponse
+            -
+              uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse
+              name: AsyncBatchAnnotateFilesResponse
+            -
+              uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
+              name: AsyncBatchAnnotateImagesResponse
+            -
+              uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
+              name: BatchAnnotateFilesResponse
+            -
               uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesResponse
               name: BatchAnnotateImagesResponse
+            -
+              uid: \Google\Cloud\Vision\V1\ImportProductSetsResponse
+              name: ImportProductSetsResponse
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductSetsResponse
+              name: ListProductSetsResponse
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
+              name: ListProductsInProductSetResponse
+            -
+              uid: \Google\Cloud\Vision\V1\ListProductsResponse
+              name: ListProductsResponse
+            -
+              uid: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
+              name: ListReferenceImagesResponse
+        -
+          name: Messages
+          uid: 'messages:Google\Cloud\Vision\V1'
+          items:
             -
               uid: \Google\Cloud\Vision\V1\BatchOperationMetadata
               name: BatchOperationMetadata
@@ -81,15 +158,6 @@
               uid: \Google\Cloud\Vision\V1\ColorInfo
               name: ColorInfo
             -
-              uid: \Google\Cloud\Vision\V1\CreateProductRequest
-              name: CreateProductRequest
-            -
-              uid: \Google\Cloud\Vision\V1\CreateProductSetRequest
-              name: CreateProductSetRequest
-            -
-              uid: \Google\Cloud\Vision\V1\CreateReferenceImageRequest
-              name: CreateReferenceImageRequest
-            -
               uid: \Google\Cloud\Vision\V1\CropHint
               name: CropHint
             -
@@ -98,15 +166,6 @@
             -
               uid: \Google\Cloud\Vision\V1\CropHintsParams
               name: CropHintsParams
-            -
-              uid: \Google\Cloud\Vision\V1\DeleteProductRequest
-              name: DeleteProductRequest
-            -
-              uid: \Google\Cloud\Vision\V1\DeleteProductSetRequest
-              name: DeleteProductSetRequest
-            -
-              uid: \Google\Cloud\Vision\V1\DeleteReferenceImageRequest
-              name: DeleteReferenceImageRequest
             -
               uid: \Google\Cloud\Vision\V1\DominantColorsAnnotation
               name: DominantColorsAnnotation
@@ -133,15 +192,6 @@
               uid: \Google\Cloud\Vision\V1\GcsSource
               name: GcsSource
             -
-              uid: \Google\Cloud\Vision\V1\GetProductRequest
-              name: GetProductRequest
-            -
-              uid: \Google\Cloud\Vision\V1\GetProductSetRequest
-              name: GetProductSetRequest
-            -
-              uid: \Google\Cloud\Vision\V1\GetReferenceImageRequest
-              name: GetReferenceImageRequest
-            -
               uid: \Google\Cloud\Vision\V1\Image
               name: Image
             -
@@ -163,41 +213,11 @@
               uid: \Google\Cloud\Vision\V1\ImportProductSetsInputConfig
               name: ImportProductSetsInputConfig
             -
-              uid: \Google\Cloud\Vision\V1\ImportProductSetsRequest
-              name: ImportProductSetsRequest
-            -
-              uid: \Google\Cloud\Vision\V1\ImportProductSetsResponse
-              name: ImportProductSetsResponse
-            -
               uid: \Google\Cloud\Vision\V1\InputConfig
               name: InputConfig
             -
               uid: \Google\Cloud\Vision\V1\LatLongRect
               name: LatLongRect
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductSetsRequest
-              name: ListProductSetsRequest
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductSetsResponse
-              name: ListProductSetsResponse
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductsInProductSetRequest
-              name: ListProductsInProductSetRequest
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductsInProductSetResponse
-              name: ListProductsInProductSetResponse
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductsRequest
-              name: ListProductsRequest
-            -
-              uid: \Google\Cloud\Vision\V1\ListProductsResponse
-              name: ListProductsResponse
-            -
-              uid: \Google\Cloud\Vision\V1\ListReferenceImagesRequest
-              name: ListReferenceImagesRequest
-            -
-              uid: \Google\Cloud\Vision\V1\ListReferenceImagesResponse
-              name: ListReferenceImagesResponse
             -
               uid: \Google\Cloud\Vision\V1\LocalizedObjectAnnotation
               name: LocalizedObjectAnnotation
@@ -261,14 +281,8 @@
               uid: \Google\Cloud\Vision\V1\Property
               name: Property
             -
-              uid: \Google\Cloud\Vision\V1\PurgeProductsRequest
-              name: PurgeProductsRequest
-            -
               uid: \Google\Cloud\Vision\V1\ReferenceImage
               name: ReferenceImage
-            -
-              uid: \Google\Cloud\Vision\V1\RemoveProductFromProductSetRequest
-              name: RemoveProductFromProductSetRequest
             -
               uid: \Google\Cloud\Vision\V1\SafeSearchAnnotation
               name: SafeSearchAnnotation
@@ -294,12 +308,6 @@
             -
               uid: \Google\Cloud\Vision\V1\TextDetectionParams
               name: TextDetectionParams
-            -
-              uid: \Google\Cloud\Vision\V1\UpdateProductRequest
-              name: UpdateProductRequest
-            -
-              uid: \Google\Cloud\Vision\V1\UpdateProductSetRequest
-              name: UpdateProductSetRequest
             -
               uid: \Google\Cloud\Vision\V1\Vertex
               name: Vertex
