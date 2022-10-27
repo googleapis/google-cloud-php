@@ -555,6 +555,29 @@ class RequestWrapperTest extends TestCase
             new Request('GET', 'http://www.example.com')
         );
     }
+
+    public function testEmptyTokenThrowsException()
+    {
+        $this->expectException(ServiceException::class);
+        $this->expectExceptionMessage('Unable to fetch token');
+
+        $credentialsFetcher = $this->prophesize(FetchAuthTokenInterface::class);
+
+        // Set the response to an empty array (no token)
+        $credentialsFetcher->fetchAuthToken(Argument::any())
+            ->willReturn([]);
+
+        // We have to mock this message because RequestWrapper wraps the credentials using the
+        // FetchAuthTokenCache class
+        $credentialsFetcher->getCacheKey()
+            ->willReturn(null);
+
+        $requestWrapper = new RequestWrapper([
+            'credentialsFetcher' => $credentialsFetcher->reveal(),
+        ]);
+
+        $requestWrapper->send(new Request('GET', 'http://www.example.com'));
+    }
 }
 
 //@codingStandardsIgnoreStart
