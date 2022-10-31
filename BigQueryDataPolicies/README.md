@@ -1,6 +1,6 @@
-# Google Cloud BigQuery Data Policies for PHP for PHP
+# Google Cloud BigQuery Data Policies for PHP
 
-> Idiomatic PHP client for [Google Cloud BigQuery Data Policies for PHP](https://cloud.google.com/bigquery/docs/reference/bigquerydatapolicy/rest).
+> Idiomatic PHP client for [Google Cloud BigQuery Data Policies](https://cloud.google.com/bigquery/docs/reference/bigquerydatapolicy/rest).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-bigquery-datapolicies/v/stable)](https://packagist.org/packages/google/cloud-bigquery-datapolicies) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-bigquery-datapolicies.svg)](https://packagist.org/packages/google/cloud-bigquery-datapolicies)
 
