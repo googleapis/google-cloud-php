@@ -1,0 +1,15 @@
+{
+    "title": "Dataform",
+    "defaultService": "dataform\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "dataform\/readme"
+        },
+        {
+            "title": "DataformClient (v1beta1)",
+            "type": "dataform\/v1beta1\/dataformclient"
+        }
+    ],
+    "pattern": "dataform\/\\w{1,}"
+}
