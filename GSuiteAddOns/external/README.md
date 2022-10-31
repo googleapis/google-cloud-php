@@ -1,1 +1,3 @@
+# External generated protos classes to support GSuiteAddOns
+
 Please note the generated proto classes in this directory will need to be manually refreshed.
