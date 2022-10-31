@@ -55,6 +55,4 @@ class ServiceLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ServiceLevel::class, \Google\Cloud\Build\V1\PublishLifecycleEventRequest_ServiceLevel::class);
 

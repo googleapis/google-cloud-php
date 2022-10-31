@@ -31,6 +31,4 @@ class V1Model extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(V1Model::class, \Google\Cloud\Language\V1beta2\ClassificationModelOptions_V1Model::class);
 

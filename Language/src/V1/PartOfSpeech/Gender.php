@@ -66,6 +66,4 @@ class Gender
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Gender::class, \Google\Cloud\Language\V1\PartOfSpeech_Gender::class);
 

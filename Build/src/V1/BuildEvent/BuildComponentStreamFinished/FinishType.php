@@ -62,6 +62,4 @@ class FinishType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(FinishType::class, \Google\Cloud\Build\V1\BuildEvent_BuildComponentStreamFinished_FinishType::class);
 

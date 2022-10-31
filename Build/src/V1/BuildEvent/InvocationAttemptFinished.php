@@ -119,6 +119,4 @@ class InvocationAttemptFinished extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InvocationAttemptFinished::class, \Google\Cloud\Build\V1\BuildEvent_InvocationAttemptFinished::class);
 

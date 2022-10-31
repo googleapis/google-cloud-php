@@ -73,6 +73,4 @@ class Region
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Region::class, \Google\Cloud\Build\V1\WorkerPool_Region::class);
 

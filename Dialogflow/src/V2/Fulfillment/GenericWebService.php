@@ -227,6 +227,4 @@ class GenericWebService extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(GenericWebService::class, \Google\Cloud\Dialogflow\V2\Fulfillment_GenericWebService::class);
 

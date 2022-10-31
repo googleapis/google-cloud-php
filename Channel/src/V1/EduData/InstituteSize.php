@@ -94,6 +94,4 @@ class InstituteSize
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(InstituteSize::class, \Google\Cloud\Channel\V1\EduData_InstituteSize::class);
 

@@ -59,6 +59,4 @@ class Proper
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Proper::class, \Google\Cloud\Language\V1beta2\PartOfSpeech_Proper::class);
 
