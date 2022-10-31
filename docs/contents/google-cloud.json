@@ -48,6 +48,7 @@
         "cloud-data-catalog",
         "cloud-data-fusion",
         "cloud-dataflow",
+        "cloud-dataform",
         "cloud-datalabeling",
         "cloud-dataplex",
         "cloud-dataproc",

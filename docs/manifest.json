@@ -1226,6 +1226,14 @@
             ]
         },
         {
+            "id": "cloud-dataform",
+            "name": "google/cloud-dataform",
+            "defaultService": "dataform/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-datalabeling",
             "name": "google/cloud-datalabeling",
             "defaultService": "datalabeling/readme",
