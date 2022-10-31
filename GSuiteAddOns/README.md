@@ -1,6 +1,6 @@
-# Google Workspace Add-ons for PHP for PHP
+# Google Workspace Add-ons for PHP
 
-> Idiomatic PHP client for [Google Workspace Add-ons for PHP](https://developers.google.com/workspace/add-ons/overview).
+> Idiomatic PHP client for [Google Workspace Add-ons](https://developers.google.com/workspace/add-ons/overview).
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-gsuite-addons/v/stable)](https://packagist.org/packages/google/cloud-gsuite-addons) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-gsuite-addons.svg)](https://packagist.org/packages/google/cloud-gsuite-addons)
 

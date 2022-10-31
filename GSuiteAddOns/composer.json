@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-gsuite-addons",
-    "description": "Google Workspace Add-ons for PHP Client for PHP",
+    "description": "Google Workspace Add-ons Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {
