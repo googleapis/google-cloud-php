@@ -1,4 +1,4 @@
-# Google Cloud BigQuery Migration for PHP for PHP
+# Google Cloud BigQuery Migration for PHP
 
 > Idiomatic PHP client for [Google Cloud BigQuery Migration for PHP](https://cloud.google.com/bigquery/docs/migration-intro).
 
