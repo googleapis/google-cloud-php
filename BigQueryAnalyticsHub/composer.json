@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-bigquery-analyticshub",
-    "description": "Google Cloud BigQuery Analytics Hub for PHP Client for PHP",
+    "description": "Google Cloud BigQuery Analytics Hub Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {

@@ -1,4 +1,4 @@
-# Google Cloud BigQuery Analytics Hub for PHP for PHP
+# Google Cloud BigQuery Analytics Hub for PHP
 
 > Idiomatic PHP client for [Google Cloud BigQuery Analytics Hub for PHP](https://cloud.google.com/analytics-hub).
 
