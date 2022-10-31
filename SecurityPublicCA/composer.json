@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-security-public-ca",
-    "description": "Google Cloud Public Certificate Authority for PHP Client for PHP",
+    "description": "Google Cloud Public Certificate Authority Client for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {

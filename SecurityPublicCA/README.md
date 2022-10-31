@@ -1,4 +1,4 @@
-# Google Cloud Public Certificate Authority for PHP for PHP
+# Google Cloud Public Certificate Authority for PHP
 
 > Idiomatic PHP client for [Google Cloud Public Certificate Authority for PHP](https://cloud.google.com/certificate-manager/docs/public-ca).
 
