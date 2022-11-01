@@ -222,23 +222,13 @@
 
 </details>
 
-<details><summary>google/cloud-storage 1.29.0</summary>
+<details><summary>google/cloud-storage 1.28.2</summary>
 
-
-
-### Features
-
-* **storage:** Adding tests for autoclass ([#5487](https://github.com/googleapis/google-cloud-php/issues/5487)) ([774b00f](https://github.com/googleapis/google-cloud-php/commit/774b00f9b3d81c403f87fcd5b3a44bd99a8afb7d))
 
 
 ### Bug Fixes
 
 * **storage:** Seeking object before file creation ([#5524](https://github.com/googleapis/google-cloud-php/issues/5524)) ([2a92db5](https://github.com/googleapis/google-cloud-php/commit/2a92db51a51688b70b357f8e7b0f4e9279cc7290))
-
-
-### Reverts
-
-* "feat(storage): adding tests for autoclass ([#5487](https://github.com/googleapis/google-cloud-php/issues/5487))" ([#5568](https://github.com/googleapis/google-cloud-php/issues/5568)) ([bfd2e74](https://github.com/googleapis/google-cloud-php/commit/bfd2e745dc13b3fcc6288aa8a1fe46962248e64f))
 
 </details>
 
