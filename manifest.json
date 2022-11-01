@@ -542,6 +542,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-analyticshub",
+            "name": "google/cloud-bigquery-analyticshub",
+            "defaultService": "bigqueryanalyticshub/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-connection",
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
@@ -586,6 +594,14 @@
             "id": "cloud-bigquery-datapolicies",
             "name": "google/cloud-bigquery-datapolicies",
             "defaultService": "bigquerydatapolicies/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-bigquery-migration",
+            "name": "google/cloud-bigquery-migration",
+            "defaultService": "bigquerymigration/readme",
             "versions": [
                 "main"
             ]
@@ -3315,6 +3331,14 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-security-public-ca",
+            "name": "google/cloud-security-public-ca",
+            "defaultService": "securitypublicca/readme",
+            "versions": [
                 "main"
             ]
         },
