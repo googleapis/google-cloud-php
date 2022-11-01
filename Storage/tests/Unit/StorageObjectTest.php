@@ -466,6 +466,26 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($string, $contents);
     }
 
+    public function testDownloadsToFileShouldNotCreateFileWhenObjectNotFound()
+    {
+        $exceptionString = 'object does not exist';
+        $this->connection->downloadObject(Argument::any())
+            ->willThrow(new NotFoundException($exceptionString));
+        $object = 'non_existent_object.txt';
+        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
+        $throws = false;
+        try {
+            $object->downloadToFile($downloadFilePath);
+        } catch (NotFoundException $e) {
+            $this->assertStringContainsString($e->getMessage(), $exceptionString);
+            $throws = true;
+        }
+
+        $this->assertTrue($throws);
+        $this->assertFileDoesNotExist($downloadFilePath);
+    }
+
     public function testDownloadAsStreamWithoutExtraOptions()
     {
         $bucket = 'bucket';
