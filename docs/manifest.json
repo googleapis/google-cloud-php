@@ -3705,7 +3705,7 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
-                "v1.29.0",
+                "v1.28.2",
                 "v1.28.1",
                 "v1.28.0",
                 "v1.27.1",
