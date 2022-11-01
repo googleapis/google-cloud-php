@@ -33,6 +33,7 @@
         "cloud-bigquery-connection",
         "cloud-bigquery-data-exchange",
         "cloud-bigquery-datapolicies",
+        "cloud-bigquery-migration",
         "cloud-bigquery-reservation",
         "cloud-bigquery-storage",
         "cloud-bigquerydatatransfer",
