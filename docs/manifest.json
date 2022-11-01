@@ -2091,6 +2091,14 @@
             ]
         },
         {
+            "id": "cloud-gsuite-addons",
+            "name": "google/cloud-gsuite-addons",
+            "defaultService": "gsuiteaddons/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
             "defaultService": "iamcredentials/readme",
