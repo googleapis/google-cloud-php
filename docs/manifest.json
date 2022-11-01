@@ -542,6 +542,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-analyticshub",
+            "name": "google/cloud-bigquery-analyticshub",
+            "defaultService": "bigqueryanalyticshub/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-connection",
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
