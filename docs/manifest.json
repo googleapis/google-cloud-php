@@ -605,6 +605,7 @@
             "versions": [
                 "main"
             ]
+        },
         {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
