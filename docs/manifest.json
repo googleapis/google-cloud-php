@@ -575,6 +575,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-datapolicies",
+            "name": "google/cloud-bigquery-datapolicies",
+            "defaultService": "bigquerydatapolicies/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
             "defaultService": "bigqueryreservation/readme",
