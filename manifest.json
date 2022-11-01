@@ -575,6 +575,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-datapolicies",
+            "name": "google/cloud-bigquery-datapolicies",
+            "defaultService": "bigquerydatapolicies/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
             "defaultService": "bigqueryreservation/readme",
@@ -2087,6 +2095,14 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-gsuite-addons",
+            "name": "google/cloud-gsuite-addons",
+            "defaultService": "gsuiteaddons/readme",
+            "versions": [
                 "main"
             ]
         },
