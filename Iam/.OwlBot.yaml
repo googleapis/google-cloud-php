@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/iam/v2/.*-php/(.*)
+      dest: /owl-bot-staging/Iam/v2/$1
+api-name: Iam

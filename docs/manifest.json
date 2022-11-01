@@ -2107,6 +2107,14 @@
             ]
         },
         {
+            "id": "cloud-iam",
+            "name": "google/cloud-iam",
+            "defaultService": "iam/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
             "defaultService": "iamcredentials/readme",
