@@ -212,6 +212,14 @@
             ]
         },
         {
+            "id": "cloud-api-keys",
+            "name": "google/cloud-api-keys",
+            "defaultService": "apikeys/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-apigee-connect",
             "name": "google/cloud-apigee-connect",
             "defaultService": "apigeeconnect/readme",
@@ -2102,6 +2110,14 @@
             "id": "cloud-gsuite-addons",
             "name": "google/cloud-gsuite-addons",
             "defaultService": "gsuiteaddons/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-iam",
+            "name": "google/cloud-iam",
+            "defaultService": "iam/readme",
             "versions": [
                 "main"
             ]
