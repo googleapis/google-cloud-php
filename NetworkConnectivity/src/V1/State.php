@@ -38,12 +38,19 @@ class State
      * Generated from protobuf enum <code>DELETING = 3;</code>
      */
     const DELETING = 3;
+    /**
+     * The resource's Update operation is in progress
+     *
+     * Generated from protobuf enum <code>UPDATING = 6;</code>
+     */
+    const UPDATING = 6;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::CREATING => 'CREATING',
         self::ACTIVE => 'ACTIVE',
         self::DELETING => 'DELETING',
+        self::UPDATING => 'UPDATING',
     ];
 
     public static function name($value)
