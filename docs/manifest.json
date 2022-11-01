@@ -212,6 +212,14 @@
             ]
         },
         {
+            "id": "cloud-api-keys",
+            "name": "google/cloud-api-keys",
+            "defaultService": "apikeys/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-apigee-connect",
             "name": "google/cloud-apigee-connect",
             "defaultService": "apigeeconnect/readme",
@@ -534,6 +542,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-analyticshub",
+            "name": "google/cloud-bigquery-analyticshub",
+            "defaultService": "bigqueryanalyticshub/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-connection",
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
@@ -575,13 +591,20 @@
             ]
         },
         {
+            "id": "cloud-bigquery-datapolicies",
+            "name": "google/cloud-bigquery-datapolicies",
+            "defaultService": "bigquerydatapolicies/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-migration",
             "name": "google/cloud-bigquery-migration",
             "defaultService": "bigquerymigration/readme",
             "versions": [
                 "main"
             ]
-        },
         {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
@@ -1230,6 +1253,14 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-dataform",
+            "name": "google/cloud-dataform",
+            "defaultService": "dataform/readme",
+            "versions": [
                 "main"
             ]
         },
@@ -2087,6 +2118,22 @@
                 "v0.1.2",
                 "v0.1.1",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-gsuite-addons",
+            "name": "google/cloud-gsuite-addons",
+            "defaultService": "gsuiteaddons/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-iam",
+            "name": "google/cloud-iam",
+            "defaultService": "iam/readme",
+            "versions": [
                 "main"
             ]
         },
@@ -3283,6 +3330,14 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-security-public-ca",
+            "name": "google/cloud-security-public-ca",
+            "defaultService": "securitypublicca/readme",
+            "versions": [
                 "main"
             ]
         },

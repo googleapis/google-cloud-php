@@ -39,7 +39,13 @@ class EnforceOnKey
 
     const HTTP_HEADER = 'HTTP_HEADER';
 
+    const HTTP_PATH = 'HTTP_PATH';
+
     const IP = 'IP';
+
+    const REGION_CODE = 'REGION_CODE';
+
+    const SNI = 'SNI';
 
     const XFF_IP = 'XFF_IP';
 }

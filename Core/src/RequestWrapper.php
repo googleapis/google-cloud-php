@@ -319,8 +319,14 @@ class RequestWrapper
 
         try {
             return $backoff->execute(
-                [$credentialsFetcher, 'fetchAuthToken'],
-                [$this->authHttpHandler]
+                function () use ($credentialsFetcher) {
+                    if ($token = $credentialsFetcher->fetchAuthToken($this->authHttpHandler)) {
+                        return $token;
+                    }
+                    // As we do not know the reason the credentials fetcher could not fetch the
+                    // token, we should not retry.
+                    throw new \RuntimeException('Unable to fetch token');
+                }
             );
         } catch (\Exception $ex) {
             throw $this->convertToGoogleException($ex);

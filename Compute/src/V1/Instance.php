@@ -194,6 +194,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $resource_policies;
     /**
+     * [Output Only] Specifies values set for instance attributes as compared to the values requested by user in the corresponding input only field.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatus resource_status = 249429315;</code>
+     */
+    private $resource_status = null;
+    /**
      * [Output Only] Reserved for future use.
      *
      * Generated from protobuf field <code>optional bool satisfies_pzs = 480964267;</code>
@@ -335,6 +341,8 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Specifies the reservations that this instance can consume from.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies applied to this instance.
+     *     @type \Google\Cloud\Compute\V1\ResourceStatus $resource_status
+     *           [Output Only] Specifies values set for instance attributes as compared to the values requested by user in the corresponding input only field.
      *     @type bool $satisfies_pzs
      *           [Output Only] Reserved for future use.
      *     @type \Google\Cloud\Compute\V1\Scheduling $scheduling
@@ -1389,6 +1397,42 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->resource_policies = $arr;
+
+        return $this;
+    }
+
+    /**
+     * [Output Only] Specifies values set for instance attributes as compared to the values requested by user in the corresponding input only field.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatus resource_status = 249429315;</code>
+     * @return \Google\Cloud\Compute\V1\ResourceStatus|null
+     */
+    public function getResourceStatus()
+    {
+        return $this->resource_status;
+    }
+
+    public function hasResourceStatus()
+    {
+        return isset($this->resource_status);
+    }
+
+    public function clearResourceStatus()
+    {
+        unset($this->resource_status);
+    }
+
+    /**
+     * [Output Only] Specifies values set for instance attributes as compared to the values requested by user in the corresponding input only field.
+     *
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourceStatus resource_status = 249429315;</code>
+     * @param \Google\Cloud\Compute\V1\ResourceStatus $var
+     * @return $this
+     */
+    public function setResourceStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\ResourceStatus::class);
+        $this->resource_status = $var;
 
         return $this;
     }

@@ -82,6 +82,12 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GcpFilestoreCsiDriverConfig gcp_filestore_csi_driver_config = 14;</code>
      */
     private $gcp_filestore_csi_driver_config = null;
+    /**
+     * Configuration for the Backup for GKE agent addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeBackupAgentConfig gke_backup_agent_config = 16;</code>
+     */
+    private $gke_backup_agent_config = null;
 
     /**
      * Constructor.
@@ -118,6 +124,8 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
      *           Configuration for the Compute Engine Persistent Disk CSI driver.
      *     @type \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig $gcp_filestore_csi_driver_config
      *           Configuration for the GCP Filestore CSI driver.
+     *     @type \Google\Cloud\Container\V1\GkeBackupAgentConfig $gke_backup_agent_config
+     *           Configuration for the Backup for GKE agent addon.
      * }
      */
     public function __construct($data = NULL) {
@@ -473,6 +481,42 @@ class AddonsConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcpFilestoreCsiDriverConfig::class);
         $this->gcp_filestore_csi_driver_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configuration for the Backup for GKE agent addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeBackupAgentConfig gke_backup_agent_config = 16;</code>
+     * @return \Google\Cloud\Container\V1\GkeBackupAgentConfig|null
+     */
+    public function getGkeBackupAgentConfig()
+    {
+        return $this->gke_backup_agent_config;
+    }
+
+    public function hasGkeBackupAgentConfig()
+    {
+        return isset($this->gke_backup_agent_config);
+    }
+
+    public function clearGkeBackupAgentConfig()
+    {
+        unset($this->gke_backup_agent_config);
+    }
+
+    /**
+     * Configuration for the Backup for GKE agent addon.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GkeBackupAgentConfig gke_backup_agent_config = 16;</code>
+     * @param \Google\Cloud\Container\V1\GkeBackupAgentConfig $var
+     * @return $this
+     */
+    public function setGkeBackupAgentConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GkeBackupAgentConfig::class);
+        $this->gke_backup_agent_config = $var;
 
         return $this;
     }

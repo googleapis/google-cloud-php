@@ -147,6 +147,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Information specifying a GKE Cluster.
      *     @type \Google\Cloud\Deploy\V1\AnthosCluster $anthos_cluster
      *           Information specifying an Anthos Cluster.
+     *     @type \Google\Cloud\Deploy\V1\CloudRunLocation $run
+     *           Information specifying a Cloud Run deployment target.
      *     @type string $etag
      *           Optional. This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
@@ -504,6 +506,37 @@ class Target extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AnthosCluster::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Information specifying a Cloud Run deployment target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * @return \Google\Cloud\Deploy\V1\CloudRunLocation|null
+     */
+    public function getRun()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasRun()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Information specifying a Cloud Run deployment target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * @param \Google\Cloud\Deploy\V1\CloudRunLocation $var
+     * @return $this
+     */
+    public function setRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CloudRunLocation::class);
+        $this->writeOneof(18, $var);
 
         return $this;
     }

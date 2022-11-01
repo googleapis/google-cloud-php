@@ -37,6 +37,13 @@ class ImportFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int64 invalid_row_count = 6;</code>
      */
     private $invalid_row_count = 0;
+    /**
+     * The number rows that weren't ingested due to having feature timestamps
+     * outside the retention boundary.
+     *
+     * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 4;</code>
+     */
+    private $timestamp_outside_retention_rows_count = 0;
 
     /**
      * Constructor.
@@ -54,6 +61,9 @@ class ImportFeatureValuesResponse extends \Google\Protobuf\Internal\Message
      *           * Having a null entityId.
      *           * Having a null timestamp.
      *           * Not being parsable (applicable for CSV sources).
+     *     @type int|string $timestamp_outside_retention_rows_count
+     *           The number rows that weren't ingested due to having feature timestamps
+     *           outside the retention boundary.
      * }
      */
     public function __construct($data = NULL) {
@@ -143,6 +153,34 @@ class ImportFeatureValuesResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->invalid_row_count = $var;
+
+        return $this;
+    }
+
+    /**
+     * The number rows that weren't ingested due to having feature timestamps
+     * outside the retention boundary.
+     *
+     * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 4;</code>
+     * @return int|string
+     */
+    public function getTimestampOutsideRetentionRowsCount()
+    {
+        return $this->timestamp_outside_retention_rows_count;
+    }
+
+    /**
+     * The number rows that weren't ingested due to having feature timestamps
+     * outside the retention boundary.
+     *
+     * Generated from protobuf field <code>int64 timestamp_outside_retention_rows_count = 4;</code>
+     * @param int|string $var
+     * @return $this
+     */
+    public function setTimestampOutsideRetentionRowsCount($var)
+    {
+        GPBUtil::checkInt64($var);
+        $this->timestamp_outside_retention_rows_count = $var;
 
         return $this;
     }

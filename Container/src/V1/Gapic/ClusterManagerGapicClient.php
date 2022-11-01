@@ -72,6 +72,7 @@ use Google\Cloud\Container\V1\NodeNetworkConfig;
 use Google\Cloud\Container\V1\NodePool;
 use Google\Cloud\Container\V1\NodePool\UpgradeSettings;
 use Google\Cloud\Container\V1\NodePoolAutoscaling;
+use Google\Cloud\Container\V1\NodePoolLoggingConfig;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
@@ -2664,6 +2665,8 @@ class ClusterManagerGapicClient
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type NodePoolLoggingConfig $loggingConfig
+     *           Logging configuration.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2751,6 +2754,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['gvnic'])) {
             $request->setGvnic($optionalArgs['gvnic']);
+        }
+
+        if (isset($optionalArgs['loggingConfig'])) {
+            $request->setLoggingConfig($optionalArgs['loggingConfig']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

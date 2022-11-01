@@ -81,6 +81,8 @@ use Google\Cloud\AIPlatform\V1\PurgeExecutionsRequest;
 use Google\Cloud\AIPlatform\V1\QueryArtifactLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryContextLineageSubgraphRequest;
 use Google\Cloud\AIPlatform\V1\QueryExecutionInputsAndOutputsRequest;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenRequest;
+use Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse;
 use Google\Cloud\AIPlatform\V1\UpdateArtifactRequest;
 use Google\Cloud\AIPlatform\V1\UpdateContextRequest;
 use Google\Cloud\AIPlatform\V1\UpdateExecutionRequest;
@@ -1771,6 +1773,13 @@ class MetadataServiceGapicClient
      *           logical operators (`AND` & `OR`).
      *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1797,6 +1806,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1886,6 +1899,13 @@ class MetadataServiceGapicClient
      *           logical operators (`AND` & `OR`).
      *
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1912,6 +1932,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -1996,6 +2020,13 @@ class MetadataServiceGapicClient
      *           Each of the above supported filters can be combined together using
      *           logical operators (`AND` & `OR`).
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
+     *     @type string $orderBy
+     *           How the list of messages is ordered. Specify the values to order by and an
+     *           ordering operation. The default sorting order is ascending. To specify
+     *           descending order for a field, users append a " desc" suffix; for example:
+     *           "foo desc, bar".
+     *           Subfields are specified with a `.` character, such as foo.bar.
+     *           see https://google.aip.dev/132#ordering for more details.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2022,6 +2053,10 @@ class MetadataServiceGapicClient
 
         if (isset($optionalArgs['filter'])) {
             $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -2665,6 +2700,65 @@ class MetadataServiceGapicClient
         return $this->startCall(
             'QueryExecutionInputsAndOutputs',
             LineageSubgraph::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Remove a set of children contexts from a parent Context. If any of the
+     * child Contexts were NOT added to the parent Context, they are
+     * simply skipped.
+     *
+     * Sample code:
+     * ```
+     * $metadataServiceClient = new MetadataServiceClient();
+     * try {
+     *     $formattedContext = $metadataServiceClient->contextName('[PROJECT]', '[LOCATION]', '[METADATA_STORE]', '[CONTEXT]');
+     *     $response = $metadataServiceClient->removeContextChildren($formattedContext);
+     * } finally {
+     *     $metadataServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $context      Required. The resource name of the parent Context.
+     *
+     *                             Format:
+     *                             `projects/{project}/locations/{location}/metadataStores/{metadatastore}/contexts/{context}`
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type string[] $childContexts
+     *           The resource names of the child Contexts.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\AIPlatform\V1\RemoveContextChildrenResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function removeContextChildren($context, array $optionalArgs = [])
+    {
+        $request = new RemoveContextChildrenRequest();
+        $requestParamHeaders = [];
+        $request->setContext($context);
+        $requestParamHeaders['context'] = $context;
+        if (isset($optionalArgs['childContexts'])) {
+            $request->setChildContexts($optionalArgs['childContexts']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RemoveContextChildren',
+            RemoveContextChildrenResponse::class,
             $optionalArgs,
             $request
         )->wait();

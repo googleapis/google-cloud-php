@@ -74,7 +74,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      */
     private $region = null;
     /**
-     * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
+     * A list of rules that belong to this policy. There must always be a default rule which is a rule with priority 2147483647 and match all condition (for the match condition this means match "*" for srcIpRanges and for the networkMatch condition every field must be either match "*" or not set). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
      */
@@ -118,7 +118,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
      *     @type string $region
      *           [Output Only] URL of the region where the regional security policy resides. This field is not applicable to global security policies.
      *     @type array<\Google\Cloud\Compute\V1\SecurityPolicyRule>|\Google\Protobuf\Internal\RepeatedField $rules
-     *           A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
+     *           A list of rules that belong to this policy. There must always be a default rule which is a rule with priority 2147483647 and match all condition (for the match condition this means match "*" for srcIpRanges and for the networkMatch condition every field must be either match "*" or not set). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *     @type string $self_link
      *           [Output Only] Server-defined URL for the resource.
      *     @type string $type
@@ -512,7 +512,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
+     * A list of rules that belong to this policy. There must always be a default rule which is a rule with priority 2147483647 and match all condition (for the match condition this means match "*" for srcIpRanges and for the networkMatch condition every field must be either match "*" or not set). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -523,7 +523,7 @@ class SecurityPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of rules that belong to this policy. There must always be a default rule (rule with priority 2147483647 and match "*"). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
+     * A list of rules that belong to this policy. There must always be a default rule which is a rule with priority 2147483647 and match all condition (for the match condition this means match "*" for srcIpRanges and for the networkMatch condition every field must be either match "*" or not set). If no rules are provided when creating a security policy, a default rule with action "allow" will be added.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.SecurityPolicyRule rules = 108873975;</code>
      * @param array<\Google\Cloud\Compute\V1\SecurityPolicyRule>|\Google\Protobuf\Internal\RepeatedField $var

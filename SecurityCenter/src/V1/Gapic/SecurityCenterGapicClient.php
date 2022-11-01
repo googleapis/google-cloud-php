@@ -192,6 +192,8 @@ class SecurityCenterGapicClient
 
     private static $folderMuteConfigNameTemplate;
 
+    private static $folderNotificationConfigNameTemplate;
+
     private static $folderSourceNameTemplate;
 
     private static $folderSourceFindingNameTemplate;
@@ -212,6 +214,8 @@ class SecurityCenterGapicClient
 
     private static $organizationMuteConfigNameTemplate;
 
+    private static $organizationNotificationConfigNameTemplate;
+
     private static $organizationSettingsNameTemplate;
 
     private static $organizationSourceNameTemplate;
@@ -229,6 +233,8 @@ class SecurityCenterGapicClient
     private static $projectExportNameTemplate;
 
     private static $projectMuteConfigNameTemplate;
+
+    private static $projectNotificationConfigNameTemplate;
 
     private static $projectSourceNameTemplate;
 
@@ -330,6 +336,15 @@ class SecurityCenterGapicClient
         return self::$folderMuteConfigNameTemplate;
     }
 
+    private static function getFolderNotificationConfigNameTemplate()
+    {
+        if (self::$folderNotificationConfigNameTemplate == null) {
+            self::$folderNotificationConfigNameTemplate = new PathTemplate('folders/{folder}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$folderNotificationConfigNameTemplate;
+    }
+
     private static function getFolderSourceNameTemplate()
     {
         if (self::$folderSourceNameTemplate == null) {
@@ -420,6 +435,15 @@ class SecurityCenterGapicClient
         return self::$organizationMuteConfigNameTemplate;
     }
 
+    private static function getOrganizationNotificationConfigNameTemplate()
+    {
+        if (self::$organizationNotificationConfigNameTemplate == null) {
+            self::$organizationNotificationConfigNameTemplate = new PathTemplate('organizations/{organization}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$organizationNotificationConfigNameTemplate;
+    }
+
     private static function getOrganizationSettingsNameTemplate()
     {
         if (self::$organizationSettingsNameTemplate == null) {
@@ -501,6 +525,15 @@ class SecurityCenterGapicClient
         return self::$projectMuteConfigNameTemplate;
     }
 
+    private static function getProjectNotificationConfigNameTemplate()
+    {
+        if (self::$projectNotificationConfigNameTemplate == null) {
+            self::$projectNotificationConfigNameTemplate = new PathTemplate('projects/{project}/notificationConfigs/{notification_config}');
+        }
+
+        return self::$projectNotificationConfigNameTemplate;
+    }
+
     private static function getProjectSourceNameTemplate()
     {
         if (self::$projectSourceNameTemplate == null) {
@@ -575,6 +608,7 @@ class SecurityCenterGapicClient
                 'folderAssetSecurityMarks' => self::getFolderAssetSecurityMarksNameTemplate(),
                 'folderExport' => self::getFolderExportNameTemplate(),
                 'folderMuteConfig' => self::getFolderMuteConfigNameTemplate(),
+                'folderNotificationConfig' => self::getFolderNotificationConfigNameTemplate(),
                 'folderSource' => self::getFolderSourceNameTemplate(),
                 'folderSourceFinding' => self::getFolderSourceFindingNameTemplate(),
                 'folderSourceFindingExternalsystem' => self::getFolderSourceFindingExternalsystemNameTemplate(),
@@ -585,6 +619,7 @@ class SecurityCenterGapicClient
                 'organizationAssetSecurityMarks' => self::getOrganizationAssetSecurityMarksNameTemplate(),
                 'organizationExport' => self::getOrganizationExportNameTemplate(),
                 'organizationMuteConfig' => self::getOrganizationMuteConfigNameTemplate(),
+                'organizationNotificationConfig' => self::getOrganizationNotificationConfigNameTemplate(),
                 'organizationSettings' => self::getOrganizationSettingsNameTemplate(),
                 'organizationSource' => self::getOrganizationSourceNameTemplate(),
                 'organizationSourceFinding' => self::getOrganizationSourceFindingNameTemplate(),
@@ -594,6 +629,7 @@ class SecurityCenterGapicClient
                 'projectAssetSecurityMarks' => self::getProjectAssetSecurityMarksNameTemplate(),
                 'projectExport' => self::getProjectExportNameTemplate(),
                 'projectMuteConfig' => self::getProjectMuteConfigNameTemplate(),
+                'projectNotificationConfig' => self::getProjectNotificationConfigNameTemplate(),
                 'projectSource' => self::getProjectSourceNameTemplate(),
                 'projectSourceFinding' => self::getProjectSourceFindingNameTemplate(),
                 'projectSourceFindingExternalsystem' => self::getProjectSourceFindingExternalsystemNameTemplate(),
@@ -727,6 +763,23 @@ class SecurityCenterGapicClient
         return self::getFolderMuteConfigNameTemplate()->render([
             'folder' => $folder,
             'mute_config' => $muteConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
+     * folder_notification_config resource.
+     *
+     * @param string $folder
+     * @param string $notificationConfig
+     *
+     * @return string The formatted folder_notification_config resource.
+     */
+    public static function folderNotificationConfigName($folder, $notificationConfig)
+    {
+        return self::getFolderNotificationConfigNameTemplate()->render([
+            'folder' => $folder,
+            'notification_config' => $notificationConfig,
         ]);
     }
 
@@ -908,6 +961,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * organization_notification_config resource.
+     *
+     * @param string $organization
+     * @param string $notificationConfig
+     *
+     * @return string The formatted organization_notification_config resource.
+     */
+    public static function organizationNotificationConfigName($organization, $notificationConfig)
+    {
+        return self::getOrganizationNotificationConfigNameTemplate()->render([
+            'organization' => $organization,
+            'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * organization_settings resource.
      *
      * @param string $organization
@@ -1065,6 +1135,23 @@ class SecurityCenterGapicClient
 
     /**
      * Formats a string containing the fully-qualified path to represent a
+     * project_notification_config resource.
+     *
+     * @param string $project
+     * @param string $notificationConfig
+     *
+     * @return string The formatted project_notification_config resource.
+     */
+    public static function projectNotificationConfigName($project, $notificationConfig)
+    {
+        return self::getProjectNotificationConfigNameTemplate()->render([
+            'project' => $project,
+            'notification_config' => $notificationConfig,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a
      * project_source resource.
      *
      * @param string $project
@@ -1201,6 +1288,7 @@ class SecurityCenterGapicClient
      * - folderAssetSecurityMarks: folders/{folder}/assets/{asset}/securityMarks
      * - folderExport: folders/{folder}/bigQueryExports/{export}
      * - folderMuteConfig: folders/{folder}/muteConfigs/{mute_config}
+     * - folderNotificationConfig: folders/{folder}/notificationConfigs/{notification_config}
      * - folderSource: folders/{folder}/sources/{source}
      * - folderSourceFinding: folders/{folder}/sources/{source}/findings/{finding}
      * - folderSourceFindingExternalsystem: folders/{folder}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1211,6 +1299,7 @@ class SecurityCenterGapicClient
      * - organizationAssetSecurityMarks: organizations/{organization}/assets/{asset}/securityMarks
      * - organizationExport: organizations/{organization}/bigQueryExports/{export}
      * - organizationMuteConfig: organizations/{organization}/muteConfigs/{mute_config}
+     * - organizationNotificationConfig: organizations/{organization}/notificationConfigs/{notification_config}
      * - organizationSettings: organizations/{organization}/organizationSettings
      * - organizationSource: organizations/{organization}/sources/{source}
      * - organizationSourceFinding: organizations/{organization}/sources/{source}/findings/{finding}
@@ -1220,6 +1309,7 @@ class SecurityCenterGapicClient
      * - projectAssetSecurityMarks: projects/{project}/assets/{asset}/securityMarks
      * - projectExport: projects/{project}/bigQueryExports/{export}
      * - projectMuteConfig: projects/{project}/muteConfigs/{mute_config}
+     * - projectNotificationConfig: projects/{project}/notificationConfigs/{notification_config}
      * - projectSource: projects/{project}/sources/{source}
      * - projectSourceFinding: projects/{project}/sources/{source}/findings/{finding}
      * - projectSourceFindingExternalsystem: projects/{project}/sources/{source}/findings/{finding}/externalSystems/{externalsystem}
@@ -1397,8 +1487,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, at which bulk action needs to be applied. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -1528,8 +1618,8 @@ class SecurityCenterGapicClient
      * @param string  $findingId    Required. Unique identifier provided by the client within the parent scope.
      *                              It must be alphanumeric and less than or equal to 32 characters and
      *                              greater than 0 characters in length.
-     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be ignored as
-     *                              they are both output only fields on this resource.
+     * @param Finding $finding      Required. The Finding being created. The name and security_marks will be
+     *                              ignored as they are both output only fields on this resource.
      * @param array   $optionalArgs {
      *     Optional.
      *
@@ -1613,7 +1703,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     $configId = 'config_id';
      *     $notificationConfig = new NotificationConfig();
      *     $response = $securityCenterClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
@@ -1622,14 +1712,16 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format is
-     *                                               "organizations/[organization_id]".
+     * @param string             $parent             Required. Resource name of the new notification config's parent. Its format
+     *                                               is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                                               "projects/[project_id]".
      * @param string             $configId           Required.
      *                                               Unique identifier provided by the client within the parent scope.
      *                                               It must be between 1 and 128 characters, and contains alphanumeric
      *                                               characters, underscores or hyphens only.
-     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service account
-     *                                               will be ignored as they are both output only fields on this resource.
+     * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
+     *                                               account will be ignored as they are both output only fields on this
+     *                                               resource.
      * @param array              $optionalArgs       {
      *     Optional.
      *
@@ -1673,8 +1765,8 @@ class SecurityCenterGapicClient
      *
      * @param string $parent       Required. Resource name of the new source's parent. Its format should be
      *                             "organizations/[organization_id]".
-     * @param Source $source       Required. The Source being created, only the display_name and description will be
-     *                             used. All other fields will be ignored.
+     * @param Source $source       Required. The Source being created, only the display_name and description
+     *                             will be used. All other fields will be ignored.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2003,8 +2095,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the organization to get organization settings for. Its format is
-     *                             "organizations/[organization_id]/organizationSettings".
+     * @param string $name         Required. Name of the organization to get organization settings for. Its
+     *                             format is "organizations/[organization_id]/organizationSettings".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2100,9 +2192,9 @@ class SecurityCenterGapicClient
      * @param string $parent       Required. Name of the organization to groupBy. Its format is
      *                             "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping. The string
-     *                             value should follow SQL syntax: comma separated list of fields. For
-     *                             example:
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
+     *                             The string value should follow SQL syntax: comma separated list of fields.
+     *                             For example:
      *                             "security_center_properties.resource_project,security_center_properties.project".
      *
      *                             The following fields are supported when compare_duration is not set:
@@ -2308,9 +2400,9 @@ class SecurityCenterGapicClient
      *                             provide a source_id of `-`. For example:
      *                             organizations/{organization_id}/sources/-, folders/{folder_id}/sources/-,
      *                             or projects/{project_id}/sources/-
-     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping (including
-     *                             `state_change`). The string value should follow SQL syntax: comma separated
-     *                             list of fields. For example: "parent,resource_name".
+     * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping
+     *                             (including `state_change`). The string value should follow SQL syntax:
+     *                             comma separated list of fields. For example: "parent,resource_name".
      *
      *                             The following fields are supported:
      *
@@ -2714,8 +2806,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, which owns the collection of BigQuery exports. Its
+     *                             format is "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3001,8 +3093,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format is
-     *                             "organizations/[organization_id]", "folders/[folder_id]",
+     * @param string $parent       Required. The parent, which owns the collection of mute configs. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]",
      *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3052,7 +3144,7 @@ class SecurityCenterGapicClient
      * ```
      * $securityCenterClient = new SecurityCenterClient();
      * try {
-     *     $formattedParent = $securityCenterClient->organizationName('[ORGANIZATION]');
+     *     $formattedParent = $securityCenterClient->projectName('[PROJECT]');
      *     // Iterate over pages of elements
      *     $pagedResponse = $securityCenterClient->listNotificationConfigs($formattedParent);
      *     foreach ($pagedResponse->iteratePages() as $page) {
@@ -3071,8 +3163,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to list notification configs.
-     *                             Its format is "organizations/[organization_id]".
+     * @param string $parent       Required. Name of the organization to list notification configs. Its format
+     *                             is "organizations/[organization_id]", "folders/[folder_id]", or
+     *                             "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3140,8 +3233,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should be
-     *                             "organizations/[organization_id], folders/[folder_id], or
+     * @param string $parent       Required. Resource name of the parent of sources to list. Its format should
+     *                             be "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3228,8 +3321,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format is
-     *                             "organizations/[organization_id]".
+     * @param string $parent       Required. Name of the organization to run asset discovery for. Its format
+     *                             is "organizations/[organization_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3561,8 +3654,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param Finding $finding      Required. The finding resource to update or create if it does not already exist.
-     *                              parent, security_marks, and update_time will be ignored.
+     * @param Finding $finding      Required. The finding resource to update or create if it does not already
+     *                              exist. parent, security_marks, and update_time will be ignored.
      *
      *                              In the case of creation, the finding id portion of the name must be
      *                              alphanumeric and less than or equal to 32 characters and greater than 0

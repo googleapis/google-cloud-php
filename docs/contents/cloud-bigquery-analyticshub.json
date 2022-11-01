@@ -1,0 +1,15 @@
+{
+    "title": "BigQueryAnalyticsHub",
+    "defaultService": "bigqueryanalyticshub\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "bigqueryanalyticshub\/readme"
+        },
+        {
+            "title": "AnalyticsHubServiceClient (v1)",
+            "type": "bigqueryanalyticshub\/v1\/analyticshubserviceclient"
+        }
+    ],
+    "pattern": "bigqueryanalyticshub\/\\w{1,}"
+}

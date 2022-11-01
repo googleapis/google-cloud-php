@@ -51,7 +51,7 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
      *           Information about the file for which this response is generated.
-     *     @type \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
+     *     @type array<\Google\Cloud\Vision\V1\AnnotateImageResponse>|\Google\Protobuf\Internal\RepeatedField $responses
      *           Individual responses to images found within the file. This field will be
      *           empty if the `error` field is set.
      *     @type int $total_pages
@@ -119,7 +119,7 @@ class AnnotateFileResponse extends \Google\Protobuf\Internal\Message
      * empty if the `error` field is set.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AnnotateImageResponse responses = 2;</code>
-     * @param \Google\Cloud\Vision\V1\AnnotateImageResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\AnnotateImageResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponses($var)

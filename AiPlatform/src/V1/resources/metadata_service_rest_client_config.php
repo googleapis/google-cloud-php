@@ -322,6 +322,18 @@ return [
                     ],
                 ],
             ],
+            'RemoveContextChildren' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:removeContextChildren',
+                'body' => '*',
+                'placeholders' => [
+                    'context' => [
+                        'getters' => [
+                            'getContext',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateArtifact' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{artifact.name=projects/*/locations/*/metadataStores/*/artifacts/*}',

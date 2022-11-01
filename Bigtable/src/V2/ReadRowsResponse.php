@@ -33,6 +33,28 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bytes last_scanned_row_key = 2;</code>
      */
     private $last_scanned_row_key = '';
+    /**
+     * If requested, provide enhanced query performance statistics. The semantics
+     * dictate:
+     *   * request_stats is empty on every (streamed) response, except
+     *   * request_stats has non-empty information after all chunks have been
+     *     streamed, where the ReadRowsResponse message only contains
+     *     request_stats.
+     *       * For example, if a read request would have returned an empty
+     *         response instead a single ReadRowsResponse is streamed with empty
+     *         chunks and request_stats filled.
+     * Visually, response messages will stream as follows:
+     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
+     *   \______________________/  \________________________________/
+     *       Primary response         Trailer of RequestStats info
+     * Or if the read did not return any values:
+     *   {chunks: [], request_stats: {...}}
+     *   \________________________________/
+     *      Trailer of RequestStats info
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
+     */
+    private $request_stats = null;
 
     /**
      * Constructor.
@@ -50,6 +72,24 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
      *           This is primarily useful for cases where the server has read a
      *           lot of data that was filtered out since the last committed row
      *           key, allowing the client to skip that work on a retry.
+     *     @type \Google\Cloud\Bigtable\V2\RequestStats $request_stats
+     *           If requested, provide enhanced query performance statistics. The semantics
+     *           dictate:
+     *             * request_stats is empty on every (streamed) response, except
+     *             * request_stats has non-empty information after all chunks have been
+     *               streamed, where the ReadRowsResponse message only contains
+     *               request_stats.
+     *                 * For example, if a read request would have returned an empty
+     *                   response instead a single ReadRowsResponse is streamed with empty
+     *                   chunks and request_stats filled.
+     *           Visually, response messages will stream as follows:
+     *              ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
+     *             \______________________/  \________________________________/
+     *                 Primary response         Trailer of RequestStats info
+     *           Or if the read did not return any values:
+     *             {chunks: [], request_stats: {...}}
+     *             \________________________________/
+     *                Trailer of RequestStats info
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +157,74 @@ class ReadRowsResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, False);
         $this->last_scanned_row_key = $var;
+
+        return $this;
+    }
+
+    /**
+     * If requested, provide enhanced query performance statistics. The semantics
+     * dictate:
+     *   * request_stats is empty on every (streamed) response, except
+     *   * request_stats has non-empty information after all chunks have been
+     *     streamed, where the ReadRowsResponse message only contains
+     *     request_stats.
+     *       * For example, if a read request would have returned an empty
+     *         response instead a single ReadRowsResponse is streamed with empty
+     *         chunks and request_stats filled.
+     * Visually, response messages will stream as follows:
+     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
+     *   \______________________/  \________________________________/
+     *       Primary response         Trailer of RequestStats info
+     * Or if the read did not return any values:
+     *   {chunks: [], request_stats: {...}}
+     *   \________________________________/
+     *      Trailer of RequestStats info
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
+     * @return \Google\Cloud\Bigtable\V2\RequestStats|null
+     */
+    public function getRequestStats()
+    {
+        return $this->request_stats;
+    }
+
+    public function hasRequestStats()
+    {
+        return isset($this->request_stats);
+    }
+
+    public function clearRequestStats()
+    {
+        unset($this->request_stats);
+    }
+
+    /**
+     * If requested, provide enhanced query performance statistics. The semantics
+     * dictate:
+     *   * request_stats is empty on every (streamed) response, except
+     *   * request_stats has non-empty information after all chunks have been
+     *     streamed, where the ReadRowsResponse message only contains
+     *     request_stats.
+     *       * For example, if a read request would have returned an empty
+     *         response instead a single ReadRowsResponse is streamed with empty
+     *         chunks and request_stats filled.
+     * Visually, response messages will stream as follows:
+     *    ... -> {chunks: [...]} -> {chunks: [], request_stats: {...}}
+     *   \______________________/  \________________________________/
+     *       Primary response         Trailer of RequestStats info
+     * Or if the read did not return any values:
+     *   {chunks: [], request_stats: {...}}
+     *   \________________________________/
+     *      Trailer of RequestStats info
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.RequestStats request_stats = 3;</code>
+     * @param \Google\Cloud\Bigtable\V2\RequestStats $var
+     * @return $this
+     */
+    public function setRequestStats($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Bigtable\V2\RequestStats::class);
+        $this->request_stats = $var;
 
         return $this;
     }
