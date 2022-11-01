@@ -3319,6 +3319,14 @@
             ]
         },
         {
+            "id": "cloud-security-public-ca",
+            "name": "google/cloud-security-public-ca",
+            "defaultService": "securitypublicca/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-service-control",
             "name": "google/cloud-service-control",
             "defaultService": "servicecontrol/readme",
