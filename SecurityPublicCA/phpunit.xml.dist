@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+  <testsuites>
+    <testsuite name="Unit Test Suite">
+      <directory>tests/Unit</directory>
+    </testsuite>
+  </testsuites>
+  <filter>
+    <whitelist>
+      <directory suffix=".php">src</directory>
+      <exclude>
+        <directory suffix=".php">src/V[!a-zA-Z]*</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+</phpunit>
