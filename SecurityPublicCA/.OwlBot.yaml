@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/security/publicca/v1beta1/.*-php/(.*)
+      dest: /owl-bot-staging/SecurityPublicCA/v1beta1/$1
+api-name: SecurityPublicCA
