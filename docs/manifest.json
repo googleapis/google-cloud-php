@@ -599,6 +599,14 @@
             ]
         },
         {
+            "id": "cloud-bigquery-migration",
+            "name": "google/cloud-bigquery-migration",
+            "defaultService": "bigquerymigration/readme",
+            "versions": [
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-reservation",
             "name": "google/cloud-bigquery-reservation",
             "defaultService": "bigqueryreservation/readme",
