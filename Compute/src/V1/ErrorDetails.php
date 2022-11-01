@@ -26,6 +26,10 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.LocalizedMessage localized_message = 404537155;</code>
      */
     private $localized_message = null;
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
+     */
+    private $quota_info = null;
 
     /**
      * Constructor.
@@ -36,6 +40,7 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\ErrorInfo $error_info
      *     @type \Google\Cloud\Compute\V1\Help $help
      *     @type \Google\Cloud\Compute\V1\LocalizedMessage $localized_message
+     *     @type \Google\Cloud\Compute\V1\QuotaExceededInfo $quota_info
      * }
      */
     public function __construct($data = NULL) {
@@ -135,6 +140,38 @@ class ErrorDetails extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\LocalizedMessage::class);
         $this->localized_message = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
+     * @return \Google\Cloud\Compute\V1\QuotaExceededInfo|null
+     */
+    public function getQuotaInfo()
+    {
+        return $this->quota_info;
+    }
+
+    public function hasQuotaInfo()
+    {
+        return isset($this->quota_info);
+    }
+
+    public function clearQuotaInfo()
+    {
+        unset($this->quota_info);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.QuotaExceededInfo quota_info = 93923861;</code>
+     * @param \Google\Cloud\Compute\V1\QuotaExceededInfo $var
+     * @return $this
+     */
+    public function setQuotaInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\QuotaExceededInfo::class);
+        $this->quota_info = $var;
 
         return $this;
     }

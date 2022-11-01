@@ -33,6 +33,12 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      */
     private $profiles;
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $strategy = null;
 
     /**
      * Constructor.
@@ -50,6 +56,8 @@ class Stage extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Skaffold profiles to use when rendering the manifest for this stage's
      *           `Target`.
+     *     @type \Google\Cloud\Deploy\V1\Strategy $strategy
+     *           Optional. The strategy to use for a `Rollout` to this stage.
      * }
      */
     public function __construct($data = NULL) {
@@ -117,6 +125,42 @@ class Stage extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->profiles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\Strategy|null
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    public function hasStrategy()
+    {
+        return isset($this->strategy);
+    }
+
+    public function clearStrategy()
+    {
+        unset($this->strategy);
+    }
+
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\Strategy $var
+     * @return $this
+     */
+    public function setStrategy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Strategy::class);
+        $this->strategy = $var;
 
         return $this;
     }

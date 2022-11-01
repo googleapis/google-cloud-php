@@ -16,8 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteSavedQueryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the saved query to delete. It must be in the format
-     * of:
+     * Required. The name of the saved query to delete. It must be in the format of:
      * * projects/project_number/savedQueries/saved_query_id
      * * folders/folder_number/savedQueries/saved_query_id
      * * organizations/organization_number/savedQueries/saved_query_id
@@ -33,8 +32,7 @@ class DeleteSavedQueryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. The name of the saved query to delete. It must be in the format
-     *           of:
+     *           Required. The name of the saved query to delete. It must be in the format of:
      *           * projects/project_number/savedQueries/saved_query_id
      *           * folders/folder_number/savedQueries/saved_query_id
      *           * organizations/organization_number/savedQueries/saved_query_id
@@ -46,8 +44,7 @@ class DeleteSavedQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the saved query to delete. It must be in the format
-     * of:
+     * Required. The name of the saved query to delete. It must be in the format of:
      * * projects/project_number/savedQueries/saved_query_id
      * * folders/folder_number/savedQueries/saved_query_id
      * * organizations/organization_number/savedQueries/saved_query_id
@@ -61,8 +58,7 @@ class DeleteSavedQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the saved query to delete. It must be in the format
-     * of:
+     * Required. The name of the saved query to delete. It must be in the format of:
      * * projects/project_number/savedQueries/saved_query_id
      * * folders/folder_number/savedQueries/saved_query_id
      * * organizations/organization_number/savedQueries/saved_query_id

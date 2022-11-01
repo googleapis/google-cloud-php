@@ -25,7 +25,6 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Yaml\Yaml;
 use RuntimeException;
-use Google\Cloud\Dev\DocFx\Node\XrefTrait;
 use Google\Cloud\Dev\DocFx\Page\PageTree;
 use Google\Cloud\Dev\DocFx\Page\OverviewPage;
 
@@ -89,7 +88,7 @@ class DocFx extends Command
         $output->write(sprintf('Writing output to <fg=white>%s</>... ', $outDir));
 
         // YAML dump configuration
-        $inline = 9; // The level where you switch to inline YAML
+        $inline = 11; // The level where you switch to inline YAML
         $indent = 2; // The amount of spaces to use for indentation of nested nodes
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
@@ -98,7 +97,6 @@ class DocFx extends Command
         foreach ($namespaces as $namespace) {
             $pages = new PageTree($xml, $namespace, $friendlyApiName);
             $pageList = $pages->getPages();
-            XrefTrait::$protoPackagesToPhpNamespaces = $pages->getProtoPackages();
 
             foreach ($pageList as $page) {
                 $docFxArray = ['items' => $page->getItems()];
@@ -115,10 +113,11 @@ class DocFx extends Command
             $tocItems = array_merge($tocItems, $pages->getTocItems());
         }
 
+        $releaseLevel = $this->getReleaseLevel();
         if (file_exists($overviewFile = sprintf('%s/README.md', $componentPath))) {
             $overview = new OverviewPage(
                 file_get_contents($overviewFile),
-                $this->getReleaseLevel() === 'beta'
+                $releaseLevel === 'beta'
             );
             $outFile = sprintf('%s/%s', $outDir, $overview->getFilename());
             file_put_contents($outFile, $overview->getContents());
@@ -127,7 +126,13 @@ class DocFx extends Command
         }
 
         // Write the TOC to a file
-        $tocYaml = Yaml::dump($tocItems, $inline, $indent, $flags);
+        $componentToc = array_filter([
+            'uid' => $this->getComponentUid(),
+            'name' => $this->getDistributionName(),
+            'status' => $releaseLevel === 'beta' ? 'beta' : '',
+            'items' => $tocItems,
+        ]);
+        $tocYaml = Yaml::dump([$componentToc], $inline, $indent, $flags);
         $outFile = sprintf('%s/toc.yml', $outDir);
         file_put_contents($outFile, $tocYaml);
 
@@ -233,6 +238,18 @@ class DocFx extends Command
             throw new RuntimeException('composer.json does not contain "name"');
         }
         return $this->composerJson['name'];
+    }
+
+    /**
+     * Formats distribution name like
+     *   - google-cloud-policy-troubleshooter
+     *   - google-cloud-vision
+     *   - google-grafeas
+     *   - google-analytics-data
+     */
+    private function getComponentUid(): string
+    {
+        return str_replace('/', '-', $this->getDistributionName());
     }
 
     private function getFriendlyApiName(): string

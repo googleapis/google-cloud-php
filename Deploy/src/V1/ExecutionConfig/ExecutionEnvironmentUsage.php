@@ -31,11 +31,18 @@ class ExecutionEnvironmentUsage
      * Generated from protobuf enum <code>DEPLOY = 2;</code>
      */
     const DEPLOY = 2;
+    /**
+     * Use for deployment verification.
+     *
+     * Generated from protobuf enum <code>VERIFY = 3;</code>
+     */
+    const VERIFY = 3;
 
     private static $valueToName = [
         self::EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED => 'EXECUTION_ENVIRONMENT_USAGE_UNSPECIFIED',
         self::RENDER => 'RENDER',
         self::DEPLOY => 'DEPLOY',
+        self::VERIFY => 'VERIFY',
     ];
 
     public static function name($value)

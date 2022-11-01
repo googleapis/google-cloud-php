@@ -18,6 +18,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      * hash. For JSON requests, this field is base64-encoded.
+     * Note that if this parameter is provided by a URI, it must be encoded using
+     * the web safe base64 variant (RFC 4648).
      *
      * Generated from protobuf field <code>bytes hash_prefix = 1;</code>
      */
@@ -38,6 +40,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
      *     @type string $hash_prefix
      *           A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      *           hash. For JSON requests, this field is base64-encoded.
+     *           Note that if this parameter is provided by a URI, it must be encoded using
+     *           the web safe base64 variant (RFC 4648).
      *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $threat_types
      *           Required. The ThreatLists to search in. Multiple ThreatLists may be specified.
      * }
@@ -50,6 +54,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      * hash. For JSON requests, this field is base64-encoded.
+     * Note that if this parameter is provided by a URI, it must be encoded using
+     * the web safe base64 variant (RFC 4648).
      *
      * Generated from protobuf field <code>bytes hash_prefix = 1;</code>
      * @return string
@@ -62,6 +68,8 @@ class SearchHashesRequest extends \Google\Protobuf\Internal\Message
     /**
      * A hash prefix, consisting of the most significant 4-32 bytes of a SHA256
      * hash. For JSON requests, this field is base64-encoded.
+     * Note that if this parameter is provided by a URI, it must be encoded using
+     * the web safe base64 variant (RFC 4648).
      *
      * Generated from protobuf field <code>bytes hash_prefix = 1;</code>
      * @param string $var

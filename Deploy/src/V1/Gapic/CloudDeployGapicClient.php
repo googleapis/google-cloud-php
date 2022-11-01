@@ -25,19 +25,22 @@
 namespace Google\Cloud\Deploy\V1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
+
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-use Google\ApiCore\OperationResponse;
 
+use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-use Google\ApiCore\RetrySettings;
 
+use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Deploy\V1\AbandonReleaseRequest;
+use Google\Cloud\Deploy\V1\AbandonReleaseResponse;
 use Google\Cloud\Deploy\V1\ApproveRolloutRequest;
 use Google\Cloud\Deploy\V1\ApproveRolloutResponse;
 use Google\Cloud\Deploy\V1\Config;
@@ -50,11 +53,15 @@ use Google\Cloud\Deploy\V1\DeleteTargetRequest;
 use Google\Cloud\Deploy\V1\DeliveryPipeline;
 use Google\Cloud\Deploy\V1\GetConfigRequest;
 use Google\Cloud\Deploy\V1\GetDeliveryPipelineRequest;
+use Google\Cloud\Deploy\V1\GetJobRunRequest;
 use Google\Cloud\Deploy\V1\GetReleaseRequest;
 use Google\Cloud\Deploy\V1\GetRolloutRequest;
 use Google\Cloud\Deploy\V1\GetTargetRequest;
+use Google\Cloud\Deploy\V1\JobRun;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesRequest;
 use Google\Cloud\Deploy\V1\ListDeliveryPipelinesResponse;
+use Google\Cloud\Deploy\V1\ListJobRunsRequest;
+use Google\Cloud\Deploy\V1\ListJobRunsResponse;
 use Google\Cloud\Deploy\V1\ListReleasesRequest;
 use Google\Cloud\Deploy\V1\ListReleasesResponse;
 use Google\Cloud\Deploy\V1\ListRolloutsRequest;
@@ -62,10 +69,22 @@ use Google\Cloud\Deploy\V1\ListRolloutsResponse;
 use Google\Cloud\Deploy\V1\ListTargetsRequest;
 use Google\Cloud\Deploy\V1\ListTargetsResponse;
 use Google\Cloud\Deploy\V1\Release;
+use Google\Cloud\Deploy\V1\RetryJobRequest;
+use Google\Cloud\Deploy\V1\RetryJobResponse;
 use Google\Cloud\Deploy\V1\Rollout;
 use Google\Cloud\Deploy\V1\Target;
 use Google\Cloud\Deploy\V1\UpdateDeliveryPipelineRequest;
 use Google\Cloud\Deploy\V1\UpdateTargetRequest;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
 
@@ -79,9 +98,8 @@ use Google\Protobuf\FieldMask;
  * ```
  * $cloudDeployClient = new CloudDeployClient();
  * try {
- *     $formattedName = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
- *     $approved = false;
- *     $response = $cloudDeployClient->approveRollout($formattedName, $approved);
+ *     $formattedName = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+ *     $response = $cloudDeployClient->abandonRelease($formattedName);
  * } finally {
  *     $cloudDeployClient->close();
  * }
@@ -128,6 +146,8 @@ class CloudDeployGapicClient
     private static $configNameTemplate;
 
     private static $deliveryPipelineNameTemplate;
+
+    private static $jobRunNameTemplate;
 
     private static $locationNameTemplate;
 
@@ -199,6 +219,17 @@ class CloudDeployGapicClient
         return self::$deliveryPipelineNameTemplate;
     }
 
+    private static function getJobRunNameTemplate()
+    {
+        if (self::$jobRunNameTemplate == null) {
+            self::$jobRunNameTemplate = new PathTemplate(
+                'projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}'
+            );
+        }
+
+        return self::$jobRunNameTemplate;
+    }
+
     private static function getLocationNameTemplate()
     {
         if (self::$locationNameTemplate == null) {
@@ -250,6 +281,7 @@ class CloudDeployGapicClient
                 'build' => self::getBuildNameTemplate(),
                 'config' => self::getConfigNameTemplate(),
                 'deliveryPipeline' => self::getDeliveryPipelineNameTemplate(),
+                'jobRun' => self::getJobRunNameTemplate(),
                 'location' => self::getLocationNameTemplate(),
                 'release' => self::getReleaseNameTemplate(),
                 'rollout' => self::getRolloutNameTemplate(),
@@ -315,6 +347,37 @@ class CloudDeployGapicClient
             'project' => $project,
             'location' => $location,
             'delivery_pipeline' => $deliveryPipeline,
+        ]);
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent a job_run
+     * resource.
+     *
+     * @param string $project
+     * @param string $location
+     * @param string $deliveryPipeline
+     * @param string $release
+     * @param string $rollout
+     * @param string $jobRun
+     *
+     * @return string The formatted job_run resource.
+     */
+    public static function jobRunName(
+        $project,
+        $location,
+        $deliveryPipeline,
+        $release,
+        $rollout,
+        $jobRun
+    ) {
+        return self::getJobRunNameTemplate()->render([
+            'project' => $project,
+            'location' => $location,
+            'delivery_pipeline' => $deliveryPipeline,
+            'release' => $release,
+            'rollout' => $rollout,
+            'job_run' => $jobRun,
         ]);
     }
 
@@ -414,6 +477,7 @@ class CloudDeployGapicClient
      * - build: projects/{project}/locations/{location}/builds/{build}
      * - config: projects/{project}/locations/{location}/config
      * - deliveryPipeline: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}
+     * - jobRun: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}/jobRuns/{job_run}
      * - location: projects/{project}/locations/{location}
      * - release: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}
      * - rollout: projects/{project}/locations/{location}/deliveryPipelines/{delivery_pipeline}/releases/{release}/rollouts/{rollout}
@@ -555,6 +619,56 @@ class CloudDeployGapicClient
         $clientOptions = $this->buildClientOptions($options);
         $this->setClientOptions($clientOptions);
         $this->operationsClient = $this->createOperationsClient($clientOptions);
+    }
+
+    /**
+     * Abandons a Release in the Delivery Pipeline.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->releaseName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]');
+     *     $response = $cloudDeployClient->abandonRelease($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the Release. Format is
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\AbandonReleaseResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function abandonRelease($name, array $optionalArgs = [])
+    {
+        $request = new AbandonReleaseRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'AbandonRelease',
+            AbandonReleaseResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
     }
 
     /**
@@ -1379,6 +1493,55 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Gets details of a single JobRun.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedName = $cloudDeployClient->jobRunName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]', '[JOB_RUN]');
+     *     $response = $cloudDeployClient->getJobRun($formattedName);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $name         Required. Name of the `JobRun`. Format must be
+     *                             projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}/rollouts/{rollout_name}/jobRuns/{job_run_name}.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\JobRun
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getJobRun($name, array $optionalArgs = [])
+    {
+        $request = new GetJobRunRequest();
+        $requestParamHeaders = [];
+        $request->setName($name);
+        $requestParamHeaders['name'] = $name;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetJobRun',
+            JobRun::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Gets details of a single Release.
      *
      * Sample code:
@@ -1612,6 +1775,96 @@ class CloudDeployGapicClient
             'ListDeliveryPipelines',
             $optionalArgs,
             ListDeliveryPipelinesResponse::class,
+            $request
+        );
+    }
+
+    /**
+     * Lists JobRuns in a given project and location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedParent = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudDeployClient->listJobRuns($formattedParent);
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudDeployClient->listJobRuns($formattedParent);
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $parent       Required. The `Rollout` which owns this collection of `JobRun` objects.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type string $filter
+     *           Optional. Filter results to be returned. See https://google.aip.dev/160 for more
+     *           details.
+     *     @type string $orderBy
+     *           Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listJobRuns($parent, array $optionalArgs = [])
+    {
+        $request = new ListJobRunsRequest();
+        $requestParamHeaders = [];
+        $request->setParent($parent);
+        $requestParamHeaders['parent'] = $parent;
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['orderBy'])) {
+            $request->setOrderBy($optionalArgs['orderBy']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListJobRuns',
+            $optionalArgs,
+            ListJobRunsResponse::class,
             $request
         );
     }
@@ -1888,6 +2141,66 @@ class CloudDeployGapicClient
     }
 
     /**
+     * Retries the specified Job in a Rollout.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $formattedRollout = $cloudDeployClient->rolloutName('[PROJECT]', '[LOCATION]', '[DELIVERY_PIPELINE]', '[RELEASE]', '[ROLLOUT]');
+     *     $phaseId = 'phase_id';
+     *     $jobId = 'job_id';
+     *     $response = $cloudDeployClient->retryJob($formattedRollout, $phaseId, $jobId);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $rollout      Required. Name of the Rollout. Format is
+     *                             projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/
+     *                             releases/{release}/rollouts/{rollout}.
+     * @param string $phaseId      Required. The phase ID the Job to retry belongs to.
+     * @param string $jobId        Required. The job ID for the Job to retry.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Deploy\V1\RetryJobResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function retryJob(
+        $rollout,
+        $phaseId,
+        $jobId,
+        array $optionalArgs = []
+    ) {
+        $request = new RetryJobRequest();
+        $requestParamHeaders = [];
+        $request->setRollout($rollout);
+        $request->setPhaseId($phaseId);
+        $request->setJobId($jobId);
+        $requestParamHeaders['rollout'] = $rollout;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'RetryJob',
+            RetryJobResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
      * Updates the parameters of a single DeliveryPipeline.
      *
      * Sample code:
@@ -2113,6 +2426,342 @@ class CloudDeployGapicClient
             $optionalArgs,
             $request,
             $this->getOperationsClient()
+        )->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $response = $cloudDeployClient->getLocation();
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetLocation',
+            Location::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.cloud.location.Locations'
+        )->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudDeployClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudDeployClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->getPagedListResponse(
+            'ListLocations',
+            $optionalArgs,
+            ListLocationsResponse::class,
+            $request,
+            'google.cloud.location.Locations'
+        );
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $cloudDeployClient->getIamPolicy($resource);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $cloudDeployClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
+        )->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $cloudDeployClient = new CloudDeployClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $cloudDeployClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $cloudDeployClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request,
+            Call::UNARY_CALL,
+            'google.iam.v1.IAMPolicy'
         )->wait();
     }
 }

@@ -1,0 +1,15 @@
+{
+    "title": "GSuiteAddOns",
+    "defaultService": "gsuiteaddons\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "gsuiteaddons\/readme"
+        },
+        {
+            "title": "GSuiteAddOnsClient (v1)",
+            "type": "gsuiteaddons\/v1\/gsuiteaddonsclient"
+        }
+    ],
+    "pattern": "gsuiteaddons\/\\w{1,}"
+}

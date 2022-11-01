@@ -69,6 +69,14 @@ s.replace(
     r'will be removed in the next major release',
     'will be removed in a future release')
 
+### [START] protect vision backwards compatibility
+
+# format generated clients
+subprocess.run([
+    'git',
+    'apply',
+    '.owlbot/safesearchannotation.patch'])
+
 ### [START] protoc backwards compatibility fixes
 
 # roll back to private properties.
