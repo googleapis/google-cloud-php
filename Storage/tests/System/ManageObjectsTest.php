@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\Storage\Tests\System;
 
+use Google\Cloud\Core\Exception\NotFoundException;
 use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\StreamInterface;
@@ -181,6 +182,25 @@ class ManageObjectsTest extends StorageTestCase
         $stream = self::$object->downloadToFile('php://temp');
 
         $this->assertEquals($contents, (string) $stream);
+    }
+
+    public function testDownloadsToFileShouldNotCreateFileWhenObjectNotFound()
+    {
+        $objectName = uniqid(self::TESTING_PREFIX);
+        $testObject = self::$bucket->object($objectName);
+        $exceptionString = 'No such object';
+        $downloadFilePath = __DIR__ . '/' . $objectName;
+
+        $throws = false;
+        try {
+            $testObject->downloadToFile($downloadFilePath);
+        } catch (NotFoundException $e) {
+            $this->assertStringContainsString($exceptionString, $e->getMessage());
+            $throws = true;
+        }
+
+        $this->assertTrue($throws);
+        $this->assertFileDoesNotExist($downloadFilePath);
     }
 
     public function testDownloadsPublicFileWithUnauthenticatedClient()
