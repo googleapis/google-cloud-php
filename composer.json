@@ -194,7 +194,7 @@
         "google/cloud-spanner": "1.54.0",
         "google/cloud-speech": "1.6.5",
         "google/cloud-sql-admin": "0.2.5",
-        "google/cloud-storage": "1.28.2",
+        "google/cloud-storage": "1.29.0",
         "google/cloud-storage-transfer": "0.3.0",
         "google/cloud-talent": "0.19.1",
         "google/cloud-tasks": "1.11.5",
