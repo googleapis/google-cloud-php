@@ -63,7 +63,7 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List Services.
+     * Lists Services.
      * @param \Google\Cloud\Run\V2\ListServicesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,7 +110,7 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given
+     * Gets the IAM Access Control policy currently in effect for the given
      * Cloud Run Service. This result does not include any inherited policies.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata

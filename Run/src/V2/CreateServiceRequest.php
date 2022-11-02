@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The location and project in which this service should be created.
+     * Required. The location and project in which this service should be created.
      * Format: projects/{project}/locations/{location}
      * Only lowercase characters, digits, and hyphens.
      *
@@ -52,7 +52,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The location and project in which this service should be created.
+     *           Required. The location and project in which this service should be created.
      *           Format: projects/{project}/locations/{location}
      *           Only lowercase characters, digits, and hyphens.
      *     @type \Google\Cloud\Run\V2\Service $service
@@ -72,7 +72,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location and project in which this service should be created.
+     * Required. The location and project in which this service should be created.
      * Format: projects/{project}/locations/{location}
      * Only lowercase characters, digits, and hyphens.
      *
@@ -85,7 +85,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location and project in which this service should be created.
+     * Required. The location and project in which this service should be created.
      * Format: projects/{project}/locations/{location}
      * Only lowercase characters, digits, and hyphens.
      *

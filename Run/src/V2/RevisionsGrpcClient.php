@@ -48,7 +48,7 @@ class RevisionsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * List Revisions from a given Service, or from a given location.
+     * Lists Revisions from a given Service, or from a given location.
      * @param \Google\Cloud\Run\V2\ListRevisionsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -63,7 +63,7 @@ class RevisionsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Delete a Revision.
+     * Deletes a Revision.
      * @param \Google\Cloud\Run\V2\DeleteRevisionRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
