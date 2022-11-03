@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/logmetric\/apiversion","type":"","title":"Google\\Cloud\\Logging\\V2\\LogMetric\\ApiVersion","name":"ApiVersion","description":"<p>Logging API version.<\/p>\n<p>Protobuf type <code>google.logging.v2.LogMetric.ApiVersion<\/code><\/p>","examples":[],"resources":[],"methods":[]}

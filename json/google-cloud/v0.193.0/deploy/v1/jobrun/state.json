@@ -1,0 +1,1 @@
+{"id":"deploy\/v1\/jobrun\/state","type":"","title":"Google\\Cloud\\Deploy\\V1\\JobRun\\State","name":"State","description":"<p>Valid states of a <code>JobRun<\/code>.<\/p>\n<p>Protobuf type <code>google.cloud.deploy.v1.JobRun.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

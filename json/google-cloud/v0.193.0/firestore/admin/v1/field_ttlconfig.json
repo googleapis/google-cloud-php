@@ -1,0 +1,1 @@
+{"id":"firestore\/admin\/v1\/field_ttlconfig","type":"","title":"Google\\Cloud\\Firestore\\Admin\\V1\\Field_TtlConfig","name":"Field_TtlConfig","description":"<p>This class is deprecated. Use Google\\Cloud\\Firestore\\Admin\\V1\\Field\\TtlConfig instead.<\/p>","examples":[],"resources":[],"methods":[]}

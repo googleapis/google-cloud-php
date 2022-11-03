@@ -1,0 +1,1 @@
+{"id":"domains\/v1alpha2\/transferlockstate","type":"","title":"Google\\Cloud\\Domains\\V1alpha2\\TransferLockState","name":"TransferLockState","description":"<p>Possible states of a <code>Registration<\/code>'s transfer lock.<\/p>\n<p>Protobuf type <code>google.cloud.domains.v1alpha2.TransferLockState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

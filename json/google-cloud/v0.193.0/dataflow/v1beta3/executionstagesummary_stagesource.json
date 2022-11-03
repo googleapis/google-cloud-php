@@ -1,0 +1,1 @@
+{"id":"dataflow\/v1beta3\/executionstagesummary_stagesource","type":"","title":"Google\\Cloud\\Dataflow\\V1beta3\\ExecutionStageSummary_StageSource","name":"ExecutionStageSummary_StageSource","description":"<p>This class is deprecated. Use Google\\Cloud\\Dataflow\\V1beta3\\ExecutionStageSummary\\StageSource instead.<\/p>","examples":[],"resources":[],"methods":[]}

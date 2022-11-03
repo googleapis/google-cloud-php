@@ -1,0 +1,1 @@
+{"id":"gsuiteaddons\/external\/protos\/addonwidgetset\/widgettype","type":"","title":"Google\\Apps\\Script\\Type\\AddOnWidgetSet\\WidgetType","name":"WidgetType","description":"<p>The Widget type. DEFAULT is the basic widget set.<\/p>\n<p>Protobuf type <code>google.apps.script.type.AddOnWidgetSet.WidgetType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

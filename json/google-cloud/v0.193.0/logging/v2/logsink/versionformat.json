@@ -1,0 +1,1 @@
+{"id":"logging\/v2\/logsink\/versionformat","type":"","title":"Google\\Cloud\\Logging\\V2\\LogSink\\VersionFormat","name":"VersionFormat","description":"<p>Deprecated. This is unused.<\/p>\n<p>Protobuf type <code>google.logging.v2.LogSink.VersionFormat<\/code><\/p>","examples":[],"resources":[],"methods":[]}

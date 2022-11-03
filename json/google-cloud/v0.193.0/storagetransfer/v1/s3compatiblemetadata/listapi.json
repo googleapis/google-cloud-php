@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/s3compatiblemetadata\/listapi","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\S3CompatibleMetadata\\ListApi","name":"ListApi","description":"<p>The Listing API to use for discovering objects.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.S3CompatibleMetadata.ListApi<\/code><\/p>","examples":[],"resources":[],"methods":[]}

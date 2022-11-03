@@ -1,0 +1,1 @@
+{"id":"recommendationengine\/v1beta1\/userevent\/eventsource","type":"","title":"Google\\Cloud\\RecommendationEngine\\V1beta1\\UserEvent\\EventSource","name":"EventSource","description":"<p>User event source.<\/p>\n<p>Protobuf type <code>google.cloud.recommendationengine.v1beta1.UserEvent.EventSource<\/code><\/p>","examples":[],"resources":[],"methods":[]}

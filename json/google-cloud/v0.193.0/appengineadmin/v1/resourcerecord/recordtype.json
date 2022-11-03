@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/resourcerecord\/recordtype","type":"","title":"Google\\Cloud\\AppEngine\\V1\\ResourceRecord\\RecordType","name":"RecordType","description":"<p>A resource record type.<\/p>\n<p>Protobuf type <code>google.appengine.v1.ResourceRecord.RecordType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

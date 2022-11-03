@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/project\/xpnprojectstatus","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Project\\XpnProjectStatus","name":"XpnProjectStatus","description":"<p>XpnProjectStatus contains string constants that represent the names of each\nvalue in the google.cloud.compute.v1.Project.XpnProjectStatus descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"iot\/v1\/mqttstate","type":"","title":"Google\\Cloud\\Iot\\V1\\MqttState","name":"MqttState","description":"<p>Indicates whether an MQTT connection is enabled or disabled. See the field\ndescription for details.<\/p>\n<p>Protobuf type <code>google.cloud.iot.v1.MqttState<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/image\/architecture","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Image\\Architecture","name":"Architecture","description":"<p>Architecture contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Image.Architecture descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

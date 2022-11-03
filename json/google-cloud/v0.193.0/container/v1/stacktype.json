@@ -1,0 +1,1 @@
+{"id":"container\/v1\/stacktype","type":"","title":"Google\\Cloud\\Container\\V1\\StackType","name":"StackType","description":"<p>Possible values for IP stack type<\/p>\n<p>Protobuf type <code>google.container.v1.StackType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"bigquerymigration\/v2\/teradatadialect\/mode","type":"","title":"Google\\Cloud\\BigQuery\\Migration\\V2\\TeradataDialect\\Mode","name":"Mode","description":"<p>The sub-dialect options for Teradata.<\/p>\n<p>Protobuf type <code>google.cloud.bigquery.migration.v2.TeradataDialect.Mode<\/code><\/p>","examples":[],"resources":[],"methods":[]}

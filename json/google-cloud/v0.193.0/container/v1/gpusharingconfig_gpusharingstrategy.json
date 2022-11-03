@@ -1,0 +1,1 @@
+{"id":"container\/v1\/gpusharingconfig_gpusharingstrategy","type":"","title":"Google\\Cloud\\Container\\V1\\GPUSharingConfig_GPUSharingStrategy","name":"GPUSharingConfig_GPUSharingStrategy","description":"<p>This class is deprecated. Use Google\\Cloud\\Container\\V1\\GPUSharingConfig\\GPUSharingStrategy instead.<\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"bigquerymigration\/v2\/migrationtask\/state","type":"","title":"Google\\Cloud\\BigQuery\\Migration\\V2\\MigrationTask\\State","name":"State","description":"<p>Possible states of a migration task.<\/p>\n<p>Protobuf type <code>google.cloud.bigquery.migration.v2.MigrationTask.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

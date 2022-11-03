@@ -1,0 +1,1 @@
+{"id":"storagetransfer\/v1\/s3compatiblemetadata\/requestmodel","type":"","title":"Google\\Cloud\\StorageTransfer\\V1\\S3CompatibleMetadata\\RequestModel","name":"RequestModel","description":"<p>The request model of the API.<\/p>\n<p>Protobuf type <code>google.storagetransfer.v1.S3CompatibleMetadata.RequestModel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

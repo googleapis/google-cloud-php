@@ -1,0 +1,1 @@
+{"id":"iot\/v1\/gatewaytype","type":"","title":"Google\\Cloud\\Iot\\V1\\GatewayType","name":"GatewayType","description":"<p>Gateway type.<\/p>\n<p>Protobuf type <code>google.cloud.iot.v1.GatewayType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

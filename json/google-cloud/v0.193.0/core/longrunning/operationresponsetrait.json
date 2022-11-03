@@ -1,0 +1,1 @@
+{"id":"core\/longrunning\/operationresponsetrait","type":"","title":"Google\\Cloud\\Core\\LongRunning\\OperationResponseTrait","name":"OperationResponseTrait","description":"<p>Serializes and deserializes ApiCore LRO Response objects.<\/p>\n<p>This trait should be used in a gRPC Connection class to normalize responses.<\/p>","examples":[],"resources":[],"methods":[]}

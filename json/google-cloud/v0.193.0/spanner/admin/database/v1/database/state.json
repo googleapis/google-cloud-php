@@ -1,0 +1,1 @@
+{"id":"spanner\/admin\/database\/v1\/database\/state","type":"","title":"Google\\Cloud\\Spanner\\Admin\\Database\\V1\\Database\\State","name":"State","description":"<p>Indicates the current state of the database.<\/p>\n<p>Protobuf type <code>google.spanner.admin.database.v1.Database.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

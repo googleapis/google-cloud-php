@@ -1,0 +1,1 @@
+{"id":"dataplex\/v1\/asset\/discoverystatus\/state","type":"","title":"Google\\Cloud\\Dataplex\\V1\\Asset\\DiscoveryStatus\\State","name":"State","description":"<p>Current state of discovery.<\/p>\n<p>Protobuf type <code>google.cloud.dataplex.v1.Asset.DiscoveryStatus.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}
