@@ -63,7 +63,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    For example:
      *    `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      * Each of the above supported filters can be combined together using
-     * logical operators (`AND` & `OR`).
+     * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     * is 5.
      * For example: `display_name = "test" AND metadata.field1.bool_value = true`.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
@@ -123,7 +124,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *              For example:
      *              `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      *           Each of the above supported filters can be combined together using
-     *           logical operators (`AND` & `OR`).
+     *           logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     *           is 5.
      *           For example: `display_name = "test" AND metadata.field1.bool_value = true`.
      *     @type string $order_by
      *           How the list of messages is ordered. Specify the values to order by and an
@@ -254,7 +256,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    For example:
      *    `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      * Each of the above supported filters can be combined together using
-     * logical operators (`AND` & `OR`).
+     * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     * is 5.
      * For example: `display_name = "test" AND metadata.field1.bool_value = true`.
      *
      * Generated from protobuf field <code>string filter = 4;</code>
@@ -288,7 +291,8 @@ class ListExecutionsRequest extends \Google\Protobuf\Internal\Message
      *    For example:
      *    `in_context("projects/<project_number>/locations/<location>/metadataStores/<metadatastore_name>/contexts/<context-id>")`
      * Each of the above supported filters can be combined together using
-     * logical operators (`AND` & `OR`).
+     * logical operators (`AND` & `OR`). Maximum nested expression depth allowed
+     * is 5.
      * For example: `display_name = "test" AND metadata.field1.bool_value = true`.
      *
      * Generated from protobuf field <code>string filter = 4;</code>

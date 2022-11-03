@@ -1612,7 +1612,7 @@ class TensorboardServiceGapicClient
      *
      * @param string $parent       Required. The resource name of the Tensorboard to list TensorboardExperiments.
      *                             Format:
-     *                             'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1711,7 +1711,7 @@ class TensorboardServiceGapicClient
      *
      * @param string $parent       Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
      *                             Format:
-     *                             'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}'
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1808,7 +1808,7 @@ class TensorboardServiceGapicClient
      *
      * @param string $parent       Required. The resource name of the TensorboardRun to list TensorboardTimeSeries.
      *                             Format:
-     *                             'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}'
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}`
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1997,7 +1997,7 @@ class TensorboardServiceGapicClient
      *
      * @param string $timeSeries   Required. The resource name of the TensorboardTimeSeries to list Blobs.
      *                             Format:
-     *                             'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}'
+     *                             `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}/runs/{run}/timeSeries/{time_series}`
      * @param array  $optionalArgs {
      *     Optional.
      *
