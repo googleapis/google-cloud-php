@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.193.0
+
+<details><summary>google/cloud-storage 1.29.0</summary>
+
+
+
+### Features
+
+* **storage:** Adding tests for autoclass ([#5582](https://github.com/googleapis/google-cloud-php/issues/5582)) ([323c037](https://github.com/googleapis/google-cloud-php/commit/323c0375175f063a255724c16ea13157977c35b9))
+
+</details>
+
 ## 0.192.0
 
 <details><summary>google/cloud-ai-platform 0.9.0</summary>
