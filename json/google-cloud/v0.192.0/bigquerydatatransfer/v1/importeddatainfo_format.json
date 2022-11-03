@@ -1,0 +1,1 @@
+{"id":"bigquerydatatransfer\/v1\/importeddatainfo_format","type":"","title":"Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo_Format","name":"ImportedDataInfo_Format","description":"<p>This class is deprecated. Use Google\\Cloud\\BigQuery\\DataTransfer\\V1\\ImportedDataInfo\\Format instead.<\/p>","examples":[],"resources":[],"methods":[]}

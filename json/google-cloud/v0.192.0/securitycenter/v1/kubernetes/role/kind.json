@@ -1,0 +1,1 @@
+{"id":"securitycenter\/v1\/kubernetes\/role\/kind","type":"","title":"Google\\Cloud\\SecurityCenter\\V1\\Kubernetes\\Role\\Kind","name":"Kind","description":"<p>Types of Kubernetes roles.<\/p>\n<p>Protobuf type <code>google.cloud.securitycenter.v1.Kubernetes.Role.Kind<\/code><\/p>","examples":[],"resources":[],"methods":[]}

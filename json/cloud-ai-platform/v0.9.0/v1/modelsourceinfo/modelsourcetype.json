@@ -1,0 +1,1 @@
+{"id":"aiplatform\/v1\/modelsourceinfo\/modelsourcetype","type":"","title":"Google\\Cloud\\AIPlatform\\V1\\ModelSourceInfo\\ModelSourceType","name":"ModelSourceType","description":"<p>Source of the model.<\/p>\n<p>Protobuf type <code>google.cloud.aiplatform.v1.ModelSourceInfo.ModelSourceType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

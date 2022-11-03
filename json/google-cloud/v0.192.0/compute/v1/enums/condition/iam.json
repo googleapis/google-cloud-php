@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/condition\/iam","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Condition\\Iam","name":"Iam","description":"<p>Iam contains string constants that represent the names of each value in the\ngoogle.cloud.compute.v1.Condition.Iam descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

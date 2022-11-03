@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/migrationjob\/type","type":"","title":"Google\\Cloud\\CloudDms\\V1\\MigrationJob\\Type","name":"Type","description":"<p>The type of migration job (one-time or continuous).<\/p>\n<p>Protobuf type <code>google.cloud.clouddms.v1.MigrationJob.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}

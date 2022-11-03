@@ -1,0 +1,1 @@
+{"id":"dialogflow\/v2\/outputaudioencoding","type":"","title":"Google\\Cloud\\Dialogflow\\V2\\OutputAudioEncoding","name":"OutputAudioEncoding","description":"<p>Audio encoding of the output audio format in Text-To-Speech.<\/p>\n<p>Protobuf type <code>google.cloud.dialogflow.v2.OutputAudioEncoding<\/code><\/p>","examples":[],"resources":[],"methods":[]}

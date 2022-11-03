@@ -1,0 +1,1 @@
+{"id":"bigquerymigration\/v2\/migrationworkflow\/state","type":"","title":"Google\\Cloud\\BigQuery\\Migration\\V2\\MigrationWorkflow\\State","name":"State","description":"<p>Possible migration workflow states.<\/p>\n<p>Protobuf type <code>google.cloud.bigquery.migration.v2.MigrationWorkflow.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

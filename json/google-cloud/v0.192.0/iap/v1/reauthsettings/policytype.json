@@ -1,0 +1,1 @@
+{"id":"iap\/v1\/reauthsettings\/policytype","type":"","title":"Google\\Cloud\\Iap\\V1\\ReauthSettings\\PolicyType","name":"PolicyType","description":"<p>Type of policy in the case of hierarchial policies.<\/p>\n<p>Protobuf type <code>google.cloud.iap.v1.ReauthSettings.PolicyType<\/code><\/p>","examples":[],"resources":[],"methods":[]}

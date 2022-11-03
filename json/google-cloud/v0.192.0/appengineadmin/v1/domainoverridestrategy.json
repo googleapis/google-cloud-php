@@ -1,0 +1,1 @@
+{"id":"appengineadmin\/v1\/domainoverridestrategy","type":"","title":"Google\\Cloud\\AppEngine\\V1\\DomainOverrideStrategy","name":"DomainOverrideStrategy","description":"<p>Override strategy for mutating an existing mapping.<\/p>\n<p>Protobuf type <code>google.appengine.v1.DomainOverrideStrategy<\/code><\/p>","examples":[],"resources":[],"methods":[]}

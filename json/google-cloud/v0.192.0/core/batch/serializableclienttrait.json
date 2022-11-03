@@ -1,0 +1,1 @@
+{"id":"core\/batch\/serializableclienttrait","type":"","title":"Google\\Cloud\\Core\\Batch\\SerializableClientTrait","name":"SerializableClientTrait","description":"<p>A trait to assist in serializing\/deserializing client configuration that may\ncontain closures.<\/p>","examples":[],"resources":[],"methods":[]}

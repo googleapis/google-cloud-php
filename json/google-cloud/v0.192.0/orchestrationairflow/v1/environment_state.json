@@ -1,0 +1,1 @@
+{"id":"orchestrationairflow\/v1\/environment_state","type":"","title":"Google\\Cloud\\Orchestration\\Airflow\\Service\\V1\\Environment_State","name":"Environment_State","description":"<p>This class is deprecated. Use Google\\Cloud\\Orchestration\\Airflow\\Service\\V1\\Environment\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}

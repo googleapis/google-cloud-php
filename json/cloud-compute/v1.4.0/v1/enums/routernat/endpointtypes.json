@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/routernat\/endpointtypes","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\RouterNat\\EndpointTypes","name":"EndpointTypes","description":"<p>EndpointTypes contains string constants that represent the names of each value\nin the google.cloud.compute.v1.RouterNat.EndpointTypes descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

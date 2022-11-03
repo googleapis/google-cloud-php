@@ -1,0 +1,1 @@
+{"id":"datacatalog\/v1\/physicalschema_parquetschema","type":"","title":"Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema_ParquetSchema","name":"PhysicalSchema_ParquetSchema","description":"<p>This class is deprecated. Use Google\\Cloud\\DataCatalog\\V1\\PhysicalSchema\\ParquetSchema instead.<\/p>","examples":[],"resources":[],"methods":[]}

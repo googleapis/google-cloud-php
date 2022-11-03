@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/servicelevel","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\ServiceLevel","name":"ServiceLevel","description":"<p>Various levels of service for Google Analytics.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1alpha.ServiceLevel<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"beyondcorpappconnectors\/v1\/healthstatus","type":"","title":"Google\\Cloud\\BeyondCorp\\AppConnectors\\V1\\HealthStatus","name":"HealthStatus","description":"<p>HealthStatus represents the health status.<\/p>\n<p>Protobuf type <code>google.cloud.beyondcorp.appconnectors.v1.HealthStatus<\/code><\/p>","examples":[],"resources":[],"methods":[]}

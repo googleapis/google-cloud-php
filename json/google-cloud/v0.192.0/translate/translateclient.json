@@ -1,0 +1,1 @@
+{"id":"translate\/translateclient","type":"","title":"Google\\Cloud\\Translate\\TranslateClient","name":"TranslateClient","description":"<p>This class is deprecated. Use <a data-custom-type=\"translate\/v2\/translateclient\">Google\\Cloud\\Translate\\V2\\TranslateClient<\/a> instead.<\/p>","examples":[],"resources":[],"methods":[]}

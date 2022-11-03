@@ -1,0 +1,1 @@
+{"id":"container\/v1\/nodenetworkconfig\/networkperformanceconfig\/tier","type":"","title":"Google\\Cloud\\Container\\V1\\NodeNetworkConfig\\NetworkPerformanceConfig\\Tier","name":"Tier","description":"<p>Node network tier<\/p>\n<p>Protobuf type <code>google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig.Tier<\/code><\/p>","examples":[],"resources":[],"methods":[]}

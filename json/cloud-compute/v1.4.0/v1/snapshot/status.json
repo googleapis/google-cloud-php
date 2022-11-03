@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/snapshot\/status","type":"","title":"Google\\Cloud\\Compute\\V1\\Snapshot\\Status","name":"Status","description":"<p>[Output Only] The status of the snapshot. This can be CREATING, DELETING, FAILED, READY, or UPLOADING.<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.Snapshot.Status<\/code><\/p>","examples":[],"resources":[],"methods":[]}

@@ -1,0 +1,1 @@
+{"id":"gsuiteaddons\/external\/protos\/httpauthorizationheader","type":"","title":"Google\\Apps\\Script\\Type\\HttpAuthorizationHeader","name":"HttpAuthorizationHeader","description":"<p>Authorization header sent in add-on HTTP requests<\/p>\n<p>Protobuf type <code>google.apps.script.type.HttpAuthorizationHeader<\/code><\/p>","examples":[],"resources":[],"methods":[]}

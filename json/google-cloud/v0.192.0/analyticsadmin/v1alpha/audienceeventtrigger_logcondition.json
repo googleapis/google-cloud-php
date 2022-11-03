@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1alpha\/audienceeventtrigger_logcondition","type":"","title":"Google\\Analytics\\Admin\\V1alpha\\AudienceEventTrigger_LogCondition","name":"AudienceEventTrigger_LogCondition","description":"<p>This class is deprecated. Use Google\\Analytics\\Admin\\V1alpha\\AudienceEventTrigger\\LogCondition instead.<\/p>","examples":[],"resources":[],"methods":[]}

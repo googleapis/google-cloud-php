@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/enums\/snapshot\/snapshottype","type":"","title":"Google\\Cloud\\Compute\\V1\\Enums\\Snapshot\\SnapshotType","name":"SnapshotType","description":"<p>SnapshotType contains string constants that represent the names of each value in\nthe google.cloud.compute.v1.Snapshot.SnapshotType descriptor.<\/p>","examples":[],"resources":[],"methods":[]}

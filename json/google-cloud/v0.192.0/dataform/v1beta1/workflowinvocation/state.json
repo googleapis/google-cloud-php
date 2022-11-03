@@ -1,0 +1,1 @@
+{"id":"dataform\/v1beta1\/workflowinvocation\/state","type":"","title":"Google\\Cloud\\Dataform\\V1beta1\\WorkflowInvocation\\State","name":"State","description":"<p>Represents the current state of a workflow invocation.<\/p>\n<p>Protobuf type <code>google.cloud.dataform.v1beta1.WorkflowInvocation.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

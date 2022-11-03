@@ -1,0 +1,1 @@
+{"id":"compute\/v1\/bfdpacket\/state","type":"","title":"Google\\Cloud\\Compute\\V1\\BfdPacket\\State","name":"State","description":"<p>The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880<\/p>\n<p>Protobuf type <code>google.cloud.compute.v1.BfdPacket.State<\/code><\/p>","examples":[],"resources":[],"methods":[]}

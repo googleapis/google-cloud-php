@@ -1,0 +1,1 @@
+{"id":"dms\/v1\/migrationjob_state","type":"","title":"Google\\Cloud\\CloudDms\\V1\\MigrationJob_State","name":"MigrationJob_State","description":"<p>This class is deprecated. Use Google\\Cloud\\CloudDms\\V1\\MigrationJob\\State instead.<\/p>","examples":[],"resources":[],"methods":[]}
