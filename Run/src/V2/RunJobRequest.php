@@ -17,7 +17,8 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The full name of the Job.
-     * Format: projects/{project}/locations/{location}/jobs/{job}
+     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -45,7 +46,8 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. The full name of the Job.
-     *           Format: projects/{project}/locations/{location}/jobs/{job}
+     *           Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *           can be project id or number.
      *     @type bool $validate_only
      *           Indicates that the request should be validated without actually
      *           deleting any resources.
@@ -61,7 +63,8 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full name of the Job.
-     * Format: projects/{project}/locations/{location}/jobs/{job}
+     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -73,7 +76,8 @@ class RunJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The full name of the Job.
-     * Format: projects/{project}/locations/{location}/jobs/{job}
+     * Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     * can be project id or number.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -123,7 +123,7 @@ class JobsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given Job.
+     * Gets the IAM Access Control policy currently in effect for the given Job.
      * This result does not include any inherited policies.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata

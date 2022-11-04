@@ -421,7 +421,8 @@ class JobsGapicClient
      * ```
      *
      * @param string $parent       Required. The location and project in which this Job should be created.
-     *                             Format: projects/{project}/locations/{location}
+     *                             Format: projects/{project}/locations/{location}, where {project} can be
+     *                             project id or number.
      * @param Job    $job          Required. The Job instance to create.
      * @param string $jobId        Required. The unique identifier for the Job. The name of the job becomes
      *                             {parent}/jobs/{job_id}.
@@ -507,7 +508,8 @@ class JobsGapicClient
      * ```
      *
      * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}
+     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *                             can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -556,7 +558,7 @@ class JobsGapicClient
     }
 
     /**
-     * Get the IAM Access Control policy currently in effect for the given Job.
+     * Gets the IAM Access Control policy currently in effect for the given Job.
      * This result does not include any inherited policies.
      *
      * Sample code:
@@ -627,7 +629,8 @@ class JobsGapicClient
      * ```
      *
      * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}
+     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *                             can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -688,7 +691,8 @@ class JobsGapicClient
      * ```
      *
      * @param string $parent       Required. The location and project to list resources on.
-     *                             Format: projects/{project}/locations/{location}
+     *                             Format: projects/{project}/locations/{location}, where {project} can be
+     *                             project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -785,7 +789,8 @@ class JobsGapicClient
      * ```
      *
      * @param string $name         Required. The full name of the Job.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}
+     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *                             can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *

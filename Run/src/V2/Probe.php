@@ -84,10 +84,13 @@ class Probe extends \Google\Protobuf\Internal\Message
      *           having succeeded. Defaults to 3. Minimum value is 1.
      *     @type \Google\Cloud\Run\V2\HTTPGetAction $http_get
      *           HTTPGet specifies the http request to perform.
-     *           Exactly one of HTTPGet or TCPSocket must be specified.
+     *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *     @type \Google\Cloud\Run\V2\TCPSocketAction $tcp_socket
      *           TCPSocket specifies an action involving a TCP port.
-     *           Exactly one of HTTPGet or TCPSocket must be specified.
+     *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     *     @type \Google\Cloud\Run\V2\GRPCAction $grpc
+     *           GRPC specifies an action involving a gRPC port.
+     *           Exactly one of httpGet, tcpSocket, or grpc must be specified.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,7 +230,7 @@ class Probe extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTPGet specifies the http request to perform.
-     * Exactly one of HTTPGet or TCPSocket must be specified.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5;</code>
      * @return \Google\Cloud\Run\V2\HTTPGetAction|null
@@ -244,7 +247,7 @@ class Probe extends \Google\Protobuf\Internal\Message
 
     /**
      * HTTPGet specifies the http request to perform.
-     * Exactly one of HTTPGet or TCPSocket must be specified.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.HTTPGetAction http_get = 5;</code>
      * @param \Google\Cloud\Run\V2\HTTPGetAction $var
@@ -260,7 +263,7 @@ class Probe extends \Google\Protobuf\Internal\Message
 
     /**
      * TCPSocket specifies an action involving a TCP port.
-     * Exactly one of HTTPGet or TCPSocket must be specified.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6;</code>
      * @return \Google\Cloud\Run\V2\TCPSocketAction|null
@@ -277,7 +280,7 @@ class Probe extends \Google\Protobuf\Internal\Message
 
     /**
      * TCPSocket specifies an action involving a TCP port.
-     * Exactly one of HTTPGet or TCPSocket must be specified.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
      *
      * Generated from protobuf field <code>.google.cloud.run.v2.TCPSocketAction tcp_socket = 6;</code>
      * @param \Google\Cloud\Run\V2\TCPSocketAction $var
@@ -287,6 +290,39 @@ class Probe extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\TCPSocketAction::class);
         $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * GRPC specifies an action involving a gRPC port.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7;</code>
+     * @return \Google\Cloud\Run\V2\GRPCAction|null
+     */
+    public function getGrpc()
+    {
+        return $this->readOneof(7);
+    }
+
+    public function hasGrpc()
+    {
+        return $this->hasOneof(7);
+    }
+
+    /**
+     * GRPC specifies an action involving a gRPC port.
+     * Exactly one of httpGet, tcpSocket, or grpc must be specified.
+     *
+     * Generated from protobuf field <code>.google.cloud.run.v2.GRPCAction grpc = 7;</code>
+     * @param \Google\Cloud\Run\V2\GRPCAction $var
+     * @return $this
+     */
+    public function setGrpc($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Run\V2\GRPCAction::class);
+        $this->writeOneof(7, $var);
 
         return $this;
     }

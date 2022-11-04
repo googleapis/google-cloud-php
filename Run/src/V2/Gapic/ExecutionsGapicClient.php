@@ -413,7 +413,8 @@ class ExecutionsGapicClient
      *
      * @param string $name         Required. The name of the Execution to delete.
      *                             Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
+     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
+     *                             where {project} can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -477,7 +478,8 @@ class ExecutionsGapicClient
      *
      * @param string $name         Required. The full name of the Execution.
      *                             Format:
-     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution}
+     *                             projects/{project}/locations/{location}/jobs/{job}/executions/{execution},
+     *                             where {project} can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -539,7 +541,8 @@ class ExecutionsGapicClient
      *
      * @param string $parent       Required. The Execution from which the Executions should be listed.
      *                             To list all Executions across Jobs, use "-" instead of Job name.
-     *                             Format: projects/{project}/locations/{location}/jobs/{job}
+     *                             Format: projects/{project}/locations/{location}/jobs/{job}, where {project}
+     *                             can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *

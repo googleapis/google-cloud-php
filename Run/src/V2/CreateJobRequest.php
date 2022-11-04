@@ -17,7 +17,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location and project in which this Job should be created.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -51,7 +52,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location and project in which this Job should be created.
-     *           Format: projects/{project}/locations/{location}
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number.
      *     @type \Google\Cloud\Run\V2\Job $job
      *           Required. The Job instance to create.
      *     @type string $job_id
@@ -69,7 +71,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project in which this Job should be created.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -81,7 +84,8 @@ class CreateJobRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project in which this Job should be created.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

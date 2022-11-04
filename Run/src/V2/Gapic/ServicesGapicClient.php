@@ -461,11 +461,11 @@ class ServicesGapicClient
      * ```
      *
      * @param string  $parent       Required. The location and project in which this service should be created.
-     *                              Format: projects/{project}/locations/{location}
-     *                              Only lowercase characters, digits, and hyphens.
+     *                              Format: projects/{project}/locations/{location}, where {project} can be
+     *                              project id or number. Only lowercase characters, digits, and hyphens.
      * @param Service $service      Required. The Service instance to create.
      * @param string  $serviceId    Required. The unique identifier for the Service. It must begin with letter,
-     *                              and may not end with hyphen; must contain fewer than 50 characters.
+     *                              and cannot end with hyphen; must contain fewer than 50 characters.
      *                              The name of the service becomes {parent}/services/{service_id}.
      * @param array   $optionalArgs {
      *     Optional.
@@ -555,7 +555,8 @@ class ServicesGapicClient
      * ```
      *
      * @param string $name         Required. The full name of the Service.
-     *                             Format: projects/{project}/locations/{location}/services/{service}
+     *                             Format: projects/{project}/locations/{location}/services/{service}, where
+     *                             {project} can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -675,7 +676,8 @@ class ServicesGapicClient
      * ```
      *
      * @param string $name         Required. The full name of the Service.
-     *                             Format: projects/{project}/locations/{location}/services/{service}
+     *                             Format: projects/{project}/locations/{location}/services/{service}, where
+     *                             {project} can be project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -736,8 +738,9 @@ class ServicesGapicClient
      * ```
      *
      * @param string $parent       Required. The location and project to list resources on.
-     *                             Location must be a valid GCP region, and may not be the "-" wildcard.
-     *                             Format: projects/{project}/locations/{location}
+     *                             Location must be a valid GCP region, and cannot be the "-" wildcard.
+     *                             Format: projects/{project}/locations/{location}, where {project} can be
+     *                             project id or number.
      * @param array  $optionalArgs {
      *     Optional.
      *

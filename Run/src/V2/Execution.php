@@ -24,9 +24,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -59,9 +58,9 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $annotations;
     /**
-     * Output only. Represents time when the execution was acknowledged by the
-     * execution controller. It is not guaranteed to be set in happens-before
-     * order across separate operations.
+     * Output only. Represents time when the execution was acknowledged by the execution
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -75,8 +74,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $start_time = null;
     /**
-     * Output only. Represents time when the execution was completed. It is not
-     * guaranteed to be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not guaranteed to
+     * be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -118,8 +117,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $job = '';
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution
-     * should run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution should
+     * run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
      * the work left to do is less than max parallelism. More info:
@@ -129,8 +128,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $parallelism = 0;
     /**
-     * Output only. Specifies the desired number of tasks the execution should
-     * run. Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should run.
+     * Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
      * More info:
      * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
@@ -145,25 +144,23 @@ class Execution extends \Google\Protobuf\Internal\Message
      */
     private $template = null;
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in
-     * progress. See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in progress.
+     * See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $reconciling = false;
     /**
-     * Output only. The Condition of this Execution, containing its readiness
-     * status, and detailed error information in case it did not reach the desired
-     * state.
+     * Output only. The Condition of this Execution, containing its readiness status, and
+     * detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $conditions;
     /**
-     * Output only. The generation of this Execution. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Execution. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -203,9 +200,8 @@ class Execution extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Output only. The unique name of this Execution.
      *     @type string $uid
-     *           Output only. Server assigned unique identifier for the Execution. The value
-     *           is a UUID4 string and guaranteed to remain unchanged until the resource is
-     *           deleted.
+     *           Output only. Server assigned unique identifier for the Execution. The value is a UUID4
+     *           string and guaranteed to remain unchanged until the resource is deleted.
      *     @type int|string $generation
      *           Output only. A number that monotonically increases every time the user
      *           modifies the desired state.
@@ -222,16 +218,16 @@ class Execution extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           KRM-style annotations for the resource.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. Represents time when the execution was acknowledged by the
-     *           execution controller. It is not guaranteed to be set in happens-before
-     *           order across separate operations.
+     *           Output only. Represents time when the execution was acknowledged by the execution
+     *           controller. It is not guaranteed to be set in happens-before order across
+     *           separate operations.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. Represents time when the execution started to run.
      *           It is not guaranteed to be set in happens-before order across separate
      *           operations.
      *     @type \Google\Protobuf\Timestamp $completion_time
-     *           Output only. Represents time when the execution was completed. It is not
-     *           guaranteed to be set in happens-before order across separate operations.
+     *           Output only. Represents time when the execution was completed. It is not guaranteed to
+     *           be set in happens-before order across separate operations.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type \Google\Protobuf\Timestamp $delete_time
@@ -249,32 +245,30 @@ class Execution extends \Google\Protobuf\Internal\Message
      *     @type string $job
      *           Output only. The name of the parent Job.
      *     @type int $parallelism
-     *           Output only. Specifies the maximum desired number of tasks the execution
-     *           should run at any given time. Must be <= task_count. The actual number of
+     *           Output only. Specifies the maximum desired number of tasks the execution should
+     *           run at any given time. Must be <= task_count. The actual number of
      *           tasks running in steady state will be less than this number when
      *           ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
      *           the work left to do is less than max parallelism. More info:
      *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *     @type int $task_count
-     *           Output only. Specifies the desired number of tasks the execution should
-     *           run. Setting to 1 means that parallelism is limited to 1 and the success of
+     *           Output only. Specifies the desired number of tasks the execution should run.
+     *           Setting to 1 means that parallelism is limited to 1 and the success of
      *           that task signals the success of the execution.
      *           More info:
      *           https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
      *     @type \Google\Cloud\Run\V2\TaskTemplate $template
      *           Output only. The template used to create tasks for this execution.
      *     @type bool $reconciling
-     *           Output only. Indicates whether the resource's reconciliation is still in
-     *           progress. See comments in `Job.reconciling` for additional information on
+     *           Output only. Indicates whether the resource's reconciliation is still in progress.
+     *           See comments in `Job.reconciling` for additional information on
      *           reconciliation process in Cloud Run.
      *     @type array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
-     *           Output only. The Condition of this Execution, containing its readiness
-     *           status, and detailed error information in case it did not reach the desired
-     *           state.
+     *           Output only. The Condition of this Execution, containing its readiness status, and
+     *           detailed error information in case it did not reach the desired state.
      *     @type int|string $observed_generation
-     *           Output only. The generation of this Execution. See comments in
-     *           `reconciling` for additional information on reconciliation process in Cloud
-     *           Run.
+     *           Output only. The generation of this Execution. See comments in `reconciling` for
+     *           additional information on reconciliation process in Cloud Run.
      *     @type int $running_count
      *           Output only. The number of actively running tasks.
      *     @type int $succeeded_count
@@ -318,9 +312,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -331,9 +324,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Server assigned unique identifier for the Execution. The value
-     * is a UUID4 string and guaranteed to remain unchanged until the resource is
-     * deleted.
+     * Output only. Server assigned unique identifier for the Execution. The value is a UUID4
+     * string and guaranteed to remain unchanged until the resource is deleted.
      *
      * Generated from protobuf field <code>string uid = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -444,9 +436,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was acknowledged by the
-     * execution controller. It is not guaranteed to be set in happens-before
-     * order across separate operations.
+     * Output only. Represents time when the execution was acknowledged by the execution
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -467,9 +459,9 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was acknowledged by the
-     * execution controller. It is not guaranteed to be set in happens-before
-     * order across separate operations.
+     * Output only. Represents time when the execution was acknowledged by the execution
+     * controller. It is not guaranteed to be set in happens-before order across
+     * separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -524,8 +516,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was completed. It is not
-     * guaranteed to be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not guaranteed to
+     * be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -546,8 +538,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Represents time when the execution was completed. It is not
-     * guaranteed to be set in happens-before order across separate operations.
+     * Output only. Represents time when the execution was completed. It is not guaranteed to
+     * be set in happens-before order across separate operations.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp completion_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -734,8 +726,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution
-     * should run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution should
+     * run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
      * the work left to do is less than max parallelism. More info:
@@ -750,8 +742,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the maximum desired number of tasks the execution
-     * should run at any given time. Must be <= task_count. The actual number of
+     * Output only. Specifies the maximum desired number of tasks the execution should
+     * run at any given time. Must be <= task_count. The actual number of
      * tasks running in steady state will be less than this number when
      * ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when
      * the work left to do is less than max parallelism. More info:
@@ -770,8 +762,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the desired number of tasks the execution should
-     * run. Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should run.
+     * Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
      * More info:
      * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
@@ -785,8 +777,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Specifies the desired number of tasks the execution should
-     * run. Setting to 1 means that parallelism is limited to 1 and the success of
+     * Output only. Specifies the desired number of tasks the execution should run.
+     * Setting to 1 means that parallelism is limited to 1 and the success of
      * that task signals the success of the execution.
      * More info:
      * https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
@@ -840,8 +832,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in
-     * progress. See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in progress.
+     * See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -853,8 +845,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Indicates whether the resource's reconciliation is still in
-     * progress. See comments in `Job.reconciling` for additional information on
+     * Output only. Indicates whether the resource's reconciliation is still in progress.
+     * See comments in `Job.reconciling` for additional information on
      * reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>bool reconciling = 16 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -870,9 +862,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Execution, containing its readiness
-     * status, and detailed error information in case it did not reach the desired
-     * state.
+     * Output only. The Condition of this Execution, containing its readiness status, and
+     * detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -883,9 +874,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Condition of this Execution, containing its readiness
-     * status, and detailed error information in case it did not reach the desired
-     * state.
+     * Output only. The Condition of this Execution, containing its readiness status, and
+     * detailed error information in case it did not reach the desired state.
      *
      * Generated from protobuf field <code>repeated .google.cloud.run.v2.Condition conditions = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<\Google\Cloud\Run\V2\Condition>|\Google\Protobuf\Internal\RepeatedField $var
@@ -900,9 +890,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Execution. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Execution. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int|string
@@ -913,9 +902,8 @@ class Execution extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The generation of this Execution. See comments in
-     * `reconciling` for additional information on reconciliation process in Cloud
-     * Run.
+     * Output only. The generation of this Execution. See comments in `reconciling` for
+     * additional information on reconciliation process in Cloud Run.
      *
      * Generated from protobuf field <code>int64 observed_generation = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int|string $var

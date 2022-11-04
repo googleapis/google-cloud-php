@@ -17,7 +17,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -50,7 +51,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The location and project to list resources on.
-     *           Format: projects/{project}/locations/{location}
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number.
      *     @type int $page_size
      *           Maximum number of Jobs to return in this call.
      *     @type string $page_token
@@ -67,7 +69,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +82,8 @@ class ListJobsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The location and project to list resources on.
-     * Format: projects/{project}/locations/{location}
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
