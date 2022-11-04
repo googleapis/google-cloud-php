@@ -20,7 +20,7 @@ class GatewayAPIConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig.Channel channel = 1;</code>
      */
-    protected $channel = 0;
+    private $channel = 0;
 
     /**
      * Constructor.
