@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request message for the UpdateChannel method.
+ * The request message for the UpdateGoogleChannelConfig method.
  *
- * Generated from protobuf message <code>google.cloud.eventarc.v1.UpdateChannelRequest</code>
+ * Generated from protobuf message <code>google.cloud.eventarc.v1.UpdateGoogleChannelConfigRequest</code>
  */
-class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
+class UpdateGoogleChannelConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The channel to be updated.
+     * Required. The config to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleChannelConfig google_channel_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $channel = null;
+    private $google_channel_config = null;
     /**
      * The fields to be updated; only fields explicitly provided are updated.
      * If no field mask is provided, all provided fields in the request are
@@ -28,14 +28,7 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2;</code>
      */
-    protected $update_mask = null;
-    /**
-     * Required. If set, validate the request and preview the review, but do not
-     * post it.
-     *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     */
-    protected $validate_only = false;
+    private $update_mask = null;
 
     /**
      * Constructor.
@@ -43,15 +36,12 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Eventarc\V1\Channel $channel
-     *           The channel to be updated.
+     *     @type \Google\Cloud\Eventarc\V1\GoogleChannelConfig $google_channel_config
+     *           Required. The config to be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           The fields to be updated; only fields explicitly provided are updated.
      *           If no field mask is provided, all provided fields in the request are
      *           updated. To update all fields, provide a field mask of "*".
-     *     @type bool $validate_only
-     *           Required. If set, validate the request and preview the review, but do not
-     *           post it.
      * }
      */
     public function __construct($data = NULL) {
@@ -60,37 +50,37 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The channel to be updated.
+     * Required. The config to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
-     * @return \Google\Cloud\Eventarc\V1\Channel|null
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleChannelConfig google_channel_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @return \Google\Cloud\Eventarc\V1\GoogleChannelConfig|null
      */
-    public function getChannel()
+    public function getGoogleChannelConfig()
     {
-        return $this->channel;
+        return $this->google_channel_config;
     }
 
-    public function hasChannel()
+    public function hasGoogleChannelConfig()
     {
-        return isset($this->channel);
+        return isset($this->google_channel_config);
     }
 
-    public function clearChannel()
+    public function clearGoogleChannelConfig()
     {
-        unset($this->channel);
+        unset($this->google_channel_config);
     }
 
     /**
-     * The channel to be updated.
+     * Required. The config to be updated.
      *
-     * Generated from protobuf field <code>.google.cloud.eventarc.v1.Channel channel = 1;</code>
-     * @param \Google\Cloud\Eventarc\V1\Channel $var
+     * Generated from protobuf field <code>.google.cloud.eventarc.v1.GoogleChannelConfig google_channel_config = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * @param \Google\Cloud\Eventarc\V1\GoogleChannelConfig $var
      * @return $this
      */
-    public function setChannel($var)
+    public function setGoogleChannelConfig($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\Channel::class);
-        $this->channel = $var;
+        GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\GoogleChannelConfig::class);
+        $this->google_channel_config = $var;
 
         return $this;
     }
@@ -131,34 +121,6 @@ class UpdateChannelRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
         $this->update_mask = $var;
-
-        return $this;
-    }
-
-    /**
-     * Required. If set, validate the request and preview the review, but do not
-     * post it.
-     *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return bool
-     */
-    public function getValidateOnly()
-    {
-        return $this->validate_only;
-    }
-
-    /**
-     * Required. If set, validate the request and preview the review, but do not
-     * post it.
-     *
-     * Generated from protobuf field <code>bool validate_only = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param bool $var
-     * @return $this
-     */
-    public function setValidateOnly($var)
-    {
-        GPBUtil::checkBool($var);
-        $this->validate_only = $var;
 
         return $this;
     }

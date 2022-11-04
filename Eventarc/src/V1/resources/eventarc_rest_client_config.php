@@ -111,6 +111,17 @@ return [
                     ],
                 ],
             ],
+            'GetGoogleChannelConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/googleChannelConfig}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetProvider' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/providers/*}',
@@ -191,6 +202,19 @@ return [
                 ],
                 'queryParams' => [
                     'validate_only',
+                ],
+            ],
+            'UpdateGoogleChannelConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{google_channel_config.name=projects/*/locations/*/googleChannelConfig}',
+                'body' => 'google_channel_config',
+                'placeholders' => [
+                    'google_channel_config.name' => [
+                        'getters' => [
+                            'getGoogleChannelConfig',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
             'UpdateTrigger' => [

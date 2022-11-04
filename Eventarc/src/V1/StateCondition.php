@@ -20,13 +20,13 @@ class StateCondition extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.rpc.Code code = 1;</code>
      */
-    protected $code = 0;
+    private $code = 0;
     /**
      * Human-readable message.
      *
      * Generated from protobuf field <code>string message = 2;</code>
      */
-    protected $message = '';
+    private $message = '';
 
     /**
      * Constructor.
