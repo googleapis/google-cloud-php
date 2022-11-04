@@ -18,7 +18,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Specifies a set of output values reffering to the instance_schedule_policy system status. This field should have the same name as corresponding policy field.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
      */
     private $instance_schedule_policy = null;
 
@@ -40,12 +40,12 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Specifies a set of output values reffering to the instance_schedule_policy system status. This field should have the same name as corresponding policy field.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyResourceStatusInstanceSchedulePolicyStatus|null
      */
     public function getInstanceSchedulePolicy()
     {
-        return isset($this->instance_schedule_policy) ? $this->instance_schedule_policy : null;
+        return $this->instance_schedule_policy;
     }
 
     public function hasInstanceSchedulePolicy()
@@ -61,7 +61,7 @@ class ResourcePolicyResourceStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Specifies a set of output values reffering to the instance_schedule_policy system status. This field should have the same name as corresponding policy field.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatusInstanceSchedulePolicyStatus instance_schedule_policy = 344877104;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyResourceStatusInstanceSchedulePolicyStatus $var
      * @return $this
      */

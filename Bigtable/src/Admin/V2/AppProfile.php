@@ -17,7 +17,6 @@ use Google\Protobuf\Internal\GPBUtil;
 class AppProfile extends \Google\Protobuf\Internal\Message
 {
     /**
-     * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
      * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
@@ -38,7 +37,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      */
     private $etag = '';
     /**
-     * Optional long form description of the use case for this AppProfile.
+     * Long form description of the use case for this AppProfile.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      */
@@ -52,7 +51,6 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           (`OutputOnly`)
      *           The unique name of the app profile. Values are of the form
      *           `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *     @type string $etag
@@ -65,7 +63,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
      *           [RFC 7232](https://tools.ietf.org/html/rfc7232#section-2.3) for more
      *           details.
      *     @type string $description
-     *           Optional long form description of the use case for this AppProfile.
+     *           Long form description of the use case for this AppProfile.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\MultiClusterRoutingUseAny $multi_cluster_routing_use_any
      *           Use a multi-cluster routing policy.
      *     @type \Google\Cloud\Bigtable\Admin\V2\AppProfile\SingleClusterRouting $single_cluster_routing
@@ -78,7 +76,6 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
      * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
@@ -91,7 +88,6 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * (`OutputOnly`)
      * The unique name of the app profile. Values are of the form
      * `projects/{project}/instances/{instance}/appProfiles/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`.
      *
@@ -148,7 +144,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional long form description of the use case for this AppProfile.
+     * Long form description of the use case for this AppProfile.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      * @return string
@@ -159,7 +155,7 @@ class AppProfile extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional long form description of the use case for this AppProfile.
+     * Long form description of the use case for this AppProfile.
      *
      * Generated from protobuf field <code>string description = 3;</code>
      * @param string $var

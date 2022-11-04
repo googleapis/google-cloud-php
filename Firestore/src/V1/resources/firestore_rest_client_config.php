@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.firestore.v1.Firestore' => [
+            'BatchGetDocuments' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchGet',
+                'body' => '*',
+                'placeholders' => [
+                    'database' => [
+                        'getters' => [
+                            'getDatabase',
+                        ],
+                    ],
+                ],
+            ],
             'BatchWrite' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{database=projects/*/databases/*}/documents:batchWrite',
@@ -55,6 +67,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'document_id',
+                ],
             ],
             'DeleteDocument' => [
                 'method' => 'delete',
@@ -100,6 +115,12 @@ return [
             'ListDocuments' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}/{collection_id}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}/{collection_id}',
+                    ],
+                ],
                 'placeholders' => [
                     'collection_id' => [
                         'getters' => [
@@ -144,6 +165,44 @@ return [
                     ],
                 ],
             ],
+            'RunAggregationQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runAggregationQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runAggregationQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RunQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents}:runQuery',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*/databases/*/documents/*/**}:runQuery',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateDocument' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{document.name=projects/*/databases/*/documents/*/**}',
@@ -152,6 +211,56 @@ return [
                     'document.name' => [
                         'getters' => [
                             'getDocument',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteOperation' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/databases/*}/operations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
                             'getName',
                         ],
                     ],

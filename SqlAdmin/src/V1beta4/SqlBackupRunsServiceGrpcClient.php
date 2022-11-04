@@ -19,8 +19,6 @@
 namespace Google\Cloud\Sql\V1beta4;
 
 /**
- * LINT.IfChange
- *
  */
 class SqlBackupRunsServiceGrpcClient extends \Grpc\BaseStub {
 
@@ -64,8 +62,7 @@ class SqlBackupRunsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new backup run on demand. This method is applicable only to
-     * Second Generation instances.
+     * Creates a new backup run on demand.
      * @param \Google\Cloud\Sql\V1beta4\SqlBackupRunsInsertRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -80,8 +77,9 @@ class SqlBackupRunsServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists all backup runs associated with a given instance and configuration in
-     * the reverse chronological order of the backup initiation time.
+     * Lists all backup runs associated with the project or a given instance and
+     * configuration in the reverse chronological order of the backup initiation
+     * time.
      * @param \Google\Cloud\Sql\V1beta4\SqlBackupRunsListRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

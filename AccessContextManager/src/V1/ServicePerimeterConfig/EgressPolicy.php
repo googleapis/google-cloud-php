@@ -92,7 +92,7 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getEgressFrom()
     {
-        return isset($this->egress_from) ? $this->egress_from : null;
+        return $this->egress_from;
     }
 
     public function hasEgressFrom()
@@ -134,7 +134,7 @@ class EgressPolicy extends \Google\Protobuf\Internal\Message
      */
     public function getEgressTo()
     {
-        return isset($this->egress_to) ? $this->egress_to : null;
+        return $this->egress_to;
     }
 
     public function hasEgressTo()

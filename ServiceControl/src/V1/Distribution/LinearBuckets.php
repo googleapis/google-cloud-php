@@ -161,6 +161,4 @@ class LinearBuckets extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LinearBuckets::class, \Google\Cloud\ServiceControl\V1\Distribution_LinearBuckets::class);
 

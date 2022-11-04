@@ -79,7 +79,7 @@ class ConversationLevelSentiment extends \Google\Protobuf\Internal\Message
      */
     public function getSentimentData()
     {
-        return isset($this->sentiment_data) ? $this->sentiment_data : null;
+        return $this->sentiment_data;
     }
 
     public function hasSentimentData()

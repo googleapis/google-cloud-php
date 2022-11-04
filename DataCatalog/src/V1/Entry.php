@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Entry Metadata.
- * A Data Catalog Entry resource represents another resource in Google
+ * Entry metadata.
+ * A Data Catalog entry represents another resource in Google
  * Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic) or
- * outside of Google Cloud Platform. Clients can use the `linked_resource` field
- * in the Entry resource to refer to the original resource ID of the source
+ * outside of it. You can use the `linked_resource` field
+ * in the entry resource to refer to the original resource ID of the source
  * system.
- * An Entry resource contains resource details, such as its schema. An Entry can
- * also be used to attach flexible metadata, such as a
+ * An entry resource contains resource details, for example, its schema.
+ * Additionally, you can attach flexible metadata to an entry in the form of a
  * [Tag][google.cloud.datacatalog.v1.Tag].
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.Entry</code>
@@ -24,43 +24,74 @@ use Google\Protobuf\Internal\GPBUtil;
 class Entry extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
      * The resource this metadata entry refers to.
-     * For Google Cloud Platform resources, `linked_resource` is the [full name of
-     * the
-     * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     * For Google Cloud Platform resources, `linked_resource` is the
+     * [Full Resource Name]
+     * (https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     * Output only when the entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      */
     private $linked_resource = '';
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     */
+    private $fully_qualified_name = '';
+    /**
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
     private $display_name = '';
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      */
     private $description = '';
+    /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     */
+    private $business_context = null;
     /**
      * Schema of the entry. An entry might not have any schema attached to it.
      *
@@ -68,17 +99,46 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     private $schema = null;
     /**
-     * Timestamps about the underlying resource, not about this Data Catalog
-     * entry. Output only when Entry is of type in the EntryType enum. For entries
-     * with user_specified_type, this field is optional and defaults to an empty
-     * timestamp.
+     * Timestamps from the underlying resource, not from the Data Catalog
+     * entry.
+     * Output only when the entry has a type listed in the `EntryType` enum.
+     * For entries with `user_specified_type`, this field is optional and defaults
+     * to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      */
     private $source_system_timestamps = null;
+    /**
+     * Output only. Resource usage statistics.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $usage_signal = null;
+    /**
+     * Cloud labels attached to the entry.
+     * In Data Catalog, you can create and modify labels attached only to custom
+     * entries. Synced entries have unmodifiable labels that come from the source
+     * system.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 14;</code>
+     */
+    private $labels;
+    /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $data_source = null;
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $personal_details = null;
     protected $entry_type;
     protected $system;
     protected $type_spec;
+    protected $spec;
 
     /**
      * Constructor.
@@ -87,66 +147,119 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The Data Catalog resource name of the entry in URL format. Example:
-     *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     *           Note that this Entry and its child resources may not actually be stored in
-     *           the location in this name.
+     *           Output only. The resource name of an entry in URL format.
+     *           Note: The entry itself and its child resources might not be
+     *           stored in the location specified in its name.
      *     @type string $linked_resource
      *           The resource this metadata entry refers to.
-     *           For Google Cloud Platform resources, `linked_resource` is the [full name of
-     *           the
-     *           resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     *           For Google Cloud Platform resources, `linked_resource` is the
+     *           [Full Resource Name]
+     *           (https://cloud.google.com/apis/design/resource_names#full_resource_name).
      *           For example, the `linked_resource` for a table resource from BigQuery is:
-     *           * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     *           Output only when Entry is of type in the EntryType enum. For entries with
-     *           user_specified_type, this field is optional and defaults to an empty
-     *           string.
+     *           `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     *           Output only when the entry is one of the types in the `EntryType` enum.
+     *           For entries with a `user_specified_type`, this field is optional and
+     *           defaults to an empty string.
+     *           The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     *           underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     *           and hashes (#).
+     *           The maximum size is 200 bytes when encoded in UTF-8.
+     *     @type string $fully_qualified_name
+     *           Fully qualified name (FQN) of the resource. Set automatically for entries
+     *           representing resources from synced systems. Settable only during creation
+     *           and read-only afterwards. Can be used for search and lookup of the entries.
+     *           FQNs take two forms:
+     *           * For non-regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           * For regionalized resources:
+     *             `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     *           Example for a DPMS table:
+     *           `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
      *     @type int $type
      *           The type of the entry.
-     *           Only used for Entries with types in the EntryType enum.
+     *           Only used for entries with types listed in the `EntryType` enum.
+     *           Currently, only `FILESET` enum value is allowed. All other entries
+     *           created in Data Catalog must use the `user_specified_type`.
      *     @type string $user_specified_type
-     *           Entry type if it does not fit any of the input-allowed values listed in
-     *           `EntryType` enum above. When creating an entry, users should check the
-     *           enum values first, if nothing matches the entry to be created, then
-     *           provide a custom value, for example "my_special_type".
-     *           `user_specified_type` strings must begin with a letter or underscore and
-     *           can only contain letters, numbers, and underscores; are case insensitive;
-     *           must be at least 1 character and at most 64 characters long.
-     *           Currently, only FILESET enum value is allowed. All other entries created
-     *           through Data Catalog must use `user_specified_type`.
+     *           Custom entry type that doesn't match any of the values allowed for input
+     *           and listed in the `EntryType` enum.
+     *           When creating an entry, first check the type values in the enum.
+     *           If there are no appropriate types for the new entry,
+     *           provide a custom value, for example, `my_special_type`.
+     *           The `user_specified_type` string has the following limitations:
+     *           * Is case insensitive.
+     *           * Must begin with a letter or underscore.
+     *           * Can only contain letters, numbers, and underscores.
+     *           * Must be at least 1 character and at most 64 characters long.
      *     @type int $integrated_system
-     *           Output only. This field indicates the entry's source system that Data
-     *           Catalog integrates with, such as BigQuery or Pub/Sub.
+     *           Output only. Indicates the entry's source system that Data Catalog
+     *           integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
      *     @type string $user_specified_system
-     *           This field indicates the entry's source system that Data Catalog does not
-     *           integrate with. `user_specified_system` strings must begin with a letter
-     *           or underscore and can only contain letters, numbers, and underscores; are
-     *           case insensitive; must be at least 1 character and at most 64 characters
-     *           long.
+     *           Indicates the entry's source system that Data Catalog doesn't
+     *           automatically integrate with.
+     *           The `user_specified_system` string has the following limitations:
+     *           * Is case insensitive.
+     *           * Must begin with a letter or underscore.
+     *           * Can only contain letters, numbers, and underscores.
+     *           * Must be at least 1 character and at most 64 characters long.
      *     @type \Google\Cloud\DataCatalog\V1\GcsFilesetSpec $gcs_fileset_spec
-     *           Specification that applies to a Cloud Storage fileset. This is only valid
-     *           on entries of type FILESET.
+     *           Specification that applies to a Cloud Storage fileset. Valid only
+     *           for entries with the `FILESET` type.
      *     @type \Google\Cloud\DataCatalog\V1\BigQueryTableSpec $bigquery_table_spec
-     *           Specification that applies to a BigQuery table. This is only valid on
-     *           entries of type `TABLE`.
+     *           Specification that applies to a BigQuery table. Valid only for
+     *           entries with the `TABLE` type.
      *     @type \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec $bigquery_date_sharded_spec
-     *           Specification for a group of BigQuery tables with name pattern
-     *           `[prefix]YYYYMMDD`. Context:
-     *           https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding.
+     *           Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
+     *           name pattern.
+     *           For more information, see [Introduction to partitioned tables]
+     *           (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
+     *     @type \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $database_table_spec
+     *           Specification that applies to a table resource. Valid only
+     *           for entries with the `TABLE` type.
+     *     @type \Google\Cloud\DataCatalog\V1\DataSourceConnectionSpec $data_source_connection_spec
+     *           Specification that applies to a data source connection. Valid only
+     *           for entries with the `DATA_SOURCE_CONNECTION` type.
+     *     @type \Google\Cloud\DataCatalog\V1\RoutineSpec $routine_spec
+     *           Specification that applies to a user-defined function or procedure. Valid
+     *           only for entries with the `ROUTINE` type.
+     *     @type \Google\Cloud\DataCatalog\V1\FilesetSpec $fileset_spec
+     *           Specification that applies to a fileset resource. Valid only
+     *           for entries with the `FILESET` type.
      *     @type string $display_name
-     *           Display information such as title and description. A short name to identify
-     *           the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     *           empty string.
+     *           Display name of an entry.
+     *           The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     *           dashes (-), spaces ( ), and can't start or end with spaces.
+     *           The maximum size is 200 bytes when encoded in UTF-8.
+     *           Default value is an empty string.
      *     @type string $description
-     *           Entry description, which can consist of several sentences or paragraphs
-     *           that describe entry contents. Default value is an empty string.
+     *           Entry description that can consist of several sentences or paragraphs
+     *           that describe entry contents.
+     *           The description must not contain Unicode non-characters as well as C0
+     *           and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     *           (CR), and page breaks (FF).
+     *           The maximum size is 2000 bytes when encoded in UTF-8.
+     *           Default value is an empty string.
+     *     @type \Google\Cloud\DataCatalog\V1\BusinessContext $business_context
+     *           Business Context of the entry. Not supported for BigQuery datasets
      *     @type \Google\Cloud\DataCatalog\V1\Schema $schema
      *           Schema of the entry. An entry might not have any schema attached to it.
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $source_system_timestamps
-     *           Timestamps about the underlying resource, not about this Data Catalog
-     *           entry. Output only when Entry is of type in the EntryType enum. For entries
-     *           with user_specified_type, this field is optional and defaults to an empty
-     *           timestamp.
+     *           Timestamps from the underlying resource, not from the Data Catalog
+     *           entry.
+     *           Output only when the entry has a type listed in the `EntryType` enum.
+     *           For entries with `user_specified_type`, this field is optional and defaults
+     *           to an empty timestamp.
+     *     @type \Google\Cloud\DataCatalog\V1\UsageSignal $usage_signal
+     *           Output only. Resource usage statistics.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           Cloud labels attached to the entry.
+     *           In Data Catalog, you can create and modify labels attached only to custom
+     *           entries. Synced entries have unmodifiable labels that come from the source
+     *           system.
+     *     @type \Google\Cloud\DataCatalog\V1\DataSource $data_source
+     *           Output only. Physical location of the entry.
+     *     @type \Google\Cloud\DataCatalog\V1\PersonalDetails $personal_details
+     *           Output only. Additional information related to the entry. Private to the current user.
      * }
      */
     public function __construct($data = NULL) {
@@ -155,12 +268,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -169,12 +281,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The Data Catalog resource name of the entry in URL format. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Output only. The resource name of an entry in URL format.
+     * Note: The entry itself and its child resources might not be
+     * stored in the location specified in its name.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -188,14 +299,18 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource this metadata entry refers to.
-     * For Google Cloud Platform resources, `linked_resource` is the [full name of
-     * the
-     * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     * For Google Cloud Platform resources, `linked_resource` is the
+     * [Full Resource Name]
+     * (https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     * Output only when the entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      * @return string
@@ -207,14 +322,18 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource this metadata entry refers to.
-     * For Google Cloud Platform resources, `linked_resource` is the [full name of
-     * the
-     * resource](https://cloud.google.com/apis/design/resource_names#full_resource_name).
+     * For Google Cloud Platform resources, `linked_resource` is the
+     * [Full Resource Name]
+     * (https://cloud.google.com/apis/design/resource_names#full_resource_name).
      * For example, the `linked_resource` for a table resource from BigQuery is:
-     * * //bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId
-     * Output only when Entry is of type in the EntryType enum. For entries with
-     * user_specified_type, this field is optional and defaults to an empty
-     * string.
+     * `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}`
+     * Output only when the entry is one of the types in the `EntryType` enum.
+     * For entries with a `user_specified_type`, this field is optional and
+     * defaults to an empty string.
+     * The resource string must contain only letters (a-z, A-Z), numbers (0-9),
+     * underscores (_), periods (.), colons (:), slashes (/), dashes (-),
+     * and hashes (#).
+     * The maximum size is 200 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string linked_resource = 9;</code>
      * @param string $var
@@ -229,8 +348,54 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     * @return string
+     */
+    public function getFullyQualifiedName()
+    {
+        return $this->fully_qualified_name;
+    }
+
+    /**
+     * Fully qualified name (FQN) of the resource. Set automatically for entries
+     * representing resources from synced systems. Settable only during creation
+     * and read-only afterwards. Can be used for search and lookup of the entries.
+     * FQNs take two forms:
+     * * For non-regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * * For regionalized resources:
+     *   `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}`
+     * Example for a DPMS table:
+     * `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`
+     *
+     * Generated from protobuf field <code>string fully_qualified_name = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFullyQualifiedName($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fully_qualified_name = $var;
+
+        return $this;
+    }
+
+    /**
      * The type of the entry.
-     * Only used for Entries with types in the EntryType enum.
+     * Only used for entries with types listed in the `EntryType` enum.
+     * Currently, only `FILESET` enum value is allowed. All other entries
+     * created in Data Catalog must use the `user_specified_type`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @return int
@@ -247,7 +412,9 @@ class Entry extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the entry.
-     * Only used for Entries with types in the EntryType enum.
+     * Only used for entries with types listed in the `EntryType` enum.
+     * Currently, only `FILESET` enum value is allowed. All other entries
+     * created in Data Catalog must use the `user_specified_type`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.EntryType type = 2;</code>
      * @param int $var
@@ -262,15 +429,16 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry type if it does not fit any of the input-allowed values listed in
-     * `EntryType` enum above. When creating an entry, users should check the
-     * enum values first, if nothing matches the entry to be created, then
-     * provide a custom value, for example "my_special_type".
-     * `user_specified_type` strings must begin with a letter or underscore and
-     * can only contain letters, numbers, and underscores; are case insensitive;
-     * must be at least 1 character and at most 64 characters long.
-     * Currently, only FILESET enum value is allowed. All other entries created
-     * through Data Catalog must use `user_specified_type`.
+     * Custom entry type that doesn't match any of the values allowed for input
+     * and listed in the `EntryType` enum.
+     * When creating an entry, first check the type values in the enum.
+     * If there are no appropriate types for the new entry,
+     * provide a custom value, for example, `my_special_type`.
+     * The `user_specified_type` string has the following limitations:
+     * * Is case insensitive.
+     * * Must begin with a letter or underscore.
+     * * Can only contain letters, numbers, and underscores.
+     * * Must be at least 1 character and at most 64 characters long.
      *
      * Generated from protobuf field <code>string user_specified_type = 16;</code>
      * @return string
@@ -286,15 +454,16 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry type if it does not fit any of the input-allowed values listed in
-     * `EntryType` enum above. When creating an entry, users should check the
-     * enum values first, if nothing matches the entry to be created, then
-     * provide a custom value, for example "my_special_type".
-     * `user_specified_type` strings must begin with a letter or underscore and
-     * can only contain letters, numbers, and underscores; are case insensitive;
-     * must be at least 1 character and at most 64 characters long.
-     * Currently, only FILESET enum value is allowed. All other entries created
-     * through Data Catalog must use `user_specified_type`.
+     * Custom entry type that doesn't match any of the values allowed for input
+     * and listed in the `EntryType` enum.
+     * When creating an entry, first check the type values in the enum.
+     * If there are no appropriate types for the new entry,
+     * provide a custom value, for example, `my_special_type`.
+     * The `user_specified_type` string has the following limitations:
+     * * Is case insensitive.
+     * * Must begin with a letter or underscore.
+     * * Can only contain letters, numbers, and underscores.
+     * * Must be at least 1 character and at most 64 characters long.
      *
      * Generated from protobuf field <code>string user_specified_type = 16;</code>
      * @param string $var
@@ -309,8 +478,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data
-     * Catalog integrates with, such as BigQuery or Pub/Sub.
+     * Output only. Indicates the entry's source system that Data Catalog
+     * integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
@@ -326,8 +495,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. This field indicates the entry's source system that Data
-     * Catalog integrates with, such as BigQuery or Pub/Sub.
+     * Output only. Indicates the entry's source system that Data Catalog
+     * integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.IntegratedSystem integrated_system = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
@@ -342,11 +511,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field indicates the entry's source system that Data Catalog does not
-     * integrate with. `user_specified_system` strings must begin with a letter
-     * or underscore and can only contain letters, numbers, and underscores; are
-     * case insensitive; must be at least 1 character and at most 64 characters
-     * long.
+     * Indicates the entry's source system that Data Catalog doesn't
+     * automatically integrate with.
+     * The `user_specified_system` string has the following limitations:
+     * * Is case insensitive.
+     * * Must begin with a letter or underscore.
+     * * Can only contain letters, numbers, and underscores.
+     * * Must be at least 1 character and at most 64 characters long.
      *
      * Generated from protobuf field <code>string user_specified_system = 18;</code>
      * @return string
@@ -362,11 +533,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This field indicates the entry's source system that Data Catalog does not
-     * integrate with. `user_specified_system` strings must begin with a letter
-     * or underscore and can only contain letters, numbers, and underscores; are
-     * case insensitive; must be at least 1 character and at most 64 characters
-     * long.
+     * Indicates the entry's source system that Data Catalog doesn't
+     * automatically integrate with.
+     * The `user_specified_system` string has the following limitations:
+     * * Is case insensitive.
+     * * Must begin with a letter or underscore.
+     * * Can only contain letters, numbers, and underscores.
+     * * Must be at least 1 character and at most 64 characters long.
      *
      * Generated from protobuf field <code>string user_specified_system = 18;</code>
      * @param string $var
@@ -381,8 +554,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a Cloud Storage fileset. This is only valid
-     * on entries of type FILESET.
+     * Specification that applies to a Cloud Storage fileset. Valid only
+     * for entries with the `FILESET` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.GcsFilesetSpec gcs_fileset_spec = 6;</code>
      * @return \Google\Cloud\DataCatalog\V1\GcsFilesetSpec|null
@@ -398,8 +571,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a Cloud Storage fileset. This is only valid
-     * on entries of type FILESET.
+     * Specification that applies to a Cloud Storage fileset. Valid only
+     * for entries with the `FILESET` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.GcsFilesetSpec gcs_fileset_spec = 6;</code>
      * @param \Google\Cloud\DataCatalog\V1\GcsFilesetSpec $var
@@ -414,8 +587,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a BigQuery table. This is only valid on
-     * entries of type `TABLE`.
+     * Specification that applies to a BigQuery table. Valid only for
+     * entries with the `TABLE` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12;</code>
      * @return \Google\Cloud\DataCatalog\V1\BigQueryTableSpec|null
@@ -431,8 +604,8 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a BigQuery table. This is only valid on
-     * entries of type `TABLE`.
+     * Specification that applies to a BigQuery table. Valid only for
+     * entries with the `TABLE` type.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12;</code>
      * @param \Google\Cloud\DataCatalog\V1\BigQueryTableSpec $var
@@ -447,9 +620,10 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification for a group of BigQuery tables with name pattern
-     * `[prefix]YYYYMMDD`. Context:
-     * https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding.
+     * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
+     * name pattern.
+     * For more information, see [Introduction to partitioned tables]
+     * (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15;</code>
      * @return \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec|null
@@ -465,9 +639,10 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification for a group of BigQuery tables with name pattern
-     * `[prefix]YYYYMMDD`. Context:
-     * https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding.
+     * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
+     * name pattern.
+     * For more information, see [Introduction to partitioned tables]
+     * (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15;</code>
      * @param \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec $var
@@ -482,9 +657,143 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Specification that applies to a table resource. Valid only
+     * for entries with the `TABLE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
+     * @return \Google\Cloud\DataCatalog\V1\DatabaseTableSpec|null
+     */
+    public function getDatabaseTableSpec()
+    {
+        return $this->readOneof(24);
+    }
+
+    public function hasDatabaseTableSpec()
+    {
+        return $this->hasOneof(24);
+    }
+
+    /**
+     * Specification that applies to a table resource. Valid only
+     * for entries with the `TABLE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DatabaseTableSpec database_table_spec = 24;</code>
+     * @param \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $var
+     * @return $this
+     */
+    public function setDatabaseTableSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DatabaseTableSpec::class);
+        $this->writeOneof(24, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to a data source connection. Valid only
+     * for entries with the `DATA_SOURCE_CONNECTION` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSourceConnectionSpec data_source_connection_spec = 27;</code>
+     * @return \Google\Cloud\DataCatalog\V1\DataSourceConnectionSpec|null
+     */
+    public function getDataSourceConnectionSpec()
+    {
+        return $this->readOneof(27);
+    }
+
+    public function hasDataSourceConnectionSpec()
+    {
+        return $this->hasOneof(27);
+    }
+
+    /**
+     * Specification that applies to a data source connection. Valid only
+     * for entries with the `DATA_SOURCE_CONNECTION` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSourceConnectionSpec data_source_connection_spec = 27;</code>
+     * @param \Google\Cloud\DataCatalog\V1\DataSourceConnectionSpec $var
+     * @return $this
+     */
+    public function setDataSourceConnectionSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DataSourceConnectionSpec::class);
+        $this->writeOneof(27, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to a user-defined function or procedure. Valid
+     * only for entries with the `ROUTINE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.RoutineSpec routine_spec = 28;</code>
+     * @return \Google\Cloud\DataCatalog\V1\RoutineSpec|null
+     */
+    public function getRoutineSpec()
+    {
+        return $this->readOneof(28);
+    }
+
+    public function hasRoutineSpec()
+    {
+        return $this->hasOneof(28);
+    }
+
+    /**
+     * Specification that applies to a user-defined function or procedure. Valid
+     * only for entries with the `ROUTINE` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.RoutineSpec routine_spec = 28;</code>
+     * @param \Google\Cloud\DataCatalog\V1\RoutineSpec $var
+     * @return $this
+     */
+    public function setRoutineSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\RoutineSpec::class);
+        $this->writeOneof(28, $var);
+
+        return $this;
+    }
+
+    /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @return \Google\Cloud\DataCatalog\V1\FilesetSpec|null
+     */
+    public function getFilesetSpec()
+    {
+        return $this->readOneof(33);
+    }
+
+    public function hasFilesetSpec()
+    {
+        return $this->hasOneof(33);
+    }
+
+    /**
+     * Specification that applies to a fileset resource. Valid only
+     * for entries with the `FILESET` type.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.FilesetSpec fileset_spec = 33;</code>
+     * @param \Google\Cloud\DataCatalog\V1\FilesetSpec $var
+     * @return $this
+     */
+    public function setFilesetSpec($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\FilesetSpec::class);
+        $this->writeOneof(33, $var);
+
+        return $this;
+    }
+
+    /**
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
@@ -495,9 +804,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Display information such as title and description. A short name to identify
-     * the entry, for example, "Analytics Data - Jan 2011". Default value is an
-     * empty string.
+     * Display name of an entry.
+     * The name must contain only Unicode letters, numbers (0-9), underscores (_),
+     * dashes (-), spaces ( ), and can't start or end with spaces.
+     * The maximum size is 200 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var
@@ -512,8 +823,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      * @return string
@@ -524,8 +840,13 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Entry description, which can consist of several sentences or paragraphs
-     * that describe entry contents. Default value is an empty string.
+     * Entry description that can consist of several sentences or paragraphs
+     * that describe entry contents.
+     * The description must not contain Unicode non-characters as well as C0
+     * and C1 control codes except tabs (HT), new lines (LF), carriage returns
+     * (CR), and page breaks (FF).
+     * The maximum size is 2000 bytes when encoded in UTF-8.
+     * Default value is an empty string.
      *
      * Generated from protobuf field <code>string description = 4;</code>
      * @param string $var
@@ -540,6 +861,42 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     * @return \Google\Cloud\DataCatalog\V1\BusinessContext|null
+     */
+    public function getBusinessContext()
+    {
+        return $this->business_context;
+    }
+
+    public function hasBusinessContext()
+    {
+        return isset($this->business_context);
+    }
+
+    public function clearBusinessContext()
+    {
+        unset($this->business_context);
+    }
+
+    /**
+     * Business Context of the entry. Not supported for BigQuery datasets
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BusinessContext business_context = 37;</code>
+     * @param \Google\Cloud\DataCatalog\V1\BusinessContext $var
+     * @return $this
+     */
+    public function setBusinessContext($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\BusinessContext::class);
+        $this->business_context = $var;
+
+        return $this;
+    }
+
+    /**
      * Schema of the entry. An entry might not have any schema attached to it.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.Schema schema = 5;</code>
@@ -547,7 +904,7 @@ class Entry extends \Google\Protobuf\Internal\Message
      */
     public function getSchema()
     {
-        return isset($this->schema) ? $this->schema : null;
+        return $this->schema;
     }
 
     public function hasSchema()
@@ -576,17 +933,18 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamps about the underlying resource, not about this Data Catalog
-     * entry. Output only when Entry is of type in the EntryType enum. For entries
-     * with user_specified_type, this field is optional and defaults to an empty
-     * timestamp.
+     * Timestamps from the underlying resource, not from the Data Catalog
+     * entry.
+     * Output only when the entry has a type listed in the `EntryType` enum.
+     * For entries with `user_specified_type`, this field is optional and defaults
+     * to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps|null
      */
     public function getSourceSystemTimestamps()
     {
-        return isset($this->source_system_timestamps) ? $this->source_system_timestamps : null;
+        return $this->source_system_timestamps;
     }
 
     public function hasSourceSystemTimestamps()
@@ -600,10 +958,11 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Timestamps about the underlying resource, not about this Data Catalog
-     * entry. Output only when Entry is of type in the EntryType enum. For entries
-     * with user_specified_type, this field is optional and defaults to an empty
-     * timestamp.
+     * Timestamps from the underlying resource, not from the Data Catalog
+     * entry.
+     * Output only when the entry has a type listed in the `EntryType` enum.
+     * For entries with `user_specified_type`, this field is optional and defaults
+     * to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      * @param \Google\Cloud\DataCatalog\V1\SystemTimestamps $var
@@ -613,6 +972,146 @@ class Entry extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\SystemTimestamps::class);
         $this->source_system_timestamps = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Resource usage statistics.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DataCatalog\V1\UsageSignal|null
+     */
+    public function getUsageSignal()
+    {
+        return $this->usage_signal;
+    }
+
+    public function hasUsageSignal()
+    {
+        return isset($this->usage_signal);
+    }
+
+    public function clearUsageSignal()
+    {
+        unset($this->usage_signal);
+    }
+
+    /**
+     * Output only. Resource usage statistics.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DataCatalog\V1\UsageSignal $var
+     * @return $this
+     */
+    public function setUsageSignal($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\UsageSignal::class);
+        $this->usage_signal = $var;
+
+        return $this;
+    }
+
+    /**
+     * Cloud labels attached to the entry.
+     * In Data Catalog, you can create and modify labels attached only to custom
+     * entries. Synced entries have unmodifiable labels that come from the source
+     * system.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 14;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * Cloud labels attached to the entry.
+     * In Data Catalog, you can create and modify labels attached only to custom
+     * entries. Synced entries have unmodifiable labels that come from the source
+     * system.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 14;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DataCatalog\V1\DataSource|null
+     */
+    public function getDataSource()
+    {
+        return $this->data_source;
+    }
+
+    public function hasDataSource()
+    {
+        return isset($this->data_source);
+    }
+
+    public function clearDataSource()
+    {
+        unset($this->data_source);
+    }
+
+    /**
+     * Output only. Physical location of the entry.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataSource data_source = 20 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DataCatalog\V1\DataSource $var
+     * @return $this
+     */
+    public function setDataSource($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\DataSource::class);
+        $this->data_source = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\DataCatalog\V1\PersonalDetails|null
+     */
+    public function getPersonalDetails()
+    {
+        return $this->personal_details;
+    }
+
+    public function hasPersonalDetails()
+    {
+        return isset($this->personal_details);
+    }
+
+    public function clearPersonalDetails()
+    {
+        unset($this->personal_details);
+    }
+
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     *
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.PersonalDetails personal_details = 26 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\DataCatalog\V1\PersonalDetails $var
+     * @return $this
+     */
+    public function setPersonalDetails($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DataCatalog\V1\PersonalDetails::class);
+        $this->personal_details = $var;
 
         return $this;
     }
@@ -639,6 +1138,14 @@ class Entry extends \Google\Protobuf\Internal\Message
     public function getTypeSpec()
     {
         return $this->whichOneof("type_spec");
+    }
+
+    /**
+     * @return string
+     */
+    public function getSpec()
+    {
+        return $this->whichOneof("spec");
     }
 
 }

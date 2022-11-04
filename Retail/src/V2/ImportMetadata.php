@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Metadata related to the progress of the Import operation. This will be
+ * Metadata related to the progress of the Import operation. This is
  * returned by the google.longrunning.Operation.metadata field.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.ImportMetadata</code>
@@ -42,16 +42,16 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      */
     private $failure_count = 0;
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
+     * @deprecated
      */
-    private $request_id = '';
+    protected $request_id = '';
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *
@@ -75,12 +75,11 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      *     @type int|string $failure_count
      *           Count of entries that encountered errors while processing.
      *     @type string $request_id
-     *           Id of the request / operation. This is parroting back the requestId
-     *           that was passed in the request.
+     *           Deprecated. This field is never set.
      *     @type string $notification_pubsub_topic
      *           Pub/Sub topic for receiving notification. If this field is set,
-     *           when the import is finished, a notification will be sent to
-     *           specified Pub/Sub topic. The message data will be JSON string of a
+     *           when the import is finished, a notification is sent to
+     *           specified Pub/Sub topic. The message data is JSON string of a
      *           [Operation][google.longrunning.Operation].
      *           Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      * }
@@ -98,7 +97,7 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -135,7 +134,7 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -217,27 +216,29 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
      * @return string
+     * @deprecated
      */
     public function getRequestId()
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         return $this->request_id;
     }
 
     /**
-     * Id of the request / operation. This is parroting back the requestId
-     * that was passed in the request.
+     * Deprecated. This field is never set.
      *
-     * Generated from protobuf field <code>string request_id = 5;</code>
+     * Generated from protobuf field <code>string request_id = 5 [deprecated = true];</code>
      * @param string $var
      * @return $this
+     * @deprecated
      */
     public function setRequestId($var)
     {
+        @trigger_error('request_id is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkString($var, True);
         $this->request_id = $var;
 
@@ -246,8 +247,8 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *
@@ -261,8 +262,8 @@ class ImportMetadata extends \Google\Protobuf\Internal\Message
 
     /**
      * Pub/Sub topic for receiving notification. If this field is set,
-     * when the import is finished, a notification will be sent to
-     * specified Pub/Sub topic. The message data will be JSON string of a
+     * when the import is finished, a notification is sent to
+     * specified Pub/Sub topic. The message data is JSON string of a
      * [Operation][google.longrunning.Operation].
      * Format of the Pub/Sub topic is `projects/{project}/topics/{topic}`.
      *

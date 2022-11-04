@@ -30,7 +30,7 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef[]|\Google\Protobuf\Internal\RepeatedField $page_refs
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef>|\Google\Protobuf\Internal\RepeatedField $page_refs
      *           One or more references to visual page elements
      * }
      */
@@ -54,7 +54,7 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
      * One or more references to visual page elements
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.PageAnchor.PageRef page_refs = 1;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\PageAnchor\PageRef>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPageRefs($var)
@@ -67,6 +67,4 @@ class PageAnchor extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PageAnchor::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor::class);
 

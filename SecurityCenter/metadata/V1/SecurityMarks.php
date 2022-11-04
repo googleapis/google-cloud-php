@@ -15,11 +15,10 @@ class SecurityMarks
           return;
         }
         \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-°
-3google/cloud/securitycenter/v1/security_marks.protogoogle.cloud.securitycenter.v1google/api/annotations.proto"Õ
+’
+3google/cloud/securitycenter/v1/security_marks.protogoogle.cloud.securitycenter.v1"Õ
 SecurityMarks
 name (	G
 marks (28.google.cloud.securitycenter.v1.SecurityMarks.MarksEntry

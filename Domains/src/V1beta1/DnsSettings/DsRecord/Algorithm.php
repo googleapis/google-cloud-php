@@ -21,6 +21,18 @@ class Algorithm
      */
     const ALGORITHM_UNSPECIFIED = 0;
     /**
+     * RSA/MD5. Cannot be used for new deployments.
+     *
+     * Generated from protobuf enum <code>RSAMD5 = 1;</code>
+     */
+    const RSAMD5 = 1;
+    /**
+     * Diffie-Hellman. Cannot be used for new deployments.
+     *
+     * Generated from protobuf enum <code>DH = 2;</code>
+     */
+    const DH = 2;
+    /**
      * DSA/SHA1. Not recommended for new deployments.
      *
      * Generated from protobuf enum <code>DSA = 3;</code>
@@ -92,9 +104,29 @@ class Algorithm
      * Generated from protobuf enum <code>ED448 = 16;</code>
      */
     const ED448 = 16;
+    /**
+     * Reserved for Indirect Keys. Cannot be used for new deployments.
+     *
+     * Generated from protobuf enum <code>INDIRECT = 252;</code>
+     */
+    const INDIRECT = 252;
+    /**
+     * Private algorithm. Cannot be used for new deployments.
+     *
+     * Generated from protobuf enum <code>PRIVATEDNS = 253;</code>
+     */
+    const PRIVATEDNS = 253;
+    /**
+     * Private algorithm OID. Cannot be used for new deployments.
+     *
+     * Generated from protobuf enum <code>PRIVATEOID = 254;</code>
+     */
+    const PRIVATEOID = 254;
 
     private static $valueToName = [
         self::ALGORITHM_UNSPECIFIED => 'ALGORITHM_UNSPECIFIED',
+        self::RSAMD5 => 'RSAMD5',
+        self::DH => 'DH',
         self::DSA => 'DSA',
         self::ECC => 'ECC',
         self::RSASHA1 => 'RSASHA1',
@@ -107,6 +139,9 @@ class Algorithm
         self::ECDSAP384SHA384 => 'ECDSAP384SHA384',
         self::ED25519 => 'ED25519',
         self::ED448 => 'ED448',
+        self::INDIRECT => 'INDIRECT',
+        self::PRIVATEDNS => 'PRIVATEDNS',
+        self::PRIVATEOID => 'PRIVATEOID',
     ];
 
     public static function name($value)
@@ -130,6 +165,4 @@ class Algorithm
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Algorithm::class, \Google\Cloud\Domains\V1beta1\DnsSettings_DsRecord_Algorithm::class);
 

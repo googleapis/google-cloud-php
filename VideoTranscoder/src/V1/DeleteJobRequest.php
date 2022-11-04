@@ -22,6 +22,13 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
+    /**
+     * If set to true, and the job is not found, the request will succeed but no
+     * action will be taken on the server.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     */
+    private $allow_missing = false;
 
     /**
      * Constructor.
@@ -32,6 +39,9 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. The name of the job to delete.
      *           Format: `projects/{project}/locations/{location}/jobs/{job}`
+     *     @type bool $allow_missing
+     *           If set to true, and the job is not found, the request will succeed but no
+     *           action will be taken on the server.
      * }
      */
     public function __construct($data = NULL) {
@@ -63,6 +73,34 @@ class DeleteJobRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * If set to true, and the job is not found, the request will succeed but no
+     * action will be taken on the server.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * @return bool
+     */
+    public function getAllowMissing()
+    {
+        return $this->allow_missing;
+    }
+
+    /**
+     * If set to true, and the job is not found, the request will succeed but no
+     * action will be taken on the server.
+     *
+     * Generated from protobuf field <code>bool allow_missing = 2;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAllowMissing($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->allow_missing = $var;
 
         return $this;
     }

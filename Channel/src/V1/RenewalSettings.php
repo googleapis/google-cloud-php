@@ -154,7 +154,7 @@ class RenewalSettings extends \Google\Protobuf\Internal\Message
      */
     public function getPaymentCycle()
     {
-        return isset($this->payment_cycle) ? $this->payment_cycle : null;
+        return $this->payment_cycle;
     }
 
     public function hasPaymentCycle()

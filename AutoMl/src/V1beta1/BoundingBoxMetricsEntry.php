@@ -49,7 +49,7 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      *           this metrics entry.
      *     @type float $mean_average_precision
      *           Output only. The mean average precision, most often close to au_prc.
-     *     @type \Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $confidence_metrics_entries
      *           Output only. Metrics for each label-match confidence_threshold from
      *           0.05,0.10,...,0.95,0.96,0.97,0.98,0.99. Precision-recall curve is
      *           derived from them.
@@ -133,7 +133,7 @@ class BoundingBoxMetricsEntry extends \Google\Protobuf\Internal\Message
      * derived from them.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.BoundingBoxMetricsEntry.ConfidenceMetricsEntry confidence_metrics_entries = 3;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\BoundingBoxMetricsEntry\ConfidenceMetricsEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConfidenceMetricsEntries($var)

@@ -65,7 +65,7 @@ class UpdateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getGcpUserAccessBinding()
     {
-        return isset($this->gcp_user_access_binding) ? $this->gcp_user_access_binding : null;
+        return $this->gcp_user_access_binding;
     }
 
     public function hasGcpUserAccessBinding()
@@ -106,7 +106,7 @@ class UpdateGcpUserAccessBindingRequest extends \Google\Protobuf\Internal\Messag
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

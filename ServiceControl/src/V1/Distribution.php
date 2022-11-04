@@ -12,10 +12,10 @@ use Google\Protobuf\Internal\GPBUtil;
  * Distribution represents a frequency distribution of double-valued sample
  * points. It contains the size of the population of sample points plus
  * additional optional information:
- *   - the arithmetic mean of the samples
- *   - the minimum and maximum of the samples
- *   - the sum-squared-deviation of the samples, used to compute variance
- *   - a histogram of the values of the sample points
+ * * the arithmetic mean of the samples
+ * * the minimum and maximum of the samples
+ * * the sum-squared-deviation of the samples, used to compute variance
+ * * a histogram of the values of the sample points
  *
  * Generated from protobuf message <code>google.api.servicecontrol.v1.Distribution</code>
  */
@@ -97,7 +97,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *             Sum[i=1..count]((x_i - mean)^2)
      *           where each x_i is a sample values. If `count` is zero then this field
      *           must be zero, otherwise validation of the request fails.
-     *     @type int[]|string[]|\Google\Protobuf\Internal\RepeatedField $bucket_counts
+     *     @type array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $bucket_counts
      *           The number of samples in each histogram bucket. `bucket_counts` are
      *           optional. If present, they must sum to the `count` value.
      *           The buckets are defined below in `bucket_option`. There are N buckets.
@@ -113,7 +113,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      *           Buckets with exponentially growing width.
      *     @type \Google\Cloud\ServiceControl\V1\Distribution\ExplicitBuckets $explicit_buckets
      *           Buckets with arbitrary user-provided width.
-     *     @type \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $exemplars
+     *     @type array<\Google\Api\Distribution\Exemplar>|\Google\Protobuf\Internal\RepeatedField $exemplars
      *           Example points. Must be in increasing order of `value` field.
      * }
      */
@@ -291,7 +291,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Any suffix of trailing zeros may be omitted.
      *
      * Generated from protobuf field <code>repeated int64 bucket_counts = 6;</code>
-     * @param int[]|string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBucketCounts($var)
@@ -410,7 +410,7 @@ class Distribution extends \Google\Protobuf\Internal\Message
      * Example points. Must be in increasing order of `value` field.
      *
      * Generated from protobuf field <code>repeated .google.api.Distribution.Exemplar exemplars = 10;</code>
-     * @param \Google\Api\Distribution\Exemplar[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\Distribution\Exemplar>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExemplars($var)

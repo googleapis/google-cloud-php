@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/security/privateca/(v1|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/SecurityPrivateCa/$1/$2
+api-name: SecurityPrivateCa

@@ -27,7 +27,6 @@ use phpDocumentor\Reflection\DocBlock;
 class ParserTest extends SnippetTestCase
 {
     private $parser;
-    private $docBlock;
     private $classSnippet;
     private $methodSnippet;
     private $secondMethodSnippet;
@@ -35,10 +34,9 @@ class ParserTest extends SnippetTestCase
     private $methodExamples;
     private $allExamples;
 
-    public function setUp()
+    public function set_up()
     {
         $this->parser = new Parser();
-        $this->docBlock = new DocBlock(null);
         $this->classSnippet = $this->parser->classExample(Parser::class);
         $this->methodSnippet = $this->parser->methodExample(Parser::class, 'methodExample');
         $this->secondMethodSnippet = $this->parser->methodExample(Parser::class, 'methodExample', 1);

@@ -27,7 +27,7 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $permissions
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $permissions
      *           The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
      * }
      */
@@ -51,7 +51,7 @@ class TestPermissionsRequest extends \Google\Protobuf\Internal\Message
      * The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
      *
      * Generated from protobuf field <code>repeated string permissions = 59962500;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPermissions($var)

@@ -38,7 +38,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tables
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tables
      *           Tables to export, or that were exported, from the specified database. If
      *           you specify tables, specify one and only one database. For PostgreSQL
      *           instances, you can specify only one table.
@@ -71,7 +71,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      * instances, you can specify only one table.
      *
      * Generated from protobuf field <code>repeated string tables = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTables($var)
@@ -90,7 +90,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getSchemaOnly()
     {
-        return isset($this->schema_only) ? $this->schema_only : null;
+        return $this->schema_only;
     }
 
     public function hasSchemaOnly()
@@ -151,7 +151,7 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getMysqlExportOptions()
     {
-        return isset($this->mysql_export_options) ? $this->mysql_export_options : null;
+        return $this->mysql_export_options;
     }
 
     public function hasMysqlExportOptions()
@@ -179,6 +179,4 @@ class SqlExportOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlExportOptions::class, \Google\Cloud\Sql\V1beta4\ExportContext_SqlExportOptions::class);
 

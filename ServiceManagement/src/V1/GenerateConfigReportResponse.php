@@ -53,10 +53,10 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      *           Name of the service this report belongs to.
      *     @type string $id
      *           ID of the service configuration this report belongs to.
-     *     @type \Google\Cloud\ServiceManagement\V1\ChangeReport[]|\Google\Protobuf\Internal\RepeatedField $change_reports
+     *     @type array<\Google\Cloud\ServiceManagement\V1\ChangeReport>|\Google\Protobuf\Internal\RepeatedField $change_reports
      *           list of ChangeReport, each corresponding to comparison between two
      *           service configurations.
-     *     @type \Google\Cloud\ServiceManagement\V1\Diagnostic[]|\Google\Protobuf\Internal\RepeatedField $diagnostics
+     *     @type array<\Google\Cloud\ServiceManagement\V1\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $diagnostics
      *           Errors / Linter warnings associated with the service definition this
      *           report
      *           belongs to.
@@ -136,7 +136,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * service configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.ChangeReport change_reports = 3;</code>
-     * @param \Google\Cloud\ServiceManagement\V1\ChangeReport[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceManagement\V1\ChangeReport>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setChangeReports($var)
@@ -166,7 +166,7 @@ class GenerateConfigReportResponse extends \Google\Protobuf\Internal\Message
      * belongs to.
      *
      * Generated from protobuf field <code>repeated .google.api.servicemanagement.v1.Diagnostic diagnostics = 4;</code>
-     * @param \Google\Cloud\ServiceManagement\V1\Diagnostic[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceManagement\V1\Diagnostic>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDiagnostics($var)

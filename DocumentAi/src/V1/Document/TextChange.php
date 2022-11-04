@@ -52,7 +52,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      *           before that index.
      *     @type string $changed_text
      *           The text that replaces the text identified in the `text_anchor`.
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance[]|\Google\Protobuf\Internal\RepeatedField $provenance
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Provenance>|\Google\Protobuf\Internal\RepeatedField $provenance
      *           The history of this annotation.
      * }
      */
@@ -146,7 +146,7 @@ class TextChange extends \Google\Protobuf\Internal\Message
      * The history of this annotation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Provenance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProvenance($var)
@@ -159,6 +159,4 @@ class TextChange extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TextChange::class, \Google\Cloud\DocumentAI\V1\Document_TextChange::class);
 

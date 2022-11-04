@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'instance_id',
+                ],
             ],
             'DeleteInstance' => [
                 'method' => 'delete',

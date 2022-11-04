@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class StatefulPolicy extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
      */
     private $preserved_state = null;
 
@@ -34,12 +34,12 @@ class StatefulPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
      * @return \Google\Cloud\Compute\V1\StatefulPolicyPreservedState|null
      */
     public function getPreservedState()
     {
-        return isset($this->preserved_state) ? $this->preserved_state : null;
+        return $this->preserved_state;
     }
 
     public function hasPreservedState()
@@ -53,7 +53,7 @@ class StatefulPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.StatefulPolicyPreservedState preserved_state = 2634026;</code>
      * @param \Google\Cloud\Compute\V1\StatefulPolicyPreservedState $var
      * @return $this
      */

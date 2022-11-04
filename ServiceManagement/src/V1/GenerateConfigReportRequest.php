@@ -73,7 +73,7 @@ class GenerateConfigReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNewConfig()
     {
-        return isset($this->new_config) ? $this->new_config : null;
+        return $this->new_config;
     }
 
     public function hasNewConfig()
@@ -117,7 +117,7 @@ class GenerateConfigReportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getOldConfig()
     {
-        return isset($this->old_config) ? $this->old_config : null;
+        return $this->old_config;
     }
 
     public function hasOldConfig()

@@ -83,7 +83,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     private $verify_server_certificate = null;
     /**
-     * This is always <b>sql#mysqlReplicaConfiguration</b>.
+     * This is always `sql#mysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 11;</code>
      */
@@ -123,7 +123,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      *           Whether or not to check the primary instance's Common Name value in the
      *           certificate that it sends during the SSL handshake.
      *     @type string $kind
-     *           This is always <b>sql#mysqlReplicaConfiguration</b>.
+     *           This is always `sql#mysqlReplicaConfiguration`.
      * }
      */
     public function __construct($data = NULL) {
@@ -227,7 +227,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getConnectRetryInterval()
     {
-        return isset($this->connect_retry_interval) ? $this->connect_retry_interval : null;
+        return $this->connect_retry_interval;
     }
 
     public function hasConnectRetryInterval()
@@ -290,7 +290,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getMasterHeartbeatPeriod()
     {
-        return isset($this->master_heartbeat_period) ? $this->master_heartbeat_period : null;
+        return $this->master_heartbeat_period;
     }
 
     public function hasMasterHeartbeatPeriod()
@@ -460,7 +460,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
      */
     public function getVerifyServerCertificate()
     {
-        return isset($this->verify_server_certificate) ? $this->verify_server_certificate : null;
+        return $this->verify_server_certificate;
     }
 
     public function hasVerifyServerCertificate()
@@ -519,7 +519,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * This is always <b>sql#mysqlReplicaConfiguration</b>.
+     * This is always `sql#mysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 11;</code>
      * @return string
@@ -530,7 +530,7 @@ class MySqlReplicaConfiguration extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#mysqlReplicaConfiguration</b>.
+     * This is always `sql#mysqlReplicaConfiguration`.
      *
      * Generated from protobuf field <code>string kind = 11;</code>
      * @param string $var

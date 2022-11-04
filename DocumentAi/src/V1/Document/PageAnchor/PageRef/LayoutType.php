@@ -94,6 +94,4 @@ class LayoutType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(LayoutType::class, \Google\Cloud\DocumentAI\V1\Document_PageAnchor_PageRef_LayoutType::class);
 

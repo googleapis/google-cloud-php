@@ -46,7 +46,7 @@ class PurchasableSku extends \Google\Protobuf\Internal\Message
      */
     public function getSku()
     {
-        return isset($this->sku) ? $this->sku : null;
+        return $this->sku;
     }
 
     public function hasSku()

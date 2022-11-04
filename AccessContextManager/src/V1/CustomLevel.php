@@ -47,7 +47,7 @@ class CustomLevel extends \Google\Protobuf\Internal\Message
      */
     public function getExpr()
     {
-        return isset($this->expr) ? $this->expr : null;
+        return $this->expr;
     }
 
     public function hasExpr()

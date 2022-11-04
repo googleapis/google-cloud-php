@@ -16,12 +16,22 @@ use Google\Protobuf\Internal\GPBUtil;
 class BinaryAuthorization extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Enable Binary Authorization for this cluster. If enabled, all container
-     * images will be validated by Binary Authorization.
+     * This field is deprecated. Leave this unset and instead configure
+     * BinaryAuthorization using evaluation_mode. If evaluation_mode is set to
+     * anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [deprecated = true];</code>
+     * @deprecated
      */
-    private $enabled = false;
+    protected $enabled = false;
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     */
+    private $evaluation_mode = 0;
 
     /**
      * Constructor.
@@ -30,8 +40,13 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Enable Binary Authorization for this cluster. If enabled, all container
-     *           images will be validated by Binary Authorization.
+     *           This field is deprecated. Leave this unset and instead configure
+     *           BinaryAuthorization using evaluation_mode. If evaluation_mode is set to
+     *           anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
+     *     @type int $evaluation_mode
+     *           Mode of operation for binauthz policy evaluation. Currently the only
+     *           options are equivalent to enable/disable. If unspecified, defaults to
+     *           DISABLED.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,29 +55,65 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable Binary Authorization for this cluster. If enabled, all container
-     * images will be validated by Binary Authorization.
+     * This field is deprecated. Leave this unset and instead configure
+     * BinaryAuthorization using evaluation_mode. If evaluation_mode is set to
+     * anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [deprecated = true];</code>
      * @return bool
+     * @deprecated
      */
     public function getEnabled()
     {
+        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
         return $this->enabled;
     }
 
     /**
-     * Enable Binary Authorization for this cluster. If enabled, all container
-     * images will be validated by Binary Authorization.
+     * This field is deprecated. Leave this unset and instead configure
+     * BinaryAuthorization using evaluation_mode. If evaluation_mode is set to
+     * anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
      *
-     * Generated from protobuf field <code>bool enabled = 1;</code>
+     * Generated from protobuf field <code>bool enabled = 1 [deprecated = true];</code>
      * @param bool $var
      * @return $this
+     * @deprecated
      */
     public function setEnabled($var)
     {
+        @trigger_error('enabled is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkBool($var);
         $this->enabled = $var;
+
+        return $this;
+    }
+
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     * @return int
+     */
+    public function getEvaluationMode()
+    {
+        return $this->evaluation_mode;
+    }
+
+    /**
+     * Mode of operation for binauthz policy evaluation. Currently the only
+     * options are equivalent to enable/disable. If unspecified, defaults to
+     * DISABLED.
+     *
+     * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setEvaluationMode($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\BinaryAuthorization\EvaluationMode::class);
+        $this->evaluation_mode = $var;
 
         return $this;
     }

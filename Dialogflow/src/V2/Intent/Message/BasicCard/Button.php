@@ -79,7 +79,7 @@ class Button extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+        return $this->open_uri_action;
     }
 
     public function hasOpenUriAction()

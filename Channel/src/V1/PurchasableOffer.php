@@ -46,7 +46,7 @@ class PurchasableOffer extends \Google\Protobuf\Internal\Message
      */
     public function getOffer()
     {
-        return isset($this->offer) ? $this->offer : null;
+        return $this->offer;
     }
 
     public function hasOffer()

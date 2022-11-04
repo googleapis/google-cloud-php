@@ -36,6 +36,17 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
      */
     private $execution_errors;
+    /**
+     * The unit in which all `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * If different `time_series` have different units (for example, because they
+     * come from different metric types, or a unit is absent), then `unit` will be
+     * "{not_a_unit}".
+     *
+     * Generated from protobuf field <code>string unit = 5;</code>
+     */
+    private $unit = '';
 
     /**
      * Constructor.
@@ -43,15 +54,22 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $time_series
+     *     @type array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $time_series
      *           One or more time series that match the filter included in the request.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
      *           to a non-empty value.  To see the additional results,
      *           use that value as `page_token` in the next call to this method.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $execution_errors
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $execution_errors
      *           Query execution errors that may have caused the time series data returned
      *           to be incomplete.
+     *     @type string $unit
+     *           The unit in which all `time_series` point values are reported. `unit`
+     *           follows the UCUM format for units as seen in
+     *           https://unitsofmeasure.org/ucum.html.
+     *           If different `time_series` have different units (for example, because they
+     *           come from different metric types, or a unit is absent), then `unit` will be
+     *           "{not_a_unit}".
      * }
      */
     public function __construct($data = NULL) {
@@ -74,7 +92,7 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * One or more time series that match the filter included in the request.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.TimeSeries time_series = 1;</code>
-     * @param \Google\Cloud\Monitoring\V3\TimeSeries[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\TimeSeries>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeSeries($var)
@@ -132,13 +150,49 @@ class ListTimeSeriesResponse extends \Google\Protobuf\Internal\Message
      * to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status execution_errors = 3;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExecutionErrors($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
         $this->execution_errors = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The unit in which all `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * If different `time_series` have different units (for example, because they
+     * come from different metric types, or a unit is absent), then `unit` will be
+     * "{not_a_unit}".
+     *
+     * Generated from protobuf field <code>string unit = 5;</code>
+     * @return string
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
+
+    /**
+     * The unit in which all `time_series` point values are reported. `unit`
+     * follows the UCUM format for units as seen in
+     * https://unitsofmeasure.org/ucum.html.
+     * If different `time_series` have different units (for example, because they
+     * come from different metric types, or a unit is absent), then `unit` will be
+     * "{not_a_unit}".
+     *
+     * Generated from protobuf field <code>string unit = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUnit($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->unit = $var;
 
         return $this;
     }

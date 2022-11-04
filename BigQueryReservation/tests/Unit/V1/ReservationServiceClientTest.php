@@ -83,7 +83,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createAssignmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -95,8 +95,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setAssignee($assignee);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $client->createAssignment($formattedParent);
+        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $response = $gapicClient->createAssignment($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -114,7 +114,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,10 +129,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $client->createAssignment($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createAssignment($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,20 +149,22 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->createCapacityCommitment($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->createCapacityCommitment($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,7 +182,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -195,10 +197,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->createCapacityCommitment($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCapacityCommitment($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -215,7 +217,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,14 +225,18 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->createReservation($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->createReservation($formattedParent);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -248,7 +254,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function createReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,10 +269,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->createReservation($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createReservation($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -283,7 +289,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteAssignmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -291,8 +297,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-        $client->deleteAssignment($formattedName);
+        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
+        $gapicClient->deleteAssignment($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -309,7 +315,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -324,10 +330,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
+        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
         try {
-            $client->deleteAssignment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteAssignment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -344,7 +350,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -352,8 +358,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $client->deleteCapacityCommitment($formattedName);
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $gapicClient->deleteCapacityCommitment($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -370,7 +376,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -385,10 +391,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $client->deleteCapacityCommitment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCapacityCommitment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -405,7 +411,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -413,8 +419,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $client->deleteReservation($formattedName);
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $gapicClient->deleteReservation($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -431,7 +437,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function deleteReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -446,10 +452,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $client->deleteReservation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteReservation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -466,7 +472,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getBiReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -478,8 +484,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setSize($size);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->biReservationName('[PROJECT]', '[LOCATION]');
-        $response = $client->getBiReservation($formattedName);
+        $formattedName = $gapicClient->biReservationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->getBiReservation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -497,7 +503,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getBiReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -512,10 +518,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->biReservationName('[PROJECT]', '[LOCATION]');
+        $formattedName = $gapicClient->biReservationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->getBiReservation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getBiReservation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -532,20 +538,22 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name2 = 'name2-1052831874';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $response = $client->getCapacityCommitment($formattedName);
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $response = $gapicClient->getCapacityCommitment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -563,7 +571,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -578,10 +586,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $client->getCapacityCommitment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCapacityCommitment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -598,7 +606,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -606,14 +614,18 @@ class ReservationServiceClientTest extends GeneratedTest
         $name2 = 'name2-1052831874';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name2);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $client->getReservation($formattedName);
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $response = $gapicClient->getReservation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -631,7 +643,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function getReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -646,10 +658,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $formattedName = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $client->getReservation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getReservation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -666,7 +678,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listAssignmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -681,8 +693,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
-        $response = $client->listAssignments($formattedParent);
+        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $response = $gapicClient->listAssignments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -703,7 +715,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -718,10 +730,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
+        $formattedParent = $gapicClient->reservationName('[PROJECT]', '[LOCATION]', '[RESERVATION]');
         try {
-            $client->listAssignments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listAssignments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -738,7 +750,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listCapacityCommitmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -753,8 +765,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setCapacityCommitments($capacityCommitments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listCapacityCommitments($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listCapacityCommitments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -775,7 +787,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listCapacityCommitmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -790,10 +802,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listCapacityCommitments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listCapacityCommitments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -810,7 +822,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listReservationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -825,8 +837,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setReservations($reservations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listReservations($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listReservations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -847,7 +859,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function listReservationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -862,10 +874,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listReservations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listReservations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -882,18 +894,20 @@ class ReservationServiceClientTest extends GeneratedTest
     public function mergeCapacityCommitmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        $response = $client->mergeCapacityCommitments();
+        $response = $gapicClient->mergeCapacityCommitments();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -909,7 +923,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function mergeCapacityCommitmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -924,8 +938,8 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->mergeCapacityCommitments();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->mergeCapacityCommitments();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -942,7 +956,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function moveAssignmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -954,8 +968,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setAssignee($assignee);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
-        $response = $client->moveAssignment($formattedName);
+        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
+        $response = $gapicClient->moveAssignment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -973,7 +987,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function moveAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -988,10 +1002,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
+        $formattedName = $gapicClient->assignmentName('[PROJECT]', '[LOCATION]', '[RESERVATION]', '[ASSIGNMENT]');
         try {
-            $client->moveAssignment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->moveAssignment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1008,7 +1022,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function searchAllAssignmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1023,8 +1037,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->searchAllAssignments($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->searchAllAssignments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1045,7 +1059,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function searchAllAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1060,10 +1074,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->searchAllAssignments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchAllAssignments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1080,7 +1094,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function searchAssignmentsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1095,8 +1109,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setAssignments($assignments);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->searchAssignments($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->searchAssignments($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1117,7 +1131,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function searchAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1132,10 +1146,10 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->searchAssignments($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->searchAssignments($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1152,7 +1166,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function splitCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1160,8 +1174,8 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse = new SplitCapacityCommitmentResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
-        $response = $client->splitCapacityCommitment($formattedName);
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $response = $gapicClient->splitCapacityCommitment($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1179,7 +1193,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function splitCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1194,10 +1208,70 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
+        $formattedName = $gapicClient->capacityCommitmentName('[PROJECT]', '[LOCATION]', '[CAPACITY_COMMITMENT]');
         try {
-            $client->splitCapacityCommitment($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->splitCapacityCommitment($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateAssignmentTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $assignee = 'assignee-369881649';
+        $expectedResponse = new Assignment();
+        $expectedResponse->setName($name);
+        $expectedResponse->setAssignee($assignee);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->updateAssignment();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.bigquery.reservation.v1.ReservationService/UpdateAssignment', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateAssignmentExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->updateAssignment();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1214,7 +1288,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateBiReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1225,7 +1299,7 @@ class ReservationServiceClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setSize($size);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateBiReservation();
+        $response = $gapicClient->updateBiReservation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1241,7 +1315,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateBiReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1256,8 +1330,8 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateBiReservation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateBiReservation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1274,18 +1348,20 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateCapacityCommitmentTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
         $slotCount = 191518834;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new CapacityCommitment();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCount($slotCount);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateCapacityCommitment();
+        $response = $gapicClient->updateCapacityCommitment();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1301,7 +1377,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateCapacityCommitmentExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1316,8 +1392,8 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateCapacityCommitment();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCapacityCommitment();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1334,7 +1410,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateReservationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1342,12 +1418,16 @@ class ReservationServiceClientTest extends GeneratedTest
         $name = 'name3373707';
         $slotCapacity = 1516717605;
         $ignoreIdleSlots = false;
+        $concurrency = 1476186003;
+        $multiRegionAuxiliary = false;
         $expectedResponse = new Reservation();
         $expectedResponse->setName($name);
         $expectedResponse->setSlotCapacity($slotCapacity);
         $expectedResponse->setIgnoreIdleSlots($ignoreIdleSlots);
+        $expectedResponse->setConcurrency($concurrency);
+        $expectedResponse->setMultiRegionAuxiliary($multiRegionAuxiliary);
         $transport->addResponse($expectedResponse);
-        $response = $client->updateReservation();
+        $response = $gapicClient->updateReservation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1363,7 +1443,7 @@ class ReservationServiceClientTest extends GeneratedTest
     public function updateReservationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1378,8 +1458,8 @@ class ReservationServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->updateReservation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateReservation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

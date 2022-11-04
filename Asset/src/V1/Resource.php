@@ -304,7 +304,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     public function getData()
     {
-        return isset($this->data) ? $this->data : null;
+        return $this->data;
     }
 
     public function hasData()

@@ -163,7 +163,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      *           intend to test.
      *     @type string $protocol
      *           IP Protocol of the test. When not provided, "TCP" is assumed.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $related_projects
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_projects
      *           Other projects that may be relevant for reachability analysis.
      *           This is applicable to scenarios where a test can cross project boundaries.
      *     @type string $display_name
@@ -265,7 +265,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     public function getSource()
     {
-        return isset($this->source) ? $this->source : null;
+        return $this->source;
     }
 
     public function hasSource()
@@ -330,7 +330,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     public function getDestination()
     {
-        return isset($this->destination) ? $this->destination : null;
+        return $this->destination;
     }
 
     public function hasDestination()
@@ -414,7 +414,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      * This is applicable to scenarios where a test can cross project boundaries.
      *
      * Generated from protobuf field <code>repeated string related_projects = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedProjects($var)
@@ -485,7 +485,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -521,7 +521,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -559,7 +559,7 @@ class ConnectivityTest extends \Google\Protobuf\Internal\Message
      */
     public function getReachabilityDetails()
     {
-        return isset($this->reachability_details) ? $this->reachability_details : null;
+        return $this->reachability_details;
     }
 
     public function hasReachabilityDetails()

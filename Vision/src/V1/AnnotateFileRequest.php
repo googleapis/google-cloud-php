@@ -57,11 +57,11 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\InputConfig $input_config
      *           Required. Information about the input file.
-     *     @type \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           Required. Requested features.
      *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
      *           Additional context that may accompany the image(s) in the file.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $pages
      *           Pages of the file to perform image annotation.
      *           Pages starts from 1, we assume the first page of the file is page 1.
      *           At most 5 pages are supported per request. Pages can be negative.
@@ -87,7 +87,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInputConfig()
     {
-        return isset($this->input_config) ? $this->input_config : null;
+        return $this->input_config;
     }
 
     public function hasInputConfig()
@@ -130,7 +130,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * Required. Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @param \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)
@@ -149,7 +149,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return isset($this->image_context) ? $this->image_context : null;
+        return $this->image_context;
     }
 
     public function hasImageContext()
@@ -210,7 +210,7 @@ class AnnotateFileRequest extends \Google\Protobuf\Internal\Message
      * for the first 5 pages of the file.
      *
      * Generated from protobuf field <code>repeated int32 pages = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPages($var)

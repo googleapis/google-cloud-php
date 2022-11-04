@@ -53,7 +53,7 @@ class UpdateIssueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getIssue()
     {
-        return isset($this->issue) ? $this->issue : null;
+        return $this->issue;
     }
 
     public function hasIssue()
@@ -89,7 +89,7 @@ class UpdateIssueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

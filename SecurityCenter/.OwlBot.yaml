@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/securitycenter/(v1|v1p1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/SecurityCenter/$1/$2
+api-name: SecurityCenter

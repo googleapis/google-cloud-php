@@ -19,6 +19,7 @@ namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\Call;
 use Google\ApiCore\Transport\TransportInterface;
+use Google\Cloud\Core\InsecureCredentialsWrapper;
 use Google\Cloud\Vision\V1\AnnotateImageRequest;
 use Google\Cloud\Vision\V1\AnnotateImageResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesRequest;
@@ -33,7 +34,7 @@ use Google\Cloud\Vision\V1\ProductSearchParams;
 use Google\Cloud\Vision\VisionHelpersTrait;
 use GuzzleHttp\Promise\FulfilledPromise;
 use Prophecy\Argument;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision
@@ -47,11 +48,12 @@ class ImageAnnotatorClientExtensionTest extends TestCase
     private $client;
     private $transport;
 
-    public function setUp()
+    public function set_up()
     {
         $this->transport = $this->prophesize(TransportInterface::class);
         $this->client = new ImageAnnotatorClient([
             'transport' => $this->transport->reveal(),
+            'credentials' => new InsecureCredentialsWrapper(),
         ]);
     }
 

@@ -109,7 +109,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataLabeling\V1beta1\PdfInstruction $pdf_instruction
      *           Instruction from a PDF document. The PDF should be in a Cloud Storage
      *           bucket.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $blocking_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $blocking_resources
      *           Output only. The names of any related resources that are blocking changes
      *           to the instruction.
      * }
@@ -209,7 +209,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -245,7 +245,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -313,7 +313,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
     public function getCsvInstruction()
     {
         @trigger_error('csv_instruction is deprecated.', E_USER_DEPRECATED);
-        return isset($this->csv_instruction) ? $this->csv_instruction : null;
+        return $this->csv_instruction;
     }
 
     public function hasCsvInstruction()
@@ -358,7 +358,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      */
     public function getPdfInstruction()
     {
-        return isset($this->pdf_instruction) ? $this->pdf_instruction : null;
+        return $this->pdf_instruction;
     }
 
     public function hasPdfInstruction()
@@ -404,7 +404,7 @@ class Instruction extends \Google\Protobuf\Internal\Message
      * to the instruction.
      *
      * Generated from protobuf field <code>repeated string blocking_resources = 10;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlockingResources($var)

@@ -153,7 +153,7 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -189,7 +189,7 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -251,7 +251,7 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     public function getInputDataConfig()
     {
-        return isset($this->input_data_config) ? $this->input_data_config : null;
+        return $this->input_data_config;
     }
 
     public function hasInputDataConfig()
@@ -287,7 +287,7 @@ class IssueModel extends \Google\Protobuf\Internal\Message
      */
     public function getTrainingStats()
     {
-        return isset($this->training_stats) ? $this->training_stats : null;
+        return $this->training_stats;
     }
 
     public function hasTrainingStats()

@@ -94,7 +94,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -136,7 +136,7 @@ class UpdateMetadataImportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMetadataImport()
     {
-        return isset($this->metadata_import) ? $this->metadata_import : null;
+        return $this->metadata_import;
     }
 
     public function hasMetadataImport()

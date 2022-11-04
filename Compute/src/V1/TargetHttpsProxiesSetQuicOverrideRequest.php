@@ -16,8 +16,9 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
 {
     /**
      * QUIC policy for the TargetHttpsProxy resource.
+     * Check the QuicOverride enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
+     * Generated from protobuf field <code>optional string quic_override = 456577197;</code>
      */
     private $quic_override = null;
 
@@ -27,8 +28,9 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $quic_override
+     *     @type string $quic_override
      *           QUIC policy for the TargetHttpsProxy resource.
+     *           Check the QuicOverride enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,13 +40,14 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
 
     /**
      * QUIC policy for the TargetHttpsProxy resource.
+     * Check the QuicOverride enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string quic_override = 456577197;</code>
+     * @return string
      */
     public function getQuicOverride()
     {
-        return isset($this->quic_override) ? $this->quic_override : 0;
+        return isset($this->quic_override) ? $this->quic_override : '';
     }
 
     public function hasQuicOverride()
@@ -59,14 +62,15 @@ class TargetHttpsProxiesSetQuicOverrideRequest extends \Google\Protobuf\Internal
 
     /**
      * QUIC policy for the TargetHttpsProxy resource.
+     * Check the QuicOverride enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.TargetHttpsProxiesSetQuicOverrideRequest.QuicOverride quic_override = 456577197;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string quic_override = 456577197;</code>
+     * @param string $var
      * @return $this
      */
     public function setQuicOverride($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\TargetHttpsProxiesSetQuicOverrideRequest\QuicOverride::class);
+        GPBUtil::checkString($var, True);
         $this->quic_override = $var;
 
         return $this;

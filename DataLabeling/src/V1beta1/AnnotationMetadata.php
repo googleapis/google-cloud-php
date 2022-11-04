@@ -45,7 +45,7 @@ class AnnotationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOperatorMetadata()
     {
-        return isset($this->operator_metadata) ? $this->operator_metadata : null;
+        return $this->operator_metadata;
     }
 
     public function hasOperatorMetadata()

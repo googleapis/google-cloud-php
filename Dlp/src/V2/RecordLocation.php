@@ -61,7 +61,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      */
     public function getRecordKey()
     {
-        return isset($this->record_key) ? $this->record_key : null;
+        return $this->record_key;
     }
 
     public function hasRecordKey()
@@ -97,7 +97,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      */
     public function getFieldId()
     {
-        return isset($this->field_id) ? $this->field_id : null;
+        return $this->field_id;
     }
 
     public function hasFieldId()
@@ -133,7 +133,7 @@ class RecordLocation extends \Google\Protobuf\Internal\Message
      */
     public function getTableLocation()
     {
-        return isset($this->table_location) ? $this->table_location : null;
+        return $this->table_location;
     }
 
     public function hasTableLocation()

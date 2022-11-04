@@ -15,11 +15,10 @@ class Text
           return;
         }
         \GPBMetadata\Google\Cloud\Automl\V1Beta1\Classification::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-´
-&google/cloud/automl/v1beta1/text.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"q
+ç
+&google/cloud/automl/v1beta1/text.protogoogle.cloud.automl.v1beta1"q
 !TextClassificationDatasetMetadataL
 classification_type (2/.google.cloud.automl.v1beta1.ClassificationType"o
 TextClassificationModelMetadataL

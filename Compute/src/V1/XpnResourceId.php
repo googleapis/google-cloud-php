@@ -18,13 +18,14 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      */
     private $id = null;
     /**
      * The type of the service resource.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
      */
     private $type = null;
 
@@ -36,8 +37,9 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
      *
      *     @type string $id
      *           The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
-     *     @type int $type
+     *     @type string $type
      *           The type of the service resource.
+     *           Check the Type enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -48,7 +50,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @return string
      */
     public function getId()
@@ -69,7 +71,7 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
     /**
      * The ID of the service resource. In the case of projects, this field supports project id (e.g., my-project-123) and project number (e.g. 12345678).
      *
-     * Generated from protobuf field <code>string id = 3355;</code>
+     * Generated from protobuf field <code>optional string id = 3355;</code>
      * @param string $var
      * @return $this
      */
@@ -83,13 +85,14 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the service resource.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @return string
      */
     public function getType()
     {
-        return isset($this->type) ? $this->type : 0;
+        return isset($this->type) ? $this->type : '';
     }
 
     public function hasType()
@@ -104,14 +107,15 @@ class XpnResourceId extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the service resource.
+     * Check the Type enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.XpnResourceId.Type type = 3575610;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string type = 3575610;</code>
+     * @param string $var
      * @return $this
      */
     public function setType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\XpnResourceId\Type::class);
+        GPBUtil::checkString($var, True);
         $this->type = $var;
 
         return $this;

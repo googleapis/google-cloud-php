@@ -20,18 +20,26 @@ class Mode
      */
     const UNDEFINED_MODE = 0;
     /**
+     * Do not automatically scale the MIG in or out. The recommended_size field contains the size of MIG that would be set if the actuation mode was enabled.
+     *
      * Generated from protobuf enum <code>OFF = 78159;</code>
      */
     const OFF = 78159;
     /**
+     * Automatically scale the MIG in and out according to the policy.
+     *
      * Generated from protobuf enum <code>ON = 2527;</code>
      */
     const ON = 2527;
     /**
+     * Automatically create VMs according to the policy, but do not scale the MIG in.
+     *
      * Generated from protobuf enum <code>ONLY_SCALE_OUT = 152713670;</code>
      */
     const ONLY_SCALE_OUT = 152713670;
     /**
+     * Automatically create VMs according to the policy, but do not scale the MIG in.
+     *
      * Generated from protobuf enum <code>ONLY_UP = 478095374;</code>
      */
     const ONLY_UP = 478095374;

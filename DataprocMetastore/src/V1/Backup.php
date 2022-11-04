@@ -78,7 +78,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      *           Output only. The revision of the service at the time of backup.
      *     @type string $description
      *           The description of the backup.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $restoring_services
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $restoring_services
      *           Output only. Services that are restoring from the backup.
      * }
      */
@@ -123,7 +123,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -159,7 +159,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -221,7 +221,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      */
     public function getServiceRevision()
     {
-        return isset($this->service_revision) ? $this->service_revision : null;
+        return $this->service_revision;
     }
 
     public function hasServiceRevision()
@@ -290,7 +290,7 @@ class Backup extends \Google\Protobuf\Internal\Message
      * Output only. Services that are restoring from the backup.
      *
      * Generated from protobuf field <code>repeated string restoring_services = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRestoringServices($var)

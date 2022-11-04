@@ -33,6 +33,18 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp finish_time = 3;</code>
      */
     private $finish_time = null;
+    /**
+     * Keys: the full `name` of each table that existed in the instance when
+     * CreateCluster was first called, i.e.
+     * `projects/<project>/instances/<instance>/tables/<table>`. Any table added
+     * to the instance by a later API call will be created in the new cluster by
+     * that API call, not this one.
+     * Values: information on how much of a table's data has been copied to the
+     * newly-created cluster so far.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.CreateClusterMetadata.TableProgress> tables = 4;</code>
+     */
+    private $tables;
 
     /**
      * Constructor.
@@ -46,6 +58,14 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      *           The time at which the original request was received.
      *     @type \Google\Protobuf\Timestamp $finish_time
      *           The time at which the operation failed or was completed successfully.
+     *     @type array|\Google\Protobuf\Internal\MapField $tables
+     *           Keys: the full `name` of each table that existed in the instance when
+     *           CreateCluster was first called, i.e.
+     *           `projects/<project>/instances/<instance>/tables/<table>`. Any table added
+     *           to the instance by a later API call will be created in the new cluster by
+     *           that API call, not this one.
+     *           Values: information on how much of a table's data has been copied to the
+     *           newly-created cluster so far.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,7 +81,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getOriginalRequest()
     {
-        return isset($this->original_request) ? $this->original_request : null;
+        return $this->original_request;
     }
 
     public function hasOriginalRequest()
@@ -97,7 +117,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequestTime()
     {
-        return isset($this->request_time) ? $this->request_time : null;
+        return $this->request_time;
     }
 
     public function hasRequestTime()
@@ -133,7 +153,7 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getFinishTime()
     {
-        return isset($this->finish_time) ? $this->finish_time : null;
+        return $this->finish_time;
     }
 
     public function hasFinishTime()
@@ -157,6 +177,44 @@ class CreateClusterMetadata extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->finish_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Keys: the full `name` of each table that existed in the instance when
+     * CreateCluster was first called, i.e.
+     * `projects/<project>/instances/<instance>/tables/<table>`. Any table added
+     * to the instance by a later API call will be created in the new cluster by
+     * that API call, not this one.
+     * Values: information on how much of a table's data has been copied to the
+     * newly-created cluster so far.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.CreateClusterMetadata.TableProgress> tables = 4;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getTables()
+    {
+        return $this->tables;
+    }
+
+    /**
+     * Keys: the full `name` of each table that existed in the instance when
+     * CreateCluster was first called, i.e.
+     * `projects/<project>/instances/<instance>/tables/<table>`. Any table added
+     * to the instance by a later API call will be created in the new cluster by
+     * that API call, not this one.
+     * Values: information on how much of a table's data has been copied to the
+     * newly-created cluster so far.
+     *
+     * Generated from protobuf field <code>map<string, .google.bigtable.admin.v2.CreateClusterMetadata.TableProgress> tables = 4;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setTables($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Bigtable\Admin\V2\CreateClusterMetadata\TableProgress::class);
+        $this->tables = $arr;
 
         return $this;
     }

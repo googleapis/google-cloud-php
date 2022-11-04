@@ -18,19 +18,19 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      */
     private $enable_integrity_monitoring = null;
     /**
      * Defines whether the instance has Secure Boot enabled. Disabled by default.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 123568638;</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      */
     private $enable_secure_boot = null;
     /**
      * Defines whether the instance has the vTPM enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 181858935;</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      */
     private $enable_vtpm = null;
 
@@ -56,7 +56,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      * @return bool
      */
     public function getEnableIntegrityMonitoring()
@@ -77,7 +77,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has integrity monitoring enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_integrity_monitoring = 409071030;</code>
+     * Generated from protobuf field <code>optional bool enable_integrity_monitoring = 409071030;</code>
      * @param bool $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has Secure Boot enabled. Disabled by default.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 123568638;</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      * @return bool
      */
     public function getEnableSecureBoot()
@@ -113,7 +113,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has Secure Boot enabled. Disabled by default.
      *
-     * Generated from protobuf field <code>bool enable_secure_boot = 123568638;</code>
+     * Generated from protobuf field <code>optional bool enable_secure_boot = 123568638;</code>
      * @param bool $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has the vTPM enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 181858935;</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      * @return bool
      */
     public function getEnableVtpm()
@@ -149,7 +149,7 @@ class ShieldedInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance has the vTPM enabled. Enabled by default.
      *
-     * Generated from protobuf field <code>bool enable_vtpm = 181858935;</code>
+     * Generated from protobuf field <code>optional bool enable_vtpm = 181858935;</code>
      * @param bool $var
      * @return $this
      */

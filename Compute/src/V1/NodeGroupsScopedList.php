@@ -23,7 +23,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that appears when the nodeGroup list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -33,7 +33,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\NodeGroup[]|\Google\Protobuf\Internal\RepeatedField $node_groups
+     *     @type array<\Google\Cloud\Compute\V1\NodeGroup>|\Google\Protobuf\Internal\RepeatedField $node_groups
      *           [Output Only] A list of node groups contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           [Output Only] An informational warning that appears when the nodeGroup list is empty.
@@ -59,7 +59,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
      * [Output Only] A list of node groups contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NodeGroup node_groups = 73188017;</code>
-     * @param \Google\Cloud\Compute\V1\NodeGroup[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NodeGroup>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNodeGroups($var)
@@ -73,12 +73,12 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that appears when the nodeGroup list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class NodeGroupsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An informational warning that appears when the nodeGroup list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

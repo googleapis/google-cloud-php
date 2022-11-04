@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2020 Google LLC
+// Copyright 2021 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ namespace Google\Cloud\Redis\V1beta1;
  * * As such, Redis instances are resources of the form:
  *   `/projects/{project_id}/locations/{location_id}/instances/{instance_id}`
  *
- * Note that location_id must be refering to a GCP `region`; for example:
+ * Note that location_id must be referring to a GCP `region`; for example:
  * * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
  */
 class CloudRedisGrpcClient extends \Grpc\BaseStub {
@@ -85,6 +85,23 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+     * instance the response will be empty. This information is not included in
+     * the details returned to GetInstance.
+     * @param \Google\Cloud\Redis\V1beta1\GetInstanceAuthStringRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetInstanceAuthString(\Google\Cloud\Redis\V1beta1\GetInstanceAuthStringRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/GetInstanceAuthString',
+        $argument,
+        ['\Google\Cloud\Redis\V1beta1\InstanceAuthString', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Creates a Redis instance based on the specified tier and memory size.
      *
      * By default, the instance is accessible from the project's
@@ -92,7 +109,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
      *
      * The creation is executed asynchronously and callers may check the returned
      * operation to track its progress. Once the operation is completed the Redis
-     * instance will be fully functional. Completed longrunning.Operation will
+     * instance will be fully functional. The completed longrunning.Operation will
      * contain the new instance object in the response field.
      *
      * The returned operation is automatically deleted after a few hours, so there
@@ -188,7 +205,7 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Initiates a failover of the master node to current replica node for a
+     * Initiates a failover of the primary node to current replica node for a
      * specific STANDARD tier Cloud Memorystore for Redis instance.
      * @param \Google\Cloud\Redis\V1beta1\FailoverInstanceRequest $argument input argument
      * @param array $metadata metadata
@@ -214,6 +231,22 @@ class CloudRedisGrpcClient extends \Grpc\BaseStub {
     public function DeleteInstance(\Google\Cloud\Redis\V1beta1\DeleteInstanceRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/DeleteInstance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Reschedule maintenance for a given instance in a given project and
+     * location.
+     * @param \Google\Cloud\Redis\V1beta1\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Redis\V1beta1\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.redis.v1beta1.CloudRedis/RescheduleMaintenance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

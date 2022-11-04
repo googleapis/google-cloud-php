@@ -31,7 +31,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -40,6 +40,7 @@ on authenticating your client. Once authenticated, you'll be ready to start maki
 require 'vendor/autoload.php';
 
 use Google\Cloud\AutoMl\V1\AutoMlClient;
+use Google\Cloud\AutoMl\V1\Dataset;
 use Google\Cloud\AutoMl\V1\TranslationDatasetMetadata;
 
 $autoMlClient = new AutoMlClient();

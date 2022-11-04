@@ -228,7 +228,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *     @type string $proxy_uri
      *           Output only. The proxy endpoint that is used to access the Jupyter
      *           notebook.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_owners
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_owners
      *           Input only. The owner of this instance after creation. Format:
      *           `alias&#64;example.com`
      *           Currently supports one owner only. If not specified, all of the service
@@ -487,7 +487,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      * the instance.
      *
      * Generated from protobuf field <code>repeated string instance_owners = 6 [(.google.api.field_behavior) = INPUT_ONLY];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceOwners($var)
@@ -577,7 +577,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getAcceleratorConfig()
     {
-        return isset($this->accelerator_config) ? $this->accelerator_config : null;
+        return $this->accelerator_config;
     }
 
     public function hasAcceleratorConfig()
@@ -1076,7 +1076,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -1112,7 +1112,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

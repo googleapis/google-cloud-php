@@ -46,7 +46,7 @@ class RecordCondition extends \Google\Protobuf\Internal\Message
      */
     public function getExpressions()
     {
-        return isset($this->expressions) ? $this->expressions : null;
+        return $this->expressions;
     }
 
     public function hasExpressions()

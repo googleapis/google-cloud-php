@@ -61,6 +61,4 @@ class DataUsageType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DataUsageType::class, \Google\Cloud\Talent\V4beta1\Tenant_DataUsageType::class);
 

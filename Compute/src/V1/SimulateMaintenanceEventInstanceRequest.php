@@ -24,13 +24,13 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      */
     private $zone = '';
 
@@ -82,7 +82,7 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -93,7 +93,7 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -108,7 +108,7 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @return string
      */
     public function getZone()
@@ -119,7 +119,7 @@ class SimulateMaintenanceEventInstanceRequest extends \Google\Protobuf\Internal\
     /**
      * The name of the zone for this request.
      *
-     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string zone = 3744684 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "zone"];</code>
      * @param string $var
      * @return $this
      */

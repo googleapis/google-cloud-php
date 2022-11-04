@@ -69,7 +69,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getInfo()
     {
-        return isset($this->info) ? $this->info : null;
+        return $this->info;
     }
 
     public function hasInfo()
@@ -157,7 +157,7 @@ class Item extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()

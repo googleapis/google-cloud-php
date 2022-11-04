@@ -30,16 +30,6 @@
                                 "deleteService"
                             ]
                         },
-                        "DisableService": {
-                            "methods": [
-                                "disableService"
-                            ]
-                        },
-                        "EnableService": {
-                            "methods": [
-                                "enableService"
-                            ]
-                        },
                         "GenerateConfigReport": {
                             "methods": [
                                 "generateConfigReport"

@@ -27,6 +27,8 @@ class Action
     const ALLOW = 1;
     /**
      * Deny access.
+     * Deny rules should be avoided unless they are used to provide a default
+     * "deny all" fallback.
      *
      * Generated from protobuf enum <code>DENY = 2;</code>
      */
@@ -59,6 +61,4 @@ class Action
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Action::class, \Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy_Action::class);
 

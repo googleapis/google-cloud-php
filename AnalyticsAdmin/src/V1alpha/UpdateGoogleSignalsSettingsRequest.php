@@ -60,7 +60,7 @@ class UpdateGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getGoogleSignalsSettings()
     {
-        return isset($this->google_signals_settings) ? $this->google_signals_settings : null;
+        return $this->google_signals_settings;
     }
 
     public function hasGoogleSignalsSettings()
@@ -99,7 +99,7 @@ class UpdateGoogleSignalsSettingsRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

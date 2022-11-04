@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Represents a Resource Policy resource. You can use resource policies to schedule actions for some Compute Engine resources. For example, you can use them to schedule persistent disk snapshots.
- * (== resource_for {$api_version}.resourcePolicies ==)
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.ResourcePolicy</code>
  */
@@ -19,69 +18,70 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * Resource policy for instances for placement configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
      */
     private $group_placement_policy = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * Resource policy for scheduling instance operations.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
      */
     private $instance_schedule_policy = null;
     /**
      * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] The system status of the resource policy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      */
     private $resource_status = null;
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * Resource policy for persistent disks for creating snapshots.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
      */
     private $snapshot_schedule_policy = null;
     /**
      * [Output Only] The status of resource policy creation.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicy.Status status = 181260274;</code>
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
 
@@ -111,8 +111,9 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicy $snapshot_schedule_policy
      *           Resource policy for persistent disks for creating snapshots.
-     *     @type int $status
+     *     @type string $status
      *           [Output Only] The status of resource policy creation.
+     *           Check the Status enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -123,7 +124,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -144,7 +145,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -157,7 +158,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -176,7 +177,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -191,12 +192,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for instances for placement configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy|null
      */
     public function getGroupPlacementPolicy()
     {
-        return isset($this->group_placement_policy) ? $this->group_placement_policy : null;
+        return $this->group_placement_policy;
     }
 
     public function hasGroupPlacementPolicy()
@@ -212,7 +213,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for instances for placement configuration.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyGroupPlacementPolicy group_placement_policy = 10931596;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyGroupPlacementPolicy $var
      * @return $this
      */
@@ -227,7 +228,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -248,7 +249,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -263,12 +264,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for scheduling instance operations.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy|null
      */
     public function getInstanceSchedulePolicy()
     {
-        return isset($this->instance_schedule_policy) ? $this->instance_schedule_policy : null;
+        return $this->instance_schedule_policy;
     }
 
     public function hasInstanceSchedulePolicy()
@@ -284,7 +285,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for scheduling instance operations.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyInstanceSchedulePolicy instance_schedule_policy = 344877104;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyInstanceSchedulePolicy $var
      * @return $this
      */
@@ -299,7 +300,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -320,7 +321,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#resource_policies for resource policies.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -335,7 +336,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -356,7 +357,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -369,7 +370,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -388,7 +389,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -403,12 +404,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The system status of the resource policy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus|null
      */
     public function getResourceStatus()
     {
-        return isset($this->resource_status) ? $this->resource_status : null;
+        return $this->resource_status;
     }
 
     public function hasResourceStatus()
@@ -424,7 +425,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The system status of the resource policy.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicyResourceStatus resource_status = 249429315;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicyResourceStatus $var
      * @return $this
      */
@@ -439,7 +440,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -460,7 +461,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined fully-qualified URL for this resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -475,12 +476,12 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for persistent disks for creating snapshots.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
      * @return \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicy|null
      */
     public function getSnapshotSchedulePolicy()
     {
-        return isset($this->snapshot_schedule_policy) ? $this->snapshot_schedule_policy : null;
+        return $this->snapshot_schedule_policy;
     }
 
     public function hasSnapshotSchedulePolicy()
@@ -496,7 +497,7 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
     /**
      * Resource policy for persistent disks for creating snapshots.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.ResourcePolicySnapshotSchedulePolicy snapshot_schedule_policy = 218131295;</code>
      * @param \Google\Cloud\Compute\V1\ResourcePolicySnapshotSchedulePolicy $var
      * @return $this
      */
@@ -510,13 +511,14 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] The status of resource policy creation.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicy.Status status = 181260274;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @return string
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : 0;
+        return isset($this->status) ? $this->status : '';
     }
 
     public function hasStatus()
@@ -531,14 +533,15 @@ class ResourcePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * [Output Only] The status of resource policy creation.
+     * Check the Status enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.ResourcePolicy.Status status = 181260274;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string status = 181260274;</code>
+     * @param string $var
      * @return $this
      */
     public function setStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\ResourcePolicy\Status::class);
+        GPBUtil::checkString($var, True);
         $this->status = $var;
 
         return $this;

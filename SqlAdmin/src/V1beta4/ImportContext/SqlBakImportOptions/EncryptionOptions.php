@@ -15,16 +15,16 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 {
     /**
      * Path to the Certificate (.cer) in Cloud Storage, in the form
-     * <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * `gs://bucketName/fileName`. The instance must have write permissions
+     * to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string cert_path = 1;</code>
      */
     private $cert_path = '';
     /**
      * Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
-     * form <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * form `gs://bucketName/fileName`. The instance must have write
+     * permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string pvk_path = 2;</code>
      */
@@ -44,12 +44,12 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $cert_path
      *           Path to the Certificate (.cer) in Cloud Storage, in the form
-     *           <b>gs://bucketName/fileName</b>. The instance must have
-     *           write permissions to the bucket and read access to the file.
+     *           `gs://bucketName/fileName`. The instance must have write permissions
+     *           to the bucket and read access to the file.
      *     @type string $pvk_path
      *           Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
-     *           form <b>gs://bucketName/fileName</b>. The instance must have
-     *           write permissions to the bucket and read access to the file.
+     *           form `gs://bucketName/fileName`. The instance must have write
+     *           permissions to the bucket and read access to the file.
      *     @type string $pvk_password
      *           Password that encrypts the private key
      * }
@@ -61,8 +61,8 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the Certificate (.cer) in Cloud Storage, in the form
-     * <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * `gs://bucketName/fileName`. The instance must have write permissions
+     * to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string cert_path = 1;</code>
      * @return string
@@ -74,8 +74,8 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the Certificate (.cer) in Cloud Storage, in the form
-     * <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * `gs://bucketName/fileName`. The instance must have write permissions
+     * to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string cert_path = 1;</code>
      * @param string $var
@@ -91,8 +91,8 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
-     * form <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * form `gs://bucketName/fileName`. The instance must have write
+     * permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string pvk_path = 2;</code>
      * @return string
@@ -104,8 +104,8 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
     /**
      * Path to the Certificate Private Key (.pvk)  in Cloud Storage, in the
-     * form <b>gs://bucketName/fileName</b>. The instance must have
-     * write permissions to the bucket and read access to the file.
+     * form `gs://bucketName/fileName`. The instance must have write
+     * permissions to the bucket and read access to the file.
      *
      * Generated from protobuf field <code>string pvk_path = 2;</code>
      * @param string $var
@@ -147,6 +147,4 @@ class EncryptionOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EncryptionOptions::class, \Google\Cloud\Sql\V1beta4\ImportContext_SqlBakImportOptions_EncryptionOptions::class);
 

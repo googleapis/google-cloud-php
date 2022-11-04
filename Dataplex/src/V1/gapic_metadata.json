@@ -1,0 +1,266 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.dataplex.v1",
+    "libraryPackage": "Google\\Cloud\\Dataplex\\V1",
+    "services": {
+        "ContentService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ContentServiceGapicClient",
+                    "rpcs": {
+                        "CreateContent": {
+                            "methods": [
+                                "createContent"
+                            ]
+                        },
+                        "DeleteContent": {
+                            "methods": [
+                                "deleteContent"
+                            ]
+                        },
+                        "GetContent": {
+                            "methods": [
+                                "getContent"
+                            ]
+                        },
+                        "ListContent": {
+                            "methods": [
+                                "listContent"
+                            ]
+                        },
+                        "UpdateContent": {
+                            "methods": [
+                                "updateContent"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "MetadataService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "MetadataServiceGapicClient",
+                    "rpcs": {
+                        "CreateEntity": {
+                            "methods": [
+                                "createEntity"
+                            ]
+                        },
+                        "CreatePartition": {
+                            "methods": [
+                                "createPartition"
+                            ]
+                        },
+                        "DeleteEntity": {
+                            "methods": [
+                                "deleteEntity"
+                            ]
+                        },
+                        "DeletePartition": {
+                            "methods": [
+                                "deletePartition"
+                            ]
+                        },
+                        "GetEntity": {
+                            "methods": [
+                                "getEntity"
+                            ]
+                        },
+                        "GetPartition": {
+                            "methods": [
+                                "getPartition"
+                            ]
+                        },
+                        "ListEntities": {
+                            "methods": [
+                                "listEntities"
+                            ]
+                        },
+                        "ListPartitions": {
+                            "methods": [
+                                "listPartitions"
+                            ]
+                        },
+                        "UpdateEntity": {
+                            "methods": [
+                                "updateEntity"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "DataplexService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataplexServiceGapicClient",
+                    "rpcs": {
+                        "CancelJob": {
+                            "methods": [
+                                "cancelJob"
+                            ]
+                        },
+                        "CreateAsset": {
+                            "methods": [
+                                "createAsset"
+                            ]
+                        },
+                        "CreateEnvironment": {
+                            "methods": [
+                                "createEnvironment"
+                            ]
+                        },
+                        "CreateLake": {
+                            "methods": [
+                                "createLake"
+                            ]
+                        },
+                        "CreateTask": {
+                            "methods": [
+                                "createTask"
+                            ]
+                        },
+                        "CreateZone": {
+                            "methods": [
+                                "createZone"
+                            ]
+                        },
+                        "DeleteAsset": {
+                            "methods": [
+                                "deleteAsset"
+                            ]
+                        },
+                        "DeleteEnvironment": {
+                            "methods": [
+                                "deleteEnvironment"
+                            ]
+                        },
+                        "DeleteLake": {
+                            "methods": [
+                                "deleteLake"
+                            ]
+                        },
+                        "DeleteTask": {
+                            "methods": [
+                                "deleteTask"
+                            ]
+                        },
+                        "DeleteZone": {
+                            "methods": [
+                                "deleteZone"
+                            ]
+                        },
+                        "GetAsset": {
+                            "methods": [
+                                "getAsset"
+                            ]
+                        },
+                        "GetEnvironment": {
+                            "methods": [
+                                "getEnvironment"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "GetLake": {
+                            "methods": [
+                                "getLake"
+                            ]
+                        },
+                        "GetTask": {
+                            "methods": [
+                                "getTask"
+                            ]
+                        },
+                        "GetZone": {
+                            "methods": [
+                                "getZone"
+                            ]
+                        },
+                        "ListAssetActions": {
+                            "methods": [
+                                "listAssetActions"
+                            ]
+                        },
+                        "ListAssets": {
+                            "methods": [
+                                "listAssets"
+                            ]
+                        },
+                        "ListEnvironments": {
+                            "methods": [
+                                "listEnvironments"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "ListLakeActions": {
+                            "methods": [
+                                "listLakeActions"
+                            ]
+                        },
+                        "ListLakes": {
+                            "methods": [
+                                "listLakes"
+                            ]
+                        },
+                        "ListSessions": {
+                            "methods": [
+                                "listSessions"
+                            ]
+                        },
+                        "ListTasks": {
+                            "methods": [
+                                "listTasks"
+                            ]
+                        },
+                        "ListZoneActions": {
+                            "methods": [
+                                "listZoneActions"
+                            ]
+                        },
+                        "ListZones": {
+                            "methods": [
+                                "listZones"
+                            ]
+                        },
+                        "UpdateAsset": {
+                            "methods": [
+                                "updateAsset"
+                            ]
+                        },
+                        "UpdateEnvironment": {
+                            "methods": [
+                                "updateEnvironment"
+                            ]
+                        },
+                        "UpdateLake": {
+                            "methods": [
+                                "updateLake"
+                            ]
+                        },
+                        "UpdateTask": {
+                            "methods": [
+                                "updateTask"
+                            ]
+                        },
+                        "UpdateZone": {
+                            "methods": [
+                                "updateZone"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

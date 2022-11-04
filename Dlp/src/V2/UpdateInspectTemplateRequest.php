@@ -95,7 +95,7 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectTemplate()
     {
-        return isset($this->inspect_template) ? $this->inspect_template : null;
+        return $this->inspect_template;
     }
 
     public function hasInspectTemplate()
@@ -131,7 +131,7 @@ class UpdateInspectTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

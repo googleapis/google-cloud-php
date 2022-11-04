@@ -200,7 +200,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           [Compute Engine default service
      *           account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account)
      *           is used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_account_scopes
      *           Optional. The URIs of service account scopes to be included in
      *           Compute Engine instances. The following base set of scopes is always
      *           included:
@@ -212,7 +212,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      *           * https://www.googleapis.com/auth/bigtable.admin.table
      *           * https://www.googleapis.com/auth/bigtable.data
      *           * https://www.googleapis.com/auth/devstorage.full_control
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The Compute Engine tags to add to all instances (see [Tagging
      *           instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *     @type array|\Google\Protobuf\Internal\MapField $metadata
@@ -499,7 +499,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * * https://www.googleapis.com/auth/devstorage.full_control
      *
      * Generated from protobuf field <code>repeated string service_account_scopes = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceAccountScopes($var)
@@ -527,7 +527,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      * instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
      *
      * Generated from protobuf field <code>repeated string tags = 4;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -576,7 +576,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getReservationAffinity()
     {
-        return isset($this->reservation_affinity) ? $this->reservation_affinity : null;
+        return $this->reservation_affinity;
     }
 
     public function hasReservationAffinity()
@@ -612,7 +612,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getNodeGroupAffinity()
     {
-        return isset($this->node_group_affinity) ? $this->node_group_affinity : null;
+        return $this->node_group_affinity;
     }
 
     public function hasNodeGroupAffinity()
@@ -649,7 +649,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getShieldedInstanceConfig()
     {
-        return isset($this->shielded_instance_config) ? $this->shielded_instance_config : null;
+        return $this->shielded_instance_config;
     }
 
     public function hasShieldedInstanceConfig()
@@ -687,7 +687,7 @@ class GceClusterConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConfidentialInstanceConfig()
     {
-        return isset($this->confidential_instance_config) ? $this->confidential_instance_config : null;
+        return $this->confidential_instance_config;
     }
 
     public function hasConfidentialInstanceConfig()

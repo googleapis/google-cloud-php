@@ -90,11 +90,11 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\KeyId $authority_key_id
      *           Identifies the subject_key_id of the parent certificate, per
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.1
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $crl_distribution_points
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $crl_distribution_points
      *           Describes a list of locations to obtain CRL information, i.e.
      *           the DistributionPoint.fullName described by
      *           https://tools.ietf.org/html/rfc5280#section-4.2.1.13
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $aia_issuing_certificate_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $aia_issuing_certificate_urls
      *           Describes lists of issuer CA certificate URLs that appear in the
      *           "Authority Information Access" extension in the certificate.
      *     @type \Google\Cloud\Security\PrivateCA\V1\CertificateDescription\CertificateFingerprint $cert_fingerprint
@@ -115,7 +115,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectDescription()
     {
-        return isset($this->subject_description) ? $this->subject_description : null;
+        return $this->subject_description;
     }
 
     public function hasSubjectDescription()
@@ -152,7 +152,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getX509Description()
     {
-        return isset($this->x509_description) ? $this->x509_description : null;
+        return $this->x509_description;
     }
 
     public function hasX509Description()
@@ -188,7 +188,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getPublicKey()
     {
-        return isset($this->public_key) ? $this->public_key : null;
+        return $this->public_key;
     }
 
     public function hasPublicKey()
@@ -225,7 +225,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getSubjectKeyId()
     {
-        return isset($this->subject_key_id) ? $this->subject_key_id : null;
+        return $this->subject_key_id;
     }
 
     public function hasSubjectKeyId()
@@ -263,7 +263,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getAuthorityKeyId()
     {
-        return isset($this->authority_key_id) ? $this->authority_key_id : null;
+        return $this->authority_key_id;
     }
 
     public function hasAuthorityKeyId()
@@ -311,7 +311,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * https://tools.ietf.org/html/rfc5280#section-4.2.1.13
      *
      * Generated from protobuf field <code>repeated string crl_distribution_points = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCrlDistributionPoints($var)
@@ -339,7 +339,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      * "Authority Information Access" extension in the certificate.
      *
      * Generated from protobuf field <code>repeated string aia_issuing_certificate_urls = 7;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAiaIssuingCertificateUrls($var)
@@ -358,7 +358,7 @@ class CertificateDescription extends \Google\Protobuf\Internal\Message
      */
     public function getCertFingerprint()
     {
-        return isset($this->cert_fingerprint) ? $this->cert_fingerprint : null;
+        return $this->cert_fingerprint;
     }
 
     public function hasCertFingerprint()

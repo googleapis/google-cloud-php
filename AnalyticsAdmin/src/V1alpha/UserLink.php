@@ -31,10 +31,12 @@ class UserLink extends \Google\Protobuf\Internal\Message
     /**
      * Roles directly assigned to this user for this account or property.
      * Valid values:
-     * predefinedRoles/read
-     * predefinedRoles/collaborate
-     * predefinedRoles/edit
-     * predefinedRoles/manage-users
+     * predefinedRoles/viewer
+     * predefinedRoles/analyst
+     * predefinedRoles/editor
+     * predefinedRoles/admin
+     * predefinedRoles/no-cost-data
+     * predefinedRoles/no-revenue-data
      * Excludes roles that are inherited from a higher-level entity, group,
      * or organization admin role.
      * A UserLink that is updated to have an empty list of direct_roles will be
@@ -54,13 +56,15 @@ class UserLink extends \Google\Protobuf\Internal\Message
      *           Output only. Example format: properties/1234/userLinks/5678
      *     @type string $email_address
      *           Immutable. Email address of the user to link
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $direct_roles
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $direct_roles
      *           Roles directly assigned to this user for this account or property.
      *           Valid values:
-     *           predefinedRoles/read
-     *           predefinedRoles/collaborate
-     *           predefinedRoles/edit
-     *           predefinedRoles/manage-users
+     *           predefinedRoles/viewer
+     *           predefinedRoles/analyst
+     *           predefinedRoles/editor
+     *           predefinedRoles/admin
+     *           predefinedRoles/no-cost-data
+     *           predefinedRoles/no-revenue-data
      *           Excludes roles that are inherited from a higher-level entity, group,
      *           or organization admin role.
      *           A UserLink that is updated to have an empty list of direct_roles will be
@@ -127,10 +131,12 @@ class UserLink extends \Google\Protobuf\Internal\Message
     /**
      * Roles directly assigned to this user for this account or property.
      * Valid values:
-     * predefinedRoles/read
-     * predefinedRoles/collaborate
-     * predefinedRoles/edit
-     * predefinedRoles/manage-users
+     * predefinedRoles/viewer
+     * predefinedRoles/analyst
+     * predefinedRoles/editor
+     * predefinedRoles/admin
+     * predefinedRoles/no-cost-data
+     * predefinedRoles/no-revenue-data
      * Excludes roles that are inherited from a higher-level entity, group,
      * or organization admin role.
      * A UserLink that is updated to have an empty list of direct_roles will be
@@ -147,17 +153,19 @@ class UserLink extends \Google\Protobuf\Internal\Message
     /**
      * Roles directly assigned to this user for this account or property.
      * Valid values:
-     * predefinedRoles/read
-     * predefinedRoles/collaborate
-     * predefinedRoles/edit
-     * predefinedRoles/manage-users
+     * predefinedRoles/viewer
+     * predefinedRoles/analyst
+     * predefinedRoles/editor
+     * predefinedRoles/admin
+     * predefinedRoles/no-cost-data
+     * predefinedRoles/no-revenue-data
      * Excludes roles that are inherited from a higher-level entity, group,
      * or organization admin role.
      * A UserLink that is updated to have an empty list of direct_roles will be
      * deleted.
      *
      * Generated from protobuf field <code>repeated string direct_roles = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDirectRoles($var)

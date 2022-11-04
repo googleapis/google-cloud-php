@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.GenerateRandomBytes][google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes].
+ * Request message for
+ * [KeyManagementService.GenerateRandomBytes][google.cloud.kms.v1.KeyManagementService.GenerateRandomBytes].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.GenerateRandomBytesRequest</code>
  */
@@ -30,8 +31,10 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
      */
     private $length_bytes = 0;
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when generating the random data. Defaults to
-     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     * generating the random data. Currently, only
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 3;</code>
      */
@@ -50,8 +53,10 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
      *           The length in bytes of the amount of randomness to retrieve.  Minimum 8
      *           bytes, maximum 1024 bytes.
      *     @type int $protection_level
-     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when generating the random data. Defaults to
-     *           [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     *           The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     *           generating the random data. Currently, only
+     *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     *           supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,8 +121,10 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when generating the random data. Defaults to
-     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     * generating the random data. Currently, only
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 3;</code>
      * @return int
@@ -128,8 +135,10 @@ class GenerateRandomBytesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when generating the random data. Defaults to
-     * [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE].
+     * The [ProtectionLevel][google.cloud.kms.v1.ProtectionLevel] to use when
+     * generating the random data. Currently, only
+     * [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] protection level is
+     * supported.
      *
      * Generated from protobuf field <code>.google.cloud.kms.v1.ProtectionLevel protection_level = 3;</code>
      * @param int $var

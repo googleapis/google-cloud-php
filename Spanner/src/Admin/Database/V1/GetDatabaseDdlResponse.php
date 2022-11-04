@@ -29,7 +29,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $statements
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $statements
      *           A list of formatted DDL statements defining the schema of the database
      *           specified in the request.
      * }
@@ -56,7 +56,7 @@ class GetDatabaseDdlResponse extends \Google\Protobuf\Internal\Message
      * specified in the request.
      *
      * Generated from protobuf field <code>repeated string statements = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStatements($var)

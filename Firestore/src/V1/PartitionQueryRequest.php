@@ -63,6 +63,7 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_size = 0;
     protected $query_type;
+    protected $consistency_selector;
 
     /**
      * Constructor.
@@ -106,6 +107,9 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
      *           to PartitionQuery will return up to 8 partitions and a `next_page_token`
      *           if more results exist. A second call to PartitionQuery will return up to
      *           2 partitions, to complete the total of 10 specified in `partition_count`.
+     *     @type \Google\Protobuf\Timestamp $read_time
+     *           Reads documents as they were at the given time.
+     *           This may not be older than 270 seconds.
      * }
      */
     public function __construct($data = NULL) {
@@ -301,11 +305,52 @@ class PartitionQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Reads documents as they were at the given time.
+     * This may not be older than 270 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getReadTime()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasReadTime()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Reads documents as they were at the given time.
+     * This may not be older than 270 seconds.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 6;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setReadTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
      * @return string
      */
     public function getQueryType()
     {
         return $this->whichOneof("query_type");
+    }
+
+    /**
+     * @return string
+     */
+    public function getConsistencySelector()
+    {
+        return $this->whichOneof("consistency_selector");
     }
 
 }

@@ -53,7 +53,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getParticipant()
     {
-        return isset($this->participant) ? $this->participant : null;
+        return $this->participant;
     }
 
     public function hasParticipant()
@@ -89,7 +89,7 @@ class UpdateParticipantRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -83,7 +83,7 @@ class CreateKnowledgeBaseRequest extends \Google\Protobuf\Internal\Message
      */
     public function getKnowledgeBase()
     {
-        return isset($this->knowledge_base) ? $this->knowledge_base : null;
+        return $this->knowledge_base;
     }
 
     public function hasKnowledgeBase()

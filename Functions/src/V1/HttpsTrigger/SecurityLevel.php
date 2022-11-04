@@ -65,6 +65,4 @@ class SecurityLevel
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SecurityLevel::class, \Google\Cloud\Functions\V1\HttpsTrigger_SecurityLevel::class);
 

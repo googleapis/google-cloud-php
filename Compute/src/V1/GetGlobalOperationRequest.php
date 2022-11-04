@@ -18,7 +18,7 @@ class GetGlobalOperationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      */
     private $operation = '';
     /**
@@ -48,7 +48,7 @@ class GetGlobalOperationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @return string
      */
     public function getOperation()
@@ -59,7 +59,7 @@ class GetGlobalOperationRequest extends \Google\Protobuf\Internal\Message
     /**
      * Name of the Operations resource to return.
      *
-     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string operation = 52090215 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_response_field) = "name"];</code>
      * @param string $var
      * @return $this
      */

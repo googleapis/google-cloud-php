@@ -43,7 +43,7 @@ class Config extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Name of the configuration.
-     *     @type \Google\Cloud\Deploy\V1\SkaffoldVersion[]|\Google\Protobuf\Internal\RepeatedField $supported_versions
+     *     @type array<\Google\Cloud\Deploy\V1\SkaffoldVersion>|\Google\Protobuf\Internal\RepeatedField $supported_versions
      *           Output only. All supported versions of Skaffold.
      *     @type string $default_skaffold_version
      *           Output only. Default Skaffold version that is assigned when a Release is created without
@@ -96,7 +96,7 @@ class Config extends \Google\Protobuf\Internal\Message
      * Output only. All supported versions of Skaffold.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.SkaffoldVersion supported_versions = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Deploy\V1\SkaffoldVersion[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\SkaffoldVersion>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedVersions($var)

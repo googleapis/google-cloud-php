@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#backupRunsList</b>.
+     * This is always `sql#backupRunsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -42,8 +42,8 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#backupRunsList</b>.
-     *     @type \Google\Cloud\Sql\V1beta4\BackupRun[]|\Google\Protobuf\Internal\RepeatedField $items
+     *           This is always `sql#backupRunsList`.
+     *     @type array<\Google\Cloud\Sql\V1beta4\BackupRun>|\Google\Protobuf\Internal\RepeatedField $items
      *           A list of backup runs in reverse chronological order of the enqueued time.
      *     @type string $next_page_token
      *           The continuation token, used to page through large result sets. Provide
@@ -56,7 +56,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupRunsList</b>.
+     * This is always `sql#backupRunsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -67,7 +67,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupRunsList</b>.
+     * This is always `sql#backupRunsList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -96,7 +96,7 @@ class BackupRunsListResponse extends \Google\Protobuf\Internal\Message
      * A list of backup runs in reverse chronological order of the enqueued time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.BackupRun items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\BackupRun[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\BackupRun>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

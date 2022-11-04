@@ -17,7 +17,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -75,7 +75,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the request. Format is
-     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     *           "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *     @type string $requested_resource_name
      *           The resource for which approval is being requested. The format of the
      *           resource name is defined at
@@ -108,7 +108,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -120,7 +120,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the request. Format is
-     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request_id}".
+     * "{projects|folders|organizations}/{id}/approvalRequests/{approval_request}".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -180,7 +180,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedResourceProperties()
     {
-        return isset($this->requested_resource_properties) ? $this->requested_resource_properties : null;
+        return $this->requested_resource_properties;
     }
 
     public function hasRequestedResourceProperties()
@@ -216,7 +216,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedReason()
     {
-        return isset($this->requested_reason) ? $this->requested_reason : null;
+        return $this->requested_reason;
     }
 
     public function hasRequestedReason()
@@ -252,7 +252,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedLocations()
     {
-        return isset($this->requested_locations) ? $this->requested_locations : null;
+        return $this->requested_locations;
     }
 
     public function hasRequestedLocations()
@@ -288,7 +288,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestTime()
     {
-        return isset($this->request_time) ? $this->request_time : null;
+        return $this->request_time;
     }
 
     public function hasRequestTime()
@@ -325,7 +325,7 @@ class ApprovalRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRequestedExpiration()
     {
-        return isset($this->requested_expiration) ? $this->requested_expiration : null;
+        return $this->requested_expiration;
     }
 
     public function hasRequestedExpiration()

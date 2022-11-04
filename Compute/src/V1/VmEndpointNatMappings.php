@@ -18,7 +18,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      */
     private $instance_name = null;
     /**
@@ -34,7 +34,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
      *
      *     @type string $instance_name
      *           Name of the VM instance which the endpoint belongs to
-     *     @type \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings[]|\Google\Protobuf\Internal\RepeatedField $interface_nat_mappings
+     *     @type array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>|\Google\Protobuf\Internal\RepeatedField $interface_nat_mappings
      * }
      */
     public function __construct($data = NULL) {
@@ -45,7 +45,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @return string
      */
     public function getInstanceName()
@@ -66,7 +66,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
     /**
      * Name of the VM instance which the endpoint belongs to
      *
-     * Generated from protobuf field <code>string instance_name = 227947509;</code>
+     * Generated from protobuf field <code>optional string instance_name = 227947509;</code>
      * @param string $var
      * @return $this
      */
@@ -89,7 +89,7 @@ class VmEndpointNatMappings extends \Google\Protobuf\Internal\Message
 
     /**
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.VmEndpointNatMappingsInterfaceNatMappings interface_nat_mappings = 256196617;</code>
-     * @param \Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\VmEndpointNatMappingsInterfaceNatMappings>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInterfaceNatMappings($var)

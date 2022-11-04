@@ -35,7 +35,7 @@ class ListAccountSummariesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Analytics\Admin\V1alpha\AccountSummary[]|\Google\Protobuf\Internal\RepeatedField $account_summaries
+     *     @type array<\Google\Analytics\Admin\V1alpha\AccountSummary>|\Google\Protobuf\Internal\RepeatedField $account_summaries
      *           Account summaries of all accounts the caller has access to.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
@@ -62,7 +62,7 @@ class ListAccountSummariesResponse extends \Google\Protobuf\Internal\Message
      * Account summaries of all accounts the caller has access to.
      *
      * Generated from protobuf field <code>repeated .google.analytics.admin.v1alpha.AccountSummary account_summaries = 1;</code>
-     * @param \Google\Analytics\Admin\V1alpha\AccountSummary[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Admin\V1alpha\AccountSummary>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAccountSummaries($var)

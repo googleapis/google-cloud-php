@@ -16,8 +16,9 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
 {
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
      */
     private $auto_delete = null;
 
@@ -27,8 +28,9 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $auto_delete
+     *     @type string $auto_delete
      *           These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     *           Check the AutoDelete enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,13 +40,14 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
 
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
+     * @return string
      */
     public function getAutoDelete()
     {
-        return isset($this->auto_delete) ? $this->auto_delete : 0;
+        return isset($this->auto_delete) ? $this->auto_delete : '';
     }
 
     public function hasAutoDelete()
@@ -59,14 +62,15 @@ class StatefulPolicyPreservedStateDiskDevice extends \Google\Protobuf\Internal\M
 
     /**
      * These stateful disks will never be deleted during autohealing, update or VM instance recreate operations. This flag is used to configure if the disk should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Note: disks attached in READ_ONLY mode cannot be auto-deleted.
+     * Check the AutoDelete enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.StatefulPolicyPreservedStateDiskDevice.AutoDelete auto_delete = 464761403;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string auto_delete = 464761403;</code>
+     * @param string $var
      * @return $this
      */
     public function setAutoDelete($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\StatefulPolicyPreservedStateDiskDevice\AutoDelete::class);
+        GPBUtil::checkString($var, True);
         $this->auto_delete = $var;
 
         return $this;

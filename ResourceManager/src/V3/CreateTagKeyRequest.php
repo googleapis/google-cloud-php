@@ -58,7 +58,7 @@ class CreateTagKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagKey()
     {
-        return isset($this->tag_key) ? $this->tag_key : null;
+        return $this->tag_key;
     }
 
     public function hasTagKey()

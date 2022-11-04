@@ -18,7 +18,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      */
     private $email = null;
     /**
@@ -36,7 +36,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      *
      *     @type string $email
      *           Email address of the service account.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $scopes
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $scopes
      *           The list of scopes to be made available for this service account.
      * }
      */
@@ -48,7 +48,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @return string
      */
     public function getEmail()
@@ -69,7 +69,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
     /**
      * Email address of the service account.
      *
-     * Generated from protobuf field <code>string email = 96619420;</code>
+     * Generated from protobuf field <code>optional string email = 96619420;</code>
      * @param string $var
      * @return $this
      */
@@ -96,7 +96,7 @@ class ServiceAccount extends \Google\Protobuf\Internal\Message
      * The list of scopes to be made available for this service account.
      *
      * Generated from protobuf field <code>repeated string scopes = 165973151;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScopes($var)

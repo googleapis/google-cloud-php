@@ -112,7 +112,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     public function getContainer()
     {
-        return isset($this->container) ? $this->container : null;
+        return $this->container;
     }
 
     public function hasContainer()
@@ -149,7 +149,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     public function getZip()
     {
-        return isset($this->zip) ? $this->zip : null;
+        return $this->zip;
     }
 
     public function hasZip()
@@ -188,7 +188,7 @@ class Deployment extends \Google\Protobuf\Internal\Message
      */
     public function getCloudBuildOptions()
     {
-        return isset($this->cloud_build_options) ? $this->cloud_build_options : null;
+        return $this->cloud_build_options;
     }
 
     public function hasCloudBuildOptions()

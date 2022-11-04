@@ -41,7 +41,7 @@ class ListDatabaseOperationsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $operations
+     *     @type array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $operations
      *           The list of matching database [long-running
      *           operations][google.longrunning.Operation]. Each operation's name will be
      *           prefixed by the database's name. The operation's
@@ -81,7 +81,7 @@ class ListDatabaseOperationsResponse extends \Google\Protobuf\Internal\Message
      * `metadata.type_url` describes the type of the metadata.
      *
      * Generated from protobuf field <code>repeated .google.longrunning.Operation operations = 1;</code>
-     * @param \Google\LongRunning\Operation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\LongRunning\Operation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setOperations($var)

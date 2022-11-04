@@ -38,11 +38,16 @@ class RepoId extends \Google\Protobuf\Internal\Message
      * A combination of a project ID and a repo name.
      *
      * Generated from protobuf field <code>.google.devtools.source.v1.ProjectRepoId project_repo_id = 1;</code>
-     * @return \Google\Cloud\DevTools\Source\V1\ProjectRepoId
+     * @return \Google\Cloud\DevTools\Source\V1\ProjectRepoId|null
      */
     public function getProjectRepoId()
     {
         return $this->readOneof(1);
+    }
+
+    public function hasProjectRepoId()
+    {
+        return $this->hasOneof(1);
     }
 
     /**
@@ -69,6 +74,11 @@ class RepoId extends \Google\Protobuf\Internal\Message
     public function getUid()
     {
         return $this->readOneof(2);
+    }
+
+    public function hasUid()
+    {
+        return $this->hasOneof(2);
     }
 
     /**

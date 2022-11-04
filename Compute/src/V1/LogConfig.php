@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies what kind of log the caller must write
+ * This is deprecated and has no effect. Do not use.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.LogConfig</code>
  */
 class LogConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      */
     private $cloud_audit = null;
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      */
     private $counter = null;
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      */
     private $data_access = null;
 
@@ -41,11 +41,11 @@ class LogConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $cloud_audit
-     *           Cloud audit options.
+     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\LogConfigCounterOptions $counter
-     *           Counter options.
+     *           This is deprecated and has no effect. Do not use.
      *     @type \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $data_access
-     *           Data access options.
+     *           This is deprecated and has no effect. Do not use.
      * }
      */
     public function __construct($data = NULL) {
@@ -54,14 +54,14 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions|null
      */
     public function getCloudAudit()
     {
-        return isset($this->cloud_audit) ? $this->cloud_audit : null;
+        return $this->cloud_audit;
     }
 
     public function hasCloudAudit()
@@ -75,9 +75,9 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Cloud audit options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCloudAuditOptions cloud_audit = 412852561;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCloudAuditOptions $var
      * @return $this
      */
@@ -90,14 +90,14 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigCounterOptions|null
      */
     public function getCounter()
     {
-        return isset($this->counter) ? $this->counter : null;
+        return $this->counter;
     }
 
     public function hasCounter()
@@ -111,9 +111,9 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Counter options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigCounterOptions counter = 420959740;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigCounterOptions $var
      * @return $this
      */
@@ -126,14 +126,14 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @return \Google\Cloud\Compute\V1\LogConfigDataAccessOptions|null
      */
     public function getDataAccess()
     {
-        return isset($this->data_access) ? $this->data_access : null;
+        return $this->data_access;
     }
 
     public function hasDataAccess()
@@ -147,9 +147,9 @@ class LogConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data access options.
+     * This is deprecated and has no effect. Do not use.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.LogConfigDataAccessOptions data_access = 286633881;</code>
      * @param \Google\Cloud\Compute\V1\LogConfigDataAccessOptions $var
      * @return $this
      */

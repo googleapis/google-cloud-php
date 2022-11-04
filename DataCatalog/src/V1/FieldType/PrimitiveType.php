@@ -12,7 +12,7 @@ use UnexpectedValueException;
 class PrimitiveType
 {
     /**
-     * This is the default invalid value for a type.
+     * The default invalid value for a type.
      *
      * Generated from protobuf enum <code>PRIMITIVE_TYPE_UNSPECIFIED = 0;</code>
      */
@@ -41,6 +41,12 @@ class PrimitiveType
      * Generated from protobuf enum <code>TIMESTAMP = 4;</code>
      */
     const TIMESTAMP = 4;
+    /**
+     * A Richtext description.
+     *
+     * Generated from protobuf enum <code>RICHTEXT = 5;</code>
+     */
+    const RICHTEXT = 5;
 
     private static $valueToName = [
         self::PRIMITIVE_TYPE_UNSPECIFIED => 'PRIMITIVE_TYPE_UNSPECIFIED',
@@ -48,6 +54,7 @@ class PrimitiveType
         self::STRING => 'STRING',
         self::BOOL => 'BOOL',
         self::TIMESTAMP => 'TIMESTAMP',
+        self::RICHTEXT => 'RICHTEXT',
     ];
 
     public static function name($value)

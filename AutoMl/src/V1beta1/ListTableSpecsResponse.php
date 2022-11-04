@@ -35,7 +35,7 @@ class ListTableSpecsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\AutoMl\V1beta1\TableSpec[]|\Google\Protobuf\Internal\RepeatedField $table_specs
+     *     @type array<\Google\Cloud\AutoMl\V1beta1\TableSpec>|\Google\Protobuf\Internal\RepeatedField $table_specs
      *           The table specs read.
      *     @type string $next_page_token
      *           A token to retrieve next page of results.
@@ -62,7 +62,7 @@ class ListTableSpecsResponse extends \Google\Protobuf\Internal\Message
      * The table specs read.
      *
      * Generated from protobuf field <code>repeated .google.cloud.automl.v1beta1.TableSpec table_specs = 1;</code>
-     * @param \Google\Cloud\AutoMl\V1beta1\TableSpec[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\AutoMl\V1beta1\TableSpec>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTableSpecs($var)

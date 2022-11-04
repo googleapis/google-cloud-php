@@ -28,6 +28,17 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     private $analysis_status = 0;
     /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     */
+    private $analysis_completed = null;
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     */
+    private $analysis_error;
+    /**
      * When an error is encountered this will contain a LocalizedMessage under
      * details to show to the user. The LocalizedMessage is output only and
      * populated by the API.
@@ -47,6 +58,12 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_scan_time = 5;</code>
      */
     private $last_scan_time = null;
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $archive_time = null;
 
     /**
      * Constructor.
@@ -58,6 +75,10 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           Whether the resource is continuously analyzed.
      *     @type int $analysis_status
      *           The status of discovery for the resource.
+     *     @type \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted $analysis_completed
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $analysis_error
+     *           Indicates any errors encountered during analysis of a resource. There
+     *           could be 0 or more of these errors.
      *     @type \Google\Rpc\Status $analysis_status_error
      *           When an error is encountered this will contain a LocalizedMessage under
      *           details to show to the user. The LocalizedMessage is output only and
@@ -66,6 +87,8 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      *           The CPE of the resource being scanned.
      *     @type \Google\Protobuf\Timestamp $last_scan_time
      *           The last time this resource was scanned.
+     *     @type \Google\Protobuf\Timestamp $archive_time
+     *           The time occurrences related to this discovery occurrence were archived.
      * }
      */
     public function __construct($data = NULL) {
@@ -126,6 +149,66 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     * @return \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted|null
+     */
+    public function getAnalysisCompleted()
+    {
+        return $this->analysis_completed;
+    }
+
+    public function hasAnalysisCompleted()
+    {
+        return isset($this->analysis_completed);
+    }
+
+    public function clearAnalysisCompleted()
+    {
+        unset($this->analysis_completed);
+    }
+
+    /**
+     * Generated from protobuf field <code>.grafeas.v1.DiscoveryOccurrence.AnalysisCompleted analysis_completed = 7;</code>
+     * @param \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted $var
+     * @return $this
+     */
+    public function setAnalysisCompleted($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DiscoveryOccurrence\AnalysisCompleted::class);
+        $this->analysis_completed = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getAnalysisError()
+    {
+        return $this->analysis_error;
+    }
+
+    /**
+     * Indicates any errors encountered during analysis of a resource. There
+     * could be 0 or more of these errors.
+     *
+     * Generated from protobuf field <code>repeated .google.rpc.Status analysis_error = 8;</code>
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setAnalysisError($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Rpc\Status::class);
+        $this->analysis_error = $arr;
+
+        return $this;
+    }
+
+    /**
      * When an error is encountered this will contain a LocalizedMessage under
      * details to show to the user. The LocalizedMessage is output only and
      * populated by the API.
@@ -135,7 +218,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisStatusError()
     {
-        return isset($this->analysis_status_error) ? $this->analysis_status_error : null;
+        return $this->analysis_status_error;
     }
 
     public function hasAnalysisStatusError()
@@ -199,7 +282,7 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getLastScanTime()
     {
-        return isset($this->last_scan_time) ? $this->last_scan_time : null;
+        return $this->last_scan_time;
     }
 
     public function hasLastScanTime()
@@ -223,6 +306,42 @@ class DiscoveryOccurrence extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->last_scan_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getArchiveTime()
+    {
+        return $this->archive_time;
+    }
+
+    public function hasArchiveTime()
+    {
+        return isset($this->archive_time);
+    }
+
+    public function clearArchiveTime()
+    {
+        unset($this->archive_time);
+    }
+
+    /**
+     * The time occurrences related to this discovery occurrence were archived.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp archive_time = 6 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setArchiveTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->archive_time = $var;
 
         return $this;
     }

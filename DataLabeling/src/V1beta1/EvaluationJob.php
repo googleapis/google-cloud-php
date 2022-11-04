@@ -150,7 +150,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      *           labelers to annotate your data, set this to `true`. If you want to provide
      *           your own ground truth labels in the evaluation job's BigQuery table, set
      *           this to `false`.
-     *     @type \Google\Cloud\DataLabeling\V1beta1\Attempt[]|\Google\Protobuf\Internal\RepeatedField $attempts
+     *     @type array<\Google\Cloud\DataLabeling\V1beta1\Attempt>|\Google\Protobuf\Internal\RepeatedField $attempts
      *           Output only. Every time the evaluation job runs and an error occurs, the
      *           failed attempt is appended to this array.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -332,7 +332,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationJobConfig()
     {
-        return isset($this->evaluation_job_config) ? $this->evaluation_job_config : null;
+        return $this->evaluation_job_config;
     }
 
     public function hasEvaluationJobConfig()
@@ -445,7 +445,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      * failed attempt is appended to this array.
      *
      * Generated from protobuf field <code>repeated .google.cloud.datalabeling.v1beta1.Attempt attempts = 9;</code>
-     * @param \Google\Cloud\DataLabeling\V1beta1\Attempt[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DataLabeling\V1beta1\Attempt>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAttempts($var)
@@ -464,7 +464,7 @@ class EvaluationJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()

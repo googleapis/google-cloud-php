@@ -36,7 +36,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\Group[]|\Google\Protobuf\Internal\RepeatedField $group
+     *     @type array<\Google\Cloud\Monitoring\V3\Group>|\Google\Protobuf\Internal\RepeatedField $group
      *           The groups that match the specified filters.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
@@ -64,7 +64,7 @@ class ListGroupsResponse extends \Google\Protobuf\Internal\Message
      * The groups that match the specified filters.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Group group = 1;</code>
-     * @param \Google\Cloud\Monitoring\V3\Group[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\Group>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGroup($var)

@@ -28,6 +28,18 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.type.DayOfWeek day_of_week = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $day_of_week = 0;
+    /**
+     * Optional. Represents the number of days before or after the given week day
+     * of month that the patch deployment is scheduled for. For example if
+     * `week_ordinal` and `day_of_week` values point to the second day of the
+     * month and this `day_offset` value is set to `3`, the patch deployment takes
+     * place three days after the second Tuesday of the month. If this value is
+     * negative, for example -5, the patches are deployed five days before before
+     * the second Tuesday of the month. Allowed values are in range [-30, 30].
+     *
+     * Generated from protobuf field <code>int32 day_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $day_offset = 0;
 
     /**
      * Constructor.
@@ -40,6 +52,14 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
      *           month. -1 indicates the last week of the month.
      *     @type int $day_of_week
      *           Required. A day of the week.
+     *     @type int $day_offset
+     *           Optional. Represents the number of days before or after the given week day
+     *           of month that the patch deployment is scheduled for. For example if
+     *           `week_ordinal` and `day_of_week` values point to the second day of the
+     *           month and this `day_offset` value is set to `3`, the patch deployment takes
+     *           place three days after the second Tuesday of the month. If this value is
+     *           negative, for example -5, the patches are deployed five days before before
+     *           the second Tuesday of the month. Allowed values are in range [-30, 30].
      * }
      */
     public function __construct($data = NULL) {
@@ -97,6 +117,44 @@ class WeekDayOfMonth extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Type\DayOfWeek::class);
         $this->day_of_week = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Represents the number of days before or after the given week day
+     * of month that the patch deployment is scheduled for. For example if
+     * `week_ordinal` and `day_of_week` values point to the second day of the
+     * month and this `day_offset` value is set to `3`, the patch deployment takes
+     * place three days after the second Tuesday of the month. If this value is
+     * negative, for example -5, the patches are deployed five days before before
+     * the second Tuesday of the month. Allowed values are in range [-30, 30].
+     *
+     * Generated from protobuf field <code>int32 day_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return int
+     */
+    public function getDayOffset()
+    {
+        return $this->day_offset;
+    }
+
+    /**
+     * Optional. Represents the number of days before or after the given week day
+     * of month that the patch deployment is scheduled for. For example if
+     * `week_ordinal` and `day_of_week` values point to the second day of the
+     * month and this `day_offset` value is set to `3`, the patch deployment takes
+     * place three days after the second Tuesday of the month. If this value is
+     * negative, for example -5, the patches are deployed five days before before
+     * the second Tuesday of the month. Allowed values are in range [-30, 30].
+     *
+     * Generated from protobuf field <code>int32 day_offset = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDayOffset($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->day_offset = $var;
 
         return $this;
     }

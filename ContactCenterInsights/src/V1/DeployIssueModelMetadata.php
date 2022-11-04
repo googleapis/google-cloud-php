@@ -61,7 +61,7 @@ class DeployIssueModelMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -97,7 +97,7 @@ class DeployIssueModelMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -133,7 +133,7 @@ class DeployIssueModelMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequest()
     {
-        return isset($this->request) ? $this->request : null;
+        return $this->request;
     }
 
     public function hasRequest()

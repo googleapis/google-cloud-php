@@ -30,7 +30,7 @@ class UpdateDomainMappingRequest extends \Google\Protobuf\Internal\Message
      */
     private $domain_mapping = null;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
@@ -49,7 +49,7 @@ class UpdateDomainMappingRequest extends \Google\Protobuf\Internal\Message
      *           A domain mapping containing the updated resource. Only fields set
      *           in the field mask will be updated.
      *     @type \Google\Protobuf\FieldMask $update_mask
-     *           Standard field mask for the set of fields to be updated.
+     *           Required. Standard field mask for the set of fields to be updated.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,7 +94,7 @@ class UpdateDomainMappingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDomainMapping()
     {
-        return isset($this->domain_mapping) ? $this->domain_mapping : null;
+        return $this->domain_mapping;
     }
 
     public function hasDomainMapping()
@@ -124,14 +124,14 @@ class UpdateDomainMappingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -145,7 +145,7 @@ class UpdateDomainMappingRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var

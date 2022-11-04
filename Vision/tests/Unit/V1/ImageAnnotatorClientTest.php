@@ -88,7 +88,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -109,7 +109,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $requests = [];
-        $response = $client->asyncBatchAnnotateFiles($requests);
+        $response = $gapicClient->asyncBatchAnnotateFiles($requests);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -152,7 +152,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -175,7 +175,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $requests = [];
-        $response = $client->asyncBatchAnnotateFiles($requests);
+        $response = $gapicClient->asyncBatchAnnotateFiles($requests);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -209,7 +209,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -231,7 +231,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock request
         $requests = [];
         $outputConfig = new OutputConfig();
-        $response = $client->asyncBatchAnnotateImages($requests, $outputConfig);
+        $response = $gapicClient->asyncBatchAnnotateImages($requests, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -276,7 +276,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -300,7 +300,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock request
         $requests = [];
         $outputConfig = new OutputConfig();
-        $response = $client->asyncBatchAnnotateImages($requests, $outputConfig);
+        $response = $gapicClient->asyncBatchAnnotateImages($requests, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -328,7 +328,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
     public function batchAnnotateFilesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -337,7 +337,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $requests = [];
-        $response = $client->batchAnnotateFiles($requests);
+        $response = $gapicClient->batchAnnotateFiles($requests);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -355,7 +355,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
     public function batchAnnotateFilesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -372,8 +372,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock request
         $requests = [];
         try {
-            $client->batchAnnotateFiles($requests);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchAnnotateFiles($requests);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -390,7 +390,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
     public function batchAnnotateImagesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -399,7 +399,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $requests = [];
-        $response = $client->batchAnnotateImages($requests);
+        $response = $gapicClient->batchAnnotateImages($requests);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -417,7 +417,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
     public function batchAnnotateImagesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -434,8 +434,8 @@ class ImageAnnotatorClientTest extends GeneratedTest
         // Mock request
         $requests = [];
         try {
-            $client->batchAnnotateImages($requests);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchAnnotateImages($requests);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

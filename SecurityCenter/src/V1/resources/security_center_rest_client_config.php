@@ -3,6 +3,63 @@
 return [
     'interfaces' => [
         'google.cloud.securitycenter.v1.SecurityCenter' => [
+            'BulkMuteFindings' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/findings:bulkMute',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/findings:bulkMute',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/findings:bulkMute',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateBigQueryExport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/bigQueryExports',
+                'body' => 'big_query_export',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/bigQueryExports',
+                        'body' => 'big_query_export',
+                        'queryParams' => [
+                            'big_query_export_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
+                        'body' => 'big_query_export',
+                        'queryParams' => [
+                            'big_query_export_id',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'big_query_export_id',
+                ],
+            ],
             'CreateFinding' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -18,10 +75,61 @@ return [
                     'finding_id',
                 ],
             ],
+            'CreateMuteConfig' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=organizations/*}/muteConfigs',
+                'body' => 'mute_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
+                        'body' => 'mute_config',
+                        'queryParams' => [
+                            'mute_config_id',
+                        ],
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'mute_config_id',
+                ],
+            ],
             'CreateNotificationConfig' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
                 'body' => 'notification_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=folders/*}/notificationConfigs',
+                        'body' => 'notification_config',
+                        'queryParams' => [
+                            'config_id',
+                        ],
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
+                        'body' => 'notification_config',
+                        'queryParams' => [
+                            'config_id',
+                        ],
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -45,9 +153,82 @@ return [
                     ],
                 ],
             ],
+            'DeleteBigQueryExport' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/bigQueryExports/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/bigQueryExports/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/bigQueryExports/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteMuteConfig' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteNotificationConfig' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=folders/*/notificationConfigs/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/notificationConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetBigQueryExport' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/bigQueryExports/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/bigQueryExports/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/bigQueryExports/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -68,9 +249,40 @@ return [
                     ],
                 ],
             ],
+            'GetMuteConfig' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=organizations/*/muteConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/muteConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/muteConfigs/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetNotificationConfig' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=organizations/*/notificationConfigs/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=folders/*/notificationConfigs/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/notificationConfigs/*}',
+                    ],
+                ],
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -170,6 +382,27 @@ return [
                     ],
                 ],
             ],
+            'ListBigQueryExports' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/bigQueryExports',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/bigQueryExports',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/bigQueryExports',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFindings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*/sources/*}/findings',
@@ -191,9 +424,40 @@ return [
                     ],
                 ],
             ],
+            'ListMuteConfigs' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=organizations/*}/muteConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/muteConfigs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/muteConfigs',
+                    ],
+                ],
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListNotificationConfigs' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=organizations/*}/notificationConfigs',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=folders/*}/notificationConfigs',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{parent=projects/*}/notificationConfigs',
+                    ],
+                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -271,6 +535,30 @@ return [
                     ],
                 ],
             ],
+            'SetMute' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=organizations/*/sources/*/findings/*}:setMute',
+                'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=folders/*/sources/*/findings/*}:setMute',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/sources/*/findings/*}:setMute',
+                        'body' => '*',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'TestIamPermissions' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{resource=organizations/*/sources/*}:testIamPermissions',
@@ -279,6 +567,56 @@ return [
                     'resource' => [
                         'getters' => [
                             'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateBigQueryExport' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{big_query_export.name=organizations/*/bigQueryExports/*}',
+                'body' => 'big_query_export',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{big_query_export.name=folders/*/bigQueryExports/*}',
+                        'body' => 'big_query_export',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{big_query_export.name=projects/*/bigQueryExports/*}',
+                        'body' => 'big_query_export',
+                    ],
+                ],
+                'placeholders' => [
+                    'big_query_export.name' => [
+                        'getters' => [
+                            'getBigQueryExport',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'UpdateExternalSystem' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{external_system.name=organizations/*/sources/*/findings/*/externalSystems/*}',
+                'body' => 'external_system',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{external_system.name=folders/*/sources/*/findings/*/externalSystems/*}',
+                        'body' => 'external_system',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{external_system.name=projects/*/sources/*/findings/*/externalSystems/*}',
+                        'body' => 'external_system',
+                    ],
+                ],
+                'placeholders' => [
+                    'external_system.name' => [
+                        'getters' => [
+                            'getExternalSystem',
+                            'getName',
                         ],
                     ],
                 ],
@@ -308,10 +646,47 @@ return [
                     ],
                 ],
             ],
+            'UpdateMuteConfig' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{mute_config.name=organizations/*/muteConfigs/*}',
+                'body' => 'mute_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=folders/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{mute_config.name=projects/*/muteConfigs/*}',
+                        'body' => 'mute_config',
+                    ],
+                ],
+                'placeholders' => [
+                    'mute_config.name' => [
+                        'getters' => [
+                            'getMuteConfig',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateNotificationConfig' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{notification_config.name=organizations/*/notificationConfigs/*}',
                 'body' => 'notification_config',
+                'additionalBindings' => [
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{notification_config.name=folders/*/notificationConfigs/*}',
+                        'body' => 'notification_config',
+                    ],
+                    [
+                        'method' => 'patch',
+                        'uriTemplate' => '/v1/{notification_config.name=projects/*/notificationConfigs/*}',
+                        'body' => 'notification_config',
+                    ],
+                ],
                 'placeholders' => [
                     'notification_config.name' => [
                         'getters' => [
@@ -392,7 +767,6 @@ return [
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=organizations/*/operations/*}:cancel',
-                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

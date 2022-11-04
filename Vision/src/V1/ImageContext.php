@@ -67,7 +67,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\LatLongRect $lat_long_rect
      *           Not used.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_hints
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_hints
      *           List of languages to use for TEXT_DETECTION. In most cases, an empty value
      *           yields the best results since it enables automatic language detection. For
      *           languages based on the Latin alphabet, setting `language_hints` is not
@@ -99,7 +99,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getLatLongRect()
     {
-        return isset($this->lat_long_rect) ? $this->lat_long_rect : null;
+        return $this->lat_long_rect;
     }
 
     public function hasLatLongRect()
@@ -156,7 +156,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      * [supported languages](https://cloud.google.com/vision/docs/languages).
      *
      * Generated from protobuf field <code>repeated string language_hints = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageHints($var)
@@ -175,7 +175,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getCropHintsParams()
     {
-        return isset($this->crop_hints_params) ? $this->crop_hints_params : null;
+        return $this->crop_hints_params;
     }
 
     public function hasCropHintsParams()
@@ -211,7 +211,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getProductSearchParams()
     {
-        return isset($this->product_search_params) ? $this->product_search_params : null;
+        return $this->product_search_params;
     }
 
     public function hasProductSearchParams()
@@ -247,7 +247,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getWebDetectionParams()
     {
-        return isset($this->web_detection_params) ? $this->web_detection_params : null;
+        return $this->web_detection_params;
     }
 
     public function hasWebDetectionParams()
@@ -283,7 +283,7 @@ class ImageContext extends \Google\Protobuf\Internal\Message
      */
     public function getTextDetectionParams()
     {
-        return isset($this->text_detection_params) ? $this->text_detection_params : null;
+        return $this->text_detection_params;
     }
 
     public function hasTextDetectionParams()

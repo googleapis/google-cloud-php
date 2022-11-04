@@ -24,14 +24,15 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $table_name = '';
     /**
-     * This value specifies routing for replication. If not specified, the
-     * "default" application profile will be used.
+     * This value specifies routing for replication. This API only accepts the
+     * empty value of app_profile_id.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      */
     private $app_profile_id = '';
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      */
@@ -44,12 +45,18 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = null;
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
      */
     private $rows_limit = 0;
+    /**
+     * The view into RequestStats, as described above.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.ReadRowsRequest.RequestStatsView request_stats_view = 6;</code>
+     */
+    private $request_stats_view = 0;
 
     /**
      * Constructor.
@@ -62,16 +69,19 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      *           Values are of the form
      *           `projects/<project>/instances/<instance>/tables/<table>`.
      *     @type string $app_profile_id
-     *           This value specifies routing for replication. If not specified, the
-     *           "default" application profile will be used.
+     *           This value specifies routing for replication. This API only accepts the
+     *           empty value of app_profile_id.
      *     @type \Google\Cloud\Bigtable\V2\RowSet $rows
-     *           The row keys and/or ranges to read. If not specified, reads from all rows.
+     *           The row keys and/or ranges to read sequentially. If not specified, reads
+     *           from all rows.
      *     @type \Google\Cloud\Bigtable\V2\RowFilter $filter
      *           The filter to apply to the contents of the specified row(s). If unset,
      *           reads the entirety of each row.
      *     @type int|string $rows_limit
-     *           The read will terminate after committing to N rows' worth of results. The
+     *           The read will stop after committing to N rows' worth of results. The
      *           default (zero) is to return all results.
+     *     @type int $request_stats_view
+     *           The view into RequestStats, as described above.
      * }
      */
     public function __construct($data = NULL) {
@@ -110,8 +120,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This value specifies routing for replication. If not specified, the
-     * "default" application profile will be used.
+     * This value specifies routing for replication. This API only accepts the
+     * empty value of app_profile_id.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      * @return string
@@ -122,8 +132,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This value specifies routing for replication. If not specified, the
-     * "default" application profile will be used.
+     * This value specifies routing for replication. This API only accepts the
+     * empty value of app_profile_id.
      *
      * Generated from protobuf field <code>string app_profile_id = 5;</code>
      * @param string $var
@@ -138,14 +148,15 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      * @return \Google\Cloud\Bigtable\V2\RowSet|null
      */
     public function getRows()
     {
-        return isset($this->rows) ? $this->rows : null;
+        return $this->rows;
     }
 
     public function hasRows()
@@ -159,7 +170,8 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The row keys and/or ranges to read. If not specified, reads from all rows.
+     * The row keys and/or ranges to read sequentially. If not specified, reads
+     * from all rows.
      *
      * Generated from protobuf field <code>.google.bigtable.v2.RowSet rows = 2;</code>
      * @param \Google\Cloud\Bigtable\V2\RowSet $var
@@ -182,7 +194,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFilter()
     {
-        return isset($this->filter) ? $this->filter : null;
+        return $this->filter;
     }
 
     public function hasFilter()
@@ -212,7 +224,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
@@ -224,7 +236,7 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The read will terminate after committing to N rows' worth of results. The
+     * The read will stop after committing to N rows' worth of results. The
      * default (zero) is to return all results.
      *
      * Generated from protobuf field <code>int64 rows_limit = 4;</code>
@@ -235,6 +247,32 @@ class ReadRowsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt64($var);
         $this->rows_limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * The view into RequestStats, as described above.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.ReadRowsRequest.RequestStatsView request_stats_view = 6;</code>
+     * @return int
+     */
+    public function getRequestStatsView()
+    {
+        return $this->request_stats_view;
+    }
+
+    /**
+     * The view into RequestStats, as described above.
+     *
+     * Generated from protobuf field <code>.google.bigtable.v2.ReadRowsRequest.RequestStatsView request_stats_view = 6;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setRequestStatsView($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView::class);
+        $this->request_stats_view = $var;
 
         return $this;
     }

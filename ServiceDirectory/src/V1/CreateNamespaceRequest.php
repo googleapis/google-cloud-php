@@ -142,7 +142,7 @@ class CreateNamespaceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNamespace()
     {
-        return isset($this->namespace) ? $this->namespace : null;
+        return $this->namespace;
     }
 
     public function hasNamespace()

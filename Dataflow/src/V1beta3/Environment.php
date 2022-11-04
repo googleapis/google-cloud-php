@@ -178,11 +178,11 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           unspecified, the service will attempt to choose a reasonable
      *           default.  This should be in the form of the API service name,
      *           e.g. "compute.googleapis.com".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $experiments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $experiments
      *           The list of experiments to enable. This field should be used for SDK
      *           related experiments and not for service related experiments. The proper
      *           field for service related experiments is service_options.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $service_options
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $service_options
      *           The list of service options to enable. This field should be used for
      *           service related experiments only. These experiments, when graduating to GA,
      *           should be replaced by dedicated fields or become default (i.e. always on).
@@ -191,7 +191,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      *           at rest, AKA a Customer Managed Encryption Key (CMEK).
      *           Format:
      *             projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
-     *     @type \Google\Cloud\Dataflow\V1beta3\WorkerPool[]|\Google\Protobuf\Internal\RepeatedField $worker_pools
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $worker_pools
      *           The worker pools. At least one "harness" worker pool must be
      *           specified in order for the job to have workers.
      *     @type \Google\Protobuf\Struct $user_agent
@@ -336,7 +336,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * field for service related experiments is service_options.
      *
      * Generated from protobuf field <code>repeated string experiments = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExperiments($var)
@@ -366,7 +366,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * should be replaced by dedicated fields or become default (i.e. always on).
      *
      * Generated from protobuf field <code>repeated string service_options = 16;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServiceOptions($var)
@@ -426,7 +426,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      * specified in order for the job to have workers.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.WorkerPool worker_pools = 4;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\WorkerPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\WorkerPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkerPools($var)
@@ -445,7 +445,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getUserAgent()
     {
-        return isset($this->user_agent) ? $this->user_agent : null;
+        return $this->user_agent;
     }
 
     public function hasUserAgent()
@@ -482,7 +482,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getVersion()
     {
-        return isset($this->version) ? $this->version : null;
+        return $this->version;
     }
 
     public function hasVersion()
@@ -556,7 +556,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getSdkPipelineOptions()
     {
-        return isset($this->sdk_pipeline_options) ? $this->sdk_pipeline_options : null;
+        return $this->sdk_pipeline_options;
     }
 
     public function hasSdkPipelineOptions()
@@ -595,7 +595,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getInternalExperiments()
     {
-        return isset($this->internal_experiments) ? $this->internal_experiments : null;
+        return $this->internal_experiments;
     }
 
     public function hasInternalExperiments()
@@ -777,7 +777,7 @@ class Environment extends \Google\Protobuf\Internal\Message
      */
     public function getDebugOptions()
     {
-        return isset($this->debug_options) ? $this->debug_options : null;
+        return $this->debug_options;
     }
 
     public function hasDebugOptions()

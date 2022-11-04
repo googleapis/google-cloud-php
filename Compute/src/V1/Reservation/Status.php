@@ -20,10 +20,14 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Resources are being allocated for the reservation.
+     *
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
     /**
+     * Reservation is currently being deleted.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
@@ -32,10 +36,14 @@ class Status
      */
     const INVALID = 530283991;
     /**
+     * Reservation has allocated all its resources.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;
     /**
+     * Reservation is currently being resized.
+     *
      * Generated from protobuf enum <code>UPDATING = 494614342;</code>
      */
     const UPDATING = 494614342;

@@ -16,20 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project}",
+     * "folders/{folder}", or "organizations/{organization}".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the
      * following values:
-     * - [not set]: Requests that are pending or have active approvals.
-     * - ALL: All requests.
-     * - PENDING: Only pending requests.
-     * - ACTIVE: Only active (i.e. currently approved) requests.
-     * - DISMISSED: Only dismissed (including expired) requests.
+     *   * [not set]: Requests that are pending or have active approvals.
+     *   * ALL: All requests.
+     *   * PENDING: Only pending requests.
+     *   * ACTIVE: Only active (i.e. currently approved) requests.
+     *   * DISMISSED: Only requests that have been dismissed, or requests that
+     *     are not approved and past expiration.
+     *   * EXPIRED: Only requests that have been approved, and the approval has
+     *     expired.
+     *   * HISTORY: Active, dismissed and expired requests.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      */
@@ -54,16 +58,20 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The parent resource. This may be "projects/{project_id}",
-     *           "folders/{folder_id}", or "organizations/{organization_id}".
+     *           The parent resource. This may be "projects/{project}",
+     *           "folders/{folder}", or "organizations/{organization}".
      *     @type string $filter
      *           A filter on the type of approval requests to retrieve. Must be one of the
      *           following values:
-     *           - [not set]: Requests that are pending or have active approvals.
-     *           - ALL: All requests.
-     *           - PENDING: Only pending requests.
-     *           - ACTIVE: Only active (i.e. currently approved) requests.
-     *           - DISMISSED: Only dismissed (including expired) requests.
+     *             * [not set]: Requests that are pending or have active approvals.
+     *             * ALL: All requests.
+     *             * PENDING: Only pending requests.
+     *             * ACTIVE: Only active (i.e. currently approved) requests.
+     *             * DISMISSED: Only requests that have been dismissed, or requests that
+     *               are not approved and past expiration.
+     *             * EXPIRED: Only requests that have been approved, and the approval has
+     *               expired.
+     *             * HISTORY: Active, dismissed and expired requests.
      *     @type int $page_size
      *           Requested page size.
      *     @type string $page_token
@@ -76,10 +84,10 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project}",
+     * "folders/{folder}", or "organizations/{organization}".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -88,10 +96,10 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The parent resource. This may be "projects/{project_id}",
-     * "folders/{folder_id}", or "organizations/{organization_id}".
+     * The parent resource. This may be "projects/{project}",
+     * "folders/{folder}", or "organizations/{organization}".
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -106,11 +114,15 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the
      * following values:
-     * - [not set]: Requests that are pending or have active approvals.
-     * - ALL: All requests.
-     * - PENDING: Only pending requests.
-     * - ACTIVE: Only active (i.e. currently approved) requests.
-     * - DISMISSED: Only dismissed (including expired) requests.
+     *   * [not set]: Requests that are pending or have active approvals.
+     *   * ALL: All requests.
+     *   * PENDING: Only pending requests.
+     *   * ACTIVE: Only active (i.e. currently approved) requests.
+     *   * DISMISSED: Only requests that have been dismissed, or requests that
+     *     are not approved and past expiration.
+     *   * EXPIRED: Only requests that have been approved, and the approval has
+     *     expired.
+     *   * HISTORY: Active, dismissed and expired requests.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @return string
@@ -123,11 +135,15 @@ class ListApprovalRequestsMessage extends \Google\Protobuf\Internal\Message
     /**
      * A filter on the type of approval requests to retrieve. Must be one of the
      * following values:
-     * - [not set]: Requests that are pending or have active approvals.
-     * - ALL: All requests.
-     * - PENDING: Only pending requests.
-     * - ACTIVE: Only active (i.e. currently approved) requests.
-     * - DISMISSED: Only dismissed (including expired) requests.
+     *   * [not set]: Requests that are pending or have active approvals.
+     *   * ALL: All requests.
+     *   * PENDING: Only pending requests.
+     *   * ACTIVE: Only active (i.e. currently approved) requests.
+     *   * DISMISSED: Only requests that have been dismissed, or requests that
+     *     are not approved and past expiration.
+     *   * EXPIRED: Only requests that have been approved, and the approval has
+     *     expired.
+     *   * HISTORY: Active, dismissed and expired requests.
      *
      * Generated from protobuf field <code>string filter = 2;</code>
      * @param string $var

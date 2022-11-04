@@ -38,9 +38,20 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     /**
      * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
      *
-     * Generated from protobuf field <code>bool is_deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    private $is_deletable = false;
+    private $deletable = false;
+    /**
+     * Output only. If set to true, this conversion event refers to a custom event.  If set to
+     * false, this conversion event refers to a default event in GA. Default
+     * events typically have special meaning in GA. Default events are usually
+     * created for you by the GA system, but in some cases can be created by
+     * property admins. Custom events count towards the maximum number of
+     * custom conversion events that may be created per property.
+     *
+     * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $custom = false;
 
     /**
      * Constructor.
@@ -56,8 +67,15 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      *           Examples: 'click', 'purchase'
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time when this conversion event was created in the property.
-     *     @type bool $is_deletable
+     *     @type bool $deletable
      *           Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     *     @type bool $custom
+     *           Output only. If set to true, this conversion event refers to a custom event.  If set to
+     *           false, this conversion event refers to a default event in GA. Default
+     *           events typically have special meaning in GA. Default events are usually
+     *           created for you by the GA system, but in some cases can be created by
+     *           property admins. Custom events count towards the maximum number of
+     *           custom conversion events that may be created per property.
      * }
      */
     public function __construct($data = NULL) {
@@ -129,7 +147,7 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -160,25 +178,61 @@ class ConversionEvent extends \Google\Protobuf\Internal\Message
     /**
      * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
      *
-     * Generated from protobuf field <code>bool is_deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return bool
      */
-    public function getIsDeletable()
+    public function getDeletable()
     {
-        return $this->is_deletable;
+        return $this->deletable;
     }
 
     /**
      * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
      *
-     * Generated from protobuf field <code>bool is_deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>bool deletable = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param bool $var
      * @return $this
      */
-    public function setIsDeletable($var)
+    public function setDeletable($var)
     {
         GPBUtil::checkBool($var);
-        $this->is_deletable = $var;
+        $this->deletable = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. If set to true, this conversion event refers to a custom event.  If set to
+     * false, this conversion event refers to a default event in GA. Default
+     * events typically have special meaning in GA. Default events are usually
+     * created for you by the GA system, but in some cases can be created by
+     * property admins. Custom events count towards the maximum number of
+     * custom conversion events that may be created per property.
+     *
+     * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    /**
+     * Output only. If set to true, this conversion event refers to a custom event.  If set to
+     * false, this conversion event refers to a default event in GA. Default
+     * events typically have special meaning in GA. Default events are usually
+     * created for you by the GA system, but in some cases can be created by
+     * property admins. Custom events count towards the maximum number of
+     * custom conversion events that may be created per property.
+     *
+     * Generated from protobuf field <code>bool custom = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setCustom($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->custom = $var;
 
         return $this;
     }

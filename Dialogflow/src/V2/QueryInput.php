@@ -30,7 +30,8 @@ class QueryInput extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dialogflow\V2\InputAudioConfig $audio_config
      *           Instructs the speech recognizer how to process the speech audio.
      *     @type \Google\Cloud\Dialogflow\V2\TextInput $text
-     *           The natural language text to be processed.
+     *           The natural language text to be processed. Text length must not exceed
+     *           256 character for virtual agent interactions.
      *     @type \Google\Cloud\Dialogflow\V2\EventInput $event
      *           The event to be processed.
      * }
@@ -72,7 +73,8 @@ class QueryInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The natural language text to be processed.
+     * The natural language text to be processed. Text length must not exceed
+     * 256 character for virtual agent interactions.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextInput text = 2;</code>
      * @return \Google\Cloud\Dialogflow\V2\TextInput|null
@@ -88,7 +90,8 @@ class QueryInput extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The natural language text to be processed.
+     * The natural language text to be processed. Text length must not exceed
+     * 256 character for virtual agent interactions.
      *
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.TextInput text = 2;</code>
      * @param \Google\Cloud\Dialogflow\V2\TextInput $var

@@ -113,6 +113,32 @@ class ParticipantsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
+     * Adds a text (chat, for example), or audio (phone recording, for example)
+     * message from a participant into the conversation.
+     * Note: This method is only available through the gRPC API (not REST).
+     *
+     * The top-level message sent to the client by the server is
+     * `StreamingAnalyzeContentResponse`. Multiple response messages can be
+     * returned in order. The first one or more messages contain the
+     * `recognition_result` field. Each result represents a more complete
+     * transcript of what the user said. The next message contains the
+     * `reply_text` field and potentially the `reply_audio` field. The message can
+     * also contain the `automated_agent_reply` field.
+     *
+     * Note: Always use agent versions for production traffic
+     * sent to virtual agents. See [Versions and
+     * environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\BidiStreamingCall
+     */
+    public function StreamingAnalyzeContent($metadata = [], $options = []) {
+        return $this->_bidiRequest('/google.cloud.dialogflow.v2.Participants/StreamingAnalyzeContent',
+        ['\Google\Cloud\Dialogflow\V2\StreamingAnalyzeContentResponse','decode'],
+        $metadata, $options);
+    }
+
+    /**
      * Gets suggested articles for a participant based on specific historical
      * messages.
      * @param \Google\Cloud\Dialogflow\V2\SuggestArticlesRequest $argument input argument
@@ -141,6 +167,22 @@ class ParticipantsGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.cloud.dialogflow.v2.Participants/SuggestFaqAnswers',
         $argument,
         ['\Google\Cloud\Dialogflow\V2\SuggestFaqAnswersResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets smart replies for a participant based on specific historical
+     * messages.
+     * @param \Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SuggestSmartReplies(\Google\Cloud\Dialogflow\V2\SuggestSmartRepliesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.dialogflow.v2.Participants/SuggestSmartReplies',
+        $argument,
+        ['\Google\Cloud\Dialogflow\V2\SuggestSmartRepliesResponse', 'decode'],
         $metadata, $options);
     }
 

@@ -45,7 +45,7 @@ class InstancesTruncateLogRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTruncateLogContext()
     {
-        return isset($this->truncate_log_context) ? $this->truncate_log_context : null;
+        return $this->truncate_log_context;
     }
 
     public function hasTruncateLogContext()

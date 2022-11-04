@@ -36,7 +36,7 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -70,7 +70,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      *     @type string $backup
      *           Output only. The relative resource name of the metastore service backup to restore
      *           from, in the following form:
-     *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     *           `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *     @type int $type
      *           Output only. The type of restore.
      *     @type string $details
@@ -91,7 +91,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -127,7 +127,7 @@ class Restore extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -184,7 +184,7 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -197,7 +197,7 @@ class Restore extends \Google\Protobuf\Internal\Message
     /**
      * Output only. The relative resource name of the metastore service backup to restore
      * from, in the following form:
-     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`
+     * `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      *
      * Generated from protobuf field <code>string backup = 4 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

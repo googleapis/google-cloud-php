@@ -33,6 +33,20 @@ class State
      */
     const REGISTRATION_FAILED = 2;
     /**
+     * The domain is being transferred from another registrar to Cloud Domains.
+     *
+     * Generated from protobuf enum <code>TRANSFER_PENDING = 3;</code>
+     */
+    const TRANSFER_PENDING = 3;
+    /**
+     * The attempt to transfer the domain from another registrar to
+     * Cloud Domains failed. You can delete resources in this state and retry
+     * the transfer.
+     *
+     * Generated from protobuf enum <code>TRANSFER_FAILED = 4;</code>
+     */
+    const TRANSFER_FAILED = 4;
+    /**
      * The domain is registered and operational. The domain renews automatically
      * as long as it remains in this state.
      *
@@ -47,11 +61,11 @@ class State
      */
     const SUSPENDED = 7;
     /**
-     * The domain has been exported from Cloud Domains to
+     * The domain is no longer managed with Cloud Domains. It may have been
+     * transferred to another registrar or exported for management in
      * [Google Domains](https://domains.google/). You can no longer update it
-     * with this API, and information shown about it may be stale. Without further action, domains in this
-     * state expire at their `expire_time`. You can delete the resource
-     * after the `expire_time` has passed.
+     * with this API, and information shown about it may be stale. Domains in
+     * this state are not automatically renewed by Cloud Domains.
      *
      * Generated from protobuf enum <code>EXPORTED = 8;</code>
      */
@@ -61,6 +75,8 @@ class State
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::REGISTRATION_PENDING => 'REGISTRATION_PENDING',
         self::REGISTRATION_FAILED => 'REGISTRATION_FAILED',
+        self::TRANSFER_PENDING => 'TRANSFER_PENDING',
+        self::TRANSFER_FAILED => 'TRANSFER_FAILED',
         self::ACTIVE => 'ACTIVE',
         self::SUSPENDED => 'SUSPENDED',
         self::EXPORTED => 'EXPORTED',
@@ -87,6 +103,4 @@ class State
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(State::class, \Google\Cloud\Domains\V1alpha2\Registration_State::class);
 

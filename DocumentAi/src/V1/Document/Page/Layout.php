@@ -195,6 +195,4 @@ class Layout extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Layout::class, \Google\Cloud\DocumentAI\V1\Document_Page_Layout::class);
 

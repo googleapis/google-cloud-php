@@ -61,7 +61,7 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCompany()
     {
-        return isset($this->company) ? $this->company : null;
+        return $this->company;
     }
 
     public function hasCompany()
@@ -101,7 +101,7 @@ class UpdateCompanyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

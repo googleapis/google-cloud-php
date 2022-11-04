@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Scheduling;
 use UnexpectedValueException;
 
 /**
- * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Setting Instance Scheduling Options.
+ * Defines the maintenance behavior for this instance. For standard instances, the default behavior is MIGRATE. For preemptible instances, the default and only possible behavior is TERMINATE. For more information, see Set VM host maintenance policy.
  *
  * Protobuf type <code>google.cloud.compute.v1.Scheduling.OnHostMaintenance</code>
  */
@@ -20,10 +20,14 @@ class OnHostMaintenance
      */
     const UNDEFINED_ON_HOST_MAINTENANCE = 0;
     /**
+     * *[Default]* Allows Compute Engine to automatically migrate instances out of the way of maintenance events.
+     *
      * Generated from protobuf enum <code>MIGRATE = 165699979;</code>
      */
     const MIGRATE = 165699979;
     /**
+     * Tells Compute Engine to terminate and (optionally) restart the instance away from the maintenance activity. If you would like your instance to be restarted, set the automaticRestart flag to true. Your instance may be restarted more than once, and it may be restarted outside the window of maintenance events.
+     *
      * Generated from protobuf enum <code>TERMINATE = 527617601;</code>
      */
     const TERMINATE = 527617601;

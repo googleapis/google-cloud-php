@@ -147,7 +147,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getProgress()
     {
-        return isset($this->progress) ? $this->progress : null;
+        return $this->progress;
     }
 
     public function hasProgress()
@@ -195,7 +195,7 @@ class CreateBackupMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCancelTime()
     {
-        return isset($this->cancel_time) ? $this->cancel_time : null;
+        return $this->cancel_time;
     }
 
     public function hasCancelTime()

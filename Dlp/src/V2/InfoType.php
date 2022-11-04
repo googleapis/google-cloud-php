@@ -25,6 +25,12 @@ class InfoType extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
+    /**
+     * Optional version name for this InfoType.
+     *
+     * Generated from protobuf field <code>string version = 2;</code>
+     */
+    private $version = '';
 
     /**
      * Constructor.
@@ -38,6 +44,8 @@ class InfoType extends \Google\Protobuf\Internal\Message
      *           at https://cloud.google.com/dlp/docs/infotypes-reference when specifying
      *           a built-in type.  When sending Cloud DLP results to Data Catalog, infoType
      *           names should conform to the pattern `[A-Za-z0-9$-_]{1,64}`.
+     *     @type string $version
+     *           Optional version name for this InfoType.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,6 +83,32 @@ class InfoType extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional version name for this InfoType.
+     *
+     * Generated from protobuf field <code>string version = 2;</code>
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Optional version name for this InfoType.
+     *
+     * Generated from protobuf field <code>string version = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version = $var;
 
         return $this;
     }

@@ -18,13 +18,13 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
     /**
      * Maximum allowed number (or %) of VMs that can be deducted from the peak recommendation during the window autoscaler looks at when computing recommendations. Possibly all these VMs can be deleted at once so user service needs to be prepared to lose that many VMs in one step.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
      */
     private $max_scaled_in_replicas = null;
     /**
      * How far back autoscaling looks when computing recommendations to include directives regarding slower scale in, as described above.
      *
-     * Generated from protobuf field <code>int32 time_window_sec = 36405300;</code>
+     * Generated from protobuf field <code>optional int32 time_window_sec = 36405300;</code>
      */
     private $time_window_sec = null;
 
@@ -48,12 +48,12 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
     /**
      * Maximum allowed number (or %) of VMs that can be deducted from the peak recommendation during the window autoscaler looks at when computing recommendations. Possibly all these VMs can be deleted at once so user service needs to be prepared to lose that many VMs in one step.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
      * @return \Google\Cloud\Compute\V1\FixedOrPercent|null
      */
     public function getMaxScaledInReplicas()
     {
-        return isset($this->max_scaled_in_replicas) ? $this->max_scaled_in_replicas : null;
+        return $this->max_scaled_in_replicas;
     }
 
     public function hasMaxScaledInReplicas()
@@ -69,7 +69,7 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
     /**
      * Maximum allowed number (or %) of VMs that can be deducted from the peak recommendation during the window autoscaler looks at when computing recommendations. Possibly all these VMs can be deleted at once so user service needs to be prepared to lose that many VMs in one step.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.FixedOrPercent max_scaled_in_replicas = 180710123;</code>
      * @param \Google\Cloud\Compute\V1\FixedOrPercent $var
      * @return $this
      */
@@ -84,7 +84,7 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
     /**
      * How far back autoscaling looks when computing recommendations to include directives regarding slower scale in, as described above.
      *
-     * Generated from protobuf field <code>int32 time_window_sec = 36405300;</code>
+     * Generated from protobuf field <code>optional int32 time_window_sec = 36405300;</code>
      * @return int
      */
     public function getTimeWindowSec()
@@ -105,7 +105,7 @@ class AutoscalingPolicyScaleInControl extends \Google\Protobuf\Internal\Message
     /**
      * How far back autoscaling looks when computing recommendations to include directives regarding slower scale in, as described above.
      *
-     * Generated from protobuf field <code>int32 time_window_sec = 36405300;</code>
+     * Generated from protobuf field <code>optional int32 time_window_sec = 36405300;</code>
      * @param int $var
      * @return $this
      */

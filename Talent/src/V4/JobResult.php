@@ -64,7 +64,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
      */
     public function getJob()
     {
-        return isset($this->job) ? $this->job : null;
+        return $this->job;
     }
 
     public function hasJob()
@@ -104,7 +104,7 @@ class JobResult extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()

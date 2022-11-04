@@ -143,7 +143,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      *           "amount of skin" visible in an image. It is not based on the
      *           landmarker results, only on the initial face detection, hence
      *           the <code>fd</code> (face detection) prefix.
-     *     @type \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[]|\Google\Protobuf\Internal\RepeatedField $landmarks
+     *     @type array<\Google\Cloud\Vision\V1\FaceAnnotation\Landmark>|\Google\Protobuf\Internal\RepeatedField $landmarks
      *           Detected face landmarks.
      *     @type float $roll_angle
      *           Roll angle, which indicates the amount of clockwise/anti-clockwise rotation
@@ -195,7 +195,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getBoundingPoly()
     {
-        return isset($this->bounding_poly) ? $this->bounding_poly : null;
+        return $this->bounding_poly;
     }
 
     public function hasBoundingPoly()
@@ -242,7 +242,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      */
     public function getFdBoundingPoly()
     {
-        return isset($this->fd_bounding_poly) ? $this->fd_bounding_poly : null;
+        return $this->fd_bounding_poly;
     }
 
     public function hasFdBoundingPoly()
@@ -290,7 +290,7 @@ class FaceAnnotation extends \Google\Protobuf\Internal\Message
      * Detected face landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.FaceAnnotation.Landmark landmarks = 3;</code>
-     * @param \Google\Cloud\Vision\V1\FaceAnnotation\Landmark[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\FaceAnnotation\Landmark>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLandmarks($var)

@@ -12,10 +12,11 @@ use Google\Protobuf\Internal\GPBUtil;
  * The top-level message returned from the
  * `StreamingDetectIntent` method.
  * Multiple response messages can be returned in order:
- * 1.  If the input was set to streaming audio, the first one or more messages
- *     contain `recognition_result`. Each `recognition_result` represents a more
- *     complete transcript of what the user said. The last `recognition_result`
- *     has `is_final` set to `true`.
+ * 1.  If the `StreamingDetectIntentRequest.input_audio` field was
+ *     set, the `recognition_result` field is populated for one
+ *     or more messages.
+ *     See the [StreamingRecognitionResult][google.cloud.dialogflow.v2.StreamingRecognitionResult] message for details
+ *     about the result message sequence.
  * 2.  The next message contains `response_id`, `query_result`
  *     and optionally `webhook_status` if a WebHook was called.
  *
@@ -139,7 +140,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getRecognitionResult()
     {
-        return isset($this->recognition_result) ? $this->recognition_result : null;
+        return $this->recognition_result;
     }
 
     public function hasRecognitionResult()
@@ -175,7 +176,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getQueryResult()
     {
-        return isset($this->query_result) ? $this->query_result : null;
+        return $this->query_result;
     }
 
     public function hasQueryResult()
@@ -211,7 +212,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getWebhookStatus()
     {
-        return isset($this->webhook_status) ? $this->webhook_status : null;
+        return $this->webhook_status;
     }
 
     public function hasWebhookStatus()
@@ -289,7 +290,7 @@ class StreamingDetectIntentResponse extends \Google\Protobuf\Internal\Message
      */
     public function getOutputAudioConfig()
     {
-        return isset($this->output_audio_config) ? $this->output_audio_config : null;
+        return $this->output_audio_config;
     }
 
     public function hasOutputAudioConfig()

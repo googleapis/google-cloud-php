@@ -6,11 +6,11 @@ namespace Google\Cloud\Datastore\V1;
 
 if (false) {
     /**
-     * This class is deprecated. Use Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly instead.
+     * This class is deprecated. Use Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly instead.
      * @deprecated
      */
     class TransactionOptions_ReadOnly {}
 }
-class_exists(TransactionOptions\ReadOnly::class);
-@trigger_error('Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\TransactionOptions\ReadOnly instead', E_USER_DEPRECATED);
+class_exists(TransactionOptions\PBReadOnly::class);
+@trigger_error('Google\Cloud\Datastore\V1\TransactionOptions_ReadOnly is deprecated and will be removed in the next major release. Use Google\Cloud\Datastore\V1\TransactionOptions\PBReadOnly instead', E_USER_DEPRECATED);
 

@@ -53,7 +53,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedFleet()
     {
-        return isset($this->deployed_fleet) ? $this->deployed_fleet : null;
+        return $this->deployed_fleet;
     }
 
     public function hasDeployedFleet()
@@ -89,7 +89,7 @@ class DeployedFleetDetails extends \Google\Protobuf\Internal\Message
      */
     public function getDeployedAutoscaler()
     {
-        return isset($this->deployed_autoscaler) ? $this->deployed_autoscaler : null;
+        return $this->deployed_autoscaler;
     }
 
     public function hasDeployedAutoscaler()

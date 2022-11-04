@@ -17,19 +17,19 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Contents of the error.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      */
     private $error = null;
     /**
      * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      */
     private $instance_action_details = null;
     /**
      * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string timestamp = 55126294;</code>
+     * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      */
     private $timestamp = null;
 
@@ -55,12 +55,12 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Contents of the error.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      * @return \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorManagedInstanceError|null
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -76,7 +76,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Contents of the error.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorManagedInstanceError error = 96784904;</code>
      * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorManagedInstanceError $var
      * @return $this
      */
@@ -91,12 +91,12 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      * @return \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails|null
      */
     public function getInstanceActionDetails()
     {
-        return isset($this->instance_action_details) ? $this->instance_action_details : null;
+        return $this->instance_action_details;
     }
 
     public function hasInstanceActionDetails()
@@ -112,7 +112,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Details of the instance action that triggered this error. May be null, if the error was not caused by an action on an instance. This field is optional.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceManagedByIgmErrorInstanceActionDetails instance_action_details = 292224547;</code>
      * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmErrorInstanceActionDetails $var
      * @return $this
      */
@@ -127,7 +127,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string timestamp = 55126294;</code>
+     * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @return string
      */
     public function getTimestamp()
@@ -148,7 +148,7 @@ class InstanceManagedByIgmError extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The time that this error occurred. This value is in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string timestamp = 55126294;</code>
+     * Generated from protobuf field <code>optional string timestamp = 55126294;</code>
      * @param string $var
      * @return $this
      */

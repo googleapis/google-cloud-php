@@ -69,7 +69,7 @@ class UpdateAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
      */
     public function getSettings()
     {
-        return isset($this->settings) ? $this->settings : null;
+        return $this->settings;
     }
 
     public function hasSettings()
@@ -113,7 +113,7 @@ class UpdateAccessApprovalSettingsMessage extends \Google\Protobuf\Internal\Mess
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -40,11 +40,11 @@ class ListConnectivityTestsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkManagement\V1\ConnectivityTest[]|\Google\Protobuf\Internal\RepeatedField $resources
+     *     @type array<\Google\Cloud\NetworkManagement\V1\ConnectivityTest>|\Google\Protobuf\Internal\RepeatedField $resources
      *           List of Connectivity Tests.
      *     @type string $next_page_token
      *           Page token to fetch the next set of Connectivity Tests.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached (when querying all locations with `-`).
      * }
      */
@@ -68,7 +68,7 @@ class ListConnectivityTestsResponse extends \Google\Protobuf\Internal\Message
      * List of Connectivity Tests.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkmanagement.v1.ConnectivityTest resources = 1;</code>
-     * @param \Google\Cloud\NetworkManagement\V1\ConnectivityTest[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkManagement\V1\ConnectivityTest>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResources($var)
@@ -120,7 +120,7 @@ class ListConnectivityTestsResponse extends \Google\Protobuf\Internal\Message
      * Locations that could not be reached (when querying all locations with `-`).
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

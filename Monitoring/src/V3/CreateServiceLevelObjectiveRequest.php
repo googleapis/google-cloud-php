@@ -127,11 +127,21 @@ class CreateServiceLevelObjectiveRequest extends \Google\Protobuf\Internal\Messa
      * with this name.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.ServiceLevelObjective service_level_objective = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective
+     * @return \Google\Cloud\Monitoring\V3\ServiceLevelObjective|null
      */
     public function getServiceLevelObjective()
     {
         return $this->service_level_objective;
+    }
+
+    public function hasServiceLevelObjective()
+    {
+        return isset($this->service_level_objective);
+    }
+
+    public function clearServiceLevelObjective()
+    {
+        unset($this->service_level_objective);
     }
 
     /**

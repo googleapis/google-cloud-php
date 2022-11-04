@@ -57,7 +57,7 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomDimension()
     {
-        return isset($this->custom_dimension) ? $this->custom_dimension : null;
+        return $this->custom_dimension;
     }
 
     public function hasCustomDimension()
@@ -95,7 +95,7 @@ class UpdateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -39,7 +39,7 @@ class InspectResult extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dlp\V2\Finding[]|\Google\Protobuf\Internal\RepeatedField $findings
+     *     @type array<\Google\Cloud\Dlp\V2\Finding>|\Google\Protobuf\Internal\RepeatedField $findings
      *           List of findings for an item.
      *     @type bool $findings_truncated
      *           If true, then this item might have more findings than were returned,
@@ -70,7 +70,7 @@ class InspectResult extends \Google\Protobuf\Internal\Message
      * List of findings for an item.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Finding findings = 1;</code>
-     * @param \Google\Cloud\Dlp\V2\Finding[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Finding>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFindings($var)

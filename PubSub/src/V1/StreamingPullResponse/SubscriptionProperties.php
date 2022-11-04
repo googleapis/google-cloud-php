@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class SubscriptionProperties extends \Google\Protobuf\Internal\Message
 {
     /**
+     * True iff exactly once delivery is enabled for this subscription.
+     *
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     */
+    private $exactly_once_delivery_enabled = false;
+    /**
      * True iff message ordering is enabled for this subscription.
      *
      * Generated from protobuf field <code>bool message_ordering_enabled = 2;</code>
@@ -28,6 +34,8 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type bool $exactly_once_delivery_enabled
+     *           True iff exactly once delivery is enabled for this subscription.
      *     @type bool $message_ordering_enabled
      *           True iff message ordering is enabled for this subscription.
      * }
@@ -35,6 +43,32 @@ class SubscriptionProperties extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Pubsub\V1\Pubsub::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * True iff exactly once delivery is enabled for this subscription.
+     *
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     * @return bool
+     */
+    public function getExactlyOnceDeliveryEnabled()
+    {
+        return $this->exactly_once_delivery_enabled;
+    }
+
+    /**
+     * True iff exactly once delivery is enabled for this subscription.
+     *
+     * Generated from protobuf field <code>bool exactly_once_delivery_enabled = 1;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setExactlyOnceDeliveryEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->exactly_once_delivery_enabled = $var;
+
+        return $this;
     }
 
     /**

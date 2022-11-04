@@ -91,7 +91,7 @@ class UpdateNoteRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNote()
     {
-        return isset($this->note) ? $this->note : null;
+        return $this->note;
     }
 
     public function hasNote()
@@ -127,7 +127,7 @@ class UpdateNoteRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

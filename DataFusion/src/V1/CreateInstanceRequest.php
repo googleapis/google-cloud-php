@@ -16,16 +16,16 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The instance's project and location in the format
+     * Required. The instance's project and location in the format
      * projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The name of the instance to create.
+     * Required. The name of the instance to create.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance_id = '';
     /**
@@ -42,10 +42,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The instance's project and location in the format
+     *           Required. The instance's project and location in the format
      *           projects/{project}/locations/{location}.
      *     @type string $instance_id
-     *           The name of the instance to create.
+     *           Required. The name of the instance to create.
      *     @type \Google\Cloud\DataFusion\V1\Instance $instance
      *           An instance resource.
      * }
@@ -56,10 +56,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance's project and location in the format
+     * Required. The instance's project and location in the format
      * projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -68,10 +68,10 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance's project and location in the format
+     * Required. The instance's project and location in the format
      * projects/{project}/locations/{location}.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -84,9 +84,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the instance to create.
+     * Required. The name of the instance to create.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
      */
     public function getInstanceId()
@@ -95,9 +95,9 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the instance to create.
+     * Required. The name of the instance to create.
      *
-     * Generated from protobuf field <code>string instance_id = 2;</code>
+     * Generated from protobuf field <code>string instance_id = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
      * @return $this
      */
@@ -117,7 +117,7 @@ class CreateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return isset($this->instance) ? $this->instance : null;
+        return $this->instance;
     }
 
     public function hasInstance()

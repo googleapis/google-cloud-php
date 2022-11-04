@@ -33,6 +33,21 @@ return [
                     'grpcStreamingType' => 'BidiStreaming',
                 ],
             ],
+            'PartitionQuery' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getPartitions',
+                ],
+            ],
+            'RunAggregationQuery' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'ServerStreaming',
+                ],
+            ],
             'RunQuery' => [
                 'grpcStreaming' => [
                     'grpcStreamingType' => 'ServerStreaming',

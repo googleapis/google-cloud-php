@@ -20,13 +20,12 @@ class Service
         \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Cloud\Security\Privateca\V1\Resources::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-‡p
-0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.protogoogle/protobuf/duration.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
+Ôp
+0google/cloud/security/privateca/v1/service.proto"google.cloud.security.privateca.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto2google/cloud/security/privateca/v1/resources.proto#google/longrunning/operations.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"ü
 CreateCertificateRequest7
 parent (	B\'‡A˙A!
 privateca.googleapis.com/CaPool
@@ -110,13 +109,14 @@ page_token (	B‡A
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
-request_id (	B‡A"™
+request_id (	B‡A" 
 !DeleteCertificateAuthorityRequestC
 name (	B5‡A˙A/
 -privateca.googleapis.com/CertificateAuthority
 
 request_id (	B‡A\'
-ignore_active_certificates (B‡A"–
+ignore_active_certificates (B‡A
+skip_grace_period (B‡A"–
 !UpdateCertificateAuthorityRequest\\
 certificate_authority (28.google.cloud.security.privateca.v1.CertificateAuthorityB‡A4
 update_mask (2.google.protobuf.FieldMaskB‡A
@@ -223,7 +223,7 @@ request_id (	B‡A"Ä
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡A2Î;
+api_version (	B‡A2˙;
 CertificateAuthorityService˜
 CreateCertificate<.google.cloud.security.privateca.v1.CreateCertificateRequest/.google.cloud.security.privateca.v1.Certificate"sÇ”‰ìI":/v1/{parent=projects/*/locations/*/caPools/*}/certificates:certificate⁄A!parent,certificate,certificate_id«
 GetCertificate9.google.cloud.security.privateca.v1.GetCertificateRequest/.google.cloud.security.privateca.v1.Certificate"IÇ”‰ì<:/v1/{name=projects/*/locations/*/caPools/*/certificates/*}⁄Aname⁄
@@ -252,9 +252,9 @@ request_id (	B‡A"Ä
 UpdateCaPool7.google.cloud.security.privateca.v1.UpdateCaPoolRequest.google.longrunning.Operation"xÇ”‰ì>23/v1/{ca_pool.name=projects/*/locations/*/caPools/*}:ca_pool⁄Aca_pool,update_mask A
 CaPoolOperationMetadata©
 	GetCaPool4.google.cloud.security.privateca.v1.GetCaPoolRequest*.google.cloud.security.privateca.v1.CaPool":Ç”‰ì-+/v1/{name=projects/*/locations/*/caPools/*}⁄Anameº
-ListCaPools6.google.cloud.security.privateca.v1.ListCaPoolsRequest7.google.cloud.security.privateca.v1.ListCaPoolsResponse"<Ç”‰ì-+/v1/{parent=projects/*/locations/*}/caPools⁄Aparent¿
-DeleteCaPool7.google.cloud.security.privateca.v1.DeleteCaPoolRequest.google.longrunning.Operation"XÇ”‰ì-*+/v1/{name=projects/*/locations/*/caPools/*}⁄Aname A
-CaPoolOperationMetadata”
+ListCaPools6.google.cloud.security.privateca.v1.ListCaPoolsRequest7.google.cloud.security.privateca.v1.ListCaPoolsResponse"<Ç”‰ì-+/v1/{parent=projects/*/locations/*}/caPools⁄Aparentœ
+DeleteCaPool7.google.cloud.security.privateca.v1.DeleteCaPoolRequest.google.longrunning.Operation"gÇ”‰ì-*+/v1/{name=projects/*/locations/*/caPools/*}⁄Aname A*
+google.protobuf.EmptyOperationMetadata”
 FetchCaCerts7.google.cloud.security.privateca.v1.FetchCaCertsRequest8.google.cloud.security.privateca.v1.FetchCaCertsResponse"PÇ”‰ì@";/v1/{ca_pool=projects/*/locations/*/caPools/*}:fetchCaCerts:*⁄Aca_poolò
 GetCertificateRevocationListG.google.cloud.security.privateca.v1.GetCertificateRevocationListRequest=.google.cloud.security.privateca.v1.CertificateRevocationList"pÇ”‰ìca/v1/{name=projects/*/locations/*/caPools/*/certificateAuthorities/*/certificateRevocationLists/*}⁄Aname´
 ListCertificateRevocationListsI.google.cloud.security.privateca.v1.ListCertificateRevocationListsRequestJ.google.cloud.security.privateca.v1.ListCertificateRevocationListsResponse"rÇ”‰ìca/v1/{parent=projects/*/locations/*/caPools/*/certificateAuthorities/*}/certificateRevocationLists⁄Aparentç

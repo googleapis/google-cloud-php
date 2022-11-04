@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlExternalSyncSettingError extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Can be <b>sql#externalSyncSettingError</b> or
-     * <b>sql#externalSyncSettingWarning</b>.
+     * Can be `sql#externalSyncSettingError` or
+     * `sql#externalSyncSettingWarning`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -42,8 +42,8 @@ class SqlExternalSyncSettingError extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           Can be <b>sql#externalSyncSettingError</b> or
-     *           <b>sql#externalSyncSettingWarning</b>.
+     *           Can be `sql#externalSyncSettingError` or
+     *           `sql#externalSyncSettingWarning`.
      *     @type int $type
      *           Identifies the specific error that occurred.
      *     @type string $detail
@@ -56,8 +56,8 @@ class SqlExternalSyncSettingError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be <b>sql#externalSyncSettingError</b> or
-     * <b>sql#externalSyncSettingWarning</b>.
+     * Can be `sql#externalSyncSettingError` or
+     * `sql#externalSyncSettingWarning`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -68,8 +68,8 @@ class SqlExternalSyncSettingError extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Can be <b>sql#externalSyncSettingError</b> or
-     * <b>sql#externalSyncSettingWarning</b>.
+     * Can be `sql#externalSyncSettingError` or
+     * `sql#externalSyncSettingWarning`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var

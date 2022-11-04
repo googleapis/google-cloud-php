@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a collection of network endpoints.
- * A network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up external HTTP(S) Load Balancing with internet NEGs,  Setting up zonal NEGs, or  Setting up external HTTP(S) Load Balancing with serverless NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)
+ * Represents a collection of network endpoints. A network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see Setting up external HTTP(S) Load Balancing with internet NEGs, Setting up zonal NEGs, or Setting up external HTTP(S) Load Balancing with serverless NEGs.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.NetworkEndpointGroup</code>
  */
@@ -25,97 +24,108 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
      */
     private $app_engine = null;
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
      */
     private $cloud_function = null;
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
      */
     private $cloud_run = null;
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * The default port used if the port number is not specified in the network endpoint.
      *
-     * Generated from protobuf field <code>int32 default_port = 423377855;</code>
+     * Generated from protobuf field <code>optional int32 default_port = 423377855;</code>
      */
     private $default_port = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] Type of the resource. Always compute#networkEndpointGroup for network endpoint group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      */
     private $network = null;
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Check the NetworkEndpointType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
+     * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
      */
     private $network_endpoint_type = null;
     /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     */
+    private $psc_data = null;
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     */
+    private $psc_target_service = null;
+    /**
      * [Output Only] The URL of the region where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      */
     private $region = null;
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
      * [Output only] Number of network endpoints in the network endpoint group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      */
     private $size = null;
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG belong.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      */
     private $subnetwork = null;
     /**
      * [Output Only] The URL of the zone where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      */
     private $zone = null;
 
@@ -147,8 +157,12 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
      *           Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type string $network
      *           The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
-     *     @type int $network_endpoint_type
-     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     *     @type string $network_endpoint_type
+     *           Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     *           Check the NetworkEndpointType enum for the list of possible values.
+     *     @type \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $psc_data
+     *     @type string $psc_target_service
+     *           The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
      *     @type string $region
      *           [Output Only] The URL of the region where the network endpoint group is located.
      *     @type string $self_link
@@ -195,12 +209,12 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
      * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupAppEngine|null
      */
     public function getAppEngine()
     {
-        return isset($this->app_engine) ? $this->app_engine : null;
+        return $this->app_engine;
     }
 
     public function hasAppEngine()
@@ -216,7 +230,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupAppEngine app_engine = 340788768;</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupAppEngine $var
      * @return $this
      */
@@ -231,12 +245,12 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
      * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupCloudFunction|null
      */
     public function getCloudFunction()
     {
-        return isset($this->cloud_function) ? $this->cloud_function : null;
+        return $this->cloud_function;
     }
 
     public function hasCloudFunction()
@@ -252,7 +266,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudFunction cloud_function = 519893666;</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupCloudFunction $var
      * @return $this
      */
@@ -267,12 +281,12 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
      * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupCloudRun|null
      */
     public function getCloudRun()
     {
-        return isset($this->cloud_run) ? $this->cloud_run : null;
+        return $this->cloud_run;
     }
 
     public function hasCloudRun()
@@ -288,7 +302,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Only valid when networkEndpointType is "SERVERLESS". Only one of cloudRun, appEngine or cloudFunction may be set.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupCloudRun cloud_run = 111060353;</code>
      * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupCloudRun $var
      * @return $this
      */
@@ -303,7 +317,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -324,7 +338,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Creation timestamp in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -339,7 +353,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * The default port used if the port number is not specified in the network endpoint.
      *
-     * Generated from protobuf field <code>int32 default_port = 423377855;</code>
+     * Generated from protobuf field <code>optional int32 default_port = 423377855;</code>
      * @return int
      */
     public function getDefaultPort()
@@ -360,7 +374,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * The default port used if the port number is not specified in the network endpoint.
      *
-     * Generated from protobuf field <code>int32 default_port = 423377855;</code>
+     * Generated from protobuf field <code>optional int32 default_port = 423377855;</code>
      * @param int $var
      * @return $this
      */
@@ -375,7 +389,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -396,7 +410,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -411,7 +425,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -432,7 +446,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The unique identifier for the resource. This identifier is defined by the server.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -447,7 +461,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#networkEndpointGroup for network endpoint group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -468,7 +482,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Type of the resource. Always compute#networkEndpointGroup for network endpoint group.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -483,7 +497,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -504,7 +518,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -519,7 +533,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @return string
      */
     public function getNetwork()
@@ -540,7 +554,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * The URL of the network to which all network endpoints in the NEG belong. Uses "default" project network if unspecified.
      *
-     * Generated from protobuf field <code>string network = 232872494;</code>
+     * Generated from protobuf field <code>optional string network = 232872494;</code>
      * @param string $var
      * @return $this
      */
@@ -553,14 +567,15 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Check the NetworkEndpointType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
+     * @return string
      */
     public function getNetworkEndpointType()
     {
-        return isset($this->network_endpoint_type) ? $this->network_endpoint_type : 0;
+        return isset($this->network_endpoint_type) ? $this->network_endpoint_type : '';
     }
 
     public function hasNetworkEndpointType()
@@ -574,16 +589,85 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.
+     * Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP, GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, SERVERLESS, PRIVATE_SERVICE_CONNECT.
+     * Check the NetworkEndpointType enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroup.NetworkEndpointType network_endpoint_type = 118301523;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string network_endpoint_type = 118301523;</code>
+     * @param string $var
      * @return $this
      */
     public function setNetworkEndpointType($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NetworkEndpointGroup\NetworkEndpointType::class);
+        GPBUtil::checkString($var, True);
         $this->network_endpoint_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @return \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData|null
+     */
+    public function getPscData()
+    {
+        return $this->psc_data;
+    }
+
+    public function hasPscData()
+    {
+        return isset($this->psc_data);
+    }
+
+    public function clearPscData()
+    {
+        unset($this->psc_data);
+    }
+
+    /**
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.NetworkEndpointGroupPscData psc_data = 71937481;</code>
+     * @param \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData $var
+     * @return $this
+     */
+    public function setPscData($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\NetworkEndpointGroupPscData::class);
+        $this->psc_data = $var;
+
+        return $this;
+    }
+
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     * @return string
+     */
+    public function getPscTargetService()
+    {
+        return isset($this->psc_target_service) ? $this->psc_target_service : '';
+    }
+
+    public function hasPscTargetService()
+    {
+        return isset($this->psc_target_service);
+    }
+
+    public function clearPscTargetService()
+    {
+        unset($this->psc_target_service);
+    }
+
+    /**
+     * The target service url used to set up private service connection to a Google API or a PSC Producer Service Attachment. An example value is: "asia-northeast3-cloudkms.googleapis.com"
+     *
+     * Generated from protobuf field <code>optional string psc_target_service = 269132134;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPscTargetService($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->psc_target_service = $var;
 
         return $this;
     }
@@ -591,7 +675,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @return string
      */
     public function getRegion()
@@ -612,7 +696,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the region where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string region = 138946292;</code>
+     * Generated from protobuf field <code>optional string region = 138946292;</code>
      * @param string $var
      * @return $this
      */
@@ -627,7 +711,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -648,7 +732,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Server-defined URL for the resource.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -663,7 +747,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Number of network endpoints in the network endpoint group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @return int
      */
     public function getSize()
@@ -684,7 +768,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output only] Number of network endpoints in the network endpoint group.
      *
-     * Generated from protobuf field <code>int32 size = 3530753;</code>
+     * Generated from protobuf field <code>optional int32 size = 3530753;</code>
      * @param int $var
      * @return $this
      */
@@ -699,7 +783,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG belong.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @return string
      */
     public function getSubnetwork()
@@ -720,7 +804,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * Optional URL of the subnetwork to which all network endpoints in the NEG belong.
      *
-     * Generated from protobuf field <code>string subnetwork = 307827694;</code>
+     * Generated from protobuf field <code>optional string subnetwork = 307827694;</code>
      * @param string $var
      * @return $this
      */
@@ -735,7 +819,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the zone where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @return string
      */
     public function getZone()
@@ -756,7 +840,7 @@ class NetworkEndpointGroup extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the zone where the network endpoint group is located.
      *
-     * Generated from protobuf field <code>string zone = 3744684;</code>
+     * Generated from protobuf field <code>optional string zone = 3744684;</code>
      * @param string $var
      * @return $this
      */

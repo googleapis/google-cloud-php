@@ -97,7 +97,7 @@ class CreateJobTemplateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getJobTemplate()
     {
-        return isset($this->job_template) ? $this->job_template : null;
+        return $this->job_template;
     }
 
     public function hasJobTemplate()

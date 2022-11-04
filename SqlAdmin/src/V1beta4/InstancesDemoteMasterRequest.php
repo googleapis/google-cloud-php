@@ -45,7 +45,7 @@ class InstancesDemoteMasterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDemoteMasterContext()
     {
-        return isset($this->demote_master_context) ? $this->demote_master_context : null;
+        return $this->demote_master_context;
     }
 
     public function hasDemoteMasterContext()

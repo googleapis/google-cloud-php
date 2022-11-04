@@ -9,9 +9,10 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A collection of router appliance instances. If you have multiple router
- * appliance instances connected to the same site, they should all be attached
- * to the same spoke.
+ * A collection of router appliance instances. If you configure multiple router
+ * appliance instances to receive data from the same set of sites outside of
+ * Google Cloud, we recommend that you associate those instances with the same
+ * spoke.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.LinkedRouterApplianceInstances</code>
  */
@@ -25,8 +26,8 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
     private $instances;
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      */
@@ -38,12 +39,12 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           The list of router appliance instances.
      *     @type bool $site_to_site_data_transfer
      *           A value that controls whether site-to-site data transfer is enabled for
-     *           these resources. This field is set to false by default, but you must set it
-     *           to true. Note that data transfer is available only in supported locations.
+     *           these resources. Data transfer is available only in [supported
+     *           locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      * }
      */
     public function __construct($data = NULL) {
@@ -66,7 +67,7 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
      * The list of router appliance instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RouterApplianceInstance instances = 1;</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\RouterApplianceInstance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -79,8 +80,8 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
 
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      * @return bool
@@ -92,8 +93,8 @@ class LinkedRouterApplianceInstances extends \Google\Protobuf\Internal\Message
 
     /**
      * A value that controls whether site-to-site data transfer is enabled for
-     * these resources. This field is set to false by default, but you must set it
-     * to true. Note that data transfer is available only in supported locations.
+     * these resources. Data transfer is available only in [supported
+     * locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      *
      * Generated from protobuf field <code>bool site_to_site_data_transfer = 2;</code>
      * @param bool $var

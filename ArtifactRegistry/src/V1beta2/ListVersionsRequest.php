@@ -22,8 +22,7 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * The maximum number of versions to return.
-     * Maximum page size is 10,000.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -40,6 +39,12 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.devtools.artifactregistry.v1beta2.VersionView view = 4;</code>
      */
     private $view = 0;
+    /**
+     * Optional. The field to order the results by.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $order_by = '';
 
     /**
      * Constructor.
@@ -50,12 +55,13 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           The name of the parent resource whose versions will be listed.
      *     @type int $page_size
-     *           The maximum number of versions to return.
-     *           Maximum page size is 10,000.
+     *           The maximum number of versions to return. Maximum page size is 1,000.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request, if any.
      *     @type int $view
      *           The view that should be returned in the response.
+     *     @type string $order_by
+     *           Optional. The field to order the results by.
      * }
      */
     public function __construct($data = NULL) {
@@ -90,8 +96,7 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of versions to return.
-     * Maximum page size is 10,000.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -102,8 +107,7 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of versions to return.
-     * Maximum page size is 10,000.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var
@@ -165,6 +169,32 @@ class ListVersionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\ArtifactRegistry\V1beta2\VersionView::class);
         $this->view = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The field to order the results by.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getOrderBy()
+    {
+        return $this->order_by;
+    }
+
+    /**
+     * Optional. The field to order the results by.
+     *
+     * Generated from protobuf field <code>string order_by = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setOrderBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->order_by = $var;
 
         return $this;
     }

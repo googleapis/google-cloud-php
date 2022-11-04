@@ -33,8 +33,7 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      */
     private $filter = '';
     /**
-     * The maximum number of tags to return.
-     * Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -62,8 +61,7 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
      *             * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"`
      *             --> Tags that are applied to the version `1.0` in package `pkg1`.
      *     @type int $page_size
-     *           The maximum number of tags to return.
-     *           Maximum page size is 10,000.
+     *           The maximum number of tags to return. Maximum page size is 10,000.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request, if any.
      * }
@@ -136,8 +134,7 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of tags to return.
-     * Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -148,8 +145,7 @@ class ListTagsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of tags to return.
-     * Maximum page size is 10,000.
+     * The maximum number of tags to return. Maximum page size is 10,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

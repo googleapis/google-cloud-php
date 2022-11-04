@@ -61,7 +61,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      *           be updated, but it cannot be removed after it is set.
      *     @type \Google\Protobuf\BoolValue $require_ssl
      *           Whether SSL connections over IP should be enforced or not.
-     *     @type \Google\Cloud\CloudDms\V1\SqlAclEntry[]|\Google\Protobuf\Internal\RepeatedField $authorized_networks
+     *     @type array<\Google\Cloud\CloudDms\V1\SqlAclEntry>|\Google\Protobuf\Internal\RepeatedField $authorized_networks
      *           The list of external networks that are allowed to connect to the instance
      *           using the IP. See
      *           https://en.wikipedia.org/wiki/CIDR_notation#CIDR_notation, also known as
@@ -81,7 +81,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      */
     public function getEnableIpv4()
     {
-        return isset($this->enable_ipv4) ? $this->enable_ipv4 : null;
+        return $this->enable_ipv4;
     }
 
     public function hasEnableIpv4()
@@ -176,7 +176,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      */
     public function getRequireSsl()
     {
-        return isset($this->require_ssl) ? $this->require_ssl : null;
+        return $this->require_ssl;
     }
 
     public function hasRequireSsl()
@@ -252,7 +252,7 @@ class SqlIpConfig extends \Google\Protobuf\Internal\Message
      * 'slash' notation (e.g. `192.168.100.0/24`).
      *
      * Generated from protobuf field <code>repeated .google.cloud.clouddms.v1.SqlAclEntry authorized_networks = 4;</code>
-     * @param \Google\Cloud\CloudDms\V1\SqlAclEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\CloudDms\V1\SqlAclEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAuthorizedNetworks($var)

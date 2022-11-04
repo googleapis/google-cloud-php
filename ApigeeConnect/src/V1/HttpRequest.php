@@ -60,7 +60,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      *           Valid methods: "GET", "HEAD", "POST", "PUT", "PATCH","DELETE".
      *     @type \Google\Cloud\ApigeeConnect\V1\Url $url
      *           The HTTP request URL.
-     *     @type \Google\Cloud\ApigeeConnect\V1\Header[]|\Google\Protobuf\Internal\RepeatedField $headers
+     *     @type array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $headers
      *           The HTTP request headers.
      *     @type string $body
      *           HTTP request body.
@@ -133,7 +133,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUrl()
     {
-        return isset($this->url) ? $this->url : null;
+        return $this->url;
     }
 
     public function hasUrl()
@@ -176,7 +176,7 @@ class HttpRequest extends \Google\Protobuf\Internal\Message
      * The HTTP request headers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.apigeeconnect.v1.Header headers = 4;</code>
-     * @param \Google\Cloud\ApigeeConnect\V1\Header[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ApigeeConnect\V1\Header>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHeaders($var)

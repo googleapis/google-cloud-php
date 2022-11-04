@@ -175,7 +175,7 @@ class AppEngineHttpTarget extends \Google\Protobuf\Internal\Message
      */
     public function getAppEngineRouting()
     {
-        return isset($this->app_engine_routing) ? $this->app_engine_routing : null;
+        return $this->app_engine_routing;
     }
 
     public function hasAppEngineRouting()

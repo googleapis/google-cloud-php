@@ -37,7 +37,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $metric_descriptors
+     *     @type array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $metric_descriptors
      *           The metric descriptors that are available to the project
      *           and that match the value of `filter`, if present.
      *     @type string $next_page_token
@@ -68,7 +68,7 @@ class ListMetricDescriptorsResponse extends \Google\Protobuf\Internal\Message
      * and that match the value of `filter`, if present.
      *
      * Generated from protobuf field <code>repeated .google.api.MetricDescriptor metric_descriptors = 1;</code>
-     * @param \Google\Api\MetricDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\MetricDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricDescriptors($var)

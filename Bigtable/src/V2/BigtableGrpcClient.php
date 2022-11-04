@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -114,6 +114,22 @@ class BigtableGrpcClient extends \Grpc\BaseStub {
         return $this->_simpleRequest('/google.bigtable.v2.Bigtable/CheckAndMutateRow',
         $argument,
         ['\Google\Cloud\Bigtable\V2\CheckAndMutateRowResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Warm up associated instance metadata for this connection.
+     * This call is not required but may be useful for connection keep-alive.
+     * @param \Google\Cloud\Bigtable\V2\PingAndWarmRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function PingAndWarm(\Google\Cloud\Bigtable\V2\PingAndWarmRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.bigtable.v2.Bigtable/PingAndWarm',
+        $argument,
+        ['\Google\Cloud\Bigtable\V2\PingAndWarmResponse', 'decode'],
         $metadata, $options);
     }
 

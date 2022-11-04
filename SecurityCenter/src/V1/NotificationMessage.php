@@ -116,7 +116,7 @@ class NotificationMessage extends \Google\Protobuf\Internal\Message
      */
     public function getResource()
     {
-        return isset($this->resource) ? $this->resource : null;
+        return $this->resource;
     }
 
     public function hasResource()

@@ -1,0 +1,8 @@
+deep-copy-regex:
+    - source: /google/longrunning/.*-php/src/(.*)
+      dest: /owl-bot-staging/LongRunning/src/ApiCore/LongRunning/$1
+    - source: /google/longrunning/.*-php/tests/(.*)
+      dest: /owl-bot-staging/LongRunning/tests/$1
+    - source: /google/longrunning/.*-php/proto/src/(.*)
+      dest: /owl-bot-staging/LongRunning/proto/src/$1
+api-name: LongRunning

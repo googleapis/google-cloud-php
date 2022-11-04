@@ -96,7 +96,7 @@ class CloudSqlConnectionProfile extends \Google\Protobuf\Internal\Message
      */
     public function getSettings()
     {
-        return isset($this->settings) ? $this->settings : null;
+        return $this->settings;
     }
 
     public function hasSettings()

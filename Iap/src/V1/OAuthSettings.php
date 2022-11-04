@@ -58,7 +58,7 @@ class OAuthSettings extends \Google\Protobuf\Internal\Message
      */
     public function getLoginHint()
     {
-        return isset($this->login_hint) ? $this->login_hint : null;
+        return $this->login_hint;
     }
 
     public function hasLoginHint()

@@ -15,12 +15,10 @@ class Detection
           return;
         }
         \GPBMetadata\Google\Cloud\Automl\V1\Geometry::initOnce();
-        \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-&google/cloud/automl/v1/detection.protogoogle.cloud.automl.v1google/protobuf/duration.protogoogle/api/annotations.proto"k
+â
+&google/cloud/automl/v1/detection.protogoogle.cloud.automl.v1"k
 ImageObjectDetectionAnnotation:
 bounding_box (2$.google.cloud.automl.v1.BoundingPoly
 score ("©

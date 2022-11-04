@@ -91,7 +91,7 @@ class CreateIdentityAwareProxyClientRequest extends \Google\Protobuf\Internal\Me
      */
     public function getIdentityAwareProxyClient()
     {
-        return isset($this->identity_aware_proxy_client) ? $this->identity_aware_proxy_client : null;
+        return $this->identity_aware_proxy_client;
     }
 
     public function hasIdentityAwareProxyClient()

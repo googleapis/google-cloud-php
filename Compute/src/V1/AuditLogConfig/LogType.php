@@ -20,18 +20,26 @@ class LogType
      */
     const UNDEFINED_LOG_TYPE = 0;
     /**
+     * Admin reads. Example: CloudIAM getIamPolicy
+     *
      * Generated from protobuf enum <code>ADMIN_READ = 128951462;</code>
      */
     const ADMIN_READ = 128951462;
     /**
+     * Data reads. Example: CloudSQL Users list
+     *
      * Generated from protobuf enum <code>DATA_READ = 305224971;</code>
      */
     const DATA_READ = 305224971;
     /**
+     * Data writes. Example: CloudSQL Users create
+     *
      * Generated from protobuf enum <code>DATA_WRITE = 340181738;</code>
      */
     const DATA_WRITE = 340181738;
     /**
+     * Default case. Should never be this.
+     *
      * Generated from protobuf enum <code>LOG_TYPE_UNSPECIFIED = 154527053;</code>
      */
     const LOG_TYPE_UNSPECIFIED = 154527053;

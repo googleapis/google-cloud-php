@@ -95,7 +95,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      */
     public function getMetadata()
     {
-        return isset($this->metadata) ? $this->metadata : null;
+        return $this->metadata;
     }
 
     public function hasMetadata()
@@ -131,7 +131,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      */
     public function getSdkInfo()
     {
-        return isset($this->sdk_info) ? $this->sdk_info : null;
+        return $this->sdk_info;
     }
 
     public function hasSdkInfo()
@@ -167,7 +167,7 @@ class ContainerSpec extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultEnvironment()
     {
-        return isset($this->default_environment) ? $this->default_environment : null;
+        return $this->default_environment;
     }
 
     public function hasDefaultEnvironment()

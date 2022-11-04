@@ -106,7 +106,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *           This id must be unique among all catalog items within the same catalog. It
      *           should also be used when logging user events in order for the user events
      *           to be joined with the Catalog.
-     *     @type \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy[]|\Google\Protobuf\Internal\RepeatedField $category_hierarchies
+     *     @type array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy>|\Google\Protobuf\Internal\RepeatedField $category_hierarchies
      *           Required. Catalog item categories. This field is repeated for supporting
      *           one catalog item belonging to several parallel category hierarchies.
      *           For example, if a shoes product belongs to both
@@ -135,7 +135,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *           supported language codes include 'en', 'es', 'fr', 'de', 'ar', 'fa', 'zh',
      *           'ja', 'ko', 'sv', 'ro', 'nl'. For other languages, contact
      *           your Google account manager.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $tags
      *           Optional. Filtering tags associated with the catalog item. Each tag should
      *           be a UTF-8 encoded string with a length limit of 1 KiB.
      *           This tag can be used for filtering recommendation results by passing the
@@ -221,7 +221,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      *      ]
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommendationengine.v1beta1.CatalogItem.CategoryHierarchy category_hierarchies = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\RecommendationEngine\V1beta1\CatalogItem\CategoryHierarchy>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategoryHierarchies($var)
@@ -296,11 +296,21 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * providing the item attributes here.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap item_attributes = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap|null
      */
     public function getItemAttributes()
     {
         return $this->item_attributes;
+    }
+
+    public function hasItemAttributes()
+    {
+        return isset($this->item_attributes);
+    }
+
+    public function clearItemAttributes()
+    {
+        unset($this->item_attributes);
     }
 
     /**
@@ -377,7 +387,7 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * tag as part of the predict request filter.
      *
      * Generated from protobuf field <code>repeated string tags = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)
@@ -424,11 +434,16 @@ class CatalogItem extends \Google\Protobuf\Internal\Message
      * Optional. Metadata specific to retail products.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ProductCatalogItem product_metadata = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem|null
      */
     public function getProductMetadata()
     {
         return $this->readOneof(10);
+    }
+
+    public function hasProductMetadata()
+    {
+        return $this->hasOneof(10);
     }
 
     /**

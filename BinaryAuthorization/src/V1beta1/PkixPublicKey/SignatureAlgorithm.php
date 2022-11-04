@@ -79,17 +79,35 @@ class SignatureAlgorithm
      */
     const ECDSA_P256_SHA256 = 9;
     /**
+     * ECDSA on the NIST P-256 curve with a SHA256 digest.
+     *
+     * Generated from protobuf enum <code>EC_SIGN_P256_SHA256 = 9;</code>
+     */
+    const EC_SIGN_P256_SHA256 = 9;
+    /**
      * ECDSA on the NIST P-384 curve with a SHA384 digest.
      *
      * Generated from protobuf enum <code>ECDSA_P384_SHA384 = 10;</code>
      */
     const ECDSA_P384_SHA384 = 10;
     /**
+     * ECDSA on the NIST P-384 curve with a SHA384 digest.
+     *
+     * Generated from protobuf enum <code>EC_SIGN_P384_SHA384 = 10;</code>
+     */
+    const EC_SIGN_P384_SHA384 = 10;
+    /**
      * ECDSA on the NIST P-521 curve with a SHA512 digest.
      *
      * Generated from protobuf enum <code>ECDSA_P521_SHA512 = 11;</code>
      */
     const ECDSA_P521_SHA512 = 11;
+    /**
+     * ECDSA on the NIST P-521 curve with a SHA512 digest.
+     *
+     * Generated from protobuf enum <code>EC_SIGN_P521_SHA512 = 11;</code>
+     */
+    const EC_SIGN_P521_SHA512 = 11;
 
     private static $valueToName = [
         self::SIGNATURE_ALGORITHM_UNSPECIFIED => 'SIGNATURE_ALGORITHM_UNSPECIFIED',
@@ -102,8 +120,11 @@ class SignatureAlgorithm
         self::RSA_SIGN_PKCS1_4096_SHA256 => 'RSA_SIGN_PKCS1_4096_SHA256',
         self::RSA_SIGN_PKCS1_4096_SHA512 => 'RSA_SIGN_PKCS1_4096_SHA512',
         self::ECDSA_P256_SHA256 => 'ECDSA_P256_SHA256',
+        self::EC_SIGN_P256_SHA256 => 'EC_SIGN_P256_SHA256',
         self::ECDSA_P384_SHA384 => 'ECDSA_P384_SHA384',
+        self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::ECDSA_P521_SHA512 => 'ECDSA_P521_SHA512',
+        self::EC_SIGN_P521_SHA512 => 'EC_SIGN_P521_SHA512',
     ];
 
     public static function name($value)

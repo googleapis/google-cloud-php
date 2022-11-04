@@ -71,7 +71,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityMarks()
     {
-        return isset($this->security_marks) ? $this->security_marks : null;
+        return $this->security_marks;
     }
 
     public function hasSecurityMarks()
@@ -110,7 +110,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -151,7 +151,7 @@ class UpdateSecurityMarksRequest extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()

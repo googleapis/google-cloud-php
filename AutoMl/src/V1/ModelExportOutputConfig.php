@@ -41,8 +41,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *            the container. The container is verified to work correctly on
      *            ubuntu 16.04 operating system. See more at
      *            [containers
-     * quickstart](https:
-     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
+     *            quickstart](https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
@@ -102,8 +101,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *                      the container. The container is verified to work correctly on
      *                      ubuntu 16.04 operating system. See more at
      *                      [containers
-     *           quickstart](https:
-     *           //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
+     *                      quickstart](https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      *           * core_ml - Used for iOS mobile devices.
      *     @type array|\Google\Protobuf\Internal\MapField $params
      *           Additional model-type and format specific parameters describing the
@@ -190,8 +188,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *            the container. The container is verified to work correctly on
      *            ubuntu 16.04 operating system. See more at
      *            [containers
-     * quickstart](https:
-     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
+     *            quickstart](https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>
@@ -228,8 +225,7 @@ class ModelExportOutputConfig extends \Google\Protobuf\Internal\Message
      *            the container. The container is verified to work correctly on
      *            ubuntu 16.04 operating system. See more at
      *            [containers
-     * quickstart](https:
-     * //cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
+     *            quickstart](https://cloud.google.com/vision/automl/docs/containers-gcs-quickstart)
      * * core_ml - Used for iOS mobile devices.
      *
      * Generated from protobuf field <code>string model_format = 4;</code>

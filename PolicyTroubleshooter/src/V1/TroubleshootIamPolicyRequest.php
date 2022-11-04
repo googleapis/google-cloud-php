@@ -48,7 +48,7 @@ class TroubleshootIamPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAccessTuple()
     {
-        return isset($this->access_tuple) ? $this->access_tuple : null;
+        return $this->access_tuple;
     }
 
     public function hasAccessTuple()

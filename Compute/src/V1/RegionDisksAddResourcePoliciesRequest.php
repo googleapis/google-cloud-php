@@ -27,7 +27,7 @@ class RegionDisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Me
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_policies
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_policies
      *           Resource policies to be added to this disk.
      * }
      */
@@ -51,7 +51,7 @@ class RegionDisksAddResourcePoliciesRequest extends \Google\Protobuf\Internal\Me
      * Resource policies to be added to this disk.
      *
      * Generated from protobuf field <code>repeated string resource_policies = 22220385;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourcePolicies($var)

@@ -14,15 +14,16 @@ class Tag
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-²
-2google/devtools/artifactregistry/v1beta2/tag.proto(google.devtools.artifactregistry.v1beta2google/api/annotations.proto"$
+Ä
+2google/devtools/artifactregistry/v1beta2/tag.proto(google.devtools.artifactregistry.v1beta2 google/protobuf/field_mask.proto"±
 Tag
 name (	
-version (	"X
+version (	:ŠêA†
+#artifactregistry.googleapis.com/Tag_projects/{project}/locations/{location}/repositories/{repository}/packages/{package}/tags/{tag}"X
 ListTagsRequest
 parent (	
 filter (	

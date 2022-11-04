@@ -18,7 +18,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      */
     private $project = '';
     /**
@@ -33,6 +33,12 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.compute.v1.SecurityPolicyRule security_policy_rule_resource = 402693443 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $security_policy_rule_resource = null;
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     */
+    private $validate_only = null;
 
     /**
      * Constructor.
@@ -46,6 +52,8 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      *           Name of the security policy to update.
      *     @type \Google\Cloud\Compute\V1\SecurityPolicyRule $security_policy_rule_resource
      *           The body resource for this request
+     *     @type bool $validate_only
+     *           If true, the request will not be committed.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,7 +64,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @return string
      */
     public function getProject()
@@ -67,7 +75,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     /**
      * Project ID for this request.
      *
-     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string project = 227560217 [(.google.api.field_behavior) = REQUIRED, (.google.cloud.operation_request_field) = "project"];</code>
      * @param string $var
      * @return $this
      */
@@ -113,7 +121,7 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecurityPolicyRuleResource()
     {
-        return isset($this->security_policy_rule_resource) ? $this->security_policy_rule_resource : null;
+        return $this->security_policy_rule_resource;
     }
 
     public function hasSecurityPolicyRuleResource()
@@ -137,6 +145,42 @@ class AddRuleSecurityPolicyRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Compute\V1\SecurityPolicyRule::class);
         $this->security_policy_rule_resource = $var;
+
+        return $this;
+    }
+
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     * @return bool
+     */
+    public function getValidateOnly()
+    {
+        return isset($this->validate_only) ? $this->validate_only : false;
+    }
+
+    public function hasValidateOnly()
+    {
+        return isset($this->validate_only);
+    }
+
+    public function clearValidateOnly()
+    {
+        unset($this->validate_only);
+    }
+
+    /**
+     * If true, the request will not be committed.
+     *
+     * Generated from protobuf field <code>optional bool validate_only = 242744629;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setValidateOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->validate_only = $var;
 
         return $this;
     }

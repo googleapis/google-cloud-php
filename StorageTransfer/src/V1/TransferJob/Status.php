@@ -20,13 +20,13 @@ class Status
      */
     const STATUS_UNSPECIFIED = 0;
     /**
-     * New transfers will be performed based on the schedule.
+     * New transfers are performed based on the schedule.
      *
      * Generated from protobuf enum <code>ENABLED = 1;</code>
      */
     const ENABLED = 1;
     /**
-     * New transfers will not be scheduled.
+     * New transfers are not scheduled.
      *
      * Generated from protobuf enum <code>DISABLED = 2;</code>
      */
@@ -69,6 +69,4 @@ class Status
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Status::class, \Google\Cloud\StorageTransfer\V1\TransferJob_Status::class);
 

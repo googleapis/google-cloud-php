@@ -7,7 +7,7 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest;
 use UnexpectedValueException;
 
 /**
- * Enum that reprensents the types of annotations.
+ * Enum that represents the types of annotations.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.AnnotateAssessmentRequest.Annotation</code>
  */
@@ -33,16 +33,18 @@ class Annotation
     const FRAUDULENT = 2;
     /**
      * Provides information that the event was related to a login event in which
-     * the user typed the correct password.
+     * the user typed the correct password. Deprecated, prefer indicating
+     * CORRECT_PASSWORD through the reasons field instead.
      *
-     * Generated from protobuf enum <code>PASSWORD_CORRECT = 3;</code>
+     * Generated from protobuf enum <code>PASSWORD_CORRECT = 3 [deprecated = true];</code>
      */
     const PASSWORD_CORRECT = 3;
     /**
      * Provides information that the event was related to a login event in which
-     * the user typed the incorrect password.
+     * the user typed the incorrect password. Deprecated, prefer indicating
+     * INCORRECT_PASSWORD through the reasons field instead.
      *
-     * Generated from protobuf enum <code>PASSWORD_INCORRECT = 4;</code>
+     * Generated from protobuf enum <code>PASSWORD_INCORRECT = 4 [deprecated = true];</code>
      */
     const PASSWORD_INCORRECT = 4;
 

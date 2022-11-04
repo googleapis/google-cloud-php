@@ -79,7 +79,7 @@ class CreateCustomDimensionRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomDimension()
     {
-        return isset($this->custom_dimension) ? $this->custom_dimension : null;
+        return $this->custom_dimension;
     }
 
     public function hasCustomDimension()

@@ -14,8 +14,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlBackupRunsDeleteRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
-     * href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
+     * The ID of the backup run to delete. To find a backup run ID, use the
+     * [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list)
      * method.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
@@ -41,8 +41,8 @@ class SqlBackupRunsDeleteRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $id
-     *           The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
-     *           href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
+     *           The ID of the backup run to delete. To find a backup run ID, use the
+     *           [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list)
      *           method.
      *     @type string $instance
      *           Cloud SQL instance ID. This does not include the project ID.
@@ -56,8 +56,8 @@ class SqlBackupRunsDeleteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
-     * href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
+     * The ID of the backup run to delete. To find a backup run ID, use the
+     * [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list)
      * method.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
@@ -69,8 +69,8 @@ class SqlBackupRunsDeleteRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of the Backup Run to delete. To find a Backup Run ID, use the <a
-     * href="/sql/docs/db_path/admin-api/rest/v1beta4/backupRuns/list">list</a>
+     * The ID of the backup run to delete. To find a backup run ID, use the
+     * [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list)
      * method.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>

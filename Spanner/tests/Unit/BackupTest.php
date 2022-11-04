@@ -33,7 +33,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 
 /**
@@ -48,6 +48,7 @@ class BackupTest extends TestCase
     const INSTANCE = 'instance-name';
     const DATABASE = 'database-name';
     const BACKUP = 'backup-name';
+    const COPIED_BACKUP = 'new-backup-name';
 
     private $connection;
     private $instance;
@@ -58,9 +59,9 @@ class BackupTest extends TestCase
     private $createTime;
     private $versionTime;
     private $backup;
+    private $copiedBackup;
 
-
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -90,6 +91,12 @@ class BackupTest extends TestCase
             'instance', 'connection'
         ];
         $this->backup = TestHelpers::stub(Backup::class, $args, $props);
+
+        // copiedBackup will contain a mock of the backup object where
+        // $backup will be copied into
+        $copyArgs = $args;
+        $copyArgs[5] = self::COPIED_BACKUP;
+        $this->copiedBackup = TestHelpers::stub(Backup::class, $copyArgs, $props);
     }
 
     public function testName()
@@ -120,6 +127,24 @@ class BackupTest extends TestCase
         $op = $this->backup->create(self::DATABASE, $this->expireTime, [
             'versionTime' => $this->versionTime,
         ]);
+        $this->assertInstanceOf(LongRunningOperation::class, $op);
+    }
+
+    public function testCreateCopy()
+    {
+        $this->connection->copyBackup(Argument::allOf(
+            Argument::withEntry('instance', InstanceAdminClient::instanceName(self::PROJECT_ID, self::INSTANCE)),
+            Argument::withEntry('backupId', self::COPIED_BACKUP),
+            Argument::withKey('sourceBackupId'),
+            Argument::withEntry('expireTime', $this->expireTime->format('Y-m-d\TH:i:s.u\Z'))
+        ))
+            ->shouldBeCalled()
+            ->willReturn([
+                'name' => 'my-operation'
+            ]);
+
+        $this->backup->___setProperty('connection', $this->connection->reveal());
+        $op = $this->backup->createCopy($this->copiedBackup, $this->expireTime);
         $this->assertInstanceOf(LongRunningOperation::class, $op);
     }
 

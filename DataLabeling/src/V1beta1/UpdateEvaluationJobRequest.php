@@ -65,7 +65,7 @@ class UpdateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationJob()
     {
-        return isset($this->evaluation_job) ? $this->evaluation_job : null;
+        return $this->evaluation_job;
     }
 
     public function hasEvaluationJob()
@@ -107,7 +107,7 @@ class UpdateEvaluationJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

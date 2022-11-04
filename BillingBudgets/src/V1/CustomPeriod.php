@@ -57,7 +57,7 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return isset($this->start_date) ? $this->start_date : null;
+        return $this->start_date;
     }
 
     public function hasStartDate()
@@ -95,7 +95,7 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      */
     public function getEndDate()
     {
-        return isset($this->end_date) ? $this->end_date : null;
+        return $this->end_date;
     }
 
     public function hasEndDate()

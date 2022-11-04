@@ -54,7 +54,7 @@ class SentimentAnalysisResult extends \Google\Protobuf\Internal\Message
      */
     public function getQueryTextSentiment()
     {
-        return isset($this->query_text_sentiment) ? $this->query_text_sentiment : null;
+        return $this->query_text_sentiment;
     }
 
     public function hasQueryTextSentiment()

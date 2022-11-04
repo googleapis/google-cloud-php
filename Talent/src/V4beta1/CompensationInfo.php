@@ -49,7 +49,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry[]|\Google\Protobuf\Internal\RepeatedField $entries
+     *     @type array<\Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry>|\Google\Protobuf\Internal\RepeatedField $entries
      *           Job compensation information.
      *           At most one entry can be of type
      *           [CompensationInfo.CompensationType.BASE][google.cloud.talent.v4beta1.CompensationInfo.CompensationType.BASE], which is
@@ -92,7 +92,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      * referred as **base compensation entry** for the job.
      *
      * Generated from protobuf field <code>repeated .google.cloud.talent.v4beta1.CompensationInfo.CompensationEntry entries = 1;</code>
-     * @param \Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Talent\V4beta1\CompensationInfo\CompensationEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEntries($var)
@@ -114,7 +114,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedBaseCompensationRange()
     {
-        return isset($this->annualized_base_compensation_range) ? $this->annualized_base_compensation_range : null;
+        return $this->annualized_base_compensation_range;
     }
 
     public function hasAnnualizedBaseCompensationRange()
@@ -156,7 +156,7 @@ class CompensationInfo extends \Google\Protobuf\Internal\Message
      */
     public function getAnnualizedTotalCompensationRange()
     {
-        return isset($this->annualized_total_compensation_range) ? $this->annualized_total_compensation_range : null;
+        return $this->annualized_total_compensation_range;
     }
 
     public function hasAnnualizedTotalCompensationRange()

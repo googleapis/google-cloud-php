@@ -50,6 +50,17 @@ return [
                     ],
                 ],
             ],
+            'BatchGetEffectiveIamPolicies' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{scope=*/*}/effectiveIamPolicies:batchGet',
+                'placeholders' => [
+                    'scope' => [
+                        'getters' => [
+                            'getScope',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFeed' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',
@@ -62,9 +73,35 @@ return [
                     ],
                 ],
             ],
+            'CreateSavedQuery' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}/savedQueries',
+                'body' => 'saved_query',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'saved_query_id',
+                ],
+            ],
             'DeleteFeed' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=*/*/feeds/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteSavedQuery' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=*/*/savedQueries/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -96,6 +133,17 @@ return [
                     ],
                 ],
             ],
+            'GetSavedQuery' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=*/*/savedQueries/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAssets' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}/assets',
@@ -110,6 +158,29 @@ return [
             'ListFeeds' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=*/*}/feeds',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListSavedQueries' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=*/*}/savedQueries',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'QueryAssets' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=*/*}:queryAssets',
+                'body' => '*',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -153,45 +224,27 @@ return [
                     ],
                 ],
             ],
+            'UpdateSavedQuery' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{saved_query.name=*/*/savedQueries/*}',
+                'body' => 'saved_query',
+                'placeholders' => [
+                    'saved_query.name' => [
+                        'getters' => [
+                            'getSavedQuery',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
         ],
         'google.longrunning.Operations' => [
             'GetOperation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha1/{name=projects/*/operations/*/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha2/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=projects/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=folders/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1beta1/{name=organizations/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=*/*/operations/*/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=*/*/operations/*/**}',
-                    ],
-                ],
+                'uriTemplate' => '/v1/{name=*/*/operations/*/**}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

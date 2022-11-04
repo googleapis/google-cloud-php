@@ -91,14 +91,14 @@ class ClusterManagerClientTest extends GeneratedTest
     public function cancelOperationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
-        $client->cancelOperation();
+        $gapicClient->cancelOperation();
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -113,7 +113,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function cancelOperationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,8 +128,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->cancelOperation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->cancelOperation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -146,7 +146,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function completeIPRotationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -171,7 +171,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->completeIPRotation();
+        $response = $gapicClient->completeIPRotation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -187,7 +187,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function completeIPRotationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -202,8 +202,63 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->completeIPRotation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->completeIPRotation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function completeNodePoolUpgradeTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new GPBEmpty();
+        $transport->addResponse($expectedResponse);
+        $gapicClient->completeNodePoolUpgrade();
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.container.v1.ClusterManager/CompleteNodePoolUpgrade', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function completeNodePoolUpgradeExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->completeNodePoolUpgrade();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -220,7 +275,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function createClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -247,7 +302,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $cluster = new Cluster();
-        $response = $client->createCluster($cluster);
+        $response = $gapicClient->createCluster($cluster);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -265,7 +320,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function createClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -282,8 +337,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $cluster = new Cluster();
         try {
-            $client->createCluster($cluster);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createCluster($cluster);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -300,7 +355,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function createNodePoolTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -327,7 +382,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $nodePool = new NodePool();
-        $response = $client->createNodePool($nodePool);
+        $response = $gapicClient->createNodePool($nodePool);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -345,7 +400,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function createNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -362,8 +417,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $nodePool = new NodePool();
         try {
-            $client->createNodePool($nodePool);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createNodePool($nodePool);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -380,7 +435,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function deleteClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -405,7 +460,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->deleteCluster();
+        $response = $gapicClient->deleteCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -421,7 +476,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function deleteClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -436,8 +491,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteCluster();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteCluster();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -454,7 +509,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function deleteNodePoolTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -479,7 +534,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->deleteNodePool();
+        $response = $gapicClient->deleteNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -495,7 +550,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function deleteNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -510,8 +565,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->deleteNodePool();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteNodePool();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -528,7 +583,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -558,6 +613,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $location = 'location1901043637';
         $enableTpu = false;
         $tpuIpv4CidrBlock = 'tpuIpv4CidrBlock1137906646';
+        $id = 'id3355';
         $expectedResponse = new Cluster();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
@@ -584,8 +640,9 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setLocation($location);
         $expectedResponse->setEnableTpu($enableTpu);
         $expectedResponse->setTpuIpv4CidrBlock($tpuIpv4CidrBlock);
+        $expectedResponse->setId($id);
         $transport->addResponse($expectedResponse);
-        $response = $client->getCluster();
+        $response = $gapicClient->getCluster();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -601,7 +658,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -616,8 +673,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getCluster();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getCluster();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -634,14 +691,14 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getJSONWebKeysTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new GetJSONWebKeysResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->getJSONWebKeys();
+        $response = $gapicClient->getJSONWebKeys();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -657,7 +714,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getJSONWebKeysExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -672,8 +729,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getJSONWebKeys();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getJSONWebKeys();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -690,7 +747,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getNodePoolTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -709,7 +766,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStatusMessage($statusMessage);
         $expectedResponse->setPodIpv4CidrSize($podIpv4CidrSize);
         $transport->addResponse($expectedResponse);
-        $response = $client->getNodePool();
+        $response = $gapicClient->getNodePool();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -725,7 +782,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -740,8 +797,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getNodePool();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getNodePool();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -758,7 +815,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getOperationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -783,7 +840,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->getOperation();
+        $response = $gapicClient->getOperation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -799,7 +856,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getOperationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -814,8 +871,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getOperation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getOperation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -832,7 +889,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getServerConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -843,7 +900,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setDefaultClusterVersion($defaultClusterVersion);
         $expectedResponse->setDefaultImageType($defaultImageType);
         $transport->addResponse($expectedResponse);
-        $response = $client->getServerConfig();
+        $response = $gapicClient->getServerConfig();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -859,7 +916,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function getServerConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -874,8 +931,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getServerConfig();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getServerConfig();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -892,14 +949,14 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listClustersTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new ListClustersResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->listClusters();
+        $response = $gapicClient->listClusters();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -915,7 +972,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listClustersExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -930,8 +987,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listClusters();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listClusters();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -948,14 +1005,14 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listNodePoolsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new ListNodePoolsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->listNodePools();
+        $response = $gapicClient->listNodePools();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -971,7 +1028,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listNodePoolsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -986,8 +1043,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listNodePools();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listNodePools();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1004,14 +1061,14 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listOperationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $expectedResponse = new ListOperationsResponse();
         $transport->addResponse($expectedResponse);
-        $response = $client->listOperations();
+        $response = $gapicClient->listOperations();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1027,7 +1084,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listOperationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1042,8 +1099,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listOperations();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listOperations();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1060,7 +1117,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listUsableSubnetworksTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1074,7 +1131,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setNextPageToken($nextPageToken);
         $expectedResponse->setSubnetworks($subnetworks);
         $transport->addResponse($expectedResponse);
-        $response = $client->listUsableSubnetworks();
+        $response = $gapicClient->listUsableSubnetworks();
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1093,7 +1150,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function listUsableSubnetworksExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1108,8 +1165,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->listUsableSubnetworks();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listUsableSubnetworks();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1126,7 +1183,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function rollbackNodePoolUpgradeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1151,7 +1208,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->rollbackNodePoolUpgrade();
+        $response = $gapicClient->rollbackNodePoolUpgrade();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1167,7 +1224,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function rollbackNodePoolUpgradeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1182,8 +1239,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->rollbackNodePoolUpgrade();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->rollbackNodePoolUpgrade();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1200,7 +1257,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setAddonsConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1227,7 +1284,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $addonsConfig = new AddonsConfig();
-        $response = $client->setAddonsConfig($addonsConfig);
+        $response = $gapicClient->setAddonsConfig($addonsConfig);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1245,7 +1302,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setAddonsConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1262,8 +1319,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $addonsConfig = new AddonsConfig();
         try {
-            $client->setAddonsConfig($addonsConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setAddonsConfig($addonsConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1280,7 +1337,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLabelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1311,7 +1368,7 @@ class ClusterManagerClientTest extends GeneratedTest
             'resourceLabelsKey' => $resourceLabelsValue,
         ];
         $labelFingerprint = 'labelFingerprint714995737';
-        $response = $client->setLabels($resourceLabels, $labelFingerprint);
+        $response = $gapicClient->setLabels($resourceLabels, $labelFingerprint);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1331,7 +1388,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLabelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1352,8 +1409,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ];
         $labelFingerprint = 'labelFingerprint714995737';
         try {
-            $client->setLabels($resourceLabels, $labelFingerprint);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setLabels($resourceLabels, $labelFingerprint);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1370,7 +1427,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLegacyAbacTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1397,7 +1454,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $enabled = false;
-        $response = $client->setLegacyAbac($enabled);
+        $response = $gapicClient->setLegacyAbac($enabled);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1415,7 +1472,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLegacyAbacExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1432,8 +1489,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $enabled = false;
         try {
-            $client->setLegacyAbac($enabled);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setLegacyAbac($enabled);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1450,7 +1507,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLocationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1477,7 +1534,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $locations = [];
-        $response = $client->setLocations($locations);
+        $response = $gapicClient->setLocations($locations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1495,7 +1552,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLocationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1512,8 +1569,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $locations = [];
         try {
-            $client->setLocations($locations);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setLocations($locations);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1530,7 +1587,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLoggingServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1557,7 +1614,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $loggingService = 'loggingService-1700501035';
-        $response = $client->setLoggingService($loggingService);
+        $response = $gapicClient->setLoggingService($loggingService);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1575,7 +1632,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setLoggingServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1592,8 +1649,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $loggingService = 'loggingService-1700501035';
         try {
-            $client->setLoggingService($loggingService);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setLoggingService($loggingService);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1610,7 +1667,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMaintenancePolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1640,7 +1697,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $zone = 'zone3744684';
         $clusterId = 'clusterId240280960';
         $maintenancePolicy = new MaintenancePolicy();
-        $response = $client->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+        $response = $gapicClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1664,7 +1721,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMaintenancePolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1684,8 +1741,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $clusterId = 'clusterId240280960';
         $maintenancePolicy = new MaintenancePolicy();
         try {
-            $client->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setMaintenancePolicy($projectId, $zone, $clusterId, $maintenancePolicy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1702,7 +1759,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMasterAuthTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1730,7 +1787,7 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $action = Action::UNKNOWN;
         $update = new MasterAuth();
-        $response = $client->setMasterAuth($action, $update);
+        $response = $gapicClient->setMasterAuth($action, $update);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1750,7 +1807,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMasterAuthExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1768,8 +1825,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $action = Action::UNKNOWN;
         $update = new MasterAuth();
         try {
-            $client->setMasterAuth($action, $update);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setMasterAuth($action, $update);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1786,7 +1843,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMonitoringServiceTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1813,7 +1870,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $monitoringService = 'monitoringService1469270462';
-        $response = $client->setMonitoringService($monitoringService);
+        $response = $gapicClient->setMonitoringService($monitoringService);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1831,7 +1888,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setMonitoringServiceExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1848,8 +1905,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $monitoringService = 'monitoringService1469270462';
         try {
-            $client->setMonitoringService($monitoringService);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setMonitoringService($monitoringService);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1866,7 +1923,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNetworkPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1893,7 +1950,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $networkPolicy = new NetworkPolicy();
-        $response = $client->setNetworkPolicy($networkPolicy);
+        $response = $gapicClient->setNetworkPolicy($networkPolicy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1911,7 +1968,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNetworkPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1928,8 +1985,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $networkPolicy = new NetworkPolicy();
         try {
-            $client->setNetworkPolicy($networkPolicy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setNetworkPolicy($networkPolicy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1946,7 +2003,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolAutoscalingTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1973,7 +2030,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $autoscaling = new NodePoolAutoscaling();
-        $response = $client->setNodePoolAutoscaling($autoscaling);
+        $response = $gapicClient->setNodePoolAutoscaling($autoscaling);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1991,7 +2048,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolAutoscalingExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2008,8 +2065,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $autoscaling = new NodePoolAutoscaling();
         try {
-            $client->setNodePoolAutoscaling($autoscaling);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setNodePoolAutoscaling($autoscaling);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2026,7 +2083,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolManagementTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2053,7 +2110,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $management = new NodeManagement();
-        $response = $client->setNodePoolManagement($management);
+        $response = $gapicClient->setNodePoolManagement($management);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2071,7 +2128,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolManagementExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2088,8 +2145,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $management = new NodeManagement();
         try {
-            $client->setNodePoolManagement($management);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setNodePoolManagement($management);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2106,7 +2163,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolSizeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2133,7 +2190,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $nodeCount = 1539922066;
-        $response = $client->setNodePoolSize($nodeCount);
+        $response = $gapicClient->setNodePoolSize($nodeCount);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2151,7 +2208,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function setNodePoolSizeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2168,8 +2225,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $nodeCount = 1539922066;
         try {
-            $client->setNodePoolSize($nodeCount);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setNodePoolSize($nodeCount);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2186,7 +2243,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function startIPRotationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2211,7 +2268,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $expectedResponse->setStartTime($startTime);
         $expectedResponse->setEndTime($endTime);
         $transport->addResponse($expectedResponse);
-        $response = $client->startIPRotation();
+        $response = $gapicClient->startIPRotation();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2227,7 +2284,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function startIPRotationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2242,8 +2299,8 @@ class ClusterManagerClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->startIPRotation();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->startIPRotation();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2260,7 +2317,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateClusterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2287,7 +2344,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $update = new ClusterUpdate();
-        $response = $client->updateCluster($update);
+        $response = $gapicClient->updateCluster($update);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2305,7 +2362,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateClusterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2322,8 +2379,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $update = new ClusterUpdate();
         try {
-            $client->updateCluster($update);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateCluster($update);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2340,7 +2397,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateMasterTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2367,7 +2424,7 @@ class ClusterManagerClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $masterVersion = 'masterVersion-2139460613';
-        $response = $client->updateMaster($masterVersion);
+        $response = $gapicClient->updateMaster($masterVersion);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2385,7 +2442,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateMasterExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2402,8 +2459,8 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $masterVersion = 'masterVersion-2139460613';
         try {
-            $client->updateMaster($masterVersion);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateMaster($masterVersion);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2420,7 +2477,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateNodePoolTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2448,7 +2505,7 @@ class ClusterManagerClientTest extends GeneratedTest
         // Mock request
         $nodeVersion = 'nodeVersion1790136219';
         $imageType = 'imageType-1442758754';
-        $response = $client->updateNodePool($nodeVersion, $imageType);
+        $response = $gapicClient->updateNodePool($nodeVersion, $imageType);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2468,7 +2525,7 @@ class ClusterManagerClientTest extends GeneratedTest
     public function updateNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2486,8 +2543,8 @@ class ClusterManagerClientTest extends GeneratedTest
         $nodeVersion = 'nodeVersion1790136219';
         $imageType = 'imageType-1442758754';
         try {
-            $client->updateNodePool($nodeVersion, $imageType);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateNodePool($nodeVersion, $imageType);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

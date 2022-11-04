@@ -19,7 +19,7 @@ namespace Google\Cloud\Core\Tests\Unit\Lock;
 
 use Google\Cloud\Core\Lock\FlockLock;
 use Google\Cloud\Core\Testing\Lock\MockValues;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group core
@@ -31,47 +31,43 @@ class FlockLockTest extends TestCase
 
     const LOCK_NAME = 'test';
 
-    public function setUp()
+    public function set_up()
     {
         MockValues::initialize();
         $this->setLock(new FlockLock(self::LOCK_NAME));
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testThrowsExceptionWithInvalidFileName()
     {
+        $this->expectException('\InvalidArgumentException');
+
         new FlockLock(123);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to acquire lock.
-     */
     public function testThrowsExceptionWhenFlockFailsOnAcquire()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to acquire lock.');
+
         MockValues::$flockReturnValue = false;
         $this->lock->acquire();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to release lock.
-     */
     public function testThrowsExceptionWhenFlockFailsOnRelease()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to release lock.');
+
         $this->lock->acquire();
         MockValues::$flockReturnValue = false;
         $this->lock->release();
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Failed to open lock file.
-     */
     public function testThrowsExceptionWhenFopenFails()
     {
+        $this->expectException('\RuntimeException');
+        $this->expectExceptionMessage('Failed to open lock file.');
+
         MockValues::$fopenReturnValue = false;
         $this->lock->acquire();
     }

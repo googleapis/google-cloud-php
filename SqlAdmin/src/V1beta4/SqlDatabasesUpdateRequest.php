@@ -140,7 +140,7 @@ class SqlDatabasesUpdateRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBody()
     {
-        return isset($this->body) ? $this->body : null;
+        return $this->body;
     }
 
     public function hasBody()

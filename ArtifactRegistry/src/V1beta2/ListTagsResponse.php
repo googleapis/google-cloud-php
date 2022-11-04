@@ -35,7 +35,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Tag[]|\Google\Protobuf\Internal\RepeatedField $tags
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\Tag>|\Google\Protobuf\Internal\RepeatedField $tags
      *           The tags returned.
      *     @type string $next_page_token
      *           The token to retrieve the next page of tags, or empty if there are no
@@ -62,7 +62,7 @@ class ListTagsResponse extends \Google\Protobuf\Internal\Message
      * The tags returned.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Tag tags = 1;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Tag[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\Tag>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTags($var)

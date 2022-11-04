@@ -113,7 +113,7 @@ class CreateNodeRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNode()
     {
-        return isset($this->node) ? $this->node : null;
+        return $this->node;
     }
 
     public function hasNode()

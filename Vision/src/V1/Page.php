@@ -62,7 +62,7 @@ class Page extends \Google\Protobuf\Internal\Message
      *     @type int $height
      *           Page height. For PDFs the unit is points. For images (including
      *           TIFFs) the unit is pixels.
-     *     @type \Google\Cloud\Vision\V1\Block[]|\Google\Protobuf\Internal\RepeatedField $blocks
+     *     @type array<\Google\Cloud\Vision\V1\Block>|\Google\Protobuf\Internal\RepeatedField $blocks
      *           List of blocks of text, images etc on this page.
      *     @type float $confidence
      *           Confidence of the OCR results on the page. Range [0, 1].
@@ -81,7 +81,7 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     public function getProperty()
     {
-        return isset($this->property) ? $this->property : null;
+        return $this->property;
     }
 
     public function hasProperty()
@@ -180,7 +180,7 @@ class Page extends \Google\Protobuf\Internal\Message
      * List of blocks of text, images etc on this page.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Block blocks = 4;</code>
-     * @param \Google\Cloud\Vision\V1\Block[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Block>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBlocks($var)

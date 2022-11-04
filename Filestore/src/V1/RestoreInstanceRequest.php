@@ -24,8 +24,8 @@ class RestoreInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Required. Name of the file share in the Cloud Filestore instance that the backup
-     * is being restored to.
+     * Required. Name of the file share in the Cloud Filestore instance that the
+     * backup is being restored to.
      *
      * Generated from protobuf field <code>string file_share = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -42,8 +42,8 @@ class RestoreInstanceRequest extends \Google\Protobuf\Internal\Message
      *           Required. The resource name of the instance, in the format
      *           `projects/{project_number}/locations/{location_id}/instances/{instance_id}`.
      *     @type string $file_share
-     *           Required. Name of the file share in the Cloud Filestore instance that the backup
-     *           is being restored to.
+     *           Required. Name of the file share in the Cloud Filestore instance that the
+     *           backup is being restored to.
      *     @type string $source_backup
      *           The resource name of the backup, in the format
      *           `projects/{project_number}/locations/{location_id}/backups/{backup_id}`.
@@ -83,8 +83,8 @@ class RestoreInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the file share in the Cloud Filestore instance that the backup
-     * is being restored to.
+     * Required. Name of the file share in the Cloud Filestore instance that the
+     * backup is being restored to.
      *
      * Generated from protobuf field <code>string file_share = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -95,8 +95,8 @@ class RestoreInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the file share in the Cloud Filestore instance that the backup
-     * is being restored to.
+     * Required. Name of the file share in the Cloud Filestore instance that the
+     * backup is being restored to.
      *
      * Generated from protobuf field <code>string file_share = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

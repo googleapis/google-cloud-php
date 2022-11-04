@@ -95,7 +95,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           `calendar.googleapis.com`.
      *     @type string $title
      *           The product title for this service.
-     *     @type \Google\Protobuf\Api[]|\Google\Protobuf\Internal\RepeatedField $apis
+     *     @type array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $apis
      *           A list of API interfaces exported by this service. Contains only the names,
      *           versions, and method names of the interfaces.
      *     @type \Google\Api\Documentation $documentation
@@ -107,10 +107,10 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      *           Auth configuration. Contains only the OAuth rules.
      *     @type \Google\Api\Usage $usage
      *           Configuration controlling usage of this service.
-     *     @type \Google\Api\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Configuration for network endpoints. Contains only the names and aliases
      *           of the endpoints.
-     *     @type \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $monitored_resources
+     *     @type array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $monitored_resources
      *           Defines the monitored resources used by this service. This is required
      *           by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *     @type \Google\Api\Monitoring $monitoring
@@ -196,7 +196,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * versions, and method names of the interfaces.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Api apis = 3;</code>
-     * @param \Google\Protobuf\Api[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Api>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setApis($var)
@@ -216,7 +216,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getDocumentation()
     {
-        return isset($this->documentation) ? $this->documentation : null;
+        return $this->documentation;
     }
 
     public function hasDocumentation()
@@ -253,7 +253,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQuota()
     {
-        return isset($this->quota) ? $this->quota : null;
+        return $this->quota;
     }
 
     public function hasQuota()
@@ -289,7 +289,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getAuthentication()
     {
-        return isset($this->authentication) ? $this->authentication : null;
+        return $this->authentication;
     }
 
     public function hasAuthentication()
@@ -325,7 +325,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUsage()
     {
-        return isset($this->usage) ? $this->usage : null;
+        return $this->usage;
     }
 
     public function hasUsage()
@@ -370,7 +370,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * of the endpoints.
      *
      * Generated from protobuf field <code>repeated .google.api.Endpoint endpoints = 18;</code>
-     * @param \Google\Api\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -398,7 +398,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      * by the [Service.monitoring][google.api.Service.monitoring] and [Service.logging][google.api.Service.logging] configurations.
      *
      * Generated from protobuf field <code>repeated .google.api.MonitoredResourceDescriptor monitored_resources = 25;</code>
-     * @param \Google\Api\MonitoredResourceDescriptor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Api\MonitoredResourceDescriptor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMonitoredResources($var)
@@ -418,7 +418,7 @@ class ServiceConfig extends \Google\Protobuf\Internal\Message
      */
     public function getMonitoring()
     {
-        return isset($this->monitoring) ? $this->monitoring : null;
+        return $this->monitoring;
     }
 
     public function hasMonitoring()

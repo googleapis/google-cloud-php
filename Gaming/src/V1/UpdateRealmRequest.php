@@ -25,9 +25,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,9 +43,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The update mask applies to the resource. For the `FieldMask`
      *           definition, see
-     *           https:
-     *           //developers.google.com/protocol-buffers
-     *           // /docs/reference/google.protobuf#fieldmask
+     *           https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      * }
      */
     public function __construct($data = NULL) {
@@ -64,7 +60,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRealm()
     {
-        return isset($this->realm) ? $this->realm : null;
+        return $this->realm;
     }
 
     public function hasRealm()
@@ -96,16 +92,14 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -121,9 +115,7 @@ class UpdateRealmRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The update mask applies to the resource. For the `FieldMask`
      * definition, see
-     * https:
-     * //developers.google.com/protocol-buffers
-     * // /docs/reference/google.protobuf#fieldmask
+     * https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *
      * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Protobuf\FieldMask $var

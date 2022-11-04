@@ -16,8 +16,9 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
 {
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Check the HealthStatus enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
+     * Generated from protobuf field <code>optional string health_status = 380545845;</code>
      */
     private $health_status = null;
 
@@ -27,8 +28,9 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type int $health_status
+     *     @type string $health_status
      *           Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     *           Check the HealthStatus enum for the list of possible values.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,13 +40,14 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
 
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Check the HealthStatus enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
-     * @return int
+     * Generated from protobuf field <code>optional string health_status = 380545845;</code>
+     * @return string
      */
     public function getHealthStatus()
     {
-        return isset($this->health_status) ? $this->health_status : 0;
+        return isset($this->health_status) ? $this->health_status : '';
     }
 
     public function hasHealthStatus()
@@ -59,14 +62,15 @@ class NetworkEndpointGroupsListEndpointsRequest extends \Google\Protobuf\Interna
 
     /**
      * Optional query parameter for showing the health status of each network endpoint. Valid options are SKIP or SHOW. If you don't specify this parameter, the health status of network endpoints will not be provided.
+     * Check the HealthStatus enum for the list of possible values.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.NetworkEndpointGroupsListEndpointsRequest.HealthStatus health_status = 380545845;</code>
-     * @param int $var
+     * Generated from protobuf field <code>optional string health_status = 380545845;</code>
+     * @param string $var
      * @return $this
      */
     public function setHealthStatus($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest\HealthStatus::class);
+        GPBUtil::checkString($var, True);
         $this->health_status = $var;
 
         return $this;

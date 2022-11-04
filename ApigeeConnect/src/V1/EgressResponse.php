@@ -125,7 +125,7 @@ class EgressResponse extends \Google\Protobuf\Internal\Message
      */
     public function getHttpResponse()
     {
-        return isset($this->http_response) ? $this->http_response : null;
+        return $this->http_response;
     }
 
     public function hasHttpResponse()
@@ -161,7 +161,7 @@ class EgressResponse extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()

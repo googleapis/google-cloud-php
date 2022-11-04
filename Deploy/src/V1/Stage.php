@@ -19,9 +19,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      */
@@ -33,6 +33,12 @@ class Stage extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
      */
     private $profiles;
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $strategy = null;
 
     /**
      * Constructor.
@@ -44,12 +50,14 @@ class Stage extends \Google\Protobuf\Internal\Message
      *           The target_id to which this stage points. This field refers exclusively to
      *           the last segment of a target name. For example, this field would just be
      *           `my-target` (rather than
-     *           `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     *           parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     *           `DeliveryPipeline` of the `Release` in which this `Stage` lives.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $profiles
+     *           `projects/project/locations/location/targets/my-target`). The location of
+     *           the `Target` is inferred to be the same as the location of the
+     *           `DeliveryPipeline` that contains this `Stage`.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $profiles
      *           Skaffold profiles to use when rendering the manifest for this stage's
      *           `Target`.
+     *     @type \Google\Cloud\Deploy\V1\Strategy $strategy
+     *           Optional. The strategy to use for a `Rollout` to this stage.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,9 +69,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      * @return string
@@ -77,9 +85,9 @@ class Stage extends \Google\Protobuf\Internal\Message
      * The target_id to which this stage points. This field refers exclusively to
      * the last segment of a target name. For example, this field would just be
      * `my-target` (rather than
-     * `projects/project/deliveryPipelines/pipeline/targets/my-target`). The
-     * parent `DeliveryPipeline` of the `Target` is inferred to be the parent
-     * `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * `projects/project/locations/location/targets/my-target`). The location of
+     * the `Target` is inferred to be the same as the location of the
+     * `DeliveryPipeline` that contains this `Stage`.
      *
      * Generated from protobuf field <code>string target_id = 1;</code>
      * @param string $var
@@ -110,13 +118,49 @@ class Stage extends \Google\Protobuf\Internal\Message
      * `Target`.
      *
      * Generated from protobuf field <code>repeated string profiles = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProfiles($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->profiles = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Deploy\V1\Strategy|null
+     */
+    public function getStrategy()
+    {
+        return $this->strategy;
+    }
+
+    public function hasStrategy()
+    {
+        return isset($this->strategy);
+    }
+
+    public function clearStrategy()
+    {
+        unset($this->strategy);
+    }
+
+    /**
+     * Optional. The strategy to use for a `Rollout` to this stage.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.Strategy strategy = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Deploy\V1\Strategy $var
+     * @return $this
+     */
+    public function setStrategy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\Strategy::class);
+        $this->strategy = $var;
 
         return $this;
     }

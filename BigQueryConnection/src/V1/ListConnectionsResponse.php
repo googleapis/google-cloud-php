@@ -36,7 +36,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type string $next_page_token
      *           Next page token.
-     *     @type \Google\Cloud\BigQuery\Connection\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $connections
+     *     @type array<\Google\Cloud\BigQuery\Connection\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $connections
      *           List of connections.
      * }
      */
@@ -86,7 +86,7 @@ class ListConnectionsResponse extends \Google\Protobuf\Internal\Message
      * List of connections.
      *
      * Generated from protobuf field <code>repeated .google.cloud.bigquery.connection.v1.Connection connections = 2;</code>
-     * @param \Google\Cloud\BigQuery\Connection\V1\Connection[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BigQuery\Connection\V1\Connection>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConnections($var)

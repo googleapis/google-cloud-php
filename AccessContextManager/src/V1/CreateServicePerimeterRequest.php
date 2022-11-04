@@ -99,7 +99,7 @@ class CreateServicePerimeterRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServicePerimeter()
     {
-        return isset($this->service_perimeter) ? $this->service_perimeter : null;
+        return $this->service_perimeter;
     }
 
     public function hasServicePerimeter()

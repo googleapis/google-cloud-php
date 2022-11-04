@@ -74,6 +74,4 @@ class CompletionType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CompletionType::class, \Google\Cloud\Talent\V4\CompleteQueryRequest_CompletionType::class);
 

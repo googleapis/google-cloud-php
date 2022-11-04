@@ -18,8 +18,11 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * RECOMMENDER_ID refers to supported recommenders:
@@ -29,26 +32,35 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      */
     private $parent = '';
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_size = 0;
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
     /**
      * Filter expression to restrict the recommendations returned. Supported
-     * filter fields: state_info.state
-     * Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * filter fields:
+     * * `state_info.state`
+     * * `recommenderSubtype`
+     * * `priority`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+     * * `priority = P1 OR priority = P2`
+     * * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      */
@@ -63,25 +75,37 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The container resource on which to execute the request.
      *           Acceptable formats:
-     *           1.
-     *           "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+     *           * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *           * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *           * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *           * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     *           * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
      *           LOCATION here refers to GCP Locations:
      *           https://cloud.google.com/about/locations/
      *           RECOMMENDER_ID refers to supported recommenders:
      *           https://cloud.google.com/recommender/docs/recommenders.
      *     @type int $page_size
-     *           Optional. The maximum number of results to return from this request.  Non-positive
-     *           values are ignored. If not specified, the server will determine the number
-     *           of results to return.
+     *           Optional. The maximum number of results to return from this request.
+     *           Non-positive values are ignored. If not specified, the server will
+     *           determine the number of results to return.
      *     @type string $page_token
-     *           Optional. If present, retrieves the next batch of results from the preceding call to
-     *           this method. `page_token` must be the value of `next_page_token` from the
-     *           previous response. The values of other method parameters must be identical
-     *           to those in the previous call.
+     *           Optional. If present, retrieves the next batch of results from the
+     *           preceding call to this method. `page_token` must be the value of
+     *           `next_page_token` from the previous response. The values of other method
+     *           parameters must be identical to those in the previous call.
      *     @type string $filter
      *           Filter expression to restrict the recommendations returned. Supported
-     *           filter fields: state_info.state
-     *           Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *           filter fields:
+     *           * `state_info.state`
+     *           * `recommenderSubtype`
+     *           * `priority`
+     *           Examples:
+     *           * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     *           * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+     *           * `priority = P1 OR priority = P2`
+     *           * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     *           (These expressions are based on the filter language described at
+     *           https://google.aip.dev/160)
      * }
      */
     public function __construct($data = NULL) {
@@ -92,8 +116,11 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * RECOMMENDER_ID refers to supported recommenders:
@@ -110,8 +137,11 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The container resource on which to execute the request.
      * Acceptable formats:
-     * 1.
-     * "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]",
+     * * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
+     * * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]`
      * LOCATION here refers to GCP Locations:
      * https://cloud.google.com/about/locations/
      * RECOMMENDER_ID refers to supported recommenders:
@@ -130,9 +160,9 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int
@@ -143,9 +173,9 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The maximum number of results to return from this request.  Non-positive
-     * values are ignored. If not specified, the server will determine the number
-     * of results to return.
+     * Optional. The maximum number of results to return from this request.
+     * Non-positive values are ignored. If not specified, the server will
+     * determine the number of results to return.
      *
      * Generated from protobuf field <code>int32 page_size = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param int $var
@@ -160,10 +190,10 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -174,10 +204,10 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. If present, retrieves the next batch of results from the preceding call to
-     * this method. `page_token` must be the value of `next_page_token` from the
-     * previous response. The values of other method parameters must be identical
-     * to those in the previous call.
+     * Optional. If present, retrieves the next batch of results from the
+     * preceding call to this method. `page_token` must be the value of
+     * `next_page_token` from the previous response. The values of other method
+     * parameters must be identical to those in the previous call.
      *
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -193,8 +223,17 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter expression to restrict the recommendations returned. Supported
-     * filter fields: state_info.state
-     * Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * filter fields:
+     * * `state_info.state`
+     * * `recommenderSubtype`
+     * * `priority`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+     * * `priority = P1 OR priority = P2`
+     * * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @return string
@@ -206,8 +245,17 @@ class ListRecommendationsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Filter expression to restrict the recommendations returned. Supported
-     * filter fields: state_info.state
-     * Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * filter fields:
+     * * `state_info.state`
+     * * `recommenderSubtype`
+     * * `priority`
+     * Examples:
+     * * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED`
+     * * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE`
+     * * `priority = P1 OR priority = P2`
+     * * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)`
+     * (These expressions are based on the filter language described at
+     * https://google.aip.dev/160)
      *
      * Generated from protobuf field <code>string filter = 5;</code>
      * @param string $var

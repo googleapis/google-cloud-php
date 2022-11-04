@@ -22,6 +22,24 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     private $analysis_query = null;
     /**
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * doc.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $saved_analysis_query = '';
+    /**
      * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -36,6 +54,20 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $analysis_query
      *           Required. The request query.
+     *     @type string $saved_analysis_query
+     *           Optional. The name of a saved query, which must be in the format of:
+     *           * projects/project_number/savedQueries/saved_query_id
+     *           * folders/folder_number/savedQueries/saved_query_id
+     *           * organizations/organization_number/savedQueries/saved_query_id
+     *           If both `analysis_query` and `saved_analysis_query` are provided, they
+     *           will be merged together with the `saved_analysis_query` as base and
+     *           the `analysis_query` as overrides. For more details of the merge behavior,
+     *           please refer to the
+     *           [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     *           doc.
+     *           Note that you cannot override primitive fields with default value, such as
+     *           0 or empty string, etc., because we use proto3, which doesn't support field
+     *           presence yet.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig $output_config
      *           Required. Output configuration indicating where the results will be output to.
      * }
@@ -53,7 +85,7 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getAnalysisQuery()
     {
-        return isset($this->analysis_query) ? $this->analysis_query : null;
+        return $this->analysis_query;
     }
 
     public function hasAnalysisQuery()
@@ -82,6 +114,56 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
     }
 
     /**
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * doc.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getSavedAnalysisQuery()
+    {
+        return $this->saved_analysis_query;
+    }
+
+    /**
+     * Optional. The name of a saved query, which must be in the format of:
+     * * projects/project_number/savedQueries/saved_query_id
+     * * folders/folder_number/savedQueries/saved_query_id
+     * * organizations/organization_number/savedQueries/saved_query_id
+     * If both `analysis_query` and `saved_analysis_query` are provided, they
+     * will be merged together with the `saved_analysis_query` as base and
+     * the `analysis_query` as overrides. For more details of the merge behavior,
+     * please refer to the
+     * [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details)
+     * doc.
+     * Note that you cannot override primitive fields with default value, such as
+     * 0 or empty string, etc., because we use proto3, which doesn't support field
+     * presence yet.
+     *
+     * Generated from protobuf field <code>string saved_analysis_query = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setSavedAnalysisQuery($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->saved_analysis_query = $var;
+
+        return $this;
+    }
+
+    /**
      * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig output_config = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -89,7 +171,7 @@ class AnalyzeIamPolicyLongrunningRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getOutputConfig()
     {
-        return isset($this->output_config) ? $this->output_config : null;
+        return $this->output_config;
     }
 
     public function hasOutputConfig()

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/video/livestream/v1/.*-php/(.*)
+      dest: /owl-bot-staging/VideoLiveStream/v1/$1
+api-name: VideoLiveStream

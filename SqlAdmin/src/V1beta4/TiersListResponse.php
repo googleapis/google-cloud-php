@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class TiersListResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#tiersList</b>.
+     * This is always `sql#tiersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -35,8 +35,8 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#tiersList</b>.
-     *     @type \Google\Cloud\Sql\V1beta4\Tier[]|\Google\Protobuf\Internal\RepeatedField $items
+     *           This is always `sql#tiersList`.
+     *     @type array<\Google\Cloud\Sql\V1beta4\Tier>|\Google\Protobuf\Internal\RepeatedField $items
      *           List of tiers.
      * }
      */
@@ -46,7 +46,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#tiersList</b>.
+     * This is always `sql#tiersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#tiersList</b>.
+     * This is always `sql#tiersList`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -86,7 +86,7 @@ class TiersListResponse extends \Google\Protobuf\Internal\Message
      * List of tiers.
      *
      * Generated from protobuf field <code>repeated .google.cloud.sql.v1beta4.Tier items = 2;</code>
-     * @param \Google\Cloud\Sql\V1beta4\Tier[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Sql\V1beta4\Tier>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

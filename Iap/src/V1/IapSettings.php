@@ -87,7 +87,7 @@ class IapSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAccessSettings()
     {
-        return isset($this->access_settings) ? $this->access_settings : null;
+        return $this->access_settings;
     }
 
     public function hasAccessSettings()
@@ -123,7 +123,7 @@ class IapSettings extends \Google\Protobuf\Internal\Message
      */
     public function getApplicationSettings()
     {
-        return isset($this->application_settings) ? $this->application_settings : null;
+        return $this->application_settings;
     }
 
     public function hasApplicationSettings()

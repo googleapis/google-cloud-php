@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\NodeGroupAutoscalingPolicy;
 use UnexpectedValueException;
 
 /**
- * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see  Autoscaler modes.
+ * The autoscaling mode. Set to one of: ON, OFF, or ONLY_SCALE_OUT. For more information, see Autoscaler modes.
  *
  * Protobuf type <code>google.cloud.compute.v1.NodeGroupAutoscalingPolicy.Mode</code>
  */
@@ -24,14 +24,20 @@ class Mode
      */
     const MODE_UNSPECIFIED = 371348091;
     /**
+     * Autoscaling is disabled.
+     *
      * Generated from protobuf enum <code>OFF = 78159;</code>
      */
     const OFF = 78159;
     /**
+     * Autocaling is fully enabled.
+     *
      * Generated from protobuf enum <code>ON = 2527;</code>
      */
     const ON = 2527;
     /**
+     * Autoscaling will only scale out and will not remove nodes.
+     *
      * Generated from protobuf enum <code>ONLY_SCALE_OUT = 152713670;</code>
      */
     const ONLY_SCALE_OUT = 152713670;

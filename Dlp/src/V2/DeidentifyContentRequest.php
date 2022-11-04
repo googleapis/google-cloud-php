@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request to de-identify a list of items.
+ * Request to de-identify a ContentItem.
  *
  * Generated from protobuf message <code>google.privacy.dlp.v2.DeidentifyContentRequest</code>
  */
@@ -189,7 +189,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDeidentifyConfig()
     {
-        return isset($this->deidentify_config) ? $this->deidentify_config : null;
+        return $this->deidentify_config;
     }
 
     public function hasDeidentifyConfig()
@@ -229,7 +229,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getInspectConfig()
     {
-        return isset($this->inspect_config) ? $this->inspect_config : null;
+        return $this->inspect_config;
     }
 
     public function hasInspectConfig()
@@ -267,7 +267,7 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getItem()
     {
-        return isset($this->item) ? $this->item : null;
+        return $this->item;
     }
 
     public function hasItem()

@@ -53,7 +53,7 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSecret()
     {
-        return isset($this->secret) ? $this->secret : null;
+        return $this->secret;
     }
 
     public function hasSecret()
@@ -89,7 +89,7 @@ class UpdateSecretRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

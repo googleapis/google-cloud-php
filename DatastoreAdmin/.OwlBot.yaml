@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/datastore/admin/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/DatastoreAdmin/$1/$2
+api-name: DatastoreAdmin

@@ -53,7 +53,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionConfig()
     {
-        return isset($this->execution_config) ? $this->execution_config : null;
+        return $this->execution_config;
     }
 
     public function hasExecutionConfig()
@@ -89,7 +89,7 @@ class EnvironmentConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPeripheralsConfig()
     {
-        return isset($this->peripherals_config) ? $this->peripherals_config : null;
+        return $this->peripherals_config;
     }
 
     public function hasPeripheralsConfig()

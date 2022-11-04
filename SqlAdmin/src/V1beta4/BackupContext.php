@@ -22,7 +22,7 @@ class BackupContext extends \Google\Protobuf\Internal\Message
      */
     private $backup_id = 0;
     /**
-     * This is always <b>sql#backupContext</b>.
+     * This is always `sql#backupContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      */
@@ -37,7 +37,7 @@ class BackupContext extends \Google\Protobuf\Internal\Message
      *     @type int|string $backup_id
      *           The identifier of the backup.
      *     @type string $kind
-     *           This is always <b>sql#backupContext</b>.
+     *           This is always `sql#backupContext`.
      * }
      */
     public function __construct($data = NULL) {
@@ -72,7 +72,7 @@ class BackupContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupContext</b>.
+     * This is always `sql#backupContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class BackupContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupContext</b>.
+     * This is always `sql#backupContext`.
      *
      * Generated from protobuf field <code>string kind = 2;</code>
      * @param string $var

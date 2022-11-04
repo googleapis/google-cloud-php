@@ -62,6 +62,11 @@
                 }
             },
             "methods": {
+                "CopyBackup": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "CreateBackup": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "no_retry_1_codes",
@@ -113,6 +118,11 @@
                     "retry_params_name": "retry_policy_1_params"
                 },
                 "ListDatabaseOperations": {
+                    "timeout_millis": 3600000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "ListDatabaseRoles": {
                     "timeout_millis": 3600000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"

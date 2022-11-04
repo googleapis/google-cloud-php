@@ -76,7 +76,7 @@ class TraceServiceClientTest extends GeneratedTest
     public function batchWriteSpansTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -84,9 +84,9 @@ class TraceServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $spans = [];
-        $client->batchWriteSpans($formattedName, $spans);
+        $gapicClient->batchWriteSpans($formattedName, $spans);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -105,7 +105,7 @@ class TraceServiceClientTest extends GeneratedTest
     public function batchWriteSpansExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -120,11 +120,11 @@ class TraceServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->projectName('[PROJECT]');
+        $formattedName = $gapicClient->projectName('[PROJECT]');
         $spans = [];
         try {
-            $client->batchWriteSpans($formattedName, $spans);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->batchWriteSpans($formattedName, $spans);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -141,7 +141,7 @@ class TraceServiceClientTest extends GeneratedTest
     public function createSpanTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -160,7 +160,7 @@ class TraceServiceClientTest extends GeneratedTest
         $displayName = new TruncatableString();
         $startTime = new Timestamp();
         $endTime = new Timestamp();
-        $response = $client->createSpan($name, $spanId, $displayName, $startTime, $endTime);
+        $response = $gapicClient->createSpan($name, $spanId, $displayName, $startTime, $endTime);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -186,7 +186,7 @@ class TraceServiceClientTest extends GeneratedTest
     public function createSpanExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -207,8 +207,8 @@ class TraceServiceClientTest extends GeneratedTest
         $startTime = new Timestamp();
         $endTime = new Timestamp();
         try {
-            $client->createSpan($name, $spanId, $displayName, $startTime, $endTime);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSpan($name, $spanId, $displayName, $startTime, $endTime);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

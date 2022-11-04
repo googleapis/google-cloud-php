@@ -20,7 +20,7 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent (project and location) where the Memberships will be created.
      * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -64,7 +64,7 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent (project and location) where the Memberships will be created.
      * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -76,7 +76,7 @@ class ValidateExclusivityRequest extends \Google\Protobuf\Internal\Message
      * Required. The parent (project and location) where the Memberships will be created.
      * Specified in the format `projects/&#42;&#47;locations/&#42;`.
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

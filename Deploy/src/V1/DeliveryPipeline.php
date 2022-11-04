@@ -38,9 +38,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Google Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      */
@@ -48,10 +46,14 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
@@ -82,6 +84,13 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string etag = 10;</code>
      */
     private $etag = '';
+    /**
+     * When suspended, no new releases or rollouts can be created,
+     * but in-progress ones will complete.
+     *
+     * Generated from protobuf field <code>bool suspended = 12;</code>
+     */
+    private $suspended = false;
     protected $pipeline;
 
     /**
@@ -99,16 +108,18 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *           Description of the `DeliveryPipeline`. Max length is 255 characters.
      *     @type array|\Google\Protobuf\Internal\MapField $annotations
      *           User annotations. These attributes can only be set and used by the
-     *           user, and not by Google Cloud Deploy. See
-     *           https://google.aip.dev/128#annotations for more details such as format and
-     *           size limitations.
+     *           user, and not by Google Cloud Deploy.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     *           constrained to be <= 128 bytes in size.
+     *           constraints:
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           * All characters must use UTF-8 encoding, and international characters are
+     *           allowed.
+     *           * Keys must start with a lowercase letter or international character.
+     *           * Each resource is limited to a maximum of 64 labels.
+     *           Both keys and values are additionally constrained to be <= 128 bytes.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the pipeline was created.
      *     @type \Google\Protobuf\Timestamp $update_time
@@ -122,6 +133,9 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
      *           This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
+     *     @type bool $suspended
+     *           When suspended, no new releases or rollouts can be created,
+     *           but in-progress ones will complete.
      * }
      */
     public function __construct($data = NULL) {
@@ -211,9 +225,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Google Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -225,9 +237,7 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
 
     /**
      * User annotations. These attributes can only be set and used by the
-     * user, and not by Google Cloud Deploy. See
-     * https://google.aip.dev/128#annotations for more details such as format and
-     * size limitations.
+     * user, and not by Google Cloud Deploy.
      *
      * Generated from protobuf field <code>map<string, string> annotations = 4;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -244,10 +254,14 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -260,10 +274,14 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -444,6 +462,34 @@ class DeliveryPipeline extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->etag = $var;
+
+        return $this;
+    }
+
+    /**
+     * When suspended, no new releases or rollouts can be created,
+     * but in-progress ones will complete.
+     *
+     * Generated from protobuf field <code>bool suspended = 12;</code>
+     * @return bool
+     */
+    public function getSuspended()
+    {
+        return $this->suspended;
+    }
+
+    /**
+     * When suspended, no new releases or rollouts can be created,
+     * but in-progress ones will complete.
+     *
+     * Generated from protobuf field <code>bool suspended = 12;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setSuspended($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->suspended = $var;
 
         return $this;
     }

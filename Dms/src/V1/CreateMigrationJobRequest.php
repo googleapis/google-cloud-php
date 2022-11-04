@@ -136,7 +136,7 @@ class CreateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMigrationJob()
     {
-        return isset($this->migration_job) ? $this->migration_job : null;
+        return $this->migration_job;
     }
 
     public function hasMigrationJob()

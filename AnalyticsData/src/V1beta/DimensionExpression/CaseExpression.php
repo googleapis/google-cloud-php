@@ -69,6 +69,4 @@ class CaseExpression extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CaseExpression::class, \Google\Analytics\Data\V1beta\DimensionExpression_CaseExpression::class);
 

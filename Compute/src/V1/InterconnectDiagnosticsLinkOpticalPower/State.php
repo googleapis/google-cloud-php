@@ -7,12 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectDiagnosticsLinkOpticalPower;
 use UnexpectedValueException;
 
 /**
- * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include:
- * - OK: The value has not crossed a warning threshold.
- * - LOW_WARNING: The value has crossed below the low warning threshold.
- * - HIGH_WARNING: The value has crossed above the high warning threshold.
- * - LOW_ALARM: The value has crossed below the low alarm threshold.
- * - HIGH_ALARM: The value has crossed above the high alarm threshold.
+ * The status of the current value when compared to the warning and alarm levels for the receiving or transmitting transceiver. Possible states include: - OK: The value has not crossed a warning threshold. - LOW_WARNING: The value has crossed below the low warning threshold. - HIGH_WARNING: The value has crossed above the high warning threshold. - LOW_ALARM: The value has crossed below the low alarm threshold. - HIGH_ALARM: The value has crossed above the high alarm threshold. 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectDiagnosticsLinkOpticalPower.State</code>
  */
@@ -25,22 +20,32 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * The value has crossed above the high alarm threshold.
+     *
      * Generated from protobuf enum <code>HIGH_ALARM = 305363284;</code>
      */
     const HIGH_ALARM = 305363284;
     /**
+     * The value of the current optical power has crossed above the high warning threshold.
+     *
      * Generated from protobuf enum <code>HIGH_WARNING = 220984799;</code>
      */
     const HIGH_WARNING = 220984799;
     /**
+     * The value of the current optical power has crossed below the low alarm threshold.
+     *
      * Generated from protobuf enum <code>LOW_ALARM = 316659046;</code>
      */
     const LOW_ALARM = 316659046;
     /**
+     * The value of the current optical power has crossed below the low warning threshold.
+     *
      * Generated from protobuf enum <code>LOW_WARNING = 338793841;</code>
      */
     const LOW_WARNING = 338793841;
     /**
+     * The value of the current optical power has not crossed a warning threshold.
+     *
      * Generated from protobuf enum <code>OK = 2524;</code>
      */
     const OK = 2524;

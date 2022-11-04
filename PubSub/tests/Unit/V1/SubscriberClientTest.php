@@ -89,7 +89,7 @@ class SubscriberClientTest extends GeneratedTest
     public function acknowledgeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -97,9 +97,9 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
-        $client->acknowledge($formattedSubscription, $ackIds);
+        $gapicClient->acknowledge($formattedSubscription, $ackIds);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -118,7 +118,7 @@ class SubscriberClientTest extends GeneratedTest
     public function acknowledgeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -133,11 +133,11 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         try {
-            $client->acknowledge($formattedSubscription, $ackIds);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->acknowledge($formattedSubscription, $ackIds);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -154,7 +154,7 @@ class SubscriberClientTest extends GeneratedTest
     public function createSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -166,9 +166,9 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $client->createSnapshot($formattedName, $formattedSubscription);
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->createSnapshot($formattedName, $formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -188,7 +188,7 @@ class SubscriberClientTest extends GeneratedTest
     public function createSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -203,11 +203,11 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedName = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->createSnapshot($formattedName, $formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSnapshot($formattedName, $formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -224,7 +224,7 @@ class SubscriberClientTest extends GeneratedTest
     public function createSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -236,6 +236,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering2 = false;
         $filter2 = 'filter2-721168085';
         $detached2 = false;
+        $enableExactlyOnceDelivery2 = true;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name2);
         $expectedResponse->setTopic($topic2);
@@ -244,11 +245,12 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering2);
         $expectedResponse->setFilter($filter2);
         $expectedResponse->setDetached($detached2);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery2);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
-        $response = $client->createSubscription($name, $formattedTopic);
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
+        $response = $gapicClient->createSubscription($name, $formattedTopic);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -268,7 +270,7 @@ class SubscriberClientTest extends GeneratedTest
     public function createSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -284,10 +286,10 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $name = 'name3373707';
-        $formattedTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $formattedTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         try {
-            $client->createSubscription($name, $formattedTopic);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createSubscription($name, $formattedTopic);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -304,7 +306,7 @@ class SubscriberClientTest extends GeneratedTest
     public function deleteSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -312,8 +314,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $client->deleteSnapshot($formattedSnapshot);
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $gapicClient->deleteSnapshot($formattedSnapshot);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -330,7 +332,7 @@ class SubscriberClientTest extends GeneratedTest
     public function deleteSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -345,10 +347,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
         try {
-            $client->deleteSnapshot($formattedSnapshot);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSnapshot($formattedSnapshot);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -365,7 +367,7 @@ class SubscriberClientTest extends GeneratedTest
     public function deleteSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -373,8 +375,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $client->deleteSubscription($formattedSubscription);
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $gapicClient->deleteSubscription($formattedSubscription);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -391,7 +393,7 @@ class SubscriberClientTest extends GeneratedTest
     public function deleteSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -406,10 +408,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->deleteSubscription($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteSubscription($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -426,7 +428,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -438,8 +440,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setTopic($topic);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
-        $response = $client->getSnapshot($formattedSnapshot);
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $response = $gapicClient->getSnapshot($formattedSnapshot);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -457,7 +459,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -472,10 +474,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSnapshot = $client->snapshotName('[PROJECT]', '[SNAPSHOT]');
+        $formattedSnapshot = $gapicClient->snapshotName('[PROJECT]', '[SNAPSHOT]');
         try {
-            $client->getSnapshot($formattedSnapshot);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSnapshot($formattedSnapshot);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -492,7 +494,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -504,6 +506,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
         $detached = true;
+        $enableExactlyOnceDelivery = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -512,10 +515,11 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $client->getSubscription($formattedSubscription);
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->getSubscription($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -533,7 +537,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -548,10 +552,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->getSubscription($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSubscription($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -568,7 +572,7 @@ class SubscriberClientTest extends GeneratedTest
     public function listSnapshotsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -583,8 +587,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setSnapshots($snapshots);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-        $response = $client->listSnapshots($formattedProject);
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listSnapshots($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -605,7 +609,7 @@ class SubscriberClientTest extends GeneratedTest
     public function listSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -620,10 +624,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listSnapshots($formattedProject);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSnapshots($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -640,7 +644,7 @@ class SubscriberClientTest extends GeneratedTest
     public function listSubscriptionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -655,8 +659,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setSubscriptions($subscriptions);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
-        $response = $client->listSubscriptions($formattedProject);
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listSubscriptions($formattedProject);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -677,7 +681,7 @@ class SubscriberClientTest extends GeneratedTest
     public function listSubscriptionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -692,10 +696,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedProject = $client->projectName('[PROJECT]');
+        $formattedProject = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listSubscriptions($formattedProject);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSubscriptions($formattedProject);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -712,7 +716,7 @@ class SubscriberClientTest extends GeneratedTest
     public function modifyAckDeadlineTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -720,10 +724,10 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
-        $client->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+        $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -744,7 +748,7 @@ class SubscriberClientTest extends GeneratedTest
     public function modifyAckDeadlineExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -759,12 +763,12 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $ackIds = [];
         $ackDeadlineSeconds = 2135351438;
         try {
-            $client->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyAckDeadline($formattedSubscription, $ackIds, $ackDeadlineSeconds);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -781,7 +785,7 @@ class SubscriberClientTest extends GeneratedTest
     public function modifyPushConfigTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -789,9 +793,9 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $pushConfig = new PushConfig();
-        $client->modifyPushConfig($formattedSubscription, $pushConfig);
+        $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -810,7 +814,7 @@ class SubscriberClientTest extends GeneratedTest
     public function modifyPushConfigExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -825,11 +829,11 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $pushConfig = new PushConfig();
         try {
-            $client->modifyPushConfig($formattedSubscription, $pushConfig);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->modifyPushConfig($formattedSubscription, $pushConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -846,7 +850,7 @@ class SubscriberClientTest extends GeneratedTest
     public function pullTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -854,9 +858,9 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new PullResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
-        $response = $client->pull($formattedSubscription, $maxMessages);
+        $response = $gapicClient->pull($formattedSubscription, $maxMessages);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -876,7 +880,7 @@ class SubscriberClientTest extends GeneratedTest
     public function pullExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -891,11 +895,11 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $maxMessages = 496131527;
         try {
-            $client->pull($formattedSubscription, $maxMessages);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->pull($formattedSubscription, $maxMessages);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -912,7 +916,7 @@ class SubscriberClientTest extends GeneratedTest
     public function seekTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -920,8 +924,8 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse = new SeekResponse();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
-        $response = $client->seek($formattedSubscription);
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $response = $gapicClient->seek($formattedSubscription);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -939,7 +943,7 @@ class SubscriberClientTest extends GeneratedTest
     public function seekExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -954,10 +958,10 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         try {
-            $client->seek($formattedSubscription);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->seek($formattedSubscription);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -974,7 +978,7 @@ class SubscriberClientTest extends GeneratedTest
     public function streamingPullTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -986,22 +990,22 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse3 = new StreamingPullResponse();
         $transport->addResponse($expectedResponse3);
         // Mock request
-        $formattedSubscription = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds = 1875467245;
         $request = new StreamingPullRequest();
         $request->setSubscription($formattedSubscription);
         $request->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds);
-        $formattedSubscription2 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription2 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds2 = 1562238880;
         $request2 = new StreamingPullRequest();
         $request2->setSubscription($formattedSubscription2);
         $request2->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds2);
-        $formattedSubscription3 = $client->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
+        $formattedSubscription3 = $gapicClient->subscriptionName('[PROJECT]', '[SUBSCRIPTION]');
         $streamAckDeadlineSeconds3 = 1562238879;
         $request3 = new StreamingPullRequest();
         $request3->setSubscription($formattedSubscription3);
         $request3->setStreamAckDeadlineSeconds($streamAckDeadlineSeconds3);
-        $bidi = $client->streamingPull();
+        $bidi = $gapicClient->streamingPull();
         $this->assertInstanceOf(BidiStream::class, $bidi);
         $bidi->write($request);
         $responses = [];
@@ -1043,7 +1047,7 @@ class SubscriberClientTest extends GeneratedTest
     public function streamingPullExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $status = new stdClass();
@@ -1057,7 +1061,7 @@ class SubscriberClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->setStreamingStatus($status);
         $this->assertTrue($transport->isExhausted());
-        $bidi = $client->streamingPull();
+        $bidi = $gapicClient->streamingPull();
         $results = $bidi->closeWriteAndReadAll();
         try {
             iterator_to_array($results);
@@ -1078,7 +1082,7 @@ class SubscriberClientTest extends GeneratedTest
     public function updateSnapshotTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1092,7 +1096,7 @@ class SubscriberClientTest extends GeneratedTest
         // Mock request
         $snapshot = new Snapshot();
         $updateMask = new FieldMask();
-        $response = $client->updateSnapshot($snapshot, $updateMask);
+        $response = $gapicClient->updateSnapshot($snapshot, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1112,7 +1116,7 @@ class SubscriberClientTest extends GeneratedTest
     public function updateSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1130,8 +1134,8 @@ class SubscriberClientTest extends GeneratedTest
         $snapshot = new Snapshot();
         $updateMask = new FieldMask();
         try {
-            $client->updateSnapshot($snapshot, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSnapshot($snapshot, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1148,7 +1152,7 @@ class SubscriberClientTest extends GeneratedTest
     public function updateSubscriptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1160,6 +1164,7 @@ class SubscriberClientTest extends GeneratedTest
         $enableMessageOrdering = true;
         $filter = 'filter-1274492040';
         $detached = true;
+        $enableExactlyOnceDelivery = false;
         $expectedResponse = new Subscription();
         $expectedResponse->setName($name);
         $expectedResponse->setTopic($topic);
@@ -1168,15 +1173,16 @@ class SubscriberClientTest extends GeneratedTest
         $expectedResponse->setEnableMessageOrdering($enableMessageOrdering);
         $expectedResponse->setFilter($filter);
         $expectedResponse->setDetached($detached);
+        $expectedResponse->setEnableExactlyOnceDelivery($enableExactlyOnceDelivery);
         $transport->addResponse($expectedResponse);
         // Mock request
         $subscription = new Subscription();
         $subscriptionName = 'subscriptionName-515935928';
         $subscription->setName($subscriptionName);
-        $subscriptionTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $subscription->setTopic($subscriptionTopic);
         $updateMask = new FieldMask();
-        $response = $client->updateSubscription($subscription, $updateMask);
+        $response = $gapicClient->updateSubscription($subscription, $updateMask);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1196,7 +1202,7 @@ class SubscriberClientTest extends GeneratedTest
     public function updateSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1214,12 +1220,12 @@ class SubscriberClientTest extends GeneratedTest
         $subscription = new Subscription();
         $subscriptionName = 'subscriptionName-515935928';
         $subscription->setName($subscriptionName);
-        $subscriptionTopic = $client->topicName('[PROJECT]', '[TOPIC]');
+        $subscriptionTopic = $gapicClient->topicName('[PROJECT]', '[TOPIC]');
         $subscription->setTopic($subscriptionTopic);
         $updateMask = new FieldMask();
         try {
-            $client->updateSubscription($subscription, $updateMask);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateSubscription($subscription, $updateMask);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1236,7 +1242,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1249,7 +1255,7 @@ class SubscriberClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $resource = 'resource-341064690';
-        $response = $client->getIamPolicy($resource);
+        $response = $gapicClient->getIamPolicy($resource);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1267,7 +1273,7 @@ class SubscriberClientTest extends GeneratedTest
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1284,8 +1290,8 @@ class SubscriberClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         try {
-            $client->getIamPolicy($resource);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1302,7 +1308,7 @@ class SubscriberClientTest extends GeneratedTest
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1316,7 +1322,7 @@ class SubscriberClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $policy = new Policy();
-        $response = $client->setIamPolicy($resource, $policy);
+        $response = $gapicClient->setIamPolicy($resource, $policy);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1336,7 +1342,7 @@ class SubscriberClientTest extends GeneratedTest
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1354,8 +1360,8 @@ class SubscriberClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $policy = new Policy();
         try {
-            $client->setIamPolicy($resource, $policy);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1372,7 +1378,7 @@ class SubscriberClientTest extends GeneratedTest
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1382,7 +1388,7 @@ class SubscriberClientTest extends GeneratedTest
         // Mock request
         $resource = 'resource-341064690';
         $permissions = [];
-        $response = $client->testIamPermissions($resource, $permissions);
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1402,7 +1408,7 @@ class SubscriberClientTest extends GeneratedTest
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1420,8 +1426,8 @@ class SubscriberClientTest extends GeneratedTest
         $resource = 'resource-341064690';
         $permissions = [];
         try {
-            $client->testIamPermissions($resource, $permissions);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

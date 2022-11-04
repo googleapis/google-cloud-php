@@ -10,9 +10,24 @@
                 "grpc": {
                     "libraryClient": "SecurityCenterGapicClient",
                     "rpcs": {
+                        "BulkMuteFindings": {
+                            "methods": [
+                                "bulkMuteFindings"
+                            ]
+                        },
+                        "CreateBigQueryExport": {
+                            "methods": [
+                                "createBigQueryExport"
+                            ]
+                        },
                         "CreateFinding": {
                             "methods": [
                                 "createFinding"
+                            ]
+                        },
+                        "CreateMuteConfig": {
+                            "methods": [
+                                "createMuteConfig"
                             ]
                         },
                         "CreateNotificationConfig": {
@@ -25,14 +40,34 @@
                                 "createSource"
                             ]
                         },
+                        "DeleteBigQueryExport": {
+                            "methods": [
+                                "deleteBigQueryExport"
+                            ]
+                        },
+                        "DeleteMuteConfig": {
+                            "methods": [
+                                "deleteMuteConfig"
+                            ]
+                        },
                         "DeleteNotificationConfig": {
                             "methods": [
                                 "deleteNotificationConfig"
                             ]
                         },
+                        "GetBigQueryExport": {
+                            "methods": [
+                                "getBigQueryExport"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
+                            ]
+                        },
+                        "GetMuteConfig": {
+                            "methods": [
+                                "getMuteConfig"
                             ]
                         },
                         "GetNotificationConfig": {
@@ -65,9 +100,19 @@
                                 "listAssets"
                             ]
                         },
+                        "ListBigQueryExports": {
+                            "methods": [
+                                "listBigQueryExports"
+                            ]
+                        },
                         "ListFindings": {
                             "methods": [
                                 "listFindings"
+                            ]
+                        },
+                        "ListMuteConfigs": {
+                            "methods": [
+                                "listMuteConfigs"
                             ]
                         },
                         "ListNotificationConfigs": {
@@ -95,14 +140,34 @@
                                 "setIamPolicy"
                             ]
                         },
+                        "SetMute": {
+                            "methods": [
+                                "setMute"
+                            ]
+                        },
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
                             ]
                         },
+                        "UpdateBigQueryExport": {
+                            "methods": [
+                                "updateBigQueryExport"
+                            ]
+                        },
+                        "UpdateExternalSystem": {
+                            "methods": [
+                                "updateExternalSystem"
+                            ]
+                        },
                         "UpdateFinding": {
                             "methods": [
                                 "updateFinding"
+                            ]
+                        },
+                        "UpdateMuteConfig": {
+                            "methods": [
+                                "updateMuteConfig"
                             ]
                         },
                         "UpdateNotificationConfig": {

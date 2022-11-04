@@ -37,7 +37,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     private $domain_notices;
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in
+     * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.ContactNotice contact_notices = 4;</code>
@@ -52,7 +52,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      */
     private $yearly_price = null;
     /**
-     * When true, only validation will be performed, without actually registering
+     * When true, only validation is performed, without actually registering
      * the domain. Follows:
      * https://cloud.google.com/apis/design/design_patterns#request_validation
      *
@@ -71,19 +71,19 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      *           format `projects/&#42;&#47;locations/&#42;`.
      *     @type \Google\Cloud\Domains\V1alpha2\Registration $registration
      *           Required. The complete `Registration` resource to be created.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $domain_notices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $domain_notices
      *           The list of domain notices that you acknowledge. Call
      *           `RetrieveRegisterParameters` to see the notices that need acknowledgement.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $contact_notices
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $contact_notices
      *           The list of contact notices that the caller acknowledges. The notices
-     *           required here depend on the values specified in
+     *           needed here depend on the values specified in
      *           `registration.contact_settings`.
      *     @type \Google\Type\Money $yearly_price
      *           Required. Yearly price to register or renew the domain.
      *           The value that should be put here can be obtained from
      *           RetrieveRegisterParameters or SearchDomains calls.
      *     @type bool $validate_only
-     *           When true, only validation will be performed, without actually registering
+     *           When true, only validation is performed, without actually registering
      *           the domain. Follows:
      *           https://cloud.google.com/apis/design/design_patterns#request_validation
      * }
@@ -129,7 +129,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRegistration()
     {
-        return isset($this->registration) ? $this->registration : null;
+        return $this->registration;
     }
 
     public function hasRegistration()
@@ -174,7 +174,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      * `RetrieveRegisterParameters` to see the notices that need acknowledgement.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.DomainNotice domain_notices = 3;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDomainNotices($var)
@@ -187,7 +187,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in
+     * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.ContactNotice contact_notices = 4;</code>
@@ -200,11 +200,11 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The list of contact notices that the caller acknowledges. The notices
-     * required here depend on the values specified in
+     * needed here depend on the values specified in
      * `registration.contact_settings`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1alpha2.ContactNotice contact_notices = 4;</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setContactNotices($var)
@@ -225,7 +225,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
      */
     public function getYearlyPrice()
     {
-        return isset($this->yearly_price) ? $this->yearly_price : null;
+        return $this->yearly_price;
     }
 
     public function hasYearlyPrice()
@@ -256,7 +256,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, only validation will be performed, without actually registering
+     * When true, only validation is performed, without actually registering
      * the domain. Follows:
      * https://cloud.google.com/apis/design/design_patterns#request_validation
      *
@@ -269,7 +269,7 @@ class RegisterDomainRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * When true, only validation will be performed, without actually registering
+     * When true, only validation is performed, without actually registering
      * the domain. Follows:
      * https://cloud.google.com/apis/design/design_patterns#request_validation
      *

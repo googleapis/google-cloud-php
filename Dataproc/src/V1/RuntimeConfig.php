@@ -16,6 +16,19 @@ use Google\Protobuf\Internal\GPBUtil;
 class RuntimeConfig extends \Google\Protobuf\Internal\Message
 {
     /**
+     * Optional. Version of the batch runtime.
+     *
+     * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $version = '';
+    /**
+     * Optional. Optional custom container image for the job runtime environment. If
+     * not specified, a default container image will be used.
+     *
+     * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $container_image = '';
+    /**
      * Optional. A mapping of property names to values, which are used to configure workload
      * execution.
      *
@@ -29,6 +42,11 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $version
+     *           Optional. Version of the batch runtime.
+     *     @type string $container_image
+     *           Optional. Optional custom container image for the job runtime environment. If
+     *           not specified, a default container image will be used.
      *     @type array|\Google\Protobuf\Internal\MapField $properties
      *           Optional. A mapping of property names to values, which are used to configure workload
      *           execution.
@@ -37,6 +55,60 @@ class RuntimeConfig extends \Google\Protobuf\Internal\Message
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Dataproc\V1\Shared::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * Optional. Version of the batch runtime.
+     *
+     * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * Optional. Version of the batch runtime.
+     *
+     * Generated from protobuf field <code>string version = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->version = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Optional custom container image for the job runtime environment. If
+     * not specified, a default container image will be used.
+     *
+     * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getContainerImage()
+    {
+        return $this->container_image;
+    }
+
+    /**
+     * Optional. Optional custom container image for the job runtime environment. If
+     * not specified, a default container image will be used.
+     *
+     * Generated from protobuf field <code>string container_image = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setContainerImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->container_image = $var;
+
+        return $this;
     }
 
     /**

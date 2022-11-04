@@ -73,7 +73,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
     public function getTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -81,6 +81,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $address = 'address-1147692044';
         $availabilityZone = 'availabilityZone-378410992';
         $city = 'city3053931';
+        $continent = 'continent-403427916';
         $creationTimestamp = 'creationTimestamp567396278';
         $description = 'description-1724546052';
         $facilityProvider = 'facilityProvider2143916045';
@@ -90,10 +91,13 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $name = 'name3373707';
         $peeringdbFacilityId = 'peeringdbFacilityId-303818';
         $selfLink = 'selfLink-1691268851';
+        $status = 'status-892481550';
+        $supportsPzs = true;
         $expectedResponse = new InterconnectLocation();
         $expectedResponse->setAddress($address);
         $expectedResponse->setAvailabilityZone($availabilityZone);
         $expectedResponse->setCity($city);
+        $expectedResponse->setContinent($continent);
         $expectedResponse->setCreationTimestamp($creationTimestamp);
         $expectedResponse->setDescription($description);
         $expectedResponse->setFacilityProvider($facilityProvider);
@@ -103,11 +107,13 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $expectedResponse->setName($name);
         $expectedResponse->setPeeringdbFacilityId($peeringdbFacilityId);
         $expectedResponse->setSelfLink($selfLink);
+        $expectedResponse->setStatus($status);
+        $expectedResponse->setSupportsPzs($supportsPzs);
         $transport->addResponse($expectedResponse);
         // Mock request
         $interconnectLocation = 'interconnectLocation-581505978';
         $project = 'project-309310695';
-        $response = $client->get($interconnectLocation, $project);
+        $response = $gapicClient->get($interconnectLocation, $project);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -127,7 +133,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -145,8 +151,8 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $interconnectLocation = 'interconnectLocation-581505978';
         $project = 'project-309310695';
         try {
-            $client->get($interconnectLocation, $project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->get($interconnectLocation, $project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -163,7 +169,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
     public function listTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -185,7 +191,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $project = 'project-309310695';
-        $response = $client->list($project);
+        $response = $gapicClient->list($project);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -206,7 +212,7 @@ class InterconnectLocationsClientTest extends GeneratedTest
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -223,8 +229,8 @@ class InterconnectLocationsClientTest extends GeneratedTest
         // Mock request
         $project = 'project-309310695';
         try {
-            $client->list($project);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->list($project);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

@@ -23,17 +23,20 @@ use Google\Cloud\Trace\Link;
 use Google\Cloud\Trace\MessageEvent;
 use Google\Cloud\Trace\Span;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertionRenames;
 
 /**
  * @group trace
  */
 class SpanTest extends SnippetTestCase
 {
+    use AssertionRenames;
+
     const EXPECTED_TIMESTAMP_FORMAT = '/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{9}Z$/';
 
     private $span;
 
-    public function setUp()
+    public function set_up()
     {
         $this->span = new Span('abcd1234', ['name' => 'span name']);
     }
@@ -50,7 +53,7 @@ class SpanTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Span::class, 'setStartTime');
         $snippet->addLocal('span', $this->span);
         $res = $snippet->invoke('span');
-        $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $res->returnVal()->startTime());
+        $this->assertMatchesRegularExpression(self::EXPECTED_TIMESTAMP_FORMAT, $res->returnVal()->startTime());
     }
 
     public function testStartTime()
@@ -84,7 +87,7 @@ class SpanTest extends SnippetTestCase
         $snippet = $this->snippetFromMethod(Span::class, 'setEndTime');
         $snippet->addLocal('span', $this->span);
         $res = $snippet->invoke('span');
-        $this->assertRegExp(self::EXPECTED_TIMESTAMP_FORMAT, $res->returnVal()->endTime());
+        $this->assertMatchesRegularExpression(self::EXPECTED_TIMESTAMP_FORMAT, $res->returnVal()->endTime());
     }
 
     public function testSetEndTimeWithValue()

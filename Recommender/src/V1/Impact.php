@@ -33,6 +33,8 @@ class Impact extends \Google\Protobuf\Internal\Message
      *           Category that is being targeted.
      *     @type \Google\Cloud\Recommender\V1\CostProjection $cost_projection
      *           Use with CategoryType.COST
+     *     @type \Google\Cloud\Recommender\V1\SecurityProjection $security_projection
+     *           Use with CategoryType.SECURITY
      * }
      */
     public function __construct($data = NULL) {
@@ -93,6 +95,37 @@ class Impact extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\CostProjection::class);
         $this->writeOneof(100, $var);
+
+        return $this;
+    }
+
+    /**
+     * Use with CategoryType.SECURITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.SecurityProjection security_projection = 101;</code>
+     * @return \Google\Cloud\Recommender\V1\SecurityProjection|null
+     */
+    public function getSecurityProjection()
+    {
+        return $this->readOneof(101);
+    }
+
+    public function hasSecurityProjection()
+    {
+        return $this->hasOneof(101);
+    }
+
+    /**
+     * Use with CategoryType.SECURITY
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.SecurityProjection security_projection = 101;</code>
+     * @param \Google\Cloud\Recommender\V1\SecurityProjection $var
+     * @return $this
+     */
+    public function setSecurityProjection($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Recommender\V1\SecurityProjection::class);
+        $this->writeOneof(101, $var);
 
         return $this;
     }

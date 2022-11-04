@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'Spanner/**'
   pull_request:
@@ -9,22 +9,22 @@ on:
       - 'Spanner/**'
 name: Run Spanner System Tests With Emulator
 jobs:
-  php-test:
+  test:
     runs-on: ubuntu-latest
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:0.8.0
+        image: gcr.io/cloud-spanner-emulator/emulator:1.4.5
         ports:
           - 9010:9010
           - 9020:9020
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Create Spanner instance
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@v0
         with:
           version: '290.0.1'
       - run: gcloud info
@@ -39,10 +39,11 @@ jobs:
         with:
           php-version: '7.4'
           tools: pecl
-          extensions: bcmath, grpc-1.37.1
+          extensions: bcmath, grpc
 
       - name: Install dependencies
         run: |
+          composer config repositories.local  --json '{"type":"path", "url": "../Core", "options": {"versions": {"google/cloud-core": "1.45"}}}' -d Spanner
           composer update --prefer-dist --no-interaction --no-suggest -d Spanner/
 
       - name: Run system tests

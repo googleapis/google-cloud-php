@@ -157,7 +157,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBackup()
     {
-        return isset($this->backup) ? $this->backup : null;
+        return $this->backup;
     }
 
     public function hasBackup()
@@ -197,7 +197,7 @@ class CreateBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionConfig()
     {
-        return isset($this->encryption_config) ? $this->encryption_config : null;
+        return $this->encryption_config;
     }
 
     public function hasEncryptionConfig()

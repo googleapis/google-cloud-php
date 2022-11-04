@@ -9,9 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An [user owned drydock
- * note][google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote]
- * references a Drydock ATTESTATION_AUTHORITY Note created by the user.
+ * An [user owned drydock note][google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote] references a Drydock
+ * ATTESTATION_AUTHORITY Note created by the user.
  *
  * Generated from protobuf message <code>google.cloud.binaryauthorization.v1beta1.UserOwnedDrydockNote</code>
  */
@@ -67,7 +66,7 @@ class UserOwnedDrydockNote extends \Google\Protobuf\Internal\Message
      *           An attestation by this attestor is stored as a Drydock
      *           ATTESTATION_AUTHORITY Occurrence that names a container image and that
      *           links to this Note. Drydock is an external dependency.
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\AttestorPublicKey[]|\Google\Protobuf\Internal\RepeatedField $public_keys
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\AttestorPublicKey>|\Google\Protobuf\Internal\RepeatedField $public_keys
      *           Optional. Public keys that verify attestations signed by this
      *           attestor.  This field may be updated.
      *           If this field is non-empty, one of the specified public keys must
@@ -154,7 +153,7 @@ class UserOwnedDrydockNote extends \Google\Protobuf\Internal\Message
      * valid attestations exist.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.AttestorPublicKey public_keys = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\AttestorPublicKey[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\AttestorPublicKey>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPublicKeys($var)

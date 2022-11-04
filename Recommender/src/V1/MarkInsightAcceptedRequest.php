@@ -22,8 +22,8 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. State properties user wish to include with this state.  Full replace of the
-     * current state_metadata.
+     * Optional. State properties user wish to include with this state.  Full
+     * replace of the current state_metadata.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -44,8 +44,8 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
      *     @type string $name
      *           Required. Name of the insight.
      *     @type array|\Google\Protobuf\Internal\MapField $state_metadata
-     *           Optional. State properties user wish to include with this state.  Full replace of the
-     *           current state_metadata.
+     *           Optional. State properties user wish to include with this state.  Full
+     *           replace of the current state_metadata.
      *     @type string $etag
      *           Required. Fingerprint of the Insight. Provides optimistic locking.
      * }
@@ -82,8 +82,8 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. State properties user wish to include with this state.  Full replace of the
-     * current state_metadata.
+     * Optional. State properties user wish to include with this state.  Full
+     * replace of the current state_metadata.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -94,8 +94,8 @@ class MarkInsightAcceptedRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. State properties user wish to include with this state.  Full replace of the
-     * current state_metadata.
+     * Optional. State properties user wish to include with this state.  Full
+     * replace of the current state_metadata.
      *
      * Generated from protobuf field <code>map<string, string> state_metadata = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var

@@ -30,7 +30,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $input_uris
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $input_uris
      *           Required. Google Cloud Storage URIs to input files, up to 2000 characters
      *           long. Accepted forms:
      *           * Full object path, e.g. gs://bucket/directory/object.csv
@@ -60,7 +60,7 @@ class GcsSource extends \Google\Protobuf\Internal\Message
      * * Full object path, e.g. gs://bucket/directory/object.csv
      *
      * Generated from protobuf field <code>repeated string input_uris = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInputUris($var)

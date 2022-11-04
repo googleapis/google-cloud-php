@@ -391,7 +391,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -430,7 +430,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -492,7 +492,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getDispatchDeadline()
     {
-        return isset($this->dispatch_deadline) ? $this->dispatch_deadline : null;
+        return $this->dispatch_deadline;
     }
 
     public function hasDispatchDeadline()
@@ -611,7 +611,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getFirstAttempt()
     {
-        return isset($this->first_attempt) ? $this->first_attempt : null;
+        return $this->first_attempt;
     }
 
     public function hasFirstAttempt()
@@ -649,7 +649,7 @@ class Task extends \Google\Protobuf\Internal\Message
      */
     public function getLastAttempt()
     {
-        return isset($this->last_attempt) ? $this->last_attempt : null;
+        return $this->last_attempt;
     }
 
     public function hasLastAttempt()

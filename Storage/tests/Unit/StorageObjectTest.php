@@ -32,12 +32,13 @@ use Google\Cloud\Storage\StorageObject;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Utils;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group storage
@@ -45,6 +46,7 @@ use Psr\Http\Message\StreamInterface;
  */
 class StorageObjectTest extends TestCase
 {
+    use ExpectException;
     use KeyPairGenerateTrait;
 
     const TIMESTAMP = '2025-01-01';
@@ -57,7 +59,7 @@ class StorageObjectTest extends TestCase
     private $key;
     private $kf;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->key = $this->getKeyPair();
@@ -207,11 +209,10 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($destinationObject, $copiedObject->info()['name']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testCopyObjectThrowsExceptionWithInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->copy($object);
     }
@@ -313,11 +314,10 @@ class StorageObjectTest extends TestCase
         $this->assertEquals($destinationObject, $rewrittenObject->info()['name']);
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testRewriteObjectThrowsExceptionWithInvalidType()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $object = new StorageObject($this->connection->reveal(), 'object.txt.', self::BUCKET);
         $copiedObject = $object->rewrite($object);
     }
@@ -464,6 +464,26 @@ class StorageObjectTest extends TestCase
             'encryptionKeySHA256' => $hash
         ])->getContents();
         $this->assertEquals($string, $contents);
+    }
+
+    public function testDownloadsToFileShouldNotCreateFileWhenObjectNotFound()
+    {
+        $exceptionString = 'object does not exist';
+        $this->connection->downloadObject(Argument::any())
+            ->willThrow(new NotFoundException($exceptionString));
+        $object = 'non_existent_object.txt';
+        $downloadFilePath = __DIR__ . '/storage_test_downloads_to_file.txt';
+        $object = new StorageObject($this->connection->reveal(), $object, self::BUCKET);
+        $throws = false;
+        try {
+            $object->downloadToFile($downloadFilePath);
+        } catch (NotFoundException $e) {
+            $this->assertStringContainsString($e->getMessage(), $exceptionString);
+            $throws = true;
+        }
+
+        $this->assertTrue($throws);
+        $this->assertFileDoesNotExist($downloadFilePath);
     }
 
     public function testDownloadAsStreamWithoutExtraOptions()
@@ -675,11 +695,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testInvalidSigningVersion()
     {
+        $this->expectException('InvalidArgumentException');
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time()+1, [
             'version' => uniqid()
@@ -730,11 +750,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testSignedUrlInvalidKeyFilePath()
     {
+        $this->expectException('InvalidArgumentException');
         $object = $this->getStorageObjectForSigning();
         $object->signedUrl(time(), [
             'keyFilePath' => __DIR__ . '/foo/bar/json.json'
@@ -742,11 +762,11 @@ class StorageObjectTest extends TestCase
     }
 
     /**
-     * @expectedException InvalidArgumentException
      * @group storage-signed-url
      */
     public function testSignedUrlInvalidKeyFileData()
     {
+        $this->expectException('InvalidArgumentException');
         $file = tmpfile();
         $path = stream_get_meta_data($file)['uri'];
         fwrite($file, '{');

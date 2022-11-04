@@ -32,11 +32,11 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
      *     @type int $table_source_type
      *           Output only. The table source type.
      *     @type \Google\Cloud\DataCatalog\V1\ViewSpec $view_spec
-     *           Table view specification. This field should only be populated if
-     *           `table_source_type` is `BIGQUERY_VIEW`.
+     *           Table view specification. Populated only if
+     *           the `table_source_type` is `BIGQUERY_VIEW`.
      *     @type \Google\Cloud\DataCatalog\V1\TableSpec $table_spec
-     *           Spec of a BigQuery table. This field should only be populated if
-     *           `table_source_type` is `BIGQUERY_TABLE`.
+     *           Specification of a BigQuery table. Populated only if
+     *           the `table_source_type` is `BIGQUERY_TABLE`.
      * }
      */
     public function __construct($data = NULL) {
@@ -71,8 +71,8 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Table view specification. This field should only be populated if
-     * `table_source_type` is `BIGQUERY_VIEW`.
+     * Table view specification. Populated only if
+     * the `table_source_type` is `BIGQUERY_VIEW`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ViewSpec view_spec = 2;</code>
      * @return \Google\Cloud\DataCatalog\V1\ViewSpec|null
@@ -88,8 +88,8 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Table view specification. This field should only be populated if
-     * `table_source_type` is `BIGQUERY_VIEW`.
+     * Table view specification. Populated only if
+     * the `table_source_type` is `BIGQUERY_VIEW`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.ViewSpec view_spec = 2;</code>
      * @param \Google\Cloud\DataCatalog\V1\ViewSpec $var
@@ -104,8 +104,8 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Spec of a BigQuery table. This field should only be populated if
-     * `table_source_type` is `BIGQUERY_TABLE`.
+     * Specification of a BigQuery table. Populated only if
+     * the `table_source_type` is `BIGQUERY_TABLE`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TableSpec table_spec = 3;</code>
      * @return \Google\Cloud\DataCatalog\V1\TableSpec|null
@@ -121,8 +121,8 @@ class BigQueryTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Spec of a BigQuery table. This field should only be populated if
-     * `table_source_type` is `BIGQUERY_TABLE`.
+     * Specification of a BigQuery table. Populated only if
+     * the `table_source_type` is `BIGQUERY_TABLE`.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.TableSpec table_spec = 3;</code>
      * @param \Google\Cloud\DataCatalog\V1\TableSpec $var

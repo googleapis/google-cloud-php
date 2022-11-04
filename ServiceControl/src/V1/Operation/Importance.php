@@ -55,6 +55,4 @@ class Importance
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Importance::class, \Google\Cloud\ServiceControl\V1\Operation_Importance::class);
 

@@ -18,16 +18,15 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Cloud Run service being addressed. See
      * https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services.
-     * Only services located in the same project of the trigger object
+     * Only services located in the same project as the trigger object
      * can be addressed.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $service = '';
     /**
-     * Optional. The relative path on the Cloud Run service the events should be
-     * sent to.
-     * The value must conform to the definition of URI path segment (section 3.3
+     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -49,12 +48,11 @@ class CloudRun extends \Google\Protobuf\Internal\Message
      *     @type string $service
      *           Required. The name of the Cloud Run service being addressed. See
      *           https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services.
-     *           Only services located in the same project of the trigger object
+     *           Only services located in the same project as the trigger object
      *           can be addressed.
      *     @type string $path
-     *           Optional. The relative path on the Cloud Run service the events should be
-     *           sent to.
-     *           The value must conform to the definition of URI path segment (section 3.3
+     *           Optional. The relative path on the Cloud Run service the events should be sent to.
+     *           The value must conform to the definition of a URI path segment (section 3.3
      *           of RFC2396). Examples: "/route", "route", "route/subroute".
      *     @type string $region
      *           Required. The region the Cloud Run service is deployed in.
@@ -68,7 +66,7 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Cloud Run service being addressed. See
      * https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services.
-     * Only services located in the same project of the trigger object
+     * Only services located in the same project as the trigger object
      * can be addressed.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -82,7 +80,7 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     /**
      * Required. The name of the Cloud Run service being addressed. See
      * https://cloud.google.com/run/docs/reference/rest/v1/namespaces.services.
-     * Only services located in the same project of the trigger object
+     * Only services located in the same project as the trigger object
      * can be addressed.
      *
      * Generated from protobuf field <code>string service = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
@@ -98,9 +96,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the Cloud Run service the events should be
-     * sent to.
-     * The value must conform to the definition of URI path segment (section 3.3
+     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -112,9 +109,8 @@ class CloudRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The relative path on the Cloud Run service the events should be
-     * sent to.
-     * The value must conform to the definition of URI path segment (section 3.3
+     * Optional. The relative path on the Cloud Run service the events should be sent to.
+     * The value must conform to the definition of a URI path segment (section 3.3
      * of RFC2396). Examples: "/route", "route", "route/subroute".
      *
      * Generated from protobuf field <code>string path = 2 [(.google.api.field_behavior) = OPTIONAL];</code>

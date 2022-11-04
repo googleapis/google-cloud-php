@@ -68,6 +68,4 @@ class EventSource
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(EventSource::class, \Google\Cloud\RecommendationEngine\V1beta1\UserEvent_EventSource::class);
 

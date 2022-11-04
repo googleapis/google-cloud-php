@@ -83,7 +83,7 @@ class CreateBrandRequest extends \Google\Protobuf\Internal\Message
      */
     public function getBrand()
     {
-        return isset($this->brand) ? $this->brand : null;
+        return $this->brand;
     }
 
     public function hasBrand()

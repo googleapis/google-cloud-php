@@ -20,10 +20,14 @@ class Role
      */
     const UNDEFINED_ROLE = 0;
     /**
+     * The ACTIVE subnet that is currently used.
+     *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
+     * The BACKUP subnet that could be promoted to ACTIVE.
+     *
      * Generated from protobuf enum <code>BACKUP = 341010882;</code>
      */
     const BACKUP = 341010882;

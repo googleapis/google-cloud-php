@@ -77,7 +77,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function computeContactsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -92,8 +92,8 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setContacts($contacts);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->computeContacts($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->computeContacts($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -114,7 +114,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function computeContactsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -129,10 +129,10 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->computeContacts($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->computeContacts($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -149,7 +149,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function createContactTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -163,9 +163,9 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageTag($languageTag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $contact = new Contact();
-        $response = $client->createContact($formattedParent, $contact);
+        $response = $gapicClient->createContact($formattedParent, $contact);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -185,7 +185,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function createContactExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -200,11 +200,11 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $contact = new Contact();
         try {
-            $client->createContact($formattedParent, $contact);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createContact($formattedParent, $contact);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -221,7 +221,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function deleteContactTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -229,8 +229,8 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse = new GPBEmpty();
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contactName('[PROJECT]', '[CONTACT]');
-        $client->deleteContact($formattedName);
+        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
+        $gapicClient->deleteContact($formattedName);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -247,7 +247,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function deleteContactExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -262,10 +262,10 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contactName('[PROJECT]', '[CONTACT]');
+        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
         try {
-            $client->deleteContact($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->deleteContact($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -282,7 +282,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function getContactTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -296,8 +296,8 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setLanguageTag($languageTag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->contactName('[PROJECT]', '[CONTACT]');
-        $response = $client->getContact($formattedName);
+        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
+        $response = $gapicClient->getContact($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -315,7 +315,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function getContactExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -330,10 +330,10 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->contactName('[PROJECT]', '[CONTACT]');
+        $formattedName = $gapicClient->contactName('[PROJECT]', '[CONTACT]');
         try {
-            $client->getContact($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getContact($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -350,7 +350,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function listContactsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -365,8 +365,8 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $expectedResponse->setContacts($contacts);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
-        $response = $client->listContacts($formattedParent);
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
+        $response = $gapicClient->listContacts($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -387,7 +387,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function listContactsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -402,10 +402,10 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->projectName('[PROJECT]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
-            $client->listContacts($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listContacts($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -422,7 +422,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function sendTestMessageTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -431,11 +431,11 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedContacts = [
-            $client->contactName('[PROJECT]', '[CONTACT]'),
+            $gapicClient->contactName('[PROJECT]', '[CONTACT]'),
         ];
-        $formattedResource = $client->projectName('[PROJECT]');
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
         $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
-        $client->sendTestMessage($formattedContacts, $formattedResource, $notificationCategory);
+        $gapicClient->sendTestMessage($formattedContacts, $formattedResource, $notificationCategory);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
@@ -456,7 +456,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function sendTestMessageExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -472,13 +472,13 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $transport->addResponse(null, $status);
         // Mock request
         $formattedContacts = [
-            $client->contactName('[PROJECT]', '[CONTACT]'),
+            $gapicClient->contactName('[PROJECT]', '[CONTACT]'),
         ];
-        $formattedResource = $client->projectName('[PROJECT]');
+        $formattedResource = $gapicClient->projectName('[PROJECT]');
         $notificationCategory = NotificationCategory::NOTIFICATION_CATEGORY_UNSPECIFIED;
         try {
-            $client->sendTestMessage($formattedContacts, $formattedResource, $notificationCategory);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->sendTestMessage($formattedContacts, $formattedResource, $notificationCategory);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -495,7 +495,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function updateContactTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -510,7 +510,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $contact = new Contact();
-        $response = $client->updateContact($contact);
+        $response = $gapicClient->updateContact($contact);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -528,7 +528,7 @@ class EssentialContactsServiceClientTest extends GeneratedTest
     public function updateContactExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -545,8 +545,8 @@ class EssentialContactsServiceClientTest extends GeneratedTest
         // Mock request
         $contact = new Contact();
         try {
-            $client->updateContact($contact);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateContact($contact);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

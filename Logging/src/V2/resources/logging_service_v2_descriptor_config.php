@@ -13,6 +13,16 @@ return [
                     'resourcesGetMethod' => 'getEntries',
                 ],
             ],
+            'ListLogs' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getLogNames',
+                ],
+            ],
             'ListMonitoredResourceDescriptors' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',
@@ -23,14 +33,9 @@ return [
                     'resourcesGetMethod' => 'getResourceDescriptors',
                 ],
             ],
-            'ListLogs' => [
-                'pageStreaming' => [
-                    'requestPageTokenGetMethod' => 'getPageToken',
-                    'requestPageTokenSetMethod' => 'setPageToken',
-                    'requestPageSizeGetMethod' => 'getPageSize',
-                    'requestPageSizeSetMethod' => 'setPageSize',
-                    'responsePageTokenGetMethod' => 'getNextPageToken',
-                    'resourcesGetMethod' => 'getLogNames',
+            'TailLogEntries' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
                 ],
             ],
         ],

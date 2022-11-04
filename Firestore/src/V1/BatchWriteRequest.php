@@ -47,7 +47,7 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      *     @type string $database
      *           Required. The database name. In the format:
      *           `projects/{project_id}/databases/{database_id}`.
-     *     @type \Google\Cloud\Firestore\V1\Write[]|\Google\Protobuf\Internal\RepeatedField $writes
+     *     @type array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $writes
      *           The writes to apply.
      *           Method does not apply writes atomically and does not guarantee ordering.
      *           Each write succeeds or fails independently. You cannot write to the same
@@ -110,7 +110,7 @@ class BatchWriteRequest extends \Google\Protobuf\Internal\Message
      * document more than once per request.
      *
      * Generated from protobuf field <code>repeated .google.firestore.v1.Write writes = 2;</code>
-     * @param \Google\Cloud\Firestore\V1\Write[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\V1\Write>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWrites($var)

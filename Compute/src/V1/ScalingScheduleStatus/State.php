@@ -20,18 +20,26 @@ class State
      */
     const UNDEFINED_STATE = 0;
     /**
+     * The current autoscaling recommendation is influenced by this scaling schedule.
+     *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
+     * This scaling schedule has been disabled by the user.
+     *
      * Generated from protobuf enum <code>DISABLED = 516696700;</code>
      */
     const DISABLED = 516696700;
     /**
+     * This scaling schedule will never become active again.
+     *
      * Generated from protobuf enum <code>OBSOLETE = 66532761;</code>
      */
     const OBSOLETE = 66532761;
     /**
+     * The current autoscaling recommendation is not influenced by this scaling schedule.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;

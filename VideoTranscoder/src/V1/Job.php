@@ -17,7 +17,7 @@ class Job extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -26,7 +26,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
      * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -34,7 +36,9 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
      * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
@@ -72,6 +76,13 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     private $ttl_after_completion_days = 0;
     /**
+     * The labels associated with this job. You can use these to organize and
+     * group your jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 16;</code>
+     */
+    private $labels;
+    /**
      * Output only. An error object that describes the reason for the failure.
      * This property is always present when `state` is `FAILED`.
      *
@@ -88,16 +99,20 @@ class Job extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the job.
-     *           Format: `projects/{project}/locations/{location}/jobs/{job}`
+     *           Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *     @type string $input_uri
      *           Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      *           `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
      *           URI of the media. Input files must be at least 5 seconds in duration and
-     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     *           stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
+     *           [Supported input and output
+     *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $output_uri
      *           Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
      *           `JobTemplate.config.output.uri` when using template.
-     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`.
+     *           URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
+     *           [Supported input and output
+     *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *     @type string $template_id
      *           Input only. Specify the `template_id` to use for populating `Job.config`. The default
      *           is `preset/web-hd`.
@@ -119,6 +134,9 @@ class Job extends \Google\Protobuf\Internal\Message
      *           Job time to live value in days, which will be effective after job
      *           completion. Job should be deleted automatically after the given TTL. Enter
      *           a value between 1 and 90. The default is 30.
+     *     @type array|\Google\Protobuf\Internal\MapField $labels
+     *           The labels associated with this job. You can use these to organize and
+     *           group your jobs.
      *     @type \Google\Rpc\Status $error
      *           Output only. An error object that describes the reason for the failure.
      *           This property is always present when `state` is `FAILED`.
@@ -131,7 +149,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -143,7 +161,7 @@ class Job extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the job.
-     * Format: `projects/{project}/locations/{location}/jobs/{job}`
+     * Format: `projects/{project_number}/locations/{location}/jobs/{job}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -161,7 +179,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
      * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -175,7 +195,9 @@ class Job extends \Google\Protobuf\Internal\Message
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of
      * `Job.config.inputs` or `JobTemplate.config.inputs` when using template.
      * URI of the media. Input files must be at least 5 seconds in duration and
-     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string input_uri = 2 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -192,7 +214,9 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
      * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return string
@@ -205,7 +229,9 @@ class Job extends \Google\Protobuf\Internal\Message
     /**
      * Input only. Specify the `output_uri` to populate an empty `Job.config.output.uri` or
      * `JobTemplate.config.output.uri` when using template.
-     * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
+     * URI for the output file(s). For example, `gs://my-bucket/outputs/`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string output_uri = 3 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param string $var
@@ -325,7 +351,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -361,7 +387,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -397,7 +423,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -456,6 +482,34 @@ class Job extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * The labels associated with this job. You can use these to organize and
+     * group your jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 16;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getLabels()
+    {
+        return $this->labels;
+    }
+
+    /**
+     * The labels associated with this job. You can use these to organize and
+     * group your jobs.
+     *
+     * Generated from protobuf field <code>map<string, string> labels = 16;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
      * Output only. An error object that describes the reason for the failure.
      * This property is always present when `state` is `FAILED`.
      *
@@ -464,7 +518,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()

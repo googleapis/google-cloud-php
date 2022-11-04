@@ -47,7 +47,7 @@ class SuggestArticlesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dialogflow\V2\ArticleAnswer[]|\Google\Protobuf\Internal\RepeatedField $article_answers
+     *     @type array<\Google\Cloud\Dialogflow\V2\ArticleAnswer>|\Google\Protobuf\Internal\RepeatedField $article_answers
      *           Articles ordered by score in descending order.
      *     @type string $latest_message
      *           The name of the latest conversation message used to compile
@@ -82,7 +82,7 @@ class SuggestArticlesResponse extends \Google\Protobuf\Internal\Message
      * Articles ordered by score in descending order.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.ArticleAnswer article_answers = 1;</code>
-     * @param \Google\Cloud\Dialogflow\V2\ArticleAnswer[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\ArticleAnswer>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArticleAnswers($var)

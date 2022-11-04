@@ -57,7 +57,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDocument()
     {
-        return isset($this->document) ? $this->document : null;
+        return $this->document;
     }
 
     public function hasDocument()
@@ -95,7 +95,7 @@ class UpdateDocumentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -106,7 +106,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      *           Output only. Confusion matrix of the evaluation.
      *           Only set for the overall model evaluation, not for evaluation of a single
      *           annotation spec.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $annotation_spec_id
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $annotation_spec_id
      *           Output only. The annotation spec ids used for this evaluation.
      *           Deprecated .
      * }
@@ -316,7 +316,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getConfusionMatrix()
     {
-        return isset($this->confusion_matrix) ? $this->confusion_matrix : null;
+        return $this->confusion_matrix;
     }
 
     public function hasConfusionMatrix()
@@ -365,7 +365,7 @@ class TextSentimentEvaluationMetrics extends \Google\Protobuf\Internal\Message
      * Deprecated .
      *
      * Generated from protobuf field <code>repeated string annotation_spec_id = 9 [deprecated = true];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      * @deprecated
      */

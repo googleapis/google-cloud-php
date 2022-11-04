@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\Firewall;
 use UnexpectedValueException;
 
 /**
- * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `INGRESS` traffic, you cannot specify the destinationRanges field, and for `EGRESS` traffic, you cannot specify the sourceRanges or sourceTags fields.
+ * Direction of traffic to which this firewall applies, either `INGRESS` or `EGRESS`. The default is `INGRESS`. For `EGRESS` traffic, you cannot specify the sourceTags fields.
  *
  * Protobuf type <code>google.cloud.compute.v1.Firewall.Direction</code>
  */
@@ -20,10 +20,14 @@ class Direction
      */
     const UNDEFINED_DIRECTION = 0;
     /**
+     * Indicates that firewall should apply to outgoing traffic.
+     *
      * Generated from protobuf enum <code>EGRESS = 432880501;</code>
      */
     const EGRESS = 432880501;
     /**
+     * Indicates that firewall should apply to incoming traffic.
+     *
      * Generated from protobuf enum <code>INGRESS = 516931221;</code>
      */
     const INGRESS = 516931221;

@@ -28,10 +28,12 @@ use Google\ApiCore\Testing\GeneratedTest;
 
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Recommender\V1\Insight;
+use Google\Cloud\Recommender\V1\InsightTypeConfig;
 use Google\Cloud\Recommender\V1\ListInsightsResponse;
 use Google\Cloud\Recommender\V1\ListRecommendationsResponse;
 use Google\Cloud\Recommender\V1\Recommendation;
 use Google\Cloud\Recommender\V1\RecommenderClient;
+use Google\Cloud\Recommender\V1\RecommenderConfig;
 use Google\Rpc\Code;
 use stdClass;
 
@@ -75,7 +77,7 @@ class RecommenderClientTest extends GeneratedTest
     public function getInsightTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -91,8 +93,8 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
-        $response = $client->getInsight($formattedName);
+        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+        $response = $gapicClient->getInsight($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -110,7 +112,7 @@ class RecommenderClientTest extends GeneratedTest
     public function getInsightExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -125,10 +127,80 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         try {
-            $client->getInsight($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getInsight($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getInsightTypeConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $revisionId = 'revisionId513861631';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new InsightTypeConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+        $response = $gapicClient->getInsightTypeConfig($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recommender.v1.Recommender/GetInsightTypeConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getInsightTypeConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->insightTypeConfigName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+        try {
+            $gapicClient->getInsightTypeConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -145,7 +217,7 @@ class RecommenderClientTest extends GeneratedTest
     public function getRecommendationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -154,15 +226,17 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag = 'etag3123477';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
-        $response = $client->getRecommendation($formattedName);
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $response = $gapicClient->getRecommendation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -180,7 +254,7 @@ class RecommenderClientTest extends GeneratedTest
     public function getRecommendationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -195,10 +269,80 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         try {
-            $client->getRecommendation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getRecommendation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getRecommenderConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $etag = 'etag3123477';
+        $revisionId = 'revisionId513861631';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new RecommenderConfig();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+        $response = $gapicClient->getRecommenderConfig($formattedName);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recommender.v1.Recommender/GetRecommenderConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getName();
+        $this->assertProtobufEquals($formattedName, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function getRecommenderConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedName = $gapicClient->recommenderConfigName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+        try {
+            $gapicClient->getRecommenderConfig($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -215,7 +359,7 @@ class RecommenderClientTest extends GeneratedTest
     public function listInsightsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -230,8 +374,8 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setInsights($insights);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
-        $response = $client->listInsights($formattedParent);
+        $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+        $response = $gapicClient->listInsights($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -252,7 +396,7 @@ class RecommenderClientTest extends GeneratedTest
     public function listInsightsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -267,10 +411,10 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
+        $formattedParent = $gapicClient->insightTypeName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]');
         try {
-            $client->listInsights($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listInsights($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -287,7 +431,7 @@ class RecommenderClientTest extends GeneratedTest
     public function listRecommendationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -302,8 +446,8 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setRecommendations($recommendations);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
-        $response = $client->listRecommendations($formattedParent);
+        $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+        $response = $gapicClient->listRecommendations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -324,7 +468,7 @@ class RecommenderClientTest extends GeneratedTest
     public function listRecommendationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -339,10 +483,10 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
+        $formattedParent = $gapicClient->recommenderName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]');
         try {
-            $client->listRecommendations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listRecommendations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -359,7 +503,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markInsightAcceptedTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -375,9 +519,9 @@ class RecommenderClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag2);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
-        $response = $client->markInsightAccepted($formattedName, $etag);
+        $response = $gapicClient->markInsightAccepted($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -397,7 +541,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markInsightAcceptedExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -412,11 +556,11 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
+        $formattedName = $gapicClient->insightName('[PROJECT]', '[LOCATION]', '[INSIGHT_TYPE]', '[INSIGHT]');
         $etag = 'etag3123477';
         try {
-            $client->markInsightAccepted($formattedName, $etag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->markInsightAccepted($formattedName, $etag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -433,7 +577,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationClaimedTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -442,16 +586,18 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
-        $response = $client->markRecommendationClaimed($formattedName, $etag);
+        $response = $gapicClient->markRecommendationClaimed($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -471,7 +617,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationClaimedExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -486,11 +632,11 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
         try {
-            $client->markRecommendationClaimed($formattedName, $etag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->markRecommendationClaimed($formattedName, $etag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -507,7 +653,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationFailedTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -516,16 +662,18 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
-        $response = $client->markRecommendationFailed($formattedName, $etag);
+        $response = $gapicClient->markRecommendationFailed($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -545,7 +693,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationFailedExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -560,11 +708,11 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
         try {
-            $client->markRecommendationFailed($formattedName, $etag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->markRecommendationFailed($formattedName, $etag);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -581,7 +729,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationSucceededTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -590,16 +738,18 @@ class RecommenderClientTest extends GeneratedTest
         $description = 'description-1724546052';
         $recommenderSubtype = 'recommenderSubtype-1488504412';
         $etag2 = 'etag2-1293302904';
+        $xorGroupId = 'xorGroupId381095487';
         $expectedResponse = new Recommendation();
         $expectedResponse->setName($name2);
         $expectedResponse->setDescription($description);
         $expectedResponse->setRecommenderSubtype($recommenderSubtype);
         $expectedResponse->setEtag($etag2);
+        $expectedResponse->setXorGroupId($xorGroupId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
-        $response = $client->markRecommendationSucceeded($formattedName, $etag);
+        $response = $gapicClient->markRecommendationSucceeded($formattedName, $etag);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -619,7 +769,7 @@ class RecommenderClientTest extends GeneratedTest
     public function markRecommendationSucceededExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -634,11 +784,151 @@ class RecommenderClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
+        $formattedName = $gapicClient->recommendationName('[PROJECT]', '[LOCATION]', '[RECOMMENDER]', '[RECOMMENDATION]');
         $etag = 'etag3123477';
         try {
-            $client->markRecommendationSucceeded($formattedName, $etag);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->markRecommendationSucceeded($formattedName, $etag);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateInsightTypeConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $revisionId = 'revisionId513861631';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new InsightTypeConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $insightTypeConfig = new InsightTypeConfig();
+        $response = $gapicClient->updateInsightTypeConfig($insightTypeConfig);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recommender.v1.Recommender/UpdateInsightTypeConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getInsightTypeConfig();
+        $this->assertProtobufEquals($insightTypeConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateInsightTypeConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $insightTypeConfig = new InsightTypeConfig();
+        try {
+            $gapicClient->updateInsightTypeConfig($insightTypeConfig);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateRecommenderConfigTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name = 'name3373707';
+        $etag = 'etag3123477';
+        $revisionId = 'revisionId513861631';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new RecommenderConfig();
+        $expectedResponse->setName($name);
+        $expectedResponse->setEtag($etag);
+        $expectedResponse->setRevisionId($revisionId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $recommenderConfig = new RecommenderConfig();
+        $response = $gapicClient->updateRecommenderConfig($recommenderConfig);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.recommender.v1.Recommender/UpdateRecommenderConfig', $actualFuncCall);
+        $actualValue = $actualRequestObject->getRecommenderConfig();
+        $this->assertProtobufEquals($recommenderConfig, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /**
+     * @test
+     */
+    public function updateRecommenderConfigExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $recommenderConfig = new RecommenderConfig();
+        try {
+            $gapicClient->updateRecommenderConfig($recommenderConfig);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

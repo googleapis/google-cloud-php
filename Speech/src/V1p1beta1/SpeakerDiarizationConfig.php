@@ -43,8 +43,9 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      * Output only. Unused.
      *
      * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @deprecated
      */
-    private $speaker_tag = 0;
+    protected $speaker_tag = 0;
 
     /**
      * Constructor.
@@ -168,9 +169,11 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return int
+     * @deprecated
      */
     public function getSpeakerTag()
     {
+        @trigger_error('speaker_tag is deprecated.', E_USER_DEPRECATED);
         return $this->speaker_tag;
     }
 
@@ -180,9 +183,11 @@ class SpeakerDiarizationConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 speaker_tag = 5 [deprecated = true, (.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param int $var
      * @return $this
+     * @deprecated
      */
     public function setSpeakerTag($var)
     {
+        @trigger_error('speaker_tag is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkInt32($var);
         $this->speaker_tag = $var;
 

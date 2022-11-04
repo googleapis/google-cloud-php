@@ -17,11 +17,11 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     /**
      * Type of resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatus result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterStatus result = 139315229;</code>
      */
     private $result = null;
 
@@ -44,7 +44,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     /**
      * Type of resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -65,7 +65,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     /**
      * Type of resource.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -78,12 +78,12 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatus result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterStatus result = 139315229;</code>
      * @return \Google\Cloud\Compute\V1\RouterStatus|null
      */
     public function getResult()
     {
-        return isset($this->result) ? $this->result : null;
+        return $this->result;
     }
 
     public function hasResult()
@@ -97,7 +97,7 @@ class RouterStatusResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>.google.cloud.compute.v1.RouterStatus result = 139315229;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.RouterStatus result = 139315229;</code>
      * @param \Google\Cloud\Compute\V1\RouterStatus $var
      * @return $this
      */

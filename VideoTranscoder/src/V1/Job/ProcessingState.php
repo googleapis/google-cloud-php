@@ -74,6 +74,4 @@ class ProcessingState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ProcessingState::class, \Google\Cloud\Video\Transcoder\V1\Job_ProcessingState::class);
 

@@ -3,6 +3,42 @@
 return [
     'interfaces' => [
         'google.analytics.admin.v1alpha.AnalyticsAdminService' => [
+            'AcknowledgeUserDataCollection' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{property=properties/*}:acknowledgeUserDataCollection',
+                'body' => '*',
+                'placeholders' => [
+                    'property' => [
+                        'getters' => [
+                            'getProperty',
+                        ],
+                    ],
+                ],
+            ],
+            'ApproveDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:approve',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ArchiveAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}:archive',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ArchiveCustomDimension' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{name=properties/*/customDimensions/*}:archive',
@@ -120,6 +156,30 @@ return [
                     ],
                 ],
             ],
+            'CancelDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}:cancel',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateAudience' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
+                'body' => 'audience',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateConversionEvent' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/conversionEvents',
@@ -156,6 +216,42 @@ return [
                     ],
                 ],
             ],
+            'CreateDataStream' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/dataStreams',
+                'body' => 'data_stream',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLink' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'body' => 'display_video_360_advertiser_link',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'CreateDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'body' => 'display_video_360_advertiser_link_proposal',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateFirebaseLink' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -182,20 +278,8 @@ return [
             ],
             'CreateMeasurementProtocolSecret' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
                 'body' => 'measurement_protocol_secret',
-                'additionalBindings' => [
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                ],
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -228,18 +312,6 @@ return [
                     ],
                 ],
             ],
-            'CreateWebDataStream' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/webDataStreams',
-                'body' => 'web_data_stream',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteAccount' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
@@ -251,9 +323,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteAndroidAppDataStream' => [
+            'DeleteConversionEvent' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -262,9 +334,31 @@ return [
                     ],
                 ],
             ],
-            'DeleteConversionEvent' => [
+            'DeleteDataStream' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/conversionEvents/*}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLink' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -295,30 +389,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteIosAppDataStream' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'DeleteMeasurementProtocolSecret' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                    [
-                        'method' => 'delete',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -355,17 +428,6 @@ return [
                     ],
                 ],
             ],
-            'DeleteWebDataStream' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetAccount' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*}',
@@ -377,9 +439,20 @@ return [
                     ],
                 ],
             ],
-            'GetAndroidAppDataStream' => [
+            'GetAttributionSettings' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/attributionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetAudience' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/audiences/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -421,6 +494,17 @@ return [
                     ],
                 ],
             ],
+            'GetDataRetentionSettings' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataRetentionSettings}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetDataSharingSettings' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{name=accounts/*/dataSharingSettings}',
@@ -432,9 +516,31 @@ return [
                     ],
                 ],
             ],
-            'GetEnhancedMeasurementSettings' => [
+            'GetDataStream' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLink' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetDisplayVideo360AdvertiserLinkProposal' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{name=properties/*/displayVideo360AdvertiserLinkProposals/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -445,7 +551,7 @@ return [
             ],
             'GetGlobalSiteTag' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/globalSiteTag}',
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/globalSiteTag}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -465,30 +571,9 @@ return [
                     ],
                 ],
             ],
-            'GetIosAppDataStream' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'GetMeasurementProtocolSecret' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -525,17 +610,6 @@ return [
                     ],
                 ],
             ],
-            'GetWebDataStream' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{name=properties/*/webDataStreams/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'ListAccountSummaries' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accountSummaries',
@@ -544,9 +618,9 @@ return [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/accounts',
             ],
-            'ListAndroidAppDataStreams' => [
+            'ListAudiences' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/androidAppDataStreams',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/audiences',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -588,6 +662,39 @@ return [
                     ],
                 ],
             ],
+            'ListDataStreams' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/dataStreams',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinkProposals' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinkProposals',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListDisplayVideo360AdvertiserLinks' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1alpha/{parent=properties/*}/displayVideo360AdvertiserLinks',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListFirebaseLinks' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/{parent=properties/*}/firebaseLinks',
@@ -610,30 +717,9 @@ return [
                     ],
                 ],
             ],
-            'ListIosAppDataStreams' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/iosAppDataStreams',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ListMeasurementProtocolSecrets' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*/webDataStreams/*}/measurementProtocolSecrets',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/iosAppDataStreams/*}/measurementProtocolSecrets',
-                    ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1alpha/{parent=properties/*/androidAppDataStreams/*}/measurementProtocolSecrets',
-                    ],
-                ],
+                'uriTemplate' => '/v1alpha/{parent=properties/*/dataStreams/*}/measurementProtocolSecrets',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -645,6 +731,9 @@ return [
             'ListProperties' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1alpha/properties',
+                'queryParams' => [
+                    'filter',
+                ],
             ],
             'ListUserLinks' => [
                 'method' => 'get',
@@ -663,21 +752,22 @@ return [
                     ],
                 ],
             ],
-            'ListWebDataStreams' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1alpha/{parent=properties/*}/webDataStreams',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
             'ProvisionAccountTicket' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1alpha/accounts:provisionAccountTicket',
                 'body' => '*',
+            ],
+            'RunAccessReport' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1alpha/{entity=properties/*}:runAccessReport',
+                'body' => '*',
+                'placeholders' => [
+                    'entity' => [
+                        'getters' => [
+                            'getEntity',
+                        ],
+                    ],
+                ],
             ],
             'SearchChangeHistoryEvents' => [
                 'method' => 'post',
@@ -703,18 +793,40 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'UpdateAndroidAppDataStream' => [
+            'UpdateAttributionSettings' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{android_app_data_stream.name=properties/*/androidAppDataStreams/*}',
-                'body' => 'android_app_data_stream',
+                'uriTemplate' => '/v1alpha/{attribution_settings.name=properties/*/attributionSettings}',
+                'body' => 'attribution_settings',
                 'placeholders' => [
-                    'android_app_data_stream.name' => [
+                    'attribution_settings.name' => [
                         'getters' => [
-                            'getAndroidAppDataStream',
+                            'getAttributionSettings',
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateAudience' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{audience.name=properties/*/audiences/*}',
+                'body' => 'audience',
+                'placeholders' => [
+                    'audience.name' => [
+                        'getters' => [
+                            'getAudience',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateCustomDimension' => [
@@ -729,6 +841,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateCustomMetric' => [
                 'method' => 'patch',
@@ -742,31 +857,56 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'UpdateEnhancedMeasurementSettings' => [
+            'UpdateDataRetentionSettings' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{enhanced_measurement_settings.name=properties/*/webDataStreams/*/enhancedMeasurementSettings}',
-                'body' => 'enhanced_measurement_settings',
+                'uriTemplate' => '/v1alpha/{data_retention_settings.name=properties/*/dataRetentionSettings}',
+                'body' => 'data_retention_settings',
                 'placeholders' => [
-                    'enhanced_measurement_settings.name' => [
+                    'data_retention_settings.name' => [
                         'getters' => [
-                            'getEnhancedMeasurementSettings',
+                            'getDataRetentionSettings',
                             'getName',
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
-            'UpdateFirebaseLink' => [
+            'UpdateDataStream' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{firebase_link.name=properties/*/firebaseLinks/*}',
-                'body' => 'firebase_link',
+                'uriTemplate' => '/v1alpha/{data_stream.name=properties/*/dataStreams/*}',
+                'body' => 'data_stream',
                 'placeholders' => [
-                    'firebase_link.name' => [
+                    'data_stream.name' => [
                         'getters' => [
-                            'getFirebaseLink',
+                            'getDataStream',
                             'getName',
                         ],
                     ],
+                ],
+                'queryParams' => [
+                    'update_mask',
+                ],
+            ],
+            'UpdateDisplayVideo360AdvertiserLink' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1alpha/{display_video_360_advertiser_link.name=properties/*/displayVideo360AdvertiserLinks/*}',
+                'body' => 'display_video_360_advertiser_link',
+                'placeholders' => [
+                    'display_video_360_advertiser_link.name' => [
+                        'getters' => [
+                            'getDisplayVideo360AdvertiserLink',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateGoogleAdsLink' => [
@@ -781,6 +921,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateGoogleSignalsSettings' => [
                 'method' => 'patch',
@@ -794,36 +937,14 @@ return [
                         ],
                     ],
                 ],
-            ],
-            'UpdateIosAppDataStream' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{ios_app_data_stream.name=properties/*/iosAppDataStreams/*}',
-                'body' => 'ios_app_data_stream',
-                'placeholders' => [
-                    'ios_app_data_stream.name' => [
-                        'getters' => [
-                            'getIosAppDataStream',
-                            'getName',
-                        ],
-                    ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'UpdateMeasurementProtocolSecret' => [
                 'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/webDataStreams/*/measurementProtocolSecrets/*}',
+                'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/dataStreams/*/measurementProtocolSecrets/*}',
                 'body' => 'measurement_protocol_secret',
-                'additionalBindings' => [
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/iosAppDataStreams/*/measurementProtocolSecrets/*}',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                    [
-                        'method' => 'patch',
-                        'uriTemplate' => '/v1alpha/{measurement_protocol_secret.name=properties/*/androidAppDataStreams/*/measurementProtocolSecrets/*}',
-                        'body' => 'measurement_protocol_secret',
-                    ],
-                ],
                 'placeholders' => [
                     'measurement_protocol_secret.name' => [
                         'getters' => [
@@ -845,6 +966,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'update_mask',
+                ],
             ],
             'UpdateUserLink' => [
                 'method' => 'patch',
@@ -861,19 +985,6 @@ return [
                     'user_link.name' => [
                         'getters' => [
                             'getUserLink',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateWebDataStream' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1alpha/{web_data_stream.name=properties/*/webDataStreams/*}',
-                'body' => 'web_data_stream',
-                'placeholders' => [
-                    'web_data_stream.name' => [
-                        'getters' => [
-                            'getWebDataStream',
                             'getName',
                         ],
                     ],

@@ -27,7 +27,7 @@ class NetworkEndpointGroupsDetachEndpointsRequest extends \Google\Protobuf\Inter
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\NetworkEndpoint[]|\Google\Protobuf\Internal\RepeatedField $network_endpoints
+     *     @type array<\Google\Cloud\Compute\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $network_endpoints
      *           The list of network endpoints to be detached.
      * }
      */
@@ -51,7 +51,7 @@ class NetworkEndpointGroupsDetachEndpointsRequest extends \Google\Protobuf\Inter
      * The list of network endpoints to be detached.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.NetworkEndpoint network_endpoints = 149850285;</code>
-     * @param \Google\Cloud\Compute\V1\NetworkEndpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\NetworkEndpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNetworkEndpoints($var)

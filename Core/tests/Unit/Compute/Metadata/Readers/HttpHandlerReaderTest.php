@@ -21,7 +21,7 @@ use Google\Auth\Credentials\GCECredentials;
 use Google\Cloud\Core\Compute\Metadata\Readers\HttpHandlerReader;
 use Google\Cloud\Core\Testing\TestHelpers;
 use GuzzleHttp\Psr7\Response;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Psr\Http\Message\RequestInterface;
 
 /**
@@ -33,7 +33,7 @@ class HttpHandlerReaderTest extends TestCase
     private $reader;
     private $handler;
 
-    public function setUp()
+    public function set_up()
     {
         $this->reader = TestHelpers::stub(HttpHandlerReader::class, [], [
             'httpHandler'

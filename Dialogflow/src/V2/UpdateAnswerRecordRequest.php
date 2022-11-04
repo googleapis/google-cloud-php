@@ -53,7 +53,7 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAnswerRecord()
     {
-        return isset($this->answer_record) ? $this->answer_record : null;
+        return $this->answer_record;
     }
 
     public function hasAnswerRecord()
@@ -89,7 +89,7 @@ class UpdateAnswerRecordRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -9,27 +9,32 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Timestamps about this resource according to a particular system.
+ * Timestamps associated with this resource in a particular system.
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.SystemTimestamps</code>
  */
 class SystemTimestamps extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The creation time of the resource within the given system.
+     * Creation timestamp of the resource within the given system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      */
     private $create_time = null;
     /**
-     * The last-modified time of the resource within the given system.
+     * Timestamp of the last modification of the resource or its metadata within
+     * a given system.
+     * Note: Depending on the source system, not every modification updates this
+     * timestamp.
+     * For example, BigQuery timestamps every metadata modification but not data
+     * or permission changes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      */
     private $update_time = null;
     /**
-     * Output only. The expiration time of the resource within the given system.
-     * Currently only apllicable to BigQuery resources.
+     * Output only. Expiration timestamp of the resource within the given system.
+     * Currently only applicable to BigQuery resources.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -42,12 +47,17 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           The creation time of the resource within the given system.
+     *           Creation timestamp of the resource within the given system.
      *     @type \Google\Protobuf\Timestamp $update_time
-     *           The last-modified time of the resource within the given system.
+     *           Timestamp of the last modification of the resource or its metadata within
+     *           a given system.
+     *           Note: Depending on the source system, not every modification updates this
+     *           timestamp.
+     *           For example, BigQuery timestamps every metadata modification but not data
+     *           or permission changes.
      *     @type \Google\Protobuf\Timestamp $expire_time
-     *           Output only. The expiration time of the resource within the given system.
-     *           Currently only apllicable to BigQuery resources.
+     *           Output only. Expiration timestamp of the resource within the given system.
+     *           Currently only applicable to BigQuery resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -56,14 +66,14 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation time of the resource within the given system.
+     * Creation timestamp of the resource within the given system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -77,7 +87,7 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The creation time of the resource within the given system.
+     * Creation timestamp of the resource within the given system.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -92,14 +102,19 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last-modified time of the resource within the given system.
+     * Timestamp of the last modification of the resource or its metadata within
+     * a given system.
+     * Note: Depending on the source system, not every modification updates this
+     * timestamp.
+     * For example, BigQuery timestamps every metadata modification but not data
+     * or permission changes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -113,7 +128,12 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The last-modified time of the resource within the given system.
+     * Timestamp of the last modification of the resource or its metadata within
+     * a given system.
+     * Note: Depending on the source system, not every modification updates this
+     * timestamp.
+     * For example, BigQuery timestamps every metadata modification but not data
+     * or permission changes.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 2;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -128,15 +148,15 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The expiration time of the resource within the given system.
-     * Currently only apllicable to BigQuery resources.
+     * Output only. Expiration timestamp of the resource within the given system.
+     * Currently only applicable to BigQuery resources.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -150,8 +170,8 @@ class SystemTimestamps extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The expiration time of the resource within the given system.
-     * Currently only apllicable to BigQuery resources.
+     * Output only. Expiration timestamp of the resource within the given system.
+     * Currently only applicable to BigQuery resources.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp expire_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var

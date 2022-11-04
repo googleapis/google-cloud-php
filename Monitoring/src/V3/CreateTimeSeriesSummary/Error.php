@@ -49,11 +49,21 @@ class Error extends \Google\Protobuf\Internal\Message
      * The status of the requested write operation.
      *
      * Generated from protobuf field <code>.google.rpc.Status status = 1;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getStatus()
     {
         return $this->status;
+    }
+
+    public function hasStatus()
+    {
+        return isset($this->status);
+    }
+
+    public function clearStatus()
+    {
+        unset($this->status);
     }
 
     /**

@@ -25,7 +25,7 @@ class EvaluationMode
     const ALWAYS_ALLOW = 1;
     /**
      * This rule allows a pod creation if all the attestors listed in
-     * 'require_attestations_by' have valid attestations for all of the
+     * `require_attestations_by` have valid attestations for all of the
      * images in the pod spec.
      *
      * Generated from protobuf enum <code>REQUIRE_ATTESTATION = 2;</code>

@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Tier extends \Google\Protobuf\Internal\Message
 {
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      */
@@ -29,7 +29,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      */
     private $RAM = 0;
     /**
-     * This is always <b>sql#tier</b>.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      */
@@ -54,15 +54,15 @@ class Tier extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $tier
-     *           An identifier for the machine type, for example, db-custom-1-3840. For
-     *           related information, see <a href="/sql/pricing">Pricing</a>.
+     *           An identifier for the machine type, for example, `db-custom-1-3840`. For
+     *           related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *     @type int|string $RAM
      *           The maximum RAM usage of this tier in bytes.
      *     @type string $kind
-     *           This is always <b>sql#tier</b>.
+     *           This is always `sql#tier`.
      *     @type int|string $Disk_Quota
      *           The maximum disk size of this tier in bytes.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $region
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $region
      *           The applicable regions for this tier.
      * }
      */
@@ -72,8 +72,8 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      * @return string
@@ -84,8 +84,8 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An identifier for the machine type, for example, db-custom-1-3840. For
-     * related information, see <a href="/sql/pricing">Pricing</a>.
+     * An identifier for the machine type, for example, `db-custom-1-3840`. For
+     * related information, see [Pricing](https://cloud.google.com/sql/pricing).
      *
      * Generated from protobuf field <code>string tier = 1;</code>
      * @param string $var
@@ -126,7 +126,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#tier</b>.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @return string
@@ -137,7 +137,7 @@ class Tier extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#tier</b>.
+     * This is always `sql#tier`.
      *
      * Generated from protobuf field <code>string kind = 3;</code>
      * @param string $var
@@ -192,7 +192,7 @@ class Tier extends \Google\Protobuf\Internal\Message
      * The applicable regions for this tier.
      *
      * Generated from protobuf field <code>repeated string region = 5;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRegion($var)

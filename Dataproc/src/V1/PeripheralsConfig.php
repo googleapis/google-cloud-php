@@ -87,7 +87,7 @@ class PeripheralsConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSparkHistoryServerConfig()
     {
-        return isset($this->spark_history_server_config) ? $this->spark_history_server_config : null;
+        return $this->spark_history_server_config;
     }
 
     public function hasSparkHistoryServerConfig()

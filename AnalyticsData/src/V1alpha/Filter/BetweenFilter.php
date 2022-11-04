@@ -119,6 +119,4 @@ class BetweenFilter extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(BetweenFilter::class, \Google\Analytics\Data\V1alpha\Filter_BetweenFilter::class);
 

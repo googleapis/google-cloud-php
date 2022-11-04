@@ -29,7 +29,7 @@ class InvalidTemplateParameters extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation[]|\Google\Protobuf\Internal\RepeatedField $parameter_violations
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation>|\Google\Protobuf\Internal\RepeatedField $parameter_violations
      *           Describes all parameter violations in a template request.
      * }
      */
@@ -53,7 +53,7 @@ class InvalidTemplateParameters extends \Google\Protobuf\Internal\Message
      * Describes all parameter violations in a template request.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.InvalidTemplateParameters.ParameterViolation parameter_violations = 1;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\InvalidTemplateParameters\ParameterViolation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameterViolations($var)

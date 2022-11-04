@@ -58,7 +58,7 @@ class CreateTagValueRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagValue()
     {
-        return isset($this->tag_value) ? $this->tag_value : null;
+        return $this->tag_value;
     }
 
     public function hasTagValue()

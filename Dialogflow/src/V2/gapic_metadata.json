@@ -54,6 +54,16 @@
                             "methods": [
                                 "trainAgent"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -92,6 +102,16 @@
                         "UpdateContext": {
                             "methods": [
                                 "updateContext"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -136,6 +156,16 @@
                         "UpdateIntent": {
                             "methods": [
                                 "updateIntent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -196,6 +226,16 @@
                             "methods": [
                                 "updateEntityType"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -230,6 +270,16 @@
                             "methods": [
                                 "updateSessionEntityType"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -248,6 +298,16 @@
                         "StreamingDetectIntent": {
                             "methods": [
                                 "streamingDetectIntent"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -279,6 +339,11 @@
                                 "listParticipants"
                             ]
                         },
+                        "StreamingAnalyzeContent": {
+                            "methods": [
+                                "streamingAnalyzeContent"
+                            ]
+                        },
                         "SuggestArticles": {
                             "methods": [
                                 "suggestArticles"
@@ -289,9 +354,24 @@
                                 "suggestFaqAnswers"
                             ]
                         },
+                        "SuggestSmartReplies": {
+                            "methods": [
+                                "suggestSmartReplies"
+                            ]
+                        },
                         "UpdateParticipant": {
                             "methods": [
                                 "updateParticipant"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -311,6 +391,16 @@
                         "UpdateAnswerRecord": {
                             "methods": [
                                 "updateAnswerRecord"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -346,6 +436,124 @@
                             "methods": [
                                 "listMessages"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationDatasets": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationDatasetsGapicClient",
+                    "rpcs": {
+                        "CreateConversationDataset": {
+                            "methods": [
+                                "createConversationDataset"
+                            ]
+                        },
+                        "DeleteConversationDataset": {
+                            "methods": [
+                                "deleteConversationDataset"
+                            ]
+                        },
+                        "GetConversationDataset": {
+                            "methods": [
+                                "getConversationDataset"
+                            ]
+                        },
+                        "ImportConversationData": {
+                            "methods": [
+                                "importConversationData"
+                            ]
+                        },
+                        "ListConversationDatasets": {
+                            "methods": [
+                                "listConversationDatasets"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "ConversationModels": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ConversationModelsGapicClient",
+                    "rpcs": {
+                        "CreateConversationModel": {
+                            "methods": [
+                                "createConversationModel"
+                            ]
+                        },
+                        "CreateConversationModelEvaluation": {
+                            "methods": [
+                                "createConversationModelEvaluation"
+                            ]
+                        },
+                        "DeleteConversationModel": {
+                            "methods": [
+                                "deleteConversationModel"
+                            ]
+                        },
+                        "DeployConversationModel": {
+                            "methods": [
+                                "deployConversationModel"
+                            ]
+                        },
+                        "GetConversationModel": {
+                            "methods": [
+                                "getConversationModel"
+                            ]
+                        },
+                        "GetConversationModelEvaluation": {
+                            "methods": [
+                                "getConversationModelEvaluation"
+                            ]
+                        },
+                        "ListConversationModelEvaluations": {
+                            "methods": [
+                                "listConversationModelEvaluations"
+                            ]
+                        },
+                        "ListConversationModels": {
+                            "methods": [
+                                "listConversationModels"
+                            ]
+                        },
+                        "UndeployConversationModel": {
+                            "methods": [
+                                "undeployConversationModel"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -356,6 +564,11 @@
                 "grpc": {
                     "libraryClient": "ConversationProfilesGapicClient",
                     "rpcs": {
+                        "ClearSuggestionFeatureConfig": {
+                            "methods": [
+                                "clearSuggestionFeatureConfig"
+                            ]
+                        },
                         "CreateConversationProfile": {
                             "methods": [
                                 "createConversationProfile"
@@ -376,9 +589,24 @@
                                 "listConversationProfiles"
                             ]
                         },
+                        "SetSuggestionFeatureConfig": {
+                            "methods": [
+                                "setSuggestionFeatureConfig"
+                            ]
+                        },
                         "UpdateConversationProfile": {
                             "methods": [
                                 "updateConversationProfile"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -400,9 +628,19 @@
                                 "deleteDocument"
                             ]
                         },
+                        "ExportDocument": {
+                            "methods": [
+                                "exportDocument"
+                            ]
+                        },
                         "GetDocument": {
                             "methods": [
                                 "getDocument"
+                            ]
+                        },
+                        "ImportDocuments": {
+                            "methods": [
+                                "importDocuments"
                             ]
                         },
                         "ListDocuments": {
@@ -418,6 +656,16 @@
                         "UpdateDocument": {
                             "methods": [
                                 "updateDocument"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -437,6 +685,16 @@
                         "UpdateFulfillment": {
                             "methods": [
                                 "updateFulfillment"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }
@@ -477,6 +735,16 @@
                             "methods": [
                                 "updateEnvironment"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -511,6 +779,16 @@
                             "methods": [
                                 "updateKnowledgeBase"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }
@@ -544,6 +822,16 @@
                         "UpdateVersion": {
                             "methods": [
                                 "updateVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }

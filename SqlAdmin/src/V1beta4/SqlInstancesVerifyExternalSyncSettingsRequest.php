@@ -37,6 +37,13 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.SqlInstancesVerifyExternalSyncSettingsRequest.ExternalSyncMode sync_mode = 4;</code>
      */
     private $sync_mode = 0;
+    /**
+     * Optional. Flag to verify settings required by replication setup only
+     *
+     * Generated from protobuf field <code>bool verify_replication_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $verify_replication_only = false;
+    protected $sync_config;
 
     /**
      * Constructor.
@@ -52,6 +59,10 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
      *           Flag to enable verifying connection only
      *     @type int $sync_mode
      *           External sync mode
+     *     @type bool $verify_replication_only
+     *           Optional. Flag to verify settings required by replication setup only
+     *     @type \Google\Cloud\Sql\V1beta4\MySqlSyncConfig $mysql_sync_config
+     *           Optional. MySQL-specific settings for start external sync.
      * }
      */
     public function __construct($data = NULL) {
@@ -161,6 +172,71 @@ class SqlInstancesVerifyExternalSyncSettingsRequest extends \Google\Protobuf\Int
         $this->sync_mode = $var;
 
         return $this;
+    }
+
+    /**
+     * Optional. Flag to verify settings required by replication setup only
+     *
+     * Generated from protobuf field <code>bool verify_replication_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return bool
+     */
+    public function getVerifyReplicationOnly()
+    {
+        return $this->verify_replication_only;
+    }
+
+    /**
+     * Optional. Flag to verify settings required by replication setup only
+     *
+     * Generated from protobuf field <code>bool verify_replication_only = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setVerifyReplicationOnly($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->verify_replication_only = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. MySQL-specific settings for start external sync.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.MySqlSyncConfig mysql_sync_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\Sql\V1beta4\MySqlSyncConfig|null
+     */
+    public function getMysqlSyncConfig()
+    {
+        return $this->readOneof(6);
+    }
+
+    public function hasMysqlSyncConfig()
+    {
+        return $this->hasOneof(6);
+    }
+
+    /**
+     * Optional. MySQL-specific settings for start external sync.
+     *
+     * Generated from protobuf field <code>.google.cloud.sql.v1beta4.MySqlSyncConfig mysql_sync_config = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\Sql\V1beta4\MySqlSyncConfig $var
+     * @return $this
+     */
+    public function setMysqlSyncConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Sql\V1beta4\MySqlSyncConfig::class);
+        $this->writeOneof(6, $var);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSyncConfig()
+    {
+        return $this->whichOneof("sync_config");
     }
 
 }

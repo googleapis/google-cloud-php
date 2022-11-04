@@ -64,7 +64,10 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Output only. Data transfer specific parameters.
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -99,7 +102,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     private $schedule = '';
     /**
      * Output only. Pub/Sub topic where a notification will be sent after this
-     * transfer run finishes
+     * transfer run finishes.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -141,7 +146,10 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. Last time the data transfer run state was updated.
      *     @type \Google\Protobuf\Struct $params
-     *           Output only. Data transfer specific parameters.
+     *           Output only. Parameters specific to each data source. For more information see the
+     *           bq tab in the 'Setting up a data transfer' section for each data source.
+     *           For example the parameters for Cloud Storage transfers are listed here:
+     *           https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *     @type string $destination_dataset_id
      *           Output only. The BigQuery target dataset id.
      *     @type string $data_source_id
@@ -158,7 +166,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      *           current load, so `schedule_time` doesn't always match this.
      *     @type string $notification_pubsub_topic
      *           Output only. Pub/Sub topic where a notification will be sent after this
-     *           transfer run finishes
+     *           transfer run finishes.
+     *           The format for specifying a pubsub topic is:
+     *           `projects/{project}/topics/{topic}`
      *     @type \Google\Cloud\BigQuery\DataTransfer\V1\EmailPreferences $email_preferences
      *           Output only. Email notifications will be sent according to these
      *           preferences to the email address of the user who owns the transfer config
@@ -210,7 +220,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getScheduleTime()
     {
-        return isset($this->schedule_time) ? $this->schedule_time : null;
+        return $this->schedule_time;
     }
 
     public function hasScheduleTime()
@@ -247,7 +257,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getRunTime()
     {
-        return isset($this->run_time) ? $this->run_time : null;
+        return $this->run_time;
     }
 
     public function hasRunTime()
@@ -284,7 +294,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getErrorStatus()
     {
-        return isset($this->error_status) ? $this->error_status : null;
+        return $this->error_status;
     }
 
     public function hasErrorStatus()
@@ -321,7 +331,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -359,7 +369,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -396,7 +406,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -425,14 +435,17 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Data transfer specific parameters.
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Struct|null
      */
     public function getParams()
     {
-        return isset($this->params) ? $this->params : null;
+        return $this->params;
     }
 
     public function hasParams()
@@ -446,7 +459,10 @@ class TransferRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Data transfer specific parameters.
+     * Output only. Parameters specific to each data source. For more information see the
+     * bq tab in the 'Setting up a data transfer' section for each data source.
+     * For example the parameters for Cloud Storage transfers are listed here:
+     * https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      *
      * Generated from protobuf field <code>.google.protobuf.Struct params = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Struct $var
@@ -605,7 +621,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Pub/Sub topic where a notification will be sent after this
-     * transfer run finishes
+     * transfer run finishes.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -617,7 +635,9 @@ class TransferRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. Pub/Sub topic where a notification will be sent after this
-     * transfer run finishes
+     * transfer run finishes.
+     * The format for specifying a pubsub topic is:
+     * `projects/{project}/topics/{topic}`
      *
      * Generated from protobuf field <code>string notification_pubsub_topic = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
@@ -641,7 +661,7 @@ class TransferRun extends \Google\Protobuf\Internal\Message
      */
     public function getEmailPreferences()
     {
-        return isset($this->email_preferences) ? $this->email_preferences : null;
+        return $this->email_preferences;
     }
 
     public function hasEmailPreferences()

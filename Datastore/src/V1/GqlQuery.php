@@ -70,7 +70,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      *           a named parameter with that name, but not necessarily the inverse.
      *           Key must match regex `[A-Za-z_$][A-Za-z_$0-9]*`, must not match regex
      *           `__.*__`, and must not be `""`.
-     *     @type \Google\Cloud\Datastore\V1\GqlQueryParameter[]|\Google\Protobuf\Internal\RepeatedField $positional_bindings
+     *     @type array<\Google\Cloud\Datastore\V1\GqlQueryParameter>|\Google\Protobuf\Internal\RepeatedField $positional_bindings
      *           Numbered binding site &#64;1 references the first numbered parameter,
      *           effectively using 1-based indexing, rather than the usual 0.
      *           For each binding site numbered i in `query_string`, there must be an i-th
@@ -195,7 +195,7 @@ class GqlQuery extends \Google\Protobuf\Internal\Message
      * numbered parameter. The inverse must also be true.
      *
      * Generated from protobuf field <code>repeated .google.datastore.v1.GqlQueryParameter positional_bindings = 4;</code>
-     * @param \Google\Cloud\Datastore\V1\GqlQueryParameter[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Datastore\V1\GqlQueryParameter>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPositionalBindings($var)

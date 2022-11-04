@@ -148,6 +148,17 @@ return [
                     ],
                 ],
             ],
+            'ListHotTablets' => [
+                'method' => 'get',
+                'uriTemplate' => '/v2/{parent=projects/*/instances/*/clusters/*}/hotTablets',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListInstances' => [
                 'method' => 'get',
                 'uriTemplate' => '/v2/{parent=projects/*}/instances',
@@ -157,6 +168,22 @@ return [
                             'getParent',
                         ],
                     ],
+                ],
+            ],
+            'PartialUpdateCluster' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v2/{cluster.name=projects/*/instances/*/clusters/*}',
+                'body' => 'cluster',
+                'placeholders' => [
+                    'cluster.name' => [
+                        'getters' => [
+                            'getCluster',
+                            'getName',
+                        ],
+                    ],
+                ],
+                'queryParams' => [
+                    'update_mask',
                 ],
             ],
             'PartialUpdateInstance' => [

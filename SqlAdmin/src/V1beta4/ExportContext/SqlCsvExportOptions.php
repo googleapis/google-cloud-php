@@ -19,6 +19,33 @@ class SqlCsvExportOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string select_query = 1;</code>
      */
     private $select_query = '';
+    /**
+     * Specifies the character that should appear before a data character that
+     * needs to be escaped.
+     *
+     * Generated from protobuf field <code>string escape_character = 2;</code>
+     */
+    private $escape_character = '';
+    /**
+     * Specifies the quoting character to be used when a data value is quoted.
+     *
+     * Generated from protobuf field <code>string quote_character = 3;</code>
+     */
+    private $quote_character = '';
+    /**
+     * Specifies the character that separates columns within each row (line) of
+     * the file.
+     *
+     * Generated from protobuf field <code>string fields_terminated_by = 4;</code>
+     */
+    private $fields_terminated_by = '';
+    /**
+     * This is used to separate lines. If a line does not contain all fields,
+     * the rest of the columns are set to their default values.
+     *
+     * Generated from protobuf field <code>string lines_terminated_by = 6;</code>
+     */
+    private $lines_terminated_by = '';
 
     /**
      * Constructor.
@@ -28,6 +55,17 @@ class SqlCsvExportOptions extends \Google\Protobuf\Internal\Message
      *
      *     @type string $select_query
      *           The select query used to extract the data.
+     *     @type string $escape_character
+     *           Specifies the character that should appear before a data character that
+     *           needs to be escaped.
+     *     @type string $quote_character
+     *           Specifies the quoting character to be used when a data value is quoted.
+     *     @type string $fields_terminated_by
+     *           Specifies the character that separates columns within each row (line) of
+     *           the file.
+     *     @type string $lines_terminated_by
+     *           This is used to separate lines. If a line does not contain all fields,
+     *           the rest of the columns are set to their default values.
      * }
      */
     public function __construct($data = NULL) {
@@ -61,8 +99,116 @@ class SqlCsvExportOptions extends \Google\Protobuf\Internal\Message
         return $this;
     }
 
+    /**
+     * Specifies the character that should appear before a data character that
+     * needs to be escaped.
+     *
+     * Generated from protobuf field <code>string escape_character = 2;</code>
+     * @return string
+     */
+    public function getEscapeCharacter()
+    {
+        return $this->escape_character;
+    }
+
+    /**
+     * Specifies the character that should appear before a data character that
+     * needs to be escaped.
+     *
+     * Generated from protobuf field <code>string escape_character = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setEscapeCharacter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->escape_character = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the quoting character to be used when a data value is quoted.
+     *
+     * Generated from protobuf field <code>string quote_character = 3;</code>
+     * @return string
+     */
+    public function getQuoteCharacter()
+    {
+        return $this->quote_character;
+    }
+
+    /**
+     * Specifies the quoting character to be used when a data value is quoted.
+     *
+     * Generated from protobuf field <code>string quote_character = 3;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setQuoteCharacter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->quote_character = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the character that separates columns within each row (line) of
+     * the file.
+     *
+     * Generated from protobuf field <code>string fields_terminated_by = 4;</code>
+     * @return string
+     */
+    public function getFieldsTerminatedBy()
+    {
+        return $this->fields_terminated_by;
+    }
+
+    /**
+     * Specifies the character that separates columns within each row (line) of
+     * the file.
+     *
+     * Generated from protobuf field <code>string fields_terminated_by = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFieldsTerminatedBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->fields_terminated_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * This is used to separate lines. If a line does not contain all fields,
+     * the rest of the columns are set to their default values.
+     *
+     * Generated from protobuf field <code>string lines_terminated_by = 6;</code>
+     * @return string
+     */
+    public function getLinesTerminatedBy()
+    {
+        return $this->lines_terminated_by;
+    }
+
+    /**
+     * This is used to separate lines. If a line does not contain all fields,
+     * the rest of the columns are set to their default values.
+     *
+     * Generated from protobuf field <code>string lines_terminated_by = 6;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setLinesTerminatedBy($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->lines_terminated_by = $var;
+
+        return $this;
+    }
+
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlCsvExportOptions::class, \Google\Cloud\Sql\V1beta4\ExportContext_SqlCsvExportOptions::class);
 

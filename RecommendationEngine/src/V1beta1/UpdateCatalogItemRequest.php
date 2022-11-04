@@ -19,7 +19,7 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of catalog item, such as
      * "projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -33,7 +33,7 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * Optional. Indicates which fields in the provided 'item' to update. If not
      * set, will by default update all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      */
     private $update_mask = null;
 
@@ -63,7 +63,7 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of catalog item, such as
      * "projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -75,7 +75,7 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * Required. Full resource name of catalog item, such as
      * "projects/&#42;&#47;locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -92,11 +92,21 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * has to match that in the 'name'.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.CatalogItem catalog_item = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem|null
      */
     public function getCatalogItem()
     {
         return $this->catalog_item;
+    }
+
+    public function hasCatalogItem()
+    {
+        return isset($this->catalog_item);
+    }
+
+    public function clearCatalogItem()
+    {
+        unset($this->catalog_item);
     }
 
     /**
@@ -119,19 +129,29 @@ class UpdateCatalogItemRequest extends \Google\Protobuf\Internal\Message
      * Optional. Indicates which fields in the provided 'item' to update. If not
      * set, will by default update all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Protobuf\FieldMask
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
+     * @return \Google\Protobuf\FieldMask|null
      */
     public function getUpdateMask()
     {
         return $this->update_mask;
     }
 
+    public function hasUpdateMask()
+    {
+        return isset($this->update_mask);
+    }
+
+    public function clearUpdateMask()
+    {
+        unset($this->update_mask);
+    }
+
     /**
      * Optional. Indicates which fields in the provided 'item' to update. If not
      * set, will by default update all fields.
      *
-     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.protobuf.FieldMask update_mask = 3;</code>
      * @param \Google\Protobuf\FieldMask $var
      * @return $this
      */

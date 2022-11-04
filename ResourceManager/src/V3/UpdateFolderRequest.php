@@ -64,7 +64,7 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFolder()
     {
-        return isset($this->folder) ? $this->folder : null;
+        return $this->folder;
     }
 
     public function hasFolder()
@@ -102,7 +102,7 @@ class UpdateFolderRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

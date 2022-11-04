@@ -43,13 +43,13 @@ class ListCaPoolsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool[]|\Google\Protobuf\Internal\RepeatedField $ca_pools
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CaPool>|\Google\Protobuf\Internal\RepeatedField $ca_pools
      *           The list of [CaPools][google.cloud.security.privateca.v1.CaPool].
      *     @type string $next_page_token
      *           A token to retrieve next page of results. Pass this value in
      *           [ListCertificateAuthoritiesRequest.next_page_token][] to retrieve the next
      *           page of results.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           A list of locations (e.g. "us-west1") that could not be reached.
      * }
      */
@@ -73,7 +73,7 @@ class ListCaPoolsResponse extends \Google\Protobuf\Internal\Message
      * The list of [CaPools][google.cloud.security.privateca.v1.CaPool].
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool ca_pools = 1;</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1\CaPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\CaPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCaPools($var)
@@ -129,7 +129,7 @@ class ListCaPoolsResponse extends \Google\Protobuf\Internal\Message
      * A list of locations (e.g. "us-west1") that could not be reached.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

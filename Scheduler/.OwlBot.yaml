@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/scheduler/(v1|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/Scheduler/$1/$2
+api-name: Scheduler

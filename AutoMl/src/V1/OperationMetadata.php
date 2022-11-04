@@ -72,7 +72,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      *     @type int $progress_percent
      *           Output only. Progress of operation. Range: [0, 100].
      *           Not used currently.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_failures
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_failures
      *           Output only. Partial failures encountered.
      *           E.g. single files that couldn't be read.
      *           This field should never exceed 20 entries.
@@ -416,7 +416,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      * Status details field will contain standard GCP error details.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_failures = 2;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialFailures($var)
@@ -435,7 +435,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -471,7 +471,7 @@ class OperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

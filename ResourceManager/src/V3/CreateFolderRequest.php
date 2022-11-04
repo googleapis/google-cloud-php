@@ -48,7 +48,7 @@ class CreateFolderRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFolder()
     {
-        return isset($this->folder) ? $this->folder : null;
+        return $this->folder;
     }
 
     public function hasFolder()

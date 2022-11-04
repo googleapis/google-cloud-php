@@ -17,7 +17,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
+     * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      */
     private $specific_sku_count = null;
 
@@ -39,7 +39,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
+     * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      * @return int|string
      */
     public function getSpecificSkuCount()
@@ -60,7 +60,7 @@ class ReservationsResizeRequest extends \Google\Protobuf\Internal\Message
     /**
      * Number of allocated resources can be resized with minimum = 1 and maximum = 1000.
      *
-     * Generated from protobuf field <code>int64 specific_sku_count = 13890720;</code>
+     * Generated from protobuf field <code>optional int64 specific_sku_count = 13890720;</code>
      * @param int|string $var
      * @return $this
      */

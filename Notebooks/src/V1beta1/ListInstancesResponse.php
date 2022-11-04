@@ -43,12 +43,12 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Notebooks\V1beta1\Instance[]|\Google\Protobuf\Internal\RepeatedField $instances
+     *     @type array<\Google\Cloud\Notebooks\V1beta1\Instance>|\Google\Protobuf\Internal\RepeatedField $instances
      *           A list of returned instances.
      *     @type string $next_page_token
      *           Page token that can be used to continue listing from the last result in the
      *           next list call.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Locations that could not be reached. For example,
      *           ['us-west1-a', 'us-central1-b'].
      *           A ListInstancesResponse will only contain either instances or unreachables,
@@ -74,7 +74,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * A list of returned instances.
      *
      * Generated from protobuf field <code>repeated .google.cloud.notebooks.v1beta1.Instance instances = 1;</code>
-     * @param \Google\Cloud\Notebooks\V1beta1\Instance[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Notebooks\V1beta1\Instance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstances($var)
@@ -132,7 +132,7 @@ class ListInstancesResponse extends \Google\Protobuf\Internal\Message
      * A ListInstancesResponse will only contain either instances or unreachables,
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

@@ -16,11 +16,10 @@ class Common
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-©
-0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/protobuf/timestamp.protogoogle/api/annotations.proto"Ä
+ã
+0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A

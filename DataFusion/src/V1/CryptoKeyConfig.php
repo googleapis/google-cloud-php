@@ -21,7 +21,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
      * in Cloud KMS, the key should be in the format of
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string key_reference = 1;</code>
+     * Generated from protobuf field <code>string key_reference = 1 [(.google.api.resource_reference) = {</code>
      */
     private $key_reference = '';
 
@@ -47,7 +47,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
      * in Cloud KMS, the key should be in the format of
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string key_reference = 1;</code>
+     * Generated from protobuf field <code>string key_reference = 1 [(.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getKeyReference()
@@ -60,7 +60,7 @@ class CryptoKeyConfig extends \Google\Protobuf\Internal\Message
      * in Cloud KMS, the key should be in the format of
      * `projects/&#42;&#47;locations/&#42;&#47;keyRings/&#42;&#47;cryptoKeys/&#42;`.
      *
-     * Generated from protobuf field <code>string key_reference = 1;</code>
+     * Generated from protobuf field <code>string key_reference = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

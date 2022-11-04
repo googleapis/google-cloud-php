@@ -53,7 +53,7 @@ class Interval extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -109,6 +109,4 @@ class Interval extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Interval::class, \Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse_TimeSeries_Interval::class);
 

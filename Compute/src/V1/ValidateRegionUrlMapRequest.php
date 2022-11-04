@@ -121,7 +121,7 @@ class ValidateRegionUrlMapRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRegionUrlMapsValidateRequestResource()
     {
-        return isset($this->region_url_maps_validate_request_resource) ? $this->region_url_maps_validate_request_resource : null;
+        return $this->region_url_maps_validate_request_resource;
     }
 
     public function hasRegionUrlMapsValidateRequestResource()

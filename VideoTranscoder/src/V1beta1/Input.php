@@ -125,7 +125,7 @@ class Input extends \Google\Protobuf\Internal\Message
      */
     public function getPreprocessingConfig()
     {
-        return isset($this->preprocessing_config) ? $this->preprocessing_config : null;
+        return $this->preprocessing_config;
     }
 
     public function hasPreprocessingConfig()

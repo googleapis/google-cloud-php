@@ -35,13 +35,13 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      */
     private $bigquery_details;
     /**
-     * Identification of a Cloud BigTable source used in the Dataflow job.
+     * Identification of a Cloud Bigtable source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.BigTableIODetails big_table_details = 4;</code>
      */
     private $big_table_details;
     /**
-     * Identification of a PubSub source used in the Dataflow job.
+     * Identification of a Pub/Sub source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubSubIODetails pubsub_details = 5;</code>
      */
@@ -67,17 +67,17 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Dataflow\V1beta3\SdkVersion $sdk_version
      *           The SDK version used to run the job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\SpannerIODetails[]|\Google\Protobuf\Internal\RepeatedField $spanner_details
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\SpannerIODetails>|\Google\Protobuf\Internal\RepeatedField $spanner_details
      *           Identification of a Spanner source used in the Dataflow job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\BigQueryIODetails[]|\Google\Protobuf\Internal\RepeatedField $bigquery_details
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\BigQueryIODetails>|\Google\Protobuf\Internal\RepeatedField $bigquery_details
      *           Identification of a BigQuery source used in the Dataflow job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\BigTableIODetails[]|\Google\Protobuf\Internal\RepeatedField $big_table_details
-     *           Identification of a Cloud BigTable source used in the Dataflow job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\PubSubIODetails[]|\Google\Protobuf\Internal\RepeatedField $pubsub_details
-     *           Identification of a PubSub source used in the Dataflow job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\FileIODetails[]|\Google\Protobuf\Internal\RepeatedField $file_details
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\BigTableIODetails>|\Google\Protobuf\Internal\RepeatedField $big_table_details
+     *           Identification of a Cloud Bigtable source used in the Dataflow job.
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\PubSubIODetails>|\Google\Protobuf\Internal\RepeatedField $pubsub_details
+     *           Identification of a Pub/Sub source used in the Dataflow job.
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\FileIODetails>|\Google\Protobuf\Internal\RepeatedField $file_details
      *           Identification of a File source used in the Dataflow job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\DatastoreIODetails[]|\Google\Protobuf\Internal\RepeatedField $datastore_details
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\DatastoreIODetails>|\Google\Protobuf\Internal\RepeatedField $datastore_details
      *           Identification of a Datastore source used in the Dataflow job.
      * }
      */
@@ -94,7 +94,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getSdkVersion()
     {
-        return isset($this->sdk_version) ? $this->sdk_version : null;
+        return $this->sdk_version;
     }
 
     public function hasSdkVersion()
@@ -137,7 +137,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Identification of a Spanner source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.SpannerIODetails spanner_details = 2;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\SpannerIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\SpannerIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpannerDetails($var)
@@ -163,7 +163,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Identification of a BigQuery source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.BigQueryIODetails bigquery_details = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\BigQueryIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\BigQueryIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBigqueryDetails($var)
@@ -175,7 +175,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identification of a Cloud BigTable source used in the Dataflow job.
+     * Identification of a Cloud Bigtable source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.BigTableIODetails big_table_details = 4;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -186,10 +186,10 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identification of a Cloud BigTable source used in the Dataflow job.
+     * Identification of a Cloud Bigtable source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.BigTableIODetails big_table_details = 4;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\BigTableIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\BigTableIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBigTableDetails($var)
@@ -201,7 +201,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identification of a PubSub source used in the Dataflow job.
+     * Identification of a Pub/Sub source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubSubIODetails pubsub_details = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -212,10 +212,10 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Identification of a PubSub source used in the Dataflow job.
+     * Identification of a Pub/Sub source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubSubIODetails pubsub_details = 5;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\PubSubIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\PubSubIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPubsubDetails($var)
@@ -241,7 +241,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Identification of a File source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.FileIODetails file_details = 6;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\FileIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\FileIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFileDetails($var)
@@ -267,7 +267,7 @@ class JobMetadata extends \Google\Protobuf\Internal\Message
      * Identification of a Datastore source used in the Dataflow job.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.DatastoreIODetails datastore_details = 7;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\DatastoreIODetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\DatastoreIODetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDatastoreDetails($var)

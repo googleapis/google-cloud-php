@@ -22,7 +22,7 @@ class ImageObjectDetectionModelDeploymentMetadata extends \Google\Protobuf\Inter
      * [qps_per_node][google.cloud.automl.v1.ImageObjectDetectionModelMetadata.qps_per_node].
      * Must be between 1 and 100, inclusive on both ends.
      *
-     * Generated from protobuf field <code>int64 node_count = 1;</code>
+     * Generated from protobuf field <code>int64 node_count = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      */
     private $node_count = 0;
 
@@ -52,7 +52,7 @@ class ImageObjectDetectionModelDeploymentMetadata extends \Google\Protobuf\Inter
      * [qps_per_node][google.cloud.automl.v1.ImageObjectDetectionModelMetadata.qps_per_node].
      * Must be between 1 and 100, inclusive on both ends.
      *
-     * Generated from protobuf field <code>int64 node_count = 1;</code>
+     * Generated from protobuf field <code>int64 node_count = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @return int|string
      */
     public function getNodeCount()
@@ -67,7 +67,7 @@ class ImageObjectDetectionModelDeploymentMetadata extends \Google\Protobuf\Inter
      * [qps_per_node][google.cloud.automl.v1.ImageObjectDetectionModelMetadata.qps_per_node].
      * Must be between 1 and 100, inclusive on both ends.
      *
-     * Generated from protobuf field <code>int64 node_count = 1;</code>
+     * Generated from protobuf field <code>int64 node_count = 1 [(.google.api.field_behavior) = INPUT_ONLY];</code>
      * @param int|string $var
      * @return $this
      */

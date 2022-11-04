@@ -17,7 +17,8 @@ class File extends \Google\Protobuf\Internal\Message
 {
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -61,10 +62,11 @@ class File extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The name of the file, for example:
-     *           "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     *           "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     *           If the file ID part contains slashes, they are escaped.
      *     @type int|string $size_bytes
      *           The size of the File in bytes.
-     *     @type \Google\Cloud\ArtifactRegistry\V1beta2\Hash[]|\Google\Protobuf\Internal\RepeatedField $hashes
+     *     @type array<\Google\Cloud\ArtifactRegistry\V1beta2\Hash>|\Google\Protobuf\Internal\RepeatedField $hashes
      *           The hashes of the file content.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The time when the File was created.
@@ -81,7 +83,8 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -93,7 +96,8 @@ class File extends \Google\Protobuf\Internal\Message
 
     /**
      * The name of the file, for example:
-     * "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt".
+     * If the file ID part contains slashes, they are escaped.
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -148,7 +152,7 @@ class File extends \Google\Protobuf\Internal\Message
      * The hashes of the file content.
      *
      * Generated from protobuf field <code>repeated .google.devtools.artifactregistry.v1beta2.Hash hashes = 4;</code>
-     * @param \Google\Cloud\ArtifactRegistry\V1beta2\Hash[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ArtifactRegistry\V1beta2\Hash>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setHashes($var)
@@ -167,7 +171,7 @@ class File extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -203,7 +207,7 @@ class File extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

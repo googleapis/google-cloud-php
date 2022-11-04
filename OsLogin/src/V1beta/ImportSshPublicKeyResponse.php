@@ -45,7 +45,7 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      */
     public function getLoginProfile()
     {
-        return isset($this->login_profile) ? $this->login_profile : null;
+        return $this->login_profile;
     }
 
     public function hasLoginProfile()

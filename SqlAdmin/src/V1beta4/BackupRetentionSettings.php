@@ -86,7 +86,7 @@ class BackupRetentionSettings extends \Google\Protobuf\Internal\Message
      */
     public function getRetainedBackups()
     {
-        return isset($this->retained_backups) ? $this->retained_backups : null;
+        return $this->retained_backups;
     }
 
     public function hasRetainedBackups()

@@ -79,7 +79,7 @@ class CreateAnalysisRequest extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysis()
     {
-        return isset($this->analysis) ? $this->analysis : null;
+        return $this->analysis;
     }
 
     public function hasAnalysis()

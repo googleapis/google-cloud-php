@@ -31,7 +31,7 @@ class CategoryHierarchy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $categories
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $categories
      *           Required. Catalog item categories. Each category should be a UTF-8
      *           encoded string with a length limit of 2 KiB.
      *           Note that the order in the list denotes the specificity (from least to
@@ -64,7 +64,7 @@ class CategoryHierarchy extends \Google\Protobuf\Internal\Message
      * most specific).
      *
      * Generated from protobuf field <code>repeated string categories = 1 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCategories($var)
@@ -77,6 +77,4 @@ class CategoryHierarchy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CategoryHierarchy::class, \Google\Cloud\RecommendationEngine\V1beta1\CatalogItem_CategoryHierarchy::class);
 

@@ -36,9 +36,6 @@ class Result extends \Google\Protobuf\Internal\Message
     private $info_type_stats;
     /**
      * Statistics related to the processing of hybrid inspect.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
      */
@@ -54,14 +51,11 @@ class Result extends \Google\Protobuf\Internal\Message
      *           Total size in bytes that were processed.
      *     @type int|string $total_estimated_bytes
      *           Estimate of the number of bytes to process.
-     *     @type \Google\Cloud\Dlp\V2\InfoTypeStats[]|\Google\Protobuf\Internal\RepeatedField $info_type_stats
+     *     @type array<\Google\Cloud\Dlp\V2\InfoTypeStats>|\Google\Protobuf\Internal\RepeatedField $info_type_stats
      *           Statistics of how many instances of each info type were found during
      *           inspect job.
      *     @type \Google\Cloud\Dlp\V2\HybridInspectStatistics $hybrid_stats
      *           Statistics related to the processing of hybrid inspect.
-     *           Early access feature is in a pre-release state and might change or have
-     *           limited support. For more information, see
-     *           https://cloud.google.com/products#product-launch-stages.
      * }
      */
     public function __construct($data = NULL) {
@@ -138,7 +132,7 @@ class Result extends \Google\Protobuf\Internal\Message
      * inspect job.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.InfoTypeStats info_type_stats = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\InfoTypeStats[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\InfoTypeStats>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInfoTypeStats($var)
@@ -151,16 +145,13 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * Statistics related to the processing of hybrid inspect.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
      * @return \Google\Cloud\Dlp\V2\HybridInspectStatistics|null
      */
     public function getHybridStats()
     {
-        return isset($this->hybrid_stats) ? $this->hybrid_stats : null;
+        return $this->hybrid_stats;
     }
 
     public function hasHybridStats()
@@ -175,9 +166,6 @@ class Result extends \Google\Protobuf\Internal\Message
 
     /**
      * Statistics related to the processing of hybrid inspect.
-     * Early access feature is in a pre-release state and might change or have
-     * limited support. For more information, see
-     * https://cloud.google.com/products#product-launch-stages.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.HybridInspectStatistics hybrid_stats = 7;</code>
      * @param \Google\Cloud\Dlp\V2\HybridInspectStatistics $var

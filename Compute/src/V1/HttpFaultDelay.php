@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifies the delay introduced by Loadbalancer before forwarding the request to the backend service as part of fault injection.
+ * Specifies the delay introduced by the load balancer before forwarding the request to the backend service as part of fault injection.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.HttpFaultDelay</code>
  */
@@ -18,14 +18,13 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      */
     private $fixed_delay = null;
     /**
-     * The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection.
-     * The value must be between 0.0 and 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests for which a delay is introduced as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      *
-     * Generated from protobuf field <code>double percentage = 151909018;</code>
+     * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      */
     private $percentage = null;
 
@@ -38,8 +37,7 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Compute\V1\Duration $fixed_delay
      *           Specifies the value of the fixed delay interval.
      *     @type float $percentage
-     *           The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection.
-     *           The value must be between 0.0 and 100.0 inclusive.
+     *           The percentage of traffic for connections, operations, or requests for which a delay is introduced as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,12 +48,12 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      * @return \Google\Cloud\Compute\V1\Duration|null
      */
     public function getFixedDelay()
     {
-        return isset($this->fixed_delay) ? $this->fixed_delay : null;
+        return $this->fixed_delay;
     }
 
     public function hasFixedDelay()
@@ -71,7 +69,7 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the value of the fixed delay interval.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Duration fixed_delay = 317037816;</code>
      * @param \Google\Cloud\Compute\V1\Duration $var
      * @return $this
      */
@@ -84,10 +82,9 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection.
-     * The value must be between 0.0 and 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests for which a delay is introduced as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      *
-     * Generated from protobuf field <code>double percentage = 151909018;</code>
+     * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      * @return float
      */
     public function getPercentage()
@@ -106,10 +103,9 @@ class HttpFaultDelay extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The percentage of traffic (connections/operations/requests) on which delay will be introduced as part of fault injection.
-     * The value must be between 0.0 and 100.0 inclusive.
+     * The percentage of traffic for connections, operations, or requests for which a delay is introduced as part of fault injection. The value must be from 0.0 to 100.0 inclusive.
      *
-     * Generated from protobuf field <code>double percentage = 151909018;</code>
+     * Generated from protobuf field <code>optional double percentage = 151909018;</code>
      * @param float $var
      * @return $this
      */

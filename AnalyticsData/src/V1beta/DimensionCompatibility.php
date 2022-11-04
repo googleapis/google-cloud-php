@@ -20,14 +20,14 @@ class DimensionCompatibility extends \Google\Protobuf\Internal\Message
      * information. The dimension metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
      */
     private $dimension_metadata = null;
     /**
      * The compatibility of this dimension. If the compatibility is COMPATIBLE,
      * this dimension can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      */
     private $compatibility = null;
 
@@ -56,12 +56,12 @@ class DimensionCompatibility extends \Google\Protobuf\Internal\Message
      * information. The dimension metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
      * @return \Google\Analytics\Data\V1beta\DimensionMetadata|null
      */
     public function getDimensionMetadata()
     {
-        return isset($this->dimension_metadata) ? $this->dimension_metadata : null;
+        return $this->dimension_metadata;
     }
 
     public function hasDimensionMetadata()
@@ -79,7 +79,7 @@ class DimensionCompatibility extends \Google\Protobuf\Internal\Message
      * information. The dimension metadata also contains other helpful information
      * like the UI name and description.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.DimensionMetadata dimension_metadata = 1;</code>
      * @param \Google\Analytics\Data\V1beta\DimensionMetadata $var
      * @return $this
      */
@@ -95,7 +95,7 @@ class DimensionCompatibility extends \Google\Protobuf\Internal\Message
      * The compatibility of this dimension. If the compatibility is COMPATIBLE,
      * this dimension can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      * @return int
      */
     public function getCompatibility()
@@ -117,7 +117,7 @@ class DimensionCompatibility extends \Google\Protobuf\Internal\Message
      * The compatibility of this dimension. If the compatibility is COMPATIBLE,
      * this dimension can be successfully added to the report.
      *
-     * Generated from protobuf field <code>.google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
+     * Generated from protobuf field <code>optional .google.analytics.data.v1beta.Compatibility compatibility = 2;</code>
      * @param int $var
      * @return $this
      */

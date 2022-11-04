@@ -56,7 +56,7 @@ class ClassificationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getPrCurve()
     {
-        return isset($this->pr_curve) ? $this->pr_curve : null;
+        return $this->pr_curve;
     }
 
     public function hasPrCurve()
@@ -93,7 +93,7 @@ class ClassificationMetrics extends \Google\Protobuf\Internal\Message
      */
     public function getConfusionMatrix()
     {
-        return isset($this->confusion_matrix) ? $this->confusion_matrix : null;
+        return $this->confusion_matrix;
     }
 
     public function hasConfusionMatrix()

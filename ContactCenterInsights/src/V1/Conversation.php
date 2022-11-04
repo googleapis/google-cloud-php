@@ -112,6 +112,12 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.contactcenterinsights.v1.DialogflowIntent> dialogflow_intents = 18 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dialogflow_intents;
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     */
+    private $obfuscated_user_id = '';
     protected $metadata;
     protected $expiration;
 
@@ -159,13 +165,15 @@ class Conversation extends \Google\Protobuf\Internal\Message
      *           Output only. The number of turns in the conversation.
      *     @type \Google\Cloud\ContactCenterInsights\V1\Analysis $latest_analysis
      *           Output only. The conversation's latest analysis, if one exists.
-     *     @type \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[]|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
+     *     @type array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $runtime_annotations
      *           Output only. The annotations that were generated during the customer and agent
      *           interaction.
      *     @type array|\Google\Protobuf\Internal\MapField $dialogflow_intents
      *           Output only. All the matched Dialogflow intents in the call. The key corresponds to a
      *           Dialogflow intent, format:
      *           projects/{project}/agent/{agent}/intents/{intent}
+     *     @type string $obfuscated_user_id
+     *           Obfuscated user ID which the customer sent to us.
      * }
      */
     public function __construct($data = NULL) {
@@ -308,7 +316,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getDataSource()
     {
-        return isset($this->data_source) ? $this->data_source : null;
+        return $this->data_source;
     }
 
     public function hasDataSource()
@@ -344,7 +352,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -380,7 +388,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -416,7 +424,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -534,7 +542,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getTranscript()
     {
-        return isset($this->transcript) ? $this->transcript : null;
+        return $this->transcript;
     }
 
     public function hasTranscript()
@@ -596,7 +604,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()
@@ -658,7 +666,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      */
     public function getLatestAnalysis()
     {
-        return isset($this->latest_analysis) ? $this->latest_analysis : null;
+        return $this->latest_analysis;
     }
 
     public function hasLatestAnalysis()
@@ -703,7 +711,7 @@ class Conversation extends \Google\Protobuf\Internal\Message
      * interaction.
      *
      * Generated from protobuf field <code>repeated .google.cloud.contactcenterinsights.v1.RuntimeAnnotation runtime_annotations = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ContactCenterInsights\V1\RuntimeAnnotation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRuntimeAnnotations($var)
@@ -740,6 +748,32 @@ class Conversation extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\ContactCenterInsights\V1\DialogflowIntent::class);
         $this->dialogflow_intents = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     * @return string
+     */
+    public function getObfuscatedUserId()
+    {
+        return $this->obfuscated_user_id;
+    }
+
+    /**
+     * Obfuscated user ID which the customer sent to us.
+     *
+     * Generated from protobuf field <code>string obfuscated_user_id = 21;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setObfuscatedUserId($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->obfuscated_user_id = $var;
 
         return $this;
     }

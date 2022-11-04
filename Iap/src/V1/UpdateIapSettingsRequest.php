@@ -63,7 +63,7 @@ class UpdateIapSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getIapSettings()
     {
-        return isset($this->iap_settings) ? $this->iap_settings : null;
+        return $this->iap_settings;
     }
 
     public function hasIapSettings()
@@ -103,7 +103,7 @@ class UpdateIapSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

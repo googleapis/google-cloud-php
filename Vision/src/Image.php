@@ -265,7 +265,7 @@ class Image
     /**
      * Return a formatted annotate image request.
      *
-     * This method is used internally by {@see Google\Cloud\Vision\VisionClient}
+     * This method is used internally by {@see VisionClient}
      * and is not generally intended for use outside of that context.
      *
      * Example:

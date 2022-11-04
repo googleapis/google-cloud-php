@@ -7,11 +7,7 @@ namespace Google\Cloud\Compute\V1\TargetHttpsProxy;
 use UnexpectedValueException;
 
 /**
- * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE.
- * - When quic-override is set to NONE, Google manages whether QUIC is used.
- * - When quic-override is set to ENABLE, the load balancer uses QUIC when possible.
- * - When quic-override is set to DISABLE, the load balancer doesn't use QUIC.
- * - If the quic-override flag is not specified, NONE is implied.
+ * Specifies the QUIC override policy for this TargetHttpsProxy resource. This setting determines whether the load balancer attempts to negotiate QUIC with clients. You can specify NONE, ENABLE, or DISABLE. - When quic-override is set to NONE, Google manages whether QUIC is used. - When quic-override is set to ENABLE, the load balancer uses QUIC when possible. - When quic-override is set to DISABLE, the load balancer doesn't use QUIC. - If the quic-override flag is not specified, NONE is implied. 
  *
  * Protobuf type <code>google.cloud.compute.v1.TargetHttpsProxy.QuicOverride</code>
  */
@@ -24,14 +20,20 @@ class QuicOverride
      */
     const UNDEFINED_QUIC_OVERRIDE = 0;
     /**
+     * The load balancer will not attempt to negotiate QUIC with clients.
+     *
      * Generated from protobuf enum <code>DISABLE = 241807048;</code>
      */
     const DISABLE = 241807048;
     /**
+     * The load balancer will attempt to negotiate QUIC with clients.
+     *
      * Generated from protobuf enum <code>ENABLE = 438835587;</code>
      */
     const ENABLE = 438835587;
     /**
+     * No overrides to the default QUIC policy. This option is implicit if no QUIC override has been specified in the request.
+     *
      * Generated from protobuf enum <code>NONE = 2402104;</code>
      */
     const NONE = 2402104;

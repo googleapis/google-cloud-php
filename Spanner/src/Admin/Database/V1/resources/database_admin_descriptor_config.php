@@ -3,6 +3,16 @@
 return [
     'interfaces' => [
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
+            'CopyBackup' => [
+                'longRunning' => [
+                    'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Backup',
+                    'metadataReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\CopyBackupMetadata',
+                    'initialPollDelayMillis' => '500',
+                    'pollDelayMultiplier' => '1.5',
+                    'maxPollDelayMillis' => '5000',
+                    'totalPollTimeoutMillis' => '300000',
+                ],
+            ],
             'CreateBackup' => [
                 'longRunning' => [
                     'operationReturnType' => '\Google\Cloud\Spanner\Admin\Database\V1\Backup',
@@ -71,6 +81,16 @@ return [
                     'requestPageSizeSetMethod' => 'setPageSize',
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                     'resourcesGetMethod' => 'getOperations',
+                ],
+            ],
+            'ListDatabaseRoles' => [
+                'pageStreaming' => [
+                    'requestPageTokenGetMethod' => 'getPageToken',
+                    'requestPageTokenSetMethod' => 'setPageToken',
+                    'requestPageSizeGetMethod' => 'getPageSize',
+                    'requestPageSizeSetMethod' => 'setPageSize',
+                    'responsePageTokenGetMethod' => 'getNextPageToken',
+                    'resourcesGetMethod' => 'getDatabaseRoles',
                 ],
             ],
             'ListDatabases' => [

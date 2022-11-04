@@ -49,14 +49,24 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      */
     private $labels;
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $abandoned = false;
     /**
      * Output only. Time at which the `Release` was created.
      *
@@ -100,7 +110,7 @@ class Release extends \Google\Protobuf\Internal\Message
      */
     private $delivery_pipeline_snapshot = null;
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -164,10 +174,16 @@ class Release extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     *           constrained to be <= 128 bytes in size.
+     *           constraints:
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           * All characters must use UTF-8 encoding, and international characters are
+     *           allowed.
+     *           * Keys must start with a lowercase letter or international character.
+     *           * Each resource is limited to a maximum of 64 labels.
+     *           Both keys and values are additionally constrained to be <= 128 bytes.
+     *     @type bool $abandoned
+     *           Output only. Indicates whether this is an abandoned release.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. Time at which the `Release` was created.
      *     @type \Google\Protobuf\Timestamp $render_start_time
@@ -178,12 +194,12 @@ class Release extends \Google\Protobuf\Internal\Message
      *           Cloud Storage URI of tar.gz archive containing Skaffold configuration.
      *     @type string $skaffold_config_path
      *           Filepath of the Skaffold config inside of the config URI.
-     *     @type \Google\Cloud\Deploy\V1\BuildArtifact[]|\Google\Protobuf\Internal\RepeatedField $build_artifacts
+     *     @type array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $build_artifacts
      *           List of artifacts to pass through to Skaffold command.
      *     @type \Google\Cloud\Deploy\V1\DeliveryPipeline $delivery_pipeline_snapshot
      *           Output only. Snapshot of the parent pipeline taken at release creation time.
-     *     @type \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $target_snapshots
-     *           Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     *     @type array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $target_snapshots
+     *           Output only. Snapshot of the targets taken at release creation time.
      *     @type int $render_state
      *           Output only. Current state of the render operation.
      *     @type string $etag
@@ -324,10 +340,14 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -340,10 +360,14 @@ class Release extends \Google\Protobuf\Internal\Message
     /**
      * Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 5;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -353,6 +377,32 @@ class Release extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return bool
+     */
+    public function getAbandoned()
+    {
+        return $this->abandoned;
+    }
+
+    /**
+     * Output only. Indicates whether this is an abandoned release.
+     *
+     * Generated from protobuf field <code>bool abandoned = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setAbandoned($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->abandoned = $var;
 
         return $this;
     }
@@ -532,7 +582,7 @@ class Release extends \Google\Protobuf\Internal\Message
      * List of artifacts to pass through to Skaffold command.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.BuildArtifact build_artifacts = 10;</code>
-     * @param \Google\Cloud\Deploy\V1\BuildArtifact[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\BuildArtifact>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setBuildArtifacts($var)
@@ -580,7 +630,7 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -591,10 +641,10 @@ class Release extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.Target target_snapshots = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\Deploy\V1\Target[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\Target>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetSnapshots($var)

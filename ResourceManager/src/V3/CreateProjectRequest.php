@@ -65,7 +65,7 @@ class CreateProjectRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProject()
     {
-        return isset($this->project) ? $this->project : null;
+        return $this->project;
     }
 
     public function hasProject()

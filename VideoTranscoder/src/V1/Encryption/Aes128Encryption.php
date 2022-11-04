@@ -69,6 +69,4 @@ class Aes128Encryption extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Aes128Encryption::class, \Google\Cloud\Video\Transcoder\V1\Encryption_Aes128Encryption::class);
 

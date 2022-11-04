@@ -363,7 +363,7 @@ class BindingExplanation extends \Google\Protobuf\Internal\Message
      */
     public function getCondition()
     {
-        return isset($this->condition) ? $this->condition : null;
+        return $this->condition;
     }
 
     public function hasCondition()

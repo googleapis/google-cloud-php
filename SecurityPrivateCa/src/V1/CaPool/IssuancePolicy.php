@@ -82,7 +82,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType[]|\Google\Protobuf\Internal\RepeatedField $allowed_key_types
+     *     @type array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $allowed_key_types
      *           Optional. If any [AllowedKeyType][google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType] is specified, then the certificate request's
      *           public key must match one of the key types listed here. Otherwise,
      *           any key may be used.
@@ -144,7 +144,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      * any key may be used.
      *
      * Generated from protobuf field <code>repeated .google.cloud.security.privateca.v1.CaPool.IssuancePolicy.AllowedKeyType allowed_key_types = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Security\PrivateCA\V1\CaPool\IssuancePolicy\AllowedKeyType>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAllowedKeyTypes($var)
@@ -166,7 +166,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getMaximumLifetime()
     {
-        return isset($this->maximum_lifetime) ? $this->maximum_lifetime : null;
+        return $this->maximum_lifetime;
     }
 
     public function hasMaximumLifetime()
@@ -206,7 +206,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getAllowedIssuanceModes()
     {
-        return isset($this->allowed_issuance_modes) ? $this->allowed_issuance_modes : null;
+        return $this->allowed_issuance_modes;
     }
 
     public function hasAllowedIssuanceModes()
@@ -249,7 +249,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getBaselineValues()
     {
-        return isset($this->baseline_values) ? $this->baseline_values : null;
+        return $this->baseline_values;
     }
 
     public function hasBaselineValues()
@@ -294,7 +294,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getIdentityConstraints()
     {
-        return isset($this->identity_constraints) ? $this->identity_constraints : null;
+        return $this->identity_constraints;
     }
 
     public function hasIdentityConstraints()
@@ -342,7 +342,7 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
      */
     public function getPassthroughExtensions()
     {
-        return isset($this->passthrough_extensions) ? $this->passthrough_extensions : null;
+        return $this->passthrough_extensions;
     }
 
     public function hasPassthroughExtensions()
@@ -381,6 +381,4 @@ class IssuancePolicy extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(IssuancePolicy::class, \Google\Cloud\Security\PrivateCA\V1\CaPool_IssuancePolicy::class);
 

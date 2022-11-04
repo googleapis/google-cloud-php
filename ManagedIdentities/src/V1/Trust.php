@@ -107,7 +107,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      *           Optional. The trust authentication type, which decides whether the trusted side has
      *           forest/domain wide access or selective access to an approved set of
      *           resources.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
      *           Required. The target DNS server IP addresses which can resolve the remote domain
      *           involved in the trust.
      *     @type string $trust_handshake_secret
@@ -259,7 +259,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      * involved in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 5 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetDnsIpAddresses($var)
@@ -306,7 +306,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -342,7 +342,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -430,7 +430,7 @@ class Trust extends \Google\Protobuf\Internal\Message
      */
     public function getLastTrustHeartbeatTime()
     {
-        return isset($this->last_trust_heartbeat_time) ? $this->last_trust_heartbeat_time : null;
+        return $this->last_trust_heartbeat_time;
     }
 
     public function hasLastTrustHeartbeatTime()

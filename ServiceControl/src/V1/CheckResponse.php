@@ -61,7 +61,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      *           The same operation_id value used in the
      *           [CheckRequest][google.api.servicecontrol.v1.CheckRequest]. Used for logging
      *           and diagnostics purposes.
-     *     @type \Google\Cloud\ServiceControl\V1\CheckError[]|\Google\Protobuf\Internal\RepeatedField $check_errors
+     *     @type array<\Google\Cloud\ServiceControl\V1\CheckError>|\Google\Protobuf\Internal\RepeatedField $check_errors
      *           Indicate the decision of the check.
      *           If no check errors are present, the service should process the operation.
      *           Otherwise the service should use the list of errors to determine the
@@ -130,7 +130,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      * appropriate action.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.CheckError check_errors = 2;</code>
-     * @param \Google\Cloud\ServiceControl\V1\CheckError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\CheckError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCheckErrors($var)
@@ -201,7 +201,7 @@ class CheckResponse extends \Google\Protobuf\Internal\Message
      */
     public function getCheckInfo()
     {
-        return isset($this->check_info) ? $this->check_info : null;
+        return $this->check_info;
     }
 
     public function hasCheckInfo()

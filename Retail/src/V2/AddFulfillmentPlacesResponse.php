@@ -9,8 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Response of the RemoveFulfillmentPlacesRequest.  Currently empty because
- * there is no meaningful response populated from the [AddFulfillmentPlaces][]
+ * Response of the AddFulfillmentPlacesRequest.  Currently empty because
+ * there is no meaningful response populated from the
+ * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces]
  * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.AddFulfillmentPlacesResponse</code>

@@ -75,7 +75,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      *           Configuration used to create this deployment.
      *     @type string $address
      *           Address of the runtime element hosting this deployment.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $resource_uri
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $resource_uri
      *           Output only. Resource URI for the artifact being deployed taken from
      *           the deployable field with the same name.
      *     @type int $platform
@@ -121,7 +121,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getDeployTime()
     {
-        return isset($this->deploy_time) ? $this->deploy_time : null;
+        return $this->deploy_time;
     }
 
     public function hasDeployTime()
@@ -157,7 +157,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getUndeployTime()
     {
-        return isset($this->undeploy_time) ? $this->undeploy_time : null;
+        return $this->undeploy_time;
     }
 
     public function hasUndeployTime()
@@ -254,7 +254,7 @@ class DeploymentOccurrence extends \Google\Protobuf\Internal\Message
      * the deployable field with the same name.
      *
      * Generated from protobuf field <code>repeated string resource_uri = 6;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResourceUri($var)

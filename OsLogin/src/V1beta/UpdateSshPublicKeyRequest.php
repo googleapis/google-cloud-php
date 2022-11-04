@@ -95,7 +95,7 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSshPublicKey()
     {
-        return isset($this->ssh_public_key) ? $this->ssh_public_key : null;
+        return $this->ssh_public_key;
     }
 
     public function hasSshPublicKey()
@@ -131,7 +131,7 @@ class UpdateSshPublicKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

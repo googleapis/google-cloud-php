@@ -1,0 +1,15 @@
+{
+    "title": "CertificateManager",
+    "defaultService": "certificatemanager\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "certificatemanager\/readme"
+        },
+        {
+            "title": "CertificateManagerClient (v1)",
+            "type": "certificatemanager\/v1\/certificatemanagerclient"
+        }
+    ],
+    "pattern": "certificatemanager\/\\w{1,}"
+}

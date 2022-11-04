@@ -43,12 +43,12 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Workflows\V1beta\Workflow[]|\Google\Protobuf\Internal\RepeatedField $workflows
+     *     @type array<\Google\Cloud\Workflows\V1beta\Workflow>|\Google\Protobuf\Internal\RepeatedField $workflows
      *           The workflows which match the request.
      *     @type string $next_page_token
      *           A token, which can be sent as `page_token` to retrieve the next page.
      *           If this field is omitted, there are no subsequent pages.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unreachable
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Unreachable resources.
      * }
      */
@@ -72,7 +72,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * The workflows which match the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.workflows.v1beta.Workflow workflows = 1;</code>
-     * @param \Google\Cloud\Workflows\V1beta\Workflow[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Workflows\V1beta\Workflow>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWorkflows($var)
@@ -126,7 +126,7 @@ class ListWorkflowsResponse extends \Google\Protobuf\Internal\Message
      * Unreachable resources.
      *
      * Generated from protobuf field <code>repeated string unreachable = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnreachable($var)

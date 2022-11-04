@@ -14,6 +14,9 @@ return [
                         ],
                     ],
                 ],
+                'queryParams' => [
+                    'config_id',
+                ],
             ],
             'DeleteGameServerConfig' => [
                 'method' => 'delete',
@@ -49,10 +52,10 @@ return [
                 ],
             ],
         ],
-        'google.longrunning.Operations' => [
-            'ListOperations' => [
+        'google.cloud.location.Locations' => [
+            'GetLocation' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -61,9 +64,60 @@ return [
                     ],
                 ],
             ],
-            'GetOperation' => [
+            'ListLocations' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'uriTemplate' => '/v1/{name=projects/*}/locations',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.iam.v1.IAMPolicy' => [
+            'GetIamPolicy' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:getIamPolicy',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'SetIamPolicy' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:setIamPolicy',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+            'TestIamPermissions' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{resource=projects/*/locations/*/gameServerDeployments/*}:testIamPermissions',
+                'body' => '*',
+                'placeholders' => [
+                    'resource' => [
+                        'getters' => [
+                            'getResource',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        'google.longrunning.Operations' => [
+            'CancelOperation' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+                'body' => '*',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -83,9 +137,20 @@ return [
                     ],
                 ],
             ],
-            'CancelOperation' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}:cancel',
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/operations/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*}/operations',
                 'placeholders' => [
                     'name' => [
                         'getters' => [

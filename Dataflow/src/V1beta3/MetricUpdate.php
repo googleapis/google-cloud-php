@@ -169,7 +169,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getName()
     {
-        return isset($this->name) ? $this->name : null;
+        return $this->name;
     }
 
     public function hasName()
@@ -272,7 +272,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getScalar()
     {
-        return isset($this->scalar) ? $this->scalar : null;
+        return $this->scalar;
     }
 
     public function hasScalar()
@@ -312,7 +312,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getMeanSum()
     {
-        return isset($this->mean_sum) ? $this->mean_sum : null;
+        return $this->mean_sum;
     }
 
     public function hasMeanSum()
@@ -354,7 +354,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getMeanCount()
     {
-        return isset($this->mean_count) ? $this->mean_count : null;
+        return $this->mean_count;
     }
 
     public function hasMeanCount()
@@ -396,7 +396,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getSet()
     {
-        return isset($this->set) ? $this->set : null;
+        return $this->set;
     }
 
     public function hasSet()
@@ -435,7 +435,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getDistribution()
     {
-        return isset($this->distribution) ? $this->distribution : null;
+        return $this->distribution;
     }
 
     public function hasDistribution()
@@ -473,7 +473,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getGauge()
     {
-        return isset($this->gauge) ? $this->gauge : null;
+        return $this->gauge;
     }
 
     public function hasGauge()
@@ -512,7 +512,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getInternal()
     {
-        return isset($this->internal) ? $this->internal : null;
+        return $this->internal;
     }
 
     public function hasInternal()
@@ -551,7 +551,7 @@ class MetricUpdate extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

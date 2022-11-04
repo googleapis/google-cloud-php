@@ -106,7 +106,7 @@ class UpgradeOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getParsedVersion()
     {
-        return isset($this->parsed_version) ? $this->parsed_version : null;
+        return $this->parsed_version;
     }
 
     public function hasParsedVersion()
@@ -145,7 +145,7 @@ class UpgradeOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getDistribution()
     {
-        return isset($this->distribution) ? $this->distribution : null;
+        return $this->distribution;
     }
 
     public function hasDistribution()
@@ -183,7 +183,7 @@ class UpgradeOccurrence extends \Google\Protobuf\Internal\Message
      */
     public function getWindowsUpdate()
     {
-        return isset($this->windows_update) ? $this->windows_update : null;
+        return $this->windows_update;
     }
 
     public function hasWindowsUpdate()

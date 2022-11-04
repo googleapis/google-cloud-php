@@ -123,6 +123,4 @@ class ConcatenateExpression extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConcatenateExpression::class, \Google\Analytics\Data\V1alpha\DimensionExpression_ConcatenateExpression::class);
 

@@ -39,6 +39,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListNotificationChannelDescriptors(\Google\Cloud\Monitoring\V3\ListNotificationChannelDescriptorsRequest $argument,
       $metadata = [], $options = []) {
@@ -54,6 +55,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetNotificationChannelDescriptorRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetNotificationChannelDescriptor(\Google\Cloud\Monitoring\V3\GetNotificationChannelDescriptorRequest $argument,
       $metadata = [], $options = []) {
@@ -68,6 +70,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListNotificationChannelsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListNotificationChannels(\Google\Cloud\Monitoring\V3\ListNotificationChannelsRequest $argument,
       $metadata = [], $options = []) {
@@ -86,6 +89,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetNotificationChannelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetNotificationChannel(\Google\Cloud\Monitoring\V3\GetNotificationChannelRequest $argument,
       $metadata = [], $options = []) {
@@ -101,6 +105,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateNotificationChannelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateNotificationChannel(\Google\Cloud\Monitoring\V3\CreateNotificationChannelRequest $argument,
       $metadata = [], $options = []) {
@@ -116,6 +121,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateNotificationChannel(\Google\Cloud\Monitoring\V3\UpdateNotificationChannelRequest $argument,
       $metadata = [], $options = []) {
@@ -130,6 +136,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteNotificationChannelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteNotificationChannel(\Google\Cloud\Monitoring\V3\DeleteNotificationChannelRequest $argument,
       $metadata = [], $options = []) {
@@ -145,6 +152,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\SendNotificationChannelVerificationCodeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function SendNotificationChannelVerificationCode(\Google\Cloud\Monitoring\V3\SendNotificationChannelVerificationCodeRequest $argument,
       $metadata = [], $options = []) {
@@ -179,6 +187,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetNotificationChannelVerificationCode(\Google\Cloud\Monitoring\V3\GetNotificationChannelVerificationCodeRequest $argument,
       $metadata = [], $options = []) {
@@ -195,6 +204,7 @@ class NotificationChannelServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\VerifyNotificationChannelRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function VerifyNotificationChannel(\Google\Cloud\Monitoring\V3\VerifyNotificationChannelRequest $argument,
       $metadata = [], $options = []) {

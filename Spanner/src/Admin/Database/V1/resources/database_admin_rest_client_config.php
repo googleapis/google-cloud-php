@@ -3,40 +3,6 @@
 return [
     'interfaces' => [
         'google.longrunning.Operations' => [
-            'GetOperation' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListOperations' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations}',
-                'additionalBindings' => [
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
-                    ],
-                ],
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
             'CancelOperation' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}:cancel',
@@ -44,6 +10,14 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*/operations/*}:cancel',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}:cancel',
                     ],
                 ],
                 'placeholders' => [
@@ -62,6 +36,64 @@ return [
                         'method' => 'delete',
                         'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
                     ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'delete',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'GetOperation' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations/*}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*/operations/*}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations/*}',
+                    ],
+                ],
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'ListOperations' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/instances/*/databases/*/operations}',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/operations}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instances/*/backups/*/operations}',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1/{name=projects/*/instanceConfigs/*/operations}',
+                    ],
                 ],
                 'placeholders' => [
                     'name' => [
@@ -73,6 +105,18 @@ return [
             ],
         ],
         'google.spanner.admin.database.v1.DatabaseAdmin' => [
+            'CopyBackup' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups:copy',
+                'body' => '*',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'CreateBackup' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/backups',
@@ -207,6 +251,17 @@ return [
                     ],
                 ],
             ],
+            'ListDatabaseRoles' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/instances/*/databases/*}/databaseRoles',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListDatabases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/instances/*}/databases',
@@ -257,6 +312,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/instances/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1/{resource=projects/*/instances/*/databases/*/databaseRoles/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

@@ -15,11 +15,10 @@ class Deploy
           return;
         }
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ø
- google/appengine/v1/deploy.protogoogle.appengine.v1google/api/annotations.proto"»
+º
+ google/appengine/v1/deploy.protogoogle.appengine.v1"»
 
 Deployment9
 files (2*.google.appengine.v1.Deployment.FilesEntry5

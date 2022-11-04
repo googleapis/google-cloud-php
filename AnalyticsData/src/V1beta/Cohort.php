@@ -170,7 +170,7 @@ class Cohort extends \Google\Protobuf\Internal\Message
      */
     public function getDateRange()
     {
-        return isset($this->date_range) ? $this->date_range : null;
+        return $this->date_range;
     }
 
     public function hasDateRange()

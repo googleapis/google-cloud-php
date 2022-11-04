@@ -53,7 +53,7 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getSettings()
     {
-        return isset($this->settings) ? $this->settings : null;
+        return $this->settings;
     }
 
     public function hasSettings()
@@ -89,7 +89,7 @@ class UpdateSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

@@ -55,7 +55,7 @@ class CreateTagBindingRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagBinding()
     {
-        return isset($this->tag_binding) ? $this->tag_binding : null;
+        return $this->tag_binding;
     }
 
     public function hasTagBinding()

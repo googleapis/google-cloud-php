@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Color preprocessing configuration.
+ * **Note:** This configuration is not supported.
  *
  * Generated from protobuf message <code>google.cloud.video.transcoder.v1.PreprocessingConfig.Color</code>
  */
@@ -157,6 +158,4 @@ class Color extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Color::class, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig_Color::class);
 

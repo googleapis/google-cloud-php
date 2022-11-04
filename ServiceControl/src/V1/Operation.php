@@ -172,7 +172,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      *               - `servicecontrol.googleapis.com/platform` describing the platform
      *                  where the API is served, such as App Engine, Compute Engine, or
      *                  Kubernetes Engine.
-     *     @type \Google\Cloud\ServiceControl\V1\MetricValueSet[]|\Google\Protobuf\Internal\RepeatedField $metric_value_sets
+     *     @type array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $metric_value_sets
      *           Represents information about this operation. Each MetricValueSet
      *           corresponds to a metric defined in the service configuration.
      *           The data type used in the MetricValueSet must agree with
@@ -182,11 +182,11 @@ class Operation extends \Google\Protobuf\Internal\Message
      *           label value combinations. If a request has such duplicated MetricValue
      *           instances, the entire request is rejected with
      *           an invalid argument error.
-     *     @type \Google\Cloud\ServiceControl\V1\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $log_entries
+     *     @type array<\Google\Cloud\ServiceControl\V1\LogEntry>|\Google\Protobuf\Internal\RepeatedField $log_entries
      *           Represents information to be logged.
      *     @type int $importance
      *           DO NOT USE. This is an experimental field.
-     *     @type \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $extensions
+     *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $extensions
      *           Unimplemented.
      * }
      */
@@ -315,7 +315,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -355,7 +355,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -472,7 +472,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * an invalid argument error.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.MetricValueSet metric_value_sets = 7;</code>
-     * @param \Google\Cloud\ServiceControl\V1\MetricValueSet[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\MetricValueSet>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetricValueSets($var)
@@ -498,7 +498,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Represents information to be logged.
      *
      * Generated from protobuf field <code>repeated .google.api.servicecontrol.v1.LogEntry log_entries = 8;</code>
-     * @param \Google\Cloud\ServiceControl\V1\LogEntry[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceControl\V1\LogEntry>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLogEntries($var)
@@ -550,7 +550,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      * Unimplemented.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any extensions = 16;</code>
-     * @param \Google\Protobuf\Any[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExtensions($var)

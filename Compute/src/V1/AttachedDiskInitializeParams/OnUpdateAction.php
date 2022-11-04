@@ -20,14 +20,20 @@ class OnUpdateAction
      */
     const UNDEFINED_ON_UPDATE_ACTION = 0;
     /**
+     * Always recreate the disk.
+     *
      * Generated from protobuf enum <code>RECREATE_DISK = 494767853;</code>
      */
     const RECREATE_DISK = 494767853;
     /**
+     * Recreate the disk if source (image, snapshot) of this disk is different from source of existing disk.
+     *
      * Generated from protobuf enum <code>RECREATE_DISK_IF_SOURCE_CHANGED = 398099712;</code>
      */
     const RECREATE_DISK_IF_SOURCE_CHANGED = 398099712;
     /**
+     * Use the existing disk, this is the default behaviour.
+     *
      * Generated from protobuf enum <code>USE_EXISTING_DISK = 232682233;</code>
      */
     const USE_EXISTING_DISK = 232682233;

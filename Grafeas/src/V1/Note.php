@@ -91,7 +91,7 @@ class Note extends \Google\Protobuf\Internal\Message
      *     @type int $kind
      *           Output only. The type of analysis. This field can be used as a filter in
      *           list requests.
-     *     @type \Grafeas\V1\RelatedUrl[]|\Google\Protobuf\Internal\RepeatedField $related_url
+     *     @type array<\Grafeas\V1\RelatedUrl>|\Google\Protobuf\Internal\RepeatedField $related_url
      *           URLs associated with this note.
      *     @type \Google\Protobuf\Timestamp $expiration_time
      *           Time of expiration for this note. Empty if note does not expire.
@@ -101,7 +101,7 @@ class Note extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time this note was last updated. This field can be used as
      *           a filter in list requests.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $related_note_names
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $related_note_names
      *           Other notes related to this note.
      *     @type \Grafeas\V1\VulnerabilityNote $vulnerability
      *           A note describing a package vulnerability.
@@ -119,6 +119,10 @@ class Note extends \Google\Protobuf\Internal\Message
      *           A note describing an attestation role.
      *     @type \Grafeas\V1\UpgradeNote $upgrade
      *           A note describing available package upgrades.
+     *     @type \Grafeas\V1\ComplianceNote $compliance
+     *           A note describing a compliance check.
+     *     @type \Grafeas\V1\DSSEAttestationNote $dsse_attestation
+     *           A note describing a dsse attestation note.
      * }
      */
     public function __construct($data = NULL) {
@@ -249,7 +253,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * URLs associated with this note.
      *
      * Generated from protobuf field <code>repeated .grafeas.v1.RelatedUrl related_url = 5;</code>
-     * @param \Grafeas\V1\RelatedUrl[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Grafeas\V1\RelatedUrl>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedUrl($var)
@@ -268,7 +272,7 @@ class Note extends \Google\Protobuf\Internal\Message
      */
     public function getExpirationTime()
     {
-        return isset($this->expiration_time) ? $this->expiration_time : null;
+        return $this->expiration_time;
     }
 
     public function hasExpirationTime()
@@ -305,7 +309,7 @@ class Note extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -343,7 +347,7 @@ class Note extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -387,7 +391,7 @@ class Note extends \Google\Protobuf\Internal\Message
      * Other notes related to this note.
      *
      * Generated from protobuf field <code>repeated string related_note_names = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRelatedNoteNames($var)
@@ -642,6 +646,68 @@ class Note extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Grafeas\V1\UpgradeNote::class);
         $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing a compliance check.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceNote compliance = 18;</code>
+     * @return \Grafeas\V1\ComplianceNote|null
+     */
+    public function getCompliance()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasCompliance()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * A note describing a compliance check.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.ComplianceNote compliance = 18;</code>
+     * @param \Grafeas\V1\ComplianceNote $var
+     * @return $this
+     */
+    public function setCompliance($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\ComplianceNote::class);
+        $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
+     * A note describing a dsse attestation note.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationNote dsse_attestation = 19;</code>
+     * @return \Grafeas\V1\DSSEAttestationNote|null
+     */
+    public function getDsseAttestation()
+    {
+        return $this->readOneof(19);
+    }
+
+    public function hasDsseAttestation()
+    {
+        return $this->hasOneof(19);
+    }
+
+    /**
+     * A note describing a dsse attestation note.
+     *
+     * Generated from protobuf field <code>.grafeas.v1.DSSEAttestationNote dsse_attestation = 19;</code>
+     * @param \Grafeas\V1\DSSEAttestationNote $var
+     * @return $this
+     */
+    public function setDsseAttestation($var)
+    {
+        GPBUtil::checkMessage($var, \Grafeas\V1\DSSEAttestationNote::class);
+        $this->writeOneof(19, $var);
 
         return $this;
     }

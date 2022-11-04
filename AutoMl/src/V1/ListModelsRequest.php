@@ -24,10 +24,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             video_classification_model_metadata:*).
+     *             `video_classification_model_metadata:*`).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
-     *                                        image_classification_model_metadata.
+     *                                      `image_classification_model_metadata`.
      *   * `dataset_id=5` --> The model was created from a dataset with ID 5.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
@@ -60,10 +60,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $filter
      *           An expression for filtering the results of the request.
      *             * `model_metadata` - for existence of the case (e.g.
-     *                       video_classification_model_metadata:*).
+     *                       `video_classification_model_metadata:*`).
      *             * `dataset_id` - for = or !=. Some examples of using the filter are:
      *             * `image_classification_model_metadata:*` --> The model has
-     *                                                  image_classification_model_metadata.
+     *                                                `image_classification_model_metadata`.
      *             * `dataset_id=5` --> The model was created from a dataset with ID 5.
      *     @type int $page_size
      *           Requested page size.
@@ -108,10 +108,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             video_classification_model_metadata:*).
+     *             `video_classification_model_metadata:*`).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
-     *                                        image_classification_model_metadata.
+     *                                      `image_classification_model_metadata`.
      *   * `dataset_id=5` --> The model was created from a dataset with ID 5.
      *
      * Generated from protobuf field <code>string filter = 3;</code>
@@ -125,10 +125,10 @@ class ListModelsRequest extends \Google\Protobuf\Internal\Message
     /**
      * An expression for filtering the results of the request.
      *   * `model_metadata` - for existence of the case (e.g.
-     *             video_classification_model_metadata:*).
+     *             `video_classification_model_metadata:*`).
      *   * `dataset_id` - for = or !=. Some examples of using the filter are:
      *   * `image_classification_model_metadata:*` --> The model has
-     *                                        image_classification_model_metadata.
+     *                                      `image_classification_model_metadata`.
      *   * `dataset_id=5` --> The model was created from a dataset with ID 5.
      *
      * Generated from protobuf field <code>string filter = 3;</code>

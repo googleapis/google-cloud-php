@@ -173,7 +173,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getCoolDownPeriod()
     {
-        return isset($this->cool_down_period) ? $this->cool_down_period : null;
+        return $this->cool_down_period;
     }
 
     public function hasCoolDownPeriod()
@@ -214,7 +214,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getCpuUtilization()
     {
-        return isset($this->cpu_utilization) ? $this->cpu_utilization : null;
+        return $this->cpu_utilization;
     }
 
     public function hasCpuUtilization()
@@ -337,7 +337,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getMaxPendingLatency()
     {
-        return isset($this->max_pending_latency) ? $this->max_pending_latency : null;
+        return $this->max_pending_latency;
     }
 
     public function hasMaxPendingLatency()
@@ -431,7 +431,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getMinPendingLatency()
     {
-        return isset($this->min_pending_latency) ? $this->min_pending_latency : null;
+        return $this->min_pending_latency;
     }
 
     public function hasMinPendingLatency()
@@ -468,7 +468,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getRequestUtilization()
     {
-        return isset($this->request_utilization) ? $this->request_utilization : null;
+        return $this->request_utilization;
     }
 
     public function hasRequestUtilization()
@@ -504,7 +504,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getDiskUtilization()
     {
-        return isset($this->disk_utilization) ? $this->disk_utilization : null;
+        return $this->disk_utilization;
     }
 
     public function hasDiskUtilization()
@@ -540,7 +540,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getNetworkUtilization()
     {
-        return isset($this->network_utilization) ? $this->network_utilization : null;
+        return $this->network_utilization;
     }
 
     public function hasNetworkUtilization()
@@ -576,7 +576,7 @@ class AutomaticScaling extends \Google\Protobuf\Internal\Message
      */
     public function getStandardSchedulerSettings()
     {
-        return isset($this->standard_scheduler_settings) ? $this->standard_scheduler_settings : null;
+        return $this->standard_scheduler_settings;
     }
 
     public function hasStandardSchedulerSettings()

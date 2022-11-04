@@ -14,43 +14,40 @@ class Image
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Api\Resource::initOnce();
-        \GPBMetadata\Google\Cloud\Automl\V1\AnnotationSpec::initOnce();
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Automl\V1\Classification::initOnce();
-        \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
- 
-"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1,google/cloud/automl/v1/annotation_spec.proto+google/cloud/automl/v1/classification.protogoogle/protobuf/timestamp.protogoogle/api/annotations.proto"m
-"ImageClassificationDatasetMetadataG
-classification_type (2*.google.cloud.automl.v1.ClassificationType"%
-#ImageObjectDetectionDatasetMetadata"‘
- ImageClassificationModelMetadata
-base_model_id (	%
-train_budget_milli_node_hours (#
-train_cost_milli_node_hours (
-stop_reason (	
+≠
+"google/cloud/automl/v1/image.protogoogle.cloud.automl.v1+google/cloud/automl/v1/classification.proto"r
+"ImageClassificationDatasetMetadataL
+classification_type (2*.google.cloud.automl.v1.ClassificationTypeB‡A"%
+#ImageObjectDetectionDatasetMetadata"˜
+ ImageClassificationModelMetadata
+base_model_id (	B‡A*
+train_budget_milli_node_hours (B‡A(
+train_cost_milli_node_hours (B‡A
+stop_reason (	B‡A
 
-model_type (	
-node_qps (
+model_type (	B‡A
+node_qps (B‡A
 
-node_count ("æ
-!ImageObjectDetectionModelMetadata
+node_count (B‡A"‹
+!ImageObjectDetectionModelMetadata
 
-model_type (	
+model_type (	B‡A
 
-node_count (
-node_qps (
-stop_reason (	%
-train_budget_milli_node_hours (#
-train_cost_milli_node_hours ("@
-*ImageClassificationModelDeploymentMetadata
+node_count (B‡A
+node_qps (B‡A
+stop_reason (	B‡A*
+train_budget_milli_node_hours (B‡A(
+train_cost_milli_node_hours (B‡A"E
+*ImageClassificationModelDeploymentMetadata
 
-node_count ("A
-+ImageObjectDetectionModelDeploymentMetadata
+node_count (B‡A"F
++ImageObjectDetectionModelDeploymentMetadata
 
-node_count (B∂
+node_count (B‡AB∂
 com.google.cloud.automl.v1B
 ImageProtoPZ<google.golang.org/genproto/googleapis/cloud/automl/v1;automl™Google.Cloud.AutoML.V1 Google\\Cloud\\AutoMl\\V1ÍGoogle::Cloud::AutoML::V1bproto3'
         , true);

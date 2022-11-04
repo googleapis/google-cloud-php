@@ -1,7 +1,5 @@
 # Google Cloud PHP Common Protos
 
-[![Build Status](https://api.travis-ci.org/googleapis/google-cloud-php-common-protos.svg?branch=master)](https://travis-ci.org/googleapis/google-cloud-php-common-protos)
-
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to
 that project.

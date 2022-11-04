@@ -14,7 +14,8 @@ use UnexpectedValueException;
 class Condition
 {
     /**
-     * Unspecified query expansion condition. This defaults to
+     * Unspecified query expansion condition. In this case, server behavior
+     * defaults to
      * [Condition.DISABLED][google.cloud.retail.v2.SearchRequest.QueryExpansionSpec.Condition.DISABLED].
      *
      * Generated from protobuf enum <code>CONDITION_UNSPECIFIED = 0;</code>
@@ -62,6 +63,4 @@ class Condition
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Condition::class, \Google\Cloud\Retail\V2\SearchRequest_QueryExpansionSpec_Condition::class);
 

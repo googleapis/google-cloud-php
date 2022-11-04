@@ -18,19 +18,19 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * Service Directory namespace to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      */
     private $namespace = null;
     /**
      * Service Directory service to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      */
     private $service = null;
     /**
      * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
      *
-     * Generated from protobuf field <code>string service_directory_region = 74030416;</code>
+     * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      */
     private $service_directory_region = null;
 
@@ -56,7 +56,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * Service Directory namespace to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      * @return string
      */
     public function getNamespace()
@@ -77,7 +77,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * Service Directory namespace to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string namespace = 178476379;</code>
+     * Generated from protobuf field <code>optional string namespace = 178476379;</code>
      * @param string $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * Service Directory service to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      * @return string
      */
     public function getService()
@@ -113,7 +113,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * Service Directory service to register the forwarding rule under.
      *
-     * Generated from protobuf field <code>string service = 373540533;</code>
+     * Generated from protobuf field <code>optional string service = 373540533;</code>
      * @param string $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
      *
-     * Generated from protobuf field <code>string service_directory_region = 74030416;</code>
+     * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      * @return string
      */
     public function getServiceDirectoryRegion()
@@ -149,7 +149,7 @@ class ForwardingRuleServiceDirectoryRegistration extends \Google\Protobuf\Intern
     /**
      * [Optional] Service Directory region to register this global forwarding rule under. Default to "us-central1". Only used for PSC for Google APIs. All PSC for Google APIs Forwarding Rules on the same network should use the same Service Directory region.
      *
-     * Generated from protobuf field <code>string service_directory_region = 74030416;</code>
+     * Generated from protobuf field <code>optional string service_directory_region = 74030416;</code>
      * @param string $var
      * @return $this
      */

@@ -25,10 +25,17 @@ class HashType
      * Generated from protobuf enum <code>SHA256 = 1;</code>
      */
     const SHA256 = 1;
+    /**
+     * MD5 hash.
+     *
+     * Generated from protobuf enum <code>MD5 = 2;</code>
+     */
+    const MD5 = 2;
 
     private static $valueToName = [
         self::HASH_TYPE_UNSPECIFIED => 'HASH_TYPE_UNSPECIFIED',
         self::SHA256 => 'SHA256',
+        self::MD5 => 'MD5',
     ];
 
     public static function name($value)

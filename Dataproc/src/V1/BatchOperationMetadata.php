@@ -84,7 +84,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      *           Short description of the operation.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels associated with the operation.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $warnings
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $warnings
      *           Warnings encountered during operation execution.
      * }
      */
@@ -153,7 +153,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -189,7 +189,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDoneTime()
     {
-        return isset($this->done_time) ? $this->done_time : null;
+        return $this->done_time;
     }
 
     public function hasDoneTime()
@@ -310,7 +310,7 @@ class BatchOperationMetadata extends \Google\Protobuf\Internal\Message
      * Warnings encountered during operation execution.
      *
      * Generated from protobuf field <code>repeated string warnings = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWarnings($var)

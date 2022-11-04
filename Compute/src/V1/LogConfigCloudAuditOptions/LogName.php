@@ -7,7 +7,7 @@ namespace Google\Cloud\Compute\V1\LogConfigCloudAuditOptions;
 use UnexpectedValueException;
 
 /**
- * The log_name to populate in the Cloud Audit Record.
+ * This is deprecated and has no effect. Do not use.
  *
  * Protobuf type <code>google.cloud.compute.v1.LogConfigCloudAuditOptions.LogName</code>
  */
@@ -20,14 +20,20 @@ class LogName
      */
     const UNDEFINED_LOG_NAME = 0;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>ADMIN_ACTIVITY = 427503135;</code>
      */
     const ADMIN_ACTIVITY = 427503135;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>DATA_ACCESS = 238070681;</code>
      */
     const DATA_ACCESS = 238070681;
     /**
+     * This is deprecated and has no effect. Do not use.
+     *
      * Generated from protobuf enum <code>UNSPECIFIED_LOG_NAME = 410515182;</code>
      */
     const UNSPECIFIED_LOG_NAME = 410515182;

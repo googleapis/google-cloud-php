@@ -44,7 +44,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      *           Required. The name of the template.
      *     @type string $description
      *           Optional. A description of the template.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[]|\Google\Protobuf\Internal\RepeatedField $parameters
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $parameters
      *           The parameters for the template.
      * }
      */
@@ -120,7 +120,7 @@ class TemplateMetadata extends \Google\Protobuf\Internal\Message
      * The parameters for the template.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ParameterMetadata parameters = 3;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ParameterMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ParameterMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setParameters($var)

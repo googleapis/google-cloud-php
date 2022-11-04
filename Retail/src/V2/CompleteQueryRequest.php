@@ -31,10 +31,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $query = '';
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -42,12 +42,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      */
     private $visitor_id = '';
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * Note that this field applies for `user-data` dataset only. For requests
+     * with `cloud-retail` dataset, setting this field has no effect.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
      */
@@ -55,13 +57,13 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The device type context for completion suggestions.
      * It is useful to apply different suggestions on different device types, e.g.
-     * DESKTOP, MOBILE. If it is empty, the suggestions are across all device
+     * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
-     * * UNKNOWN_DEVICE_TYPE
-     * * DESKTOP
-     * * MOBILE
-     * * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     * * `UNKNOWN_DEVICE_TYPE`
+     * * `DESKTOP`
+     * * `MOBILE`
+     * * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      *
      * Generated from protobuf field <code>string device_type = 4;</code>
      */
@@ -74,16 +76,19 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option is not automatically enabled. Before using cloud-retail,
-     *   contact retail-search-support&#64;google.com first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      */
     private $dataset = '';
     /**
-     * Completion max suggestions.
-     * The maximum allowed max suggestions is 20. The default value is 20.
+     * Completion max suggestions. If left unset or set to 0, then will fallback
+     * to the configured value
+     * [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
+     * The maximum allowed max suggestions is 20. If it is set higher, it will be
+     * capped by 20.
      *
      * Generated from protobuf field <code>int32 max_suggestions = 5;</code>
      */
@@ -103,29 +108,31 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           Required. The query used to generate suggestions.
      *           The maximum number of allowed characters is 255.
      *     @type string $visitor_id
-     *           A unique identifier for tracking visitors. For example, this could be
-     *           implemented with an HTTP cookie, which should be able to uniquely identify
-     *           a visitor on a single device. This unique identifier should not change if
-     *           the visitor logs in or out of the website.
+     *           Required field. A unique identifier for tracking visitors. For example,
+     *           this could be implemented with an HTTP cookie, which should be able to
+     *           uniquely identify a visitor on a single device. This unique identifier
+     *           should not change if the visitor logs in or out of the website.
      *           The field must be a UTF-8 encoded string with a length limit of 128
      *           characters. Otherwise, an INVALID_ARGUMENT error is returned.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $language_codes
-     *           The list of languages of the query. This is
-     *           the BCP-47 language code, such as "en-US" or "sr-Latn".
-     *           For more information, see
-     *           [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     *           The maximum number of allowed characters is 255.
-     *           Only "en-US" is currently supported.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $language_codes
+     *           Note that this field applies for `user-data` dataset only. For requests
+     *           with `cloud-retail` dataset, setting this field has no effect.
+     *           The language filters applied to the output suggestions. If set, it should
+     *           contain the language of the query. If not set, suggestions are returned
+     *           without considering language restrictions. This is the BCP-47 language
+     *           code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     *           Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     *           number of language codes is 3.
      *     @type string $device_type
      *           The device type context for completion suggestions.
      *           It is useful to apply different suggestions on different device types, e.g.
-     *           DESKTOP, MOBILE. If it is empty, the suggestions are across all device
+     *           `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      *           types.
      *           Supported formats:
-     *           * UNKNOWN_DEVICE_TYPE
-     *           * DESKTOP
-     *           * MOBILE
-     *           * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     *           * `UNKNOWN_DEVICE_TYPE`
+     *           * `DESKTOP`
+     *           * `MOBILE`
+     *           * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      *     @type string $dataset
      *           Determines which dataset to use for fetching completion. "user-data" will
      *           use the imported dataset through
@@ -134,12 +141,15 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      *           events. If leave empty, it will use the "user-data".
      *           Current supported values:
      *           * user-data
-     *           * cloud-retail
-     *             This option is not automatically enabled. Before using cloud-retail,
-     *             contact retail-search-support&#64;google.com first.
+     *           * cloud-retail:
+     *             This option requires enabling auto-learning function first. See
+     *             [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *     @type int $max_suggestions
-     *           Completion max suggestions.
-     *           The maximum allowed max suggestions is 20. The default value is 20.
+     *           Completion max suggestions. If left unset or set to 0, then will fallback
+     *           to the configured value
+     *           [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
+     *           The maximum allowed max suggestions is 20. If it is set higher, it will be
+     *           capped by 20.
      * }
      */
     public function __construct($data = NULL) {
@@ -206,10 +216,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -222,10 +232,10 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A unique identifier for tracking visitors. For example, this could be
-     * implemented with an HTTP cookie, which should be able to uniquely identify
-     * a visitor on a single device. This unique identifier should not change if
-     * the visitor logs in or out of the website.
+     * Required field. A unique identifier for tracking visitors. For example,
+     * this could be implemented with an HTTP cookie, which should be able to
+     * uniquely identify a visitor on a single device. This unique identifier
+     * should not change if the visitor logs in or out of the website.
      * The field must be a UTF-8 encoded string with a length limit of 128
      * characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *
@@ -242,12 +252,14 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * Note that this field applies for `user-data` dataset only. For requests
+     * with `cloud-retail` dataset, setting this field has no effect.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -258,15 +270,17 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The list of languages of the query. This is
-     * the BCP-47 language code, such as "en-US" or "sr-Latn".
-     * For more information, see
-     * [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47).
-     * The maximum number of allowed characters is 255.
-     * Only "en-US" is currently supported.
+     * Note that this field applies for `user-data` dataset only. For requests
+     * with `cloud-retail` dataset, setting this field has no effect.
+     * The language filters applied to the output suggestions. If set, it should
+     * contain the language of the query. If not set, suggestions are returned
+     * without considering language restrictions. This is the BCP-47 language
+     * code, such as "en-US" or "sr-Latn". For more information, see [Tags for
+     * Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum
+     * number of language codes is 3.
      *
      * Generated from protobuf field <code>repeated string language_codes = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLanguageCodes($var)
@@ -280,13 +294,13 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The device type context for completion suggestions.
      * It is useful to apply different suggestions on different device types, e.g.
-     * DESKTOP, MOBILE. If it is empty, the suggestions are across all device
+     * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
-     * * UNKNOWN_DEVICE_TYPE
-     * * DESKTOP
-     * * MOBILE
-     * * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     * * `UNKNOWN_DEVICE_TYPE`
+     * * `DESKTOP`
+     * * `MOBILE`
+     * * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      *
      * Generated from protobuf field <code>string device_type = 4;</code>
      * @return string
@@ -299,13 +313,13 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     /**
      * The device type context for completion suggestions.
      * It is useful to apply different suggestions on different device types, e.g.
-     * DESKTOP, MOBILE. If it is empty, the suggestions are across all device
+     * `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device
      * types.
      * Supported formats:
-     * * UNKNOWN_DEVICE_TYPE
-     * * DESKTOP
-     * * MOBILE
-     * * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     * * `UNKNOWN_DEVICE_TYPE`
+     * * `DESKTOP`
+     * * `MOBILE`
+     * * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.
      *
      * Generated from protobuf field <code>string device_type = 4;</code>
      * @param string $var
@@ -327,9 +341,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option is not automatically enabled. Before using cloud-retail,
-     *   contact retail-search-support&#64;google.com first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      * @return string
@@ -347,9 +361,9 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
      * events. If leave empty, it will use the "user-data".
      * Current supported values:
      * * user-data
-     * * cloud-retail
-     *   This option is not automatically enabled. Before using cloud-retail,
-     *   contact retail-search-support&#64;google.com first.
+     * * cloud-retail:
+     *   This option requires enabling auto-learning function first. See
+     *   [guidelines](https://cloud.google.com/retail/docs/completion-overview#generated-completion-dataset).
      *
      * Generated from protobuf field <code>string dataset = 6;</code>
      * @param string $var
@@ -364,8 +378,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Completion max suggestions.
-     * The maximum allowed max suggestions is 20. The default value is 20.
+     * Completion max suggestions. If left unset or set to 0, then will fallback
+     * to the configured value
+     * [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
+     * The maximum allowed max suggestions is 20. If it is set higher, it will be
+     * capped by 20.
      *
      * Generated from protobuf field <code>int32 max_suggestions = 5;</code>
      * @return int
@@ -376,8 +393,11 @@ class CompleteQueryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Completion max suggestions.
-     * The maximum allowed max suggestions is 20. The default value is 20.
+     * Completion max suggestions. If left unset or set to 0, then will fallback
+     * to the configured value
+     * [CompletionConfig.max_suggestions][google.cloud.retail.v2.CompletionConfig.max_suggestions].
+     * The maximum allowed max suggestions is 20. If it is set higher, it will be
+     * capped by 20.
      *
      * Generated from protobuf field <code>int32 max_suggestions = 5;</code>
      * @param int $var

@@ -46,7 +46,7 @@ class OneTimeSchedule extends \Google\Protobuf\Internal\Message
      */
     public function getExecuteTime()
     {
-        return isset($this->execute_time) ? $this->execute_time : null;
+        return $this->execute_time;
     }
 
     public function hasExecuteTime()

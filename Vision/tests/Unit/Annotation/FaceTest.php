@@ -19,7 +19,7 @@ namespace Google\Cloud\Vision\Tests\Unit\Annotation;
 
 use Google\Cloud\Vision\Annotation\Face;
 use Google\Cloud\Vision\Annotation\Face\Landmarks;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group vision
@@ -28,7 +28,7 @@ class FaceTest extends TestCase
 {
     private $face;
 
-    public function setUp()
+    public function set_up()
     {
         $this->face = new Face([
             'landmarks' => [],

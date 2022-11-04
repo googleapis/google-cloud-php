@@ -10,6 +10,7 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Deblock preprocessing configuration.
+ * **Note:** This configuration is not supported.
  *
  * Generated from protobuf message <code>google.cloud.video.transcoder.v1.PreprocessingConfig.Deblock</code>
  */
@@ -107,6 +108,4 @@ class Deblock extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Deblock::class, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig_Deblock::class);
 

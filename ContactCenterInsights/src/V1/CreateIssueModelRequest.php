@@ -79,7 +79,7 @@ class CreateIssueModelRequest extends \Google\Protobuf\Internal\Message
      */
     public function getIssueModel()
     {
-        return isset($this->issue_model) ? $this->issue_model : null;
+        return $this->issue_model;
     }
 
     public function hasIssueModel()

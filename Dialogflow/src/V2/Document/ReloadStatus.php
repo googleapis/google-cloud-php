@@ -59,7 +59,7 @@ class ReloadStatus extends \Google\Protobuf\Internal\Message
      */
     public function getTime()
     {
-        return isset($this->time) ? $this->time : null;
+        return $this->time;
     }
 
     public function hasTime()
@@ -97,7 +97,7 @@ class ReloadStatus extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()

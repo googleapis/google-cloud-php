@@ -15,11 +15,10 @@ class Temporal
           return;
         }
         \GPBMetadata\Google\Protobuf\Duration::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
-*google/cloud/automl/v1beta1/temporal.protogoogle.cloud.automl.v1beta1google/api/annotations.proto"w
+Ú
+*google/cloud/automl/v1beta1/temporal.protogoogle.cloud.automl.v1beta1"w
 TimeSegment4
 start_time_offset (2.google.protobuf.Duration2
 end_time_offset (2.google.protobuf.DurationB•

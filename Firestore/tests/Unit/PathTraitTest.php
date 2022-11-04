@@ -19,7 +19,7 @@ namespace Google\Cloud\Firestore\Tests\Unit;
 
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Firestore\PathTrait;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 
 /**
  * @group firestore
@@ -35,7 +35,7 @@ class PathTraitTest extends TestCase
 
     private $impl;
 
-    public function setUp()
+    public function set_up()
     {
         $this->impl = TestHelpers::impl(PathTrait::class);
     }
@@ -151,6 +151,7 @@ class PathTraitTest extends TestCase
         return [
             [self::COLLECTION],
             [self::ROOT],
+            [''],
             [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::ROOT)],
             [sprintf('projects/%s/databases/%s/documents/%s', self::PROJECT, self::DATABASE, self::COLLECTION)],
         ];

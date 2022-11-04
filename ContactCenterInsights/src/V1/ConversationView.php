@@ -7,36 +7,37 @@ namespace Google\Cloud\ContactCenterInsights\V1;
 use UnexpectedValueException;
 
 /**
- * Represents the options for views of a conversation.
+ * Represents the options for viewing a conversation.
  *
  * Protobuf type <code>google.cloud.contactcenterinsights.v1.ConversationView</code>
  */
 class ConversationView
 {
     /**
-     * Not specified. Defaults to FULL on GetConversationRequest and BASIC for
-     * ListConversationsRequest.
+     * The conversation view is not specified.
+     * * Defaults to `FULL` in `GetConversationRequest`.
+     * * Defaults to `BASIC` in `ListConversationsRequest`.
      *
      * Generated from protobuf enum <code>CONVERSATION_VIEW_UNSPECIFIED = 0;</code>
      */
     const CONVERSATION_VIEW_UNSPECIFIED = 0;
     /**
-     * Transcript field is not populated in the response.
-     *
-     * Generated from protobuf enum <code>BASIC = 1;</code>
-     */
-    const BASIC = 1;
-    /**
-     * All fields are populated.
+     * Populates all fields in the conversation.
      *
      * Generated from protobuf enum <code>FULL = 2;</code>
      */
     const FULL = 2;
+    /**
+     * Populates all fields in the conversation except the transcript.
+     *
+     * Generated from protobuf enum <code>BASIC = 1;</code>
+     */
+    const BASIC = 1;
 
     private static $valueToName = [
         self::CONVERSATION_VIEW_UNSPECIFIED => 'CONVERSATION_VIEW_UNSPECIFIED',
-        self::BASIC => 'BASIC',
         self::FULL => 'FULL',
+        self::BASIC => 'BASIC',
     ];
 
     public static function name($value)

@@ -48,6 +48,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListGroupsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListGroups(\Google\Cloud\Monitoring\V3\ListGroupsRequest $argument,
       $metadata = [], $options = []) {
@@ -62,6 +63,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\GetGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function GetGroup(\Google\Cloud\Monitoring\V3\GetGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -76,6 +78,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\CreateGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function CreateGroup(\Google\Cloud\Monitoring\V3\CreateGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -91,6 +94,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\UpdateGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function UpdateGroup(\Google\Cloud\Monitoring\V3\UpdateGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -105,6 +109,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\DeleteGroupRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function DeleteGroup(\Google\Cloud\Monitoring\V3\DeleteGroupRequest $argument,
       $metadata = [], $options = []) {
@@ -119,6 +124,7 @@ class GroupServiceGrpcClient extends \Grpc\BaseStub {
      * @param \Google\Cloud\Monitoring\V3\ListGroupMembersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
+     * @return \Grpc\UnaryCall
      */
     public function ListGroupMembers(\Google\Cloud\Monitoring\V3\ListGroupMembersRequest $argument,
       $metadata = [], $options = []) {

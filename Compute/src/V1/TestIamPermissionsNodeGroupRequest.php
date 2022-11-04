@@ -121,7 +121,7 @@ class TestIamPermissionsNodeGroupRequest extends \Google\Protobuf\Internal\Messa
      */
     public function getTestPermissionsRequestResource()
     {
-        return isset($this->test_permissions_request_resource) ? $this->test_permissions_request_resource : null;
+        return $this->test_permissions_request_resource;
     }
 
     public function hasTestPermissionsRequestResource()

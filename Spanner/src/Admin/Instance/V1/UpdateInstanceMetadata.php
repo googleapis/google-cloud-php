@@ -23,7 +23,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     private $instance = null;
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
@@ -53,7 +54,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Spanner\Admin\Instance\V1\Instance $instance
      *           The desired end state of the update.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     *           The time at which
+     *           [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      *           request was received.
      *     @type \Google\Protobuf\Timestamp $cancel_time
      *           The time at which this operation was cancelled. If set, this operation is
@@ -76,7 +78,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getInstance()
     {
-        return isset($this->instance) ? $this->instance : null;
+        return $this->instance;
     }
 
     public function hasInstance()
@@ -105,7 +107,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
@@ -113,7 +116,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -127,7 +130,8 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time at which [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
+     * The time at which
+     * [UpdateInstance][google.spanner.admin.instance.v1.InstanceAdmin.UpdateInstance]
      * request was received.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 2;</code>
@@ -152,7 +156,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCancelTime()
     {
-        return isset($this->cancel_time) ? $this->cancel_time : null;
+        return $this->cancel_time;
     }
 
     public function hasCancelTime()
@@ -190,7 +194,7 @@ class UpdateInstanceMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

@@ -44,7 +44,7 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Trace\V2\Span\TimeEvent[]|\Google\Protobuf\Internal\RepeatedField $time_event
+     *     @type array<\Google\Cloud\Trace\V2\Span\TimeEvent>|\Google\Protobuf\Internal\RepeatedField $time_event
      *           A collection of `TimeEvent`s.
      *     @type int $dropped_annotations_count
      *           The number of dropped annotations in all the included time events.
@@ -74,7 +74,7 @@ class TimeEvents extends \Google\Protobuf\Internal\Message
      * A collection of `TimeEvent`s.
      *
      * Generated from protobuf field <code>repeated .google.devtools.cloudtrace.v2.Span.TimeEvent time_event = 1;</code>
-     * @param \Google\Cloud\Trace\V2\Span\TimeEvent[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Trace\V2\Span\TimeEvent>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTimeEvent($var)

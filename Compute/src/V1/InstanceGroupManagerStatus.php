@@ -17,25 +17,25 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *
-     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
+     * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      */
     private $autoscaler = null;
     /**
      * [Output Only] A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.
      *
-     * Generated from protobuf field <code>bool is_stable = 108410864;</code>
+     * Generated from protobuf field <code>optional bool is_stable = 108410864;</code>
      */
     private $is_stable = null;
     /**
      * [Output Only] Stateful status of the given Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      */
     private $stateful = null;
     /**
      * [Output Only] A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
      */
     private $version_target = null;
 
@@ -63,7 +63,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *
-     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
+     * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      * @return string
      */
     public function getAutoscaler()
@@ -84,7 +84,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL of the Autoscaler that targets this instance group manager.
      *
-     * Generated from protobuf field <code>string autoscaler = 517258967;</code>
+     * Generated from protobuf field <code>optional string autoscaler = 517258967;</code>
      * @param string $var
      * @return $this
      */
@@ -99,7 +99,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.
      *
-     * Generated from protobuf field <code>bool is_stable = 108410864;</code>
+     * Generated from protobuf field <code>optional bool is_stable = 108410864;</code>
      * @return bool
      */
     public function getIsStable()
@@ -120,7 +120,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A bit indicating whether the managed instance group is in a stable state. A stable state means that: none of the instances in the managed instance group is currently undergoing any type of change (for example, creation, restart, or deletion); no future changes are scheduled for instances in the managed instance group; and the managed instance group itself is not being modified.
      *
-     * Generated from protobuf field <code>bool is_stable = 108410864;</code>
+     * Generated from protobuf field <code>optional bool is_stable = 108410864;</code>
      * @param bool $var
      * @return $this
      */
@@ -135,12 +135,12 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Stateful status of the given Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStateful|null
      */
     public function getStateful()
     {
-        return isset($this->stateful) ? $this->stateful : null;
+        return $this->stateful;
     }
 
     public function hasStateful()
@@ -156,7 +156,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Stateful status of the given Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusStateful stateful = 244462412;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusStateful $var
      * @return $this
      */
@@ -171,12 +171,12 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
      * @return \Google\Cloud\Compute\V1\InstanceGroupManagerStatusVersionTarget|null
      */
     public function getVersionTarget()
     {
-        return isset($this->version_target) ? $this->version_target : null;
+        return $this->version_target;
     }
 
     public function hasVersionTarget()
@@ -192,7 +192,7 @@ class InstanceGroupManagerStatus extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A status of consistency of Instances' versions with their target version specified by version field on Instance Group Manager.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceGroupManagerStatusVersionTarget version_target = 289386200;</code>
      * @param \Google\Cloud\Compute\V1\InstanceGroupManagerStatusVersionTarget $var
      * @return $this
      */

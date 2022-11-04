@@ -66,6 +66,4 @@ class UserEventRejoinScope
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(UserEventRejoinScope::class, \Google\Cloud\Retail\V2\RejoinUserEventsRequest_UserEventRejoinScope::class);
 

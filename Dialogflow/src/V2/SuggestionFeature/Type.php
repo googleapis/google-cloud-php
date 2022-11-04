@@ -20,22 +20,29 @@ class Type
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * Run article suggestion model.
+     * Run article suggestion model for chat.
      *
      * Generated from protobuf enum <code>ARTICLE_SUGGESTION = 1;</code>
      */
     const ARTICLE_SUGGESTION = 1;
     /**
-     * Run FAQ model.
+     * Run FAQ model for chat.
      *
      * Generated from protobuf enum <code>FAQ = 2;</code>
      */
     const FAQ = 2;
+    /**
+     * Run smart reply model for chat.
+     *
+     * Generated from protobuf enum <code>SMART_REPLY = 3;</code>
+     */
+    const SMART_REPLY = 3;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::ARTICLE_SUGGESTION => 'ARTICLE_SUGGESTION',
         self::FAQ => 'FAQ',
+        self::SMART_REPLY => 'SMART_REPLY',
     ];
 
     public static function name($value)

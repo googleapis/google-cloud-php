@@ -22,9 +22,9 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      */
     private $start_date = null;
     /**
-     * Optional. The end date of the time period. Budgets with elapsed end date
-     * won't be processed. If unset, specifies to track all usage incurred since
-     * the start_date.
+     * Optional. The end date of the time period. Budgets with elapsed end date won't be
+     * processed. If unset, specifies to track all usage
+     * incurred since the start_date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -39,9 +39,9 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      *     @type \Google\Type\Date $start_date
      *           Required. The start date must be after January 1, 2017.
      *     @type \Google\Type\Date $end_date
-     *           Optional. The end date of the time period. Budgets with elapsed end date
-     *           won't be processed. If unset, specifies to track all usage incurred since
-     *           the start_date.
+     *           Optional. The end date of the time period. Budgets with elapsed end date won't be
+     *           processed. If unset, specifies to track all usage
+     *           incurred since the start_date.
      * }
      */
     public function __construct($data = NULL) {
@@ -57,7 +57,7 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
      */
     public function getStartDate()
     {
-        return isset($this->start_date) ? $this->start_date : null;
+        return $this->start_date;
     }
 
     public function hasStartDate()
@@ -86,16 +86,16 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end date of the time period. Budgets with elapsed end date
-     * won't be processed. If unset, specifies to track all usage incurred since
-     * the start_date.
+     * Optional. The end date of the time period. Budgets with elapsed end date won't be
+     * processed. If unset, specifies to track all usage
+     * incurred since the start_date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Type\Date|null
      */
     public function getEndDate()
     {
-        return isset($this->end_date) ? $this->end_date : null;
+        return $this->end_date;
     }
 
     public function hasEndDate()
@@ -109,9 +109,9 @@ class CustomPeriod extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The end date of the time period. Budgets with elapsed end date
-     * won't be processed. If unset, specifies to track all usage incurred since
-     * the start_date.
+     * Optional. The end date of the time period. Budgets with elapsed end date won't be
+     * processed. If unset, specifies to track all usage
+     * incurred since the start_date.
      *
      * Generated from protobuf field <code>.google.type.Date end_date = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Type\Date $var

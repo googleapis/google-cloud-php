@@ -42,9 +42,9 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Resource name of this metadata.
-     *     @type \Google\Analytics\Data\V1beta\DimensionMetadata[]|\Google\Protobuf\Internal\RepeatedField $dimensions
+     *     @type array<\Google\Analytics\Data\V1beta\DimensionMetadata>|\Google\Protobuf\Internal\RepeatedField $dimensions
      *           The dimension descriptions.
-     *     @type \Google\Analytics\Data\V1beta\MetricMetadata[]|\Google\Protobuf\Internal\RepeatedField $metrics
+     *     @type array<\Google\Analytics\Data\V1beta\MetricMetadata>|\Google\Protobuf\Internal\RepeatedField $metrics
      *           The metric descriptions.
      * }
      */
@@ -94,7 +94,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * The dimension descriptions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.DimensionMetadata dimensions = 1;</code>
-     * @param \Google\Analytics\Data\V1beta\DimensionMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\DimensionMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDimensions($var)
@@ -120,7 +120,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * The metric descriptions.
      *
      * Generated from protobuf field <code>repeated .google.analytics.data.v1beta.MetricMetadata metrics = 2;</code>
-     * @param \Google\Analytics\Data\V1beta\MetricMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Analytics\Data\V1beta\MetricMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMetrics($var)

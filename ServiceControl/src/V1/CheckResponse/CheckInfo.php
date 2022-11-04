@@ -36,7 +36,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $unused_arguments
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unused_arguments
      *           A list of fields and label keys that are ignored by the server.
      *           The client doesn't need to send them for following requests to improve
      *           performance and allow better aggregation.
@@ -68,7 +68,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      * performance and allow better aggregation.
      *
      * Generated from protobuf field <code>repeated string unused_arguments = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setUnusedArguments($var)
@@ -87,7 +87,7 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
      */
     public function getConsumerInfo()
     {
-        return isset($this->consumer_info) ? $this->consumer_info : null;
+        return $this->consumer_info;
     }
 
     public function hasConsumerInfo()
@@ -117,6 +117,4 @@ class CheckInfo extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CheckInfo::class, \Google\Cloud\ServiceControl\V1\CheckResponse_CheckInfo::class);
 

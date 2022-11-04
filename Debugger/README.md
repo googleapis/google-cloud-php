@@ -87,7 +87,7 @@ please see our [gRPC installation guide](https://cloud.google.com/php/grpc).
 
 ### Authentication
 
-Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/master/AUTHENTICATION.md) for more information
+Please see our [Authentication guide](https://github.com/googleapis/google-cloud-php/blob/main/AUTHENTICATION.md) for more information
 on authenticating your client. Once authenticated, you'll be ready to start making requests.
 
 ### Sample
@@ -142,8 +142,8 @@ any minor or patch releases. We will address issues and requests with the highes
 2. Take a look at [in-depth usage samples][usage-samples].
 
 [semaphore-extensions]: http://php.net/manual/en/book.sem.php
-[batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/master/src/Core/Batch/BatchDaemon.php
-[debugger-daemon]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/master/debugger/daemon
+[batch-daemon]: https://github.com/googleapis/google-cloud-php/blob/main/src/Core/Batch/BatchDaemon.php
+[debugger-daemon]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-debugger/main/debugger/daemon
 [pecl-debugger]: https://pecl.php.net/package/stackdriver_debugger
 [debugger-console]: https://console.cloud.google.com/debug
 [using-debug-snapshots]: https://cloud.google.com/debugger/docs/debugging

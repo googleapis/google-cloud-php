@@ -165,6 +165,4 @@ class ExponentialBuckets extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExponentialBuckets::class, \Google\Cloud\ServiceControl\V1\Distribution_ExponentialBuckets::class);
 

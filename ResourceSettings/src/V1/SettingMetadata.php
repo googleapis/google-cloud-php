@@ -191,7 +191,7 @@ class SettingMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultValue()
     {
-        return isset($this->default_value) ? $this->default_value : null;
+        return $this->default_value;
     }
 
     public function hasDefaultValue()

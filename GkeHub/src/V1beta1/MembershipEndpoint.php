@@ -45,9 +45,15 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\GkeHub\V1beta1\GkeCluster $gke_cluster
      *           Optional. Specific information for a GKE-on-GCP cluster.
      *     @type \Google\Cloud\GkeHub\V1beta1\OnPremCluster $on_prem_cluster
-     *           Optional. Specific information for a GKE On-Prem cluster.
+     *           Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
+     *           who has no resourceLink is not allowed to use this field, it should have
+     *           a nil "type" instead.
      *     @type \Google\Cloud\GkeHub\V1beta1\MultiCloudCluster $multi_cloud_cluster
      *           Optional. Specific information for a GKE Multi-Cloud cluster.
+     *     @type \Google\Cloud\GkeHub\V1beta1\EdgeCluster $edge_cluster
+     *           Optional. Specific information for a Google Edge cluster.
+     *     @type \Google\Cloud\GkeHub\V1beta1\ApplianceCluster $appliance_cluster
+     *           Optional. Specific information for a GDC Edge Appliance cluster.
      *     @type \Google\Cloud\GkeHub\V1beta1\KubernetesMetadata $kubernetes_metadata
      *           Output only. Useful Kubernetes-specific metadata.
      *     @type \Google\Cloud\GkeHub\V1beta1\KubernetesResource $kubernetes_resource
@@ -97,7 +103,9 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specific information for a GKE On-Prem cluster.
+     * Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
+     * who has no resourceLink is not allowed to use this field, it should have
+     * a nil "type" instead.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster on_prem_cluster = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\GkeHub\V1beta1\OnPremCluster|null
@@ -113,7 +121,9 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Specific information for a GKE On-Prem cluster.
+     * Optional. Specific information for a GKE On-Prem cluster. An onprem user-cluster
+     * who has no resourceLink is not allowed to use this field, it should have
+     * a nil "type" instead.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.OnPremCluster on_prem_cluster = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\GkeHub\V1beta1\OnPremCluster $var
@@ -159,6 +169,68 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. Specific information for a Google Edge cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.EdgeCluster edge_cluster = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeHub\V1beta1\EdgeCluster|null
+     */
+    public function getEdgeCluster()
+    {
+        return $this->readOneof(9);
+    }
+
+    public function hasEdgeCluster()
+    {
+        return $this->hasOneof(9);
+    }
+
+    /**
+     * Optional. Specific information for a Google Edge cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.EdgeCluster edge_cluster = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeHub\V1beta1\EdgeCluster $var
+     * @return $this
+     */
+    public function setEdgeCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeHub\V1beta1\EdgeCluster::class);
+        $this->writeOneof(9, $var);
+
+        return $this;
+    }
+
+    /**
+     * Optional. Specific information for a GDC Edge Appliance cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.ApplianceCluster appliance_cluster = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return \Google\Cloud\GkeHub\V1beta1\ApplianceCluster|null
+     */
+    public function getApplianceCluster()
+    {
+        return $this->readOneof(10);
+    }
+
+    public function hasApplianceCluster()
+    {
+        return $this->hasOneof(10);
+    }
+
+    /**
+     * Optional. Specific information for a GDC Edge Appliance cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.ApplianceCluster appliance_cluster = 10 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param \Google\Cloud\GkeHub\V1beta1\ApplianceCluster $var
+     * @return $this
+     */
+    public function setApplianceCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\GkeHub\V1beta1\ApplianceCluster::class);
+        $this->writeOneof(10, $var);
+
+        return $this;
+    }
+
+    /**
      * Output only. Useful Kubernetes-specific metadata.
      *
      * Generated from protobuf field <code>.google.cloud.gkehub.v1beta1.KubernetesMetadata kubernetes_metadata = 5 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -166,7 +238,7 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesMetadata()
     {
-        return isset($this->kubernetes_metadata) ? $this->kubernetes_metadata : null;
+        return $this->kubernetes_metadata;
     }
 
     public function hasKubernetesMetadata()
@@ -208,7 +280,7 @@ class MembershipEndpoint extends \Google\Protobuf\Internal\Message
      */
     public function getKubernetesResource()
     {
-        return isset($this->kubernetes_resource) ? $this->kubernetes_resource : null;
+        return $this->kubernetes_resource;
     }
 
     public function hasKubernetesResource()

@@ -91,7 +91,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      *           [NotificationsRule.pubsub_topic][google.cloud.billing.budgets.v1.NotificationsRule.pubsub_topic].
      *           Only "1.0" is accepted. It represents the JSON schema as defined in
      *           https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $monitoring_notification_channels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $monitoring_notification_channels
      *           Optional. Targets to send notifications to when a threshold is exceeded.
      *           This is in addition to default recipients who have billing account IAM
      *           roles. The value is the full REST resource name of a monitoring
@@ -223,7 +223,7 @@ class NotificationsRule extends \Google\Protobuf\Internal\Message
      * for more details.
      *
      * Generated from protobuf field <code>repeated string monitoring_notification_channels = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setMonitoringNotificationChannels($var)

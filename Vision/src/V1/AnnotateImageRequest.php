@@ -43,7 +43,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Vision\V1\Image $image
      *           The image to be processed.
-     *     @type \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $features
      *           Requested features.
      *     @type \Google\Cloud\Vision\V1\ImageContext $image_context
      *           Additional context that may accompany the image.
@@ -62,7 +62,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()
@@ -105,7 +105,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      * Requested features.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Feature features = 2;</code>
-     * @param \Google\Cloud\Vision\V1\Feature[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Feature>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)
@@ -124,7 +124,7 @@ class AnnotateImageRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImageContext()
     {
-        return isset($this->image_context) ? $this->image_context : null;
+        return $this->image_context;
     }
 
     public function hasImageContext()

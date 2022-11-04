@@ -372,7 +372,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getOriginUri()
     {
-        return isset($this->origin_uri) ? $this->origin_uri : null;
+        return $this->origin_uri;
     }
 
     public function hasOriginUri()
@@ -437,7 +437,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getProgress()
     {
-        return isset($this->progress) ? $this->progress : null;
+        return $this->progress;
     }
 
     public function hasProgress()
@@ -533,7 +533,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -569,7 +569,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -605,7 +605,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

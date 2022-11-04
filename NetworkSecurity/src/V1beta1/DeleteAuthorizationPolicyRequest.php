@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -30,8 +30,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     *           `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
+     *           Required. A name of the AuthorizationPolicy to delete. Must be in the
+     *           format `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -52,8 +52,8 @@ class DeleteAuthorizationPolicyRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. A name of the AuthorizationPolicy to delete. Must be in the format
-     * `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
+     * Required. A name of the AuthorizationPolicy to delete. Must be in the
+     * format `projects/{project}/locations/{location}/authorizationPolicies/&#42;`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [RemoveFulfillmentPlaces][] method.
+ * Request message for
+ * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.retail.v2.RemoveFulfillmentPlacesRequest</code>
  */
@@ -41,7 +43,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -54,7 +57,7 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type].
      * At least 1 value is required, and a maximum of 2000 values are allowed.
      * Each value must be a string with a length limit of 10 characters, matching
-     * the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an
+     * the pattern `[a-zA-Z0-9_-]+`, such as "store1" or "REGION-2". Otherwise, an
      * INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -72,8 +75,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, the fulfillment information will still be processed and retained for
      * at most 1 day and processed once the
-     * [Product][google.cloud.retail.v2.Product] is created. If set to false, an
-     * INVALID_ARGUMENT error is returned if the
+     * [Product][google.cloud.retail.v2.Product] is created. If set to false, a
+     * NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 5;</code>
@@ -108,8 +111,9 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           * "custom-type-5"
      *           If this field is set to an invalid value other than these, an
      *           INVALID_ARGUMENT error is returned.
-     *           This field directly corresponds to [Product.fulfillment_info.type][].
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $place_ids
+     *           This field directly corresponds to
+     *           [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $place_ids
      *           Required. The IDs for this
      *           [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type], such as
      *           the store IDs for "pickup-in-store" or the region IDs for
@@ -117,7 +121,7 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type].
      *           At least 1 value is required, and a maximum of 2000 values are allowed.
      *           Each value must be a string with a length limit of 10 characters, matching
-     *           the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an
+     *           the pattern `[a-zA-Z0-9_-]+`, such as "store1" or "REGION-2". Otherwise, an
      *           INVALID_ARGUMENT error is returned.
      *     @type \Google\Protobuf\Timestamp $remove_time
      *           The time when the fulfillment updates are issued, used to prevent
@@ -127,8 +131,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      *           If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      *           found, the fulfillment information will still be processed and retained for
      *           at most 1 day and processed once the
-     *           [Product][google.cloud.retail.v2.Product] is created. If set to false, an
-     *           INVALID_ARGUMENT error is returned if the
+     *           [Product][google.cloud.retail.v2.Product] is created. If set to false, a
+     *           NOT_FOUND error is returned if the
      *           [Product][google.cloud.retail.v2.Product] is not found.
      * }
      */
@@ -188,7 +192,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -213,7 +218,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * * "custom-type-5"
      * If this field is set to an invalid value other than these, an
      * INVALID_ARGUMENT error is returned.
-     * This field directly corresponds to [Product.fulfillment_info.type][].
+     * This field directly corresponds to
+     * [Product.fulfillment_info.type][google.cloud.retail.v2.FulfillmentInfo.type].
      *
      * Generated from protobuf field <code>string type = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -235,7 +241,7 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type].
      * At least 1 value is required, and a maximum of 2000 values are allowed.
      * Each value must be a string with a length limit of 10 characters, matching
-     * the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an
+     * the pattern `[a-zA-Z0-9_-]+`, such as "store1" or "REGION-2". Otherwise, an
      * INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -254,11 +260,11 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * [type][google.cloud.retail.v2.RemoveFulfillmentPlacesRequest.type].
      * At least 1 value is required, and a maximum of 2000 values are allowed.
      * Each value must be a string with a length limit of 10 characters, matching
-     * the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an
+     * the pattern `[a-zA-Z0-9_-]+`, such as "store1" or "REGION-2". Otherwise, an
      * INVALID_ARGUMENT error is returned.
      *
      * Generated from protobuf field <code>repeated string place_ids = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPlaceIds($var)
@@ -279,7 +285,7 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRemoveTime()
     {
-        return isset($this->remove_time) ? $this->remove_time : null;
+        return $this->remove_time;
     }
 
     public function hasRemoveTime()
@@ -313,8 +319,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, the fulfillment information will still be processed and retained for
      * at most 1 day and processed once the
-     * [Product][google.cloud.retail.v2.Product] is created. If set to false, an
-     * INVALID_ARGUMENT error is returned if the
+     * [Product][google.cloud.retail.v2.Product] is created. If set to false, a
+     * NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 5;</code>
@@ -329,8 +335,8 @@ class RemoveFulfillmentPlacesRequest extends \Google\Protobuf\Internal\Message
      * If set to true, and the [Product][google.cloud.retail.v2.Product] is not
      * found, the fulfillment information will still be processed and retained for
      * at most 1 day and processed once the
-     * [Product][google.cloud.retail.v2.Product] is created. If set to false, an
-     * INVALID_ARGUMENT error is returned if the
+     * [Product][google.cloud.retail.v2.Product] is created. If set to false, a
+     * NOT_FOUND error is returned if the
      * [Product][google.cloud.retail.v2.Product] is not found.
      *
      * Generated from protobuf field <code>bool allow_missing = 5;</code>

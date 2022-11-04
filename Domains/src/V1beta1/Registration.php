@@ -11,11 +11,17 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * The `Registration` resource facilitates managing and configuring domain name
  * registrations.
+ * There are several ways to create a new `Registration` resource:
  * To create a new `Registration` resource, find a suitable domain name by
  * calling the `SearchDomains` method with a query to see available domain name
  * options. After choosing a name, call `RetrieveRegisterParameters` to
  * ensure availability and obtain information like pricing, which is needed to
  * build a call to `RegisterDomain`.
+ * Another way to create a new `Registration` is to transfer an existing
+ * domain from another registrar. First, go to the current registrar to unlock
+ * the domain for transfer and retrieve the domain's transfer authorization
+ * code. Then call `RetrieveTransferParameters` to confirm that the domain is
+ * unlocked and to get values needed to build a call to `TransferDomain`.
  *
  * Generated from protobuf message <code>google.cloud.domains.v1beta1.Registration</code>
  */
@@ -94,7 +100,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `contact_settings` field that change its `registrant_contact` or `privacy`
      * fields require email confirmation by the `registrant_contact`
      * before taking effect. This field is set only if there are pending updates
-     * to the `contact_settings` that have not yet been confirmed. To confirm the
+     * to the `contact_settings` that have not been confirmed. To confirm the
      * changes, the `registrant_contact` must follow the instructions in the
      * email they receive.
      *
@@ -126,7 +132,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           Output only. The expiration timestamp of the `Registration`.
      *     @type int $state
      *           Output only. The state of the `Registration`
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $issues
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $issues
      *           Output only. The set of issues with the `Registration` that require attention.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Set of labels associated with the `Registration`.
@@ -148,10 +154,10 @@ class Registration extends \Google\Protobuf\Internal\Message
      *           `contact_settings` field that change its `registrant_contact` or `privacy`
      *           fields require email confirmation by the `registrant_contact`
      *           before taking effect. This field is set only if there are pending updates
-     *           to the `contact_settings` that have not yet been confirmed. To confirm the
+     *           to the `contact_settings` that have not been confirmed. To confirm the
      *           changes, the `registrant_contact` must follow the instructions in the
      *           email they receive.
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $supported_privacy
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $supported_privacy
      *           Output only. Set of options for the `contact_settings.privacy` field that this
      *           `Registration` supports.
      * }
@@ -223,7 +229,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -259,7 +265,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getExpireTime()
     {
-        return isset($this->expire_time) ? $this->expire_time : null;
+        return $this->expire_time;
     }
 
     public function hasExpireTime()
@@ -328,7 +334,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * Output only. The set of issues with the `Registration` that require attention.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.Registration.Issue issues = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIssues($var)
@@ -376,7 +382,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getManagementSettings()
     {
-        return isset($this->management_settings) ? $this->management_settings : null;
+        return $this->management_settings;
     }
 
     public function hasManagementSettings()
@@ -417,7 +423,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getDnsSettings()
     {
-        return isset($this->dns_settings) ? $this->dns_settings : null;
+        return $this->dns_settings;
     }
 
     public function hasDnsSettings()
@@ -457,7 +463,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getContactSettings()
     {
-        return isset($this->contact_settings) ? $this->contact_settings : null;
+        return $this->contact_settings;
     }
 
     public function hasContactSettings()
@@ -492,7 +498,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `contact_settings` field that change its `registrant_contact` or `privacy`
      * fields require email confirmation by the `registrant_contact`
      * before taking effect. This field is set only if there are pending updates
-     * to the `contact_settings` that have not yet been confirmed. To confirm the
+     * to the `contact_settings` that have not been confirmed. To confirm the
      * changes, the `registrant_contact` must follow the instructions in the
      * email they receive.
      *
@@ -501,7 +507,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      */
     public function getPendingContactSettings()
     {
-        return isset($this->pending_contact_settings) ? $this->pending_contact_settings : null;
+        return $this->pending_contact_settings;
     }
 
     public function hasPendingContactSettings()
@@ -519,7 +525,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `contact_settings` field that change its `registrant_contact` or `privacy`
      * fields require email confirmation by the `registrant_contact`
      * before taking effect. This field is set only if there are pending updates
-     * to the `contact_settings` that have not yet been confirmed. To confirm the
+     * to the `contact_settings` that have not been confirmed. To confirm the
      * changes, the `registrant_contact` must follow the instructions in the
      * email they receive.
      *
@@ -552,7 +558,7 @@ class Registration extends \Google\Protobuf\Internal\Message
      * `Registration` supports.
      *
      * Generated from protobuf field <code>repeated .google.cloud.domains.v1beta1.ContactPrivacy supported_privacy = 14 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSupportedPrivacy($var)

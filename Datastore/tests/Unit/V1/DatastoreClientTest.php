@@ -80,7 +80,7 @@ class DatastoreClientTest extends GeneratedTest
     public function allocateIdsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -90,7 +90,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $response = $client->allocateIds($projectId, $keys);
+        $response = $gapicClient->allocateIds($projectId, $keys);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -110,7 +110,7 @@ class DatastoreClientTest extends GeneratedTest
     public function allocateIdsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -128,8 +128,8 @@ class DatastoreClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $keys = [];
         try {
-            $client->allocateIds($projectId, $keys);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->allocateIds($projectId, $keys);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -146,7 +146,7 @@ class DatastoreClientTest extends GeneratedTest
     public function beginTransactionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -157,7 +157,7 @@ class DatastoreClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $projectId = 'projectId-1969970175';
-        $response = $client->beginTransaction($projectId);
+        $response = $gapicClient->beginTransaction($projectId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -175,7 +175,7 @@ class DatastoreClientTest extends GeneratedTest
     public function beginTransactionExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -192,8 +192,8 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         try {
-            $client->beginTransaction($projectId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->beginTransaction($projectId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -210,39 +210,32 @@ class DatastoreClientTest extends GeneratedTest
     public function commitTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $indexUpdates = 1425228195;
         $expectedResponse = new CommitResponse();
         $expectedResponse->setIndexUpdates($indexUpdates);
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
-
-        $response = $client->commit($projectId, $mode, $mutations);
+        $response = $gapicClient->commit($projectId, $mode, $mutations);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/Commit', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProjectId();
-
         $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualRequestObject->getMode();
-
         $this->assertProtobufEquals($mode, $actualValue);
         $actualValue = $actualRequestObject->getMutations();
-
         $this->assertProtobufEquals($mutations, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -252,36 +245,32 @@ class DatastoreClientTest extends GeneratedTest
     public function commitExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $mode = Mode::MODE_UNSPECIFIED;
         $mutations = [];
-
         try {
-            $client->commit($projectId, $mode, $mutations);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->commit($projectId, $mode, $mutations);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
@@ -293,7 +282,7 @@ class DatastoreClientTest extends GeneratedTest
     public function lookupTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -303,7 +292,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $response = $client->lookup($projectId, $keys);
+        $response = $gapicClient->lookup($projectId, $keys);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -323,7 +312,7 @@ class DatastoreClientTest extends GeneratedTest
     public function lookupExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -341,8 +330,8 @@ class DatastoreClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $keys = [];
         try {
-            $client->lookup($projectId, $keys);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->lookup($projectId, $keys);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -359,7 +348,7 @@ class DatastoreClientTest extends GeneratedTest
     public function reserveIdsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -369,7 +358,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $keys = [];
-        $response = $client->reserveIds($projectId, $keys);
+        $response = $gapicClient->reserveIds($projectId, $keys);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -389,7 +378,7 @@ class DatastoreClientTest extends GeneratedTest
     public function reserveIdsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -407,8 +396,8 @@ class DatastoreClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $keys = [];
         try {
-            $client->reserveIds($projectId, $keys);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->reserveIds($projectId, $keys);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -425,7 +414,7 @@ class DatastoreClientTest extends GeneratedTest
     public function rollbackTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -435,7 +424,7 @@ class DatastoreClientTest extends GeneratedTest
         // Mock request
         $projectId = 'projectId-1969970175';
         $transaction = '-34';
-        $response = $client->rollback($projectId, $transaction);
+        $response = $gapicClient->rollback($projectId, $transaction);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -455,7 +444,7 @@ class DatastoreClientTest extends GeneratedTest
     public function rollbackExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -473,8 +462,8 @@ class DatastoreClientTest extends GeneratedTest
         $projectId = 'projectId-1969970175';
         $transaction = '-34';
         try {
-            $client->rollback($projectId, $transaction);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->rollback($projectId, $transaction);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -491,33 +480,27 @@ class DatastoreClientTest extends GeneratedTest
     public function runQueryTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         // Mock response
         $expectedResponse = new RunQueryResponse();
         $transport->addResponse($expectedResponse);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
-
-        $response = $client->runQuery($projectId, $partitionId);
+        $response = $gapicClient->runQuery($projectId, $partitionId);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
         $actualFuncCall = $actualRequests[0]->getFuncCall();
         $actualRequestObject = $actualRequests[0]->getRequestObject();
         $this->assertSame('/google.datastore.v1.Datastore/RunQuery', $actualFuncCall);
-
         $actualValue = $actualRequestObject->getProjectId();
-
         $this->assertProtobufEquals($projectId, $actualValue);
         $actualValue = $actualRequestObject->getPartitionId();
-
         $this->assertProtobufEquals($partitionId, $actualValue);
-
         $this->assertTrue($transport->isExhausted());
     }
 
@@ -527,35 +510,31 @@ class DatastoreClientTest extends GeneratedTest
     public function runQueryExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient(['transport' => $transport]);
-
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
         $this->assertTrue($transport->isExhausted());
-
         $status = new stdClass();
         $status->code = Code::DATA_LOSS;
         $status->details = 'internal error';
-
-        $expectedExceptionMessage = json_encode([
-           'message' => 'internal error',
-           'code' => Code::DATA_LOSS,
-           'status' => 'DATA_LOSS',
-           'details' => [],
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
-
         // Mock request
         $projectId = 'projectId-1969970175';
         $partitionId = new PartitionId();
-
         try {
-            $client->runQuery($projectId, $partitionId);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->runQuery($projectId, $partitionId);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
             $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
         }
-
         // Call popReceivedCalls to ensure the stub is exhausted
         $transport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());

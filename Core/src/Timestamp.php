@@ -37,7 +37,7 @@ namespace Google\Cloud\Core;
  * echo (string) $timestamp;
  * ```
  */
-class Timestamp
+class Timestamp implements \JsonSerializable
 {
     use TimeTrait;
 
@@ -146,5 +146,17 @@ class Timestamp
     public function formatForApi()
     {
         return $this->formatTimeAsArray($this->value, $this->nanoSeconds());
+    }
+
+    /**
+     * Implement JsonSerializable by returning a ISO 8601 formatted string
+     *
+     * @return string
+     * @access private
+     */
+    #[\ReturnTypeWillChange]
+    public function jsonSerialize()
+    {
+        return $this->formatAsString();
     }
 }

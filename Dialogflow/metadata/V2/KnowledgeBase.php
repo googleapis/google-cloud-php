@@ -22,18 +22,19 @@ class KnowledgeBase
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ô
+ä
 /google/cloud/dialogflow/v2/knowledge_base.protogoogle.cloud.dialogflow.v2google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.protogoogle/protobuf/empty.proto google/protobuf/field_mask.proto"ü
 KnowledgeBase
 name (	
 display_name (	BàA
 language_code (	:ªêA¦
-\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"ƒ
+\'dialogflow.googleapis.com/KnowledgeBase2projects/{project}/knowledgeBases/{knowledge_base}Gprojects/{project}/locations/{location}/knowledgeBases/{knowledge_base}"“
 ListKnowledgeBasesRequest?
 parent (	B/àAúA)\'dialogflow.googleapis.com/KnowledgeBase
 	page_size (
 
-page_token (	"y
+page_token (	
+filter (	"y
 ListKnowledgeBasesResponseB
 knowledge_bases (2).google.cloud.dialogflow.v2.KnowledgeBase
 next_page_token (	"X

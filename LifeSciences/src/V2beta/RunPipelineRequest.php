@@ -111,7 +111,7 @@ class RunPipelineRequest extends \Google\Protobuf\Internal\Message
      */
     public function getPipeline()
     {
-        return isset($this->pipeline) ? $this->pipeline : null;
+        return $this->pipeline;
     }
 
     public function hasPipeline()

@@ -32,6 +32,14 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool v1beta1_crd = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $v1beta1_crd = false;
+    /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
+     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     *
+     * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $k8s_version = '';
 
     /**
      * Constructor.
@@ -48,6 +56,10 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
      *           CustomResourceDefinition resources.
      *           This option should be set for clusters with Kubernetes apiserver versions
      *           <1.16.
+     *     @type string $k8s_version
+     *           Optional. Major version of the Kubernetes cluster. This is only used to determine
+     *           which version to use for the CustomResourceDefinition resources,
+     *           `apiextensions/v1beta1` or`apiextensions/v1`.
      * }
      */
     public function __construct($data = NULL) {
@@ -113,6 +125,36 @@ class ResourceOptions extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->v1beta1_crd = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
+     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     *
+     * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getK8SVersion()
+    {
+        return $this->k8s_version;
+    }
+
+    /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine
+     * which version to use for the CustomResourceDefinition resources,
+     * `apiextensions/v1beta1` or`apiextensions/v1`.
+     *
+     * Generated from protobuf field <code>string k8s_version = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setK8SVersion($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->k8s_version = $var;
 
         return $this;
     }

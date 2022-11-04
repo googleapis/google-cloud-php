@@ -144,7 +144,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      */
     public function getIssuancePolicy()
     {
-        return isset($this->issuance_policy) ? $this->issuance_policy : null;
+        return $this->issuance_policy;
     }
 
     public function hasIssuancePolicy()
@@ -183,7 +183,7 @@ class CaPool extends \Google\Protobuf\Internal\Message
      */
     public function getPublishingOptions()
     {
-        return isset($this->publishing_options) ? $this->publishing_options : null;
+        return $this->publishing_options;
     }
 
     public function hasPublishingOptions()

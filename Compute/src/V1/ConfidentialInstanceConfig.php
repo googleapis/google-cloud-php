@@ -18,7 +18,7 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 102135228;</code>
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      */
     private $enable_confidential_compute = null;
 
@@ -40,7 +40,7 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 102135228;</code>
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      * @return bool
      */
     public function getEnableConfidentialCompute()
@@ -61,7 +61,7 @@ class ConfidentialInstanceConfig extends \Google\Protobuf\Internal\Message
     /**
      * Defines whether the instance should have confidential compute enabled.
      *
-     * Generated from protobuf field <code>bool enable_confidential_compute = 102135228;</code>
+     * Generated from protobuf field <code>optional bool enable_confidential_compute = 102135228;</code>
      * @param bool $var
      * @return $this
      */

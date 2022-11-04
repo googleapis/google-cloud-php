@@ -55,6 +55,11 @@
                                 "getPackage"
                             ]
                         },
+                        "GetProjectSettings": {
+                            "methods": [
+                                "getProjectSettings"
+                            ]
+                        },
                         "GetRepository": {
                             "methods": [
                                 "getRepository"
@@ -68,6 +73,16 @@
                         "GetVersion": {
                             "methods": [
                                 "getVersion"
+                            ]
+                        },
+                        "ImportAptArtifacts": {
+                            "methods": [
+                                "importAptArtifacts"
+                            ]
+                        },
+                        "ImportYumArtifacts": {
+                            "methods": [
+                                "importYumArtifacts"
                             ]
                         },
                         "ListFiles": {
@@ -103,6 +118,11 @@
                         "TestIamPermissions": {
                             "methods": [
                                 "testIamPermissions"
+                            ]
+                        },
+                        "UpdateProjectSettings": {
+                            "methods": [
+                                "updateProjectSettings"
                             ]
                         },
                         "UpdateRepository": {

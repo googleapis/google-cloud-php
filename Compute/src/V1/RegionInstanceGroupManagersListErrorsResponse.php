@@ -23,7 +23,7 @@ class RegionInstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Int
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      */
     private $next_page_token = null;
 
@@ -33,7 +33,7 @@ class RegionInstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Int
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\InstanceManagedByIgmError[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>|\Google\Protobuf\Internal\RepeatedField $items
      *           [Output Only] The list of errors of the managed instance group.
      *     @type string $next_page_token
      *           [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
@@ -59,7 +59,7 @@ class RegionInstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Int
      * [Output Only] The list of errors of the managed instance group.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.InstanceManagedByIgmError items = 100526016;</code>
-     * @param \Google\Cloud\Compute\V1\InstanceManagedByIgmError[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\InstanceManagedByIgmError>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)
@@ -73,7 +73,7 @@ class RegionInstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Int
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @return string
      */
     public function getNextPageToken()
@@ -94,7 +94,7 @@ class RegionInstanceGroupManagersListErrorsResponse extends \Google\Protobuf\Int
     /**
      * [Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.
      *
-     * Generated from protobuf field <code>string next_page_token = 79797525;</code>
+     * Generated from protobuf field <code>optional string next_page_token = 79797525;</code>
      * @param string $var
      * @return $this
      */

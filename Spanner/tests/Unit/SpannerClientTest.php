@@ -32,20 +32,24 @@ use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\Duration;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\InstanceConfiguration;
+use Google\Cloud\Spanner\PgJsonb;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Numeric;
+use Google\Cloud\Spanner\PgNumeric;
 use Google\Cloud\Spanner\SpannerClient;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Timestamp;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 
 /**
  * @group spanner
  */
 class SpannerClientTest extends TestCase
 {
+    use ExpectException;
     use GrpcTestTrait;
     use StubCreationTrait;
 
@@ -57,7 +61,7 @@ class SpannerClientTest extends TestCase
     private $client;
     private $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 
@@ -268,10 +272,11 @@ class SpannerClientTest extends TestCase
 
     /**
      * @group spanner-admin
-     * @expectedException \InvalidArgumentException
      */
     public function testCreateInstanceRaisesInvalidArgument()
     {
+        $this->expectException('\InvalidArgumentException');
+
         $config = $this->prophesize(InstanceConfiguration::class);
 
         $this->client->createInstance($config->reveal(), self::INSTANCE, [
@@ -388,6 +393,30 @@ class SpannerClientTest extends TestCase
     {
         $n = $this->client->numeric('12345.123456789');
         $this->assertInstanceOf(Numeric::class, $n);
+    }
+
+    public function testPgNumeric()
+    {
+        $decimalVal = $this->client->pgNumeric('12345.123456789');
+        $this->assertInstanceOf(PgNumeric::class, $decimalVal);
+
+        $scientificVal = $this->client->pgNumeric('1.09E100');
+        $this->assertInstanceOf(PgNumeric::class, $scientificVal);
+    }
+
+    public function testPgJsonB()
+    {
+        $strVal = $this->client->pgJsonb('{}');
+        $this->assertInstanceOf(PgJsonb::class, $strVal);
+
+        $arrVal = $this->client->pgJsonb(["a" => 1, "b" => 2]);
+        $this->assertInstanceOf(PgJsonb::class, $arrVal);
+
+        $stub = $this->prophesize('stdClass');
+        $stub->willImplement('JsonSerializable');
+        $stub->jsonSerialize()->willReturn(["a" => 1, "b" => null]);
+        $objVal = $this->client->pgJsonb($stub->reveal());
+        $this->assertInstanceOf(PgJsonb::class, $objVal);
     }
 
     public function testInt64()

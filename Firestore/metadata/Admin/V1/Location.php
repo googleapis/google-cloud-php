@@ -14,12 +14,10 @@ class Location
         if (static::$is_initialized == true) {
           return;
         }
-        \GPBMetadata\Google\Type\Latlng::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
-(google/firestore/admin/v1/location.protogoogle.firestore.admin.v1google/api/annotations.proto"
+Å
+(google/firestore/admin/v1/location.protogoogle.firestore.admin.v1"
 LocationMetadataBá
 com.google.firestore.admin.v1BLocationProtoPZ>google.golang.org/genproto/googleapis/firestore/admin/v1;admin¢GCFSªGoogle.Cloud.Firestore.Admin.V1ÊGoogle\\Cloud\\Firestore\\Admin\\V1ê#Google::Cloud::Firestore::Admin::V1bproto3'
         , true);

@@ -87,6 +87,4 @@ class Status
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Status::class, \Google\Cloud\StorageTransfer\V1\TransferOperation_Status::class);
 

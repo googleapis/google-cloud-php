@@ -9,23 +9,22 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Structure for referencing parent provenances.  When an element replaces
- * one of more other elements parent references identify the elements that
- * are replaced.
+ * The parent element the current element is based on. Used for
+ * referencing/aligning, removal and replacement operations.
  *
  * Generated from protobuf message <code>google.cloud.documentai.v1.Document.Provenance.Parent</code>
  */
 class PBParent extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      */
     private $revision = 0;
     /**
-     * The index of the parent revisions corresponding collection of items
-     * (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list
+     * of entities, properties within entities, etc.) in the parent revision.
      *
      * Generated from protobuf field <code>int32 index = 3;</code>
      */
@@ -45,10 +44,10 @@ class PBParent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $revision
-     *           The index of the [Document.revisions] identifying the parent revision.
+     *           The index of the index into current revision's parent_ids list.
      *     @type int $index
-     *           The index of the parent revisions corresponding collection of items
-     *           (eg. list of entities, properties within entities, etc.)
+     *           The index of the parent item in the corresponding item list (eg. list
+     *           of entities, properties within entities, etc.) in the parent revision.
      *     @type int $id
      *           The id of the parent provenance.
      * }
@@ -59,7 +58,7 @@ class PBParent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      * @return int
@@ -70,7 +69,7 @@ class PBParent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      *
      * Generated from protobuf field <code>int32 revision = 1;</code>
      * @param int $var
@@ -85,8 +84,8 @@ class PBParent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the parent revisions corresponding collection of items
-     * (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list
+     * of entities, properties within entities, etc.) in the parent revision.
      *
      * Generated from protobuf field <code>int32 index = 3;</code>
      * @return int
@@ -97,8 +96,8 @@ class PBParent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The index of the parent revisions corresponding collection of items
-     * (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list
+     * of entities, properties within entities, etc.) in the parent revision.
      *
      * Generated from protobuf field <code>int32 index = 3;</code>
      * @param int $var
@@ -144,6 +143,4 @@ class PBParent extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PBParent::class, \Google\Cloud\DocumentAI\V1\Document_Provenance_Parent::class);
 

@@ -55,6 +55,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $locations;
     /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     */
+    private $network_config = null;
+    /**
      * [Output only] Server-defined URL for the resource.
      *
      * Generated from protobuf field <code>string self_link = 100;</code>
@@ -70,6 +77,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * [Output only] The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
+     * During the node pool blue-green upgrade operation, the URLs contain both
+     * blue and green resources.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
      */
@@ -127,6 +136,13 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePool.UpgradeSettings upgrade_settings = 107;</code>
      */
     private $upgrade_settings = null;
+    /**
+     * Output only. [Output only] Update info contains relevant information during a node
+     * pool update.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $update_info = null;
 
     /**
      * Constructor.
@@ -143,7 +159,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           Compute Engine [resource quota](https://cloud.google.com/compute/quotas)
      *           is sufficient for this number of instances. You must also have available
      *           firewall and routes quota.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The list of Google Compute Engine
      *           [zones](https://cloud.google.com/compute/docs/zones#available) in which the
      *           NodePool's nodes should be located.
@@ -152,14 +168,19 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           value will be used, instead.
      *           Warning: changing node pool locations will result in nodes being added
      *           and/or removed.
+     *     @type \Google\Cloud\Container\V1\NodeNetworkConfig $network_config
+     *           Networking configuration for this NodePool. If specified, it overrides the
+     *           cluster-level defaults.
      *     @type string $self_link
      *           [Output only] Server-defined URL for the resource.
      *     @type string $version
      *           The version of the Kubernetes of this node.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $instance_group_urls
      *           [Output only] The resource URLs of the [managed instance
      *           groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      *           associated with this node pool.
+     *           During the node pool blue-green upgrade operation, the URLs contain both
+     *           blue and green resources.
      *     @type int $status
      *           [Output only] The status of the nodes in this pool instance.
      *     @type string $status_message
@@ -174,12 +195,15 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\MaxPodsConstraint $max_pods_constraint
      *           The constraint on the maximum number of pods that can be run
      *           simultaneously on a node in the node pool.
-     *     @type \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           Which conditions caused the current node pool state.
      *     @type int $pod_ipv4_cidr_size
      *           [Output only] The pod CIDR block size per node in this node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
      *           Upgrade settings control disruption and speed of the upgrade.
+     *     @type \Google\Cloud\Container\V1\NodePool\UpdateInfo $update_info
+     *           Output only. [Output only] Update info contains relevant information during a node
+     *           pool update.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,7 +245,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -310,13 +334,51 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * and/or removed.
      *
      * Generated from protobuf field <code>repeated string locations = 13;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->locations = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     * @return \Google\Cloud\Container\V1\NodeNetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * Networking configuration for this NodePool. If specified, it overrides the
+     * cluster-level defaults.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodeNetworkConfig network_config = 14;</code>
+     * @param \Google\Cloud\Container\V1\NodeNetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodeNetworkConfig::class);
+        $this->network_config = $var;
 
         return $this;
     }
@@ -377,6 +439,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * [Output only] The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
+     * During the node pool blue-green upgrade operation, the URLs contain both
+     * blue and green resources.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -390,9 +454,11 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * [Output only] The resource URLs of the [managed instance
      * groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances)
      * associated with this node pool.
+     * During the node pool blue-green upgrade operation, the URLs contain both
+     * blue and green resources.
      *
      * Generated from protobuf field <code>repeated string instance_group_urls = 102;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setInstanceGroupUrls($var)
@@ -472,7 +538,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getAutoscaling()
     {
-        return isset($this->autoscaling) ? $this->autoscaling : null;
+        return $this->autoscaling;
     }
 
     public function hasAutoscaling()
@@ -509,7 +575,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getManagement()
     {
-        return isset($this->management) ? $this->management : null;
+        return $this->management;
     }
 
     public function hasManagement()
@@ -546,7 +612,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getMaxPodsConstraint()
     {
-        return isset($this->max_pods_constraint) ? $this->max_pods_constraint : null;
+        return $this->max_pods_constraint;
     }
 
     public function hasMaxPodsConstraint()
@@ -590,7 +656,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      * Which conditions caused the current node pool state.
      *
      * Generated from protobuf field <code>repeated .google.container.v1.StatusCondition conditions = 105;</code>
-     * @param \Google\Cloud\Container\V1\StatusCondition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Container\V1\StatusCondition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -635,7 +701,7 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     public function getUpgradeSettings()
     {
-        return isset($this->upgrade_settings) ? $this->upgrade_settings : null;
+        return $this->upgrade_settings;
     }
 
     public function hasUpgradeSettings()
@@ -659,6 +725,44 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpgradeSettings::class);
         $this->upgrade_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. [Output only] Update info contains relevant information during a node
+     * pool update.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Container\V1\NodePool\UpdateInfo|null
+     */
+    public function getUpdateInfo()
+    {
+        return $this->update_info;
+    }
+
+    public function hasUpdateInfo()
+    {
+        return isset($this->update_info);
+    }
+
+    public function clearUpdateInfo()
+    {
+        unset($this->update_info);
+    }
+
+    /**
+     * Output only. [Output only] Update info contains relevant information during a node
+     * pool update.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.UpdateInfo update_info = 109 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Container\V1\NodePool\UpdateInfo $var
+     * @return $this
+     */
+    public function setUpdateInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpdateInfo::class);
+        $this->update_info = $var;
 
         return $this;
     }

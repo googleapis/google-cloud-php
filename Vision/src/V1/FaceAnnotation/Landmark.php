@@ -79,7 +79,7 @@ class Landmark extends \Google\Protobuf\Internal\Message
      */
     public function getPosition()
     {
-        return isset($this->position) ? $this->position : null;
+        return $this->position;
     }
 
     public function hasPosition()

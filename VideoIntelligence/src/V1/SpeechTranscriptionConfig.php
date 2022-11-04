@@ -120,7 +120,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *           profanities, replacing all but the initial character in each filtered word
      *           with asterisks, e.g. "f***". If set to `false` or omitted, profanities
      *           won't be filtered out.
-     *     @type \Google\Cloud\VideoIntelligence\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $speech_contexts
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $speech_contexts
      *           Optional. A means to provide context to assist the speech recognition.
      *     @type bool $enable_automatic_punctuation
      *           Optional. If 'true', adds punctuation to recognition result hypotheses.
@@ -129,7 +129,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      *           does not add punctuation to result hypotheses. NOTE: "This is currently
      *           offered as an experimental service, complimentary to all users. In the
      *           future this may be exclusively available as a premium feature."
-     *     @type int[]|\Google\Protobuf\Internal\RepeatedField $audio_tracks
+     *     @type array<int>|\Google\Protobuf\Internal\RepeatedField $audio_tracks
      *           Optional. For file formats, such as MXF or MKV, supporting multiple audio
      *           tracks, specify up to two tracks. Default: track 0.
      *     @type bool $enable_speaker_diarization
@@ -270,7 +270,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * Optional. A means to provide context to assist the speech recognition.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.SpeechContext speech_contexts = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\SpeechContext[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\SpeechContext>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSpeechContexts($var)
@@ -334,7 +334,7 @@ class SpeechTranscriptionConfig extends \Google\Protobuf\Internal\Message
      * tracks, specify up to two tracks. Default: track 0.
      *
      * Generated from protobuf field <code>repeated int32 audio_tracks = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param int[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<int>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAudioTracks($var)

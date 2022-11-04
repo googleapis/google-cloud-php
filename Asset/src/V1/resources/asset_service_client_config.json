@@ -19,6 +19,9 @@
                 ],
                 "retry_policy_5_codes": [
                     "UNAVAILABLE"
+                ],
+                "retry_policy_6_codes": [
+                    "UNAVAILABLE"
                 ]
             },
             "retry_params": {
@@ -84,6 +87,15 @@
                     "rpc_timeout_multiplier": 1.0,
                     "max_rpc_timeout_millis": 10000,
                     "total_timeout_millis": 10000
+                },
+                "retry_policy_6_params": {
+                    "initial_retry_delay_millis": 100,
+                    "retry_delay_multiplier": 1.3,
+                    "max_retry_delay_millis": 60000,
+                    "initial_rpc_timeout_millis": 300000,
+                    "rpc_timeout_multiplier": 1.0,
+                    "max_rpc_timeout_millis": 300000,
+                    "total_timeout_millis": 300000
                 }
             },
             "methods": {
@@ -107,12 +119,27 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "BatchGetEffectiveIamPolicies": {
+                    "timeout_millis": 300000,
+                    "retry_codes_name": "retry_policy_6_codes",
+                    "retry_params_name": "retry_policy_6_params"
+                },
                 "CreateFeed": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"
                 },
+                "CreateSavedQuery": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
                 "DeleteFeed": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "DeleteSavedQuery": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
@@ -127,6 +154,11 @@
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
                 },
+                "GetSavedQuery": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
                 "ListAssets": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
@@ -136,6 +168,16 @@
                     "timeout_millis": 60000,
                     "retry_codes_name": "retry_policy_1_codes",
                     "retry_params_name": "retry_policy_1_params"
+                },
+                "ListSavedQueries": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "retry_policy_1_codes",
+                    "retry_params_name": "retry_policy_1_params"
+                },
+                "QueryAssets": {
+                    "timeout_millis": 200000,
+                    "retry_codes_name": "retry_policy_4_codes",
+                    "retry_params_name": "retry_policy_4_params"
                 },
                 "SearchAllIamPolicies": {
                     "timeout_millis": 30000,
@@ -148,6 +190,11 @@
                     "retry_params_name": "retry_policy_2_params"
                 },
                 "UpdateFeed": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_1_codes",
+                    "retry_params_name": "no_retry_1_params"
+                },
+                "UpdateSavedQuery": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_1_codes",
                     "retry_params_name": "no_retry_1_params"

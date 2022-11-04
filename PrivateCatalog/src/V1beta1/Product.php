@@ -382,7 +382,7 @@ class Product extends \Google\Protobuf\Internal\Message
      *           additionalProperties: true
      *     @type string $icon_uri
      *           Output only. The icon URI of the product.
-     *     @type \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[]|\Google\Protobuf\Internal\RepeatedField $asset_references
+     *     @type array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $asset_references
      *           Output only. A collection of assets referred by a product.
      *           This field is set for Terraform Products only.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -615,7 +615,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getDisplayMetadata()
     {
-        return isset($this->display_metadata) ? $this->display_metadata : null;
+        return $this->display_metadata;
     }
 
     public function hasDisplayMetadata()
@@ -835,7 +835,7 @@ class Product extends \Google\Protobuf\Internal\Message
      * This field is set for Terraform Products only.
      *
      * Generated from protobuf field <code>repeated .google.cloud.privatecatalog.v1beta1.AssetReference asset_references = 10 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\PrivateCatalog\V1beta1\AssetReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\PrivateCatalog\V1beta1\AssetReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssetReferences($var)
@@ -854,7 +854,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -890,7 +890,7 @@ class Product extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

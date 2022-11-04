@@ -23,7 +23,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      */
     private $warning = null;
 
@@ -33,7 +33,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Compute\V1\TargetPool[]|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type array<\Google\Cloud\Compute\V1\TargetPool>|\Google\Protobuf\Internal\RepeatedField $target_pools
      *           A list of target pools contained in this scope.
      *     @type \Google\Cloud\Compute\V1\Warning $warning
      *           Informational warning which replaces the list of addresses when the list is empty.
@@ -59,7 +59,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
      * A list of target pools contained in this scope.
      *
      * Generated from protobuf field <code>repeated .google.cloud.compute.v1.TargetPool target_pools = 336072617;</code>
-     * @param \Google\Cloud\Compute\V1\TargetPool[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Compute\V1\TargetPool>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetPools($var)
@@ -73,12 +73,12 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @return \Google\Cloud\Compute\V1\Warning|null
      */
     public function getWarning()
     {
-        return isset($this->warning) ? $this->warning : null;
+        return $this->warning;
     }
 
     public function hasWarning()
@@ -94,7 +94,7 @@ class TargetPoolsScopedList extends \Google\Protobuf\Internal\Message
     /**
      * Informational warning which replaces the list of addresses when the list is empty.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.Warning warning = 50704284;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.Warning warning = 50704284;</code>
      * @param \Google\Cloud\Compute\V1\Warning $var
      * @return $this
      */

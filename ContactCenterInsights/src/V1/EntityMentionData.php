@@ -118,7 +118,7 @@ class EntityMentionData extends \Google\Protobuf\Internal\Message
      */
     public function getSentiment()
     {
-        return isset($this->sentiment) ? $this->sentiment : null;
+        return $this->sentiment;
     }
 
     public function hasSentiment()

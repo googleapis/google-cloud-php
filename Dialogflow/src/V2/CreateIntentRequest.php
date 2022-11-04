@@ -107,7 +107,7 @@ class CreateIntentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getIntent()
     {
-        return isset($this->intent) ? $this->intent : null;
+        return $this->intent;
     }
 
     public function hasIntent()

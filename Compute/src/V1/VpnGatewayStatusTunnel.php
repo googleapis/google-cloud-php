@@ -18,19 +18,19 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The VPN gateway interface this VPN tunnel is associated with.
      *
-     * Generated from protobuf field <code>uint32 local_gateway_interface = 158764330;</code>
+     * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      */
     private $local_gateway_interface = null;
     /**
      * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or GCP VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 peer_gateway_interface = 214380385;</code>
+     * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      */
     private $peer_gateway_interface = null;
     /**
      * URL reference to the VPN tunnel.
      *
-     * Generated from protobuf field <code>string tunnel_url = 78975256;</code>
+     * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      */
     private $tunnel_url = null;
 
@@ -56,7 +56,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The VPN gateway interface this VPN tunnel is associated with.
      *
-     * Generated from protobuf field <code>uint32 local_gateway_interface = 158764330;</code>
+     * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      * @return int
      */
     public function getLocalGatewayInterface()
@@ -77,7 +77,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The VPN gateway interface this VPN tunnel is associated with.
      *
-     * Generated from protobuf field <code>uint32 local_gateway_interface = 158764330;</code>
+     * Generated from protobuf field <code>optional uint32 local_gateway_interface = 158764330;</code>
      * @param int $var
      * @return $this
      */
@@ -92,7 +92,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or GCP VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 peer_gateway_interface = 214380385;</code>
+     * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      * @return int
      */
     public function getPeerGatewayInterface()
@@ -113,7 +113,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * The peer gateway interface this VPN tunnel is connected to, the peer gateway could either be an external VPN gateway or GCP VPN gateway.
      *
-     * Generated from protobuf field <code>uint32 peer_gateway_interface = 214380385;</code>
+     * Generated from protobuf field <code>optional uint32 peer_gateway_interface = 214380385;</code>
      * @param int $var
      * @return $this
      */
@@ -128,7 +128,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL reference to the VPN tunnel.
      *
-     * Generated from protobuf field <code>string tunnel_url = 78975256;</code>
+     * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      * @return string
      */
     public function getTunnelUrl()
@@ -149,7 +149,7 @@ class VpnGatewayStatusTunnel extends \Google\Protobuf\Internal\Message
     /**
      * URL reference to the VPN tunnel.
      *
-     * Generated from protobuf field <code>string tunnel_url = 78975256;</code>
+     * Generated from protobuf field <code>optional string tunnel_url = 78975256;</code>
      * @param string $var
      * @return $this
      */

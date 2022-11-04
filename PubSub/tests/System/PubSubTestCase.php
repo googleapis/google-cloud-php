@@ -32,7 +32,7 @@ class PubSubTestCase extends SystemTestCase
 
     public function clientProvider()
     {
-        self::setUpBeforeClass();
+        self::set_up_before_class();
 
         $result = [
             'grpc' => [self::$grpcClient],
@@ -43,7 +43,7 @@ class PubSubTestCase extends SystemTestCase
         return $result;
     }
 
-    public static function setUpBeforeClass()
+    public static function set_up_before_class()
     {
         if (self::$hasSetUp) {
             return;
@@ -74,6 +74,17 @@ class PubSubTestCase extends SystemTestCase
     public static function subscription(PubSubClient $client, Topic $topic, array $config = [])
     {
         $subName = uniqid(self::TESTING_PREFIX);
+        $sub = $client->subscribe($subName, $topic, $config);
+
+        self::$deletionQueue->add($sub);
+
+        return $sub;
+    }
+
+    public static function exactlyOnceSubscription(PubSubClient $client, Topic $topic, array $config = [])
+    {
+        $subName = uniqid(self::TESTING_PREFIX);
+        $config['enableExactlyOnceDelivery'] = true;
         $sub = $client->subscribe($subName, $topic, $config);
 
         self::$deletionQueue->add($sub);

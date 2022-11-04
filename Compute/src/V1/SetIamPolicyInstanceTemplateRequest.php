@@ -61,7 +61,7 @@ class SetIamPolicyInstanceTemplateRequest extends \Google\Protobuf\Internal\Mess
      */
     public function getGlobalSetPolicyRequestResource()
     {
-        return isset($this->global_set_policy_request_resource) ? $this->global_set_policy_request_resource : null;
+        return $this->global_set_policy_request_resource;
     }
 
     public function hasGlobalSetPolicyRequestResource()

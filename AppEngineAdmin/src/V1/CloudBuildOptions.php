@@ -100,7 +100,7 @@ class CloudBuildOptions extends \Google\Protobuf\Internal\Message
      */
     public function getCloudBuildTimeout()
     {
-        return isset($this->cloud_build_timeout) ? $this->cloud_build_timeout : null;
+        return $this->cloud_build_timeout;
     }
 
     public function hasCloudBuildTimeout()

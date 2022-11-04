@@ -15,7 +15,8 @@ use UnexpectedValueException;
  * a lossless encoding (`FLAC` or `LINEAR16`). The accuracy of the speech
  * recognition can be reduced if lossy codecs are used to capture or transmit
  * audio, particularly if background noise is present. Lossy codecs include
- * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, `SPEEX_WITH_HEADER_BYTE`, and `MP3`.
+ * `MULAW`, `AMR`, `AMR_WB`, `OGG_OPUS`, `SPEEX_WITH_HEADER_BYTE`, `MP3`,
+ * and `WEBM_OPUS`.
  * The `FLAC` and `WAV` audio file formats include a header that describes the
  * included audio content. You can request recognition for `WAV` files that
  * contain either `LINEAR16` or `MULAW` encoded audio.
@@ -25,8 +26,7 @@ use UnexpectedValueException;
  * an `AudioEncoding` when you send  send `FLAC` or `WAV` audio, the
  * encoding configuration must match the encoding described in the audio
  * header; otherwise the request returns an
- * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error
- * code.
+ * [google.rpc.Code.INVALID_ARGUMENT][google.rpc.Code.INVALID_ARGUMENT] error code.
  *
  * Protobuf type <code>google.cloud.speech.v1p1beta1.RecognitionConfig.AudioEncoding</code>
  */
@@ -100,13 +100,22 @@ class AudioEncoding
      */
     const SPEEX_WITH_HEADER_BYTE = 7;
     /**
-     * MP3 audio. Support all standard MP3 bitrates (which range from 32-320
+     * MP3 audio. MP3 encoding is a Beta feature and only available in
+     * v1p1beta1. Support all standard MP3 bitrates (which range from 32-320
      * kbps). When using this encoding, `sample_rate_hertz` has to match the
      * sample rate of the file being used.
      *
      * Generated from protobuf enum <code>MP3 = 8;</code>
      */
     const MP3 = 8;
+    /**
+     * Opus encoded audio frames in WebM container
+     * ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be
+     * one of 8000, 12000, 16000, 24000, or 48000.
+     *
+     * Generated from protobuf enum <code>WEBM_OPUS = 9;</code>
+     */
+    const WEBM_OPUS = 9;
 
     private static $valueToName = [
         self::ENCODING_UNSPECIFIED => 'ENCODING_UNSPECIFIED',
@@ -118,6 +127,7 @@ class AudioEncoding
         self::OGG_OPUS => 'OGG_OPUS',
         self::SPEEX_WITH_HEADER_BYTE => 'SPEEX_WITH_HEADER_BYTE',
         self::MP3 => 'MP3',
+        self::WEBM_OPUS => 'WEBM_OPUS',
     ];
 
     public static function name($value)

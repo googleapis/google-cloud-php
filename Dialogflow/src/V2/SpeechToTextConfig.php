@@ -16,14 +16,29 @@ use Google\Protobuf\Internal\GPBUtil;
 class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      */
     private $speech_model_variant = 0;
+    /**
+     * Which Speech model to select. Select the model best suited to your domain
+     * to get best results. If a model is not explicitly specified, then a default
+     * model is used.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 2;</code>
+     */
+    private $model = '';
 
     /**
      * Constructor.
@@ -32,10 +47,21 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $speech_model_variant
-     *           Optional. The speech model used in speech to text.
+     *           The speech model used in speech to text.
      *           `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      *           `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      *           [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     *           If enhanced model variant is specified and an enhanced
+     *           version of the specified model for the language does not exist, then it
+     *           would emit an error.
+     *     @type string $model
+     *           Which Speech model to select. Select the model best suited to your domain
+     *           to get best results. If a model is not explicitly specified, then a default
+     *           model is used.
+     *           Refer to
+     *           [Cloud Speech API
+     *           documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     *           for more details.
      * }
      */
     public function __construct($data = NULL) {
@@ -44,12 +70,15 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      * @return int
      */
     public function getSpeechModelVariant()
@@ -58,12 +87,15 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The speech model used in speech to text.
+     * The speech model used in speech to text.
      * `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as
      * `USE_ENHANCED`. It can be overridden in [AnalyzeContentRequest][google.cloud.dialogflow.v2.AnalyzeContentRequest] and
      * [StreamingAnalyzeContentRequest][google.cloud.dialogflow.v2.StreamingAnalyzeContentRequest] request.
+     * If enhanced model variant is specified and an enhanced
+     * version of the specified model for the language does not exist, then it
+     * would emit an error.
      *
-     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.SpeechModelVariant speech_model_variant = 1;</code>
      * @param int $var
      * @return $this
      */
@@ -71,6 +103,44 @@ class SpeechToTextConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Dialogflow\V2\SpeechModelVariant::class);
         $this->speech_model_variant = $var;
+
+        return $this;
+    }
+
+    /**
+     * Which Speech model to select. Select the model best suited to your domain
+     * to get best results. If a model is not explicitly specified, then a default
+     * model is used.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 2;</code>
+     * @return string
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * Which Speech model to select. Select the model best suited to your domain
+     * to get best results. If a model is not explicitly specified, then a default
+     * model is used.
+     * Refer to
+     * [Cloud Speech API
+     * documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model)
+     * for more details.
+     *
+     * Generated from protobuf field <code>string model = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setModel($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->model = $var;
 
         return $this;
     }

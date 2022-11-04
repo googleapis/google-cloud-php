@@ -43,7 +43,7 @@ class SubjectRequestMode
 
     private static $valueToName = [
         self::SUBJECT_REQUEST_MODE_UNSPECIFIED => 'SUBJECT_REQUEST_MODE_UNSPECIFIED',
-        self::PBDEFAULT => 'PBDEFAULT',
+        self::PBDEFAULT => 'DEFAULT',
         self::REFLECTED_SPIFFE => 'REFLECTED_SPIFFE',
     ];
 
@@ -61,8 +61,12 @@ class SubjectRequestMode
     {
         $const = __CLASS__ . '::' . strtoupper($name);
         if (!defined($const)) {
-            throw new UnexpectedValueException(sprintf(
-                    'Enum %s has no value defined for name %s', __CLASS__, $name));
+            $pbconst =  __CLASS__. '::PB' . strtoupper($name);
+            if (!defined($pbconst)) {
+                throw new UnexpectedValueException(sprintf(
+                        'Enum %s has no value defined for name %s', __CLASS__, $name));
+            }
+            return constant($pbconst);
         }
         return constant($const);
     }

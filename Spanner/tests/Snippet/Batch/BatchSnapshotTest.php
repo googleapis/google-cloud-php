@@ -53,7 +53,7 @@ class BatchSnapshotTest extends SnippetTestCase
     private $time;
     private $snapshot;
 
-    public function setUp()
+    public function set_up()
     {
         $this->checkAndSkipGrpcTests();
 

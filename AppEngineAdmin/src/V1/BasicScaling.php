@@ -59,7 +59,7 @@ class BasicScaling extends \Google\Protobuf\Internal\Message
      */
     public function getIdleTimeout()
     {
-        return isset($this->idle_timeout) ? $this->idle_timeout : null;
+        return $this->idle_timeout;
     }
 
     public function hasIdleTimeout()

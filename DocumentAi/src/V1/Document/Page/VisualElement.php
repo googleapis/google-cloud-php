@@ -45,7 +45,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
      *           [Layout][google.cloud.documentai.v1.Document.Page.Layout] for [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
      *     @type string $type
      *           Type of the [VisualElement][google.cloud.documentai.v1.Document.Page.VisualElement].
-     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $detected_languages
+     *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
      * }
      */
@@ -131,7 +131,7 @@ class VisualElement extends \Google\Protobuf\Internal\Message
      * A list of detected languages together with confidence.
      *
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 3;</code>
-     * @param \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDetectedLanguages($var)
@@ -144,6 +144,4 @@ class VisualElement extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VisualElement::class, \Google\Cloud\DocumentAI\V1\Document_Page_VisualElement::class);
 

@@ -121,6 +121,4 @@ class Schedule extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Schedule::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanConfig_Schedule::class);
 

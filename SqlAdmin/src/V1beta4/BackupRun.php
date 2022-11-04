@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class BackupRun extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#backupRun</b>.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -28,9 +28,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      */
     private $status = 0;
     /**
-     * The time the run was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the run was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      */
@@ -43,17 +43,17 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      */
     private $id = 0;
     /**
-     * The time the backup operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      */
     private $start_time = null;
     /**
-     * The time the backup operation completed in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation completed in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      */
@@ -80,8 +80,8 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     private $description = '';
     /**
      * The start time of the backup window during which this the backup was
-     * attempted in <a href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>
-     * format, for example <b>2012-11-15T16:19:00.094Z</b>.
+     * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      */
@@ -106,14 +106,12 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     private $location = '';
     /**
      * Encryption configuration specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionConfiguration disk_encryption_configuration = 16;</code>
      */
     private $disk_encryption_configuration = null;
     /**
      * Encryption status specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionStatus disk_encryption_status = 17;</code>
      */
@@ -132,24 +130,24 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#backupRun</b>.
+     *           This is always `sql#backupRun`.
      *     @type int $status
      *           The status of this run.
      *     @type \Google\Protobuf\Timestamp $enqueued_time
-     *           The time the run was enqueued in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time the run was enqueued in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type int|string $id
      *           The identifier for this backup run. Unique only for a specific Cloud SQL
      *           instance.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time the backup operation actually started in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time the backup operation actually started in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           The time the backup operation completed in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time the backup operation completed in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Cloud\Sql\V1beta4\OperationError $error
      *           Information about why the backup operation failed. This is only present if
      *           the run has the FAILED status.
@@ -160,8 +158,8 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *           The description of this run, only applicable to on-demand backups.
      *     @type \Google\Protobuf\Timestamp $window_start_time
      *           The start time of the backup window during which this the backup was
-     *           attempted in <a href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>
-     *           format, for example <b>2012-11-15T16:19:00.094Z</b>.
+     *           attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
+     *           example `2012-11-15T16:19:00.094Z`.
      *     @type string $instance
      *           Name of the database instance.
      *     @type string $self_link
@@ -170,10 +168,8 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      *           Location of the backups.
      *     @type \Google\Cloud\Sql\V1beta4\DiskEncryptionConfiguration $disk_encryption_configuration
      *           Encryption configuration specific to a backup.
-     *           Applies only to Second Generation instances.
      *     @type \Google\Cloud\Sql\V1beta4\DiskEncryptionStatus $disk_encryption_status
      *           Encryption status specific to a backup.
-     *           Applies only to Second Generation instances.
      *     @type int $backup_kind
      *           Specifies the kind of backup, PHYSICAL or DEFAULT_SNAPSHOT.
      * }
@@ -184,7 +180,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupRun</b>.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -195,7 +191,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#backupRun</b>.
+     * This is always `sql#backupRun`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -236,16 +232,16 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the run was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the run was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEnqueuedTime()
     {
-        return isset($this->enqueued_time) ? $this->enqueued_time : null;
+        return $this->enqueued_time;
     }
 
     public function hasEnqueuedTime()
@@ -259,9 +255,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the run was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the run was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp enqueued_time = 3;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -304,16 +300,16 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the backup operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -327,9 +323,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the backup operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -344,16 +340,16 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the backup operation completed in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation completed in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -367,9 +363,9 @@ class BackupRun extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time the backup operation completed in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time the backup operation completed in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -392,7 +388,7 @@ class BackupRun extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -477,15 +473,15 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * The start time of the backup window during which this the backup was
-     * attempted in <a href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>
-     * format, for example <b>2012-11-15T16:19:00.094Z</b>.
+     * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getWindowStartTime()
     {
-        return isset($this->window_start_time) ? $this->window_start_time : null;
+        return $this->window_start_time;
     }
 
     public function hasWindowStartTime()
@@ -500,8 +496,8 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * The start time of the backup window during which this the backup was
-     * attempted in <a href="https://tools.ietf.org/html/rfc3339">RFC 3339</a>
-     * format, for example <b>2012-11-15T16:19:00.094Z</b>.
+     * attempted in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for
+     * example `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp window_start_time = 10;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -595,14 +591,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Encryption configuration specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionConfiguration disk_encryption_configuration = 16;</code>
      * @return \Google\Cloud\Sql\V1beta4\DiskEncryptionConfiguration|null
      */
     public function getDiskEncryptionConfiguration()
     {
-        return isset($this->disk_encryption_configuration) ? $this->disk_encryption_configuration : null;
+        return $this->disk_encryption_configuration;
     }
 
     public function hasDiskEncryptionConfiguration()
@@ -617,7 +612,6 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Encryption configuration specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionConfiguration disk_encryption_configuration = 16;</code>
      * @param \Google\Cloud\Sql\V1beta4\DiskEncryptionConfiguration $var
@@ -633,14 +627,13 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Encryption status specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionStatus disk_encryption_status = 17;</code>
      * @return \Google\Cloud\Sql\V1beta4\DiskEncryptionStatus|null
      */
     public function getDiskEncryptionStatus()
     {
-        return isset($this->disk_encryption_status) ? $this->disk_encryption_status : null;
+        return $this->disk_encryption_status;
     }
 
     public function hasDiskEncryptionStatus()
@@ -655,7 +648,6 @@ class BackupRun extends \Google\Protobuf\Internal\Message
 
     /**
      * Encryption status specific to a backup.
-     * Applies only to Second Generation instances.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.DiskEncryptionStatus disk_encryption_status = 17;</code>
      * @param \Google\Cloud\Sql\V1beta4\DiskEncryptionStatus $var

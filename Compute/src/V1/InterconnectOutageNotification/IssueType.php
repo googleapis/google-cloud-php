@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectOutageNotification;
 use UnexpectedValueException;
 
 /**
- * Form this outage is expected to take, which can take one of the following values:
- * - OUTAGE: The Interconnect may be completely out of service for some or all of the specified window.
- * - PARTIAL_OUTAGE: Some circuits comprising the Interconnect as a whole should remain up, but with reduced bandwidth. Note that the versions of this enum prefixed with "IT_" have been deprecated in favor of the unprefixed values.
+ * Form this outage is expected to take, which can take one of the following values: - OUTAGE: The Interconnect may be completely out of service for some or all of the specified window. - PARTIAL_OUTAGE: Some circuits comprising the Interconnect as a whole should remain up, but with reduced bandwidth. Note that the versions of this enum prefixed with "IT_" have been deprecated in favor of the unprefixed values.
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectOutageNotification.IssueType</code>
  */
@@ -22,18 +20,26 @@ class IssueType
      */
     const UNDEFINED_ISSUE_TYPE = 0;
     /**
+     * [Deprecated] The Interconnect may be completely out of service for some or all of the specified window.
+     *
      * Generated from protobuf enum <code>IT_OUTAGE = 175779973;</code>
      */
     const IT_OUTAGE = 175779973;
     /**
+     * [Deprecated] Some circuits comprising the Interconnect will be out of service during the expected window. The interconnect as a whole should remain up, albeit with reduced bandwidth.
+     *
      * Generated from protobuf enum <code>IT_PARTIAL_OUTAGE = 92103971;</code>
      */
     const IT_PARTIAL_OUTAGE = 92103971;
     /**
+     * The Interconnect may be completely out of service for some or all of the specified window.
+     *
      * Generated from protobuf enum <code>OUTAGE = 195285745;</code>
      */
     const OUTAGE = 195285745;
     /**
+     * Some circuits comprising the Interconnect will be out of service during the expected window. The interconnect as a whole should remain up, albeit with reduced bandwidth.
+     *
      * Generated from protobuf enum <code>PARTIAL_OUTAGE = 147053455;</code>
      */
     const PARTIAL_OUTAGE = 147053455;

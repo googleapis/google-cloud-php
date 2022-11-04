@@ -19,10 +19,14 @@ class Type
      */
     const UNDEFINED_TYPE = 0;
     /**
+     * Node may associate with any physical server over its lifetime.
+     *
      * Generated from protobuf enum <code>RESTART_NODE_ON_ANY_SERVER = 502950985;</code>
      */
     const RESTART_NODE_ON_ANY_SERVER = 502950985;
     /**
+     * Node may associate with minimal physical servers over its lifetime.
+     *
      * Generated from protobuf enum <code>RESTART_NODE_ON_MINIMAL_SERVERS = 204166495;</code>
      */
     const RESTART_NODE_ON_MINIMAL_SERVERS = 204166495;

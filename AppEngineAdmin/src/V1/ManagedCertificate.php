@@ -66,7 +66,7 @@ class ManagedCertificate extends \Google\Protobuf\Internal\Message
      */
     public function getLastRenewalTime()
     {
-        return isset($this->last_renewal_time) ? $this->last_renewal_time : null;
+        return $this->last_renewal_time;
     }
 
     public function hasLastRenewalTime()

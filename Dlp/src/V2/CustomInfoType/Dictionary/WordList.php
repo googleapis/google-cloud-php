@@ -30,7 +30,7 @@ class WordList extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $words
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $words
      *           Words or phrases defining the dictionary. The dictionary must contain
      *           at least one phrase and every phrase must contain at least 2 characters
      *           that are letters or digits. [required]
@@ -60,7 +60,7 @@ class WordList extends \Google\Protobuf\Internal\Message
      * that are letters or digits. [required]
      *
      * Generated from protobuf field <code>repeated string words = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setWords($var)

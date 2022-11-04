@@ -255,7 +255,7 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      */
     public function setStockState($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem_StockState::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\RecommendationEngine\V1beta1\ProductCatalogItem\StockState::class);
         $this->stock_state = $var;
 
         return $this;
@@ -335,11 +335,21 @@ class ProductDetail extends \Google\Protobuf\Internal\Message
      * Optional. Extra features associated with a product in the user event.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.FeatureMap item_attributes = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\FeatureMap|null
      */
     public function getItemAttributes()
     {
         return $this->item_attributes;
+    }
+
+    public function hasItemAttributes()
+    {
+        return isset($this->item_attributes);
+    }
+
+    public function clearItemAttributes()
+    {
+        unset($this->item_attributes);
     }
 
     /**

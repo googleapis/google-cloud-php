@@ -17,7 +17,9 @@ class Output extends \Google\Protobuf\Internal\Message
 {
     /**
      * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty the value is populated from `Job.output_uri`.
+     * If empty, the value is populated from `Job.output_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      */
@@ -31,7 +33,9 @@ class Output extends \Google\Protobuf\Internal\Message
      *
      *     @type string $uri
      *           URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     *           If empty the value is populated from `Job.output_uri`.
+     *           If empty, the value is populated from `Job.output_uri`. See
+     *           [Supported input and output
+     *           formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +45,9 @@ class Output extends \Google\Protobuf\Internal\Message
 
     /**
      * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty the value is populated from `Job.output_uri`.
+     * If empty, the value is populated from `Job.output_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @return string
@@ -53,7 +59,9 @@ class Output extends \Google\Protobuf\Internal\Message
 
     /**
      * URI for the output file(s). For example, `gs://my-bucket/outputs/`.
-     * If empty the value is populated from `Job.output_uri`.
+     * If empty, the value is populated from `Job.output_uri`. See
+     * [Supported input and output
+     * formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      *
      * Generated from protobuf field <code>string uri = 1;</code>
      * @param string $var

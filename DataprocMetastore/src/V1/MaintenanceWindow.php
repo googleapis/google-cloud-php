@@ -54,7 +54,7 @@ class MaintenanceWindow extends \Google\Protobuf\Internal\Message
      */
     public function getHourOfDay()
     {
-        return isset($this->hour_of_day) ? $this->hour_of_day : null;
+        return $this->hour_of_day;
     }
 
     public function hasHourOfDay()

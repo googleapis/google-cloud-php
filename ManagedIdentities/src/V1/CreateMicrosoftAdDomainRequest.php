@@ -158,7 +158,7 @@ class CreateMicrosoftAdDomainRequest extends \Google\Protobuf\Internal\Message
      */
     public function getDomain()
     {
-        return isset($this->domain) ? $this->domain : null;
+        return $this->domain;
     }
 
     public function hasDomain()

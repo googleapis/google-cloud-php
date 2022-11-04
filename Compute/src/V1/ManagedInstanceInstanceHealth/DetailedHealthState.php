@@ -20,22 +20,32 @@ class DetailedHealthState
      */
     const UNDEFINED_DETAILED_HEALTH_STATE = 0;
     /**
+     * The instance is being drained. The existing connections to the instance have time to complete, but the new ones are being refused.
+     *
      * Generated from protobuf enum <code>DRAINING = 480455402;</code>
      */
     const DRAINING = 480455402;
     /**
+     * The instance is reachable i.e. a connection to the application health checking endpoint can be established, and conforms to the requirements defined by the health check.
+     *
      * Generated from protobuf enum <code>HEALTHY = 439801213;</code>
      */
     const HEALTHY = 439801213;
     /**
+     * The instance is unreachable i.e. a connection to the application health checking endpoint cannot be established, or the server does not respond within the specified timeout.
+     *
      * Generated from protobuf enum <code>TIMEOUT = 477813057;</code>
      */
     const TIMEOUT = 477813057;
     /**
+     * The instance is reachable, but does not conform to the requirements defined by the health check.
+     *
      * Generated from protobuf enum <code>UNHEALTHY = 462118084;</code>
      */
     const UNHEALTHY = 462118084;
     /**
+     * The health checking system is aware of the instance but its health is not known at the moment.
+     *
      * Generated from protobuf enum <code>UNKNOWN = 433141802;</code>
      */
     const UNKNOWN = 433141802;

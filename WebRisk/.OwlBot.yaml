@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/webrisk/(v1|v1beta1)/.*-php/(.*)
+      dest: /owl-bot-staging/WebRisk/$1/$2
+api-name: WebRisk

@@ -36,7 +36,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Monitoring\V3\Service[]|\Google\Protobuf\Internal\RepeatedField $services
+     *     @type array<\Google\Cloud\Monitoring\V3\Service>|\Google\Protobuf\Internal\RepeatedField $services
      *           The `Service`s matching the specified filter.
      *     @type string $next_page_token
      *           If there are more results than have been returned, then this field is set
@@ -64,7 +64,7 @@ class ListServicesResponse extends \Google\Protobuf\Internal\Message
      * The `Service`s matching the specified filter.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.Service services = 1;</code>
-     * @param \Google\Cloud\Monitoring\V3\Service[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\Service>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setServices($var)

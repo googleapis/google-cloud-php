@@ -41,7 +41,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      *     @type string $vm_instance
      *           VM instance name the data disks mounted to, for example
      *           "myproject-1014-104817-4c2-harness-0".
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $data_disks
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_disks
      *           Mounted data disks. The order is important a data disk's 0-based index in
      *           this list defines which persistent directory the disk is mounted to, for
      *           example the list of { "myproject-1014-104817-4c2-harness-0-disk-0" },
@@ -102,7 +102,7 @@ class DataDiskAssignment extends \Google\Protobuf\Internal\Message
      * { "myproject-1014-104817-4c2-harness-0-disk-1" }.
      *
      * Generated from protobuf field <code>repeated string data_disks = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setDataDisks($var)

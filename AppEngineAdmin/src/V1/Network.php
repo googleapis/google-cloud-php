@@ -73,7 +73,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $forwarded_ports
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $forwarded_ports
      *           List of ports, or port pairs, to forward from the virtual machine to the
      *           application container.
      *           Only applicable in the App Engine flexible environment.
@@ -129,7 +129,7 @@ class Network extends \Google\Protobuf\Internal\Message
      * Only applicable in the App Engine flexible environment.
      *
      * Generated from protobuf field <code>repeated string forwarded_ports = 1;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setForwardedPorts($var)

@@ -9,16 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
+ * Request message for updating a Data Fusion instance.
+ * Data Fusion allows updating the labels, options, and stack driver settings.
+ * This is also used for CDF version upgrade.
+ *
  * Generated from protobuf message <code>google.cloud.datafusion.v1.UpdateInstanceRequest</code>
  */
 class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The instance resource that replaces the resource on the server. Currently,
+     * Required. The instance resource that replaces the resource on the server. Currently,
      * Data Fusion only allows replacing labels, options, and stack driver
      * settings. All other fields will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $instance = null;
     /**
@@ -40,7 +44,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataFusion\V1\Instance $instance
-     *           The instance resource that replaces the resource on the server. Currently,
+     *           Required. The instance resource that replaces the resource on the server. Currently,
      *           Data Fusion only allows replacing labels, options, and stack driver
      *           settings. All other fields will be ignored.
      *     @type \Google\Protobuf\FieldMask $update_mask
@@ -58,16 +62,16 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance resource that replaces the resource on the server. Currently,
+     * Required. The instance resource that replaces the resource on the server. Currently,
      * Data Fusion only allows replacing labels, options, and stack driver
      * settings. All other fields will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\DataFusion\V1\Instance|null
      */
     public function getInstance()
     {
-        return isset($this->instance) ? $this->instance : null;
+        return $this->instance;
     }
 
     public function hasInstance()
@@ -81,11 +85,11 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The instance resource that replaces the resource on the server. Currently,
+     * Required. The instance resource that replaces the resource on the server. Currently,
      * Data Fusion only allows replacing labels, options, and stack driver
      * settings. All other fields will be ignored.
      *
-     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1;</code>
+     * Generated from protobuf field <code>.google.cloud.datafusion.v1.Instance instance = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\DataFusion\V1\Instance $var
      * @return $this
      */
@@ -110,7 +114,7 @@ class UpdateInstanceRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

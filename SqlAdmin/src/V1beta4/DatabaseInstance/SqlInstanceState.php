@@ -56,6 +56,12 @@ class SqlInstanceState
      * Generated from protobuf enum <code>FAILED = 6;</code>
      */
     const FAILED = 6;
+    /**
+     * Deprecated
+     *
+     * Generated from protobuf enum <code>ONLINE_MAINTENANCE = 7 [deprecated = true];</code>
+     */
+    const ONLINE_MAINTENANCE = 7;
 
     private static $valueToName = [
         self::SQL_INSTANCE_STATE_UNSPECIFIED => 'SQL_INSTANCE_STATE_UNSPECIFIED',
@@ -65,6 +71,7 @@ class SqlInstanceState
         self::PENDING_CREATE => 'PENDING_CREATE',
         self::MAINTENANCE => 'MAINTENANCE',
         self::FAILED => 'FAILED',
+        self::ONLINE_MAINTENANCE => 'ONLINE_MAINTENANCE',
     ];
 
     public static function name($value)
@@ -88,6 +95,4 @@ class SqlInstanceState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlInstanceState::class, \Google\Cloud\Sql\V1beta4\DatabaseInstance_SqlInstanceState::class);
 

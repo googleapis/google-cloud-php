@@ -28,7 +28,8 @@ use Google\Cloud\Storage\Lifecycle;
 use Google\Cloud\Storage\StorageClient;
 use Google\Cloud\Storage\StreamWrapper;
 use GuzzleHttp\Psr7\Utils;
-use PHPUnit\Framework\TestCase;
+use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Prophecy\Argument;
 
 /**
@@ -37,10 +38,12 @@ use Prophecy\Argument;
  */
 class StorageClientTest extends TestCase
 {
+    use ExpectException;
+
     const PROJECT = 'my-project';
     public $connection;
 
-    public function setUp()
+    public function set_up()
     {
         $this->connection = $this->prophesize(Rest::class);
         $this->client = TestHelpers::stub(StorageClient::class, [['projectId' => self::PROJECT]]);
@@ -108,6 +111,34 @@ class StorageClientTest extends TestCase
         $this->client->___setProperty('connection', $this->connection->reveal());
 
         $this->assertInstanceOf(Bucket::class, $this->client->createBucket('bucket'));
+    }
+
+    public function testCreatesDualRegionBucket()
+    {
+        $this->connection
+            ->insertBucket([
+                'project' => self::PROJECT,
+                'location' => 'US',
+                'name' => 'bucket',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
+            ])
+            ->willReturn(['name' => 'bucket']);
+        $this->connection->projectId()
+            ->willReturn(self::PROJECT);
+        $this->client->___setProperty('connection', $this->connection->reveal());
+        $createdBucket = $this->client->createBucket(
+            'bucket',
+            [
+                'location' => 'US',
+                'customPlacementConfig' => [
+                    'dataLocations' => ['US-EAST1', 'US-WEST1'],
+                ]
+            ]
+        );
+
+        $this->assertInstanceOf(Bucket::class, $createdBucket);
     }
 
     public function testCreatesBucketWithLifecycleBuilder()
@@ -238,11 +269,12 @@ class StorageClientTest extends TestCase
     }
 
     /**
-     * @expectedException Google\Cloud\Core\Exception\GoogleException
      * @dataProvider requiresProjectIdMethods
      */
     public function testMethodsFailWithoutProjectId($method, array $args = [])
     {
+        $this->expectException('Google\Cloud\Core\Exception\GoogleException');
+
         $client = TestHelpers::stub(StorageClientStub::class, [], ['projectId']);
         $client->___setProperty('projectId', null);
 

@@ -181,7 +181,7 @@ class Device extends \Google\Protobuf\Internal\Message
      *     @type int|string $num_id
      *           [Output only] A server-defined unique numeric ID for the device. This is a
      *           more compact way to identify devices, and it is globally unique.
-     *     @type \Google\Cloud\Iot\V1\DeviceCredential[]|\Google\Protobuf\Internal\RepeatedField $credentials
+     *     @type array<\Google\Cloud\Iot\V1\DeviceCredential>|\Google\Protobuf\Internal\RepeatedField $credentials
      *           The credentials used to authenticate this device. To allow credential
      *           rotation without interruption, multiple device credentials can be bound to
      *           this device. No more than 3 credentials can be bound to a single device at
@@ -370,7 +370,7 @@ class Device extends \Google\Protobuf\Internal\Message
      * `DeviceRegistry.credentials` field.
      *
      * Generated from protobuf field <code>repeated .google.cloud.iot.v1.DeviceCredential credentials = 12;</code>
-     * @param \Google\Cloud\Iot\V1\DeviceCredential[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Iot\V1\DeviceCredential>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setCredentials($var)
@@ -393,7 +393,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastHeartbeatTime()
     {
-        return isset($this->last_heartbeat_time) ? $this->last_heartbeat_time : null;
+        return $this->last_heartbeat_time;
     }
 
     public function hasLastHeartbeatTime()
@@ -435,7 +435,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastEventTime()
     {
-        return isset($this->last_event_time) ? $this->last_event_time : null;
+        return $this->last_event_time;
     }
 
     public function hasLastEventTime()
@@ -475,7 +475,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastStateTime()
     {
-        return isset($this->last_state_time) ? $this->last_state_time : null;
+        return $this->last_state_time;
     }
 
     public function hasLastStateTime()
@@ -515,7 +515,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastConfigAckTime()
     {
-        return isset($this->last_config_ack_time) ? $this->last_config_ack_time : null;
+        return $this->last_config_ack_time;
     }
 
     public function hasLastConfigAckTime()
@@ -554,7 +554,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastConfigSendTime()
     {
-        return isset($this->last_config_send_time) ? $this->last_config_send_time : null;
+        return $this->last_config_send_time;
     }
 
     public function hasLastConfigSendTime()
@@ -623,7 +623,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastErrorTime()
     {
-        return isset($this->last_error_time) ? $this->last_error_time : null;
+        return $this->last_error_time;
     }
 
     public function hasLastErrorTime()
@@ -665,7 +665,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getLastErrorStatus()
     {
-        return isset($this->last_error_status) ? $this->last_error_status : null;
+        return $this->last_error_status;
     }
 
     public function hasLastErrorStatus()
@@ -709,7 +709,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -750,7 +750,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getState()
     {
-        return isset($this->state) ? $this->state : null;
+        return $this->state;
     }
 
     public function hasState()
@@ -859,7 +859,7 @@ class Device extends \Google\Protobuf\Internal\Message
      */
     public function getGatewayConfig()
     {
-        return isset($this->gateway_config) ? $this->gateway_config : null;
+        return $this->gateway_config;
     }
 
     public function hasGatewayConfig()

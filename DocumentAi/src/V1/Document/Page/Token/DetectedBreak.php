@@ -65,6 +65,4 @@ class DetectedBreak extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedBreak::class, \Google\Cloud\DocumentAI\V1\Document_Page_Token_DetectedBreak::class);
 

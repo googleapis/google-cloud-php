@@ -314,7 +314,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getVarTableIndex()
     {
-        return isset($this->var_table_index) ? $this->var_table_index : null;
+        return $this->var_table_index;
     }
 
     public function hasVarTableIndex()
@@ -396,7 +396,7 @@ class Variable extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()

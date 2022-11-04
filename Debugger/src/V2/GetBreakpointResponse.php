@@ -48,7 +48,7 @@ class GetBreakpointResponse extends \Google\Protobuf\Internal\Message
      */
     public function getBreakpoint()
     {
-        return isset($this->breakpoint) ? $this->breakpoint : null;
+        return $this->breakpoint;
     }
 
     public function hasBreakpoint()

@@ -53,7 +53,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      *
      *     @type int $type
      *           Required. The type of the event (see [JobEventType][google.cloud.talent.v4beta1.JobEvent.JobEventType]).
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $jobs
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $jobs
      *           Required. The [job name(s)][google.cloud.talent.v4beta1.Job.name] associated with this event.
      *           For example, if this is an [impression][google.cloud.talent.v4beta1.JobEvent.JobEventType.IMPRESSION] event,
      *           this field contains the identifiers of all jobs shown to the job seeker.
@@ -129,7 +129,7 @@ class JobEvent extends \Google\Protobuf\Internal\Message
      * example, "projects/foo/tenants/bar/jobs/baz".
      *
      * Generated from protobuf field <code>repeated string jobs = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setJobs($var)

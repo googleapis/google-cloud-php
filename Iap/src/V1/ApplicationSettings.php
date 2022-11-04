@@ -63,7 +63,7 @@ class ApplicationSettings extends \Google\Protobuf\Internal\Message
      */
     public function getCsmSettings()
     {
-        return isset($this->csm_settings) ? $this->csm_settings : null;
+        return $this->csm_settings;
     }
 
     public function hasCsmSettings()
@@ -99,7 +99,7 @@ class ApplicationSettings extends \Google\Protobuf\Internal\Message
      */
     public function getAccessDeniedPageSettings()
     {
-        return isset($this->access_denied_page_settings) ? $this->access_denied_page_settings : null;
+        return $this->access_denied_page_settings;
     }
 
     public function hasAccessDeniedPageSettings()
@@ -136,7 +136,7 @@ class ApplicationSettings extends \Google\Protobuf\Internal\Message
      */
     public function getCookieDomain()
     {
-        return isset($this->cookie_domain) ? $this->cookie_domain : null;
+        return $this->cookie_domain;
     }
 
     public function hasCookieDomain()

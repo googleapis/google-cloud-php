@@ -79,7 +79,7 @@ class RunAssetDiscoveryResponse extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()

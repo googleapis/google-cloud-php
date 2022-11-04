@@ -143,7 +143,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      */
     public function getConfig()
     {
-        return isset($this->config) ? $this->config : null;
+        return $this->config;
     }
 
     public function hasConfig()
@@ -181,7 +181,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationJobRunTime()
     {
-        return isset($this->evaluation_job_run_time) ? $this->evaluation_job_run_time : null;
+        return $this->evaluation_job_run_time;
     }
 
     public function hasEvaluationJobRunTime()
@@ -218,7 +218,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -254,7 +254,7 @@ class Evaluation extends \Google\Protobuf\Internal\Message
      */
     public function getEvaluationMetrics()
     {
-        return isset($this->evaluation_metrics) ? $this->evaluation_metrics : null;
+        return $this->evaluation_metrics;
     }
 
     public function hasEvaluationMetrics()

@@ -17,13 +17,13 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     /**
      * [Output Only] Unique identifier for the forwarding rule; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
     private $canonical_url = null;
     /**
      * Resource URL to the forwarding rule representing the ILB configured as destination of the mirrored traffic.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      */
     private $url = null;
 
@@ -47,7 +47,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     /**
      * [Output Only] Unique identifier for the forwarding rule; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @return string
      */
     public function getCanonicalUrl()
@@ -68,7 +68,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     /**
      * [Output Only] Unique identifier for the forwarding rule; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @param string $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     /**
      * Resource URL to the forwarding rule representing the ILB configured as destination of the mirrored traffic.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      * @return string
      */
     public function getUrl()
@@ -104,7 +104,7 @@ class PacketMirroringForwardingRuleInfo extends \Google\Protobuf\Internal\Messag
     /**
      * Resource URL to the forwarding rule representing the ILB configured as destination of the mirrored traffic.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      * @param string $var
      * @return $this
      */

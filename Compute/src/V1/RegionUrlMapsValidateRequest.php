@@ -17,7 +17,7 @@ class RegionUrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Content of the UrlMap to be validated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMap resource = 195806222;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMap resource = 195806222;</code>
      */
     private $resource = null;
 
@@ -39,12 +39,12 @@ class RegionUrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Content of the UrlMap to be validated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMap resource = 195806222;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMap resource = 195806222;</code>
      * @return \Google\Cloud\Compute\V1\UrlMap|null
      */
     public function getResource()
     {
-        return isset($this->resource) ? $this->resource : null;
+        return $this->resource;
     }
 
     public function hasResource()
@@ -60,7 +60,7 @@ class RegionUrlMapsValidateRequest extends \Google\Protobuf\Internal\Message
     /**
      * Content of the UrlMap to be validated.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.UrlMap resource = 195806222;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.UrlMap resource = 195806222;</code>
      * @param \Google\Cloud\Compute\V1\UrlMap $var
      * @return $this
      */

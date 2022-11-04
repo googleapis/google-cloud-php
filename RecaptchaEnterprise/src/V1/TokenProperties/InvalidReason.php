@@ -7,7 +7,6 @@ namespace Google\Cloud\RecaptchaEnterprise\V1\TokenProperties;
 use UnexpectedValueException;
 
 /**
- * LINT.IfChange
  * Enum that represents the types of invalid token reasons.
  *
  * Protobuf type <code>google.cloud.recaptchaenterprise.v1.TokenProperties.InvalidReason</code>
@@ -50,6 +49,13 @@ class InvalidReason
      * Generated from protobuf enum <code>MISSING = 5;</code>
      */
     const MISSING = 5;
+    /**
+     * A retriable error (such as network failure) occurred on the browser.
+     * Could easily be simulated by an attacker.
+     *
+     * Generated from protobuf enum <code>BROWSER_ERROR = 6;</code>
+     */
+    const BROWSER_ERROR = 6;
 
     private static $valueToName = [
         self::INVALID_REASON_UNSPECIFIED => 'INVALID_REASON_UNSPECIFIED',
@@ -58,6 +64,7 @@ class InvalidReason
         self::EXPIRED => 'EXPIRED',
         self::DUPE => 'DUPE',
         self::MISSING => 'MISSING',
+        self::BROWSER_ERROR => 'BROWSER_ERROR',
     ];
 
     public static function name($value)

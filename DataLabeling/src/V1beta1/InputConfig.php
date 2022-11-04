@@ -231,7 +231,7 @@ class InputConfig extends \Google\Protobuf\Internal\Message
      */
     public function getClassificationMetadata()
     {
-        return isset($this->classification_metadata) ? $this->classification_metadata : null;
+        return $this->classification_metadata;
     }
 
     public function hasClassificationMetadata()

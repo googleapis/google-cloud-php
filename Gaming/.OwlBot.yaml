@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/gaming/(v1)/.*-php/(.*)
+      dest: /owl-bot-staging/Gaming/$1/$2
+api-name: Gaming

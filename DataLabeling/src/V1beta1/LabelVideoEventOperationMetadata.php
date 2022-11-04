@@ -45,7 +45,7 @@ class LabelVideoEventOperationMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getBasicConfig()
     {
-        return isset($this->basic_config) ? $this->basic_config : null;
+        return $this->basic_config;
     }
 
     public function hasBasicConfig()

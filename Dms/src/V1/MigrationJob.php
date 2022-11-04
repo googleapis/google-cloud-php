@@ -223,7 +223,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -263,7 +263,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -613,7 +613,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()
@@ -650,7 +650,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -686,7 +686,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getSourceDatabase()
     {
-        return isset($this->source_database) ? $this->source_database : null;
+        return $this->source_database;
     }
 
     public function hasSourceDatabase()
@@ -722,7 +722,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getDestinationDatabase()
     {
-        return isset($this->destination_database) ? $this->destination_database : null;
+        return $this->destination_database;
     }
 
     public function hasDestinationDatabase()
@@ -758,7 +758,7 @@ class MigrationJob extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

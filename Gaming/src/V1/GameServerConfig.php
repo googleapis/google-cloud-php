@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class GameServerConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the game server config. Uses the form:
+     * The resource name of the game server config, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
@@ -70,7 +70,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the game server config. Uses the form:
+     *           The resource name of the game server config, in the following form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      *           For example,
      *           `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
@@ -81,10 +81,10 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The labels associated with this game server config. Each label is a
      *           key-value pair.
-     *     @type \Google\Cloud\Gaming\V1\FleetConfig[]|\Google\Protobuf\Internal\RepeatedField $fleet_configs
+     *     @type array<\Google\Cloud\Gaming\V1\FleetConfig>|\Google\Protobuf\Internal\RepeatedField $fleet_configs
      *           FleetConfig contains a list of Agones fleet specs. Only one FleetConfig
      *           is allowed.
-     *     @type \Google\Cloud\Gaming\V1\ScalingConfig[]|\Google\Protobuf\Internal\RepeatedField $scaling_configs
+     *     @type array<\Google\Cloud\Gaming\V1\ScalingConfig>|\Google\Protobuf\Internal\RepeatedField $scaling_configs
      *           The autoscaling settings.
      *     @type string $description
      *           The description of the game server config.
@@ -96,7 +96,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server config. Uses the form:
+     * The resource name of the game server config, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
@@ -110,7 +110,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server config. Uses the form:
+     * The resource name of the game server config, in the following form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
@@ -135,7 +135,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -171,7 +171,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -244,7 +244,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      * is allowed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.FleetConfig fleet_configs = 5;</code>
-     * @param \Google\Cloud\Gaming\V1\FleetConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\FleetConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFleetConfigs($var)
@@ -270,7 +270,7 @@ class GameServerConfig extends \Google\Protobuf\Internal\Message
      * The autoscaling settings.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.ScalingConfig scaling_configs = 6;</code>
-     * @param \Google\Cloud\Gaming\V1\ScalingConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\ScalingConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setScalingConfigs($var)

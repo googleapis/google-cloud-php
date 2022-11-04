@@ -107,7 +107,7 @@ class Analysis extends \Google\Protobuf\Internal\Message
      */
     public function getRequestTime()
     {
-        return isset($this->request_time) ? $this->request_time : null;
+        return $this->request_time;
     }
 
     public function hasRequestTime()
@@ -144,7 +144,7 @@ class Analysis extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -182,7 +182,7 @@ class Analysis extends \Google\Protobuf\Internal\Message
      */
     public function getAnalysisResult()
     {
-        return isset($this->analysis_result) ? $this->analysis_result : null;
+        return $this->analysis_result;
     }
 
     public function hasAnalysisResult()

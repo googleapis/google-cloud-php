@@ -80,7 +80,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIdleDeleteTtl()
     {
-        return isset($this->idle_delete_ttl) ? $this->idle_delete_ttl : null;
+        return $this->idle_delete_ttl;
     }
 
     public function hasIdleDeleteTtl()
@@ -193,7 +193,7 @@ class LifecycleConfig extends \Google\Protobuf\Internal\Message
      */
     public function getIdleStartTime()
     {
-        return isset($this->idle_start_time) ? $this->idle_start_time : null;
+        return $this->idle_start_time;
     }
 
     public function hasIdleStartTime()

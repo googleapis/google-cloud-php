@@ -75,7 +75,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Indexes with a collection group query scope specified allow queries against
      *           all collections descended from a specific document, specified at query
      *           time, and that have the same collection id as this index.
-     *     @type \Google\Cloud\Firestore\Admin\V1\Index\IndexField[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *     @type array<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>|\Google\Protobuf\Internal\RepeatedField $fields
      *           The fields supported by this index.
      *           For composite indexes, this is always 2 or more fields.
      *           The last field entry is always for the field path `__name__`. If, on
@@ -193,7 +193,7 @@ class Index extends \Google\Protobuf\Internal\Message
      * field path equal to the field path of the associated field.
      *
      * Generated from protobuf field <code>repeated .google.firestore.admin.v1.Index.IndexField fields = 3;</code>
-     * @param \Google\Cloud\Firestore\Admin\V1\Index\IndexField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Firestore\Admin\V1\Index\IndexField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)

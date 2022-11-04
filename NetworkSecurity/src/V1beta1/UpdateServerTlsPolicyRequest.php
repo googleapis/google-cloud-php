@@ -68,7 +68,7 @@ class UpdateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -109,7 +109,7 @@ class UpdateServerTlsPolicyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getServerTlsPolicy()
     {
-        return isset($this->server_tls_policy) ? $this->server_tls_policy : null;
+        return $this->server_tls_policy;
     }
 
     public function hasServerTlsPolicy()

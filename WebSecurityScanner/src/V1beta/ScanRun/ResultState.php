@@ -67,6 +67,4 @@ class ResultState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ResultState::class, \Google\Cloud\WebSecurityScanner\V1beta\ScanRun_ResultState::class);
 

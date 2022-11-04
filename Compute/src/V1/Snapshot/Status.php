@@ -20,22 +20,32 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Snapshot creation is in progress.
+     *
      * Generated from protobuf enum <code>CREATING = 455564985;</code>
      */
     const CREATING = 455564985;
     /**
+     * Snapshot is currently being deleted.
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * Snapshot creation failed.
+     *
      * Generated from protobuf enum <code>FAILED = 455706685;</code>
      */
     const FAILED = 455706685;
     /**
+     * Snapshot has been created successfully.
+     *
      * Generated from protobuf enum <code>READY = 77848963;</code>
      */
     const READY = 77848963;
     /**
+     * Snapshot is being uploaded.
+     *
      * Generated from protobuf enum <code>UPLOADING = 267603489;</code>
      */
     const UPLOADING = 267603489;

@@ -25,7 +25,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * If this custom class is a resource, the custom_class_id is the resource id
-     * of the CustomClass.
+     * of the CustomClass. Case sensitive.
      *
      * Generated from protobuf field <code>string custom_class_id = 2;</code>
      */
@@ -47,8 +47,8 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      *           The resource name of the custom class.
      *     @type string $custom_class_id
      *           If this custom class is a resource, the custom_class_id is the resource id
-     *           of the CustomClass.
-     *     @type \Google\Cloud\Speech\V1p1beta1\CustomClass\ClassItem[]|\Google\Protobuf\Internal\RepeatedField $items
+     *           of the CustomClass. Case sensitive.
+     *     @type array<\Google\Cloud\Speech\V1p1beta1\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $items
      *           A collection of class items.
      * }
      */
@@ -85,7 +85,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
 
     /**
      * If this custom class is a resource, the custom_class_id is the resource id
-     * of the CustomClass.
+     * of the CustomClass. Case sensitive.
      *
      * Generated from protobuf field <code>string custom_class_id = 2;</code>
      * @return string
@@ -97,7 +97,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
 
     /**
      * If this custom class is a resource, the custom_class_id is the resource id
-     * of the CustomClass.
+     * of the CustomClass. Case sensitive.
      *
      * Generated from protobuf field <code>string custom_class_id = 2;</code>
      * @param string $var
@@ -126,7 +126,7 @@ class CustomClass extends \Google\Protobuf\Internal\Message
      * A collection of class items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.speech.v1p1beta1.CustomClass.ClassItem items = 3;</code>
-     * @param \Google\Cloud\Speech\V1p1beta1\CustomClass\ClassItem[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Speech\V1p1beta1\CustomClass\ClassItem>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

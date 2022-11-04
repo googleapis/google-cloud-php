@@ -52,7 +52,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
      */
@@ -95,8 +95,8 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      *           The time after which this snapshot will be automatically deleted.
      *     @type int $state
      *           State of the snapshot.
-     *     @type \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
-     *           PubSub snapshot metadata.
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $pubsub_metadata
+     *           Pub/Sub snapshot metadata.
      *     @type string $description
      *           User specified description of the snapshot. Maybe empty.
      *     @type int|string $disk_size_bytes
@@ -197,7 +197,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getCreationTime()
     {
-        return isset($this->creation_time) ? $this->creation_time : null;
+        return $this->creation_time;
     }
 
     public function hasCreationTime()
@@ -233,7 +233,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
      */
     public function getTtl()
     {
-        return isset($this->ttl) ? $this->ttl : null;
+        return $this->ttl;
     }
 
     public function hasTtl()
@@ -288,7 +288,7 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -299,10 +299,10 @@ class Snapshot extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.PubsubSnapshotMetadata pubsub_metadata = 7;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\PubsubSnapshotMetadata>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPubsubMetadata($var)

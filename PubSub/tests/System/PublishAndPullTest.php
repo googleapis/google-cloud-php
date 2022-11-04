@@ -17,6 +17,7 @@
 
 namespace Google\Cloud\PubSub\Tests\System;
 
+use Google\Cloud\PubSub\Message;
 use Google\Cloud\PubSub\MessageBuilder;
 
 /**
@@ -110,5 +111,126 @@ class PublishAndPullTest extends PubSubTestCase
         $pulled = $sub->pull();
 
         $this->assertEquals($key, $pulled[0]->orderingKey());
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testLateAcknowledge($client)
+    {
+        $topic = self::topic($client);
+
+        $subscription = self::subscription($client, $topic);
+        $expiry = $subscription->info()['ackDeadlineSeconds'];
+
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $subscription->pull();
+        $eodMessages = $eodSubscription->pull();
+
+        // we sleep for more than the expiry
+        // so that the EOD enabled sub throws an exception when msgs are acknowledged
+        sleep(max($expiry, $eodExpiry) + 1);
+
+        // the acknowledgeBatch method shouldn't bubble up the exception for the test to pass
+        try {
+            $subscription->acknowledgeBatch($messages);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->fail();
+        }
+
+        // the acknowledgeBatch method shouldn't bubble up the exception for the test to pass
+        try {
+            $eodSubscription->acknowledgeBatch($eodMessages);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->fail();
+        }
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testLateModifyAcknowledge($client)
+    {
+        $topic = self::topic($client);
+
+        $subscription = self::subscription($client, $topic);
+        $expiry = $subscription->info()['ackDeadlineSeconds'];
+
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $subscription->pull();
+        $eodMessages = $eodSubscription->pull();
+
+        // we sleep for more than the expiry
+        // so that the EOD enabled sub throws an exception
+        // when the deadline is attempted to be modified
+        sleep(max($expiry, $eodExpiry) + 1);
+
+        // the modifyAckDeadlineBatch method shouldn't bubble up the exception for the test to pass
+        try {
+            $subscription->modifyAckDeadlineBatch($messages, 20);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->fail();
+        }
+
+        // the modifyAckDeadlineBatch method shouldn't bubble up the exception for the test to pass
+        try {
+            $eodSubscription->modifyAckDeadlineBatch($eodMessages, 20);
+            $this->assertTrue(true);
+        } catch (\Exception $e) {
+            $this->fail();
+        }
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testAckAndModAckContainFailedMsgs($client)
+    {
+        $topic = self::topic($client);
+
+        // we keep a low ackDeadlineSeconds value
+        // as we need to `sleep` for more than this value to trigger an exception
+        $eodSubscription = self::exactlyOnceSubscription($client, $topic, ['ackDeadlineSeconds' => 10]);
+        $eodExpiry = $eodSubscription->info()['ackDeadlineSeconds'];
+
+        $topic->publish(['data'=>'test']);
+        $messages = $eodSubscription->pull();
+
+        sleep($eodExpiry + 1);
+
+        $failedMsgs = $eodSubscription->acknowledgeBatch($messages, ['returnFailures' => true]);
+        // Since acknowledgeBatch was called after the expiry and with the `returnFailures` flag,
+        // all the msgs should be returned
+        $this->assertIsArray($failedMsgs);
+
+        foreach ($failedMsgs as $msg) {
+            $this->assertInstanceOf(Message::class, $msg);
+        }
+
+        // Now we test the modifyAckDeadline messages.
+        // Testing in the same methods helps in creation/deletion of less resources and
+        // we only have to call `sleep` once
+
+        $failedMsgs = $eodSubscription->modifyAckDeadlineBatch($messages, 10, ['returnFailures' => true]);
+        // Since modifyAckDeadlineBatch was called after the expiry and with the `returnFailures` flag,
+        // all the msgs should be returned
+        $this->assertIsArray($failedMsgs);
+
+        foreach ($failedMsgs as $msg) {
+            $this->assertInstanceOf(Message::class, $msg);
+        }
     }
 }

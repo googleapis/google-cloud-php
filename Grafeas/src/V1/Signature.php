@@ -48,7 +48,7 @@ class Signature extends \Google\Protobuf\Internal\Message
     /**
      * The identifier for the public key that verifies this signature.
      *   * The `public_key_id` is required.
-     *   * The `public_key_id` MUST be an RFC3986 conformant URI.
+     *   * The `public_key_id` SHOULD be an RFC3986 conformant URI.
      *   * When possible, the `public_key_id` SHOULD be an immutable reference,
      *     such as a cryptographic digest.
      * Examples of valid `public_key_id`s:
@@ -81,7 +81,7 @@ class Signature extends \Google\Protobuf\Internal\Message
      *     @type string $public_key_id
      *           The identifier for the public key that verifies this signature.
      *             * The `public_key_id` is required.
-     *             * The `public_key_id` MUST be an RFC3986 conformant URI.
+     *             * The `public_key_id` SHOULD be an RFC3986 conformant URI.
      *             * When possible, the `public_key_id` SHOULD be an immutable reference,
      *               such as a cryptographic digest.
      *           Examples of valid `public_key_id`s:
@@ -139,7 +139,7 @@ class Signature extends \Google\Protobuf\Internal\Message
     /**
      * The identifier for the public key that verifies this signature.
      *   * The `public_key_id` is required.
-     *   * The `public_key_id` MUST be an RFC3986 conformant URI.
+     *   * The `public_key_id` SHOULD be an RFC3986 conformant URI.
      *   * When possible, the `public_key_id` SHOULD be an immutable reference,
      *     such as a cryptographic digest.
      * Examples of valid `public_key_id`s:
@@ -163,7 +163,7 @@ class Signature extends \Google\Protobuf\Internal\Message
     /**
      * The identifier for the public key that verifies this signature.
      *   * The `public_key_id` is required.
-     *   * The `public_key_id` MUST be an RFC3986 conformant URI.
+     *   * The `public_key_id` SHOULD be an RFC3986 conformant URI.
      *   * When possible, the `public_key_id` SHOULD be an immutable reference,
      *     such as a cryptographic digest.
      * Examples of valid `public_key_id`s:

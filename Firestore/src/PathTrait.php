@@ -131,6 +131,9 @@ trait PathTrait
     {
         if (!$this->isRelative($name)) {
             $name = $this->relativeName($name);
+            if ($name === null) {
+                return false;
+            }
         }
 
         $parts = $this->splitName($name);

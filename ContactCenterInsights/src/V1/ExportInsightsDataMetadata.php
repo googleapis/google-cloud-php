@@ -53,7 +53,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      *           Output only. The time the operation finished running.
      *     @type \Google\Cloud\ContactCenterInsights\V1\ExportInsightsDataRequest $request
      *           The original request for export.
-     *     @type \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $partial_errors
+     *     @type array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $partial_errors
      *           Partial errors during export operation that might cause the operation
      *           output to be incomplete.
      * }
@@ -71,7 +71,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -107,7 +107,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -143,7 +143,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      */
     public function getRequest()
     {
-        return isset($this->request) ? $this->request : null;
+        return $this->request;
     }
 
     public function hasRequest()
@@ -188,7 +188,7 @@ class ExportInsightsDataMetadata extends \Google\Protobuf\Internal\Message
      * output to be incomplete.
      *
      * Generated from protobuf field <code>repeated .google.rpc.Status partial_errors = 4;</code>
-     * @param \Google\Rpc\Status[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Rpc\Status>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartialErrors($var)

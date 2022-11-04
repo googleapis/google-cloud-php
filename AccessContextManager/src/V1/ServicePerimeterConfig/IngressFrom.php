@@ -50,11 +50,11 @@ class IngressFrom extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressSource[]|\Google\Protobuf\Internal\RepeatedField $sources
+     *     @type array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressSource>|\Google\Protobuf\Internal\RepeatedField $sources
      *           Sources that this [IngressPolicy]
      *           [google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressPolicy]
      *           authorizes access from.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $identities
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $identities
      *           A list of identities that are allowed access through this ingress
      *           policy. Should be in the format of email address. The email address
      *           should represent individual user or service account only.
@@ -88,7 +88,7 @@ class IngressFrom extends \Google\Protobuf\Internal\Message
      * authorizes access from.
      *
      * Generated from protobuf field <code>repeated .google.identity.accesscontextmanager.v1.ServicePerimeterConfig.IngressSource sources = 1;</code>
-     * @param \Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressSource[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Identity\AccessContextManager\V1\ServicePerimeterConfig\IngressSource>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSources($var)
@@ -118,7 +118,7 @@ class IngressFrom extends \Google\Protobuf\Internal\Message
      * should represent individual user or service account only.
      *
      * Generated from protobuf field <code>repeated string identities = 2;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIdentities($var)

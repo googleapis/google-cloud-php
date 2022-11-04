@@ -55,7 +55,7 @@ class CpuUtilization extends \Google\Protobuf\Internal\Message
      */
     public function getAggregationWindowLength()
     {
-        return isset($this->aggregation_window_length) ? $this->aggregation_window_length : null;
+        return $this->aggregation_window_length;
     }
 
     public function hasAggregationWindowLength()

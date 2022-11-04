@@ -201,7 +201,7 @@ class ImportEntitiesRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntityFilter()
     {
-        return isset($this->entity_filter) ? $this->entity_filter : null;
+        return $this->entity_filter;
     }
 
     public function hasEntityFilter()

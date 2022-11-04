@@ -42,7 +42,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      *
      *     @type string $title
      *           Optional. The overall title of the list.
-     *     @type \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $items
+     *     @type array<\Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item>|\Google\Protobuf\Internal\RepeatedField $items
      *           Required. List items.
      *     @type string $subtitle
      *           Optional. Subtitle of the list.
@@ -94,7 +94,7 @@ class ListSelect extends \Google\Protobuf\Internal\Message
      * Required. List items.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dialogflow.v2.Intent.Message.ListSelect.Item items = 2 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param \Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dialogflow\V2\Intent\Message\ListSelect\Item>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setItems($var)

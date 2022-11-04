@@ -17,16 +17,18 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateEntryRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The name of the entry group this entry is in. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the entry group this entry belongs to.
+     * Note: The entry itself and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * Required. The id of the entry to create.
+     * Required. The ID of the entry to create.
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     * and underscores (_).
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string entry_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -45,12 +47,14 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The name of the entry group this entry is in. Example:
-     *           * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     *           Note that this Entry and its child resources may not actually be stored in
-     *           the location in this name.
+     *           Required. The name of the entry group this entry belongs to.
+     *           Note: The entry itself and its child resources might not be stored in
+     *           the location specified in its name.
      *     @type string $entry_id
-     *           Required. The id of the entry to create.
+     *           Required. The ID of the entry to create.
+     *           The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     *           and underscores (_).
+     *           The maximum size is 64 bytes when encoded in UTF-8.
      *     @type \Google\Cloud\DataCatalog\V1\Entry $entry
      *           Required. The entry to create.
      * }
@@ -61,10 +65,9 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entry group this entry is in. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the entry group this entry belongs to.
+     * Note: The entry itself and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -75,10 +78,9 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The name of the entry group this entry is in. Example:
-     * * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}
-     * Note that this Entry and its child resources may not actually be stored in
-     * the location in this name.
+     * Required. The name of the entry group this entry belongs to.
+     * Note: The entry itself and its child resources might not be stored in
+     * the location specified in its name.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -93,7 +95,10 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id of the entry to create.
+     * Required. The ID of the entry to create.
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     * and underscores (_).
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string entry_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -104,7 +109,10 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The id of the entry to create.
+     * Required. The ID of the entry to create.
+     * The ID must contain only letters (a-z, A-Z), numbers (0-9),
+     * and underscores (_).
+     * The maximum size is 64 bytes when encoded in UTF-8.
      *
      * Generated from protobuf field <code>string entry_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -126,7 +134,7 @@ class CreateEntryRequest extends \Google\Protobuf\Internal\Message
      */
     public function getEntry()
     {
-        return isset($this->entry) ? $this->entry : null;
+        return $this->entry;
     }
 
     public function hasEntry()

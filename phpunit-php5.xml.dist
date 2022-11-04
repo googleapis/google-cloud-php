@@ -3,11 +3,13 @@
   bootstrap="./Core/unit-bootstrap.php"
   colors="true">
   <testsuites>
-    <testsuite>
+    <testsuite name="PHP5 Unit Test Suite">
       <directory>*/tests/Unit</directory>
       <directory>./tests/Unit</directory>
       <exclude>./Compute/tests/Unit/*</exclude>
       <exclude>./SqlAdmin/tests/Unit/*</exclude>
+      <exclude>./dev/tests/Unit/DocFx/CommandTest.php</exclude>
+      <exclude>./dev/tests/Unit/DocFx/NodeTest.php</exclude>
     </testsuite>
   </testsuites>
   <filter>
@@ -23,10 +25,10 @@
       </exclude>
     </whitelist>
   </filter>
+  <listeners>
+    <listener class="Google\Cloud\Core\Testing\GcTestListener" file="Core/src/Testing/GcTestListener.php"/>
+  </listeners>
   <php>
     <ini name="memory_limit" value="2048M"/>
   </php>
-  <listeners>
-    <listener class="GcTestListener" file="Core/src/Testing/GcTestListener.php" />
-  </listeners>
 </phpunit>

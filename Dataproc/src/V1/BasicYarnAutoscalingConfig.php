@@ -141,7 +141,7 @@ class BasicYarnAutoscalingConfig extends \Google\Protobuf\Internal\Message
      */
     public function getGracefulDecommissionTimeout()
     {
-        return isset($this->graceful_decommission_timeout) ? $this->graceful_decommission_timeout : null;
+        return $this->graceful_decommission_timeout;
     }
 
     public function hasGracefulDecommissionTimeout()

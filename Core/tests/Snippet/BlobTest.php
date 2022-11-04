@@ -29,7 +29,7 @@ class BlobTest extends SnippetTestCase
     private $value;
     private $blob;
 
-    public function setUp()
+    public function set_up()
     {
         $this->value = 'foo';
         $this->blob = new Blob($this->value);

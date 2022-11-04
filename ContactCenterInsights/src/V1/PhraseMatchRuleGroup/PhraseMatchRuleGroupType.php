@@ -60,6 +60,4 @@ class PhraseMatchRuleGroupType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(PhraseMatchRuleGroupType::class, \Google\Cloud\ContactCenterInsights\V1\PhraseMatchRuleGroup_PhraseMatchRuleGroupType::class);
 

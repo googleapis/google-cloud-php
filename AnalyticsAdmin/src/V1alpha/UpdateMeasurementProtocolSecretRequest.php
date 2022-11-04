@@ -53,7 +53,7 @@ class UpdateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      */
     public function getMeasurementProtocolSecret()
     {
-        return isset($this->measurement_protocol_secret) ? $this->measurement_protocol_secret : null;
+        return $this->measurement_protocol_secret;
     }
 
     public function hasMeasurementProtocolSecret()
@@ -89,7 +89,7 @@ class UpdateMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

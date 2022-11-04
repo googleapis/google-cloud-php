@@ -45,7 +45,7 @@ class InstancesExportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getExportContext()
     {
-        return isset($this->export_context) ? $this->export_context : null;
+        return $this->export_context;
     }
 
     public function hasExportContext()

@@ -88,7 +88,7 @@ class AlternatePolicySpec extends \Google\Protobuf\Internal\Message
      */
     public function getSpec()
     {
-        return isset($this->spec) ? $this->spec : null;
+        return $this->spec;
     }
 
     public function hasSpec()

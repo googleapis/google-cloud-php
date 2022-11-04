@@ -9,9 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A hub is essentially a collection of spokes. A single hub can contain spokes
- * from multiple regions. However, all of a hub's spokes must be associated with
- * resources that reside in the same VPC network.
+ * A hub is a collection of spokes. A single hub can contain spokes from
+ * multiple regions. However, if any of a hub's spokes use the data transfer
+ * feature, the resources associated with those spokes must all reside in the
+ * same VPC network. Spokes that do not use data transfer can be associated
+ * with any VPC network in your project.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.Hub</code>
  */
@@ -66,9 +68,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     private $state = 0;
     /**
-     * The VPC network associated with this hub's spokes. All of the VPN tunnels,
-     * VLAN attachments, and router appliance instances referenced by this hub's
-     * spokes must belong to this VPC network.
+     * The VPC networks associated with this hub's spokes.
      * This field is read-only. Network Connectivity Center automatically
      * populates it based on the set of spokes attached to the hub.
      *
@@ -102,10 +102,8 @@ class Hub extends \Google\Protobuf\Internal\Message
      *           the new hub is assigned a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this hub.
-     *     @type \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[]|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
-     *           The VPC network associated with this hub's spokes. All of the VPN tunnels,
-     *           VLAN attachments, and router appliance instances referenced by this hub's
-     *           spokes must belong to this VPC network.
+     *     @type array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
+     *           The VPC networks associated with this hub's spokes.
      *           This field is read-only. Network Connectivity Center automatically
      *           populates it based on the set of spokes attached to the hub.
      * }
@@ -153,7 +151,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -189,7 +187,7 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -330,9 +328,7 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC network associated with this hub's spokes. All of the VPN tunnels,
-     * VLAN attachments, and router appliance instances referenced by this hub's
-     * spokes must belong to this VPC network.
+     * The VPC networks associated with this hub's spokes.
      * This field is read-only. Network Connectivity Center automatically
      * populates it based on the set of spokes attached to the hub.
      *
@@ -345,14 +341,12 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The VPC network associated with this hub's spokes. All of the VPN tunnels,
-     * VLAN attachments, and router appliance instances referenced by this hub's
-     * spokes must belong to this VPC network.
+     * The VPC networks associated with this hub's spokes.
      * This field is read-only. Network Connectivity Center automatically
      * populates it based on the set of spokes attached to the hub.
      *
      * Generated from protobuf field <code>repeated .google.cloud.networkconnectivity.v1.RoutingVPC routing_vpcs = 10;</code>
-     * @param \Google\Cloud\NetworkConnectivity\V1\RoutingVPC[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setRoutingVpcs($var)

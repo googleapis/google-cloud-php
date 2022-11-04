@@ -38,7 +38,7 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
      */
     public function getEncryptionOptions()
     {
-        return isset($this->encryption_options) ? $this->encryption_options : null;
+        return $this->encryption_options;
     }
 
     public function hasEncryptionOptions()
@@ -66,6 +66,4 @@ class SqlBakImportOptions extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlBakImportOptions::class, \Google\Cloud\Sql\V1beta4\ImportContext_SqlBakImportOptions::class);
 

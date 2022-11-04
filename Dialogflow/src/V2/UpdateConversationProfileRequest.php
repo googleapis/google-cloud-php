@@ -53,7 +53,7 @@ class UpdateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConversationProfile()
     {
-        return isset($this->conversation_profile) ? $this->conversation_profile : null;
+        return $this->conversation_profile;
     }
 
     public function hasConversationProfile()
@@ -89,7 +89,7 @@ class UpdateConversationProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

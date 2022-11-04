@@ -63,6 +63,4 @@ class DsState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DsState::class, \Google\Cloud\Domains\V1alpha2\DnsSettings_DsState::class);
 

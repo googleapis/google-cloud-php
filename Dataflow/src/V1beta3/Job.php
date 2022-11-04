@@ -10,7 +10,6 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a job to be run by the Cloud Dataflow service.
- * nextID: 26
  *
  * Generated from protobuf message <code>google.dataflow.v1beta3.Job</code>
  */
@@ -37,7 +36,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      */
@@ -250,12 +249,12 @@ class Job extends \Google\Protobuf\Internal\Message
      *           name as an already-existing Job, the attempt returns the
      *           existing Job.
      *           The name must match the regular expression
-     *           `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     *           `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *     @type int $type
      *           The type of Cloud Dataflow job.
      *     @type \Google\Cloud\Dataflow\V1beta3\Environment $environment
      *           The environment for the job.
-     *     @type \Google\Cloud\Dataflow\V1beta3\Step[]|\Google\Protobuf\Internal\RepeatedField $steps
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\Step>|\Google\Protobuf\Internal\RepeatedField $steps
      *           Exactly one of step or steps_location should be specified.
      *           The top-level steps that constitute the entire job. Only retrieved with
      *           JOB_VIEW_ALL.
@@ -304,7 +303,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *     @type string $replaced_by_job_id
      *           If another job is an update of this job (and thus, this job is in
      *           `JOB_STATE_UPDATED`), this field contains the ID of that job.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $temp_files
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $temp_files
      *           A set of files the system should be aware of that are used
      *           for temporary storage. These temporary files will be
      *           removed on job completion.
@@ -331,7 +330,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *           A description of the user pipeline and stages through which it is executed.
      *           Created by Cloud Dataflow service.  Only retrieved with
      *           JOB_VIEW_DESCRIPTION or JOB_VIEW_ALL.
-     *     @type \Google\Cloud\Dataflow\V1beta3\ExecutionStageState[]|\Google\Protobuf\Internal\RepeatedField $stage_states
+     *     @type array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageState>|\Google\Protobuf\Internal\RepeatedField $stage_states
      *           This field may be mutated by the Cloud Dataflow service;
      *           callers cannot mutate it.
      *     @type \Google\Cloud\Dataflow\V1beta3\JobMetadata $job_metadata
@@ -421,7 +420,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @return string
@@ -438,7 +437,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * name as an already-existing Job, the attempt returns the
      * existing Job.
      * The name must match the regular expression
-     * `[a-z]([-a-z0-9]{0,38}[a-z0-9])?`
+     * `[a-z]([-a-z0-9]{0,1022}[a-z0-9])?`
      *
      * Generated from protobuf field <code>string name = 3;</code>
      * @param string $var
@@ -486,7 +485,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getEnvironment()
     {
-        return isset($this->environment) ? $this->environment : null;
+        return $this->environment;
     }
 
     public function hasEnvironment()
@@ -533,7 +532,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * JOB_VIEW_ALL.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.Step steps = 6;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\Step[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\Step>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSteps($var)
@@ -618,7 +617,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCurrentStateTime()
     {
-        return isset($this->current_state_time) ? $this->current_state_time : null;
+        return $this->current_state_time;
     }
 
     public function hasCurrentStateTime()
@@ -690,7 +689,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getExecutionInfo()
     {
-        return isset($this->execution_info) ? $this->execution_info : null;
+        return $this->execution_info;
     }
 
     public function hasExecutionInfo()
@@ -727,7 +726,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -915,7 +914,7 @@ class Job extends \Google\Protobuf\Internal\Message
      *    bucket.storage.googleapis.com/{object}
      *
      * Generated from protobuf field <code>repeated string temp_files = 16;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTempFiles($var)
@@ -1005,7 +1004,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getPipelineDescription()
     {
-        return isset($this->pipeline_description) ? $this->pipeline_description : null;
+        return $this->pipeline_description;
     }
 
     public function hasPipelineDescription()
@@ -1053,7 +1052,7 @@ class Job extends \Google\Protobuf\Internal\Message
      * callers cannot mutate it.
      *
      * Generated from protobuf field <code>repeated .google.dataflow.v1beta3.ExecutionStageState stage_states = 20;</code>
-     * @param \Google\Cloud\Dataflow\V1beta3\ExecutionStageState[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataflow\V1beta3\ExecutionStageState>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setStageStates($var)
@@ -1074,7 +1073,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getJobMetadata()
     {
-        return isset($this->job_metadata) ? $this->job_metadata : null;
+        return $this->job_metadata;
     }
 
     public function hasJobMetadata()
@@ -1117,7 +1116,7 @@ class Job extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()

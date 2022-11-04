@@ -76,7 +76,7 @@ class UpdateTagKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getTagKey()
     {
-        return isset($this->tag_key) ? $this->tag_key : null;
+        return $this->tag_key;
     }
 
     public function hasTagKey()
@@ -117,7 +117,7 @@ class UpdateTagKeyRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

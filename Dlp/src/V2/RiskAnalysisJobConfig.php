@@ -46,7 +46,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      *           Privacy metric to compute.
      *     @type \Google\Cloud\Dlp\V2\BigQueryTable $source_table
      *           Input dataset to compute metrics over.
-     *     @type \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $actions
+     *     @type array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $actions
      *           Actions to execute at the completion of the job. Are executed in the order
      *           provided.
      * }
@@ -64,7 +64,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getPrivacyMetric()
     {
-        return isset($this->privacy_metric) ? $this->privacy_metric : null;
+        return $this->privacy_metric;
     }
 
     public function hasPrivacyMetric()
@@ -100,7 +100,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSourceTable()
     {
-        return isset($this->source_table) ? $this->source_table : null;
+        return $this->source_table;
     }
 
     public function hasSourceTable()
@@ -145,7 +145,7 @@ class RiskAnalysisJobConfig extends \Google\Protobuf\Internal\Message
      * provided.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.Action actions = 3;</code>
-     * @param \Google\Cloud\Dlp\V2\Action[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\Action>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setActions($var)

@@ -15,7 +15,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      */
@@ -27,8 +27,8 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
-     *           New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $ssl_certificates
+     *           New set of SslCertificate resources to associate with this TargetHttpsProxy resource.
      * }
      */
     public function __construct($data = NULL) {
@@ -37,7 +37,7 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
     }
 
     /**
-     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -48,10 +48,10 @@ class RegionTargetHttpsProxiesSetSslCertificatesRequest extends \Google\Protobuf
     }
 
     /**
-     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource. Currently exactly one SslCertificate resource must be specified.
+     * New set of SslCertificate resources to associate with this TargetHttpsProxy resource.
      *
      * Generated from protobuf field <code>repeated string ssl_certificates = 366006543;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSslCertificates($var)

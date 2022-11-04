@@ -17,7 +17,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     /**
      * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      */
     private $fingerprint = null;
     /**
@@ -35,7 +35,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      *
      *     @type string $fingerprint
      *           Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_pools
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_pools
      *           The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      * }
      */
@@ -47,7 +47,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     /**
      * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @return string
      */
     public function getFingerprint()
@@ -68,7 +68,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
     /**
      * Fingerprint of the target pools information, which is a hash of the contents. This field is used for optimistic locking when you update the target pool entries. This field is optional.
      *
-     * Generated from protobuf field <code>string fingerprint = 234678500;</code>
+     * Generated from protobuf field <code>optional string fingerprint = 234678500;</code>
      * @param string $var
      * @return $this
      */
@@ -95,7 +95,7 @@ class RegionInstanceGroupManagersSetTargetPoolsRequest extends \Google\Protobuf\
      * The URL of all TargetPool resources to which instances in the instanceGroup field are added. The target pools automatically apply to all of the instances in the managed instance group.
      *
      * Generated from protobuf field <code>repeated string target_pools = 336072617;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetPools($var)

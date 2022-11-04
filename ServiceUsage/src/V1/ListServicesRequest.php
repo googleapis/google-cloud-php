@@ -26,7 +26,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Requested size of the next page of data.
      * Requested page size cannot exceed 200.
-     *  If not set, the default page size is 50.
+     * If not set, the default page size is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -59,7 +59,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
      *     @type int $page_size
      *           Requested size of the next page of data.
      *           Requested page size cannot exceed 200.
-     *            If not set, the default page size is 50.
+     *           If not set, the default page size is 50.
      *     @type string $page_token
      *           Token identifying which result to start with, which is returned by a
      *           previous list call.
@@ -106,7 +106,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Requested size of the next page of data.
      * Requested page size cannot exceed 200.
-     *  If not set, the default page size is 50.
+     * If not set, the default page size is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -119,7 +119,7 @@ class ListServicesRequest extends \Google\Protobuf\Internal\Message
     /**
      * Requested size of the next page of data.
      * Requested page size cannot exceed 200.
-     *  If not set, the default page size is 50.
+     * If not set, the default page size is 50.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

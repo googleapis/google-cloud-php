@@ -93,7 +93,7 @@ class CreateChannelPartnerLinkRequest extends \Google\Protobuf\Internal\Message
      */
     public function getChannelPartnerLink()
     {
-        return isset($this->channel_partner_link) ? $this->channel_partner_link : null;
+        return $this->channel_partner_link;
     }
 
     public function hasChannelPartnerLink()

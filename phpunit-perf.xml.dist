@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="./Core/perf-bootstrap.php" colors="true">
   <testsuites>
-    <testsuite>
+    <testsuite name="Perf Test Suite">
       <directory>*/tests/Perf</directory>
     </testsuite>
   </testsuites>

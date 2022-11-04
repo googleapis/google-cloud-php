@@ -134,6 +134,4 @@ class VersionedPackage extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(VersionedPackage::class, \Google\Cloud\OsConfig\V1\Inventory_VersionedPackage::class);
 

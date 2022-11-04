@@ -7,9 +7,7 @@ namespace Google\Cloud\Compute\V1\InterconnectAttachment;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values:
- * - OS_ACTIVE: The attachment has been turned up and is ready to use.
- * - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete.
+ * [Output Only] The current status of whether or not this interconnect attachment is functional, which can take one of the following values: - OS_ACTIVE: The attachment has been turned up and is ready to use. - OS_UNPROVISIONED: The attachment is not ready to use yet, because turnup is not complete. 
  *
  * Protobuf type <code>google.cloud.compute.v1.InterconnectAttachment.OperationalStatus</code>
  */
@@ -22,10 +20,14 @@ class OperationalStatus
      */
     const UNDEFINED_OPERATIONAL_STATUS = 0;
     /**
+     * Indicates that attachment has been turned up and is ready to use.
+     *
      * Generated from protobuf enum <code>OS_ACTIVE = 55721409;</code>
      */
     const OS_ACTIVE = 55721409;
     /**
+     * Indicates that attachment is not ready to use yet, because turnup is not complete.
+     *
      * Generated from protobuf enum <code>OS_UNPROVISIONED = 239771840;</code>
      */
     const OS_UNPROVISIONED = 239771840;

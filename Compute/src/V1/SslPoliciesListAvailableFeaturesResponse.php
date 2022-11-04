@@ -25,7 +25,7 @@ class SslPoliciesListAvailableFeaturesResponse extends \Google\Protobuf\Internal
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $features
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $features
      * }
      */
     public function __construct($data = NULL) {
@@ -44,7 +44,7 @@ class SslPoliciesListAvailableFeaturesResponse extends \Google\Protobuf\Internal
 
     /**
      * Generated from protobuf field <code>repeated string features = 246211645;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFeatures($var)

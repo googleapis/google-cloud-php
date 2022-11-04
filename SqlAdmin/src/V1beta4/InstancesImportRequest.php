@@ -45,7 +45,7 @@ class InstancesImportRequest extends \Google\Protobuf\Internal\Message
      */
     public function getImportContext()
     {
-        return isset($this->import_context) ? $this->import_context : null;
+        return $this->import_context;
     }
 
     public function hasImportContext()

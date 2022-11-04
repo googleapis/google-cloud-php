@@ -301,7 +301,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getLocation()
     {
-        return isset($this->location) ? $this->location : null;
+        return $this->location;
     }
 
     public function hasLocation()
@@ -491,7 +491,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -528,7 +528,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getFinalTime()
     {
-        return isset($this->final_time) ? $this->final_time : null;
+        return $this->final_time;
     }
 
     public function hasFinalTime()
@@ -600,7 +600,7 @@ class Breakpoint extends \Google\Protobuf\Internal\Message
      */
     public function getStatus()
     {
-        return isset($this->status) ? $this->status : null;
+        return $this->status;
     }
 
     public function hasStatus()

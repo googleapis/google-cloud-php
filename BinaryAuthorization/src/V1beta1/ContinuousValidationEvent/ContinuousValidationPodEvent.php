@@ -16,6 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
 {
     /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     */
+    private $pod_namespace = '';
+    /**
      * The name of the Pod.
      *
      * Generated from protobuf field <code>string pod = 1;</code>
@@ -52,6 +58,8 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
+     *     @type string $pod_namespace
+     *           The k8s namespace of the Pod.
      *     @type string $pod
      *           The name of the Pod.
      *     @type \Google\Protobuf\Timestamp $deploy_time
@@ -60,13 +68,39 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      *           Termination time of the Pod from k8s, or nothing if still running.
      *     @type int $verdict
      *           Auditing verdict for this Pod.
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails[]|\Google\Protobuf\Internal\RepeatedField $images
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails>|\Google\Protobuf\Internal\RepeatedField $images
      *           List of images with auditing details.
      * }
      */
     public function __construct($data = NULL) {
         \GPBMetadata\Google\Cloud\Binaryauthorization\V1Beta1\ContinuousValidationLogging::initOnce();
         parent::__construct($data);
+    }
+
+    /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     * @return string
+     */
+    public function getPodNamespace()
+    {
+        return $this->pod_namespace;
+    }
+
+    /**
+     * The k8s namespace of the Pod.
+     *
+     * Generated from protobuf field <code>string pod_namespace = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPodNamespace($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->pod_namespace = $var;
+
+        return $this;
     }
 
     /**
@@ -103,7 +137,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      */
     public function getDeployTime()
     {
-        return isset($this->deploy_time) ? $this->deploy_time : null;
+        return $this->deploy_time;
     }
 
     public function hasDeployTime()
@@ -139,7 +173,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -208,7 +242,7 @@ class ContinuousValidationPodEvent extends \Google\Protobuf\Internal\Message
      * List of images with auditing details.
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.ContinuousValidationEvent.ContinuousValidationPodEvent.ImageDetails images = 5;</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\ContinuousValidationEvent\ContinuousValidationPodEvent\ImageDetails>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setImages($var)

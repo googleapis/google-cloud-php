@@ -24,7 +24,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *  `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
      *  2) Only regional keys can be used and the region of the CMEK key must
      *  match the region of the cluster.
-     * 3) All clusters within an instance must use the same CMEK key.
+     *  3) All clusters within an instance must use the same CMEK key.
+     * Values are of the form
+     * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -44,7 +46,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *            `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
      *            2) Only regional keys can be used and the region of the CMEK key must
      *            match the region of the cluster.
-     *           3) All clusters within an instance must use the same CMEK key.
+     *            3) All clusters within an instance must use the same CMEK key.
+     *           Values are of the form
+     *           `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
      * }
      */
     public function __construct($data = NULL) {
@@ -60,7 +64,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *  `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
      *  2) Only regional keys can be used and the region of the CMEK key must
      *  match the region of the cluster.
-     * 3) All clusters within an instance must use the same CMEK key.
+     *  3) All clusters within an instance must use the same CMEK key.
+     * Values are of the form
+     * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -78,7 +84,9 @@ class EncryptionConfig extends \Google\Protobuf\Internal\Message
      *  `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key.
      *  2) Only regional keys can be used and the region of the CMEK key must
      *  match the region of the cluster.
-     * 3) All clusters within an instance must use the same CMEK key.
+     *  3) All clusters within an instance must use the same CMEK key.
+     * Values are of the form
+     * `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`
      *
      * Generated from protobuf field <code>string kms_key_name = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

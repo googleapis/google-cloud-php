@@ -65,7 +65,7 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      */
     public function getDetectIntentResponse()
     {
-        return isset($this->detect_intent_response) ? $this->detect_intent_response : null;
+        return $this->detect_intent_response;
     }
 
     public function hasDetectIntentResponse()

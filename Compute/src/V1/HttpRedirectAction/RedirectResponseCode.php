@@ -7,13 +7,7 @@ namespace Google\Cloud\Compute\V1\HttpRedirectAction;
 use UnexpectedValueException;
 
 /**
- * The HTTP Status code to use for this RedirectAction.
- * Supported values are:
- * - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301.
- * - FOUND, which corresponds to 302.
- * - SEE_OTHER which corresponds to 303.
- * - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method will be retained.
- * - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method will be retained.
+ * The HTTP Status code to use for this RedirectAction. Supported values are: - MOVED_PERMANENTLY_DEFAULT, which is the default value and corresponds to 301. - FOUND, which corresponds to 302. - SEE_OTHER which corresponds to 303. - TEMPORARY_REDIRECT, which corresponds to 307. In this case, the request method is retained. - PERMANENT_REDIRECT, which corresponds to 308. In this case, the request method is retained. 
  *
  * Protobuf type <code>google.cloud.compute.v1.HttpRedirectAction.RedirectResponseCode</code>
  */
@@ -26,22 +20,32 @@ class RedirectResponseCode
      */
     const UNDEFINED_REDIRECT_RESPONSE_CODE = 0;
     /**
+     * Http Status Code 302 - Found.
+     *
      * Generated from protobuf enum <code>FOUND = 67084130;</code>
      */
     const FOUND = 67084130;
     /**
+     * Http Status Code 301 - Moved Permanently.
+     *
      * Generated from protobuf enum <code>MOVED_PERMANENTLY_DEFAULT = 386698449;</code>
      */
     const MOVED_PERMANENTLY_DEFAULT = 386698449;
     /**
+     * Http Status Code 308 - Permanent Redirect maintaining HTTP method.
+     *
      * Generated from protobuf enum <code>PERMANENT_REDIRECT = 382006381;</code>
      */
     const PERMANENT_REDIRECT = 382006381;
     /**
+     * Http Status Code 303 - See Other.
+     *
      * Generated from protobuf enum <code>SEE_OTHER = 445380580;</code>
      */
     const SEE_OTHER = 445380580;
     /**
+     * Http Status Code 307 - Temporary Redirect maintaining HTTP method.
+     *
      * Generated from protobuf enum <code>TEMPORARY_REDIRECT = 489550378;</code>
      */
     const TEMPORARY_REDIRECT = 489550378;

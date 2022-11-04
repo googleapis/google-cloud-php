@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/binaryauthorization/v1beta1/.*-php/(.*)
+      dest: /owl-bot-staging/BinaryAuthorization/v1beta1/$1
+api-name: BinaryAuthorization

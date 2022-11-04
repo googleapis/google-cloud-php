@@ -94,7 +94,7 @@ class ComponentIntegration extends GoogleCloudCommand
             try {
                 $isUpdated = version::gt($localLatestVersion, $remoteLatestVersion);
             } catch (\RuntimeException $e) {
-                // `master` is not a valid semver version and will raise an
+                // `main` is not a valid semver version and will raise an
                 // exception. Handle and set the value to false to continue on.
                 $isUpdated = false;
             }

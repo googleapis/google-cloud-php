@@ -56,7 +56,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      */
@@ -115,7 +115,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of the spoke.
      *     @type string $hub
-     *           Immutable. The URI of the hub that this spoke is attached to.
+     *           Immutable. The name of the hub that this spoke is attached to.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedVpnTunnels $linked_vpn_tunnels
      *           VPN tunnels that are associated with the spoke.
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedInterconnectAttachments $linked_interconnect_attachments
@@ -173,7 +173,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -209,7 +209,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -294,7 +294,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @return string
@@ -305,7 +305,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The URI of the hub that this spoke is attached to.
+     * Immutable. The name of the hub that this spoke is attached to.
      *
      * Generated from protobuf field <code>string hub = 6 [(.google.api.field_behavior) = IMMUTABLE, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -327,7 +327,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     public function getLinkedVpnTunnels()
     {
-        return isset($this->linked_vpn_tunnels) ? $this->linked_vpn_tunnels : null;
+        return $this->linked_vpn_tunnels;
     }
 
     public function hasLinkedVpnTunnels()
@@ -363,7 +363,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     public function getLinkedInterconnectAttachments()
     {
-        return isset($this->linked_interconnect_attachments) ? $this->linked_interconnect_attachments : null;
+        return $this->linked_interconnect_attachments;
     }
 
     public function hasLinkedInterconnectAttachments()
@@ -399,7 +399,7 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     public function getLinkedRouterApplianceInstances()
     {
-        return isset($this->linked_router_appliance_instances) ? $this->linked_router_appliance_instances : null;
+        return $this->linked_router_appliance_instances;
     }
 
     public function hasLinkedRouterApplianceInstances()

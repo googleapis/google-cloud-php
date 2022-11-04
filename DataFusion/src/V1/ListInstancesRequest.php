@@ -16,12 +16,12 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListInstancesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The project and location for which to retrieve instance information
+     * Required. The project and location for which to retrieve instance information
      * in the format projects/{project}/locations/{location}. If the location is
      * specified as '-' (wildcard), then all regions available to the project
      * are queried, and the results are aggregated.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -57,7 +57,7 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The project and location for which to retrieve instance information
+     *           Required. The project and location for which to retrieve instance information
      *           in the format projects/{project}/locations/{location}. If the location is
      *           specified as '-' (wildcard), then all regions available to the project
      *           are queried, and the results are aggregated.
@@ -78,12 +78,12 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and location for which to retrieve instance information
+     * Required. The project and location for which to retrieve instance information
      * in the format projects/{project}/locations/{location}. If the location is
      * specified as '-' (wildcard), then all regions available to the project
      * are queried, and the results are aggregated.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -92,12 +92,12 @@ class ListInstancesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The project and location for which to retrieve instance information
+     * Required. The project and location for which to retrieve instance information
      * in the format projects/{project}/locations/{location}. If the location is
      * specified as '-' (wildcard), then all regions available to the project
      * are queried, and the results are aggregated.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */

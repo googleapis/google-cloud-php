@@ -26,6 +26,7 @@ use Google\Cloud\Spanner\Connection\ConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\LongRunning\LongRunningOperation;
 use Google\Cloud\Core\LongRunning\LROTrait;
+use DateTimeInterface;
 
 /**
  * Represents a Cloud Spanner Backup.
@@ -147,24 +148,24 @@ class Backup
      * ```
      *
      * @param string $database The name or id of the database that this backup is for.
-     * @param \DateTimeInterface $expireTime ​The expiration time of the backup,
+     * @param DateTimeInterface $expireTime ​The expiration time of the backup,
      *        with microseconds granularity that must be at least 6 hours and
      *        at most 366 days. Once the expireTime has passed, the backup is
      *        eligible to be automatically deleted by Cloud Spanner.
      * @param array $options [optional] {
      *         Configuration Options.
      *
-     *         @type \DateTimeInterface $versionTime The version time for the externally
+     *         @type DateTimeInterface $versionTime The version time for the externally
      *              consistent copy of the database. If not present, it will be the same
      *              as the create time of the backup.
      *     }
      * @return LongRunningOperation<Backup>
      * @throws \InvalidArgumentException
      */
-    public function create($database, \DateTimeInterface $expireTime, array $options = [])
+    public function create($database, DateTimeInterface $expireTime, array $options = [])
     {
         if (isset($options['versionTime'])) {
-            if (!($options['versionTime'] instanceof \DateTimeInterface)) {
+            if (!($options['versionTime'] instanceof DateTimeInterface)) {
                 throw new \InvalidArgumentException(
                     'Optional argument `versionTime` must be a DateTimeInterface, got ' .
                     (is_object($options['versionTime'])
@@ -181,6 +182,46 @@ class Backup
                 'database' => $this->instance->database($database)->name(),
                 'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z'),
             ],
+        ] + $options);
+
+        return $this->resumeOperation($operation['name'], $operation);
+    }
+
+    /**
+     * Create a copy of an existing backup in Cloud Spanner.
+     *
+     * Example:
+     * ```
+     * $sourceInstance = $spanner->instance('source-instance-id');
+     * $destInstance = $spanner->instance('destination-instance-id');
+     * $sourceBackup = $sourceInstance->backup('source-backup-id');
+     * $destBackup = $destInstance->backup('new-backup-id');
+     *
+     * $operation = $sourceBackup->createCopy($destBackup, new \DateTime('+7 hours'));
+     * ```
+     *
+     * @param Backup $newBackup The backup object that needs to be created as a copy.
+     * @param DateTimeInterface $expireTime The expiration time of the backup,
+     *        with microseconds granularity that must be at least 6 hours and
+     *        at most 366 days. Once the expireTime has passed, the backup is
+     *        eligible to be automatically deleted by Cloud Spanner.
+     * @param array $options [optional] {
+     *         Configuration Options.
+     *
+     *         @type DateTimeInterface $versionTime The version time for the externally
+     *              consistent copy of the database. If not present, it will be the same
+     *              as the create time of the backup.
+     *     }
+     * @return LongRunningOperation<Backup>
+     * @throws \InvalidArgumentException
+     */
+    public function createCopy(Backup $newBackup, DateTimeInterface $expireTime, array $options = [])
+    {
+        $operation = $this->connection->copyBackup([
+            'instance' => $newBackup->instance->name(),
+            'backupId' => DatabaseAdminClient::parseName($newBackup->name)['backup'],
+            'sourceBackupId' => $this->fullyQualifiedBackupName($this->name),
+            'expireTime' => $expireTime->format('Y-m-d\TH:i:s.u\Z')
         ] + $options);
 
         return $this->resumeOperation($operation['name'], $operation);
@@ -318,12 +359,12 @@ class Backup
      * $info = $backup->updateExpireTime(new \DateTime("+ 7 hours"));
      * ```
      *
-     * @param \DateTimeInterface $newTimestamp New expire time.
+     * @param DateTimeInterface $newTimestamp New expire time.
      * @param array $options [optional] Configuration options.
      *
      * @return Backup
      */
-    public function updateExpireTime(\DateTimeInterface $newTimestamp, array $options = [])
+    public function updateExpireTime(DateTimeInterface $newTimestamp, array $options = [])
     {
         return $this->info = $this->connection->updateBackup([
             'backup' => [

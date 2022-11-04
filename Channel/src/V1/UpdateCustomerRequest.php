@@ -55,7 +55,7 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getCustomer()
     {
-        return isset($this->customer) ? $this->customer : null;
+        return $this->customer;
     }
 
     public function hasCustomer()
@@ -92,7 +92,7 @@ class UpdateCustomerRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

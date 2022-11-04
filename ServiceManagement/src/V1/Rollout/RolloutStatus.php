@@ -89,6 +89,4 @@ class RolloutStatus
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RolloutStatus::class, \Google\Cloud\ServiceManagement\V1\Rollout_RolloutStatus::class);
 

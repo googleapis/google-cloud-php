@@ -111,7 +111,7 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Bulk import of multiple [Product][google.cloud.retail.v2.Product]s.
      *
-     * Request processing may be synchronous. No partial updating is supported.
+     * Request processing may be synchronous.
      * Non-existing items are created.
      *
      * Note that it is possible for a subset of the
@@ -140,36 +140,46 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, updates are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
      *
      * When inventory is updated with
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] and
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct], the
-     * specified inventory field value(s) will overwrite any existing value(s)
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct],
+     * the specified inventory field value(s) will overwrite any existing value(s)
      * while ignoring the last update time for this field. Furthermore, the last
      * update time for the specified inventory fields will be overwritten to the
      * time of the
-     * [CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct] or
-     * [UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * or
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
      * request.
      *
      * If no inventory fields are set in
      * [CreateProductRequest.product][google.cloud.retail.v2.CreateProductRequest.product],
      * then any pre-existing inventory information for this product will be used.
      *
-     * If no inventory fields are set in [UpdateProductRequest.set_mask][],
+     * If no inventory fields are set in
+     * [SetInventoryRequest.set_mask][google.cloud.retail.v2.SetInventoryRequest.set_mask],
      * then any existing inventory information will be preserved.
      *
      * Pre-existing inventory information can only be updated with
-     * [SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
-     * [AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
+     * [ProductService.SetInventory][google.cloud.retail.v2.ProductService.SetInventory],
+     * [ProductService.AddFulfillmentPlaces][google.cloud.retail.v2.ProductService.AddFulfillmentPlaces],
      * and
-     * [RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     * [ProductService.RemoveFulfillmentPlaces][google.cloud.retail.v2.ProductService.RemoveFulfillmentPlaces].
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      * @param \Google\Cloud\Retail\V2\SetInventoryRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -193,12 +203,19 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, the added place IDs are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      * @param \Google\Cloud\Retail\V2\AddFulfillmentPlacesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -222,12 +239,19 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
      * enqueued and processed downstream. As a consequence, when a response is
      * returned, the removed place IDs are not immediately manifested in the
      * [Product][google.cloud.retail.v2.Product] queried by
-     * [GetProduct][google.cloud.retail.v2.ProductService.GetProduct] or
-     * [ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
      *
      * This feature is only available for users who have Retail Search enabled.
-     * Contact Retail Support (retail-search-support@google.com) if you are
-     * interested in using Retail Search.
+     * Please enable Retail Search on Cloud Console before using this feature.
      * @param \Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -236,6 +260,90 @@ class ProductServiceGrpcClient extends \Grpc\BaseStub {
     public function RemoveFulfillmentPlaces(\Google\Cloud\Retail\V2\RemoveFulfillmentPlacesRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.retail.v2.ProductService/RemoveFulfillmentPlaces',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Updates local inventory information for a
+     * [Product][google.cloud.retail.v2.Product] at a list of places, while
+     * respecting the last update timestamps of each inventory field.
+     *
+     * This process is asynchronous and does not require the
+     * [Product][google.cloud.retail.v2.Product] to exist before updating
+     * inventory information. If the request is valid, the update will be enqueued
+     * and processed downstream. As a consequence, when a response is returned,
+     * updates are not immediately manifested in the
+     * [Product][google.cloud.retail.v2.Product] queried by
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Local inventory information can only be modified using this method.
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * has no effect on local inventories.
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Please enable Retail Search on Cloud Console before using this feature.
+     * @param \Google\Cloud\Retail\V2\AddLocalInventoriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function AddLocalInventories(\Google\Cloud\Retail\V2\AddLocalInventoriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.ProductService/AddLocalInventories',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Remove local inventory information for a
+     * [Product][google.cloud.retail.v2.Product] at a list of places at a removal
+     * timestamp.
+     *
+     * This process is asynchronous. If the request is valid, the removal will be
+     * enqueued and processed downstream. As a consequence, when a response is
+     * returned, removals are not immediately manifested in the
+     * [Product][google.cloud.retail.v2.Product] queried by
+     * [ProductService.GetProduct][google.cloud.retail.v2.ProductService.GetProduct]
+     * or
+     * [ProductService.ListProducts][google.cloud.retail.v2.ProductService.ListProducts].
+     *
+     * Local inventory information can only be removed using this method.
+     * [ProductService.CreateProduct][google.cloud.retail.v2.ProductService.CreateProduct]
+     * and
+     * [ProductService.UpdateProduct][google.cloud.retail.v2.ProductService.UpdateProduct]
+     * has no effect on local inventories.
+     *
+     * The returned [Operation][]s will be obsolete after 1 day, and
+     * [GetOperation][] API will return NOT_FOUND afterwards.
+     *
+     * If conflicting updates are issued, the [Operation][]s associated with the
+     * stale updates will not be marked as [done][Operation.done] until being
+     * obsolete.
+     *
+     * This feature is only available for users who have Retail Search enabled.
+     * Please enable Retail Search on Cloud Console before using this feature.
+     * @param \Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RemoveLocalInventories(\Google\Cloud\Retail\V2\RemoveLocalInventoriesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.retail.v2.ProductService/RemoveLocalInventories',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

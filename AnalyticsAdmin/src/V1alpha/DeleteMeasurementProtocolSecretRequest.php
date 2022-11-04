@@ -18,9 +18,7 @@ class DeleteMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The name of the MeasurementProtocolSecret to delete.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     * Note: Any type of stream (WebDataStream, IosAppDataStream,
-     * AndroidAppDataStream) may be a parent.
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -35,9 +33,7 @@ class DeleteMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
      *     @type string $name
      *           Required. The name of the MeasurementProtocolSecret to delete.
      *           Format:
-     *           properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     *           Note: Any type of stream (WebDataStream, IosAppDataStream,
-     *           AndroidAppDataStream) may be a parent.
+     *           properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      * }
      */
     public function __construct($data = NULL) {
@@ -48,9 +44,7 @@ class DeleteMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The name of the MeasurementProtocolSecret to delete.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     * Note: Any type of stream (WebDataStream, IosAppDataStream,
-     * AndroidAppDataStream) may be a parent.
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -63,9 +57,7 @@ class DeleteMeasurementProtocolSecretRequest extends \Google\Protobuf\Internal\M
     /**
      * Required. The name of the MeasurementProtocolSecret to delete.
      * Format:
-     * properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
-     * Note: Any type of stream (WebDataStream, IosAppDataStream,
-     * AndroidAppDataStream) may be a parent.
+     * properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

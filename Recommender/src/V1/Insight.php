@@ -75,6 +75,12 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     private $category = 0;
     /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     */
+    private $severity = 0;
+    /**
      * Fingerprint of the Insight. Provides optimistic locking when updating
      * states.
      *
@@ -99,7 +105,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           Free-form human readable summary in English. The maximum length is 500
      *           characters.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_resources
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_resources
      *           Fully qualified resource names that this insight is targeting.
      *     @type string $insight_subtype
      *           Insight subtype. Insight content schema will be stable for a given subtype.
@@ -116,10 +122,12 @@ class Insight extends \Google\Protobuf\Internal\Message
      *           Information state and metadata.
      *     @type int $category
      *           Category being targeted by the insight.
+     *     @type int $severity
+     *           Insight's severity.
      *     @type string $etag
      *           Fingerprint of the Insight. Provides optimistic locking when updating
      *           states.
-     *     @type \Google\Cloud\Recommender\V1\Insight\RecommendationReference[]|\Google\Protobuf\Internal\RepeatedField $associated_recommendations
+     *     @type array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $associated_recommendations
      *           Recommendations derived from this insight.
      * }
      */
@@ -197,7 +205,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Fully qualified resource names that this insight is targeting.
      *
      * Generated from protobuf field <code>repeated string target_resources = 9;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetResources($var)
@@ -243,7 +251,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getContent()
     {
-        return isset($this->content) ? $this->content : null;
+        return $this->content;
     }
 
     public function hasContent()
@@ -280,7 +288,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getLastRefreshTime()
     {
-        return isset($this->last_refresh_time) ? $this->last_refresh_time : null;
+        return $this->last_refresh_time;
     }
 
     public function hasLastRefreshTime()
@@ -318,7 +326,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getObservationPeriod()
     {
-        return isset($this->observation_period) ? $this->observation_period : null;
+        return $this->observation_period;
     }
 
     public function hasObservationPeriod()
@@ -356,7 +364,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      */
     public function getStateInfo()
     {
-        return isset($this->state_info) ? $this->state_info : null;
+        return $this->state_info;
     }
 
     public function hasStateInfo()
@@ -411,6 +419,32 @@ class Insight extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     * @return int
+     */
+    public function getSeverity()
+    {
+        return $this->severity;
+    }
+
+    /**
+     * Insight's severity.
+     *
+     * Generated from protobuf field <code>.google.cloud.recommender.v1.Insight.Severity severity = 15;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setSeverity($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Recommender\V1\Insight\Severity::class);
+        $this->severity = $var;
+
+        return $this;
+    }
+
+    /**
      * Fingerprint of the Insight. Provides optimistic locking when updating
      * states.
      *
@@ -453,7 +487,7 @@ class Insight extends \Google\Protobuf\Internal\Message
      * Recommendations derived from this insight.
      *
      * Generated from protobuf field <code>repeated .google.cloud.recommender.v1.Insight.RecommendationReference associated_recommendations = 8;</code>
-     * @param \Google\Cloud\Recommender\V1\Insight\RecommendationReference[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Recommender\V1\Insight\RecommendationReference>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAssociatedRecommendations($var)

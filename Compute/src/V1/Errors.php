@@ -17,19 +17,25 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      */
     private $code = null;
     /**
+     * [Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ErrorDetails error_details = 274653963;</code>
+     */
+    private $error_details;
+    /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      */
     private $location = null;
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      */
     private $message = null;
 
@@ -41,6 +47,8 @@ class Errors extends \Google\Protobuf\Internal\Message
      *
      *     @type string $code
      *           [Output Only] The error type identifier for this error.
+     *     @type array<\Google\Cloud\Compute\V1\ErrorDetails>|\Google\Protobuf\Internal\RepeatedField $error_details
+     *           [Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.
      *     @type string $location
      *           [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *     @type string $message
@@ -55,7 +63,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @return string
      */
     public function getCode()
@@ -76,7 +84,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The error type identifier for this error.
      *
-     * Generated from protobuf field <code>string code = 3059181;</code>
+     * Generated from protobuf field <code>optional string code = 3059181;</code>
      * @param string $var
      * @return $this
      */
@@ -89,9 +97,35 @@ class Errors extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * [Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ErrorDetails error_details = 274653963;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getErrorDetails()
+    {
+        return $this->error_details;
+    }
+
+    /**
+     * [Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.ErrorDetails error_details = 274653963;</code>
+     * @param array<\Google\Cloud\Compute\V1\ErrorDetails>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setErrorDetails($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\ErrorDetails::class);
+        $this->error_details = $arr;
+
+        return $this;
+    }
+
+    /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      * @return string
      */
     public function getLocation()
@@ -112,7 +146,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Indicates the field in the request that caused the error. This property is optional.
      *
-     * Generated from protobuf field <code>string location = 290430901;</code>
+     * Generated from protobuf field <code>optional string location = 290430901;</code>
      * @param string $var
      * @return $this
      */
@@ -127,7 +161,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @return string
      */
     public function getMessage()
@@ -148,7 +182,7 @@ class Errors extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] An optional, human-readable error message.
      *
-     * Generated from protobuf field <code>string message = 418054151;</code>
+     * Generated from protobuf field <code>optional string message = 418054151;</code>
      * @param string $var
      * @return $this
      */

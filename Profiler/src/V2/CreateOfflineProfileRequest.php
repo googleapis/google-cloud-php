@@ -80,7 +80,7 @@ class CreateOfflineProfileRequest extends \Google\Protobuf\Internal\Message
      */
     public function getProfile()
     {
-        return isset($this->profile) ? $this->profile : null;
+        return $this->profile;
     }
 
     public function hasProfile()

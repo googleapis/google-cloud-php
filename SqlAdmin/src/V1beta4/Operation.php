@@ -18,7 +18,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class Operation extends \Google\Protobuf\Internal\Message
 {
     /**
-     * This is always <b>sql#operation</b>.
+     * This is always `sql#operation`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      */
@@ -28,11 +28,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $target_link = '';
     /**
-     * The status of an operation. Valid values are:
-     * <br><b>PENDING</b>
-     * <br><b>RUNNING</b>
-     * <br><b>DONE</b>
-     * <br><b>SQL_OPERATION_STATUS_UNSPECIFIED</b>
+     * The status of an operation.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationStatus status = 3;</code>
      */
@@ -44,25 +40,25 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     private $user = '';
     /**
-     * The time this operation was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 5;</code>
      */
     private $insert_time = null;
     /**
-     * The time this operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      */
     private $start_time = null;
     /**
-     * The time this operation finished in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation finished in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      */
@@ -76,18 +72,18 @@ class Operation extends \Google\Protobuf\Internal\Message
     private $error = null;
     /**
      * The type of the operation. Valid values are:
-     * <br><b>CREATE</b>
-     * <br><b>DELETE</b>
-     * <br><b>UPDATE</b>
-     * <br><b>RESTART</b>
-     * <br><b>IMPORT</b>
-     * <br><b>EXPORT</b>
-     * <br><b>BACKUP_VOLUME</b>
-     * <br><b>RESTORE_VOLUME</b>
-     * <br><b>CREATE_USER</b>
-     * <br><b>DELETE_USER</b>
-     * <br><b>CREATE_DATABASE</b>
-     * <br><b>DELETE_DATABASE</b>
+     * *  `CREATE`
+     * *  `DELETE`
+     * *  `UPDATE`
+     * *  `RESTART`
+     * *  `IMPORT`
+     * *  `EXPORT`
+     * *  `BACKUP_VOLUME`
+     * *  `RESTORE_VOLUME`
+     * *  `CREATE_USER`
+     * *  `DELETE_USER`
+     * *  `CREATE_DATABASE`
+     * *  `DELETE_DATABASE`
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationType operation_type = 9;</code>
      */
@@ -144,45 +140,41 @@ class Operation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $kind
-     *           This is always <b>sql#operation</b>.
+     *           This is always `sql#operation`.
      *     @type string $target_link
      *     @type int $status
-     *           The status of an operation. Valid values are:
-     *           <br><b>PENDING</b>
-     *           <br><b>RUNNING</b>
-     *           <br><b>DONE</b>
-     *           <br><b>SQL_OPERATION_STATUS_UNSPECIFIED</b>
+     *           The status of an operation.
      *     @type string $user
      *           The email address of the user who initiated this operation.
      *     @type \Google\Protobuf\Timestamp $insert_time
-     *           The time this operation was enqueued in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time this operation was enqueued in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Protobuf\Timestamp $start_time
-     *           The time this operation actually started in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time this operation actually started in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Protobuf\Timestamp $end_time
-     *           The time this operation finished in UTC timezone in <a
-     *           href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     *           <b>2012-11-15T16:19:00.094Z</b>.
+     *           The time this operation finished in UTC timezone in
+     *           [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     *           `2012-11-15T16:19:00.094Z`.
      *     @type \Google\Cloud\Sql\V1beta4\OperationErrors $error
      *           If errors occurred during processing of this operation, this field will be
      *           populated.
      *     @type int $operation_type
      *           The type of the operation. Valid values are:
-     *           <br><b>CREATE</b>
-     *           <br><b>DELETE</b>
-     *           <br><b>UPDATE</b>
-     *           <br><b>RESTART</b>
-     *           <br><b>IMPORT</b>
-     *           <br><b>EXPORT</b>
-     *           <br><b>BACKUP_VOLUME</b>
-     *           <br><b>RESTORE_VOLUME</b>
-     *           <br><b>CREATE_USER</b>
-     *           <br><b>DELETE_USER</b>
-     *           <br><b>CREATE_DATABASE</b>
-     *           <br><b>DELETE_DATABASE</b>
+     *           *  `CREATE`
+     *           *  `DELETE`
+     *           *  `UPDATE`
+     *           *  `RESTART`
+     *           *  `IMPORT`
+     *           *  `EXPORT`
+     *           *  `BACKUP_VOLUME`
+     *           *  `RESTORE_VOLUME`
+     *           *  `CREATE_USER`
+     *           *  `DELETE_USER`
+     *           *  `CREATE_DATABASE`
+     *           *  `DELETE_DATABASE`
      *     @type \Google\Cloud\Sql\V1beta4\ImportContext $import_context
      *           The context for import operation, if applicable.
      *     @type \Google\Cloud\Sql\V1beta4\ExportContext $export_context
@@ -207,7 +199,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#operation</b>.
+     * This is always `sql#operation`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @return string
@@ -218,7 +210,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This is always <b>sql#operation</b>.
+     * This is always `sql#operation`.
      *
      * Generated from protobuf field <code>string kind = 1;</code>
      * @param string $var
@@ -255,11 +247,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of an operation. Valid values are:
-     * <br><b>PENDING</b>
-     * <br><b>RUNNING</b>
-     * <br><b>DONE</b>
-     * <br><b>SQL_OPERATION_STATUS_UNSPECIFIED</b>
+     * The status of an operation.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationStatus status = 3;</code>
      * @return int
@@ -270,11 +258,7 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The status of an operation. Valid values are:
-     * <br><b>PENDING</b>
-     * <br><b>RUNNING</b>
-     * <br><b>DONE</b>
-     * <br><b>SQL_OPERATION_STATUS_UNSPECIFIED</b>
+     * The status of an operation.
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationStatus status = 3;</code>
      * @param int $var
@@ -315,16 +299,16 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 5;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getInsertTime()
     {
-        return isset($this->insert_time) ? $this->insert_time : null;
+        return $this->insert_time;
     }
 
     public function hasInsertTime()
@@ -338,9 +322,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation was enqueued in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation was enqueued in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp insert_time = 5;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -355,16 +339,16 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -378,9 +362,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation actually started in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation actually started in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 6;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -395,16 +379,16 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation finished in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation finished in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      * @return \Google\Protobuf\Timestamp|null
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()
@@ -418,9 +402,9 @@ class Operation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The time this operation finished in UTC timezone in <a
-     * href="https://tools.ietf.org/html/rfc3339">RFC 3339</a> format, for example
-     * <b>2012-11-15T16:19:00.094Z</b>.
+     * The time this operation finished in UTC timezone in
+     * [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example
+     * `2012-11-15T16:19:00.094Z`.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7;</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -443,7 +427,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getError()
     {
-        return isset($this->error) ? $this->error : null;
+        return $this->error;
     }
 
     public function hasError()
@@ -474,18 +458,18 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the operation. Valid values are:
-     * <br><b>CREATE</b>
-     * <br><b>DELETE</b>
-     * <br><b>UPDATE</b>
-     * <br><b>RESTART</b>
-     * <br><b>IMPORT</b>
-     * <br><b>EXPORT</b>
-     * <br><b>BACKUP_VOLUME</b>
-     * <br><b>RESTORE_VOLUME</b>
-     * <br><b>CREATE_USER</b>
-     * <br><b>DELETE_USER</b>
-     * <br><b>CREATE_DATABASE</b>
-     * <br><b>DELETE_DATABASE</b>
+     * *  `CREATE`
+     * *  `DELETE`
+     * *  `UPDATE`
+     * *  `RESTART`
+     * *  `IMPORT`
+     * *  `EXPORT`
+     * *  `BACKUP_VOLUME`
+     * *  `RESTORE_VOLUME`
+     * *  `CREATE_USER`
+     * *  `DELETE_USER`
+     * *  `CREATE_DATABASE`
+     * *  `DELETE_DATABASE`
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationType operation_type = 9;</code>
      * @return int
@@ -497,18 +481,18 @@ class Operation extends \Google\Protobuf\Internal\Message
 
     /**
      * The type of the operation. Valid values are:
-     * <br><b>CREATE</b>
-     * <br><b>DELETE</b>
-     * <br><b>UPDATE</b>
-     * <br><b>RESTART</b>
-     * <br><b>IMPORT</b>
-     * <br><b>EXPORT</b>
-     * <br><b>BACKUP_VOLUME</b>
-     * <br><b>RESTORE_VOLUME</b>
-     * <br><b>CREATE_USER</b>
-     * <br><b>DELETE_USER</b>
-     * <br><b>CREATE_DATABASE</b>
-     * <br><b>DELETE_DATABASE</b>
+     * *  `CREATE`
+     * *  `DELETE`
+     * *  `UPDATE`
+     * *  `RESTART`
+     * *  `IMPORT`
+     * *  `EXPORT`
+     * *  `BACKUP_VOLUME`
+     * *  `RESTORE_VOLUME`
+     * *  `CREATE_USER`
+     * *  `DELETE_USER`
+     * *  `CREATE_DATABASE`
+     * *  `DELETE_DATABASE`
      *
      * Generated from protobuf field <code>.google.cloud.sql.v1beta4.Operation.SqlOperationType operation_type = 9;</code>
      * @param int $var
@@ -530,7 +514,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getImportContext()
     {
-        return isset($this->import_context) ? $this->import_context : null;
+        return $this->import_context;
     }
 
     public function hasImportContext()
@@ -566,7 +550,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getExportContext()
     {
-        return isset($this->export_context) ? $this->export_context : null;
+        return $this->export_context;
     }
 
     public function hasExportContext()
@@ -602,7 +586,7 @@ class Operation extends \Google\Protobuf\Internal\Message
      */
     public function getBackupContext()
     {
-        return isset($this->backup_context) ? $this->backup_context : null;
+        return $this->backup_context;
     }
 
     public function hasBackupContext()

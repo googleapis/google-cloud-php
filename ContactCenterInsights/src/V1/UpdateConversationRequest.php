@@ -53,7 +53,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getConversation()
     {
-        return isset($this->conversation) ? $this->conversation : null;
+        return $this->conversation;
     }
 
     public function hasConversation()
@@ -89,7 +89,7 @@ class UpdateConversationRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

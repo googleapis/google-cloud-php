@@ -72,7 +72,7 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()
@@ -109,7 +109,7 @@ class UpdateMigrationJobRequest extends \Google\Protobuf\Internal\Message
      */
     public function getMigrationJob()
     {
-        return isset($this->migration_job) ? $this->migration_job : null;
+        return $this->migration_job;
     }
 
     public function hasMigrationJob()

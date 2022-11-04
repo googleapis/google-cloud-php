@@ -32,7 +32,7 @@ class AnnotationTest extends SnippetTestCase
     private $annotation;
     private $info;
 
-    public function setUp()
+    public function set_up()
     {
         $this->info = [
             'categories' => [

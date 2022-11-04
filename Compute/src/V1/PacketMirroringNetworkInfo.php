@@ -17,13 +17,13 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the network; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      */
     private $canonical_url = null;
     /**
      * URL of the network resource.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      */
     private $url = null;
 
@@ -47,7 +47,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the network; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @return string
      */
     public function getCanonicalUrl()
@@ -68,7 +68,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] Unique identifier for the network; defined by the server.
      *
-     * Generated from protobuf field <code>string canonical_url = 512294820;</code>
+     * Generated from protobuf field <code>optional string canonical_url = 512294820;</code>
      * @param string $var
      * @return $this
      */
@@ -83,7 +83,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network resource.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      * @return string
      */
     public function getUrl()
@@ -104,7 +104,7 @@ class PacketMirroringNetworkInfo extends \Google\Protobuf\Internal\Message
     /**
      * URL of the network resource.
      *
-     * Generated from protobuf field <code>string url = 116079;</code>
+     * Generated from protobuf field <code>optional string url = 116079;</code>
      * @param string $var
      * @return $this
      */

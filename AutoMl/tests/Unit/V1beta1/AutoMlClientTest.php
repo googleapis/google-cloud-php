@@ -93,7 +93,7 @@ class AutoMlClientTest extends GeneratedTest
     public function createDatasetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -111,9 +111,9 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataset = new Dataset();
-        $response = $client->createDataset($formattedParent, $dataset);
+        $response = $gapicClient->createDataset($formattedParent, $dataset);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -133,7 +133,7 @@ class AutoMlClientTest extends GeneratedTest
     public function createDatasetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -148,11 +148,11 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $dataset = new Dataset();
         try {
-            $client->createDataset($formattedParent, $dataset);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->createDataset($formattedParent, $dataset);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -175,7 +175,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -201,9 +201,9 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $model = new Model();
-        $response = $client->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel($formattedParent, $model);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -248,7 +248,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -270,9 +270,9 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         $model = new Model();
-        $response = $client->createModel($formattedParent, $model);
+        $response = $gapicClient->createModel($formattedParent, $model);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -306,7 +306,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -326,8 +326,8 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->deleteDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->deleteDataset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -370,7 +370,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -392,8 +392,8 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->deleteDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->deleteDataset($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -427,7 +427,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -447,8 +447,8 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->deleteModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->deleteModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -491,7 +491,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -513,8 +513,8 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->deleteModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->deleteModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -548,7 +548,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -568,8 +568,8 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->deployModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->deployModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -612,7 +612,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -634,8 +634,8 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->deployModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->deployModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -669,7 +669,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -689,9 +689,9 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $outputConfig = new OutputConfig();
-        $response = $client->exportData($formattedName, $outputConfig);
+        $response = $gapicClient->exportData($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -736,7 +736,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -758,9 +758,9 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $outputConfig = new OutputConfig();
-        $response = $client->exportData($formattedName, $outputConfig);
+        $response = $gapicClient->exportData($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -794,7 +794,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -814,9 +814,9 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ExportEvaluatedExamplesOutputConfig();
-        $response = $client->exportEvaluatedExamples($formattedName, $outputConfig);
+        $response = $gapicClient->exportEvaluatedExamples($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -861,7 +861,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -883,9 +883,9 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ExportEvaluatedExamplesOutputConfig();
-        $response = $client->exportEvaluatedExamples($formattedName, $outputConfig);
+        $response = $gapicClient->exportEvaluatedExamples($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -919,7 +919,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -939,9 +939,9 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ModelExportOutputConfig();
-        $response = $client->exportModel($formattedName, $outputConfig);
+        $response = $gapicClient->exportModel($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -986,7 +986,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1008,9 +1008,9 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         $outputConfig = new ModelExportOutputConfig();
-        $response = $client->exportModel($formattedName, $outputConfig);
+        $response = $gapicClient->exportModel($formattedName, $outputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1038,7 +1038,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getAnnotationSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1052,8 +1052,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setExampleCount($exampleCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
-        $response = $client->getAnnotationSpec($formattedName);
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $response = $gapicClient->getAnnotationSpec($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1071,7 +1071,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getAnnotationSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1086,10 +1086,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
+        $formattedName = $gapicClient->annotationSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[ANNOTATION_SPEC]');
         try {
-            $client->getAnnotationSpec($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getAnnotationSpec($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1106,7 +1106,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getColumnSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1120,8 +1120,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
-        $response = $client->getColumnSpec($formattedName);
+        $formattedName = $gapicClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
+        $response = $gapicClient->getColumnSpec($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1139,7 +1139,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getColumnSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1154,10 +1154,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
+        $formattedName = $gapicClient->columnSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]', '[COLUMN_SPEC]');
         try {
-            $client->getColumnSpec($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getColumnSpec($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1174,7 +1174,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getDatasetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1192,8 +1192,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->getDataset($formattedName);
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->getDataset($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1211,7 +1211,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getDatasetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1226,10 +1226,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $client->getDataset($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getDataset($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1246,7 +1246,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getModelTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1260,8 +1260,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDatasetId($datasetId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->getModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->getModel($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1279,7 +1279,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getModelExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1294,10 +1294,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         try {
-            $client->getModel($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getModel($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1314,7 +1314,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getModelEvaluationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1330,8 +1330,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setEvaluatedExampleCount($evaluatedExampleCount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
-        $response = $client->getModelEvaluation($formattedName);
+        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
+        $response = $gapicClient->getModelEvaluation($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1349,7 +1349,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getModelEvaluationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1364,10 +1364,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
+        $formattedName = $gapicClient->modelEvaluationName('[PROJECT]', '[LOCATION]', '[MODEL]', '[MODEL_EVALUATION]');
         try {
-            $client->getModelEvaluation($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getModelEvaluation($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1384,7 +1384,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getTableSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1404,8 +1404,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setEtag($etag);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
-        $response = $client->getTableSpec($formattedName);
+        $formattedName = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+        $response = $gapicClient->getTableSpec($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -1423,7 +1423,7 @@ class AutoMlClientTest extends GeneratedTest
     public function getTableSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1438,10 +1438,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+        $formattedName = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
         try {
-            $client->getTableSpec($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getTableSpec($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1464,7 +1464,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1484,9 +1484,9 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $inputConfig = new InputConfig();
-        $response = $client->importData($formattedName, $inputConfig);
+        $response = $gapicClient->importData($formattedName, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1531,7 +1531,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1553,9 +1553,9 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedName = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         $inputConfig = new InputConfig();
-        $response = $client->importData($formattedName, $inputConfig);
+        $response = $gapicClient->importData($formattedName, $inputConfig);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1583,7 +1583,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listColumnSpecsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1598,8 +1598,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setColumnSpecs($columnSpecs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
-        $response = $client->listColumnSpecs($formattedParent);
+        $formattedParent = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+        $response = $gapicClient->listColumnSpecs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1620,7 +1620,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listColumnSpecsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1635,10 +1635,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
+        $formattedParent = $gapicClient->tableSpecName('[PROJECT]', '[LOCATION]', '[DATASET]', '[TABLE_SPEC]');
         try {
-            $client->listColumnSpecs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listColumnSpecs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1655,7 +1655,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listDatasetsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1670,8 +1670,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setDatasets($datasets);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listDatasets($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listDatasets($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1692,7 +1692,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listDatasetsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1707,10 +1707,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listDatasets($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listDatasets($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1727,7 +1727,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listModelEvaluationsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1742,8 +1742,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setModelEvaluation($modelEvaluation);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->listModelEvaluations($formattedParent);
+        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->listModelEvaluations($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1764,7 +1764,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listModelEvaluationsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1779,10 +1779,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $formattedParent = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
         try {
-            $client->listModelEvaluations($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listModelEvaluations($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1799,7 +1799,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listModelsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1814,8 +1814,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setModel($model);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listModels($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listModels($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1836,7 +1836,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listModelsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1851,10 +1851,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listModels($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listModels($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1871,7 +1871,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listTableSpecsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1886,8 +1886,8 @@ class AutoMlClientTest extends GeneratedTest
         $expectedResponse->setTableSpecs($tableSpecs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
-        $response = $client->listTableSpecs($formattedParent);
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->listTableSpecs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -1908,7 +1908,7 @@ class AutoMlClientTest extends GeneratedTest
     public function listTableSpecsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -1923,10 +1923,10 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
-            $client->listTableSpecs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listTableSpecs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -1949,7 +1949,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1969,8 +1969,8 @@ class AutoMlClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->undeployModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->undeployModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -2013,7 +2013,7 @@ class AutoMlClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -2035,8 +2035,8 @@ class AutoMlClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
-        $response = $client->undeployModel($formattedName);
+        $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
+        $response = $gapicClient->undeployModel($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -2064,7 +2064,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateColumnSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2079,7 +2079,7 @@ class AutoMlClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $columnSpec = new ColumnSpec();
-        $response = $client->updateColumnSpec($columnSpec);
+        $response = $gapicClient->updateColumnSpec($columnSpec);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2097,7 +2097,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateColumnSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2114,8 +2114,8 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $columnSpec = new ColumnSpec();
         try {
-            $client->updateColumnSpec($columnSpec);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateColumnSpec($columnSpec);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2132,7 +2132,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateDatasetTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2151,7 +2151,7 @@ class AutoMlClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $dataset = new Dataset();
-        $response = $client->updateDataset($dataset);
+        $response = $gapicClient->updateDataset($dataset);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2169,7 +2169,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateDatasetExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2186,8 +2186,8 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $dataset = new Dataset();
         try {
-            $client->updateDataset($dataset);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateDataset($dataset);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -2204,7 +2204,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateTableSpecTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2225,7 +2225,7 @@ class AutoMlClientTest extends GeneratedTest
         $transport->addResponse($expectedResponse);
         // Mock request
         $tableSpec = new TableSpec();
-        $response = $client->updateTableSpec($tableSpec);
+        $response = $gapicClient->updateTableSpec($tableSpec);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -2243,7 +2243,7 @@ class AutoMlClientTest extends GeneratedTest
     public function updateTableSpecExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -2260,8 +2260,8 @@ class AutoMlClientTest extends GeneratedTest
         // Mock request
         $tableSpec = new TableSpec();
         try {
-            $client->updateTableSpec($tableSpec);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->updateTableSpec($tableSpec);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());

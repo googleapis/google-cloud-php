@@ -55,7 +55,7 @@ class UpdateFulfillmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFulfillment()
     {
-        return isset($this->fulfillment) ? $this->fulfillment : null;
+        return $this->fulfillment;
     }
 
     public function hasFulfillment()
@@ -92,7 +92,7 @@ class UpdateFulfillmentRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

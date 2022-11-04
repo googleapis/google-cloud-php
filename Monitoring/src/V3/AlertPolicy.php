@@ -22,8 +22,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * Required if the policy exists. The resource name for this policy. The
      * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
-     * is created.  When calling the
+     * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
+     * is created. When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
@@ -126,6 +126,12 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord mutation_record = 11;</code>
      */
     private $mutation_record = null;
+    /**
+     * Control over how this alert policy's notification channels are notified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
+     */
+    private $alert_strategy = null;
 
     /**
      * Constructor.
@@ -137,8 +143,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           Required if the policy exists. The resource name for this policy. The
      *           format is:
      *               projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     *           `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
-     *           is created.  When calling the
+     *           `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
+     *           is created. When calling the
      *           [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      *           method, do not include the `name` field in the alerting policy passed as
      *           part of the request.
@@ -160,7 +166,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *           63 Unicode characters or 128 bytes, whichever is smaller. Labels and
      *           values can contain only lowercase letters, numerals, underscores, and
      *           dashes. Keys must begin with a letter.
-     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $conditions
+     *     @type array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $conditions
      *           A list of conditions for the policy. The conditions are combined by AND or
      *           OR according to the `combiner` field. If the combined conditions evaluate
      *           to true, then an incident is created. A policy can have from one to six
@@ -181,7 +187,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Rpc\Status $validity
      *           Read-only description of how the alert policy is invalid. OK if the alert
      *           policy is valid. If not OK, the alert policy will not generate incidents.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $notification_channels
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $notification_channels
      *           Identifies the notification channels to which notifications should be sent
      *           when incidents are opened or closed or when new violations occur on
      *           an already opened incident. Each element of this array corresponds to
@@ -197,6 +203,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Monitoring\V3\MutationRecord $mutation_record
      *           A read-only record of the most recent change to the alerting policy. If
      *           provided in a call to create or update, this field will be ignored.
+     *     @type \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy $alert_strategy
+     *           Control over how this alert policy's notification channels are notified.
      * }
      */
     public function __construct($data = NULL) {
@@ -208,8 +216,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * Required if the policy exists. The resource name for this policy. The
      * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
-     * is created.  When calling the
+     * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
+     * is created. When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
@@ -226,8 +234,8 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * Required if the policy exists. The resource name for this policy. The
      * format is:
      *     projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     * `[ALERT_POLICY_ID]` is assigned by Stackdriver Monitoring when the policy
-     * is created.  When calling the
+     * `[ALERT_POLICY_ID]` is assigned by Cloud Monitoring when the policy
+     * is created. When calling the
      * [alertPolicies.create][google.monitoring.v3.AlertPolicyService.CreateAlertPolicy]
      * method, do not include the `name` field in the alerting policy passed as
      * part of the request.
@@ -284,11 +292,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * that have limited capacity might not show this documentation.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.Documentation documentation = 13;</code>
-     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation|null
      */
     public function getDocumentation()
     {
         return $this->documentation;
+    }
+
+    public function hasDocumentation()
+    {
+        return isset($this->documentation);
+    }
+
+    public function clearDocumentation()
+    {
+        unset($this->documentation);
     }
 
     /**
@@ -304,7 +322,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setDocumentation($var)
     {
-        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy_Documentation::class);
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\Documentation::class);
         $this->documentation = $var;
 
         return $this;
@@ -371,7 +389,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * `condition`.
      *
      * Generated from protobuf field <code>repeated .google.monitoring.v3.AlertPolicy.Condition conditions = 12;</code>
-     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\Condition[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Monitoring\V3\AlertPolicy\Condition>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setConditions($var)
@@ -408,7 +426,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      */
     public function setCombiner($var)
     {
-        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy_ConditionCombinerType::class);
+        GPBUtil::checkEnum($var, \Google\Cloud\Monitoring\V3\AlertPolicy\ConditionCombinerType::class);
         $this->combiner = $var;
 
         return $this;
@@ -422,11 +440,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * a field projection has been specified that strips it out.
      *
      * Generated from protobuf field <code>.google.protobuf.BoolValue enabled = 17;</code>
-     * @return \Google\Protobuf\BoolValue
+     * @return \Google\Protobuf\BoolValue|null
      */
     public function getEnabled()
     {
         return $this->enabled;
+    }
+
+    public function hasEnabled()
+    {
+        return isset($this->enabled);
+    }
+
+    public function clearEnabled()
+    {
+        unset($this->enabled);
     }
 
     /**
@@ -488,11 +516,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * policy is valid. If not OK, the alert policy will not generate incidents.
      *
      * Generated from protobuf field <code>.google.rpc.Status validity = 18;</code>
-     * @return \Google\Rpc\Status
+     * @return \Google\Rpc\Status|null
      */
     public function getValidity()
     {
         return $this->validity;
+    }
+
+    public function hasValidity()
+    {
+        return isset($this->validity);
+    }
+
+    public function clearValidity()
+    {
+        unset($this->validity);
     }
 
     /**
@@ -542,7 +580,7 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      *     projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
      *
      * Generated from protobuf field <code>repeated string notification_channels = 14;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setNotificationChannels($var)
@@ -558,11 +596,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord creation_record = 10;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getCreationRecord()
     {
         return $this->creation_record;
+    }
+
+    public function hasCreationRecord()
+    {
+        return isset($this->creation_record);
+    }
+
+    public function clearCreationRecord()
+    {
+        unset($this->creation_record);
     }
 
     /**
@@ -586,11 +634,21 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
      * provided in a call to create or update, this field will be ignored.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.MutationRecord mutation_record = 11;</code>
-     * @return \Google\Cloud\Monitoring\V3\MutationRecord
+     * @return \Google\Cloud\Monitoring\V3\MutationRecord|null
      */
     public function getMutationRecord()
     {
         return $this->mutation_record;
+    }
+
+    public function hasMutationRecord()
+    {
+        return isset($this->mutation_record);
+    }
+
+    public function clearMutationRecord()
+    {
+        unset($this->mutation_record);
     }
 
     /**
@@ -605,6 +663,42 @@ class AlertPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\MutationRecord::class);
         $this->mutation_record = $var;
+
+        return $this;
+    }
+
+    /**
+     * Control over how this alert policy's notification channels are notified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
+     * @return \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy|null
+     */
+    public function getAlertStrategy()
+    {
+        return $this->alert_strategy;
+    }
+
+    public function hasAlertStrategy()
+    {
+        return isset($this->alert_strategy);
+    }
+
+    public function clearAlertStrategy()
+    {
+        unset($this->alert_strategy);
+    }
+
+    /**
+     * Control over how this alert policy's notification channels are notified.
+     *
+     * Generated from protobuf field <code>.google.monitoring.v3.AlertPolicy.AlertStrategy alert_strategy = 21;</code>
+     * @param \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy $var
+     * @return $this
+     */
+    public function setAlertStrategy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Monitoring\V3\AlertPolicy\AlertStrategy::class);
+        $this->alert_strategy = $var;
 
         return $this;
     }

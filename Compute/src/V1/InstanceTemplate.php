@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an Instance Template resource.
- * You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates. (== resource_for {$api_version}.instanceTemplates ==)
+ * Represents an Instance Template resource. You can use instance templates to create VM instances and managed instance groups. For more information, read Instance Templates.
  *
  * Generated from protobuf message <code>google.cloud.compute.v1.InstanceTemplate</code>
  */
@@ -19,57 +18,55 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The creation timestamp for this instance template in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      */
     private $creation_timestamp = null;
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      */
     private $description = null;
     /**
      * [Output Only] A unique identifier for this instance template. The server defines this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      */
     private $id = null;
     /**
      * [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      */
     private $kind = null;
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      */
     private $name = null;
     /**
      * The instance properties for this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
      */
     private $properties = null;
     /**
      * [Output Only] The URL for this instance template. The server defines this URL.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      */
     private $self_link = null;
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
-     * Generated from protobuf field <code>string source_instance = 396315705;</code>
+     * Generated from protobuf field <code>optional string source_instance = 396315705;</code>
      */
     private $source_instance = null;
     /**
      * The source instance params to use to create this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
      */
     private $source_instance_params = null;
 
@@ -94,9 +91,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] The URL for this instance template. The server defines this URL.
      *     @type string $source_instance
-     *           The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     *           - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     *           - projects/project/zones/zone/instances/instance
+     *           The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *     @type \Google\Cloud\Compute\V1\SourceInstanceParams $source_instance_params
      *           The source instance params to use to create this instance template.
      * }
@@ -109,7 +104,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The creation timestamp for this instance template in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @return string
      */
     public function getCreationTimestamp()
@@ -130,7 +125,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The creation timestamp for this instance template in RFC3339 text format.
      *
-     * Generated from protobuf field <code>string creation_timestamp = 30525366;</code>
+     * Generated from protobuf field <code>optional string creation_timestamp = 30525366;</code>
      * @param string $var
      * @return $this
      */
@@ -145,7 +140,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @return string
      */
     public function getDescription()
@@ -166,7 +161,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * An optional description of this resource. Provide this property when you create the resource.
      *
-     * Generated from protobuf field <code>string description = 422937596;</code>
+     * Generated from protobuf field <code>optional string description = 422937596;</code>
      * @param string $var
      * @return $this
      */
@@ -181,7 +176,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this instance template. The server defines this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @return int|string
      */
     public function getId()
@@ -202,7 +197,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] A unique identifier for this instance template. The server defines this identifier.
      *
-     * Generated from protobuf field <code>uint64 id = 3355;</code>
+     * Generated from protobuf field <code>optional uint64 id = 3355;</code>
      * @param int|string $var
      * @return $this
      */
@@ -217,7 +212,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @return string
      */
     public function getKind()
@@ -238,7 +233,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The resource type, which is always compute#instanceTemplate for instance templates.
      *
-     * Generated from protobuf field <code>string kind = 3292052;</code>
+     * Generated from protobuf field <code>optional string kind = 3292052;</code>
      * @param string $var
      * @return $this
      */
@@ -253,7 +248,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @return string
      */
     public function getName()
@@ -274,7 +269,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
-     * Generated from protobuf field <code>string name = 3373707;</code>
+     * Generated from protobuf field <code>optional string name = 3373707;</code>
      * @param string $var
      * @return $this
      */
@@ -289,12 +284,12 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The instance properties for this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
      * @return \Google\Cloud\Compute\V1\InstanceProperties|null
      */
     public function getProperties()
     {
-        return isset($this->properties) ? $this->properties : null;
+        return $this->properties;
     }
 
     public function hasProperties()
@@ -310,7 +305,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The instance properties for this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.InstanceProperties properties = 147688755;</code>
      * @param \Google\Cloud\Compute\V1\InstanceProperties $var
      * @return $this
      */
@@ -325,7 +320,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for this instance template. The server defines this URL.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @return string
      */
     public function getSelfLink()
@@ -346,7 +341,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * [Output Only] The URL for this instance template. The server defines this URL.
      *
-     * Generated from protobuf field <code>string self_link = 456214797;</code>
+     * Generated from protobuf field <code>optional string self_link = 456214797;</code>
      * @param string $var
      * @return $this
      */
@@ -359,11 +354,9 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
-     * Generated from protobuf field <code>string source_instance = 396315705;</code>
+     * Generated from protobuf field <code>optional string source_instance = 396315705;</code>
      * @return string
      */
     public function getSourceInstance()
@@ -382,11 +375,9 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values:
-     * - https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance
-     * - projects/project/zones/zone/instances/instance
+     * The source instance used to create the template. You can provide this as a partial or full URL to the resource. For example, the following are valid values: - https://www.googleapis.com/compute/v1/projects/project/zones/zone /instances/instance - projects/project/zones/zone/instances/instance 
      *
-     * Generated from protobuf field <code>string source_instance = 396315705;</code>
+     * Generated from protobuf field <code>optional string source_instance = 396315705;</code>
      * @param string $var
      * @return $this
      */
@@ -401,12 +392,12 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The source instance params to use to create this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
      * @return \Google\Cloud\Compute\V1\SourceInstanceParams|null
      */
     public function getSourceInstanceParams()
     {
-        return isset($this->source_instance_params) ? $this->source_instance_params : null;
+        return $this->source_instance_params;
     }
 
     public function hasSourceInstanceParams()
@@ -422,7 +413,7 @@ class InstanceTemplate extends \Google\Protobuf\Internal\Message
     /**
      * The source instance params to use to create this instance template.
      *
-     * Generated from protobuf field <code>.google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
+     * Generated from protobuf field <code>optional .google.cloud.compute.v1.SourceInstanceParams source_instance_params = 135342156;</code>
      * @param \Google\Cloud\Compute\V1\SourceInstanceParams $var
      * @return $this
      */

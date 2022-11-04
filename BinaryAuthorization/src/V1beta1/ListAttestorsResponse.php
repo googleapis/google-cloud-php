@@ -23,9 +23,8 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
     private $attestors;
     /**
      * A token to retrieve the next page of results. Pass this value in the
-     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token]
-     * field in the subsequent call to the `ListAttestors` method to retrieve the
-     * next page of results.
+     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token] field in the subsequent call to the
+     * `ListAttestors` method to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      */
@@ -37,13 +36,12 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\BinaryAuthorization\V1beta1\Attestor[]|\Google\Protobuf\Internal\RepeatedField $attestors
+     *     @type array<\Google\Cloud\BinaryAuthorization\V1beta1\Attestor>|\Google\Protobuf\Internal\RepeatedField $attestors
      *           The list of [attestors][google.cloud.binaryauthorization.v1beta1.Attestor].
      *     @type string $next_page_token
      *           A token to retrieve the next page of results. Pass this value in the
-     *           [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token]
-     *           field in the subsequent call to the `ListAttestors` method to retrieve the
-     *           next page of results.
+     *           [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token] field in the subsequent call to the
+     *           `ListAttestors` method to retrieve the next page of results.
      * }
      */
     public function __construct($data = NULL) {
@@ -66,7 +64,7 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
      * The list of [attestors][google.cloud.binaryauthorization.v1beta1.Attestor].
      *
      * Generated from protobuf field <code>repeated .google.cloud.binaryauthorization.v1beta1.Attestor attestors = 1;</code>
-     * @param \Google\Cloud\BinaryAuthorization\V1beta1\Attestor[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\BinaryAuthorization\V1beta1\Attestor>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAttestors($var)
@@ -79,9 +77,8 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in the
-     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token]
-     * field in the subsequent call to the `ListAttestors` method to retrieve the
-     * next page of results.
+     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token] field in the subsequent call to the
+     * `ListAttestors` method to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @return string
@@ -93,9 +90,8 @@ class ListAttestorsResponse extends \Google\Protobuf\Internal\Message
 
     /**
      * A token to retrieve the next page of results. Pass this value in the
-     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token]
-     * field in the subsequent call to the `ListAttestors` method to retrieve the
-     * next page of results.
+     * [ListAttestorsRequest.page_token][google.cloud.binaryauthorization.v1beta1.ListAttestorsRequest.page_token] field in the subsequent call to the
+     * `ListAttestors` method to retrieve the next page of results.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
      * @param string $var

@@ -69,7 +69,7 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      */
     public function getFeed()
     {
-        return isset($this->feed) ? $this->feed : null;
+        return $this->feed;
     }
 
     public function hasFeed()
@@ -111,7 +111,7 @@ class UpdateFeedRequest extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateMask()
     {
-        return isset($this->update_mask) ? $this->update_mask : null;
+        return $this->update_mask;
     }
 
     public function hasUpdateMask()

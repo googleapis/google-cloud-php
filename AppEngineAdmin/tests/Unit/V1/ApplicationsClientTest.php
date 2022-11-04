@@ -84,7 +84,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -102,6 +102,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name);
@@ -111,6 +112,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -119,7 +121,7 @@ class ApplicationsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->createApplication();
+        $response = $gapicClient->createApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -160,7 +162,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -181,7 +183,7 @@ class ApplicationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->createApplication();
+        $response = $gapicClient->createApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -209,7 +211,7 @@ class ApplicationsClientTest extends GeneratedTest
     public function getApplicationTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -221,6 +223,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -230,9 +233,10 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $transport->addResponse($expectedResponse);
-        $response = $client->getApplication();
+        $response = $gapicClient->getApplication();
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -248,7 +252,7 @@ class ApplicationsClientTest extends GeneratedTest
     public function getApplicationExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -263,8 +267,8 @@ class ApplicationsClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         try {
-            $client->getApplication();
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getApplication();
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -287,7 +291,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -305,6 +309,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -314,6 +319,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -322,7 +328,7 @@ class ApplicationsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->repairApplication();
+        $response = $gapicClient->repairApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -363,7 +369,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -384,7 +390,7 @@ class ApplicationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->repairApplication();
+        $response = $gapicClient->repairApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -418,7 +424,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -436,6 +442,7 @@ class ApplicationsClientTest extends GeneratedTest
         $codeBucket = 'codeBucket-1239055236';
         $defaultHostname = 'defaultHostname-402050959';
         $defaultBucket = 'defaultBucket1669731752';
+        $serviceAccount = 'serviceAccount-1948028253';
         $gcrDomain = 'gcrDomain883768845';
         $expectedResponse = new Application();
         $expectedResponse->setName($name2);
@@ -445,6 +452,7 @@ class ApplicationsClientTest extends GeneratedTest
         $expectedResponse->setCodeBucket($codeBucket);
         $expectedResponse->setDefaultHostname($defaultHostname);
         $expectedResponse->setDefaultBucket($defaultBucket);
+        $expectedResponse->setServiceAccount($serviceAccount);
         $expectedResponse->setGcrDomain($gcrDomain);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
@@ -453,7 +461,7 @@ class ApplicationsClientTest extends GeneratedTest
         $completeOperation->setDone(true);
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
-        $response = $client->updateApplication();
+        $response = $gapicClient->updateApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -494,7 +502,7 @@ class ApplicationsClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -515,7 +523,7 @@ class ApplicationsClientTest extends GeneratedTest
             'details' => [],
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
-        $response = $client->updateApplication();
+        $response = $gapicClient->updateApplication();
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

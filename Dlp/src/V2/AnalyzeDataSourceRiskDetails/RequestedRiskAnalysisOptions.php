@@ -45,7 +45,7 @@ class RequestedRiskAnalysisOptions extends \Google\Protobuf\Internal\Message
      */
     public function getJobConfig()
     {
-        return isset($this->job_config) ? $this->job_config : null;
+        return $this->job_config;
     }
 
     public function hasJobConfig()

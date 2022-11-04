@@ -45,7 +45,7 @@ class InstancesRestoreBackupRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRestoreBackupContext()
     {
-        return isset($this->restore_backup_context) ? $this->restore_backup_context : null;
+        return $this->restore_backup_context;
     }
 
     public function hasRestoreBackupContext()

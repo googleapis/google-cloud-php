@@ -16,14 +16,13 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be listed.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
-     * The maximum number of repositories to return.
-     * Maximum page size is 10,000.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      */
@@ -42,10 +41,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The name of the parent resource whose repositories will be listed.
+     *           Required. The name of the parent resource whose repositories will be listed.
      *     @type int $page_size
-     *           The maximum number of repositories to return.
-     *           Maximum page size is 10,000.
+     *           The maximum number of repositories to return. Maximum page size is 1,000.
      *     @type string $page_token
      *           The next_page_token value returned from a previous list request, if any.
      * }
@@ -56,9 +54,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be listed.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -67,9 +65,9 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be listed.
      *
-     * Generated from protobuf field <code>string parent = 1;</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -82,8 +80,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of repositories to return.
-     * Maximum page size is 10,000.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @return int
@@ -94,8 +91,7 @@ class ListRepositoriesRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The maximum number of repositories to return.
-     * Maximum page size is 10,000.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      *
      * Generated from protobuf field <code>int32 page_size = 2;</code>
      * @param int $var

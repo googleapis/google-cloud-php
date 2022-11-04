@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SqlBackupRunsGetRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The ID of this Backup Run.
+     * The ID of this backup run.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
      */
@@ -39,7 +39,7 @@ class SqlBackupRunsGetRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int|string $id
-     *           The ID of this Backup Run.
+     *           The ID of this backup run.
      *     @type string $instance
      *           Cloud SQL instance ID. This does not include the project ID.
      *     @type string $project
@@ -52,7 +52,7 @@ class SqlBackupRunsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of this Backup Run.
+     * The ID of this backup run.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
      * @return int|string
@@ -63,7 +63,7 @@ class SqlBackupRunsGetRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The ID of this Backup Run.
+     * The ID of this backup run.
      *
      * Generated from protobuf field <code>int64 id = 1;</code>
      * @param int|string $var

@@ -89,6 +89,4 @@ class SymptomType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SymptomType::class, \Google\Cloud\Tpu\V1\Symptom_SymptomType::class);
 

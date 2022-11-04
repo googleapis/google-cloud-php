@@ -195,7 +195,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getMessageStoragePolicy()
     {
-        return isset($this->message_storage_policy) ? $this->message_storage_policy : null;
+        return $this->message_storage_policy;
     }
 
     public function hasMessageStoragePolicy()
@@ -263,7 +263,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getSchemaSettings()
     {
-        return isset($this->schema_settings) ? $this->schema_settings : null;
+        return $this->schema_settings;
     }
 
     public function hasSchemaSettings()
@@ -334,7 +334,7 @@ class Topic extends \Google\Protobuf\Internal\Message
      */
     public function getMessageRetentionDuration()
     {
-        return isset($this->message_retention_duration) ? $this->message_retention_duration : null;
+        return $this->message_retention_duration;
     }
 
     public function hasMessageRetentionDuration()

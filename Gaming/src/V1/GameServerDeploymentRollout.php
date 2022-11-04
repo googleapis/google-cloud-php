@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the game server deployment rollout. Uses the form:
+     * The resource name of the game server deployment rollout, in the following
+     * form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
@@ -67,7 +68,8 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the game server deployment rollout. Uses the form:
+     *           The resource name of the game server deployment rollout, in the following
+     *           form:
      *           `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      *           For example,
      *           `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
@@ -79,7 +81,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      *           The default game server config is applied to all realms unless overridden
      *           in the rollout. For example,
      *           `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
-     *     @type \Google\Cloud\Gaming\V1\GameServerConfigOverride[]|\Google\Protobuf\Internal\RepeatedField $game_server_config_overrides
+     *     @type array<\Google\Cloud\Gaming\V1\GameServerConfigOverride>|\Google\Protobuf\Internal\RepeatedField $game_server_config_overrides
      *           Contains the game server config rollout overrides. Overrides are processed
      *           in the order they are listed. Once a match is found for a realm, the rest
      *           of the list is not processed.
@@ -93,7 +95,8 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server deployment rollout. Uses the form:
+     * The resource name of the game server deployment rollout, in the following
+     * form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
@@ -107,7 +110,8 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the game server deployment rollout. Uses the form:
+     * The resource name of the game server deployment rollout, in the following
+     * form:
      * `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
      * For example,
      * `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
@@ -132,7 +136,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -168,7 +172,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()
@@ -245,7 +249,7 @@ class GameServerDeploymentRollout extends \Google\Protobuf\Internal\Message
      * of the list is not processed.
      *
      * Generated from protobuf field <code>repeated .google.cloud.gaming.v1.GameServerConfigOverride game_server_config_overrides = 5;</code>
-     * @param \Google\Cloud\Gaming\V1\GameServerConfigOverride[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Gaming\V1\GameServerConfigOverride>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setGameServerConfigOverrides($var)

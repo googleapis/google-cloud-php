@@ -73,11 +73,21 @@ class Point extends \Google\Protobuf\Internal\Message
      * time for the following points.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TimeInterval interval = 1;</code>
-     * @return \Google\Cloud\Monitoring\V3\TimeInterval
+     * @return \Google\Cloud\Monitoring\V3\TimeInterval|null
      */
     public function getInterval()
     {
         return $this->interval;
+    }
+
+    public function hasInterval()
+    {
+        return isset($this->interval);
+    }
+
+    public function clearInterval()
+    {
+        unset($this->interval);
     }
 
     /**
@@ -107,11 +117,21 @@ class Point extends \Google\Protobuf\Internal\Message
      * The value of the data point.
      *
      * Generated from protobuf field <code>.google.monitoring.v3.TypedValue value = 2;</code>
-     * @return \Google\Cloud\Monitoring\V3\TypedValue
+     * @return \Google\Cloud\Monitoring\V3\TypedValue|null
      */
     public function getValue()
     {
         return $this->value;
+    }
+
+    public function hasValue()
+    {
+        return isset($this->value);
+    }
+
+    public function clearValue()
+    {
+        unset($this->value);
     }
 
     /**

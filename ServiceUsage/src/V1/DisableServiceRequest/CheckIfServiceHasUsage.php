@@ -62,6 +62,4 @@ class CheckIfServiceHasUsage
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(CheckIfServiceHasUsage::class, \Google\Cloud\ServiceUsage\V1\DisableServiceRequest_CheckIfServiceHasUsage::class);
 

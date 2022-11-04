@@ -88,7 +88,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -114,9 +114,10 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hubId = 'hubId-1206469467';
         $hub = new Hub();
-        $response = $client->createHub($formattedParent, $hub);
+        $response = $gapicClient->createHub($formattedParent, $hubId, $hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -128,6 +129,8 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateHub', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getHubId();
+        $this->assertProtobufEquals($hubId, $actualValue);
         $actualValue = $actualApiRequestObject->getHub();
         $this->assertProtobufEquals($hub, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -161,7 +164,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -183,9 +186,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $hubId = 'hubId-1206469467';
         $hub = new Hub();
-        $response = $client->createHub($formattedParent, $hub);
+        $response = $gapicClient->createHub($formattedParent, $hubId, $hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -219,7 +223,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -247,9 +251,10 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $spokeId = 'spokeId-1839321170';
         $spoke = new Spoke();
-        $response = $client->createSpoke($formattedParent, $spoke);
+        $response = $gapicClient->createSpoke($formattedParent, $spokeId, $spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -261,6 +266,8 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertSame('/google.cloud.networkconnectivity.v1.HubService/CreateSpoke', $actualApiFuncCall);
         $actualValue = $actualApiRequestObject->getParent();
         $this->assertProtobufEquals($formattedParent, $actualValue);
+        $actualValue = $actualApiRequestObject->getSpokeId();
+        $this->assertProtobufEquals($spokeId, $actualValue);
         $actualValue = $actualApiRequestObject->getSpoke();
         $this->assertProtobufEquals($spoke, $actualValue);
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -294,7 +301,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -316,9 +323,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $spokeId = 'spokeId-1839321170';
         $spoke = new Spoke();
-        $response = $client->createSpoke($formattedParent, $spoke);
+        $response = $gapicClient->createSpoke($formattedParent, $spokeId, $spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -352,7 +360,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -372,8 +380,8 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->hubName('[PROJECT]', '[HUB]');
-        $response = $client->deleteHub($formattedName);
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
+        $response = $gapicClient->deleteHub($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -416,7 +424,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -438,8 +446,8 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->hubName('[PROJECT]', '[HUB]');
-        $response = $client->deleteHub($formattedName);
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
+        $response = $gapicClient->deleteHub($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -473,7 +481,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -493,8 +501,8 @@ class HubServiceClientTest extends GeneratedTest
         $completeOperation->setResponse($anyResponse);
         $operationsTransport->addResponse($completeOperation);
         // Mock request
-        $formattedName = $client->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $response = $client->deleteSpoke($formattedName);
+        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+        $response = $gapicClient->deleteSpoke($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -537,7 +545,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -559,8 +567,8 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $operationsTransport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $response = $client->deleteSpoke($formattedName);
+        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+        $response = $gapicClient->deleteSpoke($formattedName);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -588,7 +596,7 @@ class HubServiceClientTest extends GeneratedTest
     public function getHubTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -602,8 +610,8 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->hubName('[PROJECT]', '[HUB]');
-        $response = $client->getHub($formattedName);
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
+        $response = $gapicClient->getHub($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -621,7 +629,7 @@ class HubServiceClientTest extends GeneratedTest
     public function getHubExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -636,10 +644,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->hubName('[PROJECT]', '[HUB]');
+        $formattedName = $gapicClient->hubName('[PROJECT]', '[HUB]');
         try {
-            $client->getHub($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getHub($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -656,7 +664,7 @@ class HubServiceClientTest extends GeneratedTest
     public function getSpokeTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -672,8 +680,8 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setUniqueId($uniqueId);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedName = $client->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
-        $response = $client->getSpoke($formattedName);
+        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+        $response = $gapicClient->getSpoke($formattedName);
         $this->assertEquals($expectedResponse, $response);
         $actualRequests = $transport->popReceivedCalls();
         $this->assertSame(1, count($actualRequests));
@@ -691,7 +699,7 @@ class HubServiceClientTest extends GeneratedTest
     public function getSpokeExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -706,10 +714,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedName = $client->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
+        $formattedName = $gapicClient->spokeName('[PROJECT]', '[LOCATION]', '[SPOKE]');
         try {
-            $client->getSpoke($formattedName);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->getSpoke($formattedName);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -726,7 +734,7 @@ class HubServiceClientTest extends GeneratedTest
     public function listHubsTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -741,8 +749,8 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setHubs($hubs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listHubs($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listHubs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -763,7 +771,7 @@ class HubServiceClientTest extends GeneratedTest
     public function listHubsExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -778,10 +786,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listHubs($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listHubs($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -798,7 +806,7 @@ class HubServiceClientTest extends GeneratedTest
     public function listSpokesTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -813,8 +821,8 @@ class HubServiceClientTest extends GeneratedTest
         $expectedResponse->setSpokes($spokes);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
-        $response = $client->listSpokes($formattedParent);
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
+        $response = $gapicClient->listSpokes($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
         $this->assertSame(1, count($resources));
@@ -835,7 +843,7 @@ class HubServiceClientTest extends GeneratedTest
     public function listSpokesExceptionTest()
     {
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
         ]);
         $this->assertTrue($transport->isExhausted());
@@ -850,10 +858,10 @@ class HubServiceClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $client->locationName('[PROJECT]', '[LOCATION]');
+        $formattedParent = $gapicClient->locationName('[PROJECT]', '[LOCATION]');
         try {
-            $client->listSpokes($formattedParent);
-            // If the $client method call did not throw, fail the test
+            $gapicClient->listSpokes($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
             $this->assertEquals($status->code, $ex->getCode());
@@ -876,7 +884,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -903,7 +911,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $hub = new Hub();
-        $response = $client->updateHub($hub);
+        $response = $gapicClient->updateHub($hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -946,7 +954,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -969,7 +977,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $hub = new Hub();
-        $response = $client->updateHub($hub);
+        $response = $gapicClient->updateHub($hub);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();
@@ -1003,7 +1011,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1032,7 +1040,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse($completeOperation);
         // Mock request
         $spoke = new Spoke();
-        $response = $client->updateSpoke($spoke);
+        $response = $gapicClient->updateSpoke($spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $apiRequests = $transport->popReceivedCalls();
@@ -1075,7 +1083,7 @@ class HubServiceClientTest extends GeneratedTest
             'credentials' => $this->createCredentials(),
         ]);
         $transport = $this->createTransport();
-        $client = $this->createClient([
+        $gapicClient = $this->createClient([
             'transport' => $transport,
             'operationsClient' => $operationsClient,
         ]);
@@ -1098,7 +1106,7 @@ class HubServiceClientTest extends GeneratedTest
         $operationsTransport->addResponse(null, $status);
         // Mock request
         $spoke = new Spoke();
-        $response = $client->updateSpoke($spoke);
+        $response = $gapicClient->updateSpoke($spoke);
         $this->assertFalse($response->isDone());
         $this->assertNull($response->getResult());
         $expectedOperationsRequestObject = new GetOperationRequest();

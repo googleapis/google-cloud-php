@@ -111,7 +111,7 @@ class ChangeRenewalSettingsRequest extends \Google\Protobuf\Internal\Message
      */
     public function getRenewalSettings()
     {
-        return isset($this->renewal_settings) ? $this->renewal_settings : null;
+        return $this->renewal_settings;
     }
 
     public function hasRenewalSettings()

@@ -71,7 +71,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      *           The pipeline this operation represents.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           The user-defined labels associated with this operation.
-     *     @type \Google\Cloud\LifeSciences\V2beta\Event[]|\Google\Protobuf\Internal\RepeatedField $events
+     *     @type array<\Google\Cloud\LifeSciences\V2beta\Event>|\Google\Protobuf\Internal\RepeatedField $events
      *           The list of events that have happened so far during the execution of this
      *           operation.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -98,7 +98,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getPipeline()
     {
-        return isset($this->pipeline) ? $this->pipeline : null;
+        return $this->pipeline;
     }
 
     public function hasPipeline()
@@ -169,7 +169,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      * operation.
      *
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Event events = 3;</code>
-     * @param \Google\Cloud\LifeSciences\V2beta\Event[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\LifeSciences\V2beta\Event>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEvents($var)
@@ -188,7 +188,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -224,7 +224,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getStartTime()
     {
-        return isset($this->start_time) ? $this->start_time : null;
+        return $this->start_time;
     }
 
     public function hasStartTime()
@@ -260,7 +260,7 @@ class Metadata extends \Google\Protobuf\Internal\Message
      */
     public function getEndTime()
     {
-        return isset($this->end_time) ? $this->end_time : null;
+        return $this->end_time;
     }
 
     public function hasEndTime()

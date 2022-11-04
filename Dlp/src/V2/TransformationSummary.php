@@ -74,13 +74,13 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      *           Set if the transformation was limited to a specific FieldId.
      *     @type \Google\Cloud\Dlp\V2\PrimitiveTransformation $transformation
      *           The specific transformation these stats apply to.
-     *     @type \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $field_transformations
+     *     @type array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $field_transformations
      *           The field transformation that was applied.
      *           If multiple field transformations are requested for a single field,
      *           this list will contain all of them; otherwise, only one is supplied.
      *     @type \Google\Cloud\Dlp\V2\RecordSuppression $record_suppress
      *           The specific suppression option these stats apply to.
-     *     @type \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $results
+     *     @type array<\Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult>|\Google\Protobuf\Internal\RepeatedField $results
      *           Collection of all transformations that took place or had an error.
      *     @type int|string $transformed_bytes
      *           Total size in bytes that were transformed in some way.
@@ -99,7 +99,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getInfoType()
     {
-        return isset($this->info_type) ? $this->info_type : null;
+        return $this->info_type;
     }
 
     public function hasInfoType()
@@ -135,7 +135,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getField()
     {
-        return isset($this->field) ? $this->field : null;
+        return $this->field;
     }
 
     public function hasField()
@@ -171,7 +171,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getTransformation()
     {
-        return isset($this->transformation) ? $this->transformation : null;
+        return $this->transformation;
     }
 
     public function hasTransformation()
@@ -218,7 +218,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * this list will contain all of them; otherwise, only one is supplied.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.FieldTransformation field_transformations = 5;</code>
-     * @param \Google\Cloud\Dlp\V2\FieldTransformation[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\FieldTransformation>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFieldTransformations($var)
@@ -237,7 +237,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      */
     public function getRecordSuppress()
     {
-        return isset($this->record_suppress) ? $this->record_suppress : null;
+        return $this->record_suppress;
     }
 
     public function hasRecordSuppress()
@@ -280,7 +280,7 @@ class TransformationSummary extends \Google\Protobuf\Internal\Message
      * Collection of all transformations that took place or had an error.
      *
      * Generated from protobuf field <code>repeated .google.privacy.dlp.v2.TransformationSummary.SummaryResult results = 4;</code>
-     * @param \Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dlp\V2\TransformationSummary\SummaryResult>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResults($var)

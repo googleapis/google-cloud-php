@@ -113,7 +113,7 @@ class MarketingInfo extends \Google\Protobuf\Internal\Message
      */
     public function getDefaultLogo()
     {
-        return isset($this->default_logo) ? $this->default_logo : null;
+        return $this->default_logo;
     }
 
     public function hasDefaultLogo()

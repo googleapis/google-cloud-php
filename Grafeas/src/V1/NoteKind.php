@@ -14,7 +14,7 @@ use UnexpectedValueException;
 class NoteKind
 {
     /**
-     * Unknown.
+     * Default value. This value is unused.
      *
      * Generated from protobuf enum <code>NOTE_KIND_UNSPECIFIED = 0;</code>
      */
@@ -67,6 +67,18 @@ class NoteKind
      * Generated from protobuf enum <code>UPGRADE = 8;</code>
      */
     const UPGRADE = 8;
+    /**
+     * This represents a Compliance Note
+     *
+     * Generated from protobuf enum <code>COMPLIANCE = 9;</code>
+     */
+    const COMPLIANCE = 9;
+    /**
+     * This represents a DSSE attestation Note
+     *
+     * Generated from protobuf enum <code>DSSE_ATTESTATION = 10;</code>
+     */
+    const DSSE_ATTESTATION = 10;
 
     private static $valueToName = [
         self::NOTE_KIND_UNSPECIFIED => 'NOTE_KIND_UNSPECIFIED',
@@ -78,6 +90,8 @@ class NoteKind
         self::DISCOVERY => 'DISCOVERY',
         self::ATTESTATION => 'ATTESTATION',
         self::UPGRADE => 'UPGRADE',
+        self::COMPLIANCE => 'COMPLIANCE',
+        self::DSSE_ATTESTATION => 'DSSE_ATTESTATION',
     ];
 
     public static function name($value)

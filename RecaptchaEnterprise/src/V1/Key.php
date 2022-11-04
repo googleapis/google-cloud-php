@@ -30,10 +30,10 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Optional. See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
+     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      * Creating and managing labels</a>.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      */
     private $labels;
     /**
@@ -42,6 +42,12 @@ class Key extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 7;</code>
      */
     private $create_time = null;
+    /**
+     * Options for user acceptance testing.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     */
+    private $testing_options = null;
     protected $platform_settings;
 
     /**
@@ -62,10 +68,12 @@ class Key extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\IOSKeySettings $ios_settings
      *           Settings for keys that can be used by iOS apps.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
-     *           Optional. See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
+     *           See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      *           Creating and managing labels</a>.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           The timestamp corresponding to the creation of this Key.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $testing_options
+     *           Options for user acceptance testing.
      * }
      */
     public function __construct($data = NULL) {
@@ -221,10 +229,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
+     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      * Creating and managing labels</a>.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getLabels()
@@ -233,10 +241,10 @@ class Key extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
+     * See <a href="https://cloud.google.com/recaptcha-enterprise/docs/labels">
      * Creating and managing labels</a>.
      *
-     * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>map<string, string> labels = 6;</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
@@ -256,7 +264,7 @@ class Key extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -280,6 +288,42 @@ class Key extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->create_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Options for user acceptance testing.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions|null
+     */
+    public function getTestingOptions()
+    {
+        return $this->testing_options;
+    }
+
+    public function hasTestingOptions()
+    {
+        return isset($this->testing_options);
+    }
+
+    public function clearTestingOptions()
+    {
+        unset($this->testing_options);
+    }
+
+    /**
+     * Options for user acceptance testing.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.TestingOptions testing_options = 9;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions $var
+     * @return $this
+     */
+    public function setTestingOptions($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TestingOptions::class);
+        $this->testing_options = $var;
 
         return $this;
     }

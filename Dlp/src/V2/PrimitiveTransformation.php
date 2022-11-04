@@ -24,7 +24,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Dlp\V2\ReplaceValueConfig $replace_config
-     *           Replace
+     *           Replace with a specified value.
      *     @type \Google\Cloud\Dlp\V2\RedactConfig $redact_config
      *           Redact
      *     @type \Google\Cloud\Dlp\V2\CharacterMaskConfig $character_mask_config
@@ -45,6 +45,8 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
      *           Date Shift
      *     @type \Google\Cloud\Dlp\V2\CryptoDeterministicConfig $crypto_deterministic_config
      *           Deterministic Crypto
+     *     @type \Google\Cloud\Dlp\V2\ReplaceDictionaryConfig $replace_dictionary_config
+     *           Replace with a value randomly drawn (with replacement) from a dictionary.
      * }
      */
     public function __construct($data = NULL) {
@@ -53,7 +55,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Replace
+     * Replace with a specified value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceValueConfig replace_config = 1;</code>
      * @return \Google\Cloud\Dlp\V2\ReplaceValueConfig|null
@@ -69,7 +71,7 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Replace
+     * Replace with a specified value.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceValueConfig replace_config = 1;</code>
      * @param \Google\Cloud\Dlp\V2\ReplaceValueConfig $var
@@ -389,6 +391,37 @@ class PrimitiveTransformation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\CryptoDeterministicConfig::class);
         $this->writeOneof(12, $var);
+
+        return $this;
+    }
+
+    /**
+     * Replace with a value randomly drawn (with replacement) from a dictionary.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceDictionaryConfig replace_dictionary_config = 13;</code>
+     * @return \Google\Cloud\Dlp\V2\ReplaceDictionaryConfig|null
+     */
+    public function getReplaceDictionaryConfig()
+    {
+        return $this->readOneof(13);
+    }
+
+    public function hasReplaceDictionaryConfig()
+    {
+        return $this->hasOneof(13);
+    }
+
+    /**
+     * Replace with a value randomly drawn (with replacement) from a dictionary.
+     *
+     * Generated from protobuf field <code>.google.privacy.dlp.v2.ReplaceDictionaryConfig replace_dictionary_config = 13;</code>
+     * @param \Google\Cloud\Dlp\V2\ReplaceDictionaryConfig $var
+     * @return $this
+     */
+    public function setReplaceDictionaryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dlp\V2\ReplaceDictionaryConfig::class);
+        $this->writeOneof(13, $var);
 
         return $this;
     }

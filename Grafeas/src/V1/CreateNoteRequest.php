@@ -117,7 +117,7 @@ class CreateNoteRequest extends \Google\Protobuf\Internal\Message
      */
     public function getNote()
     {
-        return isset($this->note) ? $this->note : null;
+        return $this->note;
     }
 
     public function hasNote()

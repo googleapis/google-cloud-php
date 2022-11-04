@@ -16,9 +16,10 @@ use Google\Protobuf\Internal\GPBUtil;
 class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     * Required.
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
     private $parent = '';
     /**
@@ -52,7 +53,8 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     *           Required.
+     *           `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *     @type string $request_id
      *           Optional. Unique identifier provided by client, within the ancestor
      *           dataset scope. Ensures idempotency for expensive long running operations.
@@ -72,9 +74,10 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     * Required.
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getParent()
@@ -83,9 +86,10 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     * Required.
+     * `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *
-     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED];</code>
+     * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -137,11 +141,21 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      * Required. The desired input location of the data.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.InputConfig input_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\InputConfig
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\InputConfig|null
      */
     public function getInputConfig()
     {
         return $this->input_config;
+    }
+
+    public function hasInputConfig()
+    {
+        return isset($this->input_config);
+    }
+
+    public function clearInputConfig()
+    {
+        unset($this->input_config);
     }
 
     /**
@@ -163,11 +177,21 @@ class ImportUserEventsRequest extends \Google\Protobuf\Internal\Message
      * Optional. The desired location of errors incurred during the Import.
      *
      * Generated from protobuf field <code>.google.cloud.recommendationengine.v1beta1.ImportErrorsConfig errors_config = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig
+     * @return \Google\Cloud\RecommendationEngine\V1beta1\ImportErrorsConfig|null
      */
     public function getErrorsConfig()
     {
         return $this->errors_config;
+    }
+
+    public function hasErrorsConfig()
+    {
+        return isset($this->errors_config);
+    }
+
+    public function clearErrorsConfig()
+    {
+        unset($this->errors_config);
     }
 
     /**

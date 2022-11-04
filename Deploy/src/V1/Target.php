@@ -18,8 +18,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Target extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/targets/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Target`. Format is
+     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -54,10 +54,14 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -109,8 +113,8 @@ class Target extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/
-     *           deliveryPipelines/{deliveryPipeline}/targets/[a-z][a-z0-9\-]{0,62}.
+     *           Optional. Name of the `Target`. Format is
+     *           projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
      *     @type string $target_id
      *           Output only. Resource id of the `Target`.
      *     @type string $uid
@@ -125,10 +129,14 @@ class Target extends \Google\Protobuf\Internal\Message
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Optional. Labels are attributes that can be set and used by both the
      *           user and by Google Cloud Deploy. Labels must meet the following
-     *           constraints: Each resource is limited to 64 labels. Keys must conform to
-     *           the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     *           regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     *           constrained to be <= 128 bytes in size.
+     *           constraints:
+     *           * Keys and values can contain only lowercase letters, numeric characters,
+     *           underscores, and dashes.
+     *           * All characters must use UTF-8 encoding, and international characters are
+     *           allowed.
+     *           * Keys must start with a lowercase letter or international character.
+     *           * Each resource is limited to a maximum of 64 labels.
+     *           Both keys and values are additionally constrained to be <= 128 bytes.
      *     @type bool $require_approval
      *           Optional. Whether or not the `Target` requires approval.
      *     @type \Google\Protobuf\Timestamp $create_time
@@ -137,11 +145,15 @@ class Target extends \Google\Protobuf\Internal\Message
      *           Output only. Most recent time at which the `Target` was updated.
      *     @type \Google\Cloud\Deploy\V1\GkeCluster $gke
      *           Information specifying a GKE Cluster.
+     *     @type \Google\Cloud\Deploy\V1\AnthosCluster $anthos_cluster
+     *           Information specifying an Anthos Cluster.
+     *     @type \Google\Cloud\Deploy\V1\CloudRunLocation $run
+     *           Information specifying a Cloud Run deployment target.
      *     @type string $etag
      *           Optional. This checksum is computed by the server based on the value of other
      *           fields, and may be sent on update and delete requests to ensure the
      *           client has an up-to-date value before proceeding.
-     *     @type \Google\Cloud\Deploy\V1\ExecutionConfig[]|\Google\Protobuf\Internal\RepeatedField $execution_configs
+     *     @type array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $execution_configs
      *           Configurations for all execution that relates to this `Target`.
      *           Each `ExecutionEnvironmentUsage` value may only be used in a single
      *           configuration; using the same value multiple times is an error.
@@ -157,8 +169,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/targets/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Target`. Format is
+     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -169,8 +181,8 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Name of the `Target`. Format is projects/{project}/locations/{location}/
-     * deliveryPipelines/{deliveryPipeline}/targets/[a-z][a-z0-9\-]{0,62}.
+     * Optional. Name of the `Target`. Format is
+     * projects/{project}/locations/{location}/targets/[a-z][a-z0-9\-]{0,62}.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -297,10 +309,14 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\MapField
@@ -313,10 +329,14 @@ class Target extends \Google\Protobuf\Internal\Message
     /**
      * Optional. Labels are attributes that can be set and used by both the
      * user and by Google Cloud Deploy. Labels must meet the following
-     * constraints: Each resource is limited to 64 labels. Keys must conform to
-     * the regexp: `[a-zA-Z][a-zA-Z0-9_-]{0,62}`. Values must conform to the
-     * regexp: `[a-zA-Z0-9_-]{0,63}`. Both keys and values are additionally
-     * constrained to be <= 128 bytes in size.
+     * constraints:
+     * * Keys and values can contain only lowercase letters, numeric characters,
+     * underscores, and dashes.
+     * * All characters must use UTF-8 encoding, and international characters are
+     * allowed.
+     * * Keys must start with a lowercase letter or international character.
+     * * Each resource is limited to a maximum of 64 labels.
+     * Both keys and values are additionally constrained to be <= 128 bytes.
      *
      * Generated from protobuf field <code>map<string, string> labels = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
@@ -460,6 +480,68 @@ class Target extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Information specifying an Anthos Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17;</code>
+     * @return \Google\Cloud\Deploy\V1\AnthosCluster|null
+     */
+    public function getAnthosCluster()
+    {
+        return $this->readOneof(17);
+    }
+
+    public function hasAnthosCluster()
+    {
+        return $this->hasOneof(17);
+    }
+
+    /**
+     * Information specifying an Anthos Cluster.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.AnthosCluster anthos_cluster = 17;</code>
+     * @param \Google\Cloud\Deploy\V1\AnthosCluster $var
+     * @return $this
+     */
+    public function setAnthosCluster($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\AnthosCluster::class);
+        $this->writeOneof(17, $var);
+
+        return $this;
+    }
+
+    /**
+     * Information specifying a Cloud Run deployment target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * @return \Google\Cloud\Deploy\V1\CloudRunLocation|null
+     */
+    public function getRun()
+    {
+        return $this->readOneof(18);
+    }
+
+    public function hasRun()
+    {
+        return $this->hasOneof(18);
+    }
+
+    /**
+     * Information specifying a Cloud Run deployment target.
+     *
+     * Generated from protobuf field <code>.google.cloud.deploy.v1.CloudRunLocation run = 18;</code>
+     * @param \Google\Cloud\Deploy\V1\CloudRunLocation $var
+     * @return $this
+     */
+    public function setRun($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Deploy\V1\CloudRunLocation::class);
+        $this->writeOneof(18, $var);
+
+        return $this;
+    }
+
+    /**
      * Optional. This checksum is computed by the server based on the value of other
      * fields, and may be sent on update and delete requests to ensure the
      * client has an up-to-date value before proceeding.
@@ -516,7 +598,7 @@ class Target extends \Google\Protobuf\Internal\Message
      * specified in `DefaultPool`.
      *
      * Generated from protobuf field <code>repeated .google.cloud.deploy.v1.ExecutionConfig execution_configs = 16;</code>
-     * @param \Google\Cloud\Deploy\V1\ExecutionConfig[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Deploy\V1\ExecutionConfig>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExecutionConfigs($var)

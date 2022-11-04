@@ -53,6 +53,4 @@ class ConfigView
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ConfigView::class, \Google\Cloud\ServiceManagement\V1\GetServiceConfigRequest_ConfigView::class);
 

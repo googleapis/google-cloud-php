@@ -105,7 +105,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Note: This field is equivalent to the `annotations` field in the v1 API.
      *           They have the same syntax and read/write to the same location in Service
      *           Directory.
-     *     @type \Google\Cloud\ServiceDirectory\V1beta1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $endpoints
+     *     @type array<\Google\Cloud\ServiceDirectory\V1beta1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $endpoints
      *           Output only. Endpoints associated with this service. Returned on
      *           [LookupService.ResolveService][google.cloud.servicedirectory.v1beta1.LookupService.ResolveService]. Control plane clients should use
      *           [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
@@ -235,7 +235,7 @@ class Service extends \Google\Protobuf\Internal\Message
      * [RegistrationService.ListEndpoints][google.cloud.servicedirectory.v1beta1.RegistrationService.ListEndpoints].
      *
      * Generated from protobuf field <code>repeated .google.cloud.servicedirectory.v1beta1.Endpoint endpoints = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
-     * @param \Google\Cloud\ServiceDirectory\V1beta1\Endpoint[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ServiceDirectory\V1beta1\Endpoint>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setEndpoints($var)
@@ -254,7 +254,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getCreateTime()
     {
-        return isset($this->create_time) ? $this->create_time : null;
+        return $this->create_time;
     }
 
     public function hasCreateTime()
@@ -292,7 +292,7 @@ class Service extends \Google\Protobuf\Internal\Message
      */
     public function getUpdateTime()
     {
-        return isset($this->update_time) ? $this->update_time : null;
+        return $this->update_time;
     }
 
     public function hasUpdateTime()

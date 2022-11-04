@@ -81,7 +81,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getOpenUriAction()
     {
-        return isset($this->open_uri_action) ? $this->open_uri_action : null;
+        return $this->open_uri_action;
     }
 
     public function hasOpenUriAction()
@@ -171,7 +171,7 @@ class BrowseCarouselCardItem extends \Google\Protobuf\Internal\Message
      */
     public function getImage()
     {
-        return isset($this->image) ? $this->image : null;
+        return $this->image;
     }
 
     public function hasImage()

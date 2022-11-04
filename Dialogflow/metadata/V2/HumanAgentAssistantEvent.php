@@ -15,11 +15,10 @@ class HumanAgentAssistantEvent
           return;
         }
         \GPBMetadata\Google\Cloud\Dialogflow\V2\Participant::initOnce();
-        \GPBMetadata\Google\Api\Annotations::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Á
-<google/cloud/dialogflow/v2/human_agent_assistant_event.protogoogle.cloud.dialogflow.v2google/api/annotations.proto"
+£
+<google/cloud/dialogflow/v2/human_agent_assistant_event.protogoogle.cloud.dialogflow.v2"
 HumanAgentAssistantEvent
 conversation (	
 participant (	H

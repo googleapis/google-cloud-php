@@ -78,7 +78,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $segments
+     *     @type array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $segments
      *           Video segments to annotate. The segments may overlap and are not required
      *           to be contiguous or span the whole video. If unspecified, each video is
      *           treated as a single segment.
@@ -124,7 +124,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      * treated as a single segment.
      *
      * Generated from protobuf field <code>repeated .google.cloud.videointelligence.v1.VideoSegment segments = 1;</code>
-     * @param \Google\Cloud\VideoIntelligence\V1\VideoSegment[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\VideoIntelligence\V1\VideoSegment>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setSegments($var)
@@ -143,7 +143,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getLabelDetectionConfig()
     {
-        return isset($this->label_detection_config) ? $this->label_detection_config : null;
+        return $this->label_detection_config;
     }
 
     public function hasLabelDetectionConfig()
@@ -179,7 +179,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getShotChangeDetectionConfig()
     {
-        return isset($this->shot_change_detection_config) ? $this->shot_change_detection_config : null;
+        return $this->shot_change_detection_config;
     }
 
     public function hasShotChangeDetectionConfig()
@@ -215,7 +215,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getExplicitContentDetectionConfig()
     {
-        return isset($this->explicit_content_detection_config) ? $this->explicit_content_detection_config : null;
+        return $this->explicit_content_detection_config;
     }
 
     public function hasExplicitContentDetectionConfig()
@@ -251,7 +251,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getFaceDetectionConfig()
     {
-        return isset($this->face_detection_config) ? $this->face_detection_config : null;
+        return $this->face_detection_config;
     }
 
     public function hasFaceDetectionConfig()
@@ -287,7 +287,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getSpeechTranscriptionConfig()
     {
-        return isset($this->speech_transcription_config) ? $this->speech_transcription_config : null;
+        return $this->speech_transcription_config;
     }
 
     public function hasSpeechTranscriptionConfig()
@@ -323,7 +323,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getTextDetectionConfig()
     {
-        return isset($this->text_detection_config) ? $this->text_detection_config : null;
+        return $this->text_detection_config;
     }
 
     public function hasTextDetectionConfig()
@@ -359,7 +359,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getPersonDetectionConfig()
     {
-        return isset($this->person_detection_config) ? $this->person_detection_config : null;
+        return $this->person_detection_config;
     }
 
     public function hasPersonDetectionConfig()
@@ -395,7 +395,7 @@ class VideoContext extends \Google\Protobuf\Internal\Message
      */
     public function getObjectTrackingConfig()
     {
-        return isset($this->object_tracking_config) ? $this->object_tracking_config : null;
+        return $this->object_tracking_config;
     }
 
     public function hasObjectTrackingConfig()

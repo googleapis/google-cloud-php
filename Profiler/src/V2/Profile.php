@@ -161,7 +161,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getDeployment()
     {
-        return isset($this->deployment) ? $this->deployment : null;
+        return $this->deployment;
     }
 
     public function hasDeployment()
@@ -202,7 +202,7 @@ class Profile extends \Google\Protobuf\Internal\Message
      */
     public function getDuration()
     {
-        return isset($this->duration) ? $this->duration : null;
+        return $this->duration;
     }
 
     public function hasDuration()

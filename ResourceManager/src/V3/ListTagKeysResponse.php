@@ -35,7 +35,7 @@ class ListTagKeysResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\ResourceManager\V3\TagKey[]|\Google\Protobuf\Internal\RepeatedField $tag_keys
+     *     @type array<\Google\Cloud\ResourceManager\V3\TagKey>|\Google\Protobuf\Internal\RepeatedField $tag_keys
      *           List of TagKeys that live under the specified parent in the request.
      *     @type string $next_page_token
      *           A pagination token returned from a previous call to `ListTagKeys`
@@ -62,7 +62,7 @@ class ListTagKeysResponse extends \Google\Protobuf\Internal\Message
      * List of TagKeys that live under the specified parent in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.resourcemanager.v3.TagKey tag_keys = 1;</code>
-     * @param \Google\Cloud\ResourceManager\V3\TagKey[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\ResourceManager\V3\TagKey>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTagKeys($var)

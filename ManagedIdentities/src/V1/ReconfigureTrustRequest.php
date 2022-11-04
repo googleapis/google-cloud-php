@@ -50,7 +50,7 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      *     @type string $target_domain_name
      *           Required. The fully-qualified target domain name which will be in trust with current
      *           domain.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $target_dns_ip_addresses
      *           Required. The target DNS server IP addresses to resolve the remote domain involved
      *           in the trust.
      * }
@@ -133,7 +133,7 @@ class ReconfigureTrustRequest extends \Google\Protobuf\Internal\Message
      * in the trust.
      *
      * Generated from protobuf field <code>repeated string target_dns_ip_addresses = 3 [(.google.api.field_behavior) = REQUIRED];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setTargetDnsIpAddresses($var)

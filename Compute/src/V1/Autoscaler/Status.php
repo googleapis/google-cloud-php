@@ -7,11 +7,7 @@ namespace Google\Cloud\Compute\V1\Autoscaler;
 use UnexpectedValueException;
 
 /**
- * [Output Only] The status of the autoscaler configuration. Current set of possible values:
- * - PENDING: Autoscaler backend hasn't read new/updated configuration.
- * - DELETING: Configuration is being deleted.
- * - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field.
- * - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field.  New values might be added in the future.
+ * [Output Only] The status of the autoscaler configuration. Current set of possible values: - PENDING: Autoscaler backend hasn't read new/updated configuration. - DELETING: Configuration is being deleted. - ACTIVE: Configuration is acknowledged to be effective. Some warnings might be present in the statusDetails field. - ERROR: Configuration has errors. Actionable for users. Details are present in the statusDetails field. New values might be added in the future.
  *
  * Protobuf type <code>google.cloud.compute.v1.Autoscaler.Status</code>
  */
@@ -24,18 +20,26 @@ class Status
      */
     const UNDEFINED_STATUS = 0;
     /**
+     * Configuration is acknowledged to be effective
+     *
      * Generated from protobuf enum <code>ACTIVE = 314733318;</code>
      */
     const ACTIVE = 314733318;
     /**
+     * Configuration is being deleted
+     *
      * Generated from protobuf enum <code>DELETING = 528602024;</code>
      */
     const DELETING = 528602024;
     /**
+     * Configuration has errors. Actionable for users.
+     *
      * Generated from protobuf enum <code>ERROR = 66247144;</code>
      */
     const ERROR = 66247144;
     /**
+     * Autoscaler backend hasn't read new/updated configuration
+     *
      * Generated from protobuf enum <code>PENDING = 35394935;</code>
      */
     const PENDING = 35394935;

@@ -25,8 +25,9 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
     private $consume_reservation_type = 0;
     /**
      * Corresponds to the label key of a reservation resource. To target a
-     * SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as
-     * the key and specify the name of your reservation as its value.
+     * SPECIFIC_RESERVATION by name, specify
+     * "compute.googleapis.com/reservation-name" as the key and specify the name
+     * of your reservation as its value.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      */
@@ -48,9 +49,10 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *           Corresponds to the type of reservation consumption.
      *     @type string $key
      *           Corresponds to the label key of a reservation resource. To target a
-     *           SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as
-     *           the key and specify the name of your reservation as its value.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $values
+     *           SPECIFIC_RESERVATION by name, specify
+     *           "compute.googleapis.com/reservation-name" as the key and specify the name
+     *           of your reservation as its value.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $values
      *           Corresponds to the label value(s) of reservation resource(s).
      * }
      */
@@ -87,8 +89,9 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
 
     /**
      * Corresponds to the label key of a reservation resource. To target a
-     * SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as
-     * the key and specify the name of your reservation as its value.
+     * SPECIFIC_RESERVATION by name, specify
+     * "compute.googleapis.com/reservation-name" as the key and specify the name
+     * of your reservation as its value.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      * @return string
@@ -100,8 +103,9 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
 
     /**
      * Corresponds to the label key of a reservation resource. To target a
-     * SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as
-     * the key and specify the name of your reservation as its value.
+     * SPECIFIC_RESERVATION by name, specify
+     * "compute.googleapis.com/reservation-name" as the key and specify the name
+     * of your reservation as its value.
      *
      * Generated from protobuf field <code>string key = 2;</code>
      * @param string $var
@@ -130,7 +134,7 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      * Corresponds to the label value(s) of reservation resource(s).
      *
      * Generated from protobuf field <code>repeated string values = 3;</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setValues($var)

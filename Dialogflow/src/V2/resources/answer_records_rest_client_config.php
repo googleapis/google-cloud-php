@@ -10,9 +10,6 @@ return [
                     [
                         'method' => 'get',
                         'uriTemplate' => '/v2/{parent=projects/*/locations/*}/answerRecords',
-                        'queryParams' => [
-                            'filter',
-                        ],
                     ],
                 ],
                 'placeholders' => [
@@ -21,9 +18,6 @@ return [
                             'getParent',
                         ],
                     ],
-                ],
-                'queryParams' => [
-                    'filter',
                 ],
             ],
             'UpdateAnswerRecord' => [

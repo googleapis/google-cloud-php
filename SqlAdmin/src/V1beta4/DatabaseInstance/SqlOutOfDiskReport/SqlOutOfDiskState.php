@@ -60,6 +60,4 @@ class SqlOutOfDiskState
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(SqlOutOfDiskState::class, \Google\Cloud\Sql\V1beta4\DatabaseInstance_SqlOutOfDiskReport_SqlOutOfDiskState::class);
 

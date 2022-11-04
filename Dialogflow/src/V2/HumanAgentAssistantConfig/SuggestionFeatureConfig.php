@@ -48,6 +48,12 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationModelConfig conversation_model_config = 7;</code>
      */
     private $conversation_model_config = null;
+    /**
+     * Configs for processing conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationProcessConfig conversation_process_config = 8;</code>
+     */
+    private $conversation_process_config = null;
 
     /**
      * Constructor.
@@ -68,6 +74,8 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      *           Configs of query.
      *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationModelConfig $conversation_model_config
      *           Configs of custom conversation model.
+     *     @type \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationProcessConfig $conversation_process_config
+     *           Configs for processing conversation.
      * }
      */
     public function __construct($data = NULL) {
@@ -83,7 +91,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSuggestionFeature()
     {
-        return isset($this->suggestion_feature) ? $this->suggestion_feature : null;
+        return $this->suggestion_feature;
     }
 
     public function hasSuggestionFeature()
@@ -150,7 +158,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     public function getSuggestionTriggerSettings()
     {
-        return isset($this->suggestion_trigger_settings) ? $this->suggestion_trigger_settings : null;
+        return $this->suggestion_trigger_settings;
     }
 
     public function hasSuggestionTriggerSettings()
@@ -187,7 +195,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     public function getQueryConfig()
     {
-        return isset($this->query_config) ? $this->query_config : null;
+        return $this->query_config;
     }
 
     public function hasQueryConfig()
@@ -223,7 +231,7 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
      */
     public function getConversationModelConfig()
     {
-        return isset($this->conversation_model_config) ? $this->conversation_model_config : null;
+        return $this->conversation_model_config;
     }
 
     public function hasConversationModelConfig()
@@ -247,6 +255,42 @@ class SuggestionFeatureConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationModelConfig::class);
         $this->conversation_model_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Configs for processing conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationProcessConfig conversation_process_config = 8;</code>
+     * @return \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationProcessConfig|null
+     */
+    public function getConversationProcessConfig()
+    {
+        return $this->conversation_process_config;
+    }
+
+    public function hasConversationProcessConfig()
+    {
+        return isset($this->conversation_process_config);
+    }
+
+    public function clearConversationProcessConfig()
+    {
+        unset($this->conversation_process_config);
+    }
+
+    /**
+     * Configs for processing conversation.
+     *
+     * Generated from protobuf field <code>.google.cloud.dialogflow.v2.HumanAgentAssistantConfig.ConversationProcessConfig conversation_process_config = 8;</code>
+     * @param \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationProcessConfig $var
+     * @return $this
+     */
+    public function setConversationProcessConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dialogflow\V2\HumanAgentAssistantConfig\ConversationProcessConfig::class);
+        $this->conversation_process_config = $var;
 
         return $this;
     }

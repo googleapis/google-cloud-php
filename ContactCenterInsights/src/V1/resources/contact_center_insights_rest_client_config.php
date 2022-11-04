@@ -73,6 +73,18 @@ return [
                     ],
                 ],
             ],
+            'CreateView' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/views',
+                'body' => 'view',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeleteAnalysis' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/conversations/*/analyses/*}',
@@ -109,6 +121,17 @@ return [
             'DeletePhraseMatcher' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/phraseMatchers/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
+            'DeleteView' => [
+                'method' => 'delete',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/views/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -207,6 +230,17 @@ return [
                     ],
                 ],
             ],
+            'GetView' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/views/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ListAnalyses' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/conversations/*}/analyses',
@@ -254,6 +288,17 @@ return [
             'ListPhraseMatchers' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*}/phraseMatchers',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'ListViews' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/views',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -313,6 +358,19 @@ return [
                     ],
                 ],
             ],
+            'UpdatePhraseMatcher' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{phrase_matcher.name=projects/*/locations/*/phraseMatchers/*}',
+                'body' => 'phrase_matcher',
+                'placeholders' => [
+                    'phrase_matcher.name' => [
+                        'getters' => [
+                            'getPhraseMatcher',
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateSettings' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{settings.name=projects/*/locations/*/settings}',
@@ -327,6 +385,19 @@ return [
                 ],
                 'queryParams' => [
                     'update_mask',
+                ],
+            ],
+            'UpdateView' => [
+                'method' => 'patch',
+                'uriTemplate' => '/v1/{view.name=projects/*/locations/*/views/*}',
+                'body' => 'view',
+                'placeholders' => [
+                    'view.name' => [
+                        'getters' => [
+                            'getView',
+                            'getName',
+                        ],
+                    ],
                 ],
             ],
         ],

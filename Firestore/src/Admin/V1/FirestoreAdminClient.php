@@ -25,10 +25,68 @@
 namespace Google\Cloud\Firestore\Admin\V1;
 
 use Google\Cloud\Firestore\Admin\V1\Gapic\FirestoreAdminGapicClient;
+use Google\ApiCore\PathTemplate;
 
 /** {@inheritdoc} */
 class FirestoreAdminClient extends FirestoreAdminGapicClient
 {
-    // This class is intentionally empty, and is intended to hold manual additions to
-    // the generated {@see FirestoreAdminGapicClient} class.
+    /**
+     * @see FirestoreAdminClient::createIndexLRO
+     * @return \Google\LongRunning\Operation
+     * @deprecated use createIndexLRO instead
+     */
+    public function createIndex($parent, $index, array $optionalArgs = [])
+    {
+        return $this->createIndexLRO($parent, $index, $optionalArgs)->getLastProtoResponse();
+    }
+
+    /**
+     * @see FirestoreAdminClient::exportDocumentsLRO
+     * @return \Google\LongRunning\Operation
+     * @deprecated use exportDocumentsLRO instead
+     */
+    public function exportDocuments($name, array $optionalArgs = [])
+    {
+        return $this->exportDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
+    }
+
+    /**
+     * @see FirestoreAdminClient::importDocumentsLRO
+     * @return \Google\LongRunning\Operation
+     * @deprecated use importDocumentsLRO instead
+     */
+    public function importDocuments($name, array $optionalArgs = [])
+    {
+        return $this->importDocumentsLRO($name, $optionalArgs)->getLastProtoResponse();
+    }
+
+    /**
+     * @return \Google\LongRunning\Operation
+     * @deprecated use updateFieldLRO instead
+     * @see FirestoreAdminClient::updateFieldLRO
+     */
+    public function updateField($field, array $optionalArgs = [])
+    {
+        return $this->updateFieldLRO($field, $optionalArgs)->getLastProtoResponse();
+    }
+
+    /**
+     * Formats a string containing the fully-qualified path to represent
+     * a parent resource.
+     *
+     * @param string $project
+     * @param string $database
+     * @param string $collectionId
+     *
+     * @return string The formatted parent resource.
+     * @deprecated
+     */
+    public static function parentName($project, $database, $collectionId)
+    {
+        return (new PathTemplate('projects/{project}/databases/{database}/collectionGroups/{collection_id}'))->render([
+            'project' => $project,
+            'database' => $database,
+            'collection_id' => $collectionId,
+        ]);
+    }
 }
