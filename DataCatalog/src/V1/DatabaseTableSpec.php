@@ -23,10 +23,10 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Fields specific to a Dataplex table and present only in the Dataplex table
-     * entries.
+     * Output only. Fields specific to a Dataplex table and present only in the
+     * Dataplex table entries.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $dataplex_table = null;
 
@@ -39,8 +39,8 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Type of this table.
      *     @type \Google\Cloud\DataCatalog\V1\DataplexTableSpec $dataplex_table
-     *           Fields specific to a Dataplex table and present only in the Dataplex table
-     *           entries.
+     *           Output only. Fields specific to a Dataplex table and present only in the
+     *           Dataplex table entries.
      * }
      */
     public function __construct($data = NULL) {
@@ -75,10 +75,10 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields specific to a Dataplex table and present only in the Dataplex table
-     * entries.
+     * Output only. Fields specific to a Dataplex table and present only in the
+     * Dataplex table entries.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\DataplexTableSpec|null
      */
     public function getDataplexTable()
@@ -97,10 +97,10 @@ class DatabaseTableSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields specific to a Dataplex table and present only in the Dataplex table
-     * entries.
+     * Output only. Fields specific to a Dataplex table and present only in the
+     * Dataplex table entries.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.DataplexTableSpec dataplex_table = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\DataplexTableSpec $var
      * @return $this
      */
