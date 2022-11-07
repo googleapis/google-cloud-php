@@ -19,9 +19,9 @@
 namespace Google\Cloud\Run\V2;
 
 /**
- * Cloud Run Service Control Plane API
+ * Cloud Run Job Control Plane API.
  */
-class ServicesGrpcClient extends \Grpc\BaseStub {
+class JobsGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -33,85 +33,98 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new Service in a given project and location.
-     * @param \Google\Cloud\Run\V2\CreateServiceRequest $argument input argument
+     * Creates a Job.
+     * @param \Google\Cloud\Run\V2\CreateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function CreateService(\Google\Cloud\Run\V2\CreateServiceRequest $argument,
+    public function CreateJob(\Google\Cloud\Run\V2\CreateJobRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/CreateService',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/CreateJob',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Gets information about a Service.
-     * @param \Google\Cloud\Run\V2\GetServiceRequest $argument input argument
+     * Gets information about a Job.
+     * @param \Google\Cloud\Run\V2\GetJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function GetService(\Google\Cloud\Run\V2\GetServiceRequest $argument,
+    public function GetJob(\Google\Cloud\Run\V2\GetJobRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/GetService',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/GetJob',
         $argument,
-        ['\Google\Cloud\Run\V2\Service', 'decode'],
+        ['\Google\Cloud\Run\V2\Job', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Lists Services.
-     * @param \Google\Cloud\Run\V2\ListServicesRequest $argument input argument
+     * Lists Jobs.
+     * @param \Google\Cloud\Run\V2\ListJobsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function ListServices(\Google\Cloud\Run\V2\ListServicesRequest $argument,
+    public function ListJobs(\Google\Cloud\Run\V2\ListJobsRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/ListServices',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/ListJobs',
         $argument,
-        ['\Google\Cloud\Run\V2\ListServicesResponse', 'decode'],
+        ['\Google\Cloud\Run\V2\ListJobsResponse', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Updates a Service.
-     * @param \Google\Cloud\Run\V2\UpdateServiceRequest $argument input argument
+     * Updates a Job.
+     * @param \Google\Cloud\Run\V2\UpdateJobRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function UpdateService(\Google\Cloud\Run\V2\UpdateServiceRequest $argument,
+    public function UpdateJob(\Google\Cloud\Run\V2\UpdateJobRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/UpdateService',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Deletes a Service.
-     * This will cause the Service to stop serving traffic and will delete all
-     * revisions.
-     * @param \Google\Cloud\Run\V2\DeleteServiceRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteService(\Google\Cloud\Run\V2\DeleteServiceRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/DeleteService',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/UpdateJob',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Gets the IAM Access Control policy currently in effect for the given
-     * Cloud Run Service. This result does not include any inherited policies.
+     * Deletes a Job.
+     * @param \Google\Cloud\Run\V2\DeleteJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function DeleteJob(\Google\Cloud\Run\V2\DeleteJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/DeleteJob',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Triggers creation of a new Execution of this Job.
+     * @param \Google\Cloud\Run\V2\RunJobRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RunJob(\Google\Cloud\Run\V2\RunJobRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/RunJob',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Gets the IAM Access Control policy currently in effect for the given Job.
+     * This result does not include any inherited policies.
      * @param \Google\Cloud\Iam\V1\GetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -119,14 +132,14 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
      */
     public function GetIamPolicy(\Google\Cloud\Iam\V1\GetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/GetIamPolicy',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/GetIamPolicy',
         $argument,
         ['\Google\Cloud\Iam\V1\Policy', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Sets the IAM Access control policy for the specified Service. Overwrites
+     * Sets the IAM Access control policy for the specified Job. Overwrites
      * any existing policy.
      * @param \Google\Cloud\Iam\V1\SetIamPolicyRequest $argument input argument
      * @param array $metadata metadata
@@ -135,7 +148,7 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
      */
     public function SetIamPolicy(\Google\Cloud\Iam\V1\SetIamPolicyRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/SetIamPolicy',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/SetIamPolicy',
         $argument,
         ['\Google\Cloud\Iam\V1\Policy', 'decode'],
         $metadata, $options);
@@ -152,7 +165,7 @@ class ServicesGrpcClient extends \Grpc\BaseStub {
      */
     public function TestIamPermissions(\Google\Cloud\Iam\V1\TestIamPermissionsRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Services/TestIamPermissions',
+        return $this->_simpleRequest('/google.cloud.run.v2.Jobs/TestIamPermissions',
         $argument,
         ['\Google\Cloud\Iam\V1\TestIamPermissionsResponse', 'decode'],
         $metadata, $options);

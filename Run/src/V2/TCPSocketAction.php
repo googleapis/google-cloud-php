@@ -17,6 +17,7 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
 {
     /**
      * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to 8080.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      */
@@ -30,6 +31,7 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
      *
      *     @type int $port
      *           Port number to access on the container. Must be in the range 1 to 65535.
+     *           If not specified, defaults to 8080.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,6 +41,7 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to 8080.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      * @return int
@@ -50,6 +53,7 @@ class TCPSocketAction extends \Google\Protobuf\Internal\Message
 
     /**
      * Port number to access on the container. Must be in the range 1 to 65535.
+     * If not specified, defaults to 8080.
      *
      * Generated from protobuf field <code>int32 port = 1;</code>
      * @param int $var

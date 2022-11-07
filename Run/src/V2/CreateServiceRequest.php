@@ -16,9 +16,9 @@ use Google\Protobuf\Internal\GPBUtil;
 class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The location and project in which this service should be created.
-     * Format: projects/{project}/locations/{location}
-     * Only lowercase characters, digits, and hyphens.
+     * Required. The location and project in which this service should be created.
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number. Only lowercase characters, digits, and hyphens.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +31,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     private $service = null;
     /**
      * Required. The unique identifier for the Service. It must begin with letter,
-     * and may not end with hyphen; must contain fewer than 50 characters.
+     * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
      *
      * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -52,14 +52,14 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           The location and project in which this service should be created.
-     *           Format: projects/{project}/locations/{location}
-     *           Only lowercase characters, digits, and hyphens.
+     *           Required. The location and project in which this service should be created.
+     *           Format: projects/{project}/locations/{location}, where {project} can be
+     *           project id or number. Only lowercase characters, digits, and hyphens.
      *     @type \Google\Cloud\Run\V2\Service $service
      *           Required. The Service instance to create.
      *     @type string $service_id
      *           Required. The unique identifier for the Service. It must begin with letter,
-     *           and may not end with hyphen; must contain fewer than 50 characters.
+     *           and cannot end with hyphen; must contain fewer than 50 characters.
      *           The name of the service becomes {parent}/services/{service_id}.
      *     @type bool $validate_only
      *           Indicates that the request should be validated and default values
@@ -72,9 +72,9 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location and project in which this service should be created.
-     * Format: projects/{project}/locations/{location}
-     * Only lowercase characters, digits, and hyphens.
+     * Required. The location and project in which this service should be created.
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number. Only lowercase characters, digits, and hyphens.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -85,9 +85,9 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location and project in which this service should be created.
-     * Format: projects/{project}/locations/{location}
-     * Only lowercase characters, digits, and hyphens.
+     * Required. The location and project in which this service should be created.
+     * Format: projects/{project}/locations/{location}, where {project} can be
+     * project id or number. Only lowercase characters, digits, and hyphens.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -139,7 +139,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The unique identifier for the Service. It must begin with letter,
-     * and may not end with hyphen; must contain fewer than 50 characters.
+     * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
      *
      * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -152,7 +152,7 @@ class CreateServiceRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The unique identifier for the Service. It must begin with letter,
-     * and may not end with hyphen; must contain fewer than 50 characters.
+     * and cannot end with hyphen; must contain fewer than 50 characters.
      * The name of the service becomes {parent}/services/{service_id}.
      *
      * Generated from protobuf field <code>string service_id = 3 [(.google.api.field_behavior) = REQUIRED];</code>
