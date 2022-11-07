@@ -35,7 +35,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists hubs in a given project.
+     * Lists the Network Connectivity Center hubs associated with a given project.
      * @param \Google\Cloud\NetworkConnectivity\V1\ListHubsRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -50,7 +50,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets details about the specified hub.
+     * Gets details about a Network Connectivity Center hub.
      * @param \Google\Cloud\NetworkConnectivity\V1\GetHubRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -65,7 +65,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a new hub in the specified project.
+     * Creates a new Network Connectivity Center hub in the specified project.
      * @param \Google\Cloud\NetworkConnectivity\V1\CreateHubRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -80,7 +80,8 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the description and/or labels of the specified hub.
+     * Updates the description and/or labels of a Network Connectivity Center
+     * hub.
      * @param \Google\Cloud\NetworkConnectivity\V1\UpdateHubRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -95,7 +96,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes the specified hub.
+     * Deletes a Network Connectivity Center hub.
      * @param \Google\Cloud\NetworkConnectivity\V1\DeleteHubRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -110,7 +111,8 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Lists the spokes in the specified project and location.
+     * Lists the Network Connectivity Center spokes in a specified project and
+     * location.
      * @param \Google\Cloud\NetworkConnectivity\V1\ListSpokesRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -125,7 +127,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets details about the specified spoke.
+     * Gets details about a Network Connectivity Center spoke.
      * @param \Google\Cloud\NetworkConnectivity\V1\GetSpokeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -140,7 +142,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a spoke in the specified project and location.
+     * Creates a Network Connectivity Center spoke.
      * @param \Google\Cloud\NetworkConnectivity\V1\CreateSpokeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -155,7 +157,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the parameters of the specified spoke.
+     * Updates the parameters of a Network Connectivity Center spoke.
      * @param \Google\Cloud\NetworkConnectivity\V1\UpdateSpokeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -170,7 +172,7 @@ class HubServiceGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Deletes the specified spoke.
+     * Deletes a Network Connectivity Center spoke.
      * @param \Google\Cloud\NetworkConnectivity\V1\DeleteSpokeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
