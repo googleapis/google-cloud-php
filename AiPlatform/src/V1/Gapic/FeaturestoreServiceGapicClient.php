@@ -681,6 +681,10 @@ class FeaturestoreServiceGapicClient
      *           For BigQuery source, the type of the pass-through values will be
      *           automatically inferred. For CSV source, the pass-through values will be
      *           passed as opaque bytes.
+     *     @type Timestamp $startTime
+     *           Optional. Excludes Feature values with feature generation timestamp before this
+     *           timestamp. If not set, retrieve oldest values kept in Feature Store.
+     *           Timestamp, if present, must not have higher than millisecond precision.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -715,6 +719,10 @@ class FeaturestoreServiceGapicClient
 
         if (isset($optionalArgs['passThroughFields'])) {
             $request->setPassThroughFields($optionalArgs['passThroughFields']);
+        }
+
+        if (isset($optionalArgs['startTime'])) {
+            $request->setStartTime($optionalArgs['startTime']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -872,7 +880,7 @@ class FeaturestoreServiceGapicClient
      * @param string  $featureId    Required. The ID to use for the Feature, which will become the final component of
      *                              the Feature's resource name.
      *
-     *                              This value may be up to 60 characters, and valid characters are
+     *                              This value may be up to 128 characters, and valid characters are
      *                              `[a-z0-9_]`. The first character cannot be a number.
      *
      *                              The value must be unique within an EntityType.

@@ -85,6 +85,7 @@ class Context extends \Google\Protobuf\Internal\Message
     private $schema_version = '';
     /**
      * Properties of the Context.
+     * Top level metadata keys' heading and trailing spaces will be trimmed.
      * The size of this field should not exceed 200KB.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 15;</code>
@@ -137,6 +138,7 @@ class Context extends \Google\Protobuf\Internal\Message
      *           schemas within the local metadata store.
      *     @type \Google\Protobuf\Struct $metadata
      *           Properties of the Context.
+     *           Top level metadata keys' heading and trailing spaces will be trimmed.
      *           The size of this field should not exceed 200KB.
      *     @type string $description
      *           Description of the Context
@@ -431,6 +433,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Properties of the Context.
+     * Top level metadata keys' heading and trailing spaces will be trimmed.
      * The size of this field should not exceed 200KB.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 15;</code>
@@ -453,6 +456,7 @@ class Context extends \Google\Protobuf\Internal\Message
 
     /**
      * Properties of the Context.
+     * Top level metadata keys' heading and trailing spaces will be trimmed.
      * The size of this field should not exceed 200KB.
      *
      * Generated from protobuf field <code>.google.protobuf.Struct metadata = 15;</code>
