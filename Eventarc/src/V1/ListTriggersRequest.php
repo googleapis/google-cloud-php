@@ -46,6 +46,14 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string order_by = 4;</code>
      */
     private $order_by = '';
+    /**
+     * Filter field. Used to filter the Triggers to be listed. Possible filters
+     * are described in https://google.aip.dev/160. For example, using
+     * "?filter=destination:gke" would list only Triggers with a gke destination.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -68,6 +76,10 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
      *           comma-separated list of fields. The default sorting order is ascending. To
      *           specify descending order for a field, append a `desc` suffix; for example:
      *           `name desc, trigger_id`.
+     *     @type string $filter
+     *           Filter field. Used to filter the Triggers to be listed. Possible filters
+     *           are described in https://google.aip.dev/160. For example, using
+     *           "?filter=destination:gke" would list only Triggers with a gke destination.
      * }
      */
     public function __construct($data = NULL) {
@@ -189,6 +201,36 @@ class ListTriggersRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->order_by = $var;
+
+        return $this;
+    }
+
+    /**
+     * Filter field. Used to filter the Triggers to be listed. Possible filters
+     * are described in https://google.aip.dev/160. For example, using
+     * "?filter=destination:gke" would list only Triggers with a gke destination.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Filter field. Used to filter the Triggers to be listed. Possible filters
+     * are described in https://google.aip.dev/160. For example, using
+     * "?filter=destination:gke" would list only Triggers with a gke destination.
+     *
+     * Generated from protobuf field <code>string filter = 5;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

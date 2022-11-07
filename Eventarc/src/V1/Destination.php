@@ -32,6 +32,11 @@ class Destination extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Eventarc\V1\GKE $gke
      *           A GKE service capable of receiving events. The service should be running
      *           in the same project as the trigger.
+     *     @type string $workflow
+     *           The resource name of the Workflow whose Executions are triggered by
+     *           the events. The Workflow resource should be deployed in the same project
+     *           as the trigger.
+     *           Format: `projects/{project}/locations/{location}/workflows/{workflow}`
      * }
      */
     public function __construct($data = NULL) {
@@ -134,6 +139,43 @@ class Destination extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Eventarc\V1\GKE::class);
         $this->writeOneof(3, $var);
+
+        return $this;
+    }
+
+    /**
+     * The resource name of the Workflow whose Executions are triggered by
+     * the events. The Workflow resource should be deployed in the same project
+     * as the trigger.
+     * Format: `projects/{project}/locations/{location}/workflows/{workflow}`
+     *
+     * Generated from protobuf field <code>string workflow = 4 [(.google.api.resource_reference) = {</code>
+     * @return string
+     */
+    public function getWorkflow()
+    {
+        return $this->readOneof(4);
+    }
+
+    public function hasWorkflow()
+    {
+        return $this->hasOneof(4);
+    }
+
+    /**
+     * The resource name of the Workflow whose Executions are triggered by
+     * the events. The Workflow resource should be deployed in the same project
+     * as the trigger.
+     * Format: `projects/{project}/locations/{location}/workflows/{workflow}`
+     *
+     * Generated from protobuf field <code>string workflow = 4 [(.google.api.resource_reference) = {</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setWorkflow($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->writeOneof(4, $var);
 
         return $this;
     }
