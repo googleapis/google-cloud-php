@@ -273,4 +273,34 @@ class EventarcGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Get a GoogleChannelConfig
+     * @param \Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetGoogleChannelConfig(\Google\Cloud\Eventarc\V1\GetGoogleChannelConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/GetGoogleChannelConfig',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\GoogleChannelConfig', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Update a single GoogleChannelConfig
+     * @param \Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function UpdateGoogleChannelConfig(\Google\Cloud\Eventarc\V1\UpdateGoogleChannelConfigRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.eventarc.v1.Eventarc/UpdateGoogleChannelConfig',
+        $argument,
+        ['\Google\Cloud\Eventarc\V1\GoogleChannelConfig', 'decode'],
+        $metadata, $options);
+    }
+
 }

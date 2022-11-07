@@ -50,6 +50,11 @@
                                 "getChannelConnection"
                             ]
                         },
+                        "GetGoogleChannelConfig": {
+                            "methods": [
+                                "getGoogleChannelConfig"
+                            ]
+                        },
                         "GetProvider": {
                             "methods": [
                                 "getProvider"
@@ -85,9 +90,39 @@
                                 "updateChannel"
                             ]
                         },
+                        "UpdateGoogleChannelConfig": {
+                            "methods": [
+                                "updateGoogleChannelConfig"
+                            ]
+                        },
                         "UpdateTrigger": {
                             "methods": [
                                 "updateTrigger"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
                             ]
                         }
                     }

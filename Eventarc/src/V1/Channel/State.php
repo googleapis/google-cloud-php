@@ -37,7 +37,7 @@ class State
      */
     const ACTIVE = 2;
     /**
-     * The INACTIVE state means that the Channel cannot receive events
+     * The INACTIVE state indicates that the Channel cannot receive events
      * permanently. There are two possible cases this state can happen:
      * 1. The SaaS provider disconnected from this Channel.
      * 2. The Channel activation token has expired but the SaaS provider
