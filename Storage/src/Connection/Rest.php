@@ -83,7 +83,10 @@ class Rest implements ConnectionInterface
         $config += [
             'serviceDefinitionPath' => __DIR__ . '/ServiceDefinition/storage-v1.json',
             'componentVersion' => StorageClient::VERSION,
-            'apiEndpoint' => self::DEFAULT_API_ENDPOINT
+            'apiEndpoint' => self::DEFAULT_API_ENDPOINT,
+            // Cloud Storage needs to provide a default scope because the Storage
+            // API does not accept JWTs with "audience"
+            'scopes' => StorageClient::FULL_CONTROL_SCOPE,
         ];
 
         $this->apiEndpoint = $this->getApiEndpoint(self::DEFAULT_API_ENDPOINT, $config);
