@@ -1,0 +1,1 @@
+{"id":"container\/v1\/gatewayapiconfig\/channel","type":"","title":"Google\\Cloud\\Container\\V1\\GatewayAPIConfig\\Channel","name":"Channel","description":"<p>Channel describes if\/how Gateway API should be installed and implemented in\na cluster.<\/p>\n<p>Protobuf type <code>google.container.v1.GatewayAPIConfig.Channel<\/code><\/p>","examples":[],"resources":[],"methods":[]}
