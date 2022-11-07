@@ -30,7 +30,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "V1beta/[A-Z]*_*.php"
+        src / "*/src/V1beta/[A-Z]*_*.php",
         src / "*/src/V1beta/*GrpcClient.php",
     ]
 )
