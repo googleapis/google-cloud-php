@@ -14,20 +14,21 @@ class Usage
         if (static::$is_initialized == true) {
           return;
         }
+        \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-º
-\'google/cloud/datacatalog/v1/usage.protogoogle.cloud.datacatalog.v1"ë
+‚
+\'google/cloud/datacatalog/v1/usage.protogoogle.cloud.datacatalog.v1google/protobuf/timestamp.proto"ë
 
 UsageStats
 total_completions (
 total_failures (
 total_cancellations (3
-+total_execution_time_for_completions_millis ("â
++total_execution_time_for_completions_millis ("é
 UsageSignal/
-update_time (2.google.protobuf.Timestampc
-usage_within_time_range (2B.google.cloud.datacatalog.v1.UsageSignal.UsageWithinTimeRangeEntryd
+update_time (2.google.protobuf.Timestamph
+usage_within_time_range (2B.google.cloud.datacatalog.v1.UsageSignal.UsageWithinTimeRangeEntryB‡Ad
 UsageWithinTimeRangeEntry
 key (	6
 value (2\'.google.cloud.datacatalog.v1.UsageStats:8BÀ
