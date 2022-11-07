@@ -9,7 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request for [HubService.ListHubs][google.cloud.networkconnectivity.v1.HubService.ListHubs] method.
+ * Request for
+ * [HubService.ListHubs][google.cloud.networkconnectivity.v1.HubService.ListHubs]
+ * method.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.ListHubsRequest</code>
  */

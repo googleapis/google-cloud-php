@@ -417,7 +417,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Creates a new hub in the specified project.
+     * Creates a new Network Connectivity Center hub in the specified project.
      *
      * Sample code:
      * ```
@@ -464,11 +464,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -515,7 +515,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Creates a spoke in the specified project and location.
+     * Creates a Network Connectivity Center spoke.
      *
      * Sample code:
      * ```
@@ -562,11 +562,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -617,7 +617,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Deletes the specified hub.
+     * Deletes a Network Connectivity Center hub.
      *
      * Sample code:
      * ```
@@ -658,11 +658,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -707,7 +707,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Deletes the specified spoke.
+     * Deletes a Network Connectivity Center spoke.
      *
      * Sample code:
      * ```
@@ -748,11 +748,11 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -797,7 +797,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Gets details about the specified hub.
+     * Gets details about a Network Connectivity Center hub.
      *
      * Sample code:
      * ```
@@ -845,7 +845,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Gets details about the specified spoke.
+     * Gets details about a Network Connectivity Center spoke.
      *
      * Sample code:
      * ```
@@ -893,7 +893,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Lists hubs in a given project.
+     * Lists the Network Connectivity Center hubs associated with a given project.
      *
      * Sample code:
      * ```
@@ -982,7 +982,8 @@ class HubServiceGapicClient
     }
 
     /**
-     * Lists the spokes in the specified project and location.
+     * Lists the Network Connectivity Center spokes in a specified project and
+     * location.
      *
      * Sample code:
      * ```
@@ -1071,7 +1072,8 @@ class HubServiceGapicClient
     }
 
     /**
-     * Updates the description and/or labels of the specified hub.
+     * Updates the description and/or labels of a Network Connectivity Center
+     * hub.
      *
      * Sample code:
      * ```
@@ -1114,17 +1116,17 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. In the case of an update to an existing hub, field mask is used to specify
-     *           the fields to be overwritten. The fields specified in the update_mask are
-     *           relative to the resource, not the full request. A field is overwritten if
-     *           it is in the mask. If the user does not provide a mask, then all fields are
-     *           overwritten.
+     *           Optional. In the case of an update to an existing hub, field mask is used
+     *           to specify the fields to be overwritten. The fields specified in the
+     *           update_mask are relative to the resource, not the full request. A field is
+     *           overwritten if it is in the mask. If the user does not provide a mask, then
+     *           all fields are overwritten.
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
@@ -1173,7 +1175,7 @@ class HubServiceGapicClient
     }
 
     /**
-     * Updates the parameters of the specified spoke.
+     * Updates the parameters of a Network Connectivity Center spoke.
      *
      * Sample code:
      * ```
@@ -1216,17 +1218,17 @@ class HubServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. In the case of an update to an existing spoke, field mask is used to
-     *           specify the fields to be overwritten. The fields specified in the
+     *           Optional. In the case of an update to an existing spoke, field mask is used
+     *           to specify the fields to be overwritten. The fields specified in the
      *           update_mask are relative to the resource, not the full request. A field is
      *           overwritten if it is in the mask. If the user does not provide a mask, then
      *           all fields are overwritten.
      *     @type string $requestId
-     *           Optional. A unique request ID (optional). If you specify this ID, you can use it
-     *           in cases when you need to retry your request. When you need to retry, this
-     *           ID lets the server know that it can ignore the request if it has already
-     *           been completed. The server guarantees that for at least 60 minutes after
-     *           the first request.
+     *           Optional. A unique request ID (optional). If you specify this ID, you can
+     *           use it in cases when you need to retry your request. When you need to
+     *           retry, this ID lets the server know that it can ignore the request if it
+     *           has already been completed. The server guarantees that for at least 60
+     *           minutes after the first request.
      *
      *           For example, consider a situation where you make an initial request and
      *           the request times out. If you make the request again with the same request
