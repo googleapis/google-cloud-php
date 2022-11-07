@@ -167,6 +167,13 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 32;</code>
      */
     private $logging_config = null;
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     */
+    private $resource_labels = null;
 
     /**
      * Constructor.
@@ -242,6 +249,9 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
      *           Enable or disable gvnic on the node pool.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
      *           Logging configuration.
+     *     @type \Google\Cloud\Container\V1\ResourceLabels $resource_labels
+     *           The resource labels for the node pool to use to annotate any related
+     *           Google Compute Engine resources.
      * }
      */
     public function __construct($data = NULL) {
@@ -957,6 +967,44 @@ class UpdateNodePoolRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
         $this->logging_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     * @return \Google\Cloud\Container\V1\ResourceLabels|null
+     */
+    public function getResourceLabels()
+    {
+        return $this->resource_labels;
+    }
+
+    public function hasResourceLabels()
+    {
+        return isset($this->resource_labels);
+    }
+
+    public function clearResourceLabels()
+    {
+        unset($this->resource_labels);
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>.google.container.v1.ResourceLabels resource_labels = 33;</code>
+     * @param \Google\Cloud\Container\V1\ResourceLabels $var
+     * @return $this
+     */
+    public function setResourceLabels($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ResourceLabels::class);
+        $this->resource_labels = $var;
 
         return $this;
     }
