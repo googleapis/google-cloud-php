@@ -1,0 +1,1 @@
+{"id":"networkconnectivity\/v1\/policybasedroute_warnings_code","type":"","title":"Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute_Warnings_Code","name":"PolicyBasedRoute_Warnings_Code","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute\\Warnings\\Code instead.<\/p>","examples":[],"resources":[],"methods":[]}

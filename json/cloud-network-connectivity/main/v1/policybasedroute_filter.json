@@ -1,0 +1,1 @@
+{"id":"networkconnectivity\/v1\/policybasedroute_filter","type":"","title":"Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute_Filter","name":"PolicyBasedRoute_Filter","description":"<p>This class is deprecated. Use Google\\Cloud\\NetworkConnectivity\\V1\\PolicyBasedRoute\\Filter instead.<\/p>","examples":[],"resources":[],"methods":[]}
