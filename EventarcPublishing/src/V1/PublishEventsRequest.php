@@ -24,10 +24,21 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
     private $channel = '';
     /**
      * The CloudEvents v1.0 events to publish. No other types are allowed.
+     * If this field is set, then the `text_events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
      */
     private $events;
+    /**
+     * The text representation of events to publish.
+     * CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     * https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     * for specification.
+     * If this field is set, then the `events` fields must not be set.
+     *
+     * Generated from protobuf field <code>repeated string text_events = 3;</code>
+     */
+    private $text_events;
 
     /**
      * Constructor.
@@ -40,6 +51,13 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
      *           `projects/{project}/locations/{location}/channels/{channel-id}`.
      *     @type array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
+     *           If this field is set, then the `text_events` fields must not be set.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $text_events
+     *           The text representation of events to publish.
+     *           CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     *           https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     *           for specification.
+     *           If this field is set, then the `events` fields must not be set.
      * }
      */
     public function __construct($data = NULL) {
@@ -77,6 +95,7 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The CloudEvents v1.0 events to publish. No other types are allowed.
+     * If this field is set, then the `text_events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -88,6 +107,7 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The CloudEvents v1.0 events to publish. No other types are allowed.
+     * If this field is set, then the `text_events` fields must not be set.
      *
      * Generated from protobuf field <code>repeated .google.protobuf.Any events = 2;</code>
      * @param array<\Google\Protobuf\Any>|\Google\Protobuf\Internal\RepeatedField $var
@@ -97,6 +117,40 @@ class PublishEventsRequest extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Protobuf\Any::class);
         $this->events = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The text representation of events to publish.
+     * CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     * https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     * for specification.
+     * If this field is set, then the `events` fields must not be set.
+     *
+     * Generated from protobuf field <code>repeated string text_events = 3;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTextEvents()
+    {
+        return $this->text_events;
+    }
+
+    /**
+     * The text representation of events to publish.
+     * CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     * https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     * for specification.
+     * If this field is set, then the `events` fields must not be set.
+     *
+     * Generated from protobuf field <code>repeated string text_events = 3;</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTextEvents($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->text_events = $arr;
 
         return $this;
     }
