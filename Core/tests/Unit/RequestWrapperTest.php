@@ -589,7 +589,7 @@ class RequestWrapperTest extends TestCase
 
         // Assert a JWT token is created without using HTTP
         $httpHandler = function ($request, $options = []) {
-            throw new \Exception('This should never be  called');
+            $this->fail('A network request should not be utilized.');
         };
         $token = $fetcher->fetchAuthToken($httpHandler);
         $this->assertNotNull($token);
