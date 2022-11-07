@@ -24,10 +24,10 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $usage_within_time_range;
 
@@ -40,7 +40,7 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           The end timestamp of the duration of usage statistics.
      *     @type array|\Google\Protobuf\Internal\MapField $usage_within_time_range
-     *           Usage statistics over each of the predefined time ranges.
+     *           Output only. BigQuery usage statistics over each of the predefined time ranges.
      *           Supported time ranges are `{"24H", "7D", "30D"}`.
      * }
      */
@@ -86,10 +86,10 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\MapField
      */
     public function getUsageWithinTimeRange()
@@ -98,10 +98,10 @@ class UsageSignal extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Usage statistics over each of the predefined time ranges.
+     * Output only. BigQuery usage statistics over each of the predefined time ranges.
      * Supported time ranges are `{"24H", "7D", "30D"}`.
      *
-     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2;</code>
+     * Generated from protobuf field <code>map<string, .google.cloud.datacatalog.v1.UsageStats> usage_within_time_range = 2 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array|\Google\Protobuf\Internal\MapField $var
      * @return $this
      */
