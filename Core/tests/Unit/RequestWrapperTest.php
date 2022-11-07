@@ -18,6 +18,8 @@
 
 namespace Google\Cloud\Core\Tests\Unit;
 
+use Google\Auth\Credentials\ServiceAccountCredentials;
+use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
 use Google\Cloud\Core\AnonymousCredentials;
 use Google\Cloud\Core\Exception\ServiceException;
@@ -554,6 +556,51 @@ class RequestWrapperTest extends TestCase
         $requestWrapper->send(
             new Request('GET', 'http://www.example.com')
         );
+    }
+
+    public function testUsesSelfSignedJwtWithScopeByDefault()
+    {
+        $keyFile = [
+            'type' => 'service_account',
+            'client_email' => '123@abc.com',
+            'private_key' => openssl_pkey_new(),
+        ];
+        $requestWrapper = new RequestWrapper([
+            'keyFile' => $keyFile,
+            'scopes' => 'abc 123',
+        ]);
+        $fetcherCache = $requestWrapper->getCredentialsFetcher();
+
+        // Assert Cache Wrapper
+        $this->assertInstanceOf(FetchAuthTokenCache::class, $fetcherCache);
+
+        // Assert Service Account Credentials
+        $cacheRefClass = new \ReflectionClass($fetcherCache);
+        $cacheProp = $cacheRefClass->getProperty('fetcher');
+        $cacheProp->setAccessible(true);
+        $fetcher = $cacheProp->getValue($fetcherCache);
+        $this->assertInstanceOf(ServiceAccountCredentials::class, $fetcher);
+
+        // Assert "JWT Access With Scope" is enabled by default
+        $fetcherRefClass = new \ReflectionClass($fetcher);
+        $fetcherProp = $fetcherRefClass->getProperty('useJwtAccessWithScope');
+        $fetcherProp->setAccessible(true);
+        $this->assertTrue($fetcherProp->getValue($fetcher));
+
+        // Assert a JWT token is created without using HTTP
+        $httpHandler = function ($request, $options = []) {
+            $this->fail('A network request should not be utilized.');
+        };
+        $token = $fetcher->fetchAuthToken($httpHandler);
+        $this->assertNotNull($token);
+        $this->assertArrayHasKey('access_token', $token);
+
+        // Assert the token is a JWT with the proper scopes
+        $parts = explode('.', $token['access_token']);
+        $this->assertCount(3, $parts);
+        $payload = json_decode(base64_decode($parts[1]), true);
+        $this->assertArrayHasKey('scope', $payload);
+        $this->assertEquals('abc 123', $payload['scope']);
     }
 
     public function testEmptyTokenThrowsException()

@@ -19,6 +19,7 @@ namespace Google\Cloud\Core;
 
 use Google\Auth\ApplicationDefaultCredentials;
 use Google\Auth\Cache\MemoryCacheItemPool;
+use Google\Auth\Credentials\ServiceAccountCredentials;
 use Google\Auth\CredentialsLoader;
 use Google\Auth\FetchAuthTokenCache;
 use Google\Auth\FetchAuthTokenInterface;
@@ -164,17 +165,28 @@ trait RequestWrapperTrait
 
         if ($this->credentialsFetcher) {
             $fetcher = $this->credentialsFetcher;
-        } elseif ($this->keyFile) {
-            if ($this->quotaProject) {
-                $this->keyFile['quota_project_id'] = $this->quotaProject;
+        } else {
+            if ($this->keyFile) {
+                if ($this->quotaProject) {
+                    $this->keyFile['quota_project_id'] = $this->quotaProject;
+                }
+
+                $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
+            } else {
+                try {
+                    $fetcher = $this->getADC();
+                } catch (\DomainException $ex) {
+                    $fetcher = new AnonymousCredentials();
+                }
             }
 
-            $fetcher = CredentialsLoader::makeCredentials($this->scopes, $this->keyFile);
-        } else {
-            try {
-                $fetcher = $this->getADC();
-            } catch (\DomainException $ex) {
-                $fetcher = new AnonymousCredentials();
+            // Note: If authCache is set and keyFile is not set, the resulting
+            // credentials instance will be FetchAuthTokenCache, and we will be
+            // unable to enable "useJwtAccessWithScope". This is unlikely, as
+            // keyFile is automatically set in ClientTrait::configureAuthentication,
+            // and so should always exist when ServiceAccountCredentials are in use.
+            if ($fetcher instanceof ServiceAccountCredentials) {
+                $fetcher->useJwtAccessWithScope();
             }
         }
 
