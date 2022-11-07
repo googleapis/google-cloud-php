@@ -248,6 +248,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      */
     private $desired_service_external_ips_config = null;
     /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     */
+    private $desired_enable_private_endpoint = null;
+    /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
      * Kubernetes Engine or version aliases, which have the following behavior:
@@ -273,6 +279,12 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.NetworkTags desired_node_pool_auto_config_network_tags = 110;</code>
      */
     private $desired_node_pool_auto_config_network_tags = null;
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     */
+    private $desired_gateway_api_config = null;
     /**
      * The desired node pool logging configuration defaults for the cluster.
      *
@@ -388,6 +400,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ServiceExternalIPsConfig $desired_service_external_ips_config
      *           ServiceExternalIPsConfig specifies the config for the use of Services with
      *           ExternalIPs field.
+     *     @type bool $desired_enable_private_endpoint
+     *           Enable/Disable private endpoint for the cluster's master.
      *     @type string $desired_master_version
      *           The Kubernetes version to change the master to.
      *           Users may specify either explicit versions offered by
@@ -402,6 +416,8 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\NetworkTags $desired_node_pool_auto_config_network_tags
      *           The desired network tags that apply to all auto-provisioned node pools
      *           in autopilot clusters and node auto-provisioning enabled clusters.
+     *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $desired_gateway_api_config
+     *           The desired config of Gateway API on this cluster.
      *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $desired_node_pool_logging_config
      *           The desired node pool logging configuration defaults for the cluster.
      * }
@@ -1560,6 +1576,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * @return bool
+     */
+    public function getDesiredEnablePrivateEndpoint()
+    {
+        return isset($this->desired_enable_private_endpoint) ? $this->desired_enable_private_endpoint : false;
+    }
+
+    public function hasDesiredEnablePrivateEndpoint()
+    {
+        return isset($this->desired_enable_private_endpoint);
+    }
+
+    public function clearDesiredEnablePrivateEndpoint()
+    {
+        unset($this->desired_enable_private_endpoint);
+    }
+
+    /**
+     * Enable/Disable private endpoint for the cluster's master.
+     *
+     * Generated from protobuf field <code>optional bool desired_enable_private_endpoint = 71;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setDesiredEnablePrivateEndpoint($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->desired_enable_private_endpoint = $var;
+
+        return $this;
+    }
+
+    /**
      * The Kubernetes version to change the master to.
      * Users may specify either explicit versions offered by
      * Kubernetes Engine or version aliases, which have the following behavior:
@@ -1669,6 +1721,42 @@ class ClusterUpdate extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NetworkTags::class);
         $this->desired_node_pool_auto_config_network_tags = $var;
+
+        return $this;
+    }
+
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     * @return \Google\Cloud\Container\V1\GatewayAPIConfig|null
+     */
+    public function getDesiredGatewayApiConfig()
+    {
+        return $this->desired_gateway_api_config;
+    }
+
+    public function hasDesiredGatewayApiConfig()
+    {
+        return isset($this->desired_gateway_api_config);
+    }
+
+    public function clearDesiredGatewayApiConfig()
+    {
+        unset($this->desired_gateway_api_config);
+    }
+
+    /**
+     * The desired config of Gateway API on this cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig desired_gateway_api_config = 114;</code>
+     * @param \Google\Cloud\Container\V1\GatewayAPIConfig $var
+     * @return $this
+     */
+    public function setDesiredGatewayApiConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
+        $this->desired_gateway_api_config = $var;
 
         return $this;
     }

@@ -83,6 +83,13 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ServiceExternalIPsConfig service_external_ips_config = 15;</code>
      */
     private $service_external_ips_config = null;
+    /**
+     * GatewayAPIConfig contains the desired config of Gateway API on this
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
+     */
+    private $gateway_api_config = null;
 
     /**
      * Constructor.
@@ -122,6 +129,9 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ServiceExternalIPsConfig $service_external_ips_config
      *           ServiceExternalIPsConfig specifies if services with externalIPs field are
      *           blocked or not.
+     *     @type \Google\Cloud\Container\V1\GatewayAPIConfig $gateway_api_config
+     *           GatewayAPIConfig contains the desired config of Gateway API on this
+     *           cluster.
      * }
      */
     public function __construct($data = NULL) {
@@ -417,6 +427,44 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ServiceExternalIPsConfig::class);
         $this->service_external_ips_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * GatewayAPIConfig contains the desired config of Gateway API on this
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
+     * @return \Google\Cloud\Container\V1\GatewayAPIConfig|null
+     */
+    public function getGatewayApiConfig()
+    {
+        return $this->gateway_api_config;
+    }
+
+    public function hasGatewayApiConfig()
+    {
+        return isset($this->gateway_api_config);
+    }
+
+    public function clearGatewayApiConfig()
+    {
+        unset($this->gateway_api_config);
+    }
+
+    /**
+     * GatewayAPIConfig contains the desired config of Gateway API on this
+     * cluster.
+     *
+     * Generated from protobuf field <code>.google.container.v1.GatewayAPIConfig gateway_api_config = 16;</code>
+     * @param \Google\Cloud\Container\V1\GatewayAPIConfig $var
+     * @return $this
+     */
+    public function setGatewayApiConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GatewayAPIConfig::class);
+        $this->gateway_api_config = $var;
 
         return $this;
     }

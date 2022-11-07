@@ -75,6 +75,7 @@ use Google\Cloud\Container\V1\NodePoolAutoscaling;
 use Google\Cloud\Container\V1\NodePoolLoggingConfig;
 use Google\Cloud\Container\V1\NodeTaints;
 use Google\Cloud\Container\V1\Operation;
+use Google\Cloud\Container\V1\ResourceLabels;
 use Google\Cloud\Container\V1\RollbackNodePoolUpgradeRequest;
 use Google\Cloud\Container\V1\ServerConfig;
 use Google\Cloud\Container\V1\SetAddonsConfigRequest;
@@ -2667,6 +2668,9 @@ class ClusterManagerGapicClient
      *           Enable or disable gvnic on the node pool.
      *     @type NodePoolLoggingConfig $loggingConfig
      *           Logging configuration.
+     *     @type ResourceLabels $resourceLabels
+     *           The resource labels for the node pool to use to annotate any related
+     *           Google Compute Engine resources.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -2758,6 +2762,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['loggingConfig'])) {
             $request->setLoggingConfig($optionalArgs['loggingConfig']);
+        }
+
+        if (isset($optionalArgs['resourceLabels'])) {
+            $request->setResourceLabels($optionalArgs['resourceLabels']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
