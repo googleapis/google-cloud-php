@@ -26,11 +26,11 @@ return [
                 ],
             ],
         ],
-        'google.cloud.networkconnectivity.v1.HubService' => [
-            'CreateHub' => [
+        'google.cloud.networkconnectivity.v1.PolicyBasedRoutingService' => [
+            'CreatePolicyBasedRoute' => [
                 'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/hubs',
-                'body' => 'hub',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/policyBasedRoutes',
+                'body' => 'policy_based_route',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
@@ -38,28 +38,10 @@ return [
                         ],
                     ],
                 ],
-                'queryParams' => [
-                    'hub_id',
-                ],
             ],
-            'CreateSpoke' => [
-                'method' => 'post',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/spokes',
-                'body' => 'spoke',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-                'queryParams' => [
-                    'spoke_id',
-                ],
-            ],
-            'DeleteHub' => [
+            'DeletePolicyBasedRoute' => [
                 'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/policyBasedRoutes/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -68,20 +50,9 @@ return [
                     ],
                 ],
             ],
-            'DeleteSpoke' => [
-                'method' => 'delete',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/spokes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'GetHub' => [
+            'GetPolicyBasedRoute' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/global/hubs/*}',
+                'uriTemplate' => '/v1/{name=projects/*/locations/global/policyBasedRoutes/*}',
                 'placeholders' => [
                     'name' => [
                         'getters' => [
@@ -90,61 +61,13 @@ return [
                     ],
                 ],
             ],
-            'GetSpoke' => [
+            'ListPolicyBasedRoutes' => [
                 'method' => 'get',
-                'uriTemplate' => '/v1/{name=projects/*/locations/*/spokes/*}',
-                'placeholders' => [
-                    'name' => [
-                        'getters' => [
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'ListHubs' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/hubs',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/global}/policyBasedRoutes',
                 'placeholders' => [
                     'parent' => [
                         'getters' => [
                             'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'ListSpokes' => [
-                'method' => 'get',
-                'uriTemplate' => '/v1/{parent=projects/*/locations/*}/spokes',
-                'placeholders' => [
-                    'parent' => [
-                        'getters' => [
-                            'getParent',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateHub' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{hub.name=projects/*/locations/global/hubs/*}',
-                'body' => 'hub',
-                'placeholders' => [
-                    'hub.name' => [
-                        'getters' => [
-                            'getHub',
-                            'getName',
-                        ],
-                    ],
-                ],
-            ],
-            'UpdateSpoke' => [
-                'method' => 'patch',
-                'uriTemplate' => '/v1/{spoke.name=projects/*/locations/*/spokes/*}',
-                'body' => 'spoke',
-                'placeholders' => [
-                    'spoke.name' => [
-                        'getters' => [
-                            'getSpoke',
-                            'getName',
                         ],
                     ],
                 ],

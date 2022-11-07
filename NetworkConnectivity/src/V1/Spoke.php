@@ -9,8 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A spoke represents a connection between your Google Cloud network resources
- * and a non-Google-Cloud network.
+ * A Network Connectivity Center spoke represents a connection between your
+ * Google Cloud network resources and a non-Google-Cloud network.
  * When you create a spoke, you associate it with a hub. You must also identify
  * a value for exactly one of the following fields:
  * * linked_vpn_tunnels
@@ -80,9 +80,9 @@ class Spoke extends \Google\Protobuf\Internal\Message
      */
     private $linked_router_appliance_instances = null;
     /**
-     * Output only. The Google-generated UUID for the spoke. This value is unique across all
-     * spoke resources. If a spoke is deleted and another with the same name is
-     * created, the new spoke is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the spoke. This value is unique
+     * across all spoke resources. If a spoke is deleted and another with the same
+     * name is created, the new spoke is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -123,9 +123,9 @@ class Spoke extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\NetworkConnectivity\V1\LinkedRouterApplianceInstances $linked_router_appliance_instances
      *           Router appliance instances that are associated with the spoke.
      *     @type string $unique_id
-     *           Output only. The Google-generated UUID for the spoke. This value is unique across all
-     *           spoke resources. If a spoke is deleted and another with the same name is
-     *           created, the new spoke is assigned a different unique_id.
+     *           Output only. The Google-generated UUID for the spoke. This value is unique
+     *           across all spoke resources. If a spoke is deleted and another with the same
+     *           name is created, the new spoke is assigned a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this spoke.
      * }
@@ -428,9 +428,9 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Google-generated UUID for the spoke. This value is unique across all
-     * spoke resources. If a spoke is deleted and another with the same name is
-     * created, the new spoke is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the spoke. This value is unique
+     * across all spoke resources. If a spoke is deleted and another with the same
+     * name is created, the new spoke is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -441,9 +441,9 @@ class Spoke extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Google-generated UUID for the spoke. This value is unique across all
-     * spoke resources. If a spoke is deleted and another with the same name is
-     * created, the new spoke is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the spoke. This value is unique
+     * across all spoke resources. If a spoke is deleted and another with the same
+     * name is created, the new spoke is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 11 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
