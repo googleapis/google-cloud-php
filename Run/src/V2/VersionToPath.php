@@ -24,7 +24,8 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
     private $path = '';
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest value, or an integer or a secret alias for a
+     * specific version.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      */
@@ -58,7 +59,8 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
      *           Required. The relative path of the secret in the container.
      *     @type string $version
      *           The Cloud Secret Manager secret version.
-     *           Can be 'latest' for the latest value or an integer for a specific version.
+     *           Can be 'latest' for the latest value, or an integer or a secret alias for a
+     *           specific version.
      *     @type int $mode
      *           Integer octal mode bits to use on this file, must be a value between
      *           01 and 0777 (octal). If 0 or not set, the Volume's default mode will be
@@ -108,7 +110,8 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest value, or an integer or a secret alias for a
+     * specific version.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @return string
@@ -120,7 +123,8 @@ class VersionToPath extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest value, or an integer or a secret alias for a
+     * specific version.
      *
      * Generated from protobuf field <code>string version = 2;</code>
      * @param string $var

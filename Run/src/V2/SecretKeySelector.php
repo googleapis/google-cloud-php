@@ -26,7 +26,8 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
     private $secret = '';
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest version, an integer for a specific version,
+     * or a version alias.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.resource_reference) = {</code>
      */
@@ -45,7 +46,8 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
      *           in a different project.
      *     @type string $version
      *           The Cloud Secret Manager secret version.
-     *           Can be 'latest' for the latest value or an integer for a specific version.
+     *           Can be 'latest' for the latest version, an integer for a specific version,
+     *           or a version alias.
      * }
      */
     public function __construct($data = NULL) {
@@ -87,7 +89,8 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest version, an integer for a specific version,
+     * or a version alias.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -99,7 +102,8 @@ class SecretKeySelector extends \Google\Protobuf\Internal\Message
 
     /**
      * The Cloud Secret Manager secret version.
-     * Can be 'latest' for the latest value or an integer for a specific version.
+     * Can be 'latest' for the latest version, an integer for a specific version,
+     * or a version alias.
      *
      * Generated from protobuf field <code>string version = 2 [(.google.api.resource_reference) = {</code>
      * @param string $var

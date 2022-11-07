@@ -19,9 +19,9 @@
 namespace Google\Cloud\Run\V2;
 
 /**
- * Cloud Run Revision Control Plane API.
+ * Cloud Run Task Control Plane API.
  */
-class RevisionsGrpcClient extends \Grpc\BaseStub {
+class TasksGrpcClient extends \Grpc\BaseStub {
 
     /**
      * @param string $hostname hostname
@@ -33,47 +33,32 @@ class RevisionsGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Gets information about a Revision.
-     * @param \Google\Cloud\Run\V2\GetRevisionRequest $argument input argument
+     * Gets information about a Task.
+     * @param \Google\Cloud\Run\V2\GetTaskRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function GetRevision(\Google\Cloud\Run\V2\GetRevisionRequest $argument,
+    public function GetTask(\Google\Cloud\Run\V2\GetTaskRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Revisions/GetRevision',
+        return $this->_simpleRequest('/google.cloud.run.v2.Tasks/GetTask',
         $argument,
-        ['\Google\Cloud\Run\V2\Revision', 'decode'],
+        ['\Google\Cloud\Run\V2\Task', 'decode'],
         $metadata, $options);
     }
 
     /**
-     * Lists Revisions from a given Service, or from a given location.
-     * @param \Google\Cloud\Run\V2\ListRevisionsRequest $argument input argument
+     * Lists Tasks from an Execution of a Job.
+     * @param \Google\Cloud\Run\V2\ListTasksRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
      * @return \Grpc\UnaryCall
      */
-    public function ListRevisions(\Google\Cloud\Run\V2\ListRevisionsRequest $argument,
+    public function ListTasks(\Google\Cloud\Run\V2\ListTasksRequest $argument,
       $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Revisions/ListRevisions',
+        return $this->_simpleRequest('/google.cloud.run.v2.Tasks/ListTasks',
         $argument,
-        ['\Google\Cloud\Run\V2\ListRevisionsResponse', 'decode'],
-        $metadata, $options);
-    }
-
-    /**
-     * Deletes a Revision.
-     * @param \Google\Cloud\Run\V2\DeleteRevisionRequest $argument input argument
-     * @param array $metadata metadata
-     * @param array $options call options
-     * @return \Grpc\UnaryCall
-     */
-    public function DeleteRevision(\Google\Cloud\Run\V2\DeleteRevisionRequest $argument,
-      $metadata = [], $options = []) {
-        return $this->_simpleRequest('/google.cloud.run.v2.Revisions/DeleteRevision',
-        $argument,
-        ['\Google\LongRunning\Operation', 'decode'],
+        ['\Google\Cloud\Run\V2\ListTasksResponse', 'decode'],
         $metadata, $options);
     }
 
