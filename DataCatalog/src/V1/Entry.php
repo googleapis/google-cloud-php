@@ -101,17 +101,17 @@ class Entry extends \Google\Protobuf\Internal\Message
     /**
      * Timestamps from the underlying resource, not from the Data Catalog
      * entry.
-     * Output only when the entry has a type listed in the `EntryType` enum.
-     * For entries with `user_specified_type`, this field is optional and defaults
-     * to an empty timestamp.
+     * Output only when the entry has a system listed in the `IntegratedSystem`
+     * enum. For entries with `user_specified_system`, this field is optional
+     * and defaults to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      */
     private $source_system_timestamps = null;
     /**
-     * Output only. Resource usage statistics.
+     * Resource usage statistics.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13;</code>
      */
     private $usage_signal = null;
     /**
@@ -206,11 +206,11 @@ class Entry extends \Google\Protobuf\Internal\Message
      *           Specification that applies to a Cloud Storage fileset. Valid only
      *           for entries with the `FILESET` type.
      *     @type \Google\Cloud\DataCatalog\V1\BigQueryTableSpec $bigquery_table_spec
-     *           Specification that applies to a BigQuery table. Valid only for
-     *           entries with the `TABLE` type.
+     *           Output only. Specification that applies to a BigQuery table. Valid only
+     *           for entries with the `TABLE` type.
      *     @type \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec $bigquery_date_sharded_spec
-     *           Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
-     *           name pattern.
+     *           Output only. Specification for a group of BigQuery tables with
+     *           the `[prefix]YYYYMMDD` name pattern.
      *           For more information, see [Introduction to partitioned tables]
      *           (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *     @type \Google\Cloud\DataCatalog\V1\DatabaseTableSpec $database_table_spec
@@ -246,11 +246,11 @@ class Entry extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DataCatalog\V1\SystemTimestamps $source_system_timestamps
      *           Timestamps from the underlying resource, not from the Data Catalog
      *           entry.
-     *           Output only when the entry has a type listed in the `EntryType` enum.
-     *           For entries with `user_specified_type`, this field is optional and defaults
-     *           to an empty timestamp.
+     *           Output only when the entry has a system listed in the `IntegratedSystem`
+     *           enum. For entries with `user_specified_system`, this field is optional
+     *           and defaults to an empty timestamp.
      *     @type \Google\Cloud\DataCatalog\V1\UsageSignal $usage_signal
-     *           Output only. Resource usage statistics.
+     *           Resource usage statistics.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Cloud labels attached to the entry.
      *           In Data Catalog, you can create and modify labels attached only to custom
@@ -587,10 +587,10 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a BigQuery table. Valid only for
-     * entries with the `TABLE` type.
+     * Output only. Specification that applies to a BigQuery table. Valid only
+     * for entries with the `TABLE` type.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\BigQueryTableSpec|null
      */
     public function getBigqueryTableSpec()
@@ -604,10 +604,10 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification that applies to a BigQuery table. Valid only for
-     * entries with the `TABLE` type.
+     * Output only. Specification that applies to a BigQuery table. Valid only
+     * for entries with the `TABLE` type.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryTableSpec bigquery_table_spec = 12 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\BigQueryTableSpec $var
      * @return $this
      */
@@ -620,12 +620,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
-     * name pattern.
+     * Output only. Specification for a group of BigQuery tables with
+     * the `[prefix]YYYYMMDD` name pattern.
      * For more information, see [Introduction to partitioned tables]
      * (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec|null
      */
     public function getBigqueryDateShardedSpec()
@@ -639,12 +639,12 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD`
-     * name pattern.
+     * Output only. Specification for a group of BigQuery tables with
+     * the `[prefix]YYYYMMDD` name pattern.
      * For more information, see [Introduction to partitioned tables]
      * (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15;</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryDateShardedSpec bigquery_date_sharded_spec = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Cloud\DataCatalog\V1\BigQueryDateShardedSpec $var
      * @return $this
      */
@@ -935,9 +935,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     /**
      * Timestamps from the underlying resource, not from the Data Catalog
      * entry.
-     * Output only when the entry has a type listed in the `EntryType` enum.
-     * For entries with `user_specified_type`, this field is optional and defaults
-     * to an empty timestamp.
+     * Output only when the entry has a system listed in the `IntegratedSystem`
+     * enum. For entries with `user_specified_system`, this field is optional
+     * and defaults to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      * @return \Google\Cloud\DataCatalog\V1\SystemTimestamps|null
@@ -960,9 +960,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     /**
      * Timestamps from the underlying resource, not from the Data Catalog
      * entry.
-     * Output only when the entry has a type listed in the `EntryType` enum.
-     * For entries with `user_specified_type`, this field is optional and defaults
-     * to an empty timestamp.
+     * Output only when the entry has a system listed in the `IntegratedSystem`
+     * enum. For entries with `user_specified_system`, this field is optional
+     * and defaults to an empty timestamp.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.SystemTimestamps source_system_timestamps = 7;</code>
      * @param \Google\Cloud\DataCatalog\V1\SystemTimestamps $var
@@ -977,9 +977,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource usage statistics.
+     * Resource usage statistics.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13;</code>
      * @return \Google\Cloud\DataCatalog\V1\UsageSignal|null
      */
     public function getUsageSignal()
@@ -998,9 +998,9 @@ class Entry extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Resource usage statistics.
+     * Resource usage statistics.
      *
-     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * Generated from protobuf field <code>.google.cloud.datacatalog.v1.UsageSignal usage_signal = 13;</code>
      * @param \Google\Cloud\DataCatalog\V1\UsageSignal $var
      * @return $this
      */
