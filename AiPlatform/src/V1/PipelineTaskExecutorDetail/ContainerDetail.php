@@ -31,6 +31,23 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string pre_caching_check_job = 2 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $pre_caching_check_job = '';
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container
+     * executions. The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_main_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $failed_main_jobs;
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
+     * pre-caching-check container executions. This job will be available if the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec] specifies the `pre_caching_check` hook in
+     * the lifecycle events.
+     * The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_pre_caching_check_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $failed_pre_caching_check_jobs;
 
     /**
      * Constructor.
@@ -45,6 +62,15 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
      *           execution. This job will be available if the
      *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec] specifies the `pre_caching_check` hook in
      *           the lifecycle events.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_main_jobs
+     *           Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container
+     *           executions. The list includes the all attempts in chronological order.
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $failed_pre_caching_check_jobs
+     *           Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
+     *           pre-caching-check container executions. This job will be available if the
+     *           [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec] specifies the `pre_caching_check` hook in
+     *           the lifecycle events.
+     *           The list includes the all attempts in chronological order.
      * }
      */
     public function __construct($data = NULL) {
@@ -106,6 +132,68 @@ class ContainerDetail extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pre_caching_check_job = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container
+     * executions. The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_main_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFailedMainJobs()
+    {
+        return $this->failed_main_jobs;
+    }
+
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the main container
+     * executions. The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_main_jobs = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFailedMainJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->failed_main_jobs = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
+     * pre-caching-check container executions. This job will be available if the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec] specifies the `pre_caching_check` hook in
+     * the lifecycle events.
+     * The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_pre_caching_check_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFailedPreCachingCheckJobs()
+    {
+        return $this->failed_pre_caching_check_jobs;
+    }
+
+    /**
+     * Output only. The names of the previously failed [CustomJob][google.cloud.aiplatform.v1.CustomJob] for the
+     * pre-caching-check container executions. This job will be available if the
+     * [PipelineJob.pipeline_spec][google.cloud.aiplatform.v1.PipelineJob.pipeline_spec] specifies the `pre_caching_check` hook in
+     * the lifecycle events.
+     * The list includes the all attempts in chronological order.
+     *
+     * Generated from protobuf field <code>repeated string failed_pre_caching_check_jobs = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFailedPreCachingCheckJobs($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->failed_pre_caching_check_jobs = $arr;
 
         return $this;
     }
