@@ -36,26 +36,32 @@ class RateLimiter
      * Decrements with every permitted request and refills over time.
      */
     private $availableTokens;
+
     /**
      * @var int When the token bucket was first filled.
      */
     private $startTimeMillis;
+
     /**
      * @var int When the token bucket was last refilled.
      */
     private $lastRefillTimeMillis;
+
     /**
      * @var int Initial maximum number of operations per second.
      */
     private $initialCapacity;
+
     /**
      * @var float
      */
     private $multiplier;
+
     /**
      * @var int
      */
     private $multiplierMillis;
+
     /**
      * @var int
      */
@@ -66,11 +72,11 @@ class RateLimiter
      * @param int $initialCapacity Initial maximum number of operations per second.
      * @param float $multiplier Rate by which to increase the capacity.
      * @param int $multiplierMillis How often the capacity should increase in
-     * milliseconds.
+     *        milliseconds.
      * @param int $maximumRate Maximum number of allowed operations per second.
-     * The number of tokens added per second will never exceed this number.
-     * @param int $startTimeMillis The starting time in epoch milliseconds that the
-     * rate limit is based on. Used for testing the limiter.
+     *        The number of tokens added per second will never exceed this number.
+     * @param int $startTimeMillis [optional] The starting time in epoch milliseconds
+     *        that the rate limit is based on. Used for testing the limiter.
      */
     public function __construct(
         $initialCapacity,
@@ -97,7 +103,7 @@ class RateLimiter
      *
      * @param int $numOperations The number of operations to request.
      * @param int $requestTimeMillis The time used to calculate the number of
-     *            available tokens. Used for testing the limiter.
+     *        available tokens. Used for testing the limiter.
      * @return bool
      */
     public function tryMakeRequest($numOperations, $requestTimeMillis = null)
@@ -115,13 +121,13 @@ class RateLimiter
 
     /**
      * Returns the number of ms needed to make a request with the provided number
-     * of operations. Returns 0 if the request can be made with the existing
-     * capacity. Returns -1 if the request is not possible with the current
-     * capacity.
+     * of operations.
+     * Returns 0 if the request can be made with the existing capacity.
+     * Returns -1 if the request is not possible with the current capacity.
      *
      * @param int $numOperations The number of operations to request.
      * @param int $requestTimeMillis The time used to calculate the number of
-     *            available tokens. Used for testing the limiter.
+     *        available tokens. Used for testing the limiter.
      * @return int
      */
     public function getNextRequestDelayMs($numOperations, $requestTimeMillis = null)
@@ -143,38 +149,10 @@ class RateLimiter
     }
 
     /**
-     * Refills the number of available tokens based on how much time has elapsed
-     * since the last time the tokens were refilled.
-     *
-     * @param int $requestTimeMillis The time used to calculate the number of
-     *            available tokens. Used for testing the limiter.
-     * @return void
-     * @throws InvalidArgumentException If the request time is before the last token refill time.
-     */
-    private function refillTokens($requestTimeMillis)
-    {
-        if ($requestTimeMillis < $this->lastRefillTimeMillis) {
-            throw new \InvalidArgumentException(
-                'Request time should not be before the last token refill time.'
-            );
-        }
-        $elapsedTime = $requestTimeMillis - $this->lastRefillTimeMillis;
-        $capacity = $this->calculateCapacity($requestTimeMillis);
-        $tokensToAdd = floor(($elapsedTime * $capacity) / 1000);
-        if ($tokensToAdd > 0) {
-            $this->availableTokens = min(
-                $capacity,
-                $this->availableTokens + $tokensToAdd
-            );
-            $this->lastRefillTimeMillis = $requestTimeMillis;
-        }
-    }
-
-    /**
      * Calculates the maximum capacity based on the provided date.
      *
      * @param int $requestTimeMillis The time used to calculate the number of
-     *            available tokens. Used for testing the limiter.
+     *        available tokens. Used for testing the limiter.
      * @return int
      */
     // Visible for testing.
@@ -195,5 +173,33 @@ class RateLimiter
             $this->maximumRate
         );
         return $operationsPerSecond;
+    }
+
+    /**
+     * Refills the number of available tokens based on how much time has elapsed
+     * since the last time the tokens were refilled.
+     *
+     * @param int $requestTimeMillis The time used to calculate the number of
+     *        available tokens. Used for testing the limiter.
+     * @return void
+     * @throws InvalidArgumentException If request time is before last token refill time.
+     */
+    private function refillTokens($requestTimeMillis)
+    {
+        if ($requestTimeMillis < $this->lastRefillTimeMillis) {
+            throw new \InvalidArgumentException(
+                'Request time should not be before the last token refill time.'
+            );
+        }
+        $elapsedTime = $requestTimeMillis - $this->lastRefillTimeMillis;
+        $capacity = $this->calculateCapacity($requestTimeMillis);
+        $tokensToAdd = floor(($elapsedTime * $capacity) / 1000);
+        if ($tokensToAdd > 0) {
+            $this->availableTokens = min(
+                $capacity,
+                $this->availableTokens + $tokensToAdd
+            );
+            $this->lastRefillTimeMillis = $requestTimeMillis;
+        }
     }
 }

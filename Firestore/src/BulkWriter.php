@@ -246,13 +246,13 @@ class BulkWriter
         if ($options['initialOpsPerSecond'] != null && $options['initialOpsPerSecond'] < 1) {
             throw new \InvalidArgumentException(
                 "Value for argument 'initialOpsPerSecond' must be greater than 1, but was: "
-                +$options['initialOpsPerSecond']
+                + $options['initialOpsPerSecond']
             );
         }
         if ($options['maxOpsPerSecond'] != null && $options['maxOpsPerSecond'] < 1) {
             throw new \InvalidArgumentException(
                 "Value for argument 'maxOpsPerSecond' must be greater than 1, but was: "
-                +$options['initialOpsPerSecond']
+                + $options['initialOpsPerSecond']
             );
         }
         if ($options['maxOpsPerSecond'] != null &&
@@ -529,8 +529,8 @@ class BulkWriter
             $this->arrayHasKeys($field, ['path', 'value']);
 
             $path = ($field['path'] instanceof FieldPath)
-            ? $field['path']
-            : FieldPath::fromString($field['path']);
+                ? $field['path']
+                : FieldPath::fromString($field['path']);
 
             if (!$path->path()) {
                 throw new \InvalidArgumentException('Field Path cannot be empty.');
@@ -769,6 +769,13 @@ class BulkWriter
         return $this->finalResponse;
     }
 
+    /**
+     * Gets updated backoff duration provided last status code and backoff duration.
+     *
+     * @param int $lastStatus Previous status code of batchWrite
+     * @param int $backoffDurationInMillis Previous backoff duration in milliseconds
+     * @return int
+     */
     public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
@@ -982,8 +989,8 @@ class BulkWriter
         }
 
         $document = ($document instanceof DocumentReference)
-        ? $document->name()
-        : $document;
+            ? $document->name()
+            : $document;
 
         return $this->arrayFilterRemoveNull([
             'updateMask' => $mask,
@@ -1003,8 +1010,8 @@ class BulkWriter
     private function validatePrecondition(array &$options)
     {
         $precondition = isset($options['precondition'])
-        ? $options['precondition']
-        : null;
+            ? $options['precondition']
+            : null;
 
         if (!$precondition) {
             return;
@@ -1082,7 +1089,7 @@ class BulkWriter
                     $type
                 ));
                 break;
-                // @codeCoverageIgnoreEnd
+            // @codeCoverageIgnoreEnd
         }
     }
 
@@ -1171,8 +1178,8 @@ class BulkWriter
                 // Delete cannot be nested in update-paths
                 // (i.e. the only case where `$inputPaths` would be available)
                 $illegalNestedDelete = $inputPaths
-                && $value instanceof DeleteFieldValue
-                && !in_array($currentPath, $inputPaths);
+                    && $value instanceof DeleteFieldValue
+                    && !in_array($currentPath, $inputPaths);
 
                 if ($illegalNestedDelete) {
                     throw new \InvalidArgumentException(sprintf(
@@ -1238,8 +1245,8 @@ class BulkWriter
         }
 
         $precondition = isset($options['precondition'])
-        ? $options['precondition']
-        : [];
+            ? $options['precondition']
+            : [];
 
         if (isset($precondition['updateTime'])) {
             return $options;
@@ -1303,8 +1310,8 @@ class BulkWriter
         $excluded = [];
         foreach ($sentinels as $sentinel) {
             $path = $sentinel->fieldPath()
-            ? $sentinel->fieldPath()->pathString()
-            : null;
+                ? $sentinel->fieldPath()->pathString()
+                : null;
 
             if (!$sentinel->includeInUpdateMask()) {
                 $excluded[] = $path;
