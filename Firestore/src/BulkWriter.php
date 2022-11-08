@@ -166,10 +166,10 @@ class BulkWriter
 
     /**
      * @var array Failed rescheduled mutations.
-     * Each object to have these fields:
-     * 'num_failed_attempts': int
-     * 'scheduled_in_millis': int
-     * 'backoff_in_millis': int
+     * Each object to have these integer fields:
+     *     - num_failed_attempts
+     *     - scheduled_in_millis
+     *     - backoff_in_millis
      */
     private $retryScheduledWrites = [];
 

@@ -206,9 +206,9 @@ class FirestoreClient
      *
      *     @type int $maxBatchSize Maximum number of requests per batch.
      *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
-     *           sends batches. **Defaults to** `true`.
+     *           sends batches.
      *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
-     *           sending writes can be throttled. **Defaults to** `true`.
+     *           sending writes can be throttled.
      *     @type int $initialOpsPerSecond Initial number of operations per second.
      *     @type int $maxOpsPerSecond Maximum number of operations per second.
      * }
@@ -216,7 +216,6 @@ class FirestoreClient
      */
     public function bulkWriter(array $options = [])
     {
-        $options += ['greedilySend' => true];
         return new BulkWriter(
             $this->connection,
             $this->valueMapper,
