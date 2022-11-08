@@ -659,7 +659,7 @@ class BulkWriter
         return $this->finalResponse;
     }
 
-    public function getBackoffDuration(int $lastStatus, $backoffDurationInMillis = 0)
+    public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
             $backoffDurationInMillis = self::DEFAULT_BACKOFF_MAX_DELAY_MS;
@@ -678,7 +678,7 @@ class BulkWriter
      * @param int $lastRunStatusCode
      * @return void
      */
-    private function handleSendBatchFailure(int $writesId, int $lastRunStatusCode)
+    private function handleSendBatchFailure($writesId, $lastRunStatusCode)
     {
         if ($lastRunStatusCode === Code::OK) {
             return;
@@ -1273,7 +1273,7 @@ class BulkWriter
         $this->uniqueDocuments[] = $document;
     }
 
-    private function applyJitter(int $backoffMs)
+    private function applyJitter($backoffMs)
     {
         if ($backoffMs <= 0) {
             return 0;
