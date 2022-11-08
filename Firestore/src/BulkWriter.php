@@ -415,8 +415,12 @@ class BulkWriter
         // - if the user provided only delete sentinel field values.
 
         $updateNotRequired = count($fields) === 0
-        && !$emptyDocument
-        && !$metadata['hasUpdateMask']
+            && !$emptyDocument
+            && !$metadata['hasUpdateMask']
+            && $metadata['hasTransform'];
+
+        $shouldEnqueueUpdate = $fields
+            || $emptyDocument
             || ($updateNotRequired && !$merge)
             || $metadata['hasUpdateMask'];
         if ($shouldEnqueueUpdate) {
