@@ -176,7 +176,7 @@ class BulkWriter
     /**
      * @var array All unique documents added to mutate.
      */
-    private $unique_documents = [];
+    private $uniqueDocuments = [];
 
     /**
      * @var bool Whether this BulkWriter instance is closed.
@@ -187,7 +187,7 @@ class BulkWriter
     /**
      * @var bool Whether BulkWriter greedily sends operations via
      * [https://cloud.google.com/firestore/docs/reference/rpc/google.firestore.v1beta1#batchwriterequest](BatchWriteRequest)
-     * when sufficient number of operations are enqueued.
+     * as soon  as sufficient number of operations are enqueued.
      */
     private $greedilySend;
 
@@ -201,13 +201,16 @@ class BulkWriter
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
-     * @param array|string|null $options [optional] Configuration options as array. {
-     *     Configuration options
+     * @param array $options [optional] {
+     *     Configuration options is an array.
+     *     For legacy reasons if provided as `string` or `null`, its assumed
+     *     to be transaction id for {@see Google\Cloud\Firestore\WriteBatch}.
      *
-     *     @type int $maxBatchSize Maximum number of requests per batch.
-     *     @type bol $greedilySend Flag to indicate whether to greedily send batches.
-     * }, Or @deprecated use string or null for transaction id of
-     * legacy WriteBatch.
+     *     @type int $maxBatchSize Maximum number of requests per BulkWriter batch.
+     *           **Defaults to** `20`.
+     *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
+     *           sends batches. **Defaults to** `true`.
+     * }
      */
     public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
     {
@@ -415,8 +418,8 @@ class BulkWriter
         // - if the user provided only delete sentinel field values.
 
         $updateNotRequired = count($fields) === 0
-        && !$emptyDocument
-        && !$metadata['hasUpdateMask']
+            && !$emptyDocument
+            && !$metadata['hasUpdateMask']
             && $metadata['hasTransform'];
 
         $shouldEnqueueUpdate = $fields
@@ -620,12 +623,21 @@ class BulkWriter
     }
 
     /**
-     * Flushes the enqueued writes in batches.
+     * Flushes the enqueued writes in batches with auto-retries. Please note:
+     *     - This method is blocking and may execute many sequential batch write requests.
+     *     - Gradually ramps up writes as specified by the 500/50/5 rule.
+     *     - Does not guarantee the order of writes.
+     *     - Accepts unique document references only.
+     * Read more: [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
      *
      * Example:
      * ```
      * $batch->flush();
      * ```
+     *
+     * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
+     *         retryable failures. **Defaults to** `false`.
+     * @return void
      */
     public function flush($waitForRetryableFailures = false)
     {
@@ -647,7 +659,7 @@ class BulkWriter
                 $this->finalResponse['writeResults'][$batchIds[$i]] = $writeResult;
                 $this->finalResponse['status'][$batchIds[$i]] = $status;
                 if ($status['code'] !== Code::OK) {
-                    $this->handleSendbatchFailure($batchIds[$i], $status['code']);
+                    $this->handleSendBatchFailure($batchIds[$i], $status['code']);
                 } else {
                     // try delete from retries
                     unset($this->retryScheduledWrites[$batchIds[$i]]);
@@ -657,13 +669,122 @@ class BulkWriter
     }
 
     /**
+     * Commit writes to the database.
+     * Not to be used together with flush / close.
+     *
+     * Example:
+     * ```
+     * $batch->commit();
+     * ```
+     *
+     * @codingStandardsIgnoreStart
+     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
+     *
+     * @internal Only supposed to be used internally in Transaction class.
+     * @access private
+     * @param array $options Configuration Options
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
+     * @codingStandardsIgnoreEnd
+     */
+    public function commit(array $options = [])
+    {
+        unset($options['merge'], $options['precondition']);
+
+        $response = $this->connection->commit(array_filter([
+            'database' => $this->database,
+            'writes' => $this->writes,
+            'transaction' => $this->transaction,
+        ]) + $options);
+
+        if (isset($response['commitTime'])) {
+            $time = $this->parseTimeString($response['commitTime']);
+            $response['commitTime'] = new Timestamp($time[0], $time[1]);
+        }
+
+        if (isset($response['writeResults'])) {
+            foreach ($response['writeResults'] as &$result) {
+                if (isset($result['updateTime'])) {
+                    $time = $this->parseTimeString($result['updateTime']);
+                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
+                }
+            }
+        }
+
+        return $response;
+    }
+
+    /**
+     * Rollback a transaction.
+     *
+     * If the class was created without a Transaction ID, this method will fail.
+     * Not to be used together with flush / close.
+     *
+     * This method is intended for use internally and should not be considered
+     * part of the public API.
+     *
+     * @internal Only supposed to be used internally in Transaction class.
+     * @access private
+     * @param array $options Configuration Options
+     * @return void
+     * @throws \RuntimeException If no transaction ID is provided at class construction.
+     */
+    public function rollback(array $options = [])
+    {
+        if (!$this->transaction) {
+            throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
+        }
+
+        $this->connection->rollback([
+            'database' => $this->database,
+            'transaction' => $this->transaction,
+        ] + $options);
+    }
+
+    /**
+     * Check if the BulkWriter has any writes enqueued.
+     *
+     * @access private
+     * @return bool
+     */
+    public function isEmpty()
+    {
+        return !(bool) $this->writes;
+    }
+
+    /**
+     * Close the bulk writer instance for further writes.
+     *
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
+     */
+    public function close()
+    {
+        $this->flush(true);
+        $this->closed = true;
+        ksort($this->finalResponse['writeResults']);
+        ksort($this->finalResponse['status']);
+        return $this->finalResponse;
+    }
+
+    public function getBackoffDuration(int $lastStatus, $backoffDurationInMillis = 0)
+    {
+        if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
+            $backoffDurationInMillis = self::DEFAULT_BACKOFF_MAX_DELAY_MS;
+        } elseif ($backoffDurationInMillis <= 0) {
+            $backoffDurationInMillis = self::DEFAULT_BACKOFF_INITIAL_DELAY_MS;
+        } else {
+            $backoffDurationInMillis *= self::DEFAULT_BACKOFF_FACTOR;
+        }
+        return min(self::DEFAULT_BACKOFF_MAX_DELAY_MS, $backoffDurationInMillis);
+    }
+
+    /**
      * Reschedule failed mutations if retryable.
      *
      * @param int $writesId Sequence of mutation among all enqueued writes
      * @param int $lastRunStatusCode Previous status code of batchWrite
      * @return void
      */
-    private function handleSendbatchFailure($writesId, $lastRunStatusCode)
+    private function handleSendBatchFailure($writesId, $lastRunStatusCode)
     {
         if ($lastRunStatusCode === Code::OK) {
             return;
@@ -687,6 +808,9 @@ class BulkWriter
 
     /**
      * Creates writes array indices which form a batch
+     *
+     * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
+     *        retryable failures. **Defaults to** `false`.
      * @return array
      */
     private function createWritesBatchIds($waitForRetryableFailures)
@@ -741,43 +865,21 @@ class BulkWriter
     }
 
     /**
-     * Close thebulk writer instance for further writes
-     *
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
-     */
-    public function close()
-    {
-        $this->flush(true);
-        $this->closed = true;
-        ksort($this->finalResponse['writeResults']);
-        ksort($this->finalResponse['status']);
-        return $this->finalResponse;
-    }
-
-    /**
-     * Gets updated backoff duration provided last status code and backoff duration.
-     *
-     * @param int $lastStatus Previous status code of batchWrite
-     * @param int $backoffDurationInMillis Previous backoff duration in milliseconds
-     * @return int
-     */
-    public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
-    {
-        if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
-            $backoffDurationInMillis = $this->maxDelayTime;
-        } elseif ($backoffDurationInMillis <= 0) {
-            $backoffDurationInMillis = self::DEFAULT_BACKOFF_INITIAL_DELAY_MS;
-        } else {
-            $backoffDurationInMillis *= self::DEFAULT_BACKOFF_FACTOR;
-        }
-        return min($this->maxDelayTime, $backoffDurationInMillis);
-    }
-
-    /**
      * Sends a batch write request to the database.
+     *
+     * @param array $writes The writes to send in a batch. Please note:
+     *            - Writes do not apply atomically
+     *            - Writes do not guarantee ordering.
+     *            - Each write can succeed or fail independently.
+     * @param array $options [optional] {
+     *     Configuration options
+     *
+     *     @type array $labels
+     *           Labels associated with this batch write.
+     * }
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
      */
-    public function sendBatch(array $writes, array $options = [])
+    private function sendBatch(array $writes, array $options = [])
     {
         $rateLimiterDelayMs = $this->rateLimiter->getNextRequestDelayMs(count($writes));
         // avoid very long sleep
@@ -808,101 +910,6 @@ class BulkWriter
         }
 
         return $response;
-    }
-
-    /**
-     * Commit writes to the database.
-     *
-     * Example:
-     * ```
-     * $batch->commit();
-     * ```
-     *
-     * @codingStandardsIgnoreStart
-     * @see https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#google.firestore.v1beta1.Firestore.Commit Commit
-     *
-     * @param array $options Configuration Options
-     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#commitresponse](CommitResponse)
-     * @codingStandardsIgnoreEnd
-     * @deprecated Consider moving to BulkWriter. Not to be used together with flush / close.
-     */
-    public function commit(array $options = [])
-    {
-        unset($options['merge'], $options['precondition']);
-
-        $response = $this->connection->commit(array_filter([
-            'database' => $this->database,
-            'writes' => $this->writes,
-            'transaction' => $this->transaction,
-        ]) + $options);
-
-        if (isset($response['commitTime'])) {
-            $time = $this->parseTimeString($response['commitTime']);
-            $response['commitTime'] = new Timestamp($time[0], $time[1]);
-        }
-
-        if (isset($response['writeResults'])) {
-            foreach ($response['writeResults'] as &$result) {
-                if (isset($result['updateTime'])) {
-                    $time = $this->parseTimeString($result['updateTime']);
-                    $result['updateTime'] = new Timestamp($time[0], $time[1]);
-                }
-            }
-        }
-
-        return $response;
-    }
-
-    /**
-     * Rollback a transaction.
-     *
-     * If the class was created without a Transaction ID, this method will fail.
-     *
-     * This method is intended for use internally and should not be considered
-     * part of the public API.
-     *
-     * @access private
-     * @param array $options Configuration Options
-     * @return void
-     * @throws \RuntimeException If no transaction ID is provided at class construction.
-     * @deprecated Consider moving to BulkWriter. Not to be used together with flush / close.
-     */
-    public function rollback(array $options = [])
-    {
-        if (!$this->transaction) {
-            throw new \RuntimeException('Cannot rollback because no transaction id was provided.');
-        }
-
-        $this->connection->rollback([
-            'database' => $this->database,
-            'transaction' => $this->transaction,
-        ] + $options);
-    }
-
-    /**
-     * Check if the BulkWriter has any writes enqueued.
-     *
-     * @access private
-     * @return bool
-     */
-    public function isEmpty()
-    {
-        return !(bool) $this->writes;
-    }
-
-    /**
-     * Change the maximum delay time for rescheduling a failed mutation or
-     * awaiting a batch creation.
-     *
-     * @internal
-     *
-     * @param int $maxTime The maximum delay time in millis for rescheduling
-     *            a failed mutation or awaiting a batch creation.
-     * @return void
-     */
-    public function setMaxRetryTimeInMs($maxTime)
-    {
-        $this->maxDelayTime = min($this->maxDelayTime, max(0, $maxTime));
     }
 
     /**
@@ -1354,7 +1361,7 @@ class BulkWriter
     }
 
     /**
-     * Check whether BulkWriter is writeble with provided document.
+     * Check whether BulkWriter is writeable with the provided document.
      *
      * @param DocumentReference|string $document The document to target.
      * @throws \InvalidArgumentException If document is not unique.
@@ -1374,13 +1381,13 @@ class BulkWriter
         if ($document instanceof DocumentReference) {
             $document = $document->name();
         }
-        if (in_array($document, $this->unique_documents)) {
+        if (in_array($document, $this->uniqueDocuments)) {
             throw new \InvalidArgumentException(
                 'firestore: bulkwriter: received duplicate mutations for path: ' .
                 $document
             );
         }
-        $this->unique_documents[] = $document;
+        $this->uniqueDocuments[] = $document;
     }
 
     /**
