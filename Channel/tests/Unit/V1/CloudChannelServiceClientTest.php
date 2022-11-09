@@ -22,19 +22,16 @@
 
 namespace Google\Cloud\Channel\Tests\Unit\V1;
 
+use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Channel\V1\ChannelPartnerLink;
 use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
-
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\Entitlement;
@@ -62,9 +59,9 @@ use Google\Cloud\Channel\V1\RenewalSettings;
 use Google\Cloud\Channel\V1\RepricingAdjustment;
 use Google\Cloud\Channel\V1\RepricingConfig;
 use Google\Cloud\Channel\V1\Sku;
+use Google\Cloud\Channel\V1\TransferEntitlementsResponse;
 use Google\Cloud\Channel\V1\TransferableOffer;
 use Google\Cloud\Channel\V1\TransferableSku;
-use Google\Cloud\Channel\V1\TransferEntitlementsResponse;
 use Google\Cloud\Channel\V1\UnregisterSubscriberResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -83,25 +80,19 @@ use stdClass;
  */
 class CloudChannelServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudChannelServiceClient
-     */
+    /** @return CloudChannelServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -110,9 +101,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         return new CloudChannelServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateEntitlementTest()
     {
         $operationsTransport = $this->createTransport();
@@ -180,9 +169,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateEntitlementExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -237,9 +224,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelEntitlementTest()
     {
         $operationsTransport = $this->createTransport();
@@ -301,9 +286,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelEntitlementExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -358,9 +341,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeOfferTest()
     {
         $operationsTransport = $this->createTransport();
@@ -431,9 +412,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeOfferExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -489,9 +468,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeParametersTest()
     {
         $operationsTransport = $this->createTransport();
@@ -562,9 +539,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeParametersExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -620,9 +595,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeRenewalSettingsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -693,9 +666,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function changeRenewalSettingsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -751,9 +722,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkCloudIdentityAccountsExistTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +750,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkCloudIdentityAccountsExistExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +784,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
@@ -859,9 +824,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -899,9 +862,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -939,9 +900,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -983,9 +942,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomerTest()
     {
         $transport = $this->createTransport();
@@ -1033,9 +990,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1075,9 +1030,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -1115,9 +1068,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1159,9 +1110,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntitlementTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1234,9 +1183,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntitlementExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1294,9 +1241,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -1320,9 +1265,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1355,9 +1298,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCustomerTest()
     {
         $transport = $this->createTransport();
@@ -1381,9 +1322,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCustomerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1416,9 +1355,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -1442,9 +1379,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1477,9 +1412,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
@@ -1512,9 +1445,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1547,9 +1478,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -1576,9 +1505,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1611,9 +1538,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomerTest()
     {
         $transport = $this->createTransport();
@@ -1652,9 +1577,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1687,9 +1610,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -1716,9 +1637,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1751,9 +1670,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntitlementTest()
     {
         $transport = $this->createTransport();
@@ -1784,9 +1701,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntitlementExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1819,9 +1734,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCustomerTest()
     {
         $transport = $this->createTransport();
@@ -1867,9 +1780,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCustomerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1905,9 +1816,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listChannelPartnerLinksTest()
     {
         $transport = $this->createTransport();
@@ -1942,9 +1851,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listChannelPartnerLinksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1977,9 +1884,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listChannelPartnerRepricingConfigsTest()
     {
         $transport = $this->createTransport();
@@ -2014,9 +1919,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listChannelPartnerRepricingConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2049,9 +1952,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomerRepricingConfigsTest()
     {
         $transport = $this->createTransport();
@@ -2086,9 +1987,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomerRepricingConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2121,9 +2020,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomersTest()
     {
         $transport = $this->createTransport();
@@ -2158,9 +2055,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCustomersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2193,9 +2088,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntitlementsTest()
     {
         $transport = $this->createTransport();
@@ -2230,9 +2123,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntitlementsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2265,9 +2156,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOffersTest()
     {
         $transport = $this->createTransport();
@@ -2302,9 +2191,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOffersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2337,9 +2224,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsTest()
     {
         $transport = $this->createTransport();
@@ -2374,9 +2259,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProductsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2409,9 +2292,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPurchasableOffersTest()
     {
         $transport = $this->createTransport();
@@ -2446,9 +2327,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPurchasableOffersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2481,9 +2360,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPurchasableSkusTest()
     {
         $transport = $this->createTransport();
@@ -2518,9 +2395,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPurchasableSkusExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2553,9 +2428,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSkusTest()
     {
         $transport = $this->createTransport();
@@ -2593,9 +2466,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSkusExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2629,9 +2500,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSubscribersTest()
     {
         $transport = $this->createTransport();
@@ -2668,9 +2537,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSubscribersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2703,9 +2570,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferableOffersTest()
     {
         $transport = $this->createTransport();
@@ -2743,9 +2608,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferableOffersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2779,9 +2642,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferableSkusTest()
     {
         $transport = $this->createTransport();
@@ -2816,9 +2677,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferableSkusExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2851,9 +2710,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupOfferTest()
     {
         $transport = $this->createTransport();
@@ -2882,9 +2739,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function lookupOfferExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2917,9 +2772,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function provisionCloudIdentityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2995,9 +2848,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function provisionCloudIdentityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3052,9 +2903,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function registerSubscriberTest()
     {
         $transport = $this->createTransport();
@@ -3084,9 +2933,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function registerSubscriberExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3120,9 +2967,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startPaidServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3190,9 +3035,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startPaidServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3247,9 +3090,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suspendEntitlementTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3317,9 +3158,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suspendEntitlementExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3374,9 +3213,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function transferEntitlementsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3441,9 +3278,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function transferEntitlementsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3499,9 +3334,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function transferEntitlementsToGoogleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3566,9 +3399,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function transferEntitlementsToGoogleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3624,9 +3455,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unregisterSubscriberTest()
     {
         $transport = $this->createTransport();
@@ -3656,9 +3485,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function unregisterSubscriberExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3692,9 +3519,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateChannelPartnerLinkTest()
     {
         $transport = $this->createTransport();
@@ -3737,9 +3562,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateChannelPartnerLinkExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3778,9 +3601,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateChannelPartnerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -3815,9 +3636,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateChannelPartnerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3858,9 +3677,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomerTest()
     {
         $transport = $this->createTransport();
@@ -3905,9 +3722,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3946,9 +3761,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomerRepricingConfigTest()
     {
         $transport = $this->createTransport();
@@ -3983,9 +3796,7 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCustomerRepricingConfigExceptionTest()
     {
         $transport = $this->createTransport();

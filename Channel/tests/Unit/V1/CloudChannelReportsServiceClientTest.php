@@ -22,15 +22,12 @@
 
 namespace Google\Cloud\Channel\Tests\Unit\V1;
 
+use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
-
 use Google\Cloud\Channel\V1\FetchReportResultsResponse;
 use Google\Cloud\Channel\V1\ListReportsResponse;
 use Google\Cloud\Channel\V1\Report;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class CloudChannelReportsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudChannelReportsServiceClient
-     */
+    /** @return CloudChannelReportsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         return new CloudChannelReportsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchReportResultsTest()
     {
         $transport = $this->createTransport();
@@ -113,9 +102,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchReportResultsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -148,9 +135,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReportsTest()
     {
         $transport = $this->createTransport();
@@ -185,9 +170,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -220,9 +203,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runReportJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -284,9 +265,7 @@ class CloudChannelReportsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runReportJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
