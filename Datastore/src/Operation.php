@@ -451,6 +451,11 @@ class Operation
             }
         ];
 
+        if (isset($query->queryObject()['limit'])) {
+            // Setting resultLimit ensures we loop through all pages.
+            // Datastore doesn't process more than 1000 skipped results in a query.
+            $iteratorConfig['resultLimit'] = $query->queryObject()['limit'];
+        }
         $runQueryObj = clone $query;
         $runQueryFn = function (array $args = []) use (&$runQueryObj, $options) {
             $args += [
