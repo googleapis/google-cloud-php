@@ -44,8 +44,9 @@ class PageTree
 
         $isDiregapic = false;
 
-        $protoPackages = [];
+        $gapicClients = [];
 
+        // Build the list of pages we are going to generate documentation for
         foreach ($structure->file as $file) {
             // only document classes for now
             if (!isset($file->class[0])) {
@@ -74,19 +75,20 @@ class PageTree
             // @TODO: Do not generate them in V2, eventually mark them as deprecated
             $isDiregapic = $isDiregapic || $classNode->isGapicEnumClass();
 
+            $fullName = $classNode->getFullname();
+            // Manually skip GAPIC clients
+            if ('GapicClient' === substr($classNode->getClassName(), -11)) {
+                $gapicClients[] = $classNode;
+                continue;
+            }
+
             // Manually skip Grpc classes
             // @TODO: Do not generate Grpc classes in V2, eventually mark these as deprecated
-            $fullName = $classNode->getFullname();
             if (
                 'GrpcClient' === substr($fullName, -10)
                 && '\Grpc\BaseStub' === $classNode->getExtends()
             ) {
                 continue;
-            }
-
-            // Create a map of protobuf package names to PHP namespaces (see below).
-            if ($classNode->isServiceClass()) {
-                $protoPackages[$classNode->getProtoPackage()] = ltrim($classNode->getNamespace(), '\\');
             }
 
             // Skip classes that are in the structure.xml but not a part of this namespace
@@ -109,9 +111,23 @@ class PageTree
             }
         }
 
+        // Combine Client classes with internal Gapic\Client
+        $pages = $this->combineGapicClients($gapicClients,$pages);
+
+        // We don't need the array keys anymore
+        $pages = array_values($pages);
+
         /**
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
+         * This has to be done after we combine GAPIC clients.
          */
+        $protoPackages = [];
+        foreach ($pages as $page) {
+            if ($protoPackage = $classNode->getProtoPackage()) {
+                $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
+            }
+        }
+
         foreach ($pages as $page) {
             $page->getClassNode()->setProtoPackages($protoPackages);
         }
@@ -119,27 +135,22 @@ class PageTree
         // Sort pages alphabetically by full class name
         ksort($pages);
 
-        // Combine Client classes with internal Gapic\Client
-        $this->pages = array_values($this->combineGapicClients($pages));
-
-        return $this->pages;
+        return $this->pages = $pages;
     }
 
-    private function combineGapicClients(array $pages): array
+    private function combineGapicClients(array $gapicClients, array $pages): array
     {
         // Combine Client with internal Gapic\Client
-        foreach ($pages as $className => $page) {
-            if ('Client' == substr($className, -6) && 'GapicClient' != substr($className, -11)) {
-                // Find Gapic Classname
-                $parts = explode('\\', $className);
-                $clientName = substr(array_pop($parts), 0, -6) . 'GapicClient';
-                $parts[] = 'Gapic';
-                $parts[] = $clientName;
-                $gapicClientName = implode('\\', $parts);
-                if (isset($pages[$gapicClientName])) {
-                    $page->getClassNode()->setChildNode($pages[$gapicClientName]->getClassNode());
-                    unset($pages[$gapicClientName]);
-                }
+        foreach ($gapicClients as $gapicClient) {
+            // Find  Classname
+            $parts = explode('\\', $className);
+            $clientClassName = substr(array_pop($parts), 0, -11) . 'Client';
+            array_pop($parts); // remove "Gapic" namespace
+            $parts[] = $clientClassName;
+            $clientFullName = implode('\\', $parts);
+            if (isset($pages[$clientFullName])) {
+                $page->getClassNode()->setChildNode($gapicClient);
+                unset($pages[$clientFullName]);
             }
         }
 
