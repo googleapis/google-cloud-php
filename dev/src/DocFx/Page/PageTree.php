@@ -77,7 +77,7 @@ class PageTree
 
             $fullName = $classNode->getFullname();
             // Manually skip GAPIC clients
-            if ('GapicClient' === substr($classNode->getClassName(), -11)) {
+            if ('GapicClient' === substr($classNode->getFullName(), -11)) {
                 $gapicClients[] = $classNode;
                 continue;
             }
@@ -143,14 +143,13 @@ class PageTree
         // Combine Client with internal Gapic\Client
         foreach ($gapicClients as $gapicClient) {
             // Find  Classname
-            $parts = explode('\\', $className);
+            $parts = explode('\\', $gapicClient->getFullName());
             $clientClassName = substr(array_pop($parts), 0, -11) . 'Client';
             array_pop($parts); // remove "Gapic" namespace
             $parts[] = $clientClassName;
             $clientFullName = implode('\\', $parts);
             if (isset($pages[$clientFullName])) {
-                $page->getClassNode()->setChildNode($gapicClient);
-                unset($pages[$clientFullName]);
+                $pages[$clientFullName]->getClassNode()->setChildNode($gapicClient);
             }
         }
 

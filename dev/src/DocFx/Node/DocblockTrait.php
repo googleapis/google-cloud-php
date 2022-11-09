@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\DocFx\Node;
 trait DocblockTrait
 {
     use XrefTrait;
+    use FencedCodeBlockTrait;
 
     public function getContent(): string
     {
@@ -39,6 +40,7 @@ trait DocblockTrait
         $content = $this->replaceSeeTag($content);
         $content = $this->replaceProtoRef($content);
         $content = $this->stripSnippetTag($content);
+        $content = $this->addPhpLanguageHintToFencedCodeBlock($content);
 
         return $content;
     }
