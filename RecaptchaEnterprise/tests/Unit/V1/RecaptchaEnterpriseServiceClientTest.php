@@ -22,12 +22,11 @@
 
 namespace Google\Cloud\RecaptchaEnterprise\Tests\Unit\V1;
 
+use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation;
 use Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Assessment;
@@ -36,7 +35,6 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
@@ -52,25 +50,19 @@ use stdClass;
  */
 class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RecaptchaEnterpriseServiceClient
-     */
+    /** @return RecaptchaEnterpriseServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -79,9 +71,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         return new RecaptchaEnterpriseServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateAssessmentTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateAssessmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -145,9 +133,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssessmentTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAssessmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKeyTest()
     {
         $transport = $this->createTransport();
@@ -247,9 +229,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -283,9 +263,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKeyTest()
     {
         $transport = $this->createTransport();
@@ -309,9 +287,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -344,9 +320,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKeyTest()
     {
         $transport = $this->createTransport();
@@ -375,9 +349,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -410,9 +382,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricsTest()
     {
         $transport = $this->createTransport();
@@ -439,9 +409,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetricsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -474,9 +442,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKeysTest()
     {
         $transport = $this->createTransport();
@@ -511,9 +477,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listKeysExceptionTest()
     {
         $transport = $this->createTransport();
@@ -546,9 +510,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupMembershipsTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +545,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupMembershipsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -618,9 +578,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupsTest()
     {
         $transport = $this->createTransport();
@@ -655,9 +613,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRelatedAccountGroupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -690,9 +646,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function migrateKeyTest()
     {
         $transport = $this->createTransport();
@@ -721,9 +675,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function migrateKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -756,9 +708,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function retrieveLegacySecretKeyTest()
     {
         $transport = $this->createTransport();
@@ -785,9 +735,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function retrieveLegacySecretKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -820,9 +768,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchRelatedAccountGroupMembershipsTest()
     {
         $transport = $this->createTransport();
@@ -857,9 +803,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchRelatedAccountGroupMembershipsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -892,9 +836,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKeyTest()
     {
         $transport = $this->createTransport();
@@ -923,9 +865,7 @@ class RecaptchaEnterpriseServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateKeyExceptionTest()
     {
         $transport = $this->createTransport();
