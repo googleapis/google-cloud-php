@@ -137,19 +137,6 @@ class QueryResultPaginationTest extends DatastoreTestCase
     /**
      * @dataProvider clientProvider
      */
-    public function testGqlQueryPaginationWithLimit(DatastoreClient $client)
-    {
-        $testLimit = 310;
-        $q = $client->gqlQuery(
-            sprintf('SELECT * FROM `%s` LIMIT %s', self::$testKind, $testLimit),
-            ['allowLiterals' => true]
-        );
-        $this->assertQueryCount($testLimit, $client, $q);
-    }
-
-    /**
-     * @dataProvider clientProvider
-     */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {
         $q = $client->query()->kind(self::$testKind);
