@@ -72,6 +72,12 @@ class Offer extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.channel.v1.ParameterDefinition parameter_definitions = 9;</code>
      */
     private $parameter_definitions;
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     */
+    private $deal_code = '';
 
     /**
      * Constructor.
@@ -98,6 +104,8 @@ class Offer extends \Google\Protobuf\Internal\Message
      *           Output only. End of the Offer validity time.
      *     @type array<\Google\Cloud\Channel\V1\ParameterDefinition>|\Google\Protobuf\Internal\RepeatedField $parameter_definitions
      *           Parameters required to use current Offer to purchase.
+     *     @type string $deal_code
+     *           The deal code of the offer to get a special promotion or discount.
      * }
      */
     public function __construct($data = NULL) {
@@ -397,6 +405,32 @@ class Offer extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Channel\V1\ParameterDefinition::class);
         $this->parameter_definitions = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @return string
+     */
+    public function getDealCode()
+    {
+        return $this->deal_code;
+    }
+
+    /**
+     * The deal code of the offer to get a special promotion or discount.
+     *
+     * Generated from protobuf field <code>string deal_code = 12;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDealCode($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->deal_code = $var;
 
         return $this;
     }

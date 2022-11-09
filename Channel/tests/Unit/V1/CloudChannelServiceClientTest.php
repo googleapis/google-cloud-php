@@ -2863,8 +2863,10 @@ class CloudChannelServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
         // Mock response
         $name = 'name3373707';
+        $dealCode = 'dealCode-1350349344';
         $expectedResponse = new Offer();
         $expectedResponse->setName($name);
+        $expectedResponse->setDealCode($dealCode);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedEntitlement = $gapicClient->entitlementName('[ACCOUNT]', '[CUSTOMER]', '[ENTITLEMENT]');
