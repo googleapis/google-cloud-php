@@ -800,7 +800,7 @@ class BulkWriter
      */
     public function setMaxRetryTimeInMs($maxTime)
     {
-        $this->maxDelayTime = min($this->maxDelayTime, max(0, $maxTime));
+        $this->maxDelayTime = max(0, $maxTime);
     }
 
     /**
@@ -839,7 +839,7 @@ class BulkWriter
      *        retryable failures. **Defaults to** `false`.
      * @return array
      */
-    private function createWritesBatchIds($waitForRetryableFailures)
+    private function createWritesBatchIds($waitForRetryableFailures = false)
     {
         $writesBatchIds = [];
         $curTimeInMillis = floor(microtime(true) * 1000);
@@ -976,7 +976,9 @@ class BulkWriter
                 'fieldTransforms' => $operations,
             ] + $options);
         }
-        if ($this->greedilySend && count($this->writes) >= $this->maxBatchSize) {
+        if ($this->greedilySend &&
+            count($this->createWritesBatchIds()) >= $this->maxBatchSize
+        ) {
             $this->flush();
         }
     }

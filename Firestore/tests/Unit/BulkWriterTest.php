@@ -91,12 +91,6 @@ class BulkWriterTest extends TestCase
      */
     public function testCreateMultipleDocs($docs)
     {
-        foreach ($docs as $k => $v) {
-            $this->batch->create($v, [
-                'path' => $v,
-                'key' => $k,
-            ]);
-        }
         $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
             if (count($arg['writes']) <= 0) {
                 return false;
@@ -120,6 +114,12 @@ class BulkWriterTest extends TestCase
                 ]
             );
 
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'path' => $v,
+                'key' => $k,
+            ]);
+        }
         $this->batch->flush();
     }
 
@@ -128,12 +128,6 @@ class BulkWriterTest extends TestCase
      */
     public function testFailuresAreRetriedTillMaxAttempts($docs)
     {
-        foreach ($docs as $k => $v) {
-            $this->batch->create($v, [
-                'path' => $v,
-                'key' => $k,
-            ]);
-        }
         $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
             if (count($arg['writes']) <= 0) {
                 return false;
@@ -157,6 +151,12 @@ class BulkWriterTest extends TestCase
                 ]
             );
 
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'path' => $v,
+                'key' => $k,
+            ]);
+        }
         $this->batch->flush();
     }
 
@@ -165,15 +165,12 @@ class BulkWriterTest extends TestCase
      */
     public function testFailuresAreRetriedInSubsequentBatches($docs)
     {
-        foreach ($docs as $k => $v) {
-            $this->batch->create($v, [
-                'key' => $k,
-                'path' => $v,
-            ]);
-        }
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
+        // introduce minor delay to avoid immediately sending retries
+        $this->batch->setMaxRetryTimeInMs(100);
+
         $this->connection->batchWrite(Argument::that(
             function ($arg) use ($docs, $successPerBatch, &$successfulDocs) {
                 if (count($arg['writes']) <= 0) {
@@ -209,7 +206,13 @@ class BulkWriterTest extends TestCase
                 ]
             );
 
-        $this->batch->flush();
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'key' => $k,
+                'path' => $v,
+            ]);
+        }
+        $this->batch->close();
 
         $this->assertEquals(count($docs), count($successfulDocs));
         for ($i = 0; $i < count($docs); $i++) {
