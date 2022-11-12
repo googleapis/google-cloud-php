@@ -51,6 +51,18 @@ class KeyTest extends TestCase
         ]);
     }
 
+    public function testKeyDatabaseId()
+    {
+        $key = new Key('foo', [
+            'databaseId' => 'MyDb',
+        ]);
+
+        $this->assertEquals($key->keyObject()['partitionId'], [
+            'projectId' => 'foo',
+            'databaseId' => 'MyDb'
+        ]);
+    }
+
     public function testPathElement()
     {
         $key = new Key('foo');

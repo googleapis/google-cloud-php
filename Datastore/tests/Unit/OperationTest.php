@@ -43,6 +43,7 @@ class OperationTest extends TestCase
 
     const PROJECT = 'example-project';
     const NAMESPACEID = 'namespace-id';
+    const DATABASEID = 'database-id';
 
     private $operation;
     private $connection;
@@ -54,7 +55,8 @@ class OperationTest extends TestCase
             $this->connection->reveal(),
             self::PROJECT,
             null,
-            new EntityMapper('foo', true, false)
+            new EntityMapper('foo', true, false),
+            self::DATABASEID,
         ], ['connection', 'namespaceId']);
     }
 
@@ -76,6 +78,14 @@ class OperationTest extends TestCase
         $this->assertEquals(self::NAMESPACEID, $obj['partitionId']['namespaceId']);
     }
 
+    public function testKeyWithDatabaseId()
+    {
+        $key = $this->operation->key('Person', 'Bob', ['databaseId' => self::DATABASEID]);
+        $obj = $key->keyObject();
+
+        $this->assertEquals(self::DATABASEID, $obj['partitionId']['databaseId']);
+    }
+
     public function testKeyWithNamespaceIdOverride()
     {
         $this->operation->___setProperty('namespaceId', self::NAMESPACEID);
@@ -85,6 +95,16 @@ class OperationTest extends TestCase
         $obj = $key->keyObject();
 
         $this->assertEquals('otherNamespace', $obj['partitionId']['namespaceId']);
+    }
+
+    public function testKeyWithDatabaseIdOverride()
+    {
+        $key = $this->operation->key('Person', 'Bob', [
+            'databaseId' => 'otherDatabaseId',
+        ]);
+        $obj = $key->keyObject();
+
+        $this->assertEquals('otherDatabaseId', $obj['partitionId']['databaseId']);
     }
 
     public function testKeys()
