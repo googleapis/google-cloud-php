@@ -133,6 +133,9 @@ class DatastoreSessionHandler implements SessionHandlerInterface
     /* @var string */
     private $namespaceId;
 
+    /* @var string */
+    private $databaseId;
+
     /* @var Transaction */
     private $transaction;
 
@@ -187,10 +190,11 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *        used here. It will use this value as the Datastore namespaceId.
      * @param string $sessionName The value of `session.name` setting will be
      *        used here. It will use this value as the Datastore kind.
+     * @param string $databaseId The value of Datastore databaseId.
      * @return bool
      */
     #[\ReturnTypeWillChange]
-    public function open($savePath, $sessionName)
+    public function open($savePath, $sessionName, $databaseId = '')
     {
         $this->kind = $sessionName;
         if (preg_match(self::NAMESPACE_ALLOWED_PATTERN, $savePath) !== 1 ||
@@ -200,7 +204,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             );
         }
         $this->namespaceId = $savePath;
-        $this->transaction = $this->datastore->transaction();
+        $this->databaseId = $databaseId;
+        $this->transaction = $this->datastore->transaction([
+            'databaseId' => $this->databaseId
+        ]);
         return true;
     }
 

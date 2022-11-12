@@ -73,6 +73,16 @@ use Psr\Http\Message\StreamInterface;
  *
  * $datastore = new DatastoreClient();
  * ```
+ *
+ * ```
+ * // Multi-databases applications can supply a database ID.
+ * use Google\Cloud\Datastore\DatastoreClient;
+ *
+ * $datastore = new DatastoreClient([
+ *     'namespaceId' => 'my-application-namespace',
+ *     'databaseId' => 'my-database'
+ * ]);
+ * ```
  */
 class DatastoreClient
 {
@@ -134,6 +144,7 @@ class DatastoreClient
      *           access charges associated with the request.
      *     @type string $namespaceId Partitions data under a namespace. Useful for
      *           [Multitenant Projects](https://cloud.google.com/datastore/docs/concepts/multitenancy).
+     *     @type string $databaseId ID of the database to which the entities belong.
      *     @type bool $returnInt64AsObject If true, 64 bit integers will be
      *           returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *           platform compatibility. **Defaults to** false.
@@ -148,6 +159,7 @@ class DatastoreClient
 
         $config += [
             'namespaceId' => null,
+            'databaseId' => '',
             'returnInt64AsObject' => false,
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'projectIdRequired' => true,
@@ -167,7 +179,8 @@ class DatastoreClient
             $this->connection,
             $this->projectId,
             $config['namespaceId'],
-            $this->entityMapper
+            $this->entityMapper,
+            $config['databaseId']
         );
     }
 
