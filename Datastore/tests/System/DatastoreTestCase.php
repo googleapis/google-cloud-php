@@ -47,7 +47,8 @@ class DatastoreTestCase extends TestCase
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
-            'namespaceId' => uniqid(self::TESTING_PREFIX)
+            'namespaceId' => uniqid(self::TESTING_PREFIX),
+            'databaseId' => '',
         ];
 
         self::$restClient = new DatastoreClient($config + [

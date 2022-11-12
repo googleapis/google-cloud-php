@@ -23,7 +23,7 @@ use Google\Cloud\Datastore\DatastoreClient;
  * @group datastore
  * @group datastore-query
  */
-class RunQueryTest extends DatastoreTestCase
+class RunQueryTest extends DatastoreMultipleDbTestCase
 {
     private static $ancestor;
     private static $kind = 'Person';
@@ -76,6 +76,43 @@ class RunQueryTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key1);
         self::$localDeletionQueue->add($key2);
         self::$localDeletionQueue->add($key3);
+    }
+
+    public static function tear_down_after_class()
+    {
+        self::tearDownFixtures();
+    }
+
+    /**
+     * @dataProvider multiDbClientProvider
+     */
+    public function testQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider clientProvider
+     */
+    public function testQueryDefaultDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertEquals(self::$data[0], $results[0]->get());
+        $this->assertEquals(self::$data[1], $results[1]->get());
+        $this->assertEquals(self::$data[2], $results[2]->get());
+        $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(4, $results);
     }
 
     /**
