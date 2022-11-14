@@ -67,7 +67,8 @@ class RateLimiter
      */
     private $maximumRate;
 
-    /** Constructor.
+    /**
+     * Constructor.
      *
      * @param int $initialCapacity Initial maximum number of operations per second.
      * @param float $multiplier Rate by which to increase the capacity.
@@ -76,7 +77,7 @@ class RateLimiter
      * @param int $maximumRate Maximum number of allowed operations per second.
      *        The number of tokens added per second will never exceed this number.
      * @param int $startTimeMillis [optional] The starting time in epoch milliseconds
-     *        that the rate limit is based on. Used for testing the limiter.
+     *        that the rate limit is based on.
      */
     public function __construct(
         $initialCapacity,
@@ -101,10 +102,12 @@ class RateLimiter
      * Tries to make the number of operations. Returns true if the request
      * succeeded and false otherwise.
      *
+     * @internal Visible only for testing.
+     *
      * @param int $numOperations The number of operations to request.
      * @param int $requestTimeMillis The time used to calculate the number of
-     *        available tokens. Used for testing the limiter.
-     * @return bool
+     *        available tokens.
+     * @return bool Used for testing the limiter.
      */
     public function tryMakeRequest($numOperations, $requestTimeMillis = null)
     {
@@ -127,7 +130,7 @@ class RateLimiter
      *
      * @param int $numOperations The number of operations to request.
      * @param int $requestTimeMillis The time used to calculate the number of
-     *        available tokens. Used for testing the limiter.
+     *        available tokens.
      * @return int
      */
     public function getNextRequestDelayMs($numOperations, $requestTimeMillis = null)
@@ -151,11 +154,12 @@ class RateLimiter
     /**
      * Calculates the maximum capacity based on the provided date.
      *
+     * @internal Visible only for testing.
+     *
      * @param int $requestTimeMillis The time used to calculate the number of
-     *        available tokens. Used for testing the limiter.
+     *        available tokens.
      * @return int
      */
-    // Visible for testing.
     public function calculateCapacity($requestTimeMillis)
     {
         if ($requestTimeMillis < $this->startTimeMillis) {
@@ -180,7 +184,7 @@ class RateLimiter
      * since the last time the tokens were refilled.
      *
      * @param int $requestTimeMillis The time used to calculate the number of
-     *        available tokens. Used for testing the limiter.
+     *        available tokens.
      * @return void
      * @throws InvalidArgumentException If request time is before last token refill time.
      */

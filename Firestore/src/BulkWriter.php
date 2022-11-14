@@ -165,11 +165,15 @@ class BulkWriter
     private $rateLimiter;
 
     /**
-     * @var array Failed rescheduled mutations.
-     * Each object to have these fields:
-     * 'num_failed_attempts': int
-     * 'scheduled_in_millis': int
-     * 'backoff_in_millis': int
+     * @var array {
+     *     Failed mutations scheduled for retry. Each retry has following fields:
+     *
+     *     @type int $num_failed_attempts Number of past failures.
+     *     @type int $scheduled_in_millis Latest timestamp in millis when retry
+     *           can be attempted.
+     *     @type int $backoff_in_millis Backoff time in millis included in
+     *           `scheduled_in_millis`.
+     * }
      */
     private $retryScheduledWrites = [];
 
@@ -213,7 +217,9 @@ class BulkWriter
      *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
      *           sending writes can be throttled. **Defaults to** `true`.
      *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *           **Defaults to** `500`.
      *     @type int $maxOpsPerSecond Maximum number of operations per second.
+     *           **Defaults to** `500`.
      * }
      */
     public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
@@ -238,37 +244,33 @@ class BulkWriter
             'maxBatchSize' => self::MAX_BATCH_SIZE,
             'greedilySend' => true,
             'isThrottlingEnabled' => true,
-            'initialOpsPerSecond' => null,
-            'maxOpsPerSecond' => null,
+            'initialOpsPerSecond' => self::DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND,
+            'maxOpsPerSecond' => self::DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT,
         ];
         $this->maxBatchSize = $this->pluck('maxBatchSize', $options);
         $this->greedilySend = $this->pluck('greedilySend', $options);
-        if ($options['initialOpsPerSecond'] != null && $options['initialOpsPerSecond'] < 1) {
+        if ($options['initialOpsPerSecond'] < 1) {
             throw new \InvalidArgumentException(
-                "Value for argument 'initialOpsPerSecond' must be greater than 1, but was: "
-                + $options['initialOpsPerSecond']
+                sprintf(
+                    'Value for argument "initialOpsPerSecond" must be greater than 1, but was: %s',
+                    $options['initialOpsPerSecond']
+                )
             );
         }
-        if ($options['maxOpsPerSecond'] != null && $options['maxOpsPerSecond'] < 1) {
+        if ($options['maxOpsPerSecond'] < 1) {
             throw new \InvalidArgumentException(
-                "Value for argument 'maxOpsPerSecond' must be greater than 1, but was: "
-                + $options['initialOpsPerSecond']
+                sprintf(
+                    'Value for argument "maxOpsPerSecond" must be greater than 1, but was: %s',
+                    $options['maxOpsPerSecond']
+                )
             );
         }
-        if ($options['maxOpsPerSecond'] != null &&
-            $options['initialOpsPerSecond'] != null &&
-            $options['initialOpsPerSecond'] > $options['maxOpsPerSecond']) {
+        if ($options['initialOpsPerSecond'] > $options['maxOpsPerSecond']) {
             throw new \InvalidArgumentException(
                 "'maxOpsPerSecond' cannot be less than 'initialOpsPerSecond'."
             );
         }
-        if (!$options['isThrottlingEnabled'] &&
-            ($options['maxOpsPerSecond'] != null || $options['initialOpsPerSecond'] != null)) {
-            throw new \InvalidArgumentException(
-                "Cannot set 'initialOpsPerSecond' or 'maxOpsPerSecond' when 'throttlingEnabled' is set to false."
-            );
-        }
-        if ($options['isThrottlingEnabled'] == false) {
+        if ($options['isThrottlingEnabled'] === false) {
             $this->rateLimiter = new RateLimiter(
                 PHP_INT_MAX,
                 PHP_INT_MAX,
@@ -276,14 +278,8 @@ class BulkWriter
                 PHP_INT_MAX
             );
         } else {
-            $startingRate = self::DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND;
-            $maxRate = self::DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT;
-            if (!is_null($options['maxOpsPerSecond'])) {
-                $maxRate = $options['maxOpsPerSecond'];
-            }
-            if (!is_null($options['initialOpsPerSecond'])) {
-                $startingRate = $options['initialOpsPerSecond'];
-            }
+            $startingRate = $options['initialOpsPerSecond'];
+            $maxRate = $options['maxOpsPerSecond'];
             // The initial validation step ensures that the maxOpsPerSecond is
             // greater than initialOpsPerSecond. If this inequality is true, that
             // means initialOpsPerSecond was not set and maxOpsPerSecond is less

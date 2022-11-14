@@ -205,12 +205,15 @@ class FirestoreClient
      *     Configuration options
      *
      *     @type int $maxBatchSize Maximum number of requests per batch.
+     *           **Defaults to** `20`.
      *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
-     *           sends batches.
+     *           sends batches. **Defaults to** `true`.
      *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
-     *           sending writes can be throttled.
+     *           sending writes can be throttled. **Defaults to** `true`.
      *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *           **Defaults to** `500`.
      *     @type int $maxOpsPerSecond Maximum number of operations per second.
+     *           **Defaults to** `500`.
      * }
      * @return BulkWriter
      */
