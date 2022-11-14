@@ -114,15 +114,15 @@
               uid: \Google\Cloud\Vision\V1\EntityAnnotation
               name: EntityAnnotation
             -
-              uid: \Google\Cloud\Vision\V1\FaceAnnotation
-              name: FaceAnnotation
-            -
               name: FaceAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\FaceAnnotation'
               items:
                 -
                   uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark
                   name: Landmark
+            -
+              uid: \Google\Cloud\Vision\V1\FaceAnnotation
+              name: FaceAnnotation
             -
               uid: \Google\Cloud\Vision\V1\Feature
               name: Feature
@@ -223,14 +223,18 @@
               uid: \Google\Cloud\Vision\V1\Position
               name: Position
             -
+              name: Product
+              uid: 'ns:Google\Cloud\Vision\V1\Product'
+              items:
+                -
+                  uid: \Google\Cloud\Vision\V1\Product\KeyValue
+                  name: KeyValue
+            -
               uid: \Google\Cloud\Vision\V1\Product
               name: Product
             -
               uid: \Google\Cloud\Vision\V1\ProductSearchParams
               name: ProductSearchParams
-            -
-              uid: \Google\Cloud\Vision\V1\ProductSearchResults
-              name: ProductSearchResults
             -
               name: ProductSearchResults
               uid: 'ns:Google\Cloud\Vision\V1\ProductSearchResults'
@@ -245,18 +249,14 @@
                   uid: \Google\Cloud\Vision\V1\ProductSearchResults\Result
                   name: Result
             -
+              uid: \Google\Cloud\Vision\V1\ProductSearchResults
+              name: ProductSearchResults
+            -
               uid: \Google\Cloud\Vision\V1\ProductSet
               name: ProductSet
             -
               uid: \Google\Cloud\Vision\V1\ProductSetPurgeConfig
               name: ProductSetPurgeConfig
-            -
-              name: Product
-              uid: 'ns:Google\Cloud\Vision\V1\Product'
-              items:
-                -
-                  uid: \Google\Cloud\Vision\V1\Product\KeyValue
-                  name: KeyValue
             -
               uid: \Google\Cloud\Vision\V1\Property
               name: Property
@@ -276,9 +276,6 @@
               uid: \Google\Cloud\Vision\V1\Symbol
               name: Symbol
             -
-              uid: \Google\Cloud\Vision\V1\TextAnnotation
-              name: TextAnnotation
-            -
               name: TextAnnotation
               uid: 'ns:Google\Cloud\Vision\V1\TextAnnotation'
               items:
@@ -292,6 +289,9 @@
                   uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
                   name: TextProperty
             -
+              uid: \Google\Cloud\Vision\V1\TextAnnotation
+              name: TextAnnotation
+            -
               uid: \Google\Cloud\Vision\V1\TextDetectionParams
               name: TextDetectionParams
             -
@@ -303,12 +303,6 @@
             -
               uid: \Google\Cloud\Vision\V1\Vertex
               name: Vertex
-            -
-              uid: \Google\Cloud\Vision\V1\WebDetection
-              name: WebDetection
-            -
-              uid: \Google\Cloud\Vision\V1\WebDetectionParams
-              name: WebDetectionParams
             -
               name: WebDetection
               uid: 'ns:Google\Cloud\Vision\V1\WebDetection'
@@ -325,6 +319,12 @@
                 -
                   uid: \Google\Cloud\Vision\V1\WebDetection\WebPage
                   name: WebPage
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetection
+              name: WebDetection
+            -
+              uid: \Google\Cloud\Vision\V1\WebDetectionParams
+              name: WebDetectionParams
             -
               uid: \Google\Cloud\Vision\V1\Word
               name: Word
