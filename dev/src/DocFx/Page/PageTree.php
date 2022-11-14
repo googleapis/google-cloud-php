@@ -112,10 +112,7 @@ class PageTree
         }
 
         // Combine Client classes with internal Gapic\Client
-        $pages = $this->combineGapicClients($gapicClients,$pages);
-
-        // We don't need the array keys anymore
-        $pages = array_values($pages);
+        $pages = $this->combineGapicClients($gapicClients, $pages);
 
         /**
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
@@ -152,6 +149,9 @@ class PageTree
                 $pages[$clientFullName]->getClassNode()->setChildNode($gapicClient);
             }
         }
+
+        // We don't need the array keys anymore
+        $pages = array_values($pages);
 
         return $pages;
     }
