@@ -77,7 +77,7 @@ class PageTree
 
             $fullName = $classNode->getFullname();
             // Manually skip GAPIC clients
-            if ('GapicClient' === substr($classNode->getFullName(), -11)) {
+            if ('GapicClient' === substr($fullName, -11)) {
                 $gapicClients[] = $classNode;
                 continue;
             }
