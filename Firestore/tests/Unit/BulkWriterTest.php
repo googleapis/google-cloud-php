@@ -28,6 +28,7 @@ use Google\Cloud\Firestore\V1\DocumentTransform\FieldTransform\ServerValue;
 use Google\Cloud\Firestore\ValueMapper;
 use Google\Rpc\Code;
 use Prophecy\Argument;
+use Yoast\PHPUnitPolyfills\Polyfills\AssertIsType;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectExceptionMessageMatches;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
@@ -38,6 +39,7 @@ use Yoast\PHPUnitPolyfills\TestCases\TestCase;
  */
 class BulkWriterTest extends TestCase
 {
+    use AssertIsType;
     use ExpectException;
     use ExpectExceptionMessageMatches;
 
@@ -60,6 +62,45 @@ class BulkWriterTest extends TestCase
         ]);
         // avoids sleep during unit tests
         $this->batch->setMaxRetryTimeInMs(0);
+    }
+
+    public function testBulkwriterOptionsInitialOpsPerSecond()
+    {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessageMatches('/Value for argument "initialOpsPerSecond" must be greater than 1/');
+        new BulkWriter(
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            "TEST_DB",
+            ['initialOpsPerSecond' => 0]
+        );
+    }
+
+    public function testBulkwriterOptionsMaxOpsPerSecond()
+    {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessageMatches('/Value for argument "maxOpsPerSecond" must be greater than 1/');
+        new BulkWriter(
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            "TEST_DB",
+            ['maxOpsPerSecond' => 0]
+        );
+    }
+
+    public function testBulkwriterOptions()
+    {
+        $this->expectException('InvalidArgumentException');
+        $this->expectExceptionMessageMatches('/\'maxOpsPerSecond\' cannot be less than \'initialOpsPerSecond\'/');
+        new BulkWriter(
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            "TEST_DB",
+            [
+                'maxOpsPerSecond' => 2,
+                'initialOpsPerSecond' => 3,
+            ]
+        );
     }
 
     /**
@@ -163,13 +204,95 @@ class BulkWriterTest extends TestCase
     /**
      * @dataProvider bulkDocuments
      */
+    public function testFlushReturnsAllResponses($docs)
+    {
+        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
+            if (count($arg['writes']) <= 0) {
+                return false;
+            }
+            foreach ($arg['writes'] as $write) {
+                if (!$write['currentDocument']) {
+                    return false;
+                }
+                if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                    $write['update']['fields']['path']['stringValue']) {
+                    return false;
+                }
+            }
+            return true;
+        }))
+            ->willReturn(
+                [
+                    'writeResults' => array_fill(0, 20, []),
+                    'status' => array_fill(0, 20, ['code' => Code::OK]),
+                ]
+            );
+
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'path' => $v,
+                'key' => $k,
+            ]);
+        }
+        $response = $this->batch->flush(true);
+        $this->assertIsArray($response);
+        $this->assertEquals(count($docs), count($response['status']));
+        $this->assertEquals(Code::OK, $response['status'][0]['code']);
+    }
+
+    /**
+     * @dataProvider bulkDocuments
+     */
+    public function testCloseReturnsAllResponses($docs)
+    {
+        $this->connection->batchWrite(Argument::that(function ($arg) use ($docs) {
+            if (count($arg['writes']) <= 0) {
+                return false;
+            }
+            foreach ($arg['writes'] as $write) {
+                if (!$write['currentDocument']) {
+                    return false;
+                }
+                if ($docs[$write['update']['fields']['key']['integerValue']] !==
+                    $write['update']['fields']['path']['stringValue']) {
+                    return false;
+                }
+            }
+            return true;
+        }))
+            ->willReturn(
+                [
+                    'writeResults' => array_fill(0, 20, []),
+                    'status' => array_fill(0, 20, ['code' => Code::OK]),
+                ]
+            );
+
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'path' => $v,
+                'key' => $k,
+            ]);
+        }
+        $response = $this->batch->close();
+        $this->assertIsArray($response);
+        $this->assertEquals(count($docs), count($response['status']));
+        $this->assertEquals(Code::OK, $response['status'][0]['code']);
+    }
+
+    /**
+     * @dataProvider bulkDocuments
+     */
     public function testFailuresAreRetriedInSubsequentBatches($docs)
     {
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
-        // introduce minor delay to avoid immediately sending retries
-        $this->batch->setMaxRetryTimeInMs(100);
+        $this->batch = TestHelpers::stub(BulkWriter::class, [
+            $this->connection->reveal(),
+            new ValueMapper($this->connection->reveal(), false),
+            sprintf('projects/%s/databases/%s', self::PROJECT, self::DATABASE),
+            ['greedilySend' => false],
+        ]);
 
         $this->connection->batchWrite(Argument::that(
             function ($arg) use ($docs, $successPerBatch, &$successfulDocs) {

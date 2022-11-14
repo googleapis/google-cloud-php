@@ -74,7 +74,7 @@ class BulkWriter
      * The default initial backoff time in milliseconds after an error. Set to 1s according to
      * https://cloud.google.com/apis/design/errors.
      */
-    const DEFAULT_BACKOFF_INITIAL_DELAY_MS = 1000;
+    const DEFAULT_BACKOFF_INITIAL_DELAY_MS = 500;
 
     /** The default maximum backoff time in milliseconds when retrying an operation. */
     const DEFAULT_BACKOFF_MAX_DELAY_MS = 60 * 1000;
@@ -93,7 +93,7 @@ class BulkWriter
      *
      * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
      */
-    const DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND = 500;
+    const DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND = 20;
 
     /**
      * The maximum number of operations per second as allowed by the 500/50/5 rule.
@@ -115,7 +115,7 @@ class BulkWriter
      *
      * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
      */
-    const RATE_LIMITER_MULTIPLIER_MILLIS = 5 * 60 * 1000;
+    const RATE_LIMITER_MULTIPLIER_MILLIS = 1000;
 
     /**
      * @var ConnectionInterface
@@ -178,6 +178,12 @@ class BulkWriter
     private $retryScheduledWrites = [];
 
     /**
+     * @var callable Sets the conditions for whether or not a write should
+     * be attempted to retry.
+     */
+    private $isRetryable;
+
+    /**
      * @var array All unique documents added to mutate.
      */
     private $uniqueDocuments = [];
@@ -207,6 +213,12 @@ class BulkWriter
      * @param string $database The current database
      * @param array $options [optional] {
      *     Configuration options is an array.
+     *
+     *     Please note that the default values are experiementally derived after
+     *     performance evaluations. The underlying constants may change in backwards-
+     *     incompatible ways. Please use with caution, and test thoroughly when
+     *     upgrading.
+     *
      *     For legacy reasons if provided as `string` or `null`, its assumed
      *     to be transaction id for {@see Google\Cloud\Firestore\WriteBatch}.
      *
@@ -217,9 +229,12 @@ class BulkWriter
      *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
      *           sending writes can be throttled. **Defaults to** `true`.
      *     @type int $initialOpsPerSecond Initial number of operations per second.
-     *           **Defaults to** `500`.
+     *           **Defaults to** `20`.
      *     @type int $maxOpsPerSecond Maximum number of operations per second.
      *           **Defaults to** `500`.
+     *     @type callable $isRetryable Default retry handler for individial writes
+     *           status code to be retried. Should accept error code and return
+     *           true if retryable.
      * }
      */
     public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
@@ -246,7 +261,9 @@ class BulkWriter
             'isThrottlingEnabled' => true,
             'initialOpsPerSecond' => self::DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND,
             'maxOpsPerSecond' => self::DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT,
+            'isRetryable' => $this->defaultWriteErrorHandler(),
         ];
+        $this->isRetryable = $this->pluck('isRetryable', $options);
         $this->maxBatchSize = $this->pluck('maxBatchSize', $options);
         $this->greedilySend = $this->pluck('greedilySend', $options);
         if ($options['initialOpsPerSecond'] < 1) {
@@ -637,7 +654,7 @@ class BulkWriter
      *
      * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
      *         retryable failures. **Defaults to** `false`.
-     * @return void
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
      */
     public function flush($waitForRetryableFailures = false)
     {
@@ -666,6 +683,9 @@ class BulkWriter
                 }
             }
         }
+        ksort($this->finalResponse['writeResults']);
+        ksort($this->finalResponse['status']);
+        return $this->finalResponse;
     }
 
     /**
@@ -753,21 +773,21 @@ class BulkWriter
 
     /**
      * Close the bulk writer instance for further writes.
+     * Also, flushes all retries and pending writes.
      *
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
      */
     public function close()
     {
-        $this->flush(true);
         $this->closed = true;
-        ksort($this->finalResponse['writeResults']);
-        ksort($this->finalResponse['status']);
-        return $this->finalResponse;
+        return $this->flush(true);
     }
 
     /**
      * Gets updated backoff duration provided last status code and backoff duration.
      *
+     * @internal
+     * @access private
      * @param int $lastStatus Previous status code of batchWrite
      * @param int $backoffDurationInMillis Previous backoff duration in milliseconds
      * @return int
@@ -789,7 +809,7 @@ class BulkWriter
      * awaiting a batch creation.
      *
      * @internal
-     *
+     * @access private
      * @param int $maxTime The maximum delay time in millis for rescheduling
      *            a failed mutation or awaiting a batch creation.
      * @return void
@@ -808,7 +828,7 @@ class BulkWriter
      */
     private function handleSendBatchFailure($writesId, $lastRunStatusCode)
     {
-        if ($lastRunStatusCode === Code::OK) {
+        if (!call_user_func_array($this->isRetryable, [$lastRunStatusCode])) {
             return;
         }
         $numFailedAttempts = 1;
@@ -826,6 +846,22 @@ class BulkWriter
             'backoff_in_millis' => $backoffDurationInMillis,
             'num_failed_attempts' => $numFailedAttempts,
         ];
+    }
+
+    /**
+     * Get whether individual writes with provided status code shall be retried.
+     * The default error handler retries for UNAVAILABLE and ABORTED errors.
+     *
+     * @return callable Accepts error code and returns true if retryable.
+     */
+    private function defaultWriteErrorHandler()
+    {
+        return function ($lastRunStatusCode) {
+            return in_array($lastRunStatusCode, [
+                Code::UNAVAILABLE,
+                Code::ABORTED,
+            ]);
+        };
     }
 
     /**
@@ -864,7 +900,7 @@ class BulkWriter
                     continue;
                 }
                 // Delay greater than 0 implies that this batch is a retry.
-                // Retries are sent with a batch size of 10 in order to guarantee
+                // Retries are sent with RETRY_MAX_BATCH_SIZE in order to guarantee
                 // that the batch is under the 10MiB limit.
                 $batchSize = self::RETRY_MAX_BATCH_SIZE;
                 $maxScheduledDelayInMillis = max(

@@ -58,6 +58,7 @@ class BulkWriterTest extends FirestoreTestCase
         $throttledBulkwriter = self::$client->bulkWriter([
             'initialOpsPerSecond' => 5,
             'maxOpsPerSecond' => 10,
+            'greedilySend' => false,
         ]);
         foreach ($docs as $k => $v) {
             $this->assertFalse($this->document->snapshot()->exists());
@@ -70,8 +71,8 @@ class BulkWriterTest extends FirestoreTestCase
         $throttledBulkwriter->flush();
         $endTime = floor(microtime(true) * 1000);
 
-        $this->assertGreaterThan(8 * 1000, $endTime - $startTime);
-        $this->assertLessThan(14 * 1000, $endTime - $startTime);
+        $this->assertGreaterThan(2 * 1000, $endTime - $startTime);
+        $this->assertLessThan(10 * 1000, $endTime - $startTime);
 
         $documents = self::$collection->where('key', '>=', 0)->documents();
         $this->assertEquals(count($docs), $documents->size());
@@ -97,14 +98,9 @@ class BulkWriterTest extends FirestoreTestCase
             [
                 'initialOpsPerSecond' => 5,
                 'maxOpsPerSecond' => 10,
+                'greedilySend' => false,
             ],
         ]);
-        foreach ($docs as $k => $v) {
-            $this->batch->create($v, [
-                'key' => $k,
-                'path' => $v,
-            ]);
-        }
         $batchSize = 20;
         $successPerBatch = $batchSize * 3 / 4;
         $successfulDocs = [];
@@ -142,12 +138,18 @@ class BulkWriterTest extends FirestoreTestCase
                     ),
                 ]
             );
+        foreach ($docs as $k => $v) {
+            $this->batch->create($v, [
+                'key' => $k,
+                'path' => $v,
+            ]);
+        }
 
         $startTime = floor(microtime(true) * 1000);
         $this->batch->flush();
         $endTime = floor(microtime(true) * 1000);
-        $this->assertGreaterThan(9 * 1000, $endTime - $startTime);
-        $this->assertLessThan(15 * 1000, $endTime - $startTime);
+        $this->assertGreaterThan(2 * 1000, $endTime - $startTime);
+        $this->assertLessThan(10 * 1000, $endTime - $startTime);
         $this->assertEquals(count($docs), count($successfulDocs));
         for ($i = 0; $i < count($docs); $i++) {
             $this->assertContains($docs[$i]->name(), $successfulDocs);

@@ -211,9 +211,12 @@ class FirestoreClient
      *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
      *           sending writes can be throttled. **Defaults to** `true`.
      *     @type int $initialOpsPerSecond Initial number of operations per second.
-     *           **Defaults to** `500`.
+     *           **Defaults to** `20`.
      *     @type int $maxOpsPerSecond Maximum number of operations per second.
      *           **Defaults to** `500`.
+     *     @type callable $isRetryable Default retry handler for individial writes
+     *           status code to be retried. Should accept error code and return
+     *           true if retryable.
      * }
      * @return BulkWriter
      */
