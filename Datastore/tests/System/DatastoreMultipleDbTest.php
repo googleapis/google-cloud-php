@@ -99,7 +99,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryDefaultDbClients(DatastoreClient $client)
     {

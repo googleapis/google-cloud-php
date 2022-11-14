@@ -81,6 +81,11 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         ];
     }
 
+    public function clientProvider()
+    {
+        return self::multiDbClientProvider() + self::defaultDbClientProvider();
+    }
+
     private function checkTestDbExists($client)
     {
         $response = $client->request(

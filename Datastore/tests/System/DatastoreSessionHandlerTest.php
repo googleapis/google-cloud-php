@@ -65,14 +65,5 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         }
 
         $this->assertTrue($hasEntity);
-
-        // other db should not have any data
-        $client = current(self::multiDbClientProvider())[0];
-        $res = $client->runQuery($q, [
-            'namespaceId' => $namespace,
-            'databaseId' => self::TEST_DB_NAME,
-        ]);
-
-        $this->assertCount(0, iterator_to_array($res));
     }
 }

@@ -25,8 +25,13 @@ use Google\Cloud\Datastore\DatastoreClient;
  */
 class RunTransactionTest extends DatastoreMultipleDbTestCase
 {
+    protected function tearDown(): void
+    {
+        self::tearDownFixtures();
+    }
+
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testRunTransactions(DatastoreClient $client)
     {
@@ -114,10 +119,10 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         // transaction with lookup
         $transaction3 = $client->transaction();
         // NOTE: transaction->lookup(..) is failing in GRPC mode only.
-        // $result = $transaction3->lookup($key2);
+        $result = $transaction3->lookup($key2);
         $transaction3->rollback();
 
-        // $this->assertEquals($newLastName, $result['lastName']);
+        $this->assertEquals($newLastName, $result['lastName']);
     }
 
     private function assertOtherDbEntities($client, $kind, $id, $expectedCount)

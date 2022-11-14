@@ -24,7 +24,7 @@ use Google\Cloud\Datastore\Query\QueryInterface;
  * @group datastore
  * @group datastore-query-pagination
  */
-class QueryResultPaginationTest extends DatastoreTestCase
+class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
 {
     private static $expectedTotal = 610;
     private static $parentKey;
@@ -88,7 +88,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPagination(DatastoreClient $client)
     {
@@ -101,7 +101,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPagination(DatastoreClient $client)
     {
@@ -113,7 +113,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryPaginationByPage(DatastoreClient $client)
     {
@@ -135,7 +135,7 @@ class QueryResultPaginationTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {

@@ -98,7 +98,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryDefaultDbClients(DatastoreClient $client)
     {
@@ -116,7 +116,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOrder(DatastoreClient $client)
     {
@@ -134,7 +134,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithFilter(DatastoreClient $client)
     {
@@ -151,7 +151,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithAncestor(DatastoreClient $client)
     {
@@ -168,7 +168,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithProjection(DatastoreClient $client)
     {
@@ -193,7 +193,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithDistinctOn(DatastoreClient $client)
     {
@@ -209,7 +209,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithKeysOnly(DatastoreClient $client)
     {
@@ -226,7 +226,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOffset(DatastoreClient $client)
     {
@@ -241,7 +241,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithStartCursor(DatastoreClient $client)
     {
@@ -264,7 +264,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithEndCursor(DatastoreClient $client)
     {
@@ -285,7 +285,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithLimit(DatastoreClient $client)
     {
@@ -300,7 +300,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithBindings(DatastoreClient $client)
     {
@@ -317,7 +317,7 @@ class RunQueryTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithLiteral(DatastoreClient $client)
     {

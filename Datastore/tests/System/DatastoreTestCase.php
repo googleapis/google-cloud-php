@@ -79,7 +79,7 @@ class DatastoreTestCase extends TestCase
         });
     }
 
-    public function clientProvider()
+    public function defaultDbClientProvider()
     {
         self::set_up_before_class();
 
