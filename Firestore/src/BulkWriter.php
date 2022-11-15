@@ -58,35 +58,62 @@ class BulkWriter
     const TYPE_DELETE = 'delete';
     const TYPE_TRANSFORM = 'transform';
 
-    /** The maximum number of writes that can be in a single batch. */
-    const MAX_BATCH_SIZE = 20;
-
-    /** The maximum number of writes that can be in a batch containing retries. */
-    const RETRY_MAX_BATCH_SIZE = 20;
-
     /**
-     * The maximum number of retries that will be attempted with backoff before stopping all retry
-     * attempts.
+     * @var array Holds default configurations for Bulkwriter.
+     * These values are experiementally derived after performance evaluations.
+     * The underlying constants may change in backwards-incompatible ways.
+     * Please use with caution, and test thoroughly when upgrading.
      */
-    const MAX_RETRY_ATTEMPTS = 10;
-
-    /**
-     * The default initial backoff time in milliseconds after an error. Set to 1s according to
-     * https://cloud.google.com/apis/design/errors.
-     */
-    const DEFAULT_BACKOFF_INITIAL_DELAY_MS = 1000;
-
-    /** The default maximum backoff time in milliseconds when retrying an operation. */
-    const DEFAULT_BACKOFF_MAX_DELAY_MS = 60 * 1000;
-
-    /** The default factor to increase the backup by after each failed attempt. */
-    const DEFAULT_BACKOFF_FACTOR = 1.5;
-
-    /**
-     * The default jitter to apply to the exponential backoff used in retries.
-     * For example, a factor of 0.3 means a 30% jitter is applied.
-     */
-    const DEFAULT_JITTER_FACTOR = 0.3;
+    private static $defaultOptions = [
+        /** The maximum number of writes that can be in a single batch. */
+        'MAX_BATCH_SIZE' => 20,
+        /** The maximum number of writes that can be in a batch containing retries. */
+        'RETRY_MAX_BATCH_SIZE' => 20,
+        /**
+         * The maximum number of retries that will be attempted with backoff before stopping all retry
+         * attempts.
+         */
+        'MAX_RETRY_ATTEMPTS' => 10,
+        /**
+         * The default initial backoff time in milliseconds after an error. Set to 1s according to
+         * https://cloud.google.com/apis/design/errors.
+         */
+        'DEFAULT_BACKOFF_INITIAL_DELAY_MS' => 500,
+        /** The default maximum backoff time in milliseconds when retrying an operation. */
+        'DEFAULT_BACKOFF_MAX_DELAY_MS' => 60 * 1000,
+        /** The default factor to increase the backup by after each failed attempt. */
+        'DEFAULT_BACKOFF_FACTOR' => 1.5,
+        /**
+         * The default jitter to apply to the exponential backoff used in retries.
+         * For example, a factor of 0.3 means a 30% jitter is applied.
+         */
+        'DEFAULT_JITTER_FACTOR' => 0.3,
+        /**
+         * The starting maximum number of operations per second as allowed by the 500/50/5 rule.
+         *
+         * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+         */
+        'DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND' => 20,
+        /**
+         * The maximum number of operations per second as allowed by the 500/50/5 rule.
+         *
+         * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+         */
+        'DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT' => 500,
+        /**
+         * The rate by which to increase the capacity as specified by the 500/50/5 rule.
+         *
+         * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+         */
+        'RATE_LIMITER_MULTIPLIER' => 1.5,
+        /**
+         * How often the operations per second capacity should increase in milliseconds as specified by
+         * the 500/50/5 rule.
+         *
+         * @see [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+         */
+        'RATE_LIMITER_MULTIPLIER_MILLIS' => 1000,
+    ];
 
     /**
      * @var ConnectionInterface
@@ -129,13 +156,30 @@ class BulkWriter
     private $finalResponse = [];
 
     /**
-     * @var array Failed rescheduled mutations.
-     * Each object to have these fields:
-     * 'num_failed_attempts': int
-     * 'scheduled_in_millis': int
-     * 'backoff_in_millis': int
+     * Rate limiter used to throttle requests as per the 500/50/5 rule.
+     *
+     * @var RateLimiter
+     */
+    private $rateLimiter;
+
+    /**
+     * @var array {
+     *     Failed mutations scheduled for retry. Each retry has following fields:
+     *
+     *     @type int $num_failed_attempts Number of past failures.
+     *     @type int $scheduled_in_millis Latest timestamp in millis when retry
+     *           can be attempted.
+     *     @type int $backoff_in_millis Backoff time in millis included in
+     *           `scheduled_in_millis`.
+     * }
      */
     private $retryScheduledWrites = [];
+
+    /**
+     * @var callable Sets the conditions for whether or not a write should
+     * be attempted to retry.
+     */
+    private $isRetryable;
 
     /**
      * @var array All unique documents added to mutate.
@@ -156,11 +200,23 @@ class BulkWriter
     private $greedilySend;
 
     /**
+     * @var int The maximum delay time in millis for rescheduling a failed
+     * mutation or awaiting a batch creation.
+     */
+    private $maxDelayTime;
+
+    /**
      * @param ConnectionInterface $connection A connection to Cloud Firestore
      * @param ValueMapper $valueMapper A Value Mapper instance
      * @param string $database The current database
      * @param array $options [optional] {
      *     Configuration options is an array.
+     *
+     *     Please note that the default values are experiementally derived after
+     *     performance evaluations. The underlying constants may change in backwards-
+     *     incompatible ways. Please use with caution, and test thoroughly when
+     *     upgrading.
+     *
      *     For legacy reasons if provided as `string` or `null`, its assumed
      *     to be transaction id for {@see Google\Cloud\Firestore\WriteBatch}.
      *
@@ -168,6 +224,15 @@ class BulkWriter
      *           **Defaults to** `20`.
      *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
      *           sends batches. **Defaults to** `true`.
+     *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
+     *           sending writes can be throttled. **Defaults to** `true`.
+     *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *           **Defaults to** `20`.
+     *     @type int $maxOpsPerSecond Maximum number of operations per second.
+     *           **Defaults to** `500`.
+     *     @type callable $isRetryable Default retry handler for individial writes
+     *           status code to be retried. Should accept error code and return
+     *           true if retryable.
      * }
      */
     public function __construct(ConnectionInterface $connection, $valueMapper, $database, $options = null)
@@ -177,6 +242,7 @@ class BulkWriter
         $this->database = $database;
         $this->closed = false;
         $this->isLegacyWriteBatch = false;
+        $this->maxDelayTime = self::$defaultOptions['DEFAULT_BACKOFF_MAX_DELAY_MS'];
         if (is_null($options) || !is_array($options)) {
             // convert to transaction id for legacy WriteBatch
             $this->transaction = $options;
@@ -188,11 +254,66 @@ class BulkWriter
             'status' => [],
         ];
         $options += [
-            'maxBatchSize' => self::MAX_BATCH_SIZE,
+            'maxBatchSize' => self::$defaultOptions['MAX_BATCH_SIZE'],
             'greedilySend' => true,
+            'isThrottlingEnabled' => true,
+            'initialOpsPerSecond' => self::$defaultOptions['DEFAULT_STARTING_MAXIMUM_OPS_PER_SECOND'],
+            'maxOpsPerSecond' => self::$defaultOptions['DEFAULT_MAXIMUM_OPS_PER_SECOND_LIMIT'],
+            'isRetryable' => $this->defaultWriteErrorHandler(),
         ];
+        $this->isRetryable = $this->pluck('isRetryable', $options);
         $this->maxBatchSize = $this->pluck('maxBatchSize', $options);
         $this->greedilySend = $this->pluck('greedilySend', $options);
+        if ($options['initialOpsPerSecond'] < 1) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Value for argument "initialOpsPerSecond" must be greater than 1, but was: %s',
+                    $options['initialOpsPerSecond']
+                )
+            );
+        }
+        if ($options['maxOpsPerSecond'] < 1) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'Value for argument "maxOpsPerSecond" must be greater than 1, but was: %s',
+                    $options['maxOpsPerSecond']
+                )
+            );
+        }
+        if ($options['initialOpsPerSecond'] > $options['maxOpsPerSecond']) {
+            throw new \InvalidArgumentException(
+                "'maxOpsPerSecond' cannot be less than 'initialOpsPerSecond'."
+            );
+        }
+        if ($options['isThrottlingEnabled'] === false) {
+            $this->rateLimiter = new RateLimiter(
+                PHP_INT_MAX,
+                PHP_INT_MAX,
+                PHP_INT_MAX,
+                PHP_INT_MAX
+            );
+        } else {
+            $startingRate = $options['initialOpsPerSecond'];
+            $maxRate = $options['maxOpsPerSecond'];
+            // The initial validation step ensures that the maxOpsPerSecond is
+            // greater than initialOpsPerSecond. If this inequality is true, that
+            // means initialOpsPerSecond was not set and maxOpsPerSecond is less
+            // than the default starting rate.
+            if ($maxRate < $startingRate) {
+                $startingRate = $maxRate;
+            }
+            // Ensure that the batch size is not larger than the number of allowed
+            // operations per second.
+            if ($startingRate < $this->maxBatchSize) {
+                $this->maxBatchSize = $startingRate;
+            }
+            $this->rateLimiter = new RateLimiter(
+                $startingRate,
+                self::$defaultOptions['RATE_LIMITER_MULTIPLIER'],
+                self::$defaultOptions['RATE_LIMITER_MULTIPLIER_MILLIS'],
+                $maxRate
+            );
+        }
     }
 
     /**
@@ -531,7 +652,7 @@ class BulkWriter
      *
      * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
      *         retryable failures. **Defaults to** `false`.
-     * @return void
+     * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
      */
     public function flush($waitForRetryableFailures = false)
     {
@@ -560,6 +681,9 @@ class BulkWriter
                 }
             }
         }
+        ksort($this->finalResponse['writeResults']);
+        ksort($this->finalResponse['status']);
+        return $this->finalResponse;
     }
 
     /**
@@ -647,40 +771,62 @@ class BulkWriter
 
     /**
      * Close the bulk writer instance for further writes.
+     * Also, flushes all retries and pending writes.
      *
      * @return array [https://firebase.google.com/docs/firestore/reference/rpc/google.firestore.v1beta1#BatchWriteResponse](BatchWriteResponse)
      */
     public function close()
     {
-        $this->flush(true);
         $this->closed = true;
-        ksort($this->finalResponse['writeResults']);
-        ksort($this->finalResponse['status']);
-        return $this->finalResponse;
+        return $this->flush(true);
     }
 
+    /**
+     * Gets updated backoff duration provided last status code and backoff duration.
+     *
+     * @internal
+     * @access private
+     * @param int $lastStatus Previous status code of batchWrite
+     * @param int $backoffDurationInMillis Previous backoff duration in milliseconds
+     * @return int
+     */
     public function getBackoffDuration($lastStatus, $backoffDurationInMillis = 0)
     {
         if ($lastStatus === Code::RESOURCE_EXHAUSTED) {
-            $backoffDurationInMillis = self::DEFAULT_BACKOFF_MAX_DELAY_MS;
+            $backoffDurationInMillis = $this->maxDelayTime;
         } elseif ($backoffDurationInMillis <= 0) {
-            $backoffDurationInMillis = self::DEFAULT_BACKOFF_INITIAL_DELAY_MS;
+            $backoffDurationInMillis = self::$defaultOptions['DEFAULT_BACKOFF_INITIAL_DELAY_MS'];
         } else {
-            $backoffDurationInMillis *= self::DEFAULT_BACKOFF_FACTOR;
+            $backoffDurationInMillis *= self::$defaultOptions['DEFAULT_BACKOFF_FACTOR'];
         }
-        return min(self::DEFAULT_BACKOFF_MAX_DELAY_MS, $backoffDurationInMillis);
+        return min($this->maxDelayTime, $backoffDurationInMillis);
+    }
+
+    /**
+     * Change the maximum delay time for rescheduling a failed mutation or
+     * awaiting a batch creation.
+     *
+     * @internal
+     * @access private
+     * @param int $maxTime The maximum delay time in millis for rescheduling
+     *            a failed mutation or awaiting a batch creation.
+     * @return void
+     */
+    public function setMaxRetryTimeInMs($maxTime)
+    {
+        $this->maxDelayTime = max(0, $maxTime);
     }
 
     /**
      * Reschedule failed mutations if retryable.
      *
-     * @param int $writesId Sequence of mutation among all enqueued writes.
-     * @param int $lastRunStatusCode
+     * @param int $writesId Sequence of mutation among all enqueued writes
+     * @param int $lastRunStatusCode Previous status code of batchWrite
      * @return void
      */
     private function handleSendBatchFailure($writesId, $lastRunStatusCode)
     {
-        if ($lastRunStatusCode === Code::OK) {
+        if (!call_user_func_array($this->isRetryable, [$lastRunStatusCode])) {
             return;
         }
         $numFailedAttempts = 1;
@@ -701,13 +847,29 @@ class BulkWriter
     }
 
     /**
+     * Get whether individual writes with provided status code shall be retried.
+     * The default error handler retries for UNAVAILABLE and ABORTED errors.
+     *
+     * @return callable Accepts error code and returns true if retryable.
+     */
+    private function defaultWriteErrorHandler()
+    {
+        return function ($lastRunStatusCode) {
+            return in_array($lastRunStatusCode, [
+                Code::UNAVAILABLE,
+                Code::ABORTED,
+            ]);
+        };
+    }
+
+    /**
      * Creates writes array indices which form a batch
      *
      * @param bool $waitForRetryableFailures Flag to indicate whether to wait for
      *        retryable failures. **Defaults to** `false`.
      * @return array
      */
-    private function createWritesBatchIds($waitForRetryableFailures)
+    private function createWritesBatchIds($waitForRetryableFailures = false)
     {
         $writesBatchIds = [];
         $curTimeInMillis = floor(microtime(true) * 1000);
@@ -725,7 +887,9 @@ class BulkWriter
             }
             // ignore if write is yet to reach rescheduled time OR retried more than enough
             if (array_key_exists($writeId, $this->retryScheduledWrites)) {
-                if ($this->retryScheduledWrites[$writeId]['num_failed_attempts'] >= self::MAX_RETRY_ATTEMPTS) {
+                if ($this->retryScheduledWrites[$writeId]['num_failed_attempts'] >=
+                    self::$defaultOptions['MAX_RETRY_ATTEMPTS']
+                ) {
                     // let the failures eventually trickle down to finalResponse
                     continue;
                 }
@@ -736,9 +900,9 @@ class BulkWriter
                     continue;
                 }
                 // Delay greater than 0 implies that this batch is a retry.
-                // Retries are sent with a batch size of 10 in order to guarantee
+                // Retries are sent with RETRY_MAX_BATCH_SIZE in order to guarantee
                 // that the batch is under the 10MiB limit.
-                $batchSize = self::RETRY_MAX_BATCH_SIZE;
+                $batchSize = self::$defaultOptions['RETRY_MAX_BATCH_SIZE'];
                 $maxScheduledDelayInMillis = max(
                     $maxScheduledDelayInMillis,
                     $this->retryScheduledWrites[$writeId]['scheduled_in_millis']
@@ -775,6 +939,17 @@ class BulkWriter
      */
     private function sendBatch(array $writes, array $options = [])
     {
+        $rateLimiterDelayMs = $this->rateLimiter->getNextRequestDelayMs(count($writes));
+        // avoid very long sleep
+        $rateLimiterDelayMs = min(
+            $rateLimiterDelayMs,
+            $this->maxDelayTime
+        );
+        if ($rateLimiterDelayMs > 0) {
+            usleep($rateLimiterDelayMs * 1000);
+        }
+        $this->rateLimiter->tryMakeRequest(count($writes));
+
         unset($options['merge'], $options['precondition']);
         $options += ['labels' => []];
 
@@ -833,7 +1008,9 @@ class BulkWriter
                 'fieldTransforms' => $operations,
             ] + $options);
         }
-        if ($this->greedilySend && count($this->writes) >= $this->maxBatchSize) {
+        if ($this->greedilySend &&
+            count($this->createWritesBatchIds()) >= $this->maxBatchSize
+        ) {
             $this->flush();
         }
     }
@@ -1273,6 +1450,12 @@ class BulkWriter
         $this->uniqueDocuments[] = $document;
     }
 
+    /**
+     * Applies jitter to backoff duration.
+     *
+     * @param int $backoffMs The backoff duration in milliseconds.
+     * @return int Jittered backoff duration in milliseconds.
+     */
     private function applyJitter($backoffMs)
     {
         if ($backoffMs <= 0) {
@@ -1280,7 +1463,8 @@ class BulkWriter
         }
         // Random value in [-0.3, 0.3]
         $resolution = 1000.0;
-        $jitter = self::DEFAULT_JITTER_FACTOR * mt_rand(-$resolution, $resolution) / $resolution;
-        return (int) min(self::DEFAULT_BACKOFF_MAX_DELAY_MS, $backoffMs + $jitter * $backoffMs);
+        $jitter = self::$defaultOptions['DEFAULT_JITTER_FACTOR'] *
+            mt_rand(-$resolution, $resolution) / $resolution;
+        return (int) min($this->maxDelayTime, $backoffMs + $jitter * $backoffMs);
     }
 }
