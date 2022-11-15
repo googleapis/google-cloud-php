@@ -202,7 +202,12 @@ class FirestoreClient
      * ```
      *
      * @param array $options [optional] {
-     *     Configuration options
+     *     Configuration options.
+     *
+     *     Please note that the default values are experiementally derived after
+     *     performance evaluations. The underlying constants may change in backwards-
+     *     incompatible ways. Please use with caution, and test thoroughly when
+     *     upgrading.
      *
      *     @type int $maxBatchSize Maximum number of requests per batch.
      *           **Defaults to** `20`.
