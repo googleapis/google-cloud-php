@@ -28,6 +28,9 @@ namespace Google\Cloud\Firestore;
  * RateLimiter can also implement a gradually increasing rate limit. This is
  * used to enforce the 500/50/5 rule
  * (https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic).
+ *
+ * @internal Please note RateLimiter is internal but contains public methods
+ * for testing purposes.
  */
 class RateLimiter
 {
@@ -102,8 +105,6 @@ class RateLimiter
      * Tries to make the number of operations. Returns true if the request
      * succeeded and false otherwise.
      *
-     * @internal Visible only for testing.
-     *
      * @param int $numOperations The number of operations to request.
      * @param int $requestTimeMillis The time used to calculate the number of
      *        available tokens.
@@ -154,7 +155,7 @@ class RateLimiter
     /**
      * Calculates the maximum capacity based on the provided date.
      *
-     * @internal Visible only for testing.
+     * This method is marked public only for testing.
      *
      * @param int $requestTimeMillis The time used to calculate the number of
      *        available tokens.
