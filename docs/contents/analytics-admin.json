@@ -7,11 +7,19 @@
             "type": "analyticsadmin\/readme"
         },
         {
-            "title": "v1alpha",
-            "type": "analyticsadmin\/v1alpha\/readme",
+            "title": "AnalyticsAdminServiceClient (v1alpha)",
+            "type": "analyticsadmin\/v1alpha\/analyticsadminserviceclient",
             "nav": [],
             "patterns": [
                 "analyticsadmin\/v1alpha\/\\w{1,}"
+            ]
+        },
+        {
+            "title": "AnalyticsAdminServiceClient (v1beta)",
+            "type": "analyticsadmin\/v1beta\/analyticsadminserviceclient",
+            "nav": [],
+            "patterns": [
+                "analyticsadmin\/v1beta\/\\w{1,}"
             ]
         }
     ],
