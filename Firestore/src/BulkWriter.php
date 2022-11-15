@@ -32,7 +32,7 @@ use Google\Rpc\Code;
  * Enqueue and write multiple mutations to Cloud Firestore.
  *
  * This class may be used directly for multiple non-transactional writes with
- * automatic retry on failure). To run changes in a transaction (with automatic)
+ * automatic retry on failure. To run changes in a transaction (with automatic
  * retry/rollback on failure), use {@see Google\Cloud\Firestore\Transaction}.
  * Single modifications can be made using the various methods on
  * {@see Google\Cloud\Firestore\DocumentReference}.
