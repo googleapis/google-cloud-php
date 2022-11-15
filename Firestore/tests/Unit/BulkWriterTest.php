@@ -237,7 +237,9 @@ class BulkWriterTest extends TestCase
         $response = $this->batch->flush(true);
         $this->assertIsArray($response);
         $this->assertEquals(count($docs), count($response['status']));
-        $this->assertEquals(Code::OK, $response['status'][0]['code']);
+        for ($i = 0; $i < 50; $i++) {
+            $this->assertEquals(Code::OK, $response['status'][$i]['code']);
+        }
     }
 
     /**
@@ -276,7 +278,9 @@ class BulkWriterTest extends TestCase
         $response = $this->batch->close();
         $this->assertIsArray($response);
         $this->assertEquals(count($docs), count($response['status']));
-        $this->assertEquals(Code::OK, $response['status'][0]['code']);
+        for ($i = 0; $i < 50; $i++) {
+            $this->assertEquals(Code::OK, $response['status'][$i]['code']);
+        }
     }
 
     /**
