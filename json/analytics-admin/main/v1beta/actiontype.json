@@ -1,0 +1,1 @@
+{"id":"analyticsadmin\/v1beta\/actiontype","type":"","title":"Google\\Analytics\\Admin\\V1beta\\ActionType","name":"ActionType","description":"<p>Types of actions that may change a resource.<\/p>\n<p>Protobuf type <code>google.analytics.admin.v1beta.ActionType<\/code><\/p>","examples":[],"resources":[],"methods":[]}
