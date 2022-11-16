@@ -37,6 +37,10 @@ jobs:
     - name: Run Unit Test Suite
       run: |
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        if [ "$?" != "0" ] && [ "${{ matrix.platform }}" == "windows-latest" ]; then
+          echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
+          vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
+        fi
     - if: ${{ matrix.platform != 'windows-latest' }}
       name: Run Snippet Test Suite
       run: |
