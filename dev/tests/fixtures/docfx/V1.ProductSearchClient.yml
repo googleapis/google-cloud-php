@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSearchClient
     name: ProductSearchClient
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSearchClient
     summary: |
       Service Description: Manages Products and ProductSets of reference images for use in product

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSearchParams
     name: ProductSearchParams
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSearchParams
     summary: |
       Parameters for a product search request.
