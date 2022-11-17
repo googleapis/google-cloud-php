@@ -20,6 +20,7 @@ namespace Google\Cloud\Spanner\Tests\System;
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Spanner\Timestamp;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -33,14 +34,17 @@ class TransactionTest extends SpannerTestCase
 
     private static $tableName;
 
+    private static $id1;
+
     public static function set_up_before_class()
     {
         parent::set_up_before_class();
 
         self::$tableName = uniqid(self::TABLE_NAME);
+        self::$id1 = rand(1000, 9999);
 
         self::$row = [
-            'id' => rand(1000, 9999),
+            'id' => self::$id1,
             'name' => uniqid(self::TESTING_PREFIX),
             'birthday' => new Date(new \DateTime('2000-01-01'))
         ];
@@ -217,6 +221,70 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
+    public function testRunTransactionWithDatabaseRole()
+    {
+        $db = self::$databaseWithRestrictiveDatabaseRole;
+
+        $row = $this->getRow();
+        $row['name'] = 'Doug';
+
+        $db->runTransaction(function ($t) use ($row) {
+            $t->update('Users', $row);
+
+            $t->commit();
+        });
+        $row = $this->getRow();
+        $this->assertEquals('Doug', $row['name']);
+
+        try {
+            $db->runTransaction(function ($t) {
+                $id = rand(1, 346464);
+                $t->insert(self::TEST_TABLE_NAME, [
+                    'id' => $id,
+                    'name' => uniqid(self::TESTING_PREFIX),
+                    'birthday' => new Date(new \DateTime)
+                ]);
+
+                $t->commit();
+            });
+        } catch (ServiceException $e) {
+            $this->assertInstanceOf(ServiceException::class, $e);
+            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        }
+    }
+
+    public function testRunTransactionWithSessionPoolDatabaseRole()
+    {
+        $db = self::$databaseWithSessionPoolRestrictiveDatabaseRole;
+
+        $row = $this->getRow();
+        $row['name'] = 'Doug';
+
+        $db->runTransaction(function ($t) use ($row) {
+            $t->update('Users', $row);
+
+            $t->commit();
+        });
+        $row = $this->getRow();
+        $this->assertEquals('Doug', $row['name']);
+
+        try {
+            $db->runTransaction(function ($t) {
+                $id = rand(1, 346464);
+                $t->insert(self::TEST_TABLE_NAME, [
+                    'id' => $id,
+                    'name' => uniqid(self::TESTING_PREFIX),
+                    'birthday' => new Date(new \DateTime)
+                ]);
+
+                $t->commit();
+            });
+        } catch (ServiceException $e) {
+            $this->assertInstanceOf(ServiceException::class, $e);
+            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        }
+    }
+
     private function readArgs()
     {
         return [
@@ -225,5 +293,17 @@ class TransactionTest extends SpannerTestCase
             ]),
             array_keys(self::$row)
         ];
+    }
+
+    private function getRow()
+    {
+        $db = self::$database;
+        $res = $db->execute('SELECT id, name FROM ' . self::TEST_TABLE_NAME . ' WHERE id=@id', [
+            'parameters' => [
+                'id' => self::$id1
+            ]
+        ]);
+
+        return $res->rows()->current();
     }
 }

@@ -553,6 +553,7 @@ class Operation
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
+     *     @type string $creator_role The session owner database role.
      * }
      * @return Session
      */
@@ -561,7 +562,8 @@ class Operation
         $res = $this->connection->createSession([
             'database' => $databaseName,
             'session' => [
-                'labels' => $this->pluck('labels', $options, false) ?: []
+                'labels' => $this->pluck('labels', $options, false) ?: [],
+                'creator_role' => $this->pluck('creator_role', $options, false) ?: null
             ]
         ] + $options);
 

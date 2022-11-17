@@ -43,6 +43,7 @@ use Google\Cloud\Spanner\Timestamp;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * @group spanner
@@ -60,6 +61,7 @@ class SpannerClientTest extends TestCase
 
     private $client;
     private $connection;
+    private $instance;
 
     public function set_up()
     {
@@ -69,6 +71,10 @@ class SpannerClientTest extends TestCase
         $this->client = TestHelpers::stub(SpannerClient::class, [
             ['projectId' => self::PROJECT]
         ]);
+        $this->client = TestHelpers::stub(SpannerClient::class, [
+            ['projectId' => self::PROJECT]
+        ]);
+        $this->instance = $this->prophesize(Instance::class);
     }
 
     public function testBatch()
@@ -435,5 +441,11 @@ class SpannerClientTest extends TestCase
     {
         $t = $this->client->commitTimestamp();
         $this->assertInstanceOf(CommitTimestamp::class, $t);
+    }
+
+    public function testSpannerClientDatabaseRole()
+    {
+        $this->instance->database(Argument::any(), ['databaseRole' => 'Reader'])->shouldBeCalled();
+        $this->client->connect($this->instance->reveal(), self::DATABASE, ['databaseRole' => 'Reader']);
     }
 }

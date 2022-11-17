@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Database;
 use Google\Cloud\Spanner\Instance;
 use Google\Cloud\Spanner\Tests\StubCreationTrait;
 use Google\Cloud\Spanner\Backup;
+use PHPUnit\Framework\Assert;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
@@ -48,6 +49,7 @@ class InstanceTest extends TestCase
     const NAME = 'instance-name';
     const DATABASE = 'database-name';
     const BACKUP = 'my-backup';
+    const SESSION = 'projects/test-project/instances/instance-name/databases/database-name/sessions/session';
 
     private $connection;
     private $instance;
@@ -562,6 +564,23 @@ class InstanceTest extends TestCase
         $this->assertCount(2, $dbOps);
         $this->assertEquals('operation1', $dbOps[0]->name());
         $this->assertEquals('operation2', $dbOps[1]->name());
+    }
+
+    public function testInstanceDatabaseRole()
+    {
+        $database = $this->instance->database($this::DATABASE, ['databaseRole' => 'Reader']);
+
+        $this->connection->createSession(Argument::withEntry(
+            'session',
+            ['labels' => [], 'creator_role' => 'Reader']
+        ))
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => self::SESSION
+            ]);
+
+        $sql = 'SELECT * FROM Table';
+        $database->execute($sql);
     }
 
     // ************** //

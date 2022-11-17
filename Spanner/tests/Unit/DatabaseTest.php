@@ -77,6 +77,7 @@ class DatabaseTest extends TestCase
     private $lroCallables;
     private $database;
     private $session;
+    private $databaseWithDatabaseRole;
 
 
     public function set_up()
@@ -129,6 +130,20 @@ class DatabaseTest extends TestCase
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
+
+        $args = [
+            $this->connection->reveal(),
+            $this->instance,
+            $this->lro->reveal(),
+            $this->lroCallables,
+            self::PROJECT,
+            self::DATABASE,
+            null,
+            false,
+            [],
+            'Reader'
+        ];
+        $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
 
     public function testName()
@@ -1385,5 +1400,20 @@ class DatabaseTest extends TestCase
         return function () {
             return;
         };
+    }
+
+    public function testDBDatabaseRole()
+    {
+        $this->connection->createSession(Argument::withEntry(
+            'session',
+            ['labels' => [], 'creator_role' => 'Reader']
+        ))
+        ->shouldBeCalled()
+        ->willReturn([
+                'name' => $this->session->name()
+            ]);
+
+        $sql = 'SELECT * FROM Table';
+        $this->databaseWithDatabaseRole->execute($sql);
     }
 }

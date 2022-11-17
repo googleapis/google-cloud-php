@@ -21,6 +21,7 @@ use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
+use Google\Cloud\Core\Exception\ServiceException;
 
 /**
  * @group spanner
@@ -29,12 +30,14 @@ use Google\Cloud\Spanner\KeySet;
 class BatchTest extends SpannerTestCase
 {
     private static $tableName;
+    private static $databaseRole;
 
     public static function set_up_before_class()
     {
         parent::set_up_before_class();
 
         self::$tableName = uniqid(self::TESTING_PREFIX);
+        self::$databaseRole = 'batchRole';
 
         $db = self::$database;
 
@@ -44,6 +47,17 @@ class BatchTest extends SpannerTestCase
                 decade INT64 NOT NULL
             ) PRIMARY KEY (id)',
             self::$tableName
+        ))->pollUntilComplete();
+
+        $db->updateDdl(sprintf(
+            'CREATE ROLE %s',
+            self::$databaseRole
+        ))->pollUntilComplete();
+
+        $db->updateDdl(sprintf(
+            'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
+            self::$tableName,
+            self::$databaseRole
         ))->pollUntilComplete();
 
         self::seedTable();
@@ -101,6 +115,74 @@ class BatchTest extends SpannerTestCase
         ]);
 
         $partitions = $snapshot->partitionRead(self::$tableName, $keySet, ['id', 'decade']);
+        $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
+
+        $snapshot->close();
+    }
+
+    public function testBatchWithRestrictiveDatabaseRole()
+    {
+        $query = 'SELECT
+                id,
+                decade
+            FROM ' . self::$tableName . '
+            WHERE
+                decade > @earlyBound
+            AND
+                decade < @lateBound';
+
+        $parameters = [
+            'earlyBound' => 1960,
+            'lateBound' => 1980
+        ];
+
+        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
+
+        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => self::$databaseRole]);
+        $string = $batch->snapshot()->serialize();
+
+        $snapshot = $batch->snapshotFromString($string);
+
+        try {
+            $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
+        } catch (ServiceException $e) {
+            $this->assertInstanceOf(ServiceException::class, $e);
+            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        }
+
+        $snapshot->close();
+    }
+
+    public function testBatchWithDatabaseRole()
+    {
+        self::$database->updateDdl(sprintf(
+            'GRANT SELECT ON TABLE %s TO ROLE %s',
+            self::$tableName,
+            self::$databaseRole
+        ))->pollUntilComplete();
+
+        $query = 'SELECT
+                id,
+                decade
+            FROM ' . self::$tableName . '
+            WHERE
+                decade > @earlyBound
+            AND
+                decade < @lateBound';
+
+        $parameters = [
+            'earlyBound' => 1960,
+            'lateBound' => 1980
+        ];
+
+        $resultSet = iterator_to_array(self::$database->execute($query, ['parameters' => $parameters]));
+
+        $batch = self::$client->batch(self::INSTANCE_NAME, self::$dbName, ['databaseRole' => self::$databaseRole]);
+        $string = $batch->snapshot()->serialize();
+
+        $snapshot = $batch->snapshotFromString($string);
+
+        $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         $this->assertEquals(count($resultSet), $this->executePartitions($batch, $snapshot, $partitions));
 
         $snapshot->close();

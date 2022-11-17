@@ -170,6 +170,11 @@ class Database
     private $isRunningTransaction = false;
 
     /**
+     * @var string
+     */
+    private $databaseRole;
+
+    /**
      * Create an object representing a Database.
      *
      * @param ConnectionInterface $connection The connection to the
@@ -185,6 +190,7 @@ class Database
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
+     * @param string $databaseRole The session owner database role.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -195,7 +201,8 @@ class Database
         $name,
         SessionPoolInterface $sessionPool = null,
         $returnInt64AsObject = false,
-        array $info = []
+        array $info = [],
+        $databaseRole = null
     ) {
         $this->connection = $connection;
         $this->instance = $instance;
@@ -210,6 +217,7 @@ class Database
         }
 
         $this->setLroProperties($lroConnection, $lroCallables, $this->name);
+        $this->databaseRole = $databaseRole;
     }
 
     /**
@@ -2023,6 +2031,10 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
+        if ($this->databaseRole != null) {
+            $options['creator_role'] = $this->databaseRole;
+        }
+
         return $this->session = $this->operation->createSession($this->name, $options);
     }
 
@@ -2092,4 +2104,5 @@ class Database
 
         return sprintf('CREATE DATABASE `%s`', $databaseId);
     }
+
 }

@@ -104,6 +104,17 @@ use Psr\Cache\CacheItemPoolInterface;
  *     ]
  * ]);
  * ```
+ *
+ * ```
+ * Database role configured on the pool will be applied to each session created by the pool.
+ * use Google\Cloud\Spanner\Session\CacheSessionPool;
+ * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+ *
+ * $cache = new FilesystemAdapter();
+ * $sessionPool = new CacheSessionPool($cache, [
+ *     'databaseRole' => 'Reader'
+ * ]);
+ * ```
  */
 class CacheSessionPool implements SessionPoolInterface
 {
@@ -191,6 +202,8 @@ class CacheSessionPool implements SessionPoolInterface
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
+     *     @type string $databaseRole The session owner database role.
+     * }
      * }
      * @throws \InvalidArgumentException
      */
@@ -660,7 +673,8 @@ class CacheSessionPool implements SessionPoolInterface
                 $res = $this->database->connection()->batchCreateSessions([
                     'database' => $this->database->name(),
                     'sessionTemplate' => [
-                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : []
+                        'labels' => isset($this->config['labels']) ? $this->config['labels'] : [],
+                        'creator_role' => isset($this->config['databaseRole']) ? $this->config['databaseRole'] : null
                     ],
                     'sessionCount' => $count - $created
                 ]);
