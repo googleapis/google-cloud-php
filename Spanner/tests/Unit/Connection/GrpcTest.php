@@ -652,13 +652,14 @@ class GrpcTest extends TestCase
             $sql,
             Argument::that(function ($arguments) use ($expectedOptions) {
                 $queryOptions = isset($arguments['queryOptions']) ? $arguments['queryOptions'] : null;
+                $expectedOptions += ['optimizerVersion' => null, 'optimizerStatisticsPackage' => null];
                 $this->assertEquals(
                     $queryOptions ? $queryOptions->getOptimizerVersion() : null,
-                    isset($expectedOptions['optimizerVersion']) ? $expectedOptions['optimizerVersion'] : null
+                    $expectedOptions['optimizerVersion']
                 );
                 $this->assertEquals(
                     $queryOptions ? $queryOptions->getOptimizerStatisticsPackage() : null,
-                    isset($expectedOptions['optimizerStatisticsPackage']) ? $expectedOptions['optimizerStatisticsPackage'] : null
+                    $expectedOptions['optimizerStatisticsPackage']
                 );
                 return true;
             })
