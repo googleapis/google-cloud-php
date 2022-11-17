@@ -83,7 +83,7 @@ class ClassNode
 
         // If the namespace contains a segment like "V1alpha1/" or "/V1p1beta1/"
         $version = $this->getVersion();
-        if (0 !== substr_count($version, 'beta') || 0 !== substr_count($version, 'alpha')) {
+        if (str_contains($version, 'beta') || str_contains($version, 'alpha')) {
             return 'beta';
         }
 

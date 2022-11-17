@@ -285,12 +285,12 @@ EOF;
     public function provideStatusAndVersionByNamespace()
     {
         return [
+            ['V1alpha', 'V1alpha', true],
             ['V1beta', 'V1beta', true],
             ['V1alpha1', 'V1alpha1', true],
-            ['V1alpha', 'V1alpha', true],
             ['V1beta1', 'V1beta1', true],
-            ['V1p1beta1', 'V1p1beta1', true],
             ['V1p1alpha1', 'V1p1alpha1', true],
+            ['V1p1beta1', 'V1p1beta1', true],
             ['V2p2beta2', 'V2p2beta2', true],
             ['V1beta1\Foo', 'V1beta1', true],
             ['V1beta\Foo', 'V1beta', true],
@@ -298,8 +298,6 @@ EOF;
             ['V1', 'V1'],
             ['V1\Foo', 'V1'],
             ['V1p1zeta1', ''],
-            ['V1z1beta', ''],
-            ['V1z1beta', ''],
             ['V1z1beta', ''],
             ['Foo', ''],
         ];
