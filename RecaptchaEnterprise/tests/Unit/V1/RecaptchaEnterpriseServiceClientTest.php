@@ -22,7 +22,6 @@
 
 namespace Google\Cloud\RecaptchaEnterprise\Tests\Unit\V1;
 
-use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -35,6 +34,7 @@ use Google\Cloud\RecaptchaEnterprise\V1\ListKeysResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupMembershipsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\ListRelatedAccountGroupsResponse;
 use Google\Cloud\RecaptchaEnterprise\V1\Metrics;
+use Google\Cloud\RecaptchaEnterprise\V1\RecaptchaEnterpriseServiceClient;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroup;
 use Google\Cloud\RecaptchaEnterprise\V1\RelatedAccountGroupMembership;
 use Google\Cloud\RecaptchaEnterprise\V1\RetrieveLegacySecretKeyResponse;
