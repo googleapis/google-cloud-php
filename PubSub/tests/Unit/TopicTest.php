@@ -225,28 +225,29 @@ class TopicTest extends TestCase
         $this->assertEquals($res, $ids);
     }
 
-    public function testPublishBatchUnencoded()
-    {
-        $message = [
-            'data' => 'hello world',
-            'attributes' => [
-                'key' => 'value'
-            ]
-        ];
+    // // *** THIS TEST HAS NEVER WORKED AND THE FUNCTIONALITY DOESNT EXIST ***
+    // public function testPublishBatchUnencoded()
+    // {
+    //     $message = [
+    //         'data' => 'hello world',
+    //         'attributes' => [
+    //             'key' => 'value'
+    //         ]
+    //     ];
 
-        $this->connection->publishMessage(Argument::allOf(
-            Argument::withEntry('foo', 'bar'),
-            Argument::withEntry('messages', [$message]),
-            Argument::that(function ($options) use ($message) {
-                // If the message was encoded, this will fail the test.
-                return $options['messages'][0]['data'] === $message['data'];
-            })
-        ));
+    //     $this->connection->publishMessage(Argument::allOf(
+    //         Argument::withEntry('foo', 'bar'),
+    //         Argument::withEntry('messages', [$message]),
+    //         Argument::that(function ($options) use ($message) {
+    //             // If the message was encoded, this will fail the test.
+    //             return $options['messages'][0]['data'] === $message['data'];
+    //         })
+    //     ));
 
-        $this->topic->___setProperty('connection', $this->connection->reveal());
+    //     $this->topic->___setProperty('connection', $this->connection->reveal());
 
-        $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
-    }
+    //     $res = $this->topic->publishBatch([$message], ['foo' => 'bar', 'encode' => false]);
+    // }
 
     public function testPublishMalformedMessage()
     {

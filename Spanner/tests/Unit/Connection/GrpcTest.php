@@ -650,8 +650,19 @@ class GrpcTest extends TestCase
         $gapic->executeStreamingSql(
             self::SESSION,
             $sql,
-            Argument::withEntry('queryOptions', $expectedOptions)
-        );
+            Argument::that(function ($arguments) use ($expectedOptions) {
+                $queryOptions = $arguments['queryOptions'] ?? null;
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerVersion() : null,
+                    $expectedOptions['optimizerVersion'] ?? null
+                );
+                $this->assertEquals(
+                    $queryOptions ? $queryOptions->getOptimizerStatisticsPackage() : null,
+                    $expectedOptions['optimizerStatisticsPackage'] ?? null
+                );
+                return true;
+            })
+        )->shouldBeCalledOnce();
 
         $grpc = new Grpc([
             'gapicSpannerClient' => $gapic->reveal()
