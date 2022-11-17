@@ -20,6 +20,7 @@ namespace Google\Cloud\Dev\Tests\Unit\DocFx;
 use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Page\Page;
+use Google\Cloud\Dev\DocFx\Page\PageTree;
 use SimpleXMLElement;
 
 /**
@@ -58,5 +59,24 @@ class PageTest extends TestCase
             ['\Google\Cloud\Vision\V1beta1', 'Cloud Vision Client for PHP', 'Cloud Vision V1beta1 Client'],
             ['\Google\Cloud\Vision\V1\Foo', 'Cloud Vision Client for PHP', 'Cloud Vision V1 Client'],
         ];
+    }
+
+    public function testLoadPagesProtoPackages()
+    {
+        $structureXml = __DIR__ . '/../../fixtures/phpdoc/structure.xml';
+        $pageTree = new PageTree($structureXml, 'Google\Cloud\Vision', '');
+
+        $pages = $pageTree->getPages();
+        $this->assertTrue(count($pages) > 0);
+        $classNode = array_pop($pages)->getClassNode();
+
+        $classNodeReflection = new \ReflectionClass($classNode);
+        $protoPackagesProperty = $classNodeReflection->getProperty('protoPackages');
+        $protoPackagesProperty->setAccessible(true);
+
+        $this->assertEquals(
+            ['google.cloud.vision.v1' => 'Google\Cloud\Vision\V1'],
+            $protoPackagesProperty->getValue($classNode)
+        );
     }
 }

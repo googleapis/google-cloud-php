@@ -132,6 +132,7 @@ class PageTree
          */
         $protoPackages = [];
         foreach ($pages as $page) {
+            $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
                 $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
             }
