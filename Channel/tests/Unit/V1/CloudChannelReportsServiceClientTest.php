@@ -22,12 +22,12 @@
 
 namespace Google\Cloud\Channel\Tests\Unit\V1;
 
-use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Channel\V1\CloudChannelReportsServiceClient;
 use Google\Cloud\Channel\V1\FetchReportResultsResponse;
 use Google\Cloud\Channel\V1\ListReportsResponse;
 use Google\Cloud\Channel\V1\Report;

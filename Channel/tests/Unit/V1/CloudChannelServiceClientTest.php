@@ -22,7 +22,6 @@
 
 namespace Google\Cloud\Channel\Tests\Unit\V1;
 
-use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
@@ -32,6 +31,7 @@ use Google\Cloud\Channel\V1\ChannelPartnerLink;
 use Google\Cloud\Channel\V1\ChannelPartnerLinkState;
 use Google\Cloud\Channel\V1\ChannelPartnerRepricingConfig;
 use Google\Cloud\Channel\V1\CheckCloudIdentityAccountsExistResponse;
+use Google\Cloud\Channel\V1\CloudChannelServiceClient;
 use Google\Cloud\Channel\V1\Customer;
 use Google\Cloud\Channel\V1\CustomerRepricingConfig;
 use Google\Cloud\Channel\V1\Entitlement;
