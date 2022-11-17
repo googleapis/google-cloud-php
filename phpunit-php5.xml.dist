@@ -8,7 +8,9 @@
       <directory>./tests/Unit</directory>
       <exclude>./Compute/tests/Unit/*</exclude>
       <exclude>./SqlAdmin/tests/Unit/*</exclude>
-      <exclude>./dev/tests/Unit/DocFx/*</exclude>
+      <exclude>./dev/tests/Unit/DocFx/CommandTest.php</exclude>
+      <exclude>./dev/tests/Unit/DocFx/NodeTest.php</exclude>
+      <exclude>./dev/tests/Unit/DocFx/PageTest.php</exclude>
     </testsuite>
   </testsuites>
   <filter>
