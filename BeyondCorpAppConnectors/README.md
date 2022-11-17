@@ -1,4 +1,4 @@
-# Google Cloud BeyondCorp AppConnectors for PHP for PHP
+# Google Cloud BeyondCorp AppConnectors for PHP
 
 > Idiomatic PHP client for [Google Cloud BeyondCorp AppConnectors for PHP](https://cloud.google.com/beyondcorp-enterprise).
 
