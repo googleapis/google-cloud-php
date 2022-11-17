@@ -38,7 +38,7 @@ jobs:
       name: Run Unit Test Suite (Windows)
       run: |
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
-        if ( "$?" != "0" )
+        if ( "$?" -ne "0" )
         {
           echo "*** RETRYING FLAKEY PHPUNIT ON WINDOWS ***"
           vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}.xml.dist
