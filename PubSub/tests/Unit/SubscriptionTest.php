@@ -513,7 +513,7 @@ class SubscriptionTest extends TestCase
         ];
 
         $ex = $this->generateEodException($metadata);
-        
+
         $this->connection->acknowledge(Argument::allOf(
             Argument::withEntry('ackIds', $this->ackIds),
             Argument::withKey('subscription')
@@ -650,9 +650,6 @@ class SubscriptionTest extends TestCase
         $this->assertIsNotArray($failedMsgs);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testAcknowledgeBatchInvalidArgument()
     {
         $this->expectException('InvalidArgumentException');
@@ -760,7 +757,7 @@ class SubscriptionTest extends TestCase
         ];
 
         $ex = $this->generateEodException($metadata);
-        
+
         $this->connection->modifyAckDeadline(Argument::allOf(
             Argument::withEntry('ackIds', $this->ackIds),
             Argument::withKey('subscription'),
@@ -903,9 +900,6 @@ class SubscriptionTest extends TestCase
         $this->assertIsNotArray($failedMsgs);
     }
 
-    /**
-     * @expectedException InvalidArgumentException
-     */
     public function testModifyAckDeadlineBatchInvalidArgument()
     {
         $this->expectException('InvalidArgumentException');
