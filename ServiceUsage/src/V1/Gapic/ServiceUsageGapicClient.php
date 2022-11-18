@@ -26,9 +26,7 @@ namespace Google\Cloud\ServiceUsage\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -44,7 +42,6 @@ use Google\Cloud\ServiceUsage\V1\EnableServiceRequest;
 use Google\Cloud\ServiceUsage\V1\GetServiceRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesRequest;
 use Google\Cloud\ServiceUsage\V1\ListServicesResponse;
-
 use Google\Cloud\ServiceUsage\V1\Service;
 use Google\LongRunning\Operation;
 
@@ -96,29 +93,19 @@ class ServiceUsageGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.api.serviceusage.v1.ServiceUsage';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'serviceusage.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',

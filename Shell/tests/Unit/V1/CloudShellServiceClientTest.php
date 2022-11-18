@@ -23,14 +23,11 @@
 namespace Google\Cloud\Shell\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Shell\V1\AddPublicKeyResponse;
-
 use Google\Cloud\Shell\V1\AuthorizeEnvironmentResponse;
 use Google\Cloud\Shell\V1\CloudShellServiceClient;
 use Google\Cloud\Shell\V1\Environment;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class CloudShellServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudShellServiceClient
-     */
+    /** @return CloudShellServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         return new CloudShellServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addPublicKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -138,9 +127,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addPublicKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -193,9 +180,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function authorizeEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -253,9 +238,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function authorizeEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -308,9 +291,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -349,9 +330,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -384,9 +363,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removePublicKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -444,9 +421,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removePublicKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -499,9 +474,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -559,9 +532,7 @@ class CloudShellServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();

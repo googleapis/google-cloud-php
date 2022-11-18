@@ -23,11 +23,9 @@
 namespace Google\LongRunning\Tests\Unit;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\LongRunning\ListOperationsResponse;
 use Google\LongRunning\Operation;
 use Google\Protobuf\GPBEmpty;
@@ -41,25 +39,19 @@ use stdClass;
  */
 class OperationsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return \Google\ApiCore\LongRunning\OperationsClient
-     */
+    /** @return \Google\ApiCore\LongRunning\OperationsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,9 +60,7 @@ class OperationsClientTest extends GeneratedTest
         return new \Google\ApiCore\LongRunning\OperationsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelOperationTest()
     {
         $transport = $this->createTransport();
@@ -94,9 +84,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelOperationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -129,9 +117,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOperationTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +141,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOperationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -190,9 +174,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOperationTest()
     {
         $transport = $this->createTransport();
@@ -221,9 +203,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOperationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -256,9 +236,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOperationsTest()
     {
         $transport = $this->createTransport();
@@ -296,9 +274,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOperationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -332,9 +308,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function waitOperationTest()
     {
         $transport = $this->createTransport();
@@ -359,9 +333,7 @@ class OperationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function waitOperationExceptionTest()
     {
         $transport = $this->createTransport();

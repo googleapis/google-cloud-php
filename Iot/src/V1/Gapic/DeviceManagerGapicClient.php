@@ -27,7 +27,6 @@ namespace Google\Cloud\Iot\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -56,10 +55,10 @@ use Google\Cloud\Iot\V1\ListDeviceConfigVersionsRequest;
 use Google\Cloud\Iot\V1\ListDeviceConfigVersionsResponse;
 use Google\Cloud\Iot\V1\ListDeviceRegistriesRequest;
 use Google\Cloud\Iot\V1\ListDeviceRegistriesResponse;
-use Google\Cloud\Iot\V1\ListDevicesRequest;
-use Google\Cloud\Iot\V1\ListDevicesResponse;
 use Google\Cloud\Iot\V1\ListDeviceStatesRequest;
 use Google\Cloud\Iot\V1\ListDeviceStatesResponse;
+use Google\Cloud\Iot\V1\ListDevicesRequest;
+use Google\Cloud\Iot\V1\ListDevicesResponse;
 use Google\Cloud\Iot\V1\ModifyCloudToDeviceConfigRequest;
 use Google\Cloud\Iot\V1\SendCommandToDeviceRequest;
 use Google\Cloud\Iot\V1\SendCommandToDeviceResponse;
@@ -97,29 +96,19 @@ class DeviceManagerGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.iot.v1.DeviceManager';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudiot.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudiot',
@@ -1120,7 +1109,7 @@ class DeviceManagerGapicClient
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
      *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '';
+     *     $binaryData = '...';
      *     $response = $deviceManagerClient->modifyCloudToDeviceConfig($formattedName, $binaryData);
      * } finally {
      *     $deviceManagerClient->close();
@@ -1198,7 +1187,7 @@ class DeviceManagerGapicClient
      * $deviceManagerClient = new DeviceManagerClient();
      * try {
      *     $formattedName = $deviceManagerClient->deviceName('[PROJECT]', '[LOCATION]', '[REGISTRY]', '[DEVICE]');
-     *     $binaryData = '';
+     *     $binaryData = '...';
      *     $response = $deviceManagerClient->sendCommandToDevice($formattedName, $binaryData);
      * } finally {
      *     $deviceManagerClient->close();

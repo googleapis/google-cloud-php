@@ -23,15 +23,12 @@
 namespace Google\Cloud\NetworkConnectivity\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\NetworkConnectivity\V1\ListPolicyBasedRoutesResponse;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute;
-
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoute\Filter\ProtocolVersion;
 use Google\Cloud\NetworkConnectivity\V1\PolicyBasedRoutingServiceClient;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class PolicyBasedRoutingServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PolicyBasedRoutingServiceClient
-     */
+    /** @return PolicyBasedRoutingServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         return new PolicyBasedRoutingServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyBasedRouteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -163,9 +152,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPolicyBasedRouteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -227,9 +214,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyBasedRouteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -291,9 +276,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePolicyBasedRouteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -348,9 +331,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyBasedRouteTest()
     {
         $transport = $this->createTransport();
@@ -389,9 +370,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPolicyBasedRouteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +403,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPolicyBasedRoutesTest()
     {
         $transport = $this->createTransport();
@@ -461,9 +438,7 @@ class PolicyBasedRoutingServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPolicyBasedRoutesExceptionTest()
     {
         $transport = $this->createTransport();

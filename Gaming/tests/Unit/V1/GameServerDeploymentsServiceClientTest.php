@@ -23,15 +23,12 @@
 namespace Google\Cloud\Gaming\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Gaming\V1\FetchDeploymentStateResponse;
 use Google\Cloud\Gaming\V1\GameServerDeployment;
-
 use Google\Cloud\Gaming\V1\GameServerDeploymentRollout;
 use Google\Cloud\Gaming\V1\GameServerDeploymentsServiceClient;
 use Google\Cloud\Gaming\V1\ListGameServerDeploymentsResponse;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class GameServerDeploymentsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GameServerDeploymentsServiceClient
-     */
+    /** @return GameServerDeploymentsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +69,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         return new GameServerDeploymentsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerDeploymentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -154,9 +143,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGameServerDeploymentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -213,9 +200,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerDeploymentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -277,9 +262,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGameServerDeploymentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -334,9 +317,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchDeploymentStateTest()
     {
         $transport = $this->createTransport();
@@ -361,9 +342,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchDeploymentStateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -396,9 +375,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -429,9 +406,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -464,9 +439,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerDeploymentRolloutTest()
     {
         $transport = $this->createTransport();
@@ -497,9 +470,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGameServerDeploymentRolloutExceptionTest()
     {
         $transport = $this->createTransport();
@@ -532,9 +503,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerDeploymentsTest()
     {
         $transport = $this->createTransport();
@@ -569,9 +538,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGameServerDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -604,9 +571,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewGameServerDeploymentRolloutTest()
     {
         $transport = $this->createTransport();
@@ -633,9 +598,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function previewGameServerDeploymentRolloutExceptionTest()
     {
         $transport = $this->createTransport();
@@ -668,9 +631,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerDeploymentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -741,9 +702,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerDeploymentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -799,9 +758,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerDeploymentRolloutTest()
     {
         $operationsTransport = $this->createTransport();
@@ -872,9 +829,7 @@ class GameServerDeploymentsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGameServerDeploymentRolloutExceptionTest()
     {
         $operationsTransport = $this->createTransport();

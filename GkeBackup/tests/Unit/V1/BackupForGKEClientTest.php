@@ -23,15 +23,12 @@
 namespace Google\Cloud\GkeBackup\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeBackup\V1\Backup;
 use Google\Cloud\GkeBackup\V1\BackupForGKEClient;
-
 use Google\Cloud\GkeBackup\V1\BackupPlan;
 use Google\Cloud\GkeBackup\V1\ListBackupPlansResponse;
 use Google\Cloud\GkeBackup\V1\ListBackupsResponse;
@@ -58,25 +55,19 @@ use stdClass;
  */
 class BackupForGKEClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BackupForGKEClient
-     */
+    /** @return BackupForGKEClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -85,9 +76,7 @@ class BackupForGKEClientTest extends GeneratedTest
         return new BackupForGKEClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -181,9 +170,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -238,9 +225,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupPlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -324,9 +309,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupPlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -385,9 +368,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -479,9 +460,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -540,9 +519,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRestorePlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -628,9 +605,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRestorePlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -693,9 +668,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -757,9 +730,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -814,9 +785,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupPlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -878,9 +847,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupPlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -935,9 +902,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -999,9 +964,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1056,9 +1019,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRestorePlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1120,9 +1081,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRestorePlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1177,9 +1136,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -1236,9 +1193,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1271,9 +1226,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupPlanTest()
     {
         $transport = $this->createTransport();
@@ -1312,9 +1265,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupPlanExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1347,9 +1298,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRestoreTest()
     {
         $transport = $this->createTransport();
@@ -1396,9 +1345,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRestoreExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1431,9 +1378,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRestorePlanTest()
     {
         $transport = $this->createTransport();
@@ -1470,9 +1415,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRestorePlanExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1505,9 +1448,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVolumeBackupTest()
     {
         $transport = $this->createTransport();
@@ -1546,9 +1487,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVolumeBackupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1581,9 +1520,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVolumeRestoreTest()
     {
         $transport = $this->createTransport();
@@ -1620,9 +1557,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVolumeRestoreExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1655,9 +1590,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupPlansTest()
     {
         $transport = $this->createTransport();
@@ -1692,9 +1625,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupPlansExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1727,9 +1658,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupsTest()
     {
         $transport = $this->createTransport();
@@ -1764,9 +1693,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1799,9 +1726,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRestorePlansTest()
     {
         $transport = $this->createTransport();
@@ -1836,9 +1761,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRestorePlansExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1871,9 +1794,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRestoresTest()
     {
         $transport = $this->createTransport();
@@ -1908,9 +1829,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRestoresExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1943,9 +1862,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVolumeBackupsTest()
     {
         $transport = $this->createTransport();
@@ -1980,9 +1897,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVolumeBackupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2015,9 +1930,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVolumeRestoresTest()
     {
         $transport = $this->createTransport();
@@ -2052,9 +1965,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVolumeRestoresExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2087,9 +1998,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2183,9 +2092,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2240,9 +2147,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBackupPlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2320,9 +2225,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBackupPlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2379,9 +2282,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2467,9 +2368,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2526,9 +2425,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRestorePlanTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2608,9 +2505,7 @@ class BackupForGKEClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRestorePlanExceptionTest()
     {
         $operationsTransport = $this->createTransport();

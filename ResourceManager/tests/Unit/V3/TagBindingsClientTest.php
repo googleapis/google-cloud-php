@@ -23,15 +23,12 @@
 namespace Google\Cloud\ResourceManager\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ResourceManager\V3\ListTagBindingsResponse;
 use Google\Cloud\ResourceManager\V3\TagBinding;
-
 use Google\Cloud\ResourceManager\V3\TagBindingsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class TagBindingsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TagBindingsClient
-     */
+    /** @return TagBindingsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class TagBindingsClientTest extends GeneratedTest
         return new TagBindingsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagBindingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -144,9 +133,7 @@ class TagBindingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTagBindingExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -201,9 +188,7 @@ class TagBindingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagBindingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -265,9 +250,7 @@ class TagBindingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTagBindingExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -322,9 +305,7 @@ class TagBindingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagBindingsTest()
     {
         $transport = $this->createTransport();
@@ -359,9 +340,7 @@ class TagBindingsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTagBindingsExceptionTest()
     {
         $transport = $this->createTransport();

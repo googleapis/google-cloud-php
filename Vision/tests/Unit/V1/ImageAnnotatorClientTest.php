@@ -23,14 +23,11 @@
 namespace Google\Cloud\Vision\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesResponse;
-
 use Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateFilesResponse;
 use Google\Cloud\Vision\V1\BatchAnnotateImagesResponse;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class ImageAnnotatorClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ImageAnnotatorClient
-     */
+    /** @return ImageAnnotatorClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         return new ImageAnnotatorClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function asyncBatchAnnotateFilesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -140,9 +129,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function asyncBatchAnnotateFilesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -197,9 +184,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function asyncBatchAnnotateImagesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -264,9 +249,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function asyncBatchAnnotateImagesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -322,9 +305,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchAnnotateFilesTest()
     {
         $transport = $this->createTransport();
@@ -349,9 +330,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchAnnotateFilesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -384,9 +363,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchAnnotateImagesTest()
     {
         $transport = $this->createTransport();
@@ -411,9 +388,7 @@ class ImageAnnotatorClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchAnnotateImagesExceptionTest()
     {
         $transport = $this->createTransport();

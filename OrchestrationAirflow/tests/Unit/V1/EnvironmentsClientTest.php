@@ -23,15 +23,12 @@
 namespace Google\Cloud\Orchestration\Airflow\Service\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Orchestration\Airflow\Service\V1\Environment;
 use Google\Cloud\Orchestration\Airflow\Service\V1\EnvironmentsClient;
-
 use Google\Cloud\Orchestration\Airflow\Service\V1\ListEnvironmentsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class EnvironmentsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return EnvironmentsClient
-     */
+    /** @return EnvironmentsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class EnvironmentsClientTest extends GeneratedTest
         return new EnvironmentsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -138,9 +127,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -193,9 +180,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -253,9 +238,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -308,9 +291,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +316,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -368,9 +347,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
@@ -401,9 +378,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -434,9 +409,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -498,9 +471,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();

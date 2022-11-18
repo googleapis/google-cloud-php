@@ -83,7 +83,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      */
     private $memcache_version = 0;
     /**
-     * Optional: User defined parameters to apply to the memcached process
+     * User defined parameters to apply to the memcached process
      * on each node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 11;</code>
@@ -141,6 +141,20 @@ class Instance extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool update_available = 21 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_available = false;
+    /**
+     * The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenancePolicy maintenance_policy = 22;</code>
+     */
+    private $maintenance_policy = null;
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenanceSchedule maintenance_schedule = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $maintenance_schedule = null;
 
     /**
      * Constructor.
@@ -184,7 +198,7 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           The minor version will be automatically determined by our system based on
      *           the latest supported minor version.
      *     @type \Google\Cloud\Memcache\V1beta2\MemcacheParameters $parameters
-     *           Optional: User defined parameters to apply to the memcached process
+     *           User defined parameters to apply to the memcached process
      *           on each node.
      *     @type array<\Google\Cloud\Memcache\V1beta2\Instance\Node>|\Google\Protobuf\Internal\RepeatedField $memcache_nodes
      *           Output only. List of Memcached nodes.
@@ -206,6 +220,12 @@ class Instance extends \Google\Protobuf\Internal\Message
      *           Output only. Endpoint for the Discovery API.
      *     @type bool $update_available
      *           Output only. Returns true if there is an update waiting to be applied
+     *     @type \Google\Cloud\Memcache\V1beta2\MaintenancePolicy $maintenance_policy
+     *           The maintenance policy for the instance. If not provided,
+     *           the maintenance event will be performed based on Memorystore
+     *           internal rollout schedule.
+     *     @type \Google\Cloud\Memcache\V1beta2\MaintenanceSchedule $maintenance_schedule
+     *           Output only. Published maintenance schedule.
      * }
      */
     public function __construct($data = NULL) {
@@ -470,7 +490,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional: User defined parameters to apply to the memcached process
+     * User defined parameters to apply to the memcached process
      * on each node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 11;</code>
@@ -492,7 +512,7 @@ class Instance extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional: User defined parameters to apply to the memcached process
+     * User defined parameters to apply to the memcached process
      * on each node.
      *
      * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MemcacheParameters parameters = 11;</code>
@@ -739,6 +759,82 @@ class Instance extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->update_available = $var;
+
+        return $this;
+    }
+
+    /**
+     * The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenancePolicy maintenance_policy = 22;</code>
+     * @return \Google\Cloud\Memcache\V1beta2\MaintenancePolicy|null
+     */
+    public function getMaintenancePolicy()
+    {
+        return $this->maintenance_policy;
+    }
+
+    public function hasMaintenancePolicy()
+    {
+        return isset($this->maintenance_policy);
+    }
+
+    public function clearMaintenancePolicy()
+    {
+        unset($this->maintenance_policy);
+    }
+
+    /**
+     * The maintenance policy for the instance. If not provided,
+     * the maintenance event will be performed based on Memorystore
+     * internal rollout schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenancePolicy maintenance_policy = 22;</code>
+     * @param \Google\Cloud\Memcache\V1beta2\MaintenancePolicy $var
+     * @return $this
+     */
+    public function setMaintenancePolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memcache\V1beta2\MaintenancePolicy::class);
+        $this->maintenance_policy = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenanceSchedule maintenance_schedule = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Memcache\V1beta2\MaintenanceSchedule|null
+     */
+    public function getMaintenanceSchedule()
+    {
+        return $this->maintenance_schedule;
+    }
+
+    public function hasMaintenanceSchedule()
+    {
+        return isset($this->maintenance_schedule);
+    }
+
+    public function clearMaintenanceSchedule()
+    {
+        unset($this->maintenance_schedule);
+    }
+
+    /**
+     * Output only. Published maintenance schedule.
+     *
+     * Generated from protobuf field <code>.google.cloud.memcache.v1beta2.MaintenanceSchedule maintenance_schedule = 23 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Memcache\V1beta2\MaintenanceSchedule $var
+     * @return $this
+     */
+    public function setMaintenanceSchedule($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Memcache\V1beta2\MaintenanceSchedule::class);
+        $this->maintenance_schedule = $var;
 
         return $this;
     }

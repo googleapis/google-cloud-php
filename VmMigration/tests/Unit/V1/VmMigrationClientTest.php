@@ -23,15 +23,12 @@
 namespace Google\Cloud\VMMigration\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\VMMigration\V1\AddGroupMigrationResponse;
 use Google\Cloud\VMMigration\V1\CancelCloneJobResponse;
-
 use Google\Cloud\VMMigration\V1\CancelCutoverJobResponse;
 use Google\Cloud\VMMigration\V1\CloneJob;
 use Google\Cloud\VMMigration\V1\CutoverJob;
@@ -71,25 +68,19 @@ use stdClass;
  */
 class VmMigrationClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VmMigrationClient
-     */
+    /** @return VmMigrationClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -98,9 +89,7 @@ class VmMigrationClientTest extends GeneratedTest
         return new VmMigrationClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addGroupMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -162,9 +151,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addGroupMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -219,9 +206,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelCloneJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -283,9 +268,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelCloneJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -340,9 +323,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelCutoverJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -404,9 +385,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelCutoverJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -461,9 +440,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCloneJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -533,9 +510,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCloneJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -592,9 +567,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCutoverJobTest()
     {
         $operationsTransport = $this->createTransport();
@@ -668,9 +641,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCutoverJobExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -727,9 +698,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatacenterConnectorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -811,9 +780,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatacenterConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -870,9 +837,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGroupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -946,9 +911,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1005,9 +968,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMigratingVmTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1085,9 +1046,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMigratingVmExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1144,9 +1103,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSourceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1218,9 +1175,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1277,9 +1232,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTargetProjectTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1353,9 +1306,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTargetProjectExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1412,9 +1363,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUtilizationReportTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1488,9 +1437,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createUtilizationReportExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1547,9 +1494,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatacenterConnectorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1611,9 +1556,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatacenterConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1668,9 +1611,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGroupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1732,9 +1673,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1789,9 +1728,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMigratingVmTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1853,9 +1790,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMigratingVmExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1910,9 +1845,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSourceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1974,9 +1907,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2031,9 +1962,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTargetProjectTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2095,9 +2024,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTargetProjectExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2152,9 +2079,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUtilizationReportTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2216,9 +2141,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteUtilizationReportExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2273,9 +2196,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchInventoryTest()
     {
         $transport = $this->createTransport();
@@ -2300,9 +2221,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchInventoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2335,9 +2254,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function finalizeMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2399,9 +2316,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function finalizeMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2456,9 +2371,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCloneJobTest()
     {
         $transport = $this->createTransport();
@@ -2485,9 +2398,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCloneJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2520,9 +2431,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCutoverJobTest()
     {
         $transport = $this->createTransport();
@@ -2553,9 +2462,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCutoverJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2588,9 +2495,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatacenterConnectorTest()
     {
         $transport = $this->createTransport();
@@ -2629,9 +2534,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatacenterConnectorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2664,9 +2567,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGroupTest()
     {
         $transport = $this->createTransport();
@@ -2697,9 +2598,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGroupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2732,9 +2631,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigratingVmTest()
     {
         $transport = $this->createTransport();
@@ -2769,9 +2666,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMigratingVmExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2804,9 +2699,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSourceTest()
     {
         $transport = $this->createTransport();
@@ -2835,9 +2728,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2870,9 +2761,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTargetProjectTest()
     {
         $transport = $this->createTransport();
@@ -2903,9 +2792,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTargetProjectExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2938,9 +2825,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUtilizationReportTest()
     {
         $transport = $this->createTransport();
@@ -2971,9 +2856,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getUtilizationReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3006,9 +2889,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCloneJobsTest()
     {
         $transport = $this->createTransport();
@@ -3046,9 +2927,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCloneJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3082,9 +2961,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCutoverJobsTest()
     {
         $transport = $this->createTransport();
@@ -3122,9 +2999,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCutoverJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3158,9 +3033,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatacenterConnectorsTest()
     {
         $transport = $this->createTransport();
@@ -3198,9 +3071,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatacenterConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3234,9 +3105,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGroupsTest()
     {
         $transport = $this->createTransport();
@@ -3274,9 +3143,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listGroupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3310,9 +3177,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigratingVmsTest()
     {
         $transport = $this->createTransport();
@@ -3350,9 +3215,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMigratingVmsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3386,9 +3249,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSourcesTest()
     {
         $transport = $this->createTransport();
@@ -3426,9 +3287,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3462,9 +3321,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTargetProjectsTest()
     {
         $transport = $this->createTransport();
@@ -3502,9 +3359,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTargetProjectsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3538,9 +3393,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUtilizationReportsTest()
     {
         $transport = $this->createTransport();
@@ -3578,9 +3431,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listUtilizationReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3614,9 +3465,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3678,9 +3527,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3735,9 +3582,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeGroupMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3799,9 +3644,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeGroupMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3856,9 +3699,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3920,9 +3761,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3977,9 +3816,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startMigrationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4041,9 +3878,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startMigrationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4098,9 +3933,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGroupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4168,9 +4001,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateGroupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4225,9 +4056,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMigratingVmTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4299,9 +4128,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMigratingVmExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4356,9 +4183,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSourceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4424,9 +4249,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSourceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4481,9 +4304,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTargetProjectTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4551,9 +4372,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTargetProjectExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4608,9 +4427,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeApplianceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4672,9 +4489,7 @@ class VmMigrationClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeApplianceExceptionTest()
     {
         $operationsTransport = $this->createTransport();

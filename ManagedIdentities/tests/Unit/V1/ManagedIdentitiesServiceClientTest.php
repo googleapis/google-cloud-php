@@ -23,15 +23,12 @@
 namespace Google\Cloud\ManagedIdentities\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ManagedIdentities\V1\Domain;
 use Google\Cloud\ManagedIdentities\V1\ListDomainsResponse;
-
 use Google\Cloud\ManagedIdentities\V1\ManagedIdentitiesServiceClient;
 use Google\Cloud\ManagedIdentities\V1\ResetAdminPasswordResponse;
 use Google\Cloud\ManagedIdentities\V1\Trust;
@@ -52,25 +49,19 @@ use stdClass;
  */
 class ManagedIdentitiesServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ManagedIdentitiesServiceClient
-     */
+    /** @return ManagedIdentitiesServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -79,9 +70,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         return new ManagedIdentitiesServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function attachTrustTest()
     {
         $operationsTransport = $this->createTransport();
@@ -166,9 +155,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function attachTrustExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -234,9 +221,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMicrosoftAdDomainTest()
     {
         $operationsTransport = $this->createTransport();
@@ -320,9 +305,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMicrosoftAdDomainExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -385,9 +368,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDomainTest()
     {
         $operationsTransport = $this->createTransport();
@@ -449,9 +430,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDomainExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -506,9 +485,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachTrustTest()
     {
         $operationsTransport = $this->createTransport();
@@ -593,9 +570,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachTrustExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -661,9 +636,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDomainTest()
     {
         $transport = $this->createTransport();
@@ -698,9 +671,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDomainExceptionTest()
     {
         $transport = $this->createTransport();
@@ -733,9 +704,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDomainsTest()
     {
         $transport = $this->createTransport();
@@ -770,9 +739,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDomainsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -805,9 +772,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reconfigureTrustTest()
     {
         $operationsTransport = $this->createTransport();
@@ -885,9 +850,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reconfigureTrustExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -944,9 +907,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetAdminPasswordTest()
     {
         $transport = $this->createTransport();
@@ -973,9 +934,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetAdminPasswordExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1008,9 +967,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDomainTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1091,9 +1048,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDomainExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1155,9 +1110,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateTrustTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1242,9 +1195,7 @@ class ManagedIdentitiesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateTrustExceptionTest()
     {
         $operationsTransport = $this->createTransport();

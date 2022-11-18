@@ -63,6 +63,12 @@ class Sku extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string service_provider_name = 7;</code>
      */
     private $service_provider_name = '';
+    /**
+     * The geographic taxonomy for this sku.
+     *
+     * Generated from protobuf field <code>.google.cloud.billing.v1.GeoTaxonomy geo_taxonomy = 8;</code>
+     */
+    private $geo_taxonomy = null;
 
     /**
      * Constructor.
@@ -90,6 +96,8 @@ class Sku extends \Google\Protobuf\Internal\Message
      *     @type string $service_provider_name
      *           Identifies the service provider.
      *           This is 'Google' for first party services in Google Cloud Platform.
+     *     @type \Google\Cloud\Billing\V1\GeoTaxonomy $geo_taxonomy
+     *           The geographic taxonomy for this sku.
      * }
      */
     public function __construct($data = NULL) {
@@ -297,6 +305,42 @@ class Sku extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->service_provider_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * The geographic taxonomy for this sku.
+     *
+     * Generated from protobuf field <code>.google.cloud.billing.v1.GeoTaxonomy geo_taxonomy = 8;</code>
+     * @return \Google\Cloud\Billing\V1\GeoTaxonomy|null
+     */
+    public function getGeoTaxonomy()
+    {
+        return $this->geo_taxonomy;
+    }
+
+    public function hasGeoTaxonomy()
+    {
+        return isset($this->geo_taxonomy);
+    }
+
+    public function clearGeoTaxonomy()
+    {
+        unset($this->geo_taxonomy);
+    }
+
+    /**
+     * The geographic taxonomy for this sku.
+     *
+     * Generated from protobuf field <code>.google.cloud.billing.v1.GeoTaxonomy geo_taxonomy = 8;</code>
+     * @param \Google\Cloud\Billing\V1\GeoTaxonomy $var
+     * @return $this
+     */
+    public function setGeoTaxonomy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Billing\V1\GeoTaxonomy::class);
+        $this->geo_taxonomy = $var;
 
         return $this;
     }

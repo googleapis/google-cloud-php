@@ -29,7 +29,6 @@ namespace Google\Analytics\Admin\V1beta\Gapic;
 use Google\Analytics\Admin\V1beta\Account;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionRequest;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionResponse;
-
 use Google\Analytics\Admin\V1beta\ArchiveCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\ArchiveCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\ConversionEvent;
@@ -64,12 +63,11 @@ use Google\Analytics\Admin\V1beta\GetDataStreamRequest;
 use Google\Analytics\Admin\V1beta\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\GetPropertyRequest;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
-use Google\Analytics\Admin\V1beta\ListAccountsRequest;
-use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1beta\ListAccountsRequest;
+use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListConversionEventsRequest;
-
 use Google\Analytics\Admin\V1beta\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsRequest;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsResponse;
@@ -140,29 +138,19 @@ class AnalyticsAdminServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1beta.AnalyticsAdminService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics.edit',
         'https://www.googleapis.com/auth/analytics.readonly',

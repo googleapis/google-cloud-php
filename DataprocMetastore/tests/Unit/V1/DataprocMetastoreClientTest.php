@@ -23,15 +23,12 @@
 namespace Google\Cloud\Metastore\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Metastore\V1\Backup;
 use Google\Cloud\Metastore\V1\DataprocMetastoreClient;
-
 use Google\Cloud\Metastore\V1\ListBackupsResponse;
 use Google\Cloud\Metastore\V1\ListMetadataImportsResponse;
 use Google\Cloud\Metastore\V1\ListServicesResponse;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class DataprocMetastoreClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataprocMetastoreClient
-     */
+    /** @return DataprocMetastoreClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         return new DataprocMetastoreClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -155,9 +144,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -214,9 +201,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataImportTest()
     {
         $operationsTransport = $this->createTransport();
@@ -288,9 +273,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataImportExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -347,9 +330,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -431,9 +412,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -490,9 +469,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupTest()
     {
         $operationsTransport = $this->createTransport();
@@ -554,9 +531,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBackupExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -611,9 +586,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -675,9 +648,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -732,9 +703,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportMetadataTest()
     {
         $operationsTransport = $this->createTransport();
@@ -798,9 +767,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportMetadataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -855,9 +822,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupTest()
     {
         $transport = $this->createTransport();
@@ -886,9 +851,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBackupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -921,9 +884,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataImportTest()
     {
         $transport = $this->createTransport();
@@ -952,9 +913,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataImportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -987,9 +946,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceTest()
     {
         $transport = $this->createTransport();
@@ -1028,9 +985,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1063,9 +1018,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupsTest()
     {
         $transport = $this->createTransport();
@@ -1100,9 +1053,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBackupsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1135,9 +1086,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataImportsTest()
     {
         $transport = $this->createTransport();
@@ -1172,9 +1121,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataImportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1207,9 +1154,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -1244,9 +1189,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1279,9 +1222,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1350,9 +1291,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1408,9 +1347,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMetadataImportTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1479,9 +1416,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMetadataImportExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1537,9 +1472,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1618,9 +1551,7 @@ class DataprocMetastoreClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();

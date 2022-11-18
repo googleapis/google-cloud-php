@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dataproc\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dataproc\V1\AutoscalingPolicy;
 use Google\Cloud\Dataproc\V1\AutoscalingPolicyServiceClient;
 use Google\Cloud\Dataproc\V1\BasicAutoscalingAlgorithm;
@@ -46,25 +44,19 @@ use stdClass;
  */
 class AutoscalingPolicyServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AutoscalingPolicyServiceClient
-     */
+    /** @return AutoscalingPolicyServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +65,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         return new AutoscalingPolicyServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAutoscalingPolicyTest()
     {
         $transport = $this->createTransport();
@@ -121,9 +111,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAutoscalingPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -171,9 +159,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAutoscalingPolicyTest()
     {
         $transport = $this->createTransport();
@@ -197,9 +183,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAutoscalingPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -232,9 +216,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAutoscalingPolicyTest()
     {
         $transport = $this->createTransport();
@@ -263,9 +245,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAutoscalingPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -298,9 +278,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAutoscalingPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +313,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAutoscalingPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -370,9 +346,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAutoscalingPolicyTest()
     {
         $transport = $this->createTransport();
@@ -415,9 +389,7 @@ class AutoscalingPolicyServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAutoscalingPolicyExceptionTest()
     {
         $transport = $this->createTransport();

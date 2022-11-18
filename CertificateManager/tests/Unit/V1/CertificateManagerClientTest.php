@@ -23,15 +23,12 @@
 namespace Google\Cloud\CertificateManager\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\CertificateManager\V1\Certificate;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig;
-
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\CertificateAuthorityConfig;
 use Google\Cloud\CertificateManager\V1\CertificateIssuanceConfig\KeyAlgorithm;
 use Google\Cloud\CertificateManager\V1\CertificateManagerClient;
@@ -61,25 +58,19 @@ use stdClass;
  */
 class CertificateManagerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CertificateManagerClient
-     */
+    /** @return CertificateManagerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -88,9 +79,7 @@ class CertificateManagerClientTest extends GeneratedTest
         return new CertificateManagerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -164,9 +153,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -223,9 +210,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateIssuanceConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -307,9 +292,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateIssuanceConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -374,9 +357,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateMapTest()
     {
         $operationsTransport = $this->createTransport();
@@ -448,9 +429,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateMapExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -507,9 +486,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateMapEntryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -583,9 +560,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateMapEntryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -642,9 +617,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDnsAuthorizationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -720,9 +693,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDnsAuthorizationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -781,9 +752,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -845,9 +814,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -902,9 +869,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateIssuanceConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -966,9 +931,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateIssuanceConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1023,9 +986,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateMapTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1087,9 +1048,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateMapExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1144,9 +1103,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateMapEntryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1208,9 +1165,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCertificateMapEntryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1265,9 +1220,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDnsAuthorizationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1329,9 +1282,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDnsAuthorizationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1386,9 +1337,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateTest()
     {
         $transport = $this->createTransport();
@@ -1419,9 +1368,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1454,9 +1401,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateIssuanceConfigTest()
     {
         $transport = $this->createTransport();
@@ -1487,9 +1432,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateIssuanceConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1522,9 +1465,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateMapTest()
     {
         $transport = $this->createTransport();
@@ -1553,9 +1494,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateMapExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1588,9 +1527,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateMapEntryTest()
     {
         $transport = $this->createTransport();
@@ -1621,9 +1558,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateMapEntryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1656,9 +1591,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDnsAuthorizationTest()
     {
         $transport = $this->createTransport();
@@ -1689,9 +1622,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDnsAuthorizationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1724,9 +1655,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateIssuanceConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1761,9 +1690,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateIssuanceConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1796,9 +1723,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateMapEntriesTest()
     {
         $transport = $this->createTransport();
@@ -1833,9 +1758,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateMapEntriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1868,9 +1791,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateMapsTest()
     {
         $transport = $this->createTransport();
@@ -1905,9 +1826,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateMapsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1940,9 +1859,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificatesTest()
     {
         $transport = $this->createTransport();
@@ -1977,9 +1894,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2012,9 +1927,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDnsAuthorizationsTest()
     {
         $transport = $this->createTransport();
@@ -2049,9 +1962,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDnsAuthorizationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2084,9 +1995,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2157,9 +2066,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2215,9 +2122,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateMapTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2286,9 +2191,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateMapExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2344,9 +2247,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateMapEntryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2417,9 +2318,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateMapEntryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2475,9 +2374,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDnsAuthorizationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2550,9 +2447,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDnsAuthorizationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2610,9 +2505,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2639,9 +2532,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2672,9 +2563,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2705,9 +2594,7 @@ class CertificateManagerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

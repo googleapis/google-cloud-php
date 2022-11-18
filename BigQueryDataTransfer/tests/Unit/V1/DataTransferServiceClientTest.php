@@ -23,11 +23,9 @@
 namespace Google\Cloud\BigQuery\DataTransfer\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\BigQuery\DataTransfer\V1\CheckValidCredsResponse;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataSource;
 use Google\Cloud\BigQuery\DataTransfer\V1\DataTransferServiceClient;
@@ -53,25 +51,19 @@ use stdClass;
  */
 class DataTransferServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataTransferServiceClient
-     */
+    /** @return DataTransferServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,9 +72,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         return new DataTransferServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkValidCredsTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkValidCredsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +132,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTransferConfigTest()
     {
         $transport = $this->createTransport();
@@ -194,9 +180,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -230,9 +214,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferConfigTest()
     {
         $transport = $this->createTransport();
@@ -256,9 +238,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -291,9 +271,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferRunTest()
     {
         $transport = $this->createTransport();
@@ -317,9 +295,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTransferRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -352,9 +328,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enrollDataSourcesTest()
     {
         $transport = $this->createTransport();
@@ -374,9 +348,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enrollDataSourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -407,9 +379,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataSourceTest()
     {
         $transport = $this->createTransport();
@@ -458,9 +428,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDataSourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -493,9 +461,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferConfigTest()
     {
         $transport = $this->createTransport();
@@ -540,9 +506,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -575,9 +539,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferRunTest()
     {
         $transport = $this->createTransport();
@@ -614,9 +576,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTransferRunExceptionTest()
     {
         $transport = $this->createTransport();
@@ -649,9 +609,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataSourcesTest()
     {
         $transport = $this->createTransport();
@@ -686,9 +644,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataSourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -721,9 +677,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferConfigsTest()
     {
         $transport = $this->createTransport();
@@ -758,9 +712,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -793,9 +745,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferLogsTest()
     {
         $transport = $this->createTransport();
@@ -830,9 +780,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferLogsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -865,9 +813,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferRunsTest()
     {
         $transport = $this->createTransport();
@@ -902,9 +848,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -937,9 +881,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function scheduleTransferRunsTest()
     {
         $transport = $this->createTransport();
@@ -970,9 +912,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function scheduleTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1007,9 +947,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startManualTransferRunsTest()
     {
         $transport = $this->createTransport();
@@ -1030,9 +968,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startManualTransferRunsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1063,9 +999,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTransferConfigTest()
     {
         $transport = $this->createTransport();
@@ -1113,9 +1047,7 @@ class DataTransferServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTransferConfigExceptionTest()
     {
         $transport = $this->createTransport();

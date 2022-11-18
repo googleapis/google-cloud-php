@@ -23,15 +23,12 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\ConversationModel;
 use Google\Cloud\Dialogflow\V2\ConversationModelEvaluation;
-
 use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\ListConversationModelEvaluationsResponse;
 use Google\Cloud\Dialogflow\V2\ListConversationModelsResponse;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class ConversationModelsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ConversationModelsClient
-     */
+    /** @return ConversationModelsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +69,7 @@ class ConversationModelsClientTest extends GeneratedTest
         return new ConversationModelsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -152,9 +141,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -213,9 +200,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationModelEvaluationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -284,9 +269,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationModelEvaluationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -342,9 +325,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversationModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -406,9 +387,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversationModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -463,9 +442,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployConversationModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -527,9 +504,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployConversationModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -584,9 +559,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationModelTest()
     {
         $transport = $this->createTransport();
@@ -617,9 +590,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationModelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -652,9 +623,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationModelEvaluationTest()
     {
         $transport = $this->createTransport();
@@ -683,9 +652,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationModelEvaluationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -718,9 +685,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationModelEvaluationsTest()
     {
         $transport = $this->createTransport();
@@ -755,9 +720,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationModelEvaluationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -790,9 +753,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationModelsTest()
     {
         $transport = $this->createTransport();
@@ -827,9 +788,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationModelsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -862,9 +821,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployConversationModelTest()
     {
         $operationsTransport = $this->createTransport();
@@ -926,9 +883,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployConversationModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -983,9 +938,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1012,9 +965,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1045,9 +996,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1078,9 +1027,7 @@ class ConversationModelsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -26,7 +26,6 @@ namespace Google\Cloud\Build\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -39,7 +38,6 @@ use Google\Cloud\Build\V1\PublishBuildToolEventStreamRequest;
 use Google\Cloud\Build\V1\PublishBuildToolEventStreamResponse;
 use Google\Cloud\Build\V1\PublishLifecycleEventRequest;
 use Google\Protobuf\Duration;
-
 use Google\Protobuf\GPBEmpty;
 
 /**
@@ -109,29 +107,19 @@ class PublishBuildEventGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.devtools.build.v1.PublishBuildEvent';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'buildeventservice.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];

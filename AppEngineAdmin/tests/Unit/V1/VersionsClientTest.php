@@ -23,15 +23,12 @@
 namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppEngine\V1\ListVersionsResponse;
 use Google\Cloud\AppEngine\V1\Version;
-
 use Google\Cloud\AppEngine\V1\VersionsClient;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class VersionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VersionsClient
-     */
+    /** @return VersionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class VersionsClientTest extends GeneratedTest
         return new VersionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVersionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -166,9 +155,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -221,9 +208,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -281,9 +266,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -336,9 +319,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionTest()
     {
         $transport = $this->createTransport();
@@ -391,9 +372,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +403,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsTest()
     {
         $transport = $this->createTransport();
@@ -457,9 +434,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -490,9 +465,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateVersionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -582,9 +555,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateVersionExceptionTest()
     {
         $operationsTransport = $this->createTransport();

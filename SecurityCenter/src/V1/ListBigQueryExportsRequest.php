@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for listing  BigQuery exports at a given scope e.g.
+ * Request message for listing BigQuery exports at a given scope e.g.
  * organization, folder or project.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.ListBigQueryExportsRequest</code>

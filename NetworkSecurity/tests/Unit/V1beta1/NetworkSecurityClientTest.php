@@ -23,15 +23,12 @@
 namespace Google\Cloud\NetworkSecurity\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
 use Google\Cloud\NetworkSecurity\V1beta1\AuthorizationPolicy;
@@ -56,25 +53,19 @@ use stdClass;
  */
 class NetworkSecurityClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return NetworkSecurityClient
-     */
+    /** @return NetworkSecurityClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -83,9 +74,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         return new NetworkSecurityClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAuthorizationPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -161,9 +150,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAuthorizationPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -224,9 +211,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -302,9 +287,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -363,9 +346,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServerTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -441,9 +422,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServerTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -502,9 +481,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAuthorizationPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -566,9 +543,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAuthorizationPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -623,9 +598,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteClientTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -687,9 +660,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteClientTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -744,9 +715,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServerTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -808,9 +777,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServerTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -865,9 +832,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizationPolicyTest()
     {
         $transport = $this->createTransport();
@@ -896,9 +861,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizationPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -931,9 +894,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getClientTlsPolicyTest()
     {
         $transport = $this->createTransport();
@@ -964,9 +925,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getClientTlsPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -999,9 +958,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServerTlsPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1032,9 +989,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServerTlsPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1067,9 +1022,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizationPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -1104,9 +1057,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizationPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1139,9 +1090,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listClientTlsPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -1176,9 +1125,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listClientTlsPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1211,9 +1158,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServerTlsPoliciesTest()
     {
         $transport = $this->createTransport();
@@ -1248,9 +1193,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServerTlsPoliciesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1283,9 +1226,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAuthorizationPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1355,9 +1296,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAuthorizationPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1416,9 +1355,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateClientTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1488,9 +1425,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateClientTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1547,9 +1482,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServerTlsPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1619,9 +1552,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServerTlsPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1678,9 +1609,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1707,9 +1636,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1740,9 +1667,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1773,9 +1698,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1806,9 +1729,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1837,9 +1758,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1872,9 +1791,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1906,9 +1823,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1942,9 +1857,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1972,9 +1885,7 @@ class NetworkSecurityClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
