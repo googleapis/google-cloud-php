@@ -27,11 +27,8 @@ namespace Google\Cloud\SecurityCenter\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -151,29 +148,19 @@ class SecurityCenterGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.securitycenter.v1.SecurityCenter';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'securitycenter.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -3366,7 +3353,7 @@ class SecurityCenterGapicClient
      * @param string    $name         Required. The relative resource name of the finding. See:
      *                                https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *                                Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}".
+     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
      * @param int       $state        Required. The desired State of the finding.
      *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
      * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
@@ -3470,9 +3457,9 @@ class SecurityCenterGapicClient
      * @param string $name         Required. The relative resource name of the finding. See:
      *                             https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *                             Example:
-     *                             "organizations/{organization_id}/sources/{source_id}/finding/{finding_id}",
-     *                             "folders/{folder_id}/sources/{source_id}/finding/{finding_id}",
-     *                             "projects/{project_id}/sources/{source_id}/finding/{finding_id}".
+     *                             "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *                             "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *                             "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      * @param int    $mute         Required. The desired state of the Mute.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\Mute}
      * @param array  $optionalArgs {

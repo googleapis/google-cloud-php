@@ -23,15 +23,12 @@
 namespace Google\Cloud\BeyondCorp\ClientConnectorServices\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Egress;
-
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorService\Ingress;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ClientConnectorServicesServiceClient;
 use Google\Cloud\BeyondCorp\ClientConnectorServices\V1\ListClientConnectorServicesResponse;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class ClientConnectorServicesServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ClientConnectorServicesServiceClient
-     */
+    /** @return ClientConnectorServicesServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         return new ClientConnectorServicesServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientConnectorServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -158,9 +147,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createClientConnectorServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -222,9 +209,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteClientConnectorServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -286,9 +271,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteClientConnectorServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -343,9 +326,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getClientConnectorServiceTest()
     {
         $transport = $this->createTransport();
@@ -374,9 +355,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getClientConnectorServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -409,9 +388,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listClientConnectorServicesTest()
     {
         $transport = $this->createTransport();
@@ -446,9 +423,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listClientConnectorServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -481,9 +456,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateClientConnectorServiceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -558,9 +531,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateClientConnectorServiceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -622,9 +593,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -651,9 +620,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -684,9 +651,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -717,9 +682,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -750,9 +713,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -781,9 +742,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -816,9 +775,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -850,9 +807,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -886,9 +841,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -916,9 +869,7 @@ class ClientConnectorServicesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

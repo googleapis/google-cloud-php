@@ -29,7 +29,6 @@ namespace Google\Cloud\Workflows\Executions\V1beta\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -41,7 +40,6 @@ use Google\Cloud\Workflows\Executions\V1beta\CreateExecutionRequest;
 use Google\Cloud\Workflows\Executions\V1beta\Execution;
 use Google\Cloud\Workflows\Executions\V1beta\GetExecutionRequest;
 use Google\Cloud\Workflows\Executions\V1beta\ListExecutionsRequest;
-
 use Google\Cloud\Workflows\Executions\V1beta\ListExecutionsResponse;
 
 /**
@@ -72,29 +70,19 @@ class ExecutionsGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.workflows.executions.v1beta.Executions';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'workflowexecutions.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];

@@ -23,18 +23,15 @@
 namespace Google\Cloud\Redis\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Redis\V1\CloudRedisClient;
 use Google\Cloud\Redis\V1\InputConfig;
-
 use Google\Cloud\Redis\V1\Instance;
-use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\InstanceAuthString;
+use Google\Cloud\Redis\V1\Instance\Tier;
 use Google\Cloud\Redis\V1\ListInstancesResponse;
 use Google\Cloud\Redis\V1\OutputConfig;
 use Google\Cloud\Redis\V1\RescheduleMaintenanceRequest\RescheduleType;
@@ -53,25 +50,19 @@ use stdClass;
  */
 class CloudRedisClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudRedisClient
-     */
+    /** @return CloudRedisClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,9 +71,7 @@ class CloudRedisClientTest extends GeneratedTest
         return new CloudRedisClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -192,9 +181,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -257,9 +244,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -321,9 +306,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -378,9 +361,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -481,9 +462,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -539,9 +518,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -639,9 +616,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -696,9 +671,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -759,9 +732,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -794,9 +765,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceAuthStringTest()
     {
         $transport = $this->createTransport();
@@ -823,9 +792,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceAuthStringExceptionTest()
     {
         $transport = $this->createTransport();
@@ -858,9 +825,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -961,9 +926,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1019,9 +982,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
@@ -1056,9 +1017,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1091,9 +1050,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1194,9 +1151,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1252,9 +1207,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1361,9 +1314,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1425,9 +1376,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1528,9 +1477,7 @@ class CloudRedisClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();

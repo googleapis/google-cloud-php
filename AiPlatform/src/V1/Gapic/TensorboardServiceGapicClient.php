@@ -27,10 +27,8 @@ namespace Google\Cloud\AIPlatform\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -62,10 +60,10 @@ use Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardExperimentsResponse;
 use Google\Cloud\AIPlatform\V1\ListTensorboardRunsRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardRunsResponse;
-use Google\Cloud\AIPlatform\V1\ListTensorboardsRequest;
-use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesRequest;
 use Google\Cloud\AIPlatform\V1\ListTensorboardTimeSeriesResponse;
+use Google\Cloud\AIPlatform\V1\ListTensorboardsRequest;
+use Google\Cloud\AIPlatform\V1\ListTensorboardsResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataRequest;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardBlobDataResponse;
 use Google\Cloud\AIPlatform\V1\ReadTensorboardTimeSeriesDataRequest;
@@ -122,29 +120,19 @@ class TensorboardServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.aiplatform.v1.TensorboardService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'aiplatform.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloud-platform.read-only',

@@ -27,7 +27,6 @@
 namespace Google\Cloud\Language\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RetrySettings;
@@ -41,7 +40,6 @@ use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentRequest;
 use Google\Cloud\Language\V1beta2\AnalyzeSentimentResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxRequest;
-
 use Google\Cloud\Language\V1beta2\AnalyzeSyntaxResponse;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest;
 use Google\Cloud\Language\V1beta2\AnnotateTextRequest\Features;
@@ -74,29 +72,19 @@ class LanguageServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.language.v1beta2.LanguageService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'language.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-language',
         'https://www.googleapis.com/auth/cloud-platform',

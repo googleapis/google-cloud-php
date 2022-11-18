@@ -261,6 +261,12 @@ class LocationCategory
      * Generated from protobuf enum <code>INTERNAL = 40;</code>
      */
     const INTERNAL = 40;
+    /**
+     * The infoType is typically used in New Zealand.
+     *
+     * Generated from protobuf enum <code>NEW_ZEALAND = 41;</code>
+     */
+    const NEW_ZEALAND = 41;
 
     private static $valueToName = [
         self::LOCATION_UNSPECIFIED => 'LOCATION_UNSPECIFIED',
@@ -304,6 +310,7 @@ class LocationCategory
         self::URUGUAY => 'URUGUAY',
         self::VENEZUELA => 'VENEZUELA',
         self::INTERNAL => 'INTERNAL',
+        self::NEW_ZEALAND => 'NEW_ZEALAND',
     ];
 
     public static function name($value)

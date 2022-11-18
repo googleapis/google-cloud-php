@@ -23,15 +23,12 @@
 namespace Google\Cloud\NetworkConnectivity\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\NetworkConnectivity\V1\Hub;
 use Google\Cloud\NetworkConnectivity\V1\HubServiceClient;
-
 use Google\Cloud\NetworkConnectivity\V1\ListHubsResponse;
 use Google\Cloud\NetworkConnectivity\V1\ListSpokesResponse;
 use Google\Cloud\NetworkConnectivity\V1\Spoke;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class HubServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return HubServiceClient
-     */
+    /** @return HubServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class HubServiceClientTest extends GeneratedTest
         return new HubServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createHubTest()
     {
         $operationsTransport = $this->createTransport();
@@ -152,9 +141,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createHubExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -211,9 +198,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSpokeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -289,9 +274,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSpokeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -348,9 +331,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteHubTest()
     {
         $operationsTransport = $this->createTransport();
@@ -412,9 +393,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteHubExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -469,9 +448,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSpokeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -533,9 +510,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSpokeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -590,9 +565,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getHubTest()
     {
         $transport = $this->createTransport();
@@ -623,9 +596,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getHubExceptionTest()
     {
         $transport = $this->createTransport();
@@ -658,9 +629,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSpokeTest()
     {
         $transport = $this->createTransport();
@@ -693,9 +662,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSpokeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -728,9 +695,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listHubsTest()
     {
         $transport = $this->createTransport();
@@ -765,9 +730,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listHubsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -800,9 +763,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSpokesTest()
     {
         $transport = $this->createTransport();
@@ -837,9 +798,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSpokesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -872,9 +831,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateHubTest()
     {
         $operationsTransport = $this->createTransport();
@@ -942,9 +899,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateHubExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -999,9 +954,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSpokeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1071,9 +1024,7 @@ class HubServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSpokeExceptionTest()
     {
         $operationsTransport = $this->createTransport();

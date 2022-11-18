@@ -99,6 +99,17 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      */
     private $dedicated_resources = null;
     /**
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other GCP resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     */
+    private $service_account = '';
+    /**
      * Immutable. Parameters configuring the batch behavior. Currently only applicable when
      * [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
      * the tuning itself).
@@ -273,6 +284,13 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
      *           DEDICATED_RESOURCES this config may be provided (and the job will use these
      *           resources), if the Model doesn't support AUTOMATIC_RESOURCES, this config
      *           must be provided.
+     *     @type string $service_account
+     *           The service account that the DeployedModel's container runs as. If not
+     *           specified, a system generated one will be used, which
+     *           has minimal permissions and the custom container, if used, may not have
+     *           enough permission to access other GCP resources.
+     *           Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     *           permission on this service account.
      *     @type \Google\Cloud\AIPlatform\V1\ManualBatchTuningParameters $manual_batch_tuning_parameters
      *           Immutable. Parameters configuring the batch behavior. Currently only applicable when
      *           [dedicated_resources][google.cloud.aiplatform.v1.BatchPredictionJob.dedicated_resources] are used (in other cases Vertex AI does
@@ -676,6 +694,42 @@ class BatchPredictionJob extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\BatchDedicatedResources::class);
         $this->dedicated_resources = $var;
+
+        return $this;
+    }
+
+    /**
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other GCP resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     * @return string
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    /**
+     * The service account that the DeployedModel's container runs as. If not
+     * specified, a system generated one will be used, which
+     * has minimal permissions and the custom container, if used, may not have
+     * enough permission to access other GCP resources.
+     * Users deploying the Model must have the `iam.serviceAccounts.actAs`
+     * permission on this service account.
+     *
+     * Generated from protobuf field <code>string service_account = 29;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->service_account = $var;
 
         return $this;
     }

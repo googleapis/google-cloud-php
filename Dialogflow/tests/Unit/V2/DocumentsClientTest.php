@@ -23,17 +23,14 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Document;
 use Google\Cloud\Dialogflow\V2\DocumentsClient;
-
-use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Cloud\Dialogflow\V2\ImportDocumentTemplate;
+use Google\Cloud\Dialogflow\V2\ImportDocumentsResponse;
 use Google\Cloud\Dialogflow\V2\ListDocumentsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
 use Google\Cloud\Location\Location;
@@ -51,25 +48,19 @@ use stdClass;
  */
 class DocumentsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DocumentsClient
-     */
+    /** @return DocumentsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +69,7 @@ class DocumentsClientTest extends GeneratedTest
         return new DocumentsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDocumentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -161,9 +150,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -225,9 +212,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDocumentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -289,9 +274,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -346,9 +329,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDocumentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -420,9 +401,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -477,9 +456,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDocumentTest()
     {
         $transport = $this->createTransport();
@@ -514,9 +491,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDocumentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -549,9 +524,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDocumentsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -620,9 +593,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDocumentsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -682,9 +653,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDocumentsTest()
     {
         $transport = $this->createTransport();
@@ -719,9 +688,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDocumentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -754,9 +721,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reloadDocumentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -828,9 +793,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reloadDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -885,9 +848,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDocumentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -965,9 +926,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDocumentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1028,9 +987,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1057,9 +1014,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1090,9 +1045,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1123,9 +1076,7 @@ class DocumentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

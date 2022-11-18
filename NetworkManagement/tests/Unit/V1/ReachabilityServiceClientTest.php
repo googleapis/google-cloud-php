@@ -23,15 +23,12 @@
 namespace Google\Cloud\NetworkManagement\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\NetworkManagement\V1\ConnectivityTest;
 use Google\Cloud\NetworkManagement\V1\Endpoint;
-
 use Google\Cloud\NetworkManagement\V1\ListConnectivityTestsResponse;
 use Google\Cloud\NetworkManagement\V1\ReachabilityServiceClient;
 use Google\LongRunning\GetOperationRequest;
@@ -49,25 +46,19 @@ use stdClass;
  */
 class ReachabilityServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ReachabilityServiceClient
-     */
+    /** @return ReachabilityServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +67,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         return new ReachabilityServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectivityTestTest()
     {
         $operationsTransport = $this->createTransport();
@@ -160,9 +149,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConnectivityTestExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -225,9 +212,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectivityTestTest()
     {
         $operationsTransport = $this->createTransport();
@@ -289,9 +274,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConnectivityTestExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -346,9 +329,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectivityTestTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +362,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConnectivityTestExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +395,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectivityTestsTest()
     {
         $transport = $this->createTransport();
@@ -453,9 +430,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConnectivityTestsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -488,9 +463,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rerunConnectivityTestTest()
     {
         $operationsTransport = $this->createTransport();
@@ -560,9 +533,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rerunConnectivityTestExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -617,9 +588,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConnectivityTestTest()
     {
         $operationsTransport = $this->createTransport();
@@ -698,9 +667,7 @@ class ReachabilityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConnectivityTestExceptionTest()
     {
         $operationsTransport = $this->createTransport();

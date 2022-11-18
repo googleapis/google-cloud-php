@@ -23,14 +23,11 @@
 namespace Google\Cloud\Tpu\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Tpu\V1\AcceleratorType;
-
 use Google\Cloud\Tpu\V1\ListAcceleratorTypesResponse;
 use Google\Cloud\Tpu\V1\ListNodesResponse;
 use Google\Cloud\Tpu\V1\ListTensorFlowVersionsResponse;
@@ -50,25 +47,19 @@ use stdClass;
  */
 class TpuClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TpuClient
-     */
+    /** @return TpuClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +68,7 @@ class TpuClientTest extends GeneratedTest
         return new TpuClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -170,9 +159,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -232,9 +219,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -318,9 +303,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -375,9 +358,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAcceleratorTypeTest()
     {
         $transport = $this->createTransport();
@@ -406,9 +387,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAcceleratorTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -441,9 +420,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNodeTest()
     {
         $transport = $this->createTransport();
@@ -490,9 +467,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNodeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -525,9 +500,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorFlowVersionTest()
     {
         $transport = $this->createTransport();
@@ -556,9 +529,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTensorFlowVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +562,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAcceleratorTypesTest()
     {
         $transport = $this->createTransport();
@@ -628,9 +597,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAcceleratorTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -663,9 +630,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNodesTest()
     {
         $transport = $this->createTransport();
@@ -700,9 +665,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNodesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -735,9 +698,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorFlowVersionsTest()
     {
         $transport = $this->createTransport();
@@ -772,9 +733,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTensorFlowVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -807,9 +766,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reimageNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -889,9 +846,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reimageNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -944,9 +899,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1026,9 +979,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1081,9 +1032,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopNodeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1163,9 +1112,7 @@ class TpuClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopNodeExceptionTest()
     {
         $operationsTransport = $this->createTransport();

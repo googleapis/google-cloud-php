@@ -23,15 +23,12 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Annotation;
 use Google\Cloud\AIPlatform\V1\AnnotationSpec;
-
 use Google\Cloud\AIPlatform\V1\DataItem;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
@@ -63,25 +60,19 @@ use stdClass;
  */
 class DatasetServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DatasetServiceClient
-     */
+    /** @return DatasetServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -90,9 +81,7 @@ class DatasetServiceClientTest extends GeneratedTest
         return new DatasetServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatasetTest()
     {
         $operationsTransport = $this->createTransport();
@@ -173,9 +162,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDatasetExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -237,9 +224,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatasetTest()
     {
         $operationsTransport = $this->createTransport();
@@ -301,9 +286,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDatasetExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -358,9 +341,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDataTest()
     {
         $operationsTransport = $this->createTransport();
@@ -425,9 +406,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -483,9 +462,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotationSpecTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +493,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnnotationSpecExceptionTest()
     {
         $transport = $this->createTransport();
@@ -551,9 +526,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatasetTest()
     {
         $transport = $this->createTransport();
@@ -588,9 +561,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -623,9 +594,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDataTest()
     {
         $operationsTransport = $this->createTransport();
@@ -690,9 +659,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -748,9 +715,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotationsTest()
     {
         $transport = $this->createTransport();
@@ -785,9 +750,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnnotationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -820,9 +783,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataItemsTest()
     {
         $transport = $this->createTransport();
@@ -857,9 +818,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDataItemsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -892,9 +851,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatasetsTest()
     {
         $transport = $this->createTransport();
@@ -929,9 +886,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatasetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -964,9 +919,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSavedQueriesTest()
     {
         $transport = $this->createTransport();
@@ -1001,9 +954,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSavedQueriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1036,9 +987,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDatasetTest()
     {
         $transport = $this->createTransport();
@@ -1082,9 +1031,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDatasetExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1124,9 +1071,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -1153,9 +1098,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1186,9 +1129,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -1219,9 +1160,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1252,9 +1191,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1283,9 +1220,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1318,9 +1253,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1352,9 +1285,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1388,9 +1319,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1418,9 +1347,7 @@ class DatasetServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

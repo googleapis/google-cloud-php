@@ -25,7 +25,6 @@ namespace Google\Cloud\Billing\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Billing\V1\CloudCatalogClient;
 use Google\Cloud\Billing\V1\ListServicesResponse;
@@ -42,25 +41,19 @@ use stdClass;
  */
 class CloudCatalogClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudCatalogClient
-     */
+    /** @return CloudCatalogClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +62,7 @@ class CloudCatalogClientTest extends GeneratedTest
         return new CloudCatalogClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +93,7 @@ class CloudCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -135,9 +124,7 @@ class CloudCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSkusTest()
     {
         $transport = $this->createTransport();
@@ -172,9 +159,7 @@ class CloudCatalogClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSkusExceptionTest()
     {
         $transport = $this->createTransport();

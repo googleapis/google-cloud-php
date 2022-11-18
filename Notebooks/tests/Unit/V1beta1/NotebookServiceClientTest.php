@@ -23,15 +23,16 @@
 namespace Google\Cloud\Notebooks\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Notebooks\V1beta1\Environment;
 use Google\Cloud\Notebooks\V1beta1\Instance;
-
 use Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType;
 use Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableResponse;
 use Google\Cloud\Notebooks\V1beta1\ListEnvironmentsResponse;
@@ -51,25 +52,19 @@ use stdClass;
  */
 class NotebookServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return NotebookServiceClient
-     */
+    /** @return NotebookServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +73,7 @@ class NotebookServiceClientTest extends GeneratedTest
         return new NotebookServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -156,9 +149,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -215,9 +206,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -253,6 +242,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -269,6 +259,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -317,9 +308,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -378,9 +367,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentTest()
     {
         $operationsTransport = $this->createTransport();
@@ -442,9 +429,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -499,9 +484,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -563,9 +546,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -620,9 +601,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -655,9 +634,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -690,9 +667,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -716,6 +691,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -732,6 +708,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $transport->addResponse($expectedResponse);
         // Mock request
         $name = 'name3373707';
@@ -747,9 +724,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -782,9 +757,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function isInstanceUpgradeableTest()
     {
         $transport = $this->createTransport();
@@ -796,10 +769,12 @@ class NotebookServiceClientTest extends GeneratedTest
         $upgradeable = true;
         $upgradeVersion = 'upgradeVersion1040155061';
         $upgradeInfo = 'upgradeInfo-1337232143';
+        $upgradeImage = 'upgradeImage1495441784';
         $expectedResponse = new IsInstanceUpgradeableResponse();
         $expectedResponse->setUpgradeable($upgradeable);
         $expectedResponse->setUpgradeVersion($upgradeVersion);
         $expectedResponse->setUpgradeInfo($upgradeInfo);
+        $expectedResponse->setUpgradeImage($upgradeImage);
         $transport->addResponse($expectedResponse);
         // Mock request
         $notebookInstance = 'notebookInstance-1078982023';
@@ -815,9 +790,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function isInstanceUpgradeableExceptionTest()
     {
         $transport = $this->createTransport();
@@ -850,9 +823,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
@@ -887,9 +858,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -922,9 +891,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
@@ -959,9 +926,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -994,9 +959,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function registerInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1032,6 +995,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1048,6 +1012,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1091,9 +1056,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function registerInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1149,9 +1112,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportInstanceInfoTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1187,6 +1148,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1203,6 +1165,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1246,9 +1209,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportInstanceInfoExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1304,9 +1265,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1342,6 +1301,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1358,6 +1318,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1398,9 +1359,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1455,9 +1414,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceAcceleratorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1493,6 +1450,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1509,6 +1467,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1555,9 +1514,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceAcceleratorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1614,9 +1571,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceLabelsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1652,6 +1607,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1668,6 +1624,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1708,9 +1665,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceLabelsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1765,9 +1720,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceMachineTypeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1803,6 +1756,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1819,6 +1773,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -1862,9 +1817,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setInstanceMachineTypeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1920,9 +1873,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1958,6 +1909,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -1974,6 +1926,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2014,9 +1967,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2071,9 +2022,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2109,6 +2058,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -2125,6 +2075,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2165,9 +2116,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2222,9 +2171,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2260,6 +2207,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -2276,6 +2224,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2316,9 +2265,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2373,9 +2320,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceInternalTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2411,6 +2356,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $noProxyAccess = false;
         $network = 'network1843485230';
         $subnet = 'subnet-891534499';
+        $canIpForward = true;
         $expectedResponse = new Instance();
         $expectedResponse->setName($name2);
         $expectedResponse->setPostStartupScript($postStartupScript);
@@ -2427,6 +2373,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $expectedResponse->setNoProxyAccess($noProxyAccess);
         $expectedResponse->setNetwork($network);
         $expectedResponse->setSubnet($subnet);
+        $expectedResponse->setCanIpForward($canIpForward);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -2470,9 +2417,7 @@ class NotebookServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function upgradeInstanceInternalExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2526,5 +2471,315 @@ class NotebookServiceClientTest extends GeneratedTest
         $operationsTransport->popReceivedCalls();
         $this->assertTrue($transport->isExhausted());
         $this->assertTrue($operationsTransport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $name2 = 'name2-1052831874';
+        $locationId = 'locationId552319461';
+        $displayName = 'displayName1615086568';
+        $expectedResponse = new Location();
+        $expectedResponse->setName($name2);
+        $expectedResponse->setLocationId($locationId);
+        $expectedResponse->setDisplayName($displayName);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->getLocation();
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/GetLocation', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getLocationExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->getLocation();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $locationsElement = new Location();
+        $locations = [
+            $locationsElement,
+        ];
+        $expectedResponse = new ListLocationsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setLocations($locations);
+        $transport->addResponse($expectedResponse);
+        $response = $gapicClient->listLocations();
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getLocations()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.location.Locations/ListLocations', $actualFuncCall);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function listLocationsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        try {
+            $gapicClient->listLocations();
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $response = $gapicClient->getIamPolicy($resource);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/GetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function getIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        try {
+            $gapicClient->getIamPolicy($resource);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $version = 351608024;
+        $etag = '21';
+        $expectedResponse = new Policy();
+        $expectedResponse->setVersion($version);
+        $expectedResponse->setEtag($etag);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        $response = $gapicClient->setIamPolicy($resource, $policy);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/SetIamPolicy', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPolicy();
+        $this->assertProtobufEquals($policy, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function setIamPolicyExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $policy = new Policy();
+        try {
+            $gapicClient->setIamPolicy($resource, $policy);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $expectedResponse = new TestIamPermissionsResponse();
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        $response = $gapicClient->testIamPermissions($resource, $permissions);
+        $this->assertEquals($expectedResponse, $response);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.iam.v1.IAMPolicy/TestIamPermissions', $actualFuncCall);
+        $actualValue = $actualRequestObject->getResource();
+        $this->assertProtobufEquals($resource, $actualValue);
+        $actualValue = $actualRequestObject->getPermissions();
+        $this->assertProtobufEquals($permissions, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function testIamPermissionsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $resource = 'resource-341064690';
+        $permissions = [];
+        try {
+            $gapicClient->testIamPermissions($resource, $permissions);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
     }
 }

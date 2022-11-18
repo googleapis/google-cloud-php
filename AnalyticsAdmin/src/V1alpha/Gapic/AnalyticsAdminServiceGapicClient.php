@@ -29,7 +29,6 @@ namespace Google\Analytics\Admin\V1alpha\Gapic;
 use Google\Analytics\Admin\V1alpha\AccessDateRange;
 use Google\Analytics\Admin\V1alpha\AccessDimension;
 use Google\Analytics\Admin\V1alpha\AccessFilterExpression;
-
 use Google\Analytics\Admin\V1alpha\AccessMetric;
 use Google\Analytics\Admin\V1alpha\AccessOrderBy;
 use Google\Analytics\Admin\V1alpha\Account;
@@ -101,12 +100,11 @@ use Google\Analytics\Admin\V1alpha\GetPropertyRequest;
 use Google\Analytics\Admin\V1alpha\GetUserLinkRequest;
 use Google\Analytics\Admin\V1alpha\GlobalSiteTag;
 use Google\Analytics\Admin\V1alpha\GoogleAdsLink;
-
 use Google\Analytics\Admin\V1alpha\GoogleSignalsSettings;
-use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
-use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1alpha\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1alpha\ListAccountsRequest;
+use Google\Analytics\Admin\V1alpha\ListAccountsResponse;
 use Google\Analytics\Admin\V1alpha\ListAudiencesRequest;
 use Google\Analytics\Admin\V1alpha\ListAudiencesResponse;
 use Google\Analytics\Admin\V1alpha\ListConversionEventsRequest;
@@ -194,29 +192,19 @@ class AnalyticsAdminServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1alpha.AnalyticsAdminService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics.edit',
         'https://www.googleapis.com/auth/analytics.manage.users',

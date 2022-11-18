@@ -23,15 +23,12 @@
 namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppEngine\V1\DomainMapping;
 use Google\Cloud\AppEngine\V1\DomainMappingsClient;
-
 use Google\Cloud\AppEngine\V1\ListDomainMappingsResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class DomainMappingsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DomainMappingsClient
-     */
+    /** @return DomainMappingsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class DomainMappingsClientTest extends GeneratedTest
         return new DomainMappingsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDomainMappingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -138,9 +127,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDomainMappingExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -193,9 +180,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDomainMappingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -253,9 +238,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDomainMappingExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -308,9 +291,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDomainMappingTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +316,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDomainMappingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -368,9 +347,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDomainMappingsTest()
     {
         $transport = $this->createTransport();
@@ -401,9 +378,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDomainMappingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -434,9 +409,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDomainMappingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -498,9 +471,7 @@ class DomainMappingsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDomainMappingExceptionTest()
     {
         $operationsTransport = $this->createTransport();

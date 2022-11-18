@@ -23,15 +23,12 @@
 namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AppEngine\V1\Instance;
 use Google\Cloud\AppEngine\V1\InstancesClient;
-
 use Google\Cloud\AppEngine\V1\ListInstancesResponse;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class InstancesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return InstancesClient
-     */
+    /** @return InstancesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class InstancesClientTest extends GeneratedTest
         return new InstancesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function debugInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -162,9 +151,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function debugInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -217,9 +204,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -277,9 +262,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInstanceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -332,9 +315,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceTest()
     {
         $transport = $this->createTransport();
@@ -383,9 +364,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInstanceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -416,9 +395,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesTest()
     {
         $transport = $this->createTransport();
@@ -449,9 +426,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInstancesExceptionTest()
     {
         $transport = $this->createTransport();

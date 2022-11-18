@@ -27,30 +27,36 @@
 namespace Google\Cloud\Notebooks\V1beta1\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Notebooks\V1beta1\CreateEnvironmentRequest;
 use Google\Cloud\Notebooks\V1beta1\CreateInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\DeleteEnvironmentRequest;
 use Google\Cloud\Notebooks\V1beta1\DeleteInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\Environment;
 use Google\Cloud\Notebooks\V1beta1\GetEnvironmentRequest;
-
 use Google\Cloud\Notebooks\V1beta1\GetInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\Instance;
 use Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType;
-
 use Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableRequest;
 use Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableResponse;
 use Google\Cloud\Notebooks\V1beta1\ListEnvironmentsRequest;
@@ -68,6 +74,7 @@ use Google\Cloud\Notebooks\V1beta1\StopInstanceRequest;
 use Google\Cloud\Notebooks\V1beta1\UpgradeInstanceInternalRequest;
 use Google\Cloud\Notebooks\V1beta1\UpgradeInstanceRequest;
 use Google\LongRunning\Operation;
+use Google\Protobuf\FieldMask;
 
 /**
  * Service Description: API v1beta1 service for Cloud AI Platform Notebooks.
@@ -123,29 +130,19 @@ class NotebookServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.notebooks.v1beta1.NotebookService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'notebooks.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -430,10 +427,10 @@ class NotebookServiceGapicClient
      * ```
      *
      * @param string      $parent        Required. Format: `projects/{project_id}/locations/{location}`
-     * @param string      $environmentId Required. User-defined unique ID of this environment. The `environment_id`
-     *                                   must be 1 to 63 characters long and contain only lowercase letters, numeric
-     *                                   characters, and dashes. The first character must be a lowercase letter and
-     *                                   the last character cannot be a dash.
+     * @param string      $environmentId Required. User-defined unique ID of this environment. The `environment_id` must
+     *                                   be 1 to 63 characters long and contain only lowercase letters,
+     *                                   numeric characters, and dashes. The first character must be a lowercase
+     *                                   letter and the last character cannot be a dash.
      * @param Environment $environment   Required. The environment to be created.
      * @param array       $optionalArgs  {
      *     Optional.
@@ -752,6 +749,7 @@ class NotebookServiceGapicClient
 
     /**
      * Check if a notebook instance is upgradable.
+     * Deprecated. Please consider using v1.
      *
      * Sample code:
      * ```
@@ -780,6 +778,8 @@ class NotebookServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function isInstanceUpgradeable($notebookInstance, array $optionalArgs = [])
     {
@@ -1202,10 +1202,10 @@ class NotebookServiceGapicClient
      *                             `projects/{project_id}/locations/{location}/instances/{instance_id}`
      * @param int    $type         Required. Type of this accelerator.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\Notebooks\V1beta1\Instance\AcceleratorType}
-     * @param int    $coreCount    Required. Count of cores of this accelerator. Note that not all
-     *                             combinations of `type` and `core_count` are valid. Check [GPUs on Compute
-     *                             Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
-     *                             valid combination. TPUs are not supported.
+     * @param int    $coreCount    Required. Count of cores of this accelerator. Note that not all combinations
+     *                             of `type` and `core_count` are valid. Check [GPUs on
+     *                             Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     *                             find a valid combination. TPUs are not supported.
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1515,6 +1515,7 @@ class NotebookServiceGapicClient
 
     /**
      * Upgrades a notebook instance to the latest version.
+     * Deprecated. Please consider using v1.
      *
      * Sample code:
      * ```
@@ -1568,6 +1569,8 @@ class NotebookServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function upgradeInstance($name, array $optionalArgs = [])
     {
@@ -1583,6 +1586,7 @@ class NotebookServiceGapicClient
     /**
      * Allows notebook instances to
      * call this endpoint to upgrade themselves. Do not use this method directly.
+     * Deprecated. Please consider using v1.
      *
      * Sample code:
      * ```
@@ -1639,6 +1643,8 @@ class NotebookServiceGapicClient
      * @throws ApiException if the remote call fails
      *
      * @experimental
+     *
+     * @deprecated This method will be removed in the next major version update.
      */
     public function upgradeInstanceInternal($name, $vmId, array $optionalArgs = [])
     {
@@ -1650,5 +1656,294 @@ class NotebookServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpgradeInstanceInternal', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     $response = $notebookServiceClient->getLocation();
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $notebookServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $notebookServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy
+    if the resource exists and does not have a policy set.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $notebookServiceClient->getIamPolicy($resource);
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces
+    any existing policy.
+
+    Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    errors.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $notebookServiceClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('SetIamPolicy', Policy::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the
+    resource does not exist, this will return an empty set of
+    permissions, not a `NOT_FOUND` error.
+
+    Note: This operation is designed to be used for building
+    permission-aware UIs and command-line tools, not for authorization
+    checking. This operation may "fail open" without warning.
+     *
+     * Sample code:
+     * ```
+     * $notebookServiceClient = new NotebookServiceClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $notebookServiceClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $notebookServiceClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function testIamPermissions($resource, $permissions, array $optionalArgs = [])
+    {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('TestIamPermissions', TestIamPermissionsResponse::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.iam.v1.IAMPolicy')->wait();
     }
 }

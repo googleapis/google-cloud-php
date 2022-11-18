@@ -27,9 +27,7 @@ namespace Google\Cloud\PubSub\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -48,10 +46,10 @@ use Google\Cloud\PubSub\V1\DetachSubscriptionResponse;
 use Google\Cloud\PubSub\V1\GetTopicRequest;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSnapshotsResponse;
-use Google\Cloud\PubSub\V1\ListTopicsRequest;
-use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsRequest;
 use Google\Cloud\PubSub\V1\ListTopicSubscriptionsResponse;
+use Google\Cloud\PubSub\V1\ListTopicsRequest;
+use Google\Cloud\PubSub\V1\ListTopicsResponse;
 use Google\Cloud\PubSub\V1\MessageStoragePolicy;
 use Google\Cloud\PubSub\V1\PublishRequest;
 use Google\Cloud\PubSub\V1\PublishResponse;
@@ -89,29 +87,19 @@ class PublisherGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.pubsub.v1.Publisher';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'pubsub.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/pubsub',

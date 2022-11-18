@@ -137,6 +137,12 @@ class NodePool extends \Google\Protobuf\Internal\Message
      */
     private $upgrade_settings = null;
     /**
+     * Specifies the node placement policy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.PlacementPolicy placement_policy = 108;</code>
+     */
+    private $placement_policy = null;
+    /**
      * Output only. [Output only] Update info contains relevant information during a node
      * pool update.
      *
@@ -201,6 +207,8 @@ class NodePool extends \Google\Protobuf\Internal\Message
      *           [Output only] The pod CIDR block size per node in this node pool.
      *     @type \Google\Cloud\Container\V1\NodePool\UpgradeSettings $upgrade_settings
      *           Upgrade settings control disruption and speed of the upgrade.
+     *     @type \Google\Cloud\Container\V1\NodePool\PlacementPolicy $placement_policy
+     *           Specifies the node placement policy.
      *     @type \Google\Cloud\Container\V1\NodePool\UpdateInfo $update_info
      *           Output only. [Output only] Update info contains relevant information during a node
      *           pool update.
@@ -725,6 +733,42 @@ class NodePool extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\UpgradeSettings::class);
         $this->upgrade_settings = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies the node placement policy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.PlacementPolicy placement_policy = 108;</code>
+     * @return \Google\Cloud\Container\V1\NodePool\PlacementPolicy|null
+     */
+    public function getPlacementPolicy()
+    {
+        return $this->placement_policy;
+    }
+
+    public function hasPlacementPolicy()
+    {
+        return isset($this->placement_policy);
+    }
+
+    public function clearPlacementPolicy()
+    {
+        unset($this->placement_policy);
+    }
+
+    /**
+     * Specifies the node placement policy.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePool.PlacementPolicy placement_policy = 108;</code>
+     * @param \Google\Cloud\Container\V1\NodePool\PlacementPolicy $var
+     * @return $this
+     */
+    public function setPlacementPolicy($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePool\PlacementPolicy::class);
+        $this->placement_policy = $var;
 
         return $this;
     }

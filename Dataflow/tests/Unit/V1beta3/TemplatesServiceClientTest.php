@@ -25,7 +25,6 @@ namespace Google\Cloud\Dataflow\Tests\Unit\V1beta3;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataflow\V1beta3\GetTemplateResponse;
 use Google\Cloud\Dataflow\V1beta3\Job;
@@ -41,25 +40,19 @@ use stdClass;
  */
 class TemplatesServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TemplatesServiceClient
-     */
+    /** @return TemplatesServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,9 +61,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         return new TemplatesServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobFromTemplateTest()
     {
         $transport = $this->createTransport();
@@ -111,9 +102,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobFromTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +133,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTemplateTest()
     {
         $transport = $this->createTransport();
@@ -167,9 +154,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -200,9 +185,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function launchTemplateTest()
     {
         $transport = $this->createTransport();
@@ -223,9 +206,7 @@ class TemplatesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function launchTemplateExceptionTest()
     {
         $transport = $this->createTransport();

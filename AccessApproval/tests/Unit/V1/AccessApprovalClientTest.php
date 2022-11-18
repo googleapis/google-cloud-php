@@ -23,11 +23,9 @@
 namespace Google\Cloud\AccessApproval\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\AccessApproval\V1\AccessApprovalClient;
 use Google\Cloud\AccessApproval\V1\AccessApprovalServiceAccount;
 use Google\Cloud\AccessApproval\V1\AccessApprovalSettings;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class AccessApprovalClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AccessApprovalClient
-     */
+    /** @return AccessApprovalClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class AccessApprovalClientTest extends GeneratedTest
         return new AccessApprovalClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function approveApprovalRequestTest()
     {
         $transport = $this->createTransport();
@@ -98,9 +88,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function approveApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
@@ -131,9 +119,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
@@ -153,9 +139,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -186,9 +170,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function dismissApprovalRequestTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +195,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function dismissApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
@@ -246,9 +226,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccessApprovalServiceAccountTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +251,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccessApprovalServiceAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -306,9 +282,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
@@ -339,9 +313,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -372,9 +344,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApprovalRequestTest()
     {
         $transport = $this->createTransport();
@@ -399,9 +369,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
@@ -432,9 +400,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function invalidateApprovalRequestTest()
     {
         $transport = $this->createTransport();
@@ -459,9 +425,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function invalidateApprovalRequestExceptionTest()
     {
         $transport = $this->createTransport();
@@ -492,9 +456,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApprovalRequestsTest()
     {
         $transport = $this->createTransport();
@@ -525,9 +487,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listApprovalRequestsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -558,9 +518,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccessApprovalSettingsTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +549,7 @@ class AccessApprovalClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccessApprovalSettingsExceptionTest()
     {
         $transport = $this->createTransport();

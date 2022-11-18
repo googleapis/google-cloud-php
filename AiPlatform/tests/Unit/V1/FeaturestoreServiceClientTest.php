@@ -23,23 +23,20 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\BatchCreateFeaturesResponse;
 use Google\Cloud\AIPlatform\V1\BatchReadFeatureValuesResponse;
-
 use Google\Cloud\AIPlatform\V1\EntityType;
 use Google\Cloud\AIPlatform\V1\ExportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\Feature;
-use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Cloud\AIPlatform\V1\FeatureSelector;
+use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
+use Google\Cloud\AIPlatform\V1\Feature\ValueType;
 use Google\Cloud\AIPlatform\V1\Featurestore;
 use Google\Cloud\AIPlatform\V1\FeaturestoreServiceClient;
-use Google\Cloud\AIPlatform\V1\FeatureValueDestination;
 use Google\Cloud\AIPlatform\V1\IdMatcher;
 use Google\Cloud\AIPlatform\V1\ImportFeatureValuesResponse;
 use Google\Cloud\AIPlatform\V1\ListEntityTypesResponse;
@@ -64,25 +61,19 @@ use stdClass;
  */
 class FeaturestoreServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FeaturestoreServiceClient
-     */
+    /** @return FeaturestoreServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -91,9 +82,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         return new FeaturestoreServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateFeaturesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -158,9 +147,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchCreateFeaturesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -216,9 +203,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchReadFeatureValuesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -286,9 +271,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchReadFeatureValuesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -345,9 +328,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntityTypeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -418,9 +399,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEntityTypeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -476,9 +455,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeatureTest()
     {
         $operationsTransport = $this->createTransport();
@@ -556,9 +533,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeatureExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -617,9 +592,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeaturestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -691,9 +664,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFeaturestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -750,9 +721,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntityTypeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -814,9 +783,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEntityTypeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -871,9 +838,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeatureTest()
     {
         $operationsTransport = $this->createTransport();
@@ -935,9 +900,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeatureExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -992,9 +955,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeaturestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1056,9 +1017,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFeaturestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1113,9 +1072,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportFeatureValuesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1187,9 +1144,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportFeatureValuesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1250,9 +1205,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -1283,9 +1236,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1318,9 +1269,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeatureTest()
     {
         $transport = $this->createTransport();
@@ -1353,9 +1302,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeatureExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1388,9 +1335,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeaturestoreTest()
     {
         $transport = $this->createTransport();
@@ -1419,9 +1364,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFeaturestoreExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1454,9 +1397,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importFeatureValuesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1529,9 +1470,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importFeatureValuesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1587,9 +1526,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntityTypesTest()
     {
         $transport = $this->createTransport();
@@ -1624,9 +1561,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEntityTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1659,9 +1594,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeaturesTest()
     {
         $transport = $this->createTransport();
@@ -1696,9 +1629,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeaturesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1731,9 +1662,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeaturestoresTest()
     {
         $transport = $this->createTransport();
@@ -1768,9 +1697,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFeaturestoresExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1803,9 +1730,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchFeaturesTest()
     {
         $transport = $this->createTransport();
@@ -1840,9 +1765,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchFeaturesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1875,9 +1798,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntityTypeTest()
     {
         $transport = $this->createTransport();
@@ -1908,9 +1829,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEntityTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1943,9 +1862,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeatureTest()
     {
         $transport = $this->createTransport();
@@ -1980,9 +1897,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeatureExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2017,9 +1932,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeaturestoreTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2085,9 +1998,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFeaturestoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2142,9 +2053,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2171,9 +2080,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2204,9 +2111,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2237,9 +2142,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2270,9 +2173,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2301,9 +2202,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2336,9 +2235,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2370,9 +2267,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2406,9 +2301,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -2436,9 +2329,7 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

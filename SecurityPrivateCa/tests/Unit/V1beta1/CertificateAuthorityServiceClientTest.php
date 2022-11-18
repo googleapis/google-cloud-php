@@ -23,19 +23,16 @@
 namespace Google\Cloud\Security\PrivateCA\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Security\PrivateCA\V1beta1\Certificate;
-
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority;
+use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\KeyVersionSpec;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Tier;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthority\Type;
-use Google\Cloud\Security\PrivateCA\V1beta1\CertificateAuthorityServiceClient;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateConfig\SubjectConfig;
 use Google\Cloud\Security\PrivateCA\V1beta1\CertificateRevocationList;
@@ -64,25 +61,19 @@ use stdClass;
  */
 class CertificateAuthorityServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CertificateAuthorityServiceClient
-     */
+    /** @return CertificateAuthorityServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -91,9 +82,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         return new CertificateAuthorityServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -167,9 +156,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -228,9 +215,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateTest()
     {
         $transport = $this->createTransport();
@@ -266,9 +251,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -304,9 +287,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -398,9 +379,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -477,9 +456,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -545,9 +522,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -602,9 +577,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -670,9 +643,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -727,9 +698,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchCertificateAuthorityCsrTest()
     {
         $transport = $this->createTransport();
@@ -756,9 +725,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchCertificateAuthorityCsrExceptionTest()
     {
         $transport = $this->createTransport();
@@ -791,9 +758,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateTest()
     {
         $transport = $this->createTransport();
@@ -824,9 +789,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -859,9 +822,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateAuthorityTest()
     {
         $transport = $this->createTransport();
@@ -890,9 +851,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateAuthorityExceptionTest()
     {
         $transport = $this->createTransport();
@@ -925,9 +884,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateRevocationListTest()
     {
         $transport = $this->createTransport();
@@ -960,9 +917,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCertificateRevocationListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -995,9 +950,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReusableConfigTest()
     {
         $transport = $this->createTransport();
@@ -1026,9 +979,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getReusableConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1061,9 +1012,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateAuthoritiesTest()
     {
         $transport = $this->createTransport();
@@ -1098,9 +1047,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateAuthoritiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1133,9 +1080,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateRevocationListsTest()
     {
         $transport = $this->createTransport();
@@ -1170,9 +1115,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificateRevocationListsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1205,9 +1148,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificatesTest()
     {
         $transport = $this->createTransport();
@@ -1242,9 +1183,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1277,9 +1216,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReusableConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1314,9 +1251,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReusableConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1349,9 +1284,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1417,9 +1350,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1474,9 +1405,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function revokeCertificateTest()
     {
         $transport = $this->createTransport();
@@ -1510,9 +1439,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function revokeCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1546,9 +1473,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function scheduleDeleteCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1614,9 +1539,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function scheduleDeleteCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1671,9 +1594,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateTest()
     {
         $transport = $this->createTransport();
@@ -1709,9 +1630,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1747,9 +1666,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateAuthorityTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1838,9 +1755,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateAuthorityExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1916,9 +1831,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateRevocationListTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1991,9 +1904,7 @@ class CertificateAuthorityServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCertificateRevocationListExceptionTest()
     {
         $operationsTransport = $this->createTransport();

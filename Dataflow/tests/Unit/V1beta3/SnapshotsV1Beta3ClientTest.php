@@ -25,7 +25,6 @@ namespace Google\Cloud\Dataflow\Tests\Unit\V1beta3;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dataflow\V1beta3\DeleteSnapshotResponse;
 use Google\Cloud\Dataflow\V1beta3\ListSnapshotsResponse;
@@ -41,25 +40,19 @@ use stdClass;
  */
 class SnapshotsV1Beta3ClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SnapshotsV1Beta3Client
-     */
+    /** @return SnapshotsV1Beta3Client */
     private function createClient(array $options = [])
     {
         $options += [
@@ -68,9 +61,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         return new SnapshotsV1Beta3Client($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -91,9 +82,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -124,9 +113,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -159,9 +146,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -192,9 +177,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSnapshotsTest()
     {
         $transport = $this->createTransport();
@@ -215,9 +198,7 @@ class SnapshotsV1Beta3ClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();

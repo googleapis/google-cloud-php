@@ -23,15 +23,12 @@
 namespace Google\Cloud\BeyondCorp\AppConnectors\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnector\PrincipalInfo;
-
 use Google\Cloud\BeyondCorp\AppConnectors\V1\AppConnectorsServiceClient;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ListAppConnectorsResponse;
 use Google\Cloud\BeyondCorp\AppConnectors\V1\ResourceInfo;
@@ -54,25 +51,19 @@ use stdClass;
  */
 class AppConnectorsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AppConnectorsServiceClient
-     */
+    /** @return AppConnectorsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -81,9 +72,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         return new AppConnectorsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAppConnectorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -158,9 +147,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAppConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -220,9 +207,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAppConnectorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -284,9 +269,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAppConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -341,9 +324,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAppConnectorTest()
     {
         $transport = $this->createTransport();
@@ -374,9 +355,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAppConnectorExceptionTest()
     {
         $transport = $this->createTransport();
@@ -409,9 +388,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAppConnectorsTest()
     {
         $transport = $this->createTransport();
@@ -446,9 +423,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAppConnectorsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -481,9 +456,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportStatusTest()
     {
         $operationsTransport = $this->createTransport();
@@ -556,9 +529,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reportStatusExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -616,9 +587,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAppConnectorTest()
     {
         $operationsTransport = $this->createTransport();
@@ -693,9 +662,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAppConnectorExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -755,9 +722,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -784,9 +749,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +780,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -850,9 +811,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -883,9 +842,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -914,9 +871,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -949,9 +904,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -983,9 +936,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1019,9 +970,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1049,9 +998,7 @@ class AppConnectorsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -23,14 +23,11 @@
 namespace Google\Cloud\ResourceManager\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
-
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ResourceManager\V3\Folder;
 use Google\Cloud\ResourceManager\V3\FoldersClient;
@@ -50,25 +47,19 @@ use stdClass;
  */
 class FoldersClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FoldersClient
-     */
+    /** @return FoldersClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +68,7 @@ class FoldersClientTest extends GeneratedTest
         return new FoldersClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -151,9 +140,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFolderExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -210,9 +197,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -282,9 +267,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteFolderExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -339,9 +322,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFolderTest()
     {
         $transport = $this->createTransport();
@@ -374,9 +355,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFolderExceptionTest()
     {
         $transport = $this->createTransport();
@@ -409,9 +388,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -440,9 +417,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -475,9 +450,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFoldersTest()
     {
         $transport = $this->createTransport();
@@ -512,9 +485,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFoldersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -547,9 +518,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -622,9 +591,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveFolderExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -680,9 +647,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchFoldersTest()
     {
         $transport = $this->createTransport();
@@ -713,9 +678,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function searchFoldersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -746,9 +709,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -780,9 +741,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -816,9 +775,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -846,9 +803,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -882,9 +837,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeleteFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -954,9 +907,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeleteFolderExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1011,9 +962,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFolderTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1088,9 +1037,7 @@ class FoldersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFolderExceptionTest()
     {
         $operationsTransport = $this->createTransport();

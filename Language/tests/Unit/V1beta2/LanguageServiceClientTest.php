@@ -25,7 +25,6 @@ namespace Google\Cloud\Language\Tests\Unit\V1beta2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitiesResponse;
 use Google\Cloud\Language\V1beta2\AnalyzeEntitySentimentResponse;
@@ -46,25 +45,19 @@ use stdClass;
  */
 class LanguageServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return LanguageServiceClient
-     */
+    /** @return LanguageServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +66,7 @@ class LanguageServiceClientTest extends GeneratedTest
         return new LanguageServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitiesTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +93,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +126,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitySentimentTest()
     {
         $transport = $this->createTransport();
@@ -166,9 +153,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeEntitySentimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -201,9 +186,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSentimentTest()
     {
         $transport = $this->createTransport();
@@ -230,9 +213,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSentimentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -265,9 +246,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSyntaxTest()
     {
         $transport = $this->createTransport();
@@ -294,9 +273,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function analyzeSyntaxExceptionTest()
     {
         $transport = $this->createTransport();
@@ -329,9 +306,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateTextTest()
     {
         $transport = $this->createTransport();
@@ -361,9 +336,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function annotateTextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -397,9 +370,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function classifyTextTest()
     {
         $transport = $this->createTransport();
@@ -424,9 +395,7 @@ class LanguageServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function classifyTextExceptionTest()
     {
         $transport = $this->createTransport();

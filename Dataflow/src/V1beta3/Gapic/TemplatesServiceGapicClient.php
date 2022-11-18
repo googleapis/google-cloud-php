@@ -28,9 +28,7 @@ namespace Google\Cloud\Dataflow\V1beta3\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
@@ -42,7 +40,6 @@ use Google\Cloud\Dataflow\V1beta3\GetTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\GetTemplateResponse;
 use Google\Cloud\Dataflow\V1beta3\Job;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateParameters;
-
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateRequest;
 use Google\Cloud\Dataflow\V1beta3\LaunchTemplateResponse;
 use Google\Cloud\Dataflow\V1beta3\RuntimeEnvironment;
@@ -68,29 +65,19 @@ class TemplatesServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.dataflow.v1beta3.TemplatesService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dataflow.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/compute',
