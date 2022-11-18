@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dlp\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dlp\V2\DeidentifyContentResponse;
 use Google\Cloud\Dlp\V2\DeidentifyTemplate;
 use Google\Cloud\Dlp\V2\DlpJob;
@@ -58,25 +56,19 @@ use stdClass;
  */
 class DlpServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DlpServiceClient
-     */
+    /** @return DlpServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -85,9 +77,7 @@ class DlpServiceClientTest extends GeneratedTest
         return new DlpServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -116,9 +106,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function activateJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -151,9 +139,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeidentifyTemplateTest()
     {
         $transport = $this->createTransport();
@@ -248,9 +230,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDeidentifyTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -284,9 +264,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -315,9 +293,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -350,9 +326,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInspectTemplateTest()
     {
         $transport = $this->createTransport();
@@ -386,9 +360,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createInspectTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -422,9 +394,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -460,9 +430,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -498,9 +466,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createStoredInfoTypeTest()
     {
         $transport = $this->createTransport();
@@ -530,9 +496,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createStoredInfoTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -566,9 +530,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deidentifyContentTest()
     {
         $transport = $this->createTransport();
@@ -589,9 +551,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deidentifyContentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -622,9 +582,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeidentifyTemplateTest()
     {
         $transport = $this->createTransport();
@@ -648,9 +606,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDeidentifyTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -683,9 +639,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -709,9 +663,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -744,9 +696,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInspectTemplateTest()
     {
         $transport = $this->createTransport();
@@ -770,9 +720,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteInspectTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -805,9 +753,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -831,9 +777,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -866,9 +810,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteStoredInfoTypeTest()
     {
         $transport = $this->createTransport();
@@ -892,9 +834,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteStoredInfoTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -927,9 +867,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function finishDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -953,9 +891,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function finishDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -988,9 +924,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeidentifyTemplateTest()
     {
         $transport = $this->createTransport();
@@ -1021,9 +955,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDeidentifyTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1056,9 +988,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -1087,9 +1017,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1122,9 +1050,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInspectTemplateTest()
     {
         $transport = $this->createTransport();
@@ -1155,9 +1081,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInspectTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1190,9 +1114,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -1223,9 +1145,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1258,9 +1178,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStoredInfoTypeTest()
     {
         $transport = $this->createTransport();
@@ -1287,9 +1205,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getStoredInfoTypeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1322,9 +1238,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function hybridInspectDlpJobTest()
     {
         $transport = $this->createTransport();
@@ -1349,9 +1263,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function hybridInspectDlpJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1384,9 +1296,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function hybridInspectJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -1411,9 +1321,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function hybridInspectJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1446,9 +1354,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function inspectContentTest()
     {
         $transport = $this->createTransport();
@@ -1469,9 +1375,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function inspectContentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1502,9 +1406,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeidentifyTemplatesTest()
     {
         $transport = $this->createTransport();
@@ -1539,9 +1441,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDeidentifyTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1574,9 +1474,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDlpJobsTest()
     {
         $transport = $this->createTransport();
@@ -1611,9 +1509,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDlpJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1646,9 +1542,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInfoTypesTest()
     {
         $transport = $this->createTransport();
@@ -1669,9 +1563,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInfoTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1702,9 +1594,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInspectTemplatesTest()
     {
         $transport = $this->createTransport();
@@ -1739,9 +1629,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInspectTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1774,9 +1662,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobTriggersTest()
     {
         $transport = $this->createTransport();
@@ -1811,9 +1697,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobTriggersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1846,9 +1730,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listStoredInfoTypesTest()
     {
         $transport = $this->createTransport();
@@ -1883,9 +1765,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listStoredInfoTypesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1918,9 +1798,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function redactImageTest()
     {
         $transport = $this->createTransport();
@@ -1945,9 +1823,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function redactImageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1978,9 +1854,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reidentifyContentTest()
     {
         $transport = $this->createTransport();
@@ -2005,9 +1879,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function reidentifyContentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2040,9 +1912,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeidentifyTemplateTest()
     {
         $transport = $this->createTransport();
@@ -2073,9 +1943,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDeidentifyTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2108,9 +1976,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInspectTemplateTest()
     {
         $transport = $this->createTransport();
@@ -2141,9 +2007,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateInspectTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2176,9 +2040,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobTriggerTest()
     {
         $transport = $this->createTransport();
@@ -2209,9 +2071,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobTriggerExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2244,9 +2104,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateStoredInfoTypeTest()
     {
         $transport = $this->createTransport();
@@ -2273,9 +2131,7 @@ class DlpServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateStoredInfoTypeExceptionTest()
     {
         $transport = $this->createTransport();

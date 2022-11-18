@@ -9,8 +9,6 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Container structure for the content to inspect.
- *
  * Generated from protobuf message <code>google.privacy.dlp.v2.ContentItem</code>
  */
 class ContentItem extends \Google\Protobuf\Internal\Message
