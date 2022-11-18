@@ -20,7 +20,7 @@ class PlacementPolicy extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.container.v1.NodePool.PlacementPolicy.Type type = 1;</code>
      */
-    protected $type = 0;
+    private $type = 0;
 
     /**
      * Constructor.
