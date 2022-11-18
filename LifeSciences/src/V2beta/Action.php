@@ -75,6 +75,19 @@ class Action extends \Google\Protobuf\Internal\Message
      */
     private $environment;
     /**
+     * The encrypted environment to pass into the container. This environment is
+     * merged with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
+     * duplicate values.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 21;</code>
+     */
+    private $encrypted_environment = null;
+    /**
      * An optional identifier for a PID namespace to run the action inside.
      * Multiple actions should use the same string to share a namespace.  If
      * unspecified, a separate isolated namespace is used.
@@ -255,6 +268,15 @@ class Action extends \Google\Protobuf\Internal\Message
      *           `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last
      *           non-background action that executed. This can be used by workflow engine
      *           authors to determine whether an individual action has succeeded or failed.
+     *     @type \Google\Cloud\LifeSciences\V2beta\Secret $encrypted_environment
+     *           The encrypted environment to pass into the container. This environment is
+     *           merged with values specified in the
+     *           [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
+     *           duplicate values.
+     *           The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     *           serve as environment variable names and their values. The decoded
+     *           environment variables can overwrite the values specified by the
+     *           `environment` field.
      *     @type string $pid_namespace
      *           An optional identifier for a PID namespace to run the action inside.
      *           Multiple actions should use the same string to share a namespace.  If
@@ -525,6 +547,56 @@ class Action extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->environment = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The encrypted environment to pass into the container. This environment is
+     * merged with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
+     * duplicate values.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 21;</code>
+     * @return \Google\Cloud\LifeSciences\V2beta\Secret|null
+     */
+    public function getEncryptedEnvironment()
+    {
+        return $this->encrypted_environment;
+    }
+
+    public function hasEncryptedEnvironment()
+    {
+        return isset($this->encrypted_environment);
+    }
+
+    public function clearEncryptedEnvironment()
+    {
+        unset($this->encrypted_environment);
+    }
+
+    /**
+     * The encrypted environment to pass into the container. This environment is
+     * merged with values specified in the
+     * [google.cloud.lifesciences.v2beta.Pipeline][google.cloud.lifesciences.v2beta.Pipeline] message, overwriting any
+     * duplicate values.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 21;</code>
+     * @param \Google\Cloud\LifeSciences\V2beta\Secret $var
+     * @return $this
+     */
+    public function setEncryptedEnvironment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\LifeSciences\V2beta\Secret::class);
+        $this->encrypted_environment = $var;
 
         return $this;
     }
