@@ -9,20 +9,20 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents an NFS server and remote path: <server>:<remote_path>
+ * Represents an NFS volume.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.NFS</code>
  */
 class NFS extends \Google\Protobuf\Internal\Message
 {
     /**
-     * URI of the NFS server, e.g. an IP address.
+     * The IP address of the NFS.
      *
      * Generated from protobuf field <code>string server = 1;</code>
      */
     private $server = '';
     /**
-     * Remote source path exported from NFS, e.g., "/share".
+     * Remote source path exported from the NFS, e.g., "/share".
      *
      * Generated from protobuf field <code>string remote_path = 2;</code>
      */
@@ -35,9 +35,9 @@ class NFS extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $server
-     *           URI of the NFS server, e.g. an IP address.
+     *           The IP address of the NFS.
      *     @type string $remote_path
-     *           Remote source path exported from NFS, e.g., "/share".
+     *           Remote source path exported from the NFS, e.g., "/share".
      * }
      */
     public function __construct($data = NULL) {
@@ -46,7 +46,7 @@ class NFS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the NFS server, e.g. an IP address.
+     * The IP address of the NFS.
      *
      * Generated from protobuf field <code>string server = 1;</code>
      * @return string
@@ -57,7 +57,7 @@ class NFS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * URI of the NFS server, e.g. an IP address.
+     * The IP address of the NFS.
      *
      * Generated from protobuf field <code>string server = 1;</code>
      * @param string $var
@@ -72,7 +72,7 @@ class NFS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Remote source path exported from NFS, e.g., "/share".
+     * Remote source path exported from the NFS, e.g., "/share".
      *
      * Generated from protobuf field <code>string remote_path = 2;</code>
      * @return string
@@ -83,7 +83,7 @@ class NFS extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Remote source path exported from NFS, e.g., "/share".
+     * Remote source path exported from the NFS, e.g., "/share".
      *
      * Generated from protobuf field <code>string remote_path = 2;</code>
      * @param string $var
