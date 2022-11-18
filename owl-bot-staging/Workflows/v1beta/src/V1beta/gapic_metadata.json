@@ -1,0 +1,43 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.workflows.v1beta",
+    "libraryPackage": "Google\\Cloud\\Workflows\\V1beta",
+    "services": {
+        "Workflows": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "WorkflowsGapicClient",
+                    "rpcs": {
+                        "CreateWorkflow": {
+                            "methods": [
+                                "createWorkflow"
+                            ]
+                        },
+                        "DeleteWorkflow": {
+                            "methods": [
+                                "deleteWorkflow"
+                            ]
+                        },
+                        "GetWorkflow": {
+                            "methods": [
+                                "getWorkflow"
+                            ]
+                        },
+                        "ListWorkflows": {
+                            "methods": [
+                                "listWorkflows"
+                            ]
+                        },
+                        "UpdateWorkflow": {
+                            "methods": [
+                                "updateWorkflow"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

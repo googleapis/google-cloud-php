@@ -1,0 +1,157 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.automl.v1beta1",
+    "libraryPackage": "Google\\Cloud\\AutoMl\\V1beta1",
+    "services": {
+        "PredictionService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PredictionServiceGapicClient",
+                    "rpcs": {
+                        "BatchPredict": {
+                            "methods": [
+                                "batchPredict"
+                            ]
+                        },
+                        "Predict": {
+                            "methods": [
+                                "predict"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "AutoMl": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "AutoMlGapicClient",
+                    "rpcs": {
+                        "CreateDataset": {
+                            "methods": [
+                                "createDataset"
+                            ]
+                        },
+                        "CreateModel": {
+                            "methods": [
+                                "createModel"
+                            ]
+                        },
+                        "DeleteDataset": {
+                            "methods": [
+                                "deleteDataset"
+                            ]
+                        },
+                        "DeleteModel": {
+                            "methods": [
+                                "deleteModel"
+                            ]
+                        },
+                        "DeployModel": {
+                            "methods": [
+                                "deployModel"
+                            ]
+                        },
+                        "ExportData": {
+                            "methods": [
+                                "exportData"
+                            ]
+                        },
+                        "ExportEvaluatedExamples": {
+                            "methods": [
+                                "exportEvaluatedExamples"
+                            ]
+                        },
+                        "ExportModel": {
+                            "methods": [
+                                "exportModel"
+                            ]
+                        },
+                        "GetAnnotationSpec": {
+                            "methods": [
+                                "getAnnotationSpec"
+                            ]
+                        },
+                        "GetColumnSpec": {
+                            "methods": [
+                                "getColumnSpec"
+                            ]
+                        },
+                        "GetDataset": {
+                            "methods": [
+                                "getDataset"
+                            ]
+                        },
+                        "GetModel": {
+                            "methods": [
+                                "getModel"
+                            ]
+                        },
+                        "GetModelEvaluation": {
+                            "methods": [
+                                "getModelEvaluation"
+                            ]
+                        },
+                        "GetTableSpec": {
+                            "methods": [
+                                "getTableSpec"
+                            ]
+                        },
+                        "ImportData": {
+                            "methods": [
+                                "importData"
+                            ]
+                        },
+                        "ListColumnSpecs": {
+                            "methods": [
+                                "listColumnSpecs"
+                            ]
+                        },
+                        "ListDatasets": {
+                            "methods": [
+                                "listDatasets"
+                            ]
+                        },
+                        "ListModelEvaluations": {
+                            "methods": [
+                                "listModelEvaluations"
+                            ]
+                        },
+                        "ListModels": {
+                            "methods": [
+                                "listModels"
+                            ]
+                        },
+                        "ListTableSpecs": {
+                            "methods": [
+                                "listTableSpecs"
+                            ]
+                        },
+                        "UndeployModel": {
+                            "methods": [
+                                "undeployModel"
+                            ]
+                        },
+                        "UpdateColumnSpec": {
+                            "methods": [
+                                "updateColumnSpec"
+                            ]
+                        },
+                        "UpdateDataset": {
+                            "methods": [
+                                "updateDataset"
+                            ]
+                        },
+                        "UpdateTableSpec": {
+                            "methods": [
+                                "updateTableSpec"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

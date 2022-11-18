@@ -1,0 +1,335 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.sql.v1beta4",
+    "libraryPackage": "Google\\Cloud\\Sql\\V1beta4",
+    "services": {
+        "SqlBackupRunsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlBackupRunsServiceGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlDatabasesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlDatabasesServiceGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlFlagsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlFlagsServiceGapicClient",
+                    "rpcs": {
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlInstancesService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlInstancesServiceGapicClient",
+                    "rpcs": {
+                        "AddServerCa": {
+                            "methods": [
+                                "addServerCa"
+                            ]
+                        },
+                        "Clone": {
+                            "methods": [
+                                "clone"
+                            ]
+                        },
+                        "CreateEphemeral": {
+                            "methods": [
+                                "createEphemeral"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "DemoteMaster": {
+                            "methods": [
+                                "demoteMaster"
+                            ]
+                        },
+                        "Export": {
+                            "methods": [
+                                "export"
+                            ]
+                        },
+                        "Failover": {
+                            "methods": [
+                                "failover"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Import": {
+                            "methods": [
+                                "import"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "ListServerCas": {
+                            "methods": [
+                                "listServerCas"
+                            ]
+                        },
+                        "Patch": {
+                            "methods": [
+                                "patch"
+                            ]
+                        },
+                        "PromoteReplica": {
+                            "methods": [
+                                "promoteReplica"
+                            ]
+                        },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
+                        "ResetSslConfig": {
+                            "methods": [
+                                "resetSslConfig"
+                            ]
+                        },
+                        "Restart": {
+                            "methods": [
+                                "restart"
+                            ]
+                        },
+                        "RestoreBackup": {
+                            "methods": [
+                                "restoreBackup"
+                            ]
+                        },
+                        "RotateServerCa": {
+                            "methods": [
+                                "rotateServerCa"
+                            ]
+                        },
+                        "StartExternalSync": {
+                            "methods": [
+                                "startExternalSync"
+                            ]
+                        },
+                        "StartReplica": {
+                            "methods": [
+                                "startReplica"
+                            ]
+                        },
+                        "StopReplica": {
+                            "methods": [
+                                "stopReplica"
+                            ]
+                        },
+                        "TruncateLog": {
+                            "methods": [
+                                "truncateLog"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
+                        },
+                        "VerifyExternalSyncSettings": {
+                            "methods": [
+                                "verifyExternalSyncSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlOperationsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlOperationsServiceGapicClient",
+                    "rpcs": {
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlSslCertsService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlSslCertsServiceGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlConnectService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlConnectServiceGapicClient",
+                    "rpcs": {
+                        "GenerateEphemeralCert": {
+                            "methods": [
+                                "generateEphemeralCert"
+                            ]
+                        },
+                        "GetConnectSettings": {
+                            "methods": [
+                                "getConnectSettings"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlTiersService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlTiersServiceGapicClient",
+                    "rpcs": {
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "SqlUsersService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SqlUsersServiceGapicClient",
+                    "rpcs": {
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "Update": {
+                            "methods": [
+                                "update"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

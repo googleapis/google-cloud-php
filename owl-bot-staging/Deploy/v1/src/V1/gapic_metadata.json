@@ -1,0 +1,153 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.deploy.v1",
+    "libraryPackage": "Google\\Cloud\\Deploy\\V1",
+    "services": {
+        "CloudDeploy": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "CloudDeployGapicClient",
+                    "rpcs": {
+                        "AbandonRelease": {
+                            "methods": [
+                                "abandonRelease"
+                            ]
+                        },
+                        "ApproveRollout": {
+                            "methods": [
+                                "approveRollout"
+                            ]
+                        },
+                        "CreateDeliveryPipeline": {
+                            "methods": [
+                                "createDeliveryPipeline"
+                            ]
+                        },
+                        "CreateRelease": {
+                            "methods": [
+                                "createRelease"
+                            ]
+                        },
+                        "CreateRollout": {
+                            "methods": [
+                                "createRollout"
+                            ]
+                        },
+                        "CreateTarget": {
+                            "methods": [
+                                "createTarget"
+                            ]
+                        },
+                        "DeleteDeliveryPipeline": {
+                            "methods": [
+                                "deleteDeliveryPipeline"
+                            ]
+                        },
+                        "DeleteTarget": {
+                            "methods": [
+                                "deleteTarget"
+                            ]
+                        },
+                        "GetConfig": {
+                            "methods": [
+                                "getConfig"
+                            ]
+                        },
+                        "GetDeliveryPipeline": {
+                            "methods": [
+                                "getDeliveryPipeline"
+                            ]
+                        },
+                        "GetJobRun": {
+                            "methods": [
+                                "getJobRun"
+                            ]
+                        },
+                        "GetRelease": {
+                            "methods": [
+                                "getRelease"
+                            ]
+                        },
+                        "GetRollout": {
+                            "methods": [
+                                "getRollout"
+                            ]
+                        },
+                        "GetTarget": {
+                            "methods": [
+                                "getTarget"
+                            ]
+                        },
+                        "ListDeliveryPipelines": {
+                            "methods": [
+                                "listDeliveryPipelines"
+                            ]
+                        },
+                        "ListJobRuns": {
+                            "methods": [
+                                "listJobRuns"
+                            ]
+                        },
+                        "ListReleases": {
+                            "methods": [
+                                "listReleases"
+                            ]
+                        },
+                        "ListRollouts": {
+                            "methods": [
+                                "listRollouts"
+                            ]
+                        },
+                        "ListTargets": {
+                            "methods": [
+                                "listTargets"
+                            ]
+                        },
+                        "RetryJob": {
+                            "methods": [
+                                "retryJob"
+                            ]
+                        },
+                        "UpdateDeliveryPipeline": {
+                            "methods": [
+                                "updateDeliveryPipeline"
+                            ]
+                        },
+                        "UpdateTarget": {
+                            "methods": [
+                                "updateTarget"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
