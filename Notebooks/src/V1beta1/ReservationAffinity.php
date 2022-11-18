@@ -20,13 +20,13 @@ class ReservationAffinity extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.cloud.notebooks.v1beta1.ReservationAffinity.Type consume_reservation_type = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $consume_reservation_type = 0;
+    private $consume_reservation_type = 0;
     /**
      * Optional. Corresponds to the label key of reservation resource.
      *
      * Generated from protobuf field <code>string key = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $key = '';
+    private $key = '';
     /**
      * Optional. Corresponds to the label values of reservation resource.
      *

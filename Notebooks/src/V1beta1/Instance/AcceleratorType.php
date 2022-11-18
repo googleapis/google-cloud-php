@@ -39,7 +39,7 @@ class AcceleratorType
      */
     const NVIDIA_TESLA_V100 = 3;
     /**
-     * Accelerator type is Nvidia Tesla P_4.
+     * Accelerator type is Nvidia Tesla P4.
      *
      * Generated from protobuf enum <code>NVIDIA_TESLA_P4 = 4;</code>
      */
@@ -63,7 +63,7 @@ class AcceleratorType
      */
     const NVIDIA_TESLA_P100_VWS = 9;
     /**
-     * Accelerator type is NVIDIA Tesla P_4 Virtual Workstations.
+     * Accelerator type is NVIDIA Tesla P4 Virtual Workstations.
      *
      * Generated from protobuf enum <code>NVIDIA_TESLA_P4_VWS = 10;</code>
      */

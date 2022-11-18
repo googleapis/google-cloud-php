@@ -12,5 +12,5 @@ if (false) {
     class ReservationAffinity_Type {}
 }
 class_exists(ReservationAffinity\Type::class);
-@trigger_error('Google\Cloud\Notebooks\V1beta1\ReservationAffinity_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Notebooks\V1beta1\ReservationAffinity\Type instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Notebooks\V1beta1\ReservationAffinity_Type is deprecated and will be removed in a future release. Use Google\Cloud\Notebooks\V1beta1\ReservationAffinity\Type instead', E_USER_DEPRECATED);
 

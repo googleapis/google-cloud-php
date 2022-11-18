@@ -12,5 +12,5 @@ if (false) {
     class Instance_NicType {}
 }
 class_exists(Instance\NicType::class);
-@trigger_error('Google\Cloud\Notebooks\V1beta1\Instance_NicType is deprecated and will be removed in the next major release. Use Google\Cloud\Notebooks\V1beta1\Instance\NicType instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Notebooks\V1beta1\Instance_NicType is deprecated and will be removed in a future release. Use Google\Cloud\Notebooks\V1beta1\Instance\NicType instead', E_USER_DEPRECATED);
 
