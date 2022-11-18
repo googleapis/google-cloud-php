@@ -22,7 +22,6 @@
 
 namespace Google\Cloud\Video\Transcoder\Tests\Unit\V1;
 
-use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
@@ -31,6 +30,7 @@ use Google\Cloud\Video\Transcoder\V1\Job;
 use Google\Cloud\Video\Transcoder\V1\JobTemplate;
 use Google\Cloud\Video\Transcoder\V1\ListJobTemplatesResponse;
 use Google\Cloud\Video\Transcoder\V1\ListJobsResponse;
+use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
 use stdClass;
