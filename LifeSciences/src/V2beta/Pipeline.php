@@ -36,6 +36,17 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      */
     private $environment;
     /**
+     * The encrypted environment to pass into every action. Each action can also
+     * specify its own encrypted environment.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 5;</code>
+     */
+    private $encrypted_environment = null;
+    /**
      * The maximum amount of time to give the pipeline to complete.  This includes
      * the time spent waiting for a worker to be allocated.  If the pipeline fails
      * to complete before the timeout, it will be cancelled and the error code
@@ -60,6 +71,13 @@ class Pipeline extends \Google\Protobuf\Internal\Message
      *           The environment to pass into every action. Each action can also specify
      *           additional environment variables but cannot delete an entry from this map
      *           (though they can overwrite it with a different value).
+     *     @type \Google\Cloud\LifeSciences\V2beta\Secret $encrypted_environment
+     *           The encrypted environment to pass into every action. Each action can also
+     *           specify its own encrypted environment.
+     *           The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     *           serve as environment variable names and their values. The decoded
+     *           environment variables can overwrite the values specified by the
+     *           `environment` field.
      *     @type \Google\Protobuf\Duration $timeout
      *           The maximum amount of time to give the pipeline to complete.  This includes
      *           the time spent waiting for a worker to be allocated.  If the pipeline fails
@@ -161,6 +179,52 @@ class Pipeline extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
         $this->environment = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The encrypted environment to pass into every action. Each action can also
+     * specify its own encrypted environment.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 5;</code>
+     * @return \Google\Cloud\LifeSciences\V2beta\Secret|null
+     */
+    public function getEncryptedEnvironment()
+    {
+        return $this->encrypted_environment;
+    }
+
+    public function hasEncryptedEnvironment()
+    {
+        return isset($this->encrypted_environment);
+    }
+
+    public function clearEncryptedEnvironment()
+    {
+        unset($this->encrypted_environment);
+    }
+
+    /**
+     * The encrypted environment to pass into every action. Each action can also
+     * specify its own encrypted environment.
+     * The secret must decrypt to a JSON-encoded dictionary where key-value pairs
+     * serve as environment variable names and their values. The decoded
+     * environment variables can overwrite the values specified by the
+     * `environment` field.
+     *
+     * Generated from protobuf field <code>.google.cloud.lifesciences.v2beta.Secret encrypted_environment = 5;</code>
+     * @param \Google\Cloud\LifeSciences\V2beta\Secret $var
+     * @return $this
+     */
+    public function setEncryptedEnvironment($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\LifeSciences\V2beta\Secret::class);
+        $this->encrypted_environment = $var;
 
         return $this;
     }

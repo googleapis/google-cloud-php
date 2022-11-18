@@ -143,6 +143,13 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.lifesciences.v2beta.Volume volumes = 14;</code>
      */
     private $volumes;
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     */
+    private $reservation = '';
 
     /**
      * Constructor.
@@ -221,6 +228,9 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\LifeSciences\V2beta\Volume>|\Google\Protobuf\Internal\RepeatedField $volumes
      *           The list of disks and other storage to create or attach to the VM.
      *           Specify either the `volumes[]` field or the `disks[]` field, but not both.
+     *     @type string $reservation
+     *           If specified, the VM will only be allocated inside the matching
+     *           reservation. It will fail if the VM parameters don't match the reservation.
      * }
      */
     public function __construct($data = NULL) {
@@ -698,6 +708,34 @@ class VirtualMachine extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\LifeSciences\V2beta\Volume::class);
         $this->volumes = $arr;
+
+        return $this;
+    }
+
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     * @return string
+     */
+    public function getReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * If specified, the VM will only be allocated inside the matching
+     * reservation. It will fail if the VM parameters don't match the reservation.
+     *
+     * Generated from protobuf field <code>string reservation = 15;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setReservation($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->reservation = $var;
 
         return $this;
     }
