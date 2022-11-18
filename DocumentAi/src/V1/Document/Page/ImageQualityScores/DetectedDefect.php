@@ -28,14 +28,14 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string type = 1;</code>
      */
-    protected $type = '';
+    private $type = '';
     /**
      * Confidence of detected defect. Range `[0, 1]` where 1 indicates
      * strong confidence of that the defect exists.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
-    protected $confidence = 0.0;
+    private $confidence = 0.0;
 
     /**
      * Constructor.
@@ -135,6 +135,4 @@ class DetectedDefect extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DetectedDefect::class, \Google\Cloud\DocumentAI\V1\Document_Page_ImageQualityScores_DetectedDefect::class);
 

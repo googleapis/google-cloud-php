@@ -20,7 +20,7 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>float quality_score = 1;</code>
      */
-    protected $quality_score = 0.0;
+    private $quality_score = 0.0;
     /**
      * A list of detected defects.
      *
@@ -99,6 +99,4 @@ class ImageQualityScores extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ImageQualityScores::class, \Google\Cloud\DocumentAI\V1\Document_Page_ImageQualityScores::class);
 
