@@ -12,5 +12,5 @@ if (false) {
     class GeoTaxonomy_Type {}
 }
 class_exists(GeoTaxonomy\Type::class);
-@trigger_error('Google\Cloud\Billing\V1\GeoTaxonomy_Type is deprecated and will be removed in the next major release. Use Google\Cloud\Billing\V1\GeoTaxonomy\Type instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\Billing\V1\GeoTaxonomy_Type is deprecated and will be removed in a future release. Use Google\Cloud\Billing\V1\GeoTaxonomy\Type instead', E_USER_DEPRECATED);
 
