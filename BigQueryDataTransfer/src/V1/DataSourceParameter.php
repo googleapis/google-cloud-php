@@ -70,7 +70,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      */
     private $min_value = null;
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      */
@@ -139,7 +139,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\DoubleValue $min_value
      *           For integer and double values specifies minimum allowed value.
      *     @type \Google\Protobuf\DoubleValue $max_value
-     *           For integer and double values specifies maxminum allowed value.
+     *           For integer and double values specifies maximum allowed value.
      *     @type array<\Google\Cloud\BigQuery\DataTransfer\V1\DataSourceParameter>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Deprecated. This field has no effect.
      *     @type string $validation_description
@@ -433,7 +433,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
         return $this;}
 
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return \Google\Protobuf\DoubleValue|null
@@ -456,7 +456,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     /**
      * Returns the unboxed value from <code>getMaxValue()</code>
 
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @return float|null
@@ -467,7 +467,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @param \Google\Protobuf\DoubleValue $var
@@ -484,7 +484,7 @@ class DataSourceParameter extends \Google\Protobuf\Internal\Message
     /**
      * Sets the field by wrapping a primitive type in a Google\Protobuf\DoubleValue object.
 
-     * For integer and double values specifies maxminum allowed value.
+     * For integer and double values specifies maximum allowed value.
      *
      * Generated from protobuf field <code>.google.protobuf.DoubleValue max_value = 10;</code>
      * @param float|null $var
