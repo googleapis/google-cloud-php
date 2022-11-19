@@ -220,6 +220,7 @@ class NotebookServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Check if a notebook instance is upgradable.
+     * Deprecated. Please consider using v1.
      * @param \Google\Cloud\Notebooks\V1beta1\IsInstanceUpgradeableRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -235,6 +236,7 @@ class NotebookServiceGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Upgrades a notebook instance to the latest version.
+     * Deprecated. Please consider using v1.
      * @param \Google\Cloud\Notebooks\V1beta1\UpgradeInstanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -251,6 +253,7 @@ class NotebookServiceGrpcClient extends \Grpc\BaseStub {
     /**
      * Allows notebook instances to
      * call this endpoint to upgrade themselves. Do not use this method directly.
+     * Deprecated. Please consider using v1.
      * @param \Google\Cloud\Notebooks\V1beta1\UpgradeInstanceInternalRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

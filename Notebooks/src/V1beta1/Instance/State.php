@@ -74,6 +74,18 @@ class State
      * Generated from protobuf enum <code>REGISTERING = 9;</code>
      */
     const REGISTERING = 9;
+    /**
+     * The instance is suspending.
+     *
+     * Generated from protobuf enum <code>SUSPENDING = 10;</code>
+     */
+    const SUSPENDING = 10;
+    /**
+     * The instance is suspended.
+     *
+     * Generated from protobuf enum <code>SUSPENDED = 11;</code>
+     */
+    const SUSPENDED = 11;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -86,6 +98,8 @@ class State
         self::UPGRADING => 'UPGRADING',
         self::INITIALIZING => 'INITIALIZING',
         self::REGISTERING => 'REGISTERING',
+        self::SUSPENDING => 'SUSPENDING',
+        self::SUSPENDED => 'SUSPENDED',
     ];
 
     public static function name($value)
