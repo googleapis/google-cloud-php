@@ -170,4 +170,19 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Performs the apply phase of the RescheduleMaintenance verb.
+     * @param \Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.memcache.v1beta2.CloudMemcache/RescheduleMaintenance',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

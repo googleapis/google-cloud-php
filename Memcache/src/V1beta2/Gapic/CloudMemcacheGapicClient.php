@@ -27,18 +27,21 @@
 namespace Google\Cloud\Memcache\V1beta2\Gapic;
 
 use Google\ApiCore\ApiException;
+use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Cloud\Memcache\V1beta2\ApplyParametersRequest;
 use Google\Cloud\Memcache\V1beta2\ApplySoftwareUpdateRequest;
 use Google\Cloud\Memcache\V1beta2\CreateInstanceRequest;
@@ -48,10 +51,13 @@ use Google\Cloud\Memcache\V1beta2\Instance;
 use Google\Cloud\Memcache\V1beta2\ListInstancesRequest;
 use Google\Cloud\Memcache\V1beta2\ListInstancesResponse;
 use Google\Cloud\Memcache\V1beta2\MemcacheParameters;
+use Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest;
+use Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest\RescheduleType;
 use Google\Cloud\Memcache\V1beta2\UpdateInstanceRequest;
 use Google\Cloud\Memcache\V1beta2\UpdateParametersRequest;
 use Google\LongRunning\Operation;
 use Google\Protobuf\FieldMask;
+use Google\Protobuf\Timestamp;
 
 /**
  * Service Description: Configures and manages Cloud Memorystore for Memcached instances.
@@ -119,29 +125,19 @@ class CloudMemcacheGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.memcache.v1beta2.CloudMemcache';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'memcache.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -828,6 +824,86 @@ class CloudMemcacheGapicClient
     }
 
     /**
+     * Performs the apply phase of the RescheduleMaintenance verb.
+     *
+     * Sample code:
+     * ```
+     * $cloudMemcacheClient = new CloudMemcacheClient();
+     * try {
+     *     $formattedInstance = $cloudMemcacheClient->instanceName('[PROJECT]', '[LOCATION]', '[INSTANCE]');
+     *     $rescheduleType = RescheduleType::RESCHEDULE_TYPE_UNSPECIFIED;
+     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+     *     $operationResponse->pollUntilComplete();
+     *     if ($operationResponse->operationSucceeded()) {
+     *         $result = $operationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $operationResponse->getError();
+     *         // handleError($error)
+     *     }
+     *     // Alternatively:
+     *     // start the operation, keep the operation name, and resume later
+     *     $operationResponse = $cloudMemcacheClient->rescheduleMaintenance($formattedInstance, $rescheduleType);
+     *     $operationName = $operationResponse->getName();
+     *     // ... do other work
+     *     $newOperationResponse = $cloudMemcacheClient->resumeOperation($operationName, 'rescheduleMaintenance');
+     *     while (!$newOperationResponse->isDone()) {
+     *         // ... do other work
+     *         $newOperationResponse->reload();
+     *     }
+     *     if ($newOperationResponse->operationSucceeded()) {
+     *         $result = $newOperationResponse->getResult();
+     *     // doSomethingWith($result)
+     *     } else {
+     *         $error = $newOperationResponse->getError();
+     *         // handleError($error)
+     *     }
+     * } finally {
+     *     $cloudMemcacheClient->close();
+     * }
+     * ```
+     *
+     * @param string $instance       Required. Memcache instance resource name using the form:
+     *                               `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     *                               where `location_id` refers to a GCP region.
+     * @param int    $rescheduleType Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     *                               For allowed values, use constants defined on {@see \Google\Cloud\Memcache\V1beta2\RescheduleMaintenanceRequest\RescheduleType}
+     * @param array  $optionalArgs   {
+     *     Optional.
+     *
+     *     @type Timestamp $scheduleTime
+     *           Timestamp when the maintenance shall be rescheduled to if
+     *           reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for
+     *           example `2012-11-15T16:19:00.094Z`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\OperationResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function rescheduleMaintenance($instance, $rescheduleType, array $optionalArgs = [])
+    {
+        $request = new RescheduleMaintenanceRequest();
+        $requestParamHeaders = [];
+        $request->setInstance($instance);
+        $request->setRescheduleType($rescheduleType);
+        $requestParamHeaders['instance'] = $instance;
+        if (isset($optionalArgs['scheduleTime'])) {
+            $request->setScheduleTime($optionalArgs['scheduleTime']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startOperationsCall('RescheduleMaintenance', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
      * Updates an existing Instance in a given project and location.
      *
      * Sample code:
@@ -868,6 +944,7 @@ class CloudMemcacheGapicClient
      * ```
      *
      * @param FieldMask $updateMask   Required. Mask of fields to update.
+     *
      *                                *  `displayName`
      * @param Instance  $resource     Required. A Memcached [Instance] resource.
      *                                Only fields specified in update_mask are updated.
@@ -975,5 +1052,128 @@ class CloudMemcacheGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startOperationsCall('UpdateParameters', $optionalArgs, $request, $this->getOperationsClient())->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $cloudMemcacheClient = new CloudMemcacheClient();
+     * try {
+     *     $response = $cloudMemcacheClient->getLocation();
+     * } finally {
+     *     $cloudMemcacheClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $cloudMemcacheClient = new CloudMemcacheClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $cloudMemcacheClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $cloudMemcacheClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $cloudMemcacheClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     *
+     * @experimental
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 }
