@@ -1,0 +1,1 @@
+{"id":"notebooks\/v1beta1\/reservationaffinity\/type","type":"","title":"Google\\Cloud\\Notebooks\\V1beta1\\ReservationAffinity\\Type","name":"Type","description":"<p>Indicates whether to consume capacity from an reservation or not.<\/p>\n<p>Protobuf type <code>google.cloud.notebooks.v1beta1.ReservationAffinity.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}
