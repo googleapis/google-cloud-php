@@ -157,12 +157,15 @@ class Bucket
      * }
      * ```
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     * }
      * @return bool
      */
-    public function exists()
+    public function exists(array $options = [])
     {
         try {
-            $this->connection->getBucket($this->identity + ['fields' => 'name']);
+            $this->connection->getBucket($options + $this->identity + ['fields' => 'name']);
         } catch (NotFoundException $ex) {
             return false;
         }
