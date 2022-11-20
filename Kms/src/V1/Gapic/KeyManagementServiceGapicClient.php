@@ -27,7 +27,6 @@ namespace Google\Cloud\Kms\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -68,17 +67,16 @@ use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
 use Google\Cloud\Kms\V1\KeyRing;
-use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
-use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
+use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
+use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListImportJobsRequest;
 use Google\Cloud\Kms\V1\ListImportJobsResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
 use Google\Cloud\Kms\V1\MacSignRequest;
 use Google\Cloud\Kms\V1\MacSignResponse;
-
 use Google\Cloud\Kms\V1\MacVerifyRequest;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
 use Google\Cloud\Kms\V1\ProtectionLevel;
@@ -87,6 +85,10 @@ use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Int64Value;
 
@@ -111,7 +113,7 @@ use Google\Protobuf\Int64Value;
  * $keyManagementServiceClient = new KeyManagementServiceClient();
  * try {
  *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
- *     $ciphertext = '';
+ *     $ciphertext = '...';
  *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
  * } finally {
  *     $keyManagementServiceClient->close();
@@ -127,29 +129,19 @@ class KeyManagementServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.kms.v1.KeyManagementService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudkms.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudkms',
@@ -467,7 +459,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $ciphertext = '';
+     *     $ciphertext = '...';
      *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -870,7 +862,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-     *     $ciphertext = '';
+     *     $ciphertext = '...';
      *     $response = $keyManagementServiceClient->decrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1033,7 +1025,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $name = 'name';
-     *     $plaintext = '';
+     *     $plaintext = '...';
      *     $response = $keyManagementServiceClient->encrypt($name, $plaintext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1905,7 +1897,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $data = '';
+     *     $data = '...';
      *     $response = $keyManagementServiceClient->macSign($formattedName, $data);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1975,8 +1967,8 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $data = '';
-     *     $mac = '';
+     *     $data = '...';
+     *     $mac = '...';
      *     $response = $keyManagementServiceClient->macVerify($formattedName, $data, $mac);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -2251,6 +2243,125 @@ class KeyManagementServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $response = $keyManagementServiceClient->getLocation();
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $keyManagementServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $keyManagementServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 
     /**

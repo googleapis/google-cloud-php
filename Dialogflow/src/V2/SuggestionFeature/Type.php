@@ -20,19 +20,19 @@ class Type
      */
     const TYPE_UNSPECIFIED = 0;
     /**
-     * Run article suggestion model.
+     * Run article suggestion model for chat.
      *
      * Generated from protobuf enum <code>ARTICLE_SUGGESTION = 1;</code>
      */
     const ARTICLE_SUGGESTION = 1;
     /**
-     * Run FAQ model.
+     * Run FAQ model for chat.
      *
      * Generated from protobuf enum <code>FAQ = 2;</code>
      */
     const FAQ = 2;
     /**
-     * Run smart reply model.
+     * Run smart reply model for chat.
      *
      * Generated from protobuf enum <code>SMART_REPLY = 3;</code>
      */

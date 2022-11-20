@@ -22,7 +22,7 @@ class ListProvidersResponse extends \Google\Protobuf\Internal\Message
      */
     private $providers;
     /**
-     * A page token that can be sent to ListProviders to request the next page.
+     * A page token that can be sent to `ListProviders` to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -44,7 +44,7 @@ class ListProvidersResponse extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Eventarc\V1\Provider>|\Google\Protobuf\Internal\RepeatedField $providers
      *           The requested providers, up to the number specified in `page_size`.
      *     @type string $next_page_token
-     *           A page token that can be sent to ListProviders to request the next page.
+     *           A page token that can be sent to `ListProviders` to request the next page.
      *           If this is empty, then there are no more pages.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
      *           Unreachable resources, if any.
@@ -82,7 +82,7 @@ class ListProvidersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token that can be sent to ListProviders to request the next page.
+     * A page token that can be sent to `ListProviders` to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>
@@ -94,7 +94,7 @@ class ListProvidersResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token that can be sent to ListProviders to request the next page.
+     * A page token that can be sent to `ListProviders` to request the next page.
      * If this is empty, then there are no more pages.
      *
      * Generated from protobuf field <code>string next_page_token = 2;</code>

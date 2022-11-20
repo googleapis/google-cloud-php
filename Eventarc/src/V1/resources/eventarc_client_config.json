@@ -56,6 +56,11 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "GetGoogleChannelConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "GetProvider": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
@@ -91,7 +96,37 @@
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"
                 },
+                "UpdateGoogleChannelConfig": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
                 "UpdateTrigger": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetLocation": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "ListLocations": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "GetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "SetIamPolicy": {
+                    "timeout_millis": 60000,
+                    "retry_codes_name": "no_retry_codes",
+                    "retry_params_name": "no_retry_params"
+                },
+                "TestIamPermissions": {
                     "timeout_millis": 60000,
                     "retry_codes_name": "no_retry_codes",
                     "retry_params_name": "no_retry_params"

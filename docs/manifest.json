@@ -11,6 +11,8 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
+                "v0.193.0",
+                "v0.192.0",
                 "v0.191.0",
                 "v0.190.0",
                 "v0.189.0",
@@ -181,6 +183,7 @@
             "name": "google/cloud-ai-platform",
             "defaultService": "aiplatform/readme",
             "versions": [
+                "v0.9.0",
                 "v0.8.0",
                 "v0.7.1",
                 "v0.7.0",
@@ -207,6 +210,15 @@
                 "v0.2.1",
                 "v0.2.0",
                 "v0.1.1",
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-api-keys",
+            "name": "google/cloud-api-keys",
+            "defaultService": "apikeys/readme",
+            "versions": [
                 "v0.1.0",
                 "main"
             ]
@@ -285,6 +297,7 @@
             "name": "google/cloud-asset",
             "defaultService": "asset/readme",
             "versions": [
+                "v1.9.0",
                 "v1.8.0",
                 "v1.7.2",
                 "v1.7.1",
@@ -413,6 +426,7 @@
             "name": "google/cloud-batch",
             "defaultService": "batch/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.0",
                 "main"
             ]
@@ -534,6 +548,15 @@
             ]
         },
         {
+            "id": "cloud-bigquery-analyticshub",
+            "name": "google/cloud-bigquery-analyticshub",
+            "defaultService": "bigqueryanalyticshub/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
             "id": "cloud-bigquery-connection",
             "name": "google/cloud-bigquery-connection",
             "defaultService": "bigqueryconnection/readme",
@@ -570,6 +593,24 @@
                 "v0.2.0",
                 "v0.1.2",
                 "v0.1.1",
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-bigquery-datapolicies",
+            "name": "google/cloud-bigquery-datapolicies",
+            "defaultService": "bigquerydatapolicies/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-bigquery-migration",
+            "name": "google/cloud-bigquery-migration",
+            "defaultService": "bigquerymigration/readme",
+            "versions": [
                 "v0.1.0",
                 "main"
             ]
@@ -696,6 +737,7 @@
             "name": "google/cloud-bigtable",
             "defaultService": "bigtable/readme",
             "versions": [
+                "v1.20.0",
                 "v1.19.1",
                 "v1.19.0",
                 "v1.18.0",
@@ -929,6 +971,7 @@
             "name": "google/cloud-compute",
             "defaultService": "compute/readme",
             "versions": [
+                "v1.4.0",
                 "v1.3.0",
                 "v1.2.0",
                 "v1.1.1",
@@ -976,6 +1019,7 @@
             "name": "google/cloud-container",
             "defaultService": "container/readme",
             "versions": [
+                "v1.8.0",
                 "v1.7.1",
                 "v1.7.0",
                 "v1.6.3",
@@ -1038,6 +1082,7 @@
             "name": "google/cloud-container-analysis",
             "defaultService": "containeranalysis/readme",
             "versions": [
+                "v0.2.6",
                 "v0.2.5",
                 "v0.2.4",
                 "v0.2.3",
@@ -1058,6 +1103,7 @@
             "name": "google/cloud-core",
             "defaultService": "core/servicebuilder",
             "versions": [
+                "v1.47.4",
                 "v1.47.3",
                 "v1.47.2",
                 "v1.47.1",
@@ -1226,6 +1272,15 @@
             ]
         },
         {
+            "id": "cloud-dataform",
+            "name": "google/cloud-dataform",
+            "defaultService": "dataform/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
             "id": "cloud-datalabeling",
             "name": "google/cloud-datalabeling",
             "defaultService": "datalabeling/readme",
@@ -1260,6 +1315,7 @@
             "name": "google/cloud-dataproc",
             "defaultService": "dataproc/readme",
             "versions": [
+                "v3.2.0",
                 "v3.1.2",
                 "v3.1.1",
                 "v3.1.0",
@@ -1531,6 +1587,7 @@
             "name": "google/cloud-deploy",
             "defaultService": "deploy/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.4",
                 "v0.2.3",
                 "v0.2.2",
@@ -1548,6 +1605,7 @@
             "name": "google/cloud-dialogflow",
             "defaultService": "dialogflow/readme",
             "versions": [
+                "v0.29.0",
                 "v0.28.1",
                 "v0.28.0",
                 "v0.27.1",
@@ -2083,6 +2141,24 @@
             ]
         },
         {
+            "id": "cloud-gsuite-addons",
+            "name": "google/cloud-gsuite-addons",
+            "defaultService": "gsuiteaddons/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-iam",
+            "name": "google/cloud-iam",
+            "defaultService": "iam/readme",
+            "versions": [
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
             "id": "cloud-iam-credentials",
             "name": "google/cloud-iam-credentials",
             "defaultService": "iamcredentials/readme",
@@ -2196,6 +2272,7 @@
             "name": "google/cloud-kms",
             "defaultService": "kms/readme",
             "versions": [
+                "v1.14.0",
                 "v1.13.4",
                 "v1.13.3",
                 "v1.13.2",
@@ -3145,6 +3222,7 @@
             "name": "google/cloud-run",
             "defaultService": "run/readme",
             "versions": [
+                "v0.2.0",
                 "v0.1.1",
                 "v0.1.0",
                 "main"
@@ -3223,6 +3301,7 @@
             "name": "google/cloud-security-center",
             "defaultService": "securitycenter/readme",
             "versions": [
+                "v1.12.0",
                 "v1.11.0",
                 "v1.10.0",
                 "v1.9.0",
@@ -3274,6 +3353,15 @@
                 "v0.3.0",
                 "v0.2.1",
                 "v0.2.0",
+                "v0.1.0",
+                "main"
+            ]
+        },
+        {
+            "id": "cloud-security-public-ca",
+            "name": "google/cloud-security-public-ca",
+            "defaultService": "securitypublicca/readme",
+            "versions": [
                 "v0.1.0",
                 "main"
             ]
@@ -3618,6 +3706,8 @@
             "name": "google/cloud-storage",
             "defaultService": "storage/storageclient",
             "versions": [
+                "v1.29.0",
+                "v1.28.2",
                 "v1.28.1",
                 "v1.28.0",
                 "v1.27.1",
@@ -4020,6 +4110,7 @@
             "name": "google/cloud-video-stitcher",
             "defaultService": "videostitcher/readme",
             "versions": [
+                "v0.3.0",
                 "v0.2.2",
                 "v0.2.1",
                 "v0.2.0",
@@ -4135,6 +4226,7 @@
             "name": "google/cloud-vision",
             "defaultService": "vision/visionclient",
             "versions": [
+                "v1.6.0",
                 "v1.5.10",
                 "v1.5.9",
                 "v1.5.8",
@@ -4255,6 +4347,7 @@
             "name": "google/cloud-web-risk",
             "defaultService": "webrisk/readme",
             "versions": [
+                "v1.2.0",
                 "v1.1.7",
                 "v1.1.6",
                 "v1.1.5",

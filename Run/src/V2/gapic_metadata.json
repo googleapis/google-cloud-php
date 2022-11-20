@@ -5,6 +5,84 @@
     "protoPackage": "google.cloud.run.v2",
     "libraryPackage": "Google\\Cloud\\Run\\V2",
     "services": {
+        "Executions": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "ExecutionsGapicClient",
+                    "rpcs": {
+                        "DeleteExecution": {
+                            "methods": [
+                                "deleteExecution"
+                            ]
+                        },
+                        "GetExecution": {
+                            "methods": [
+                                "getExecution"
+                            ]
+                        },
+                        "ListExecutions": {
+                            "methods": [
+                                "listExecutions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Jobs": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "JobsGapicClient",
+                    "rpcs": {
+                        "CreateJob": {
+                            "methods": [
+                                "createJob"
+                            ]
+                        },
+                        "DeleteJob": {
+                            "methods": [
+                                "deleteJob"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "GetJob": {
+                            "methods": [
+                                "getJob"
+                            ]
+                        },
+                        "ListJobs": {
+                            "methods": [
+                                "listJobs"
+                            ]
+                        },
+                        "RunJob": {
+                            "methods": [
+                                "runJob"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        },
+                        "UpdateJob": {
+                            "methods": [
+                                "updateJob"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "Revisions": {
             "clients": {
                 "grpc": {
@@ -72,6 +150,25 @@
                         "UpdateService": {
                             "methods": [
                                 "updateService"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Tasks": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "TasksGapicClient",
+                    "rpcs": {
+                        "GetTask": {
+                            "methods": [
+                                "getTask"
+                            ]
+                        },
+                        "ListTasks": {
+                            "methods": [
+                                "listTasks"
                             ]
                         }
                     }

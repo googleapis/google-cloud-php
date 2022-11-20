@@ -19,8 +19,6 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table to update.
      * The table's `name` field is used to identify the table to update.
-     * Format:
-     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -48,8 +46,6 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Bigtable\Admin\V2\Table $table
      *           Required. The table to update.
      *           The table's `name` field is used to identify the table to update.
-     *           Format:
-     *           `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *     @type \Google\Protobuf\FieldMask $update_mask
      *           Required. The list of fields to update.
      *           A mask specifying which fields (e.g. `deletion_protection`) in the `table`
@@ -69,8 +65,6 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table to update.
      * The table's `name` field is used to identify the table to update.
-     * Format:
-     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Bigtable\Admin\V2\Table|null
@@ -93,8 +87,6 @@ class UpdateTableRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The table to update.
      * The table's `name` field is used to identify the table to update.
-     * Format:
-     * `projects/{project}/instances/{instance}/tables/[_a-zA-Z0-9][-_.a-zA-Z0-9]*`
      *
      * Generated from protobuf field <code>.google.bigtable.admin.v2.Table table = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Bigtable\Admin\V2\Table $var

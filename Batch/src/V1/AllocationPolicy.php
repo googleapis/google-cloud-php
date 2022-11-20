@@ -30,6 +30,12 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      */
     private $instances;
     /**
+     * Service account that VMs will run as.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
+     */
+    private $service_account = null;
+    /**
      * Labels applied to all VM instances and other resources
      * created by AllocationPolicy.
      * Labels could be user provided or system generated.
@@ -59,6 +65,8 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate>|\Google\Protobuf\Internal\RepeatedField $instances
      *           Describe instances that can be created by this AllocationPolicy.
      *           Only instances[0] is supported now.
+     *     @type \Google\Cloud\Batch\V1\ServiceAccount $service_account
+     *           Service account that VMs will run as.
      *     @type array|\Google\Protobuf\Internal\MapField $labels
      *           Labels applied to all VM instances and other resources
      *           created by AllocationPolicy.
@@ -136,6 +144,42 @@ class AllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Batch\V1\AllocationPolicy\InstancePolicyOrTemplate::class);
         $this->instances = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Service account that VMs will run as.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
+     * @return \Google\Cloud\Batch\V1\ServiceAccount|null
+     */
+    public function getServiceAccount()
+    {
+        return $this->service_account;
+    }
+
+    public function hasServiceAccount()
+    {
+        return isset($this->service_account);
+    }
+
+    public function clearServiceAccount()
+    {
+        unset($this->service_account);
+    }
+
+    /**
+     * Service account that VMs will run as.
+     *
+     * Generated from protobuf field <code>.google.cloud.batch.v1.ServiceAccount service_account = 9;</code>
+     * @param \Google\Cloud\Batch\V1\ServiceAccount $var
+     * @return $this
+     */
+    public function setServiceAccount($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Batch\V1\ServiceAccount::class);
+        $this->service_account = $var;
 
         return $this;
     }

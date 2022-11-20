@@ -35,12 +35,12 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      *           For API calls that return a long running operation.
      *           Resource name of the long running operation.
      *           Format:
-     *           'projects/{project}/locations/{location}/operations/{operation}'
+     *           `projects/{project}/locations/{location}/operations/{operation}`
      *     @type string $data_labeling_job
      *           For API calls that start a LabelingJob.
      *           Resource name of the LabelingJob.
      *           Format:
-     *           'projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}'
+     *           `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *     @type string $method
      *           The method name of the API RPC call. For example,
      *           "/google.cloud.aiplatform.{apiVersion}.DatasetService.CreateDataset"
@@ -55,7 +55,7 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      * For API calls that return a long running operation.
      * Resource name of the long running operation.
      * Format:
-     * 'projects/{project}/locations/{location}/operations/{operation}'
+     * `projects/{project}/locations/{location}/operations/{operation}`
      *
      * Generated from protobuf field <code>string operation = 1;</code>
      * @return string
@@ -74,7 +74,7 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      * For API calls that return a long running operation.
      * Resource name of the long running operation.
      * Format:
-     * 'projects/{project}/locations/{location}/operations/{operation}'
+     * `projects/{project}/locations/{location}/operations/{operation}`
      *
      * Generated from protobuf field <code>string operation = 1;</code>
      * @param string $var
@@ -92,7 +92,7 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      * For API calls that start a LabelingJob.
      * Resource name of the LabelingJob.
      * Format:
-     * 'projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}'
+     * `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *
      * Generated from protobuf field <code>string data_labeling_job = 2;</code>
      * @return string
@@ -111,7 +111,7 @@ class UserActionReference extends \Google\Protobuf\Internal\Message
      * For API calls that start a LabelingJob.
      * Resource name of the LabelingJob.
      * Format:
-     * 'projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}'
+     * `projects/{project}/locations/{location}/dataLabelingJobs/{data_labeling_job}`
      *
      * Generated from protobuf field <code>string data_labeling_job = 2;</code>
      * @param string $var

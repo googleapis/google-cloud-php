@@ -30,7 +30,7 @@ class MetadataService
         \GPBMetadata\Google\Protobuf\FieldMask::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ßk
+Þo
 1google/cloud/aiplatform/v1/metadata_service.protogoogle.cloud.aiplatform.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto)google/cloud/aiplatform/v1/artifact.proto(google/cloud/aiplatform/v1/context.proto&google/cloud/aiplatform/v1/event.proto*google/cloud/aiplatform/v1/execution.proto1google/cloud/aiplatform/v1/lineage_subgraph.proto0google/cloud/aiplatform/v1/metadata_schema.proto/google/cloud/aiplatform/v1/metadata_store.proto*google/cloud/aiplatform/v1/operation.proto#google/longrunning/operations.proto google/protobuf/field_mask.proto"º
 CreateMetadataStoreRequest9
 parent (	B)àAúA#
@@ -64,13 +64,14 @@ $DeleteMetadataStoreOperationMetadataN
 artifact_id (	"N
 GetArtifactRequest8
 name (	B*àAúA$
-"aiplatform.googleapis.com/Artifact"‰
+"aiplatform.googleapis.com/Artifact"›
 ListArtifactsRequest:
 parent (	B*àAúA$"aiplatform.googleapis.com/Artifact
 	page_size (
 
 page_token (	
-filter (	"i
+filter (	
+order_by (	"i
 ListArtifactsResponse7
 	artifacts (2$.google.cloud.aiplatform.v1.Artifact
 next_page_token (	"¡
@@ -100,13 +101,14 @@ page_token (	
 context_id (	"L
 GetContextRequest7
 name (	B)àAúA#
-!aiplatform.googleapis.com/Context"‡
+!aiplatform.googleapis.com/Context"™
 ListContextsRequest9
 parent (	B)àAúA#!aiplatform.googleapis.com/Context
 	page_size (
 
 page_token (	
-filter (	"f
+filter (	
+order_by (	"f
 ListContextsResponse5
 contexts (2#.google.cloud.aiplatform.v1.Context
 next_page_token (	"ž
@@ -143,7 +145,13 @@ executions (	B(úA%
 !aiplatform.googleapis.com/Context>
 child_contexts (	B&úA#
 !aiplatform.googleapis.com/Context"
-AddContextChildrenResponse"`
+AddContextChildrenResponse"š
+RemoveContextChildrenRequest:
+context (	B)àAúA#
+!aiplatform.googleapis.com/Context>
+child_contexts (	B&úA#
+!aiplatform.googleapis.com/Context"
+RemoveContextChildrenResponse"`
 "QueryContextLineageSubgraphRequest:
 context (	B)àAúA#
 !aiplatform.googleapis.com/Context"®
@@ -154,13 +162,14 @@ executions (	B(úA%
 execution_id (	"P
 GetExecutionRequest9
 name (	B+àAúA%
-#aiplatform.googleapis.com/Execution"‹
+#aiplatform.googleapis.com/Execution"
 ListExecutionsRequest;
 parent (	B+àAúA%#aiplatform.googleapis.com/Execution
 	page_size (
 
 page_token (	
-filter (	"l
+filter (	
+order_by (	"l
 ListExecutionsResponse9
 
 executions (2%.google.cloud.aiplatform.v1.Execution
@@ -212,7 +221,7 @@ page_token (	
 artifact (	B*àAúA$
 "aiplatform.googleapis.com/Artifact
 max_hops (
-filter (	2¦8
+filter (	2±:
 MetadataService›
 CreateMetadataStore6.google.cloud.aiplatform.v1.CreateMetadataStoreRequest.google.longrunning.Operation"¬‚Óä“D"2/v1/{parent=projects/*/locations/*}/metadataStores:metadata_storeÚA\'parent,metadata_store,metadata_store_idÊA5
 MetadataStore$CreateMetadataStoreOperationMetadataµ
@@ -238,7 +247,8 @@ GetContext-.google.cloud.aiplatform.v1.GetContextRequest#.google.cloud.aiplatf
 PurgeContexts0.google.cloud.aiplatform.v1.PurgeContextsRequest.google.longrunning.Operation"ˆ‚Óä“H"C/v1/{parent=projects/*/locations/*/metadataStores/*}/contexts:purge:*ÚAparentÊA.
 PurgeContextsResponsePurgeContextsMetadata»
  AddContextArtifactsAndExecutionsC.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsRequestD.google.cloud.aiplatform.v1.AddContextArtifactsAndExecutionsResponse"‹‚Óä“f"a/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextArtifactsAndExecutions:*ÚAcontext,artifacts,executionsü
-AddContextChildren5.google.cloud.aiplatform.v1.AddContextChildrenRequest6.google.cloud.aiplatform.v1.AddContextChildrenResponse"w‚Óä“X"S/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextChildren:*ÚAcontext,child_contextsú
+AddContextChildren5.google.cloud.aiplatform.v1.AddContextChildrenRequest6.google.cloud.aiplatform.v1.AddContextChildrenResponse"w‚Óä“X"S/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:addContextChildren:*ÚAcontext,child_contextsˆ
+RemoveContextChildren8.google.cloud.aiplatform.v1.RemoveContextChildrenRequest9.google.cloud.aiplatform.v1.RemoveContextChildrenResponse"z‚Óä“["V/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:removeContextChildren:*ÚAcontext,child_contextsú
 QueryContextLineageSubgraph>.google.cloud.aiplatform.v1.QueryContextLineageSubgraphRequest+.google.cloud.aiplatform.v1.LineageSubgraph"n‚Óä“^\\/v1/{context=projects/*/locations/*/metadataStores/*/contexts/*}:queryContextLineageSubgraphÚAcontextà
 CreateExecution2.google.cloud.aiplatform.v1.CreateExecutionRequest%.google.cloud.aiplatform.v1.Execution"r‚Óä“L"?/v1/{parent=projects/*/locations/*/metadataStores/*}/executions:	executionÚAparent,execution,execution_id¶
 GetExecution/.google.cloud.aiplatform.v1.GetExecutionRequest%.google.cloud.aiplatform.v1.Execution"N‚Óä“A?/v1/{name=projects/*/locations/*/metadataStores/*/executions/*}ÚAnameÉ

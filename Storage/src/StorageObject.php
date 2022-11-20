@@ -611,10 +611,11 @@ class StorageObject
      */
     public function downloadToFile($path, array $options = [])
     {
+        $source = $this->downloadAsStream($options);
         $destination = Utils::streamFor(fopen($path, 'w'));
 
         Utils::copyToStream(
-            $this->downloadAsStream($options),
+            $source,
             $destination
         );
 

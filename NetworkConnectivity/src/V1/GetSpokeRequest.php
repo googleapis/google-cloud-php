@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The request for [HubService.GetSpoke][google.cloud.networkconnectivity.v1.HubService.GetSpoke].
+ * The request for
+ * [HubService.GetSpoke][google.cloud.networkconnectivity.v1.HubService.GetSpoke].
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.GetSpokeRequest</code>
  */

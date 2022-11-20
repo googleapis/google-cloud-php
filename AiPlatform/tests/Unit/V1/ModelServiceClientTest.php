@@ -541,6 +541,7 @@ class ModelServiceClientTest extends GeneratedTest
         $trainingPipeline = 'trainingPipeline-2026166169';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
+        $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Model();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersionId($versionId);
@@ -551,6 +552,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -1123,6 +1125,7 @@ class ModelServiceClientTest extends GeneratedTest
         $trainingPipeline = 'trainingPipeline-2026166169';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
+        $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Model();
         $expectedResponse->setName($name2);
         $expectedResponse->setVersionId($versionId);
@@ -1133,6 +1136,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
         // Mock request
         $formattedName = $gapicClient->modelName('[PROJECT]', '[LOCATION]', '[MODEL]');
@@ -1207,6 +1211,7 @@ class ModelServiceClientTest extends GeneratedTest
         $trainingPipeline = 'trainingPipeline-2026166169';
         $artifactUri = 'artifactUri-671891073';
         $etag = 'etag3123477';
+        $metadataArtifact = 'metadataArtifact2087706850';
         $expectedResponse = new Model();
         $expectedResponse->setName($name);
         $expectedResponse->setVersionId($versionId);
@@ -1217,6 +1222,7 @@ class ModelServiceClientTest extends GeneratedTest
         $expectedResponse->setTrainingPipeline($trainingPipeline);
         $expectedResponse->setArtifactUri($artifactUri);
         $expectedResponse->setEtag($etag);
+        $expectedResponse->setMetadataArtifact($metadataArtifact);
         $transport->addResponse($expectedResponse);
         // Mock request
         $model = new Model();

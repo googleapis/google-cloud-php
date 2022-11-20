@@ -217,6 +217,13 @@ class PublisherGapicClient
      *           `projects/{partner_project_id}/locations/{location}/channelConnections/{channel_connection_id}`.
      *     @type Any[] $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
+     *           If this field is set, then the `text_events` fields must not be set.
+     *     @type string[] $textEvents
+     *           The text representation of events to publish.
+     *           CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     *           https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     *           for specification.
+     *           If this field is set, then the `events` fields must not be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -239,6 +246,10 @@ class PublisherGapicClient
 
         if (isset($optionalArgs['events'])) {
             $request->setEvents($optionalArgs['events']);
+        }
+
+        if (isset($optionalArgs['textEvents'])) {
+            $request->setTextEvents($optionalArgs['textEvents']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(
@@ -276,6 +287,13 @@ class PublisherGapicClient
      *           `projects/{project}/locations/{location}/channels/{channel-id}`.
      *     @type Any[] $events
      *           The CloudEvents v1.0 events to publish. No other types are allowed.
+     *           If this field is set, then the `text_events` fields must not be set.
+     *     @type string[] $textEvents
+     *           The text representation of events to publish.
+     *           CloudEvent v1.0 in JSON format is the only allowed type. Refer to
+     *           https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md
+     *           for specification.
+     *           If this field is set, then the `events` fields must not be set.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -297,6 +315,10 @@ class PublisherGapicClient
 
         if (isset($optionalArgs['events'])) {
             $request->setEvents($optionalArgs['events']);
+        }
+
+        if (isset($optionalArgs['textEvents'])) {
+            $request->setTextEvents($optionalArgs['textEvents']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor(

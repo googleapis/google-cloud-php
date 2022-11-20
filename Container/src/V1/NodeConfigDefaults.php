@@ -21,6 +21,12 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.GcfsConfig gcfs_config = 1;</code>
      */
     private $gcfs_config = null;
+    /**
+     * Logging configuration for node pools.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 3;</code>
+     */
+    private $logging_config = null;
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\Container\V1\GcfsConfig $gcfs_config
      *           GCFS (Google Container File System, also known as Riptide) options.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
+     *           Logging configuration for node pools.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,42 @@ class NodeConfigDefaults extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\GcfsConfig::class);
         $this->gcfs_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration for node pools.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 3;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration for node pools.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 3;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->logging_config = $var;
 
         return $this;
     }

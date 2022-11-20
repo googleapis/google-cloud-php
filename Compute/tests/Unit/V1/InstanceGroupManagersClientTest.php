@@ -945,6 +945,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $instanceGroup = 'instanceGroup81095253';
         $instanceTemplate = 'instanceTemplate309248228';
         $kind = 'kind3292052';
+        $listManagedInstancesResults = 'listManagedInstancesResults832918068';
         $name = 'name3373707';
         $region = 'region-934795532';
         $selfLink = 'selfLink-1691268851';
@@ -959,6 +960,7 @@ class InstanceGroupManagersClientTest extends GeneratedTest
         $expectedResponse->setInstanceGroup($instanceGroup);
         $expectedResponse->setInstanceTemplate($instanceTemplate);
         $expectedResponse->setKind($kind);
+        $expectedResponse->setListManagedInstancesResults($listManagedInstancesResults);
         $expectedResponse->setName($name);
         $expectedResponse->setRegion($region);
         $expectedResponse->setSelfLink($selfLink);

@@ -1,0 +1,30 @@
+{
+    "name": "google/cloud-bigquery-analyticshub",
+    "description": "Google Cloud BigQuery Analytics Hub Client for PHP",
+    "license": "Apache-2.0",
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Google\\Cloud\\BigQuery\\AnalyticsHub\\": "src",
+            "GPBMetadata\\Google\\Cloud\\Bigquery\\Analyticshub\\": "metadata"
+        }
+    },
+    "extra": {
+        "component": {
+            "id": "cloud-bigquery-analyticshub",
+            "path": "BigQueryAnalyticsHub",
+            "entry": null,
+            "target": "googleapis/google-cloud-php-bigquery-analyticshub.git"
+        }
+    },
+    "require": {
+        "google/gax": "^1.17.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0|^8.0"
+    },
+    "suggest": {
+        "ext-grpc": "Enables use of gRPC, a universal high-performance RPC framework created by Google.",
+        "ext-protobuf": "Provides a significant increase in throughput over the pure PHP protobuf implementation. See https://cloud.google.com/php/grpc for installation instructions."
+    }
+}

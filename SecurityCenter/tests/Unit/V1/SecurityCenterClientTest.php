@@ -497,7 +497,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setServiceAccount($serviceAccount);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $configId = 'configId-804450504';
         $notificationConfig = new NotificationConfig();
         $response = $gapicClient->createNotificationConfig($formattedParent, $configId, $notificationConfig);
@@ -537,7 +537,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $configId = 'configId-804450504';
         $notificationConfig = new NotificationConfig();
         try {
@@ -1697,7 +1697,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $expectedResponse->setNotificationConfigs($notificationConfigs);
         $transport->addResponse($expectedResponse);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         $response = $gapicClient->listNotificationConfigs($formattedParent);
         $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
         $resources = iterator_to_array($response->iterateAllElements());
@@ -1734,7 +1734,7 @@ class SecurityCenterClientTest extends GeneratedTest
         ], JSON_PRETTY_PRINT);
         $transport->addResponse(null, $status);
         // Mock request
-        $formattedParent = $gapicClient->organizationName('[ORGANIZATION]');
+        $formattedParent = $gapicClient->projectName('[PROJECT]');
         try {
             $gapicClient->listNotificationConfigs($formattedParent);
             // If the $gapicClient method call did not throw, fail the test

@@ -18,7 +18,7 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The resource name of the Tensorboard to list TensorboardExperiments.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -71,7 +71,7 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
      *     @type string $parent
      *           Required. The resource name of the Tensorboard to list TensorboardExperiments.
      *           Format:
-     *           'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *     @type string $filter
      *           Lists the TensorboardExperiments that match the filter expression.
      *     @type int $page_size
@@ -100,7 +100,7 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The resource name of the Tensorboard to list TensorboardExperiments.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +113,7 @@ class ListTensorboardExperimentsRequest extends \Google\Protobuf\Internal\Messag
     /**
      * Required. The resource name of the Tensorboard to list TensorboardExperiments.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

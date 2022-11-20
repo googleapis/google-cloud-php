@@ -33,9 +33,9 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * User provided version aliases so that a model version can be referenced via
      * alias (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
      * instead of auto-generated version id (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}).
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
      * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
      * version_id. A default version alias will be created for the first version
      * of the model, and there must be exactly one default version alias for a
@@ -287,6 +287,21 @@ class Model extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 24;</code>
      */
     private $encryption_spec = null;
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $model_source_info = null;
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata_artifact = '';
 
     /**
      * Constructor.
@@ -304,9 +319,9 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $version_aliases
      *           User provided version aliases so that a model version can be referenced via
      *           alias (i.e.
-     *           projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}
+     *           `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
      *           instead of auto-generated version id (i.e.
-     *           projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}).
+     *           `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
      *           The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
      *           version_id. A default version alias will be created for the first version
      *           of the model, and there must be exactly one default version alias for a
@@ -466,6 +481,13 @@ class Model extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Model. If set, this
      *           Model and all sub-resources of this Model will be secured by this key.
+     *     @type \Google\Cloud\AIPlatform\V1\ModelSourceInfo $model_source_info
+     *           Output only. Source of a model. It can either be automl training pipeline, custom
+     *           training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *     @type string $metadata_artifact
+     *           Output only. The resource name of the Artifact that was created in MetadataStore when
+     *           creating the Model. The Artifact resource name pattern is
+     *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -534,9 +556,9 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * User provided version aliases so that a model version can be referenced via
      * alias (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
      * instead of auto-generated version id (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}).
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
      * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
      * version_id. A default version alias will be created for the first version
      * of the model, and there must be exactly one default version alias for a
@@ -553,9 +575,9 @@ class Model extends \Google\Protobuf\Internal\Message
     /**
      * User provided version aliases so that a model version can be referenced via
      * alias (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_alias}`
      * instead of auto-generated version id (i.e.
-     * projects/{project}/locations/{location}/models/{model_id}&#64;{version_id}).
+     * `projects/{project}/locations/{location}/models/{model_id}&#64;{version_id})`.
      * The format is [a-z][a-zA-Z0-9-]{0,126}[a-z0-9] to distinguish from
      * version_id. A default version alias will be created for the first version
      * of the model, and there must be exactly one default version alias for a
@@ -1453,6 +1475,74 @@ class Model extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\AIPlatform\V1\ModelSourceInfo|null
+     */
+    public function getModelSourceInfo()
+    {
+        return $this->model_source_info;
+    }
+
+    public function hasModelSourceInfo()
+    {
+        return isset($this->model_source_info);
+    }
+
+    public function clearModelSourceInfo()
+    {
+        unset($this->model_source_info);
+    }
+
+    /**
+     * Output only. Source of a model. It can either be automl training pipeline, custom
+     * training pipeline, BigQuery ML, or existing Vertex AI Model.
+     *
+     * Generated from protobuf field <code>.google.cloud.aiplatform.v1.ModelSourceInfo model_source_info = 38 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\AIPlatform\V1\ModelSourceInfo $var
+     * @return $this
+     */
+    public function setModelSourceInfo($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\ModelSourceInfo::class);
+        $this->model_source_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getMetadataArtifact()
+    {
+        return $this->metadata_artifact;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Model. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 44 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataArtifact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_artifact = $var;
 
         return $this;
     }

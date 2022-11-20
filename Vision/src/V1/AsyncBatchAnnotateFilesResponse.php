@@ -29,7 +29,7 @@ class AsyncBatchAnnotateFilesResponse extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse[]|\Google\Protobuf\Internal\RepeatedField $responses
+     *     @type array<\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse>|\Google\Protobuf\Internal\RepeatedField $responses
      *           The list of file annotation responses, one for each request in
      *           AsyncBatchAnnotateFilesRequest.
      * }
@@ -56,7 +56,7 @@ class AsyncBatchAnnotateFilesResponse extends \Google\Protobuf\Internal\Message
      * AsyncBatchAnnotateFilesRequest.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.AsyncAnnotateFileResponse responses = 1;</code>
-     * @param \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\AsyncAnnotateFileResponse>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setResponses($var)

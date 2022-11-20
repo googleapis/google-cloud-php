@@ -53,6 +53,7 @@ use Google\Cloud\Bigtable\V2\ReadRowsResponse;
 use Google\Cloud\Bigtable\V2\RowFilter;
 use Google\Cloud\Bigtable\V2\RowSet;
 use Google\Cloud\Bigtable\V2\SampleRowKeysRequest;
+
 use Google\Cloud\Bigtable\V2\SampleRowKeysResponse;
 
 /**
@@ -672,8 +673,8 @@ class BigtableGapicClient
      *     Optional.
      *
      *     @type string $appProfileId
-     *           This value specifies routing for replication. If not specified, the
-     *           "default" application profile will be used.
+     *           This value specifies routing for replication. This API only accepts the
+     *           empty value of app_profile_id.
      *     @type RowSet $rows
      *           The row keys and/or ranges to read sequentially. If not specified, reads
      *           from all rows.
@@ -683,6 +684,9 @@ class BigtableGapicClient
      *     @type int $rowsLimit
      *           The read will stop after committing to N rows' worth of results. The
      *           default (zero) is to return all results.
+     *     @type int $requestStatsView
+     *           The view into RequestStats, as described above.
+     *           For allowed values, use constants defined on {@see \Google\Cloud\Bigtable\V2\ReadRowsRequest\RequestStatsView}
      *     @type int $timeoutMillis
      *           Timeout to use for this call.
      * }
@@ -717,6 +721,10 @@ class BigtableGapicClient
 
         if (isset($optionalArgs['rowsLimit'])) {
             $request->setRowsLimit($optionalArgs['rowsLimit']);
+        }
+
+        if (isset($optionalArgs['requestStatsView'])) {
+            $request->setRequestStatsView($optionalArgs['requestStatsView']);
         }
 
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);

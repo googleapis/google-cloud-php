@@ -7,7 +7,7 @@ namespace Google\Cloud\Deploy\V1\Rollout;
 use UnexpectedValueException;
 
 /**
- * Well-known deployment failures.
+ * Well-known rollout failures.
  *
  * Protobuf type <code>google.cloud.deploy.v1.Rollout.FailureCause</code>
  */
@@ -46,6 +46,18 @@ class FailureCause
      * Generated from protobuf enum <code>RELEASE_FAILED = 4;</code>
      */
     const RELEASE_FAILED = 4;
+    /**
+     * Release is abandoned.
+     *
+     * Generated from protobuf enum <code>RELEASE_ABANDONED = 5;</code>
+     */
+    const RELEASE_ABANDONED = 5;
+    /**
+     * No skaffold verify configuration was found.
+     *
+     * Generated from protobuf enum <code>VERIFICATION_CONFIG_NOT_FOUND = 6;</code>
+     */
+    const VERIFICATION_CONFIG_NOT_FOUND = 6;
 
     private static $valueToName = [
         self::FAILURE_CAUSE_UNSPECIFIED => 'FAILURE_CAUSE_UNSPECIFIED',
@@ -53,6 +65,8 @@ class FailureCause
         self::EXECUTION_FAILED => 'EXECUTION_FAILED',
         self::DEADLINE_EXCEEDED => 'DEADLINE_EXCEEDED',
         self::RELEASE_FAILED => 'RELEASE_FAILED',
+        self::RELEASE_ABANDONED => 'RELEASE_ABANDONED',
+        self::VERIFICATION_CONFIG_NOT_FOUND => 'VERIFICATION_CONFIG_NOT_FOUND',
     ];
 
     public static function name($value)

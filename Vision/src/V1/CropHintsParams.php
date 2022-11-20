@@ -33,7 +33,7 @@ class CropHintsParams extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type float[]|\Google\Protobuf\Internal\RepeatedField $aspect_ratios
+     *     @type array<float>|\Google\Protobuf\Internal\RepeatedField $aspect_ratios
      *           Aspect ratios in floats, representing the ratio of the width to the height
      *           of the image. For example, if the desired aspect ratio is 4/3, the
      *           corresponding float value should be 1.33333.  If not specified, the
@@ -72,7 +72,7 @@ class CropHintsParams extends \Google\Protobuf\Internal\Message
      * ignored.
      *
      * Generated from protobuf field <code>repeated float aspect_ratios = 1;</code>
-     * @param float[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<float>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setAspectRatios($var)
