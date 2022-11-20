@@ -47,7 +47,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
      * https://cloud.google.com/requested-min-cpu-platform label selector on the
      * pod.
@@ -119,7 +119,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      *           minCpuPlatform: Intel Haswell or
      *           minCpuPlatform: Intel Sandy Bridge. For more
      *           information, read [how to specify min CPU
-     *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     *           platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      *           This field is deprecated, min_cpu_platform should be specified using
      *           https://cloud.google.com/requested-min-cpu-platform label selector on the
      *           pod.
@@ -282,7 +282,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
      * https://cloud.google.com/requested-min-cpu-platform label selector on the
      * pod.
@@ -306,7 +306,7 @@ class AutoprovisioningNodePoolDefaults extends \Google\Protobuf\Internal\Message
      * minCpuPlatform: Intel Haswell or
      * minCpuPlatform: Intel Sandy Bridge. For more
      * information, read [how to specify min CPU
-     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform).
      * This field is deprecated, min_cpu_platform should be specified using
      * https://cloud.google.com/requested-min-cpu-platform label selector on the
      * pod.

@@ -377,7 +377,7 @@ class RevisionsGapicClient
     }
 
     /**
-     * Delete a Revision.
+     * Deletes a Revision.
      *
      * Sample code:
      * ```
@@ -516,7 +516,7 @@ class RevisionsGapicClient
     }
 
     /**
-     * List Revisions from a given Service, or from a given location.
+     * Lists Revisions from a given Service, or from a given location.
      *
      * Sample code:
      * ```

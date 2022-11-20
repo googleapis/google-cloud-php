@@ -13,6 +13,11 @@ return [
                     'resourcesGetMethod' => 'getParticipants',
                 ],
             ],
+            'StreamingAnalyzeContent' => [
+                'grpcStreaming' => [
+                    'grpcStreamingType' => 'BidiStreaming',
+                ],
+            ],
             'ListLocations' => [
                 'pageStreaming' => [
                     'requestPageTokenGetMethod' => 'getPageToken',

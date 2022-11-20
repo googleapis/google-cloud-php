@@ -84,7 +84,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
      * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
-     * projects/{project}/global/networks/{network}.
+     * `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in '12345', and {network} is
      * network name.
      *
@@ -144,7 +144,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      *           [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
      *           are mutually exclusive.
      *           [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
-     *           projects/{project}/global/networks/{network}.
+     *           `projects/{project}/global/networks/{network}`.
      *           Where {project} is a project number, as in '12345', and {network} is
      *           network name.
      *     @type bool $enable_private_service_connect
@@ -417,7 +417,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
      * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
-     * projects/{project}/global/networks/{network}.
+     * `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in '12345', and {network} is
      * network name.
      *
@@ -439,7 +439,7 @@ class IndexEndpoint extends \Google\Protobuf\Internal\Message
      * [private_service_connect_config][google.cloud.aiplatform.v1.IndexEndpoint.private_service_connect_config]
      * are mutually exclusive.
      * [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert):
-     * projects/{project}/global/networks/{network}.
+     * `projects/{project}/global/networks/{network}`.
      * Where {project} is a project number, as in '12345', and {network} is
      * network name.
      *

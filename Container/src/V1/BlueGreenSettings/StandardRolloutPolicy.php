@@ -30,7 +30,7 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type float $batch_percentage
-     *           Percentage of the bool pool nodes to drain in a batch.
+     *           Percentage of the blue pool nodes to drain in a batch.
      *           The range of this field should be (0.0, 1.0].
      *     @type int $batch_node_count
      *           Number of blue nodes to drain in a batch.
@@ -44,7 +44,7 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Percentage of the bool pool nodes to drain in a batch.
+     * Percentage of the blue pool nodes to drain in a batch.
      * The range of this field should be (0.0, 1.0].
      *
      * Generated from protobuf field <code>float batch_percentage = 1;</code>
@@ -61,7 +61,7 @@ class StandardRolloutPolicy extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Percentage of the bool pool nodes to drain in a batch.
+     * Percentage of the blue pool nodes to drain in a batch.
      * The range of this field should be (0.0, 1.0].
      *
      * Generated from protobuf field <code>float batch_percentage = 1;</code>

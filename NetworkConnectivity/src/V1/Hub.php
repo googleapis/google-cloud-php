@@ -9,11 +9,11 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A hub is a collection of spokes. A single hub can contain spokes from
- * multiple regions. However, if any of a hub's spokes use the data transfer
- * feature, the resources associated with those spokes must all reside in the
- * same VPC network. Spokes that do not use data transfer can be associated
- * with any VPC network in your project.
+ * A Network Connectivity Center hub is a collection of spokes. A single hub
+ * can contain spokes from multiple regions. However, if any of a hub's spokes
+ * use the data transfer feature, the resources associated with those spokes
+ * must all reside in the same VPC network. Spokes that do not use data
+ * transfer can be associated with any VPC network in your project.
  *
  * Generated from protobuf message <code>google.cloud.networkconnectivity.v1.Hub</code>
  */
@@ -54,9 +54,9 @@ class Hub extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. The Google-generated UUID for the hub. This value is unique across all hub
-     * resources. If a hub is deleted and another with the same name is created,
-     * the new hub is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the hub. This value is unique
+     * across all hub resources. If a hub is deleted and another with the same
+     * name is created, the new hub is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -97,9 +97,9 @@ class Hub extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           An optional description of the hub.
      *     @type string $unique_id
-     *           Output only. The Google-generated UUID for the hub. This value is unique across all hub
-     *           resources. If a hub is deleted and another with the same name is created,
-     *           the new hub is assigned a different unique_id.
+     *           Output only. The Google-generated UUID for the hub. This value is unique
+     *           across all hub resources. If a hub is deleted and another with the same
+     *           name is created, the new hub is assigned a different unique_id.
      *     @type int $state
      *           Output only. The current lifecycle state of this hub.
      *     @type array<\Google\Cloud\NetworkConnectivity\V1\RoutingVPC>|\Google\Protobuf\Internal\RepeatedField $routing_vpcs
@@ -272,9 +272,9 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Google-generated UUID for the hub. This value is unique across all hub
-     * resources. If a hub is deleted and another with the same name is created,
-     * the new hub is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the hub. This value is unique
+     * across all hub resources. If a hub is deleted and another with the same
+     * name is created, the new hub is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -285,9 +285,9 @@ class Hub extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The Google-generated UUID for the hub. This value is unique across all hub
-     * resources. If a hub is deleted and another with the same name is created,
-     * the new hub is assigned a different unique_id.
+     * Output only. The Google-generated UUID for the hub. This value is unique
+     * across all hub resources. If a hub is deleted and another with the same
+     * name is created, the new hub is assigned a different unique_id.
      *
      * Generated from protobuf field <code>string unique_id = 8 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var

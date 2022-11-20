@@ -144,13 +144,13 @@ class FirestoreClient
             'scopes' => [self::FULL_CONTROL_SCOPE],
             'database' => self::DEFAULT_DATABASE,
             'hasEmulator' => (bool) $emulatorHost,
-            'emulatorHost' => $emulatorHost
+            'emulatorHost' => $emulatorHost,
         ];
 
         $this->database = $config['database'];
 
         $this->connection = new Grpc($this->configureAuthentication($config) + [
-            'projectId' => $this->projectId
+            'projectId' => $this->projectId,
         ]);
 
         $this->valueMapper = new ValueMapper(
@@ -171,6 +171,7 @@ class FirestoreClient
      * ```
      *
      * @return WriteBatch
+     * @deprecated Please use {@see Google\Cloud\Firestore\BulkWriter} instead.
      */
     public function batch()
     {
@@ -181,6 +182,59 @@ class FirestoreClient
                 $this->projectId,
                 $this->database
             )
+        );
+    }
+
+    /**
+     * Get a Bulk Writer
+     *
+     * {@see Google\Cloud\Firestore\BulkWriter} allows scheduling multiple
+     * writes with auto-retries in batches. Please note:
+     *     - This method is blocking and may execute many sequential batch write requests.
+     *     - Gradually ramps up writes as specified by the 500/50/5 rule.
+     *     - Does not guarantee the order of writes.
+     *     - Accepts unique document references only.
+     * Read more: [Ramping up traffic](https://cloud.google.com/firestore/docs/best-practices#ramping_up_traffic)
+     *
+     * Example:
+     * ```
+     * $batch = $firestore->bulkWriter();
+     * ```
+     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     *
+     *     Please note that the default values are experiementally derived after
+     *     performance evaluations. The underlying constants may change in backwards-
+     *     incompatible ways. Please use with caution, and test thoroughly when
+     *     upgrading.
+     *
+     *     @type int $maxBatchSize Maximum number of requests per batch.
+     *           **Defaults to** `20`.
+     *     @type bool $greedilySend Flag to indicate whether BulkWriter greedily
+     *           sends batches. **Defaults to** `true`.
+     *     @type bool $isThrottlingEnabled Flag to indicate whether rate of
+     *           sending writes can be throttled. **Defaults to** `true`.
+     *     @type int $initialOpsPerSecond Initial number of operations per second.
+     *           **Defaults to** `20`.
+     *     @type int $maxOpsPerSecond Maximum number of operations per second.
+     *           **Defaults to** `500`.
+     *     @type callable $isRetryable Default retry handler for individial writes
+     *           status code to be retried. Should accept error code and return
+     *           true if retryable.
+     * }
+     * @return BulkWriter
+     */
+    public function bulkWriter(array $options = [])
+    {
+        return new BulkWriter(
+            $this->connection,
+            $this->valueMapper,
+            $this->databaseName(
+                $this->projectId,
+                $this->database
+            ),
+            $options
         );
     }
 
@@ -248,7 +302,7 @@ class FirestoreClient
                 ] + $options,
                 [
                     'itemsKey' => 'collectionIds',
-                    'resultLimit' => $resultLimit
+                    'resultLimit' => $resultLimit,
                 ]
             )
         );
@@ -366,9 +420,9 @@ class FirestoreClient
                 'from' => [
                     [
                         'collectionId' => $id,
-                        'allDescendants' => true
-                    ]
-                ]
+                        'allDescendants' => true,
+                    ],
+                ],
             ]
         );
     }
@@ -445,17 +499,17 @@ class FirestoreClient
             'maxRetries' => self::MAX_RETRIES,
             'begin' => [],
             'commit' => [],
-            'rollback' => []
+            'rollback' => [],
         ];
 
         $retryableErrors = [
-            AbortedException::class
+            AbortedException::class,
         ];
 
         $delayFn = function () {
             return [
                 'seconds' => 0,
-                'nanos' => 0
+                'nanos' => 0,
             ];
         };
 
@@ -480,7 +534,7 @@ class FirestoreClient
 
             $beginTransaction = $this->connection->beginTransaction(array_filter([
                 'database' => $database,
-                'retryTransaction' => $transactionId
+                'retryTransaction' => $transactionId,
             ]) + $options['begin']);
 
             $transactionId = $beginTransaction['transaction'];
@@ -497,7 +551,7 @@ class FirestoreClient
 
                 if (!$transaction->writer()->isEmpty()) {
                     $transaction->writer()->commit([
-                        'transaction' => $transactionId
+                        'transaction' => $transactionId,
                     ] + $options['commit']);
                 } else {
                     // trigger rollback if no writes exist.
@@ -512,7 +566,7 @@ class FirestoreClient
             }
         }, [
             $callable,
-            $options
+            $options,
         ]);
     }
 

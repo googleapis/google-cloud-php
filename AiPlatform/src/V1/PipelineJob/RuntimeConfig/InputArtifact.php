@@ -25,8 +25,8 @@ class InputArtifact extends \Google\Protobuf\Internal\Message
      *
      *     @type string $artifact_id
      *           Artifact resource id from MLMD. Which is the last portion of an
-     *           artifact resource
-     *           name(projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}).
+     *           artifact resource name:
+     *           `projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}`.
      *           The artifact must stay within the same project, location and default
      *           metadatastore as the pipeline.
      * }
@@ -38,8 +38,8 @@ class InputArtifact extends \Google\Protobuf\Internal\Message
 
     /**
      * Artifact resource id from MLMD. Which is the last portion of an
-     * artifact resource
-     * name(projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}).
+     * artifact resource name:
+     * `projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}`.
      * The artifact must stay within the same project, location and default
      * metadatastore as the pipeline.
      *
@@ -58,8 +58,8 @@ class InputArtifact extends \Google\Protobuf\Internal\Message
 
     /**
      * Artifact resource id from MLMD. Which is the last portion of an
-     * artifact resource
-     * name(projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}).
+     * artifact resource name:
+     * `projects/{project}/locations/{location}/metadataStores/default/artifacts/{artifact_id}`.
      * The artifact must stay within the same project, location and default
      * metadatastore as the pipeline.
      *

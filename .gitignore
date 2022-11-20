@@ -9,6 +9,10 @@ vendor/
 *.iml
 .phpunit.result.cache
 
+# DocFX
+**/out/*
+.phpdoc/
+
 # do not delete
 keys/
 .testing

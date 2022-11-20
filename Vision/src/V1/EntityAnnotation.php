@@ -120,13 +120,13 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Vision\V1\BoundingPoly $bounding_poly
      *           Image region to which this entity belongs. Not produced
      *           for `LABEL_DETECTION` features.
-     *     @type \Google\Cloud\Vision\V1\LocationInfo[]|\Google\Protobuf\Internal\RepeatedField $locations
+     *     @type array<\Google\Cloud\Vision\V1\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $locations
      *           The location information for the detected entity. Multiple
      *           `LocationInfo` elements can be present because one location may
      *           indicate the location of the scene in the image, and another location
      *           may indicate the location of the place where the image was taken.
      *           Location information is usually present for landmarks.
-     *     @type \Google\Cloud\Vision\V1\Property[]|\Google\Protobuf\Internal\RepeatedField $properties
+     *     @type array<\Google\Cloud\Vision\V1\Property>|\Google\Protobuf\Internal\RepeatedField $properties
      *           Some entities may have optional user-supplied `Property` (name/value)
      *           fields, such a score or string that qualifies the entity.
      * }
@@ -379,7 +379,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * Location information is usually present for landmarks.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.LocationInfo locations = 8;</code>
-     * @param \Google\Cloud\Vision\V1\LocationInfo[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocations($var)
@@ -407,7 +407,7 @@ class EntityAnnotation extends \Google\Protobuf\Internal\Message
      * fields, such a score or string that qualifies the entity.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Property properties = 9;</code>
-     * @param \Google\Cloud\Vision\V1\Property[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Property>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setProperties($var)

@@ -43,7 +43,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      */
     private $update_time = null;
     /**
-     * Required. null The list of filters that applies to event attributes. Only events that
+     * Required. Unordered list. The list of filters that applies to event attributes. Only events that
      * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
@@ -96,6 +96,12 @@ class Trigger extends \Google\Protobuf\Internal\Message
      */
     private $channel = '';
     /**
+     * Output only. The reason(s) why a trigger is in FAILED state.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.eventarc.v1.StateCondition> conditions = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $conditions;
+    /**
      * Output only. This checksum is computed by the server based on the value of other
      * fields, and might be sent only on create requests to ensure that the
      * client has an up-to-date value before proceeding.
@@ -122,7 +128,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The last-modified time.
      *     @type array<\Google\Cloud\Eventarc\V1\EventFilter>|\Google\Protobuf\Internal\RepeatedField $event_filters
-     *           Required. null The list of filters that applies to event attributes. Only events that
+     *           Required. Unordered list. The list of filters that applies to event attributes. Only events that
      *           match all the provided filters are sent to the destination.
      *     @type string $service_account
      *           Optional. The IAM service account email associated with the trigger. The
@@ -150,6 +156,8 @@ class Trigger extends \Google\Protobuf\Internal\Message
      *           Optional. The name of the channel associated with the trigger in
      *           `projects/{project}/locations/{location}/channels/{channel}` format.
      *           You must provide a channel to receive events from Eventarc SaaS partners.
+     *     @type array|\Google\Protobuf\Internal\MapField $conditions
+     *           Output only. The reason(s) why a trigger is in FAILED state.
      *     @type string $etag
      *           Output only. This checksum is computed by the server based on the value of other
      *           fields, and might be sent only on create requests to ensure that the
@@ -292,7 +300,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. null The list of filters that applies to event attributes. Only events that
+     * Required. Unordered list. The list of filters that applies to event attributes. Only events that
      * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
@@ -304,7 +312,7 @@ class Trigger extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. null The list of filters that applies to event attributes. Only events that
+     * Required. Unordered list. The list of filters that applies to event attributes. Only events that
      * match all the provided filters are sent to the destination.
      *
      * Generated from protobuf field <code>repeated .google.cloud.eventarc.v1.EventFilter event_filters = 8 [(.google.api.field_behavior) = UNORDERED_LIST, (.google.api.field_behavior) = REQUIRED];</code>
@@ -497,6 +505,32 @@ class Trigger extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The reason(s) why a trigger is in FAILED state.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.eventarc.v1.StateCondition> conditions = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * Output only. The reason(s) why a trigger is in FAILED state.
+     *
+     * Generated from protobuf field <code>map<string, .google.cloud.eventarc.v1.StateCondition> conditions = 15 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setConditions($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Eventarc\V1\StateCondition::class);
+        $this->conditions = $arr;
 
         return $this;
     }

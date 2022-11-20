@@ -15,16 +15,16 @@ class Service
           return;
         }
         \GPBMetadata\Google\Api\Annotations::initOnce();
+        \GPBMetadata\Google\Api\Client::initOnce();
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
         \GPBMetadata\Google\Cloud\Notebooks\V1Beta1\Environment::initOnce();
         \GPBMetadata\Google\Cloud\Notebooks\V1Beta1\Instance::initOnce();
         \GPBMetadata\Google\Longrunning\Operations::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
-        \GPBMetadata\Google\Api\Client::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ô5
-,google/cloud/notebooks/v1beta1/service.protogoogle.cloud.notebooks.v1beta1google/api/field_behavior.proto0google/cloud/notebooks/v1beta1/environment.proto-google/cloud/notebooks/v1beta1/instance.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.protogoogle/api/client.proto"Ô
+è6
+,google/cloud/notebooks/v1beta1/service.protogoogle.cloud.notebooks.v1beta1google/api/client.protogoogle/api/field_behavior.proto0google/cloud/notebooks/v1beta1/environment.proto-google/cloud/notebooks/v1beta1/instance.proto#google/longrunning/operations.protogoogle/protobuf/timestamp.proto"Ô
 OperationMetadata/
 create_time (2.google.protobuf.Timestamp,
 end_time (2.google.protobuf.Timestamp
@@ -82,11 +82,12 @@ core_count (B‡A"M
 key (	
 value (	:8">
 IsInstanceUpgradeableRequest
-notebook_instance (	B‡A"c
+notebook_instance (	B‡A"z
 IsInstanceUpgradeableResponse
 upgradeable (
 upgrade_version (	
-upgrade_info (	"+
+upgrade_info (	
+upgrade_image (	"+
 UpgradeInstanceRequest
 name (	B‡A"G
 UpgradeInstanceInternalRequest
@@ -108,7 +109,7 @@ page_token (	"ã
 environment_id (	B‡AE
 environment (2+.google.cloud.notebooks.v1beta1.EnvironmentB‡A"-
 DeleteEnvironmentRequest
-name (	B‡A2¯
+name (	B‡A2Å 
 NotebookService∏
 ListInstances4.google.cloud.notebooks.v1beta1.ListInstancesRequest5.google.cloud.notebooks.v1beta1.ListInstancesResponse":Ç”‰ì42/v1beta1/{parent=projects/*/locations/*}/instancesß
 GetInstance2.google.cloud.notebooks.v1beta1.GetInstanceRequest(.google.cloud.notebooks.v1beta1.Instance":Ç”‰ì42/v1beta1/{name=projects/*/locations/*/instances/*}Ã
@@ -131,11 +132,11 @@ page_token (	"ã
 ResetInstance4.google.cloud.notebooks.v1beta1.ResetInstanceRequest.google.longrunning.Operation"cÇ”‰ì="8/v1beta1/{name=projects/*/locations/*/instances/*}:reset:* A
 InstanceOperationMetadata‘
 ReportInstanceInfo9.google.cloud.notebooks.v1beta1.ReportInstanceInfoRequest.google.longrunning.Operation"dÇ”‰ì>"9/v1beta1/{name=projects/*/locations/*/instances/*}:report:* A
-InstanceOperationMetadataÎ
-IsInstanceUpgradeable<.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableRequest=.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableResponse"UÇ”‰ìOM/v1beta1/{notebook_instance=projects/*/locations/*/instances/*}:isUpgradeableœ
-UpgradeInstance6.google.cloud.notebooks.v1beta1.UpgradeInstanceRequest.google.longrunning.Operation"eÇ”‰ì?":/v1beta1/{name=projects/*/locations/*/instances/*}:upgrade:* A
-InstanceOperationMetadataÁ
-UpgradeInstanceInternal>.google.cloud.notebooks.v1beta1.UpgradeInstanceInternalRequest.google.longrunning.Operation"mÇ”‰ìG"B/v1beta1/{name=projects/*/locations/*/instances/*}:upgradeInternal:* A
+InstanceOperationMetadataÓ
+IsInstanceUpgradeable<.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableRequest=.google.cloud.notebooks.v1beta1.IsInstanceUpgradeableResponse"XàÇ”‰ìOM/v1beta1/{notebook_instance=projects/*/locations/*/instances/*}:isUpgradeable“
+UpgradeInstance6.google.cloud.notebooks.v1beta1.UpgradeInstanceRequest.google.longrunning.Operation"hàÇ”‰ì?":/v1beta1/{name=projects/*/locations/*/instances/*}:upgrade:* A
+InstanceOperationMetadataÍ
+UpgradeInstanceInternal>.google.cloud.notebooks.v1beta1.UpgradeInstanceInternalRequest.google.longrunning.Operation"pàÇ”‰ìG"B/v1beta1/{name=projects/*/locations/*/instances/*}:upgradeInternal:* A
 InstanceOperationMetadataƒ
 ListEnvironments7.google.cloud.notebooks.v1beta1.ListEnvironmentsRequest8.google.cloud.notebooks.v1beta1.ListEnvironmentsResponse"=Ç”‰ì75/v1beta1/{parent=projects/*/locations/*}/environments≥
 GetEnvironment5.google.cloud.notebooks.v1beta1.GetEnvironmentRequest+.google.cloud.notebooks.v1beta1.Environment"=Ç”‰ì75/v1beta1/{name=projects/*/locations/*/environments/*}€

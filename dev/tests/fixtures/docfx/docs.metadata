@@ -1,0 +1,10 @@
+update_time {
+  seconds: *
+  nanos: *
+}
+name: "vision"
+version: "1.0.0"
+language: "php"
+distribution_name: "google/cloud-vision"
+github_repository: "googleapis/google-cloud-php-vision"
+issue_tracker: "https://github.com/googleapis/google-cloud-php-vision/issues"

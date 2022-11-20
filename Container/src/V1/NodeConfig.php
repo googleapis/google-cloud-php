@@ -267,6 +267,19 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.ConfidentialNodes confidential_nodes = 35;</code>
      */
     private $confidential_nodes = null;
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     */
+    private $resource_labels;
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     */
+    private $logging_config = null;
 
     /**
      * Constructor.
@@ -414,6 +427,11 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Container\V1\ConfidentialNodes $confidential_nodes
      *           Confidential nodes config.
      *           All the nodes in the node pool will be Confidential VM once enabled.
+     *     @type array|\Google\Protobuf\Internal\MapField $resource_labels
+     *           The resource labels for the node pool to use to annotate any related
+     *           Google Compute Engine resources.
+     *     @type \Google\Cloud\Container\V1\NodePoolLoggingConfig $logging_config
+     *           Logging configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -1391,6 +1409,70 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\ConfidentialNodes::class);
         $this->confidential_nodes = $var;
+
+        return $this;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     * @return \Google\Protobuf\Internal\MapField
+     */
+    public function getResourceLabels()
+    {
+        return $this->resource_labels;
+    }
+
+    /**
+     * The resource labels for the node pool to use to annotate any related
+     * Google Compute Engine resources.
+     *
+     * Generated from protobuf field <code>map<string, string> resource_labels = 37;</code>
+     * @param array|\Google\Protobuf\Internal\MapField $var
+     * @return $this
+     */
+    public function setResourceLabels($var)
+    {
+        $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::STRING);
+        $this->resource_labels = $arr;
+
+        return $this;
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @return \Google\Cloud\Container\V1\NodePoolLoggingConfig|null
+     */
+    public function getLoggingConfig()
+    {
+        return $this->logging_config;
+    }
+
+    public function hasLoggingConfig()
+    {
+        return isset($this->logging_config);
+    }
+
+    public function clearLoggingConfig()
+    {
+        unset($this->logging_config);
+    }
+
+    /**
+     * Logging configuration.
+     *
+     * Generated from protobuf field <code>.google.container.v1.NodePoolLoggingConfig logging_config = 38;</code>
+     * @param \Google\Cloud\Container\V1\NodePoolLoggingConfig $var
+     * @return $this
+     */
+    public function setLoggingConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\NodePoolLoggingConfig::class);
+        $this->logging_config = $var;
 
         return $this;
     }

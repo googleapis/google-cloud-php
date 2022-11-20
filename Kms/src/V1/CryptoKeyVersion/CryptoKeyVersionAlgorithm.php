@@ -192,6 +192,30 @@ class CryptoKeyVersionAlgorithm
      */
     const HMAC_SHA256 = 32;
     /**
+     * HMAC-SHA1 signing with a 160 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA1 = 33;</code>
+     */
+    const HMAC_SHA1 = 33;
+    /**
+     * HMAC-SHA384 signing with a 384 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA384 = 34;</code>
+     */
+    const HMAC_SHA384 = 34;
+    /**
+     * HMAC-SHA512 signing with a 512 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA512 = 35;</code>
+     */
+    const HMAC_SHA512 = 35;
+    /**
+     * HMAC-SHA224 signing with a 224 bit key.
+     *
+     * Generated from protobuf enum <code>HMAC_SHA224 = 36;</code>
+     */
+    const HMAC_SHA224 = 36;
+    /**
      * Algorithm representing symmetric encryption by an external key manager.
      *
      * Generated from protobuf enum <code>EXTERNAL_SYMMETRIC_ENCRYPTION = 18;</code>
@@ -223,6 +247,10 @@ class CryptoKeyVersionAlgorithm
         self::EC_SIGN_P384_SHA384 => 'EC_SIGN_P384_SHA384',
         self::EC_SIGN_SECP256K1_SHA256 => 'EC_SIGN_SECP256K1_SHA256',
         self::HMAC_SHA256 => 'HMAC_SHA256',
+        self::HMAC_SHA1 => 'HMAC_SHA1',
+        self::HMAC_SHA384 => 'HMAC_SHA384',
+        self::HMAC_SHA512 => 'HMAC_SHA512',
+        self::HMAC_SHA224 => 'HMAC_SHA224',
         self::EXTERNAL_SYMMETRIC_ENCRYPTION => 'EXTERNAL_SYMMETRIC_ENCRYPTION',
     ];
 

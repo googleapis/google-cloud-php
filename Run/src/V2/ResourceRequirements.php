@@ -17,9 +17,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
 {
     /**
      * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at
-     * least 2Gi of memory.
-     * The values of the map is string form of the 'quantity' k8s type:
+     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
+     * requires at least 2Gi of memory. The values of the map is string form of
+     * the 'quantity' k8s type:
      * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
@@ -40,9 +40,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
      *
      *     @type array|\Google\Protobuf\Internal\MapField $limits
      *           Only memory and CPU are supported. Note: The only
-     *           supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at
-     *           least 2Gi of memory.
-     *           The values of the map is string form of the 'quantity' k8s type:
+     *           supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
+     *           requires at least 2Gi of memory. The values of the map is string form of
+     *           the 'quantity' k8s type:
      *           https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *     @type bool $cpu_idle
      *           Determines whether CPU should be throttled or not outside of requests.
@@ -55,9 +55,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
 
     /**
      * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at
-     * least 2Gi of memory.
-     * The values of the map is string form of the 'quantity' k8s type:
+     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
+     * requires at least 2Gi of memory. The values of the map is string form of
+     * the 'quantity' k8s type:
      * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>
@@ -70,9 +70,9 @@ class ResourceRequirements extends \Google\Protobuf\Internal\Message
 
     /**
      * Only memory and CPU are supported. Note: The only
-     * supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at
-     * least 2Gi of memory.
-     * The values of the map is string form of the 'quantity' k8s type:
+     * supported values for CPU are '1', '2',  '4', and '8'. Setting 4 CPU
+     * requires at least 2Gi of memory. The values of the map is string form of
+     * the 'quantity' k8s type:
      * https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      *
      * Generated from protobuf field <code>map<string, string> limits = 1;</code>

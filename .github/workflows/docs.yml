@@ -13,7 +13,7 @@ jobs:
         steps:
         - id: getTag
           name: Get Tag
-          run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+          run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
         - name: Checkout
           uses: actions/checkout@v3
           with:

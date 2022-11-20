@@ -697,8 +697,7 @@ class AssetServiceGapicClient
      *           0 or empty string, etc., because we use proto3, which doesn't support field
      *           presence yet.
      *     @type Duration $executionTimeout
-     *           Optional. Amount of time executable has to complete.  See JSON
-     *           representation of
+     *           Optional. Amount of time executable has to complete.  See JSON representation of
      *           [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json).
      *
      *           If this field is set with a value less than the RPC deadline, and the
@@ -755,12 +754,11 @@ class AssetServiceGapicClient
      * accesses on which resources, and writes the analysis results to a Google
      * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
      * output format is the JSON format that represents a
-     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
-     * This method implements the
-     * [google.longrunning.Operation][google.longrunning.Operation], which allows
-     * you to track the operation status. We recommend intervals of at least 2
-     * seconds with exponential backoff retry to poll the operation result. The
-     * metadata contains the metadata for the long-running operation.
+     * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
+     * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
+     * status. We recommend intervals of at least 2 seconds with exponential
+     * backoff retry to poll the operation result. The metadata contains the
+     * metadata for the long-running operation.
      *
      * Sample code:
      * ```
@@ -800,8 +798,7 @@ class AssetServiceGapicClient
      * ```
      *
      * @param IamPolicyAnalysisQuery        $analysisQuery Required. The request query.
-     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output
-     *                                                     to.
+     * @param IamPolicyAnalysisOutputConfig $outputConfig  Required. Output configuration indicating where the results will be output to.
      * @param array                         $optionalArgs  {
      *     Optional.
      *
@@ -1135,8 +1132,9 @@ class AssetServiceGapicClient
      *                             "projects/12345").
      * @param string $feedId       Required. This is the client-assigned asset feed identifier and it needs to
      *                             be unique under a specific parent project/folder/organization.
-     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be
-     *                             generated in the format of: projects/project_number/feeds/feed_id
+     * @param Feed   $feed         Required. The feed details. The field `name` must be empty and it will be generated
+     *                             in the format of:
+     *                             projects/project_number/feeds/feed_id
      *                             folders/folder_number/feeds/feed_id
      *                             organizations/organization_number/feeds/feed_id
      * @param array  $optionalArgs {
@@ -1194,16 +1192,16 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string     $parent       Required. The name of the project/folder/organization where this
-     *                                 saved_query should be created in. It can only be an organization number
-     *                                 (such as "organizations/123"), a folder number (such as "folders/123"), a
-     *                                 project ID (such as "projects/my-project-id")", or a project number (such
-     *                                 as "projects/12345").
-     * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it
-     *                                 will be generated based on the parent and saved_query_id.
-     * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the
-     *                                 specified parent. It will become the final component of the saved query's
-     *                                 resource name.
+     * @param string     $parent       Required. The name of the project/folder/organization where this saved_query
+     *                                 should be created in. It can only be an organization number (such as
+     *                                 "organizations/123"), a folder number (such as "folders/123"), a project ID
+     *                                 (such as "projects/my-project-id")", or a project number (such as
+     *                                 "projects/12345").
+     * @param SavedQuery $savedQuery   Required. The saved_query details. The `name` field must be empty as it will be
+     *                                 generated based on the parent and saved_query_id.
+     * @param string     $savedQueryId Required. The ID to use for the saved query, which must be unique in the specified
+     *                                 parent. It will become the final component of the saved query's resource
+     *                                 name.
      *
      *                                 This value should be 4-63 characters, and valid characters
      *                                 are /[a-z][0-9]-/.
@@ -1312,8 +1310,7 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The name of the saved query to delete. It must be in the format
-     *                             of:
+     * @param string $name         Required. The name of the saved query to delete. It must be in the format of:
      *
      *                             * projects/project_number/savedQueries/saved_query_id
      *                             * folders/folder_number/savedQueries/saved_query_id
@@ -1353,14 +1350,13 @@ class AssetServiceGapicClient
      * Exports assets with time and resource types to a given Cloud Storage
      * location/BigQuery table. For Cloud Storage location destinations, the
      * output format is newline-delimited JSON. Each line represents a
-     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
-     * format; for BigQuery table destinations, the output table stores the fields
-     * in asset Protobuf as columns. This API implements the
-     * [google.longrunning.Operation][google.longrunning.Operation] API, which
-     * allows you to keep track of the export. We recommend intervals of at least
-     * 2 seconds with exponential retry to poll the export operation result. For
-     * regular-size resource parent, the export operation usually finishes within
-     * 5 minutes.
+     * [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON format; for BigQuery table
+     * destinations, the output table stores the fields in asset Protobuf as
+     * columns. This API implements the [google.longrunning.Operation][google.longrunning.Operation] API,
+     * which allows you to keep track of the export. We recommend intervals of at
+     * least 2 seconds with exponential retry to poll the export operation result.
+     * For regular-size resource parent, the export operation usually finishes
+     * within 5 minutes.
      *
      * Sample code:
      * ```
@@ -1403,8 +1399,7 @@ class AssetServiceGapicClient
      *                                   organization number (such as "organizations/123"), a project ID (such as
      *                                   "projects/my-project-id"), or a project number (such as "projects/12345"),
      *                                   or a folder number (such as "folders/123").
-     * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output
-     *                                   to.
+     * @param OutputConfig $outputConfig Required. Output configuration indicating where the results will be output to.
      * @param array        $optionalArgs {
      *     Optional.
      *
@@ -1633,11 +1628,11 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization, folder, or project the assets belong
-     *                             to. Format: "organizations/[organization-number]" (such as
-     *                             "organizations/123"), "projects/[project-id]" (such as
-     *                             "projects/my-project-id"), "projects/[project-number]" (such as
-     *                             "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     * @param string $parent       Required. Name of the organization, folder, or project the assets belong to. Format:
+     *                             "organizations/[organization-number]" (such as "organizations/123"),
+     *                             "projects/[project-id]" (such as "projects/my-project-id"),
+     *                             "projects/[project-number]" (such as "projects/12345"), or
+     *                             "folders/[folder-number]" (such as "folders/12345").
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1825,8 +1820,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The parent project/folder/organization whose savedQueries are to
-     *                             be listed. It can only be using project/folder/organization number (such as
+     * @param string $parent       Required. The parent project/folder/organization whose savedQueries are to be
+     *                             listed. It can only be using project/folder/organization number (such as
      *                             "folders/12345")", or a project ID (such as "projects/my-project-id").
      * @param array  $optionalArgs {
      *     Optional.
@@ -1930,11 +1925,11 @@ class AssetServiceGapicClient
      *           Optional. A SQL statement that's compatible with [BigQuery Standard
      *           SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
      *     @type string $jobReference
-     *           Optional. Reference to the query job, which is from the
-     *           `QueryAssetsResponse` of previous `QueryAssets` call.
+     *           Optional. Reference to the query job, which is from the `QueryAssetsResponse` of
+     *           previous `QueryAssets` call.
      *     @type int $pageSize
-     *           Optional. The maximum number of rows to return in the results. Responses
-     *           are limited to 10 MB and 1000 rows.
+     *           Optional. The maximum number of rows to return in the results. Responses are limited
+     *           to 10 MB and 1000 rows.
      *
      *           By default, the maximum row count is 1000. When the byte or row count limit
      *           is reached, the rest of the query results will be paginated.
@@ -1945,11 +1940,10 @@ class AssetServiceGapicClient
      *
      *           The field will be ignored when [output_config] is specified.
      *     @type Duration $timeout
-     *           Optional. Specifies the maximum amount of time that the client is willing
-     *           to wait for the query to complete. By default, this limit is 5 min for the
-     *           first query, and 1 minute for the following queries. If the query is
-     *           complete, the `done` field in the `QueryAssetsResponse` is true, otherwise
-     *           false.
+     *           Optional. Specifies the maximum amount of time that the client is willing to wait
+     *           for the query to complete. By default, this limit is 5 min for the first
+     *           query, and 1 minute for the following queries. If the query is complete,
+     *           the `done` field in the `QueryAssetsResponse` is true, otherwise false.
      *
      *           Like BigQuery [jobs.query
      *           API](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query#queryrequest)
@@ -1959,12 +1953,11 @@ class AssetServiceGapicClient
      *
      *           The field will be ignored when [output_config] is specified.
      *     @type TimeWindow $readTimeWindow
-     *           Optional. [start_time] is required. [start_time] must be less than
-     *           [end_time] Defaults [end_time] to now if [start_time] is set and
-     *           [end_time] isn't. Maximum permitted time range is 7 days.
+     *           Optional. [start_time] is required. [start_time] must be less than [end_time]
+     *           Defaults [end_time] to now if [start_time] is set and [end_time] isn't.
+     *           Maximum permitted time range is 7 days.
      *     @type Timestamp $readTime
-     *           Optional. Queries cloud assets as they appeared at the specified point in
-     *           time.
+     *           Optional. Queries cloud assets as they appeared at the specified point in time.
      *     @type QueryAssetsOutputConfig $outputConfig
      *           Optional. Destination where the query results will be saved.
      *
@@ -2066,9 +2059,9 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
-     *                             search is limited to the IAM policies within the `scope`. The caller must
-     *                             be granted the
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The search is
+     *                             limited to the IAM policies within the `scope`. The caller must be granted
+     *                             the
      *                             [`cloudasset.assets.searchAllIamPolicies`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *                             permission on the desired scope.
      *
@@ -2134,9 +2127,8 @@ class AssetServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string[] $assetTypes
-     *           Optional. A list of asset types that the IAM policies are attached to. If
-     *           empty, it will search the IAM policies that are attached to all the
-     *           [searchable asset
+     *           Optional. A list of asset types that the IAM policies are attached to. If empty, it
+     *           will search the IAM policies that are attached to all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *
      *           Regular expressions are also supported. For example:
@@ -2152,9 +2144,9 @@ class AssetServiceGapicClient
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *     @type string $orderBy
-     *           Optional. A comma-separated list of fields specifying the sorting order of
-     *           the results. The default order is ascending. Add " DESC" after the field
-     *           name to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of the
+     *           results. The default order is ascending. Add " DESC" after the field name
+     *           to indicate descending order. Redundant space characters are ignored.
      *           Example: "assetType DESC, resource".
      *           Only singular primitive fields in the response are sortable:
      *           * resource
@@ -2241,9 +2233,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The
-     *                             search is limited to the resources within the `scope`. The caller must be
-     *                             granted the
+     * @param string $scope        Required. A scope can be a project, a folder, or an organization. The search is
+     *                             limited to the resources within the `scope`. The caller must be granted the
      *                             [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions)
      *                             permission on the desired scope.
      *
@@ -2278,7 +2269,11 @@ class AssetServiceGapicClient
      *           and its value is "prod".
      *           * `labels.env:*` to find Cloud resources that have a label "env".
      *           * `kmsKey:key` to find Cloud resources encrypted with a customer-managed
-     *           encryption key whose name contains the word "key".
+     *           encryption key whose name contains "key" as a word. This field is
+     *           deprecated. Please use the `kmsKeys` field to retrieve KMS key
+     *           information.
+     *           * `kmsKeys:key` to find Cloud resources encrypted with customer-managed
+     *           encryption keys whose name contains the word "key".
      *           * `relationships:instance-group-1` to find Cloud resources that have
      *           relationships with "instance-group-1" in the related resource name.
      *           * `relationships:INSTANCE_TO_INSTANCEGROUP` to find compute instances that
@@ -2306,8 +2301,8 @@ class AssetServiceGapicClient
      *           fields and are also located in the "us-west1" region or the "global"
      *           location.
      *     @type string[] $assetTypes
-     *           Optional. A list of asset types that this request searches for. If empty,
-     *           it will search all the [searchable asset
+     *           Optional. A list of asset types that this request searches for. If empty, it will
+     *           search all the [searchable asset
      *           types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types).
      *
      *           Regular expressions are also supported. For example:
@@ -2330,9 +2325,9 @@ class AssetServiceGapicClient
      *           of values will be returned. Any page token used here must have
      *           been generated by a previous call to the API.
      *     @type string $orderBy
-     *           Optional. A comma-separated list of fields specifying the sorting order of
-     *           the results. The default order is ascending. Add " DESC" after the field
-     *           name to indicate descending order. Redundant space characters are ignored.
+     *           Optional. A comma-separated list of fields specifying the sorting order of the
+     *           results. The default order is ascending. Add " DESC" after the field name
+     *           to indicate descending order. Redundant space characters are ignored.
      *           Example: "location DESC, name".
      *           Only singular primitive fields in the response are sortable:
      *
@@ -2342,21 +2337,20 @@ class AssetServiceGapicClient
      *           * displayName
      *           * description
      *           * location
-     *           * kmsKey
      *           * createTime
      *           * updateTime
      *           * state
      *           * parentFullResourceName
      *           * parentAssetType
      *
-     *           All the other fields such as repeated fields (e.g., `networkTags`), map
-     *           fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`)
-     *           are not supported.
+     *           All the other fields such as repeated fields (e.g., `networkTags`,
+     *           `kmsKeys`), map fields (e.g., `labels`) and struct fields (e.g.,
+     *           `additionalAttributes`) are not supported.
      *     @type FieldMask $readMask
-     *           Optional. A comma-separated list of fields specifying which fields to be
-     *           returned in ResourceSearchResult. Only '*' or combination of top level
-     *           fields can be specified. Field names of both snake_case and camelCase are
-     *           supported. Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
+     *           Optional. A comma-separated list of fields specifying which fields to be returned in
+     *           ResourceSearchResult. Only '*' or combination of top level fields can be
+     *           specified. Field names of both snake_case and camelCase are supported.
+     *           Examples: `"*"`, `"name,location"`, `"name,versionedResources"`.
      *
      *           The read_mask paths must be valid field paths listed but not limited to
      *           (both snake_case and camelCase are supported):
@@ -2372,7 +2366,9 @@ class AssetServiceGapicClient
      *           * tagValueIds
      *           * labels
      *           * networkTags
-     *           * kmsKey
+     *           * kmsKey (This field is deprecated. Please use the `kmsKeys` field to
+     *           retrieve KMS key information.)
+     *           * kmsKeys
      *           * createTime
      *           * updateTime
      *           * state
@@ -2453,8 +2449,8 @@ class AssetServiceGapicClient
      * }
      * ```
      *
-     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed
-     *                                and the field `name` must be in the format of:
+     * @param Feed      $feed         Required. The new values of feed details. It must match an existing feed and the
+     *                                field `name` must be in the format of:
      *                                projects/project_number/feeds/feed_id or
      *                                folders/folder_number/feeds/feed_id or
      *                                organizations/organization_number/feeds/feed_id.

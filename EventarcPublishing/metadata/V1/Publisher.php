@@ -19,15 +19,18 @@ class Publisher
         \GPBMetadata\Google\Protobuf\Any::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Ë	
-3google/cloud/eventarc/publishing/v1/publisher.proto#google.cloud.eventarc.publishing.v1google/api/client.protogoogle/protobuf/any.proto"i
+í
+
+3google/cloud/eventarc/publishing/v1/publisher.proto#google.cloud.eventarc.publishing.v1google/api/client.protogoogle/protobuf/any.proto"~
 %PublishChannelConnectionEventsRequest
 channel_connection (	$
-events (2.google.protobuf.Any"(
-&PublishChannelConnectionEventsResponse"M
+events (2.google.protobuf.Any
+text_events (	"(
+&PublishChannelConnectionEventsResponse"b
 PublishEventsRequest
 channel (	$
-events (2.google.protobuf.Any"
+events (2.google.protobuf.Any
+text_events (	"
 PublishEventsResponse2–
 	Publisherò
 PublishChannelConnectionEventsJ.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsRequestK.google.cloud.eventarc.publishing.v1.PublishChannelConnectionEventsResponse"]Ç”‰ìW"R/v1/{channel_connection=projects/*/locations/*/channelConnections/*}:publishEvents:*–

@@ -11,13 +11,15 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Specification that applies to a data source connection. Valid only for
  * entries with the `DATA_SOURCE_CONNECTION` type.
+ * Only one of internal specs can be set at the time, and cannot
+ * be changed later.
  *
  * Generated from protobuf message <code>google.cloud.datacatalog.v1.DataSourceConnectionSpec</code>
  */
 class DataSourceConnectionSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Fields specific to BigQuery connections.
+     * Output only. Fields specific to BigQuery connections.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryConnectionSpec bigquery_connection_spec = 1;</code>
      */
@@ -30,7 +32,7 @@ class DataSourceConnectionSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\DataCatalog\V1\BigQueryConnectionSpec $bigquery_connection_spec
-     *           Fields specific to BigQuery connections.
+     *           Output only. Fields specific to BigQuery connections.
      * }
      */
     public function __construct($data = NULL) {
@@ -39,7 +41,7 @@ class DataSourceConnectionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields specific to BigQuery connections.
+     * Output only. Fields specific to BigQuery connections.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryConnectionSpec bigquery_connection_spec = 1;</code>
      * @return \Google\Cloud\DataCatalog\V1\BigQueryConnectionSpec|null
@@ -60,7 +62,7 @@ class DataSourceConnectionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Fields specific to BigQuery connections.
+     * Output only. Fields specific to BigQuery connections.
      *
      * Generated from protobuf field <code>.google.cloud.datacatalog.v1.BigQueryConnectionSpec bigquery_connection_spec = 1;</code>
      * @param \Google\Cloud\DataCatalog\V1\BigQueryConnectionSpec $var

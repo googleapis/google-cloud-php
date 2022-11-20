@@ -10,8 +10,10 @@
   <rule ref="PSR1.Files.SideEffects.FoundWithSymbols">
     <exclude-pattern>Core/src/Testing/Lock/MockValues.php</exclude-pattern>
     <exclude-pattern>ErrorReporting/tests/Unit/BootstrapTest.php</exclude-pattern>
+    <exclude-pattern>Firestore/src/WriteBatch.php</exclude-pattern>
   </rule>
   <file>.</file>
+  <exclude-pattern>*/samples</exclude-pattern>
   <exclude-pattern>*/src/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/src/*/V[0-9]+</exclude-pattern>
   <exclude-pattern>*/src/*/*/V[0-9]+</exclude-pattern>
@@ -21,6 +23,7 @@
   <exclude-pattern>Asset/external</exclude-pattern>
   <exclude-pattern>BigQueryDataExchange/src/Common</exclude-pattern>
   <exclude-pattern>Core/src/Testing</exclude-pattern>
+  <exclude-pattern>GSuiteAddOns/external</exclude-pattern>
   <exclude-pattern>OsLogin/src/Common</exclude-pattern>
   <exclude-pattern>LongRunning/src/ApiCore/LongRunning</exclude-pattern>
   <exclude-pattern>LongRunning/src/LongRunning</exclude-pattern>

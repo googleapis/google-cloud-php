@@ -38,7 +38,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
     private $items;
     /**
      * Integer representation of mode bits to use on created files by default.
-     * Must be a value between 0000 and 0777 (octal), defaulting to 0644.
+     * Must be a value between 0000 and 0777 (octal), defaulting to 0444.
      * Directories within the path are not affected by  this setting.
      * Notes
      * * Internally, a umask of 0222 will be applied to any non-zero value.
@@ -76,7 +76,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
      *           volume. When items are defined, they must specify a path and a version.
      *     @type int $default_mode
      *           Integer representation of mode bits to use on created files by default.
-     *           Must be a value between 0000 and 0777 (octal), defaulting to 0644.
+     *           Must be a value between 0000 and 0777 (octal), defaulting to 0444.
      *           Directories within the path are not affected by  this setting.
      *           Notes
      *           * Internally, a umask of 0222 will be applied to any non-zero value.
@@ -165,7 +165,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Integer representation of mode bits to use on created files by default.
-     * Must be a value between 0000 and 0777 (octal), defaulting to 0644.
+     * Must be a value between 0000 and 0777 (octal), defaulting to 0444.
      * Directories within the path are not affected by  this setting.
      * Notes
      * * Internally, a umask of 0222 will be applied to any non-zero value.
@@ -190,7 +190,7 @@ class SecretVolumeSource extends \Google\Protobuf\Internal\Message
 
     /**
      * Integer representation of mode bits to use on created files by default.
-     * Must be a value between 0000 and 0777 (octal), defaulting to 0644.
+     * Must be a value between 0000 and 0777 (octal), defaulting to 0444.
      * Directories within the path are not affected by  this setting.
      * Notes
      * * Internally, a umask of 0222 will be applied to any non-zero value.

@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/api/apikeys/v2/.*-php/(.*)
+      dest: /owl-bot-staging/ApiKeys/v2/$1
+api-name: ApiKeys

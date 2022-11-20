@@ -18,6 +18,7 @@
 namespace Google\Cloud\Spanner\Tests\Unit;
 
 use Google\Cloud\Core\Exception\NotFoundException;
+use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 use Google\Cloud\Core\Testing\GrpcTestTrait;
 use Google\Cloud\Core\Testing\TestHelpers;
 use Google\Cloud\Spanner\Admin\Instance\V1\InstanceAdminClient;
@@ -49,7 +50,9 @@ class InstanceConfigurationTest extends TestCase
         $this->configuration = TestHelpers::stub(InstanceConfiguration::class, [
             $this->connection->reveal(),
             self::PROJECT_ID,
-            self::NAME
+            self::NAME,
+            [],
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         ]);
     }
 
@@ -71,7 +74,8 @@ class InstanceConfigurationTest extends TestCase
             $this->connection->reveal(),
             self::PROJECT_ID,
             self::NAME,
-            $info
+            $info,
+            $this->prophesize(LongRunningConnectionInterface::class)->reveal()
         ]);
 
         $this->assertEquals($info, $config->info());
@@ -139,5 +143,78 @@ class InstanceConfigurationTest extends TestCase
         $info2 = $this->configuration->info();
 
         $this->assertEquals($info, $info2);
+    }
+
+    public function testUpdate()
+    {
+        $config = $this->getDefaultInstance();
+
+        $this->connection->updateInstanceConfig([
+            'name' => $config['name'],
+            'displayName' => 'bar',
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
+
+        $this->configuration->update(['displayName' => 'bar']);
+    }
+
+    public function testUpdateWithExistingLabels()
+    {
+        $config = $this->getDefaultInstance();
+        $config['labels'] = ['foo' => 'bar'];
+
+        $this->connection->updateInstanceConfig([
+            'labels' => $config['labels'],
+            'name' => $config['name'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
+
+        $this->configuration->update(['labels' => $config['labels']]);
+    }
+
+    public function testUpdateWithChanges()
+    {
+        $config = $this->getDefaultInstance();
+
+        $changes = [
+            'labels' => [
+                'foo' => 'bar'
+            ],
+            'displayName' => 'New Name',
+        ];
+
+        $this->connection->updateInstanceConfig([
+            'name' => $config['name'],
+            'displayName' => $changes['displayName'],
+            'labels' => $changes['labels'],
+        ])->shouldBeCalled()->willReturn([
+            'name' => 'my-operation'
+        ]);
+
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
+
+        $this->configuration->update($changes);
+    }
+
+    public function testDelete()
+    {
+        $this->connection->deleteInstanceConfig([
+            'name' => InstanceAdminClient::instanceConfigName(self::PROJECT_ID, self::NAME)
+        ])->shouldBeCalled();
+
+        $this->configuration->___setProperty('connection', $this->connection->reveal());
+
+        $this->configuration->delete();
+    }
+
+    private function getDefaultInstance()
+    {
+        return json_decode(file_get_contents(Fixtures::INSTANCE_CONFIG_FIXTURE()), true);
     }
 }

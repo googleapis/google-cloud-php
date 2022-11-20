@@ -20,7 +20,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 {
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector}
+     * Format: projects/{project}/locations/{location}/connectors/{connector},
+     * where {project} can be project id or number.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      */
@@ -40,7 +41,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
      *
      *     @type string $connector
      *           VPC Access connector name.
-     *           Format: projects/{project}/locations/{location}/connectors/{connector}
+     *           Format: projects/{project}/locations/{location}/connectors/{connector},
+     *           where {project} can be project id or number.
      *     @type int $egress
      *           Traffic VPC egress settings.
      * }
@@ -52,7 +54,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector}
+     * Format: projects/{project}/locations/{location}/connectors/{connector},
+     * where {project} can be project id or number.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      * @return string
@@ -64,7 +67,8 @@ class VpcAccess extends \Google\Protobuf\Internal\Message
 
     /**
      * VPC Access connector name.
-     * Format: projects/{project}/locations/{location}/connectors/{connector}
+     * Format: projects/{project}/locations/{location}/connectors/{connector},
+     * where {project} can be project id or number.
      *
      * Generated from protobuf field <code>string connector = 1 [(.google.api.resource_reference) = {</code>
      * @param string $var

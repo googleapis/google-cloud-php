@@ -1,0 +1,15 @@
+{
+    "title": "Iam",
+    "defaultService": "iam\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "iam\/readme"
+        },
+        {
+            "title": "PoliciesClient (v2)",
+            "type": "iam\/v2\/policiesclient"
+        }
+    ],
+    "pattern": "iam\/\\w{1,}"
+}

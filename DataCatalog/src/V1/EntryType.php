@@ -21,7 +21,7 @@ class EntryType
      */
     const ENTRY_TYPE_UNSPECIFIED = 0;
     /**
-     * Output only. The entry type that has a GoogleSQL schema, including
+     * The entry type that has a GoogleSQL schema, including
      * logical views.
      *
      * Generated from protobuf enum <code>TABLE = 2;</code>

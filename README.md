@@ -76,19 +76,35 @@ If you need support for other Google APIs, please check out the [Google APIs Cli
 
 ## Quick Start
 
-We recommend installing individual component packages when possible. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fcloud-).
+We recommend installing individual component packages. A list of available packages can be found on [Packagist](https://packagist.org/search/?q=google%2Fcloud-).
 
 For example:
 
 ```sh
+$ composer require google/cloud-storage
 $ composer require google/cloud-bigquery
 $ composer require google/cloud-datastore
 ```
 
-We also provide the `google/cloud` package, which includes all Google Cloud clients.
+You can then include the autoloader and create your client:
 
-```sh
-$ composer require google/cloud
+```php
+require 'vendor/autoload.php';
+
+use Google\Cloud\Storage\StorageClient;
+
+$storage = new StorageClient();
+
+$bucket = $storage->bucket('my_bucket');
+
+// Upload a file to the bucket.
+$bucket->upload(
+    fopen('/data/file.txt', 'r')
+);
+
+// Download and store an object from the bucket locally.
+$object = $bucket->object('file_backup.txt');
+$object->downloadToFile('/data/file_backup.txt');
 ```
 
 ### Authentication
@@ -100,15 +116,15 @@ Once you've obtained your credentials file, it may be used to create an authenti
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Storage\StorageClient;
 
 // Authenticate using a keyfile path
-$cloud = new ServiceBuilder([
+$cloud = new StorageClient([
     'keyFilePath' => 'path/to/keyfile.json'
 ]);
 
 // Authenticate using keyfile data
-$cloud = new ServiceBuilder([
+$cloud = new StorageClient([
     'keyFile' => json_decode(file_get_contents('/path/to/keyfile.json'), true)
 ]);
 ```
@@ -118,11 +134,11 @@ If you do not wish to embed your authentication information in your application 
 ```php
 require 'vendor/autoload.php';
 
-use Google\Cloud\Core\ServiceBuilder;
+use Google\Cloud\Storage\StorageClient;
 
 putenv('GOOGLE_APPLICATION_CREDENTIALS=/path/to/keyfile.json');
 
-$cloud = new ServiceBuilder();
+$cloud = new StorageClient();
 ```
 
 The `GOOGLE_APPLICATION_CREDENTIALS` environment variable may be set in your server configuration.

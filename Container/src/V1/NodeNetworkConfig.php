@@ -55,6 +55,14 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      */
     private $pod_ipv4_cidr_block = '';
     /**
+     * Whether nodes have internal IP addresses only.
+     * If enable_private_nodes is not specified, then the value is derived from
+     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     *
+     * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
+     */
+    private $enable_private_nodes = null;
+    /**
      * Network bandwidth tier configuration.
      *
      * Generated from protobuf field <code>optional .google.container.v1.NodeNetworkConfig.NetworkPerformanceConfig network_performance_config = 11;</code>
@@ -94,6 +102,10 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
      *           notation (e.g. `10.96.0.0/14`) to pick a specific range to use.
      *           Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
      *           This field cannot be changed after the node pool has been created.
+     *     @type bool $enable_private_nodes
+     *           Whether nodes have internal IP addresses only.
+     *           If enable_private_nodes is not specified, then the value is derived from
+     *           [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
      *     @type \Google\Cloud\Container\V1\NodeNetworkConfig\NetworkPerformanceConfig $network_performance_config
      *           Network bandwidth tier configuration.
      * }
@@ -219,6 +231,46 @@ class NodeNetworkConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->pod_ipv4_cidr_block = $var;
+
+        return $this;
+    }
+
+    /**
+     * Whether nodes have internal IP addresses only.
+     * If enable_private_nodes is not specified, then the value is derived from
+     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     *
+     * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
+     * @return bool
+     */
+    public function getEnablePrivateNodes()
+    {
+        return isset($this->enable_private_nodes) ? $this->enable_private_nodes : false;
+    }
+
+    public function hasEnablePrivateNodes()
+    {
+        return isset($this->enable_private_nodes);
+    }
+
+    public function clearEnablePrivateNodes()
+    {
+        unset($this->enable_private_nodes);
+    }
+
+    /**
+     * Whether nodes have internal IP addresses only.
+     * If enable_private_nodes is not specified, then the value is derived from
+     * [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+     *
+     * Generated from protobuf field <code>optional bool enable_private_nodes = 9;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnablePrivateNodes($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_private_nodes = $var;
 
         return $this;
     }

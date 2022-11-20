@@ -68,7 +68,7 @@ class Transaction
     private $database;
 
     /**
-     * @var WriteBatch
+     * @var BulkWriter
      */
     private $writer;
 
@@ -89,7 +89,7 @@ class Transaction
         $this->database = $database;
         $this->transaction = $transaction;
 
-        $this->writer = new WriteBatch($connection, $valueMapper, $database, $transaction);
+        $this->writer = new BulkWriter($connection, $valueMapper, $database, $transaction);
     }
 
     /**
@@ -341,10 +341,10 @@ class Transaction
     }
 
     /**
-     * Get the WriteBatch object.
+     * Get the BulkWriter object.
      *
      * @access private
-     * @return WriteBatch
+     * @return BulkWriter
      */
     public function writer()
     {

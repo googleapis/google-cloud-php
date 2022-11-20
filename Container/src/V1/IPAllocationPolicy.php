@@ -154,6 +154,18 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool use_routes = 15;</code>
      */
     private $use_routes = false;
+    /**
+     * The IP stack type of the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType stack_type = 16;</code>
+     */
+    private $stack_type = 0;
+    /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     *
+     * Generated from protobuf field <code>.google.container.v1.IPv6AccessType ipv6_access_type = 17;</code>
+     */
+    private $ipv6_access_type = 0;
 
     /**
      * Constructor.
@@ -245,6 +257,10 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
      *           This is used in conjunction with use_ip_aliases. It cannot be true if
      *           use_ip_aliases is true. If both use_ip_aliases and use_routes are false,
      *           then the server picks the default IP allocation mode
+     *     @type int $stack_type
+     *           The IP stack type of the cluster
+     *     @type int $ipv6_access_type
+     *           The ipv6 access type (internal or external) when create_subnetwork is true
      * }
      */
     public function __construct($data = NULL) {
@@ -714,6 +730,58 @@ class IPAllocationPolicy extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->use_routes = $var;
+
+        return $this;
+    }
+
+    /**
+     * The IP stack type of the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType stack_type = 16;</code>
+     * @return int
+     */
+    public function getStackType()
+    {
+        return $this->stack_type;
+    }
+
+    /**
+     * The IP stack type of the cluster
+     *
+     * Generated from protobuf field <code>.google.container.v1.StackType stack_type = 16;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setStackType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\StackType::class);
+        $this->stack_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     *
+     * Generated from protobuf field <code>.google.container.v1.IPv6AccessType ipv6_access_type = 17;</code>
+     * @return int
+     */
+    public function getIpv6AccessType()
+    {
+        return $this->ipv6_access_type;
+    }
+
+    /**
+     * The ipv6 access type (internal or external) when create_subnetwork is true
+     *
+     * Generated from protobuf field <code>.google.container.v1.IPv6AccessType ipv6_access_type = 17;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setIpv6AccessType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Container\V1\IPv6AccessType::class);
+        $this->ipv6_access_type = $var;
 
         return $this;
     }

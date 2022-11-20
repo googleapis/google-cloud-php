@@ -30,6 +30,7 @@ use Google\Cloud\Spanner\Admin\Database\V1\EncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance;
 use Google\Cloud\Spanner\Admin\Instance\V1\Instance\State;
+use Google\Cloud\Spanner\Admin\Instance\V1\InstanceConfig;
 use Google\Cloud\Spanner\Connection\Grpc;
 use Google\Cloud\Spanner\V1\DeleteSessionRequest;
 use Google\Cloud\Spanner\V1\ExecuteBatchDmlRequest\Statement;
@@ -116,6 +117,43 @@ class GrpcTest extends TestCase
             'name' => self::CONFIG,
             'projectName' => self::PROJECT
         ], $this->expectResourceHeader(self::PROJECT, [
+            self::CONFIG
+        ]));
+    }
+
+    public function testCreateInstanceConfig()
+    {
+        list ($args, $config) = $this->instanceConfig();
+
+        $this->assertCallCorrect(
+            'createInstanceConfig',
+            [
+                'projectName' => self::PROJECT,
+                'instanceConfigId' => self::CONFIG
+            ] + $args,
+            $this->expectResourceHeader(self::CONFIG, [
+                self::PROJECT,
+                self::CONFIG,
+                $config
+            ]),
+            $this->lro,
+            null
+        );
+    }
+
+    public function testUpdateInstanceConfig()
+    {
+        list ($args, $config, $fieldMask) = $this->instanceConfig(false);
+        $this->assertCallCorrect('updateInstanceConfig', $args, $this->expectResourceHeader(self::CONFIG, [
+            $config, $fieldMask
+        ]), $this->lro, null);
+    }
+
+    public function testDeleteInstanceConfig()
+    {
+        $this->assertCallCorrect('deleteInstanceConfig', [
+            'name' => self::CONFIG
+        ], $this->expectResourceHeader(self::CONFIG, [
             self::CONFIG
         ]));
     }
@@ -1357,6 +1395,42 @@ class GrpcTest extends TestCase
         return call_user_func_array([$method, 'invoke'], $args);
     }
 
+    private function instanceConfig($full = true)
+    {
+        $args = [
+            'name' => self::CONFIG,
+            'displayName' => self::CONFIG,
+        ];
+
+        if ($full) {
+            $args = array_merge($args, [
+                'baseConfig' => self::CONFIG,
+                'configType' => InstanceConfig\Type::TYPE_UNSPECIFIED,
+                'state' => State::CREATING,
+                'labels' => [],
+                'replicas' => [],
+                'optionalReplicas' => [],
+                'leaderOptions' => [],
+                'reconciling' => false,
+            ]);
+        }
+
+        $mask = [];
+        foreach (array_keys($args) as $key) {
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
+        }
+
+        $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);
+
+        return [
+            $args,
+            $this->serializer->decodeMessage(new InstanceConfig, $args),
+            $fieldMask
+        ];
+    }
+
     private function instance($full = true, $nodes = true)
     {
         $args = [
@@ -1384,7 +1458,9 @@ class GrpcTest extends TestCase
 
         $mask = [];
         foreach (array_keys($args) as $key) {
-            $mask[] = Serializer::toSnakeCase($key);
+            if ($key != "name") {
+                $mask[] = Serializer::toSnakeCase($key);
+            }
         }
 
         $fieldMask = $this->serializer->decodeMessage(new FieldMask, ['paths' => $mask]);

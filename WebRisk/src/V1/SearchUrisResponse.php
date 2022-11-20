@@ -14,7 +14,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class SearchUrisResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The threat list matches. This may be empty if the URI is on no list.
+     * The threat list matches. This might be empty if the URI is on no list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri threat = 1;</code>
      */
@@ -27,7 +27,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\WebRisk\V1\SearchUrisResponse\ThreatUri $threat
-     *           The threat list matches. This may be empty if the URI is on no list.
+     *           The threat list matches. This might be empty if the URI is on no list.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The threat list matches. This may be empty if the URI is on no list.
+     * The threat list matches. This might be empty if the URI is on no list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri threat = 1;</code>
      * @return \Google\Cloud\WebRisk\V1\SearchUrisResponse\ThreatUri|null
@@ -57,7 +57,7 @@ class SearchUrisResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The threat list matches. This may be empty if the URI is on no list.
+     * The threat list matches. This might be empty if the URI is on no list.
      *
      * Generated from protobuf field <code>.google.cloud.webrisk.v1.SearchUrisResponse.ThreatUri threat = 1;</code>
      * @param \Google\Cloud\WebRisk\V1\SearchUrisResponse\ThreatUri $var
