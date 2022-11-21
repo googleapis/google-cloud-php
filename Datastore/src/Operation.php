@@ -431,12 +431,12 @@ class Operation
             'className' => Entity::class,
             'namespaceId' => $this->namespaceId
         ];
-
+        $runQueryObj = clone $query;
         $iteratorConfig = [
             'itemsKey' => 'batch.entityResults',
             'resultTokenKey' => 'query.startCursor',
             'nextResultTokenKey' => 'batch.endCursor',
-            'setNextResultTokenCondition' => function ($res) use ($query) {
+            'setNextResultTokenCondition' => function ($res) use (&$runQueryObj, &$remainingLimit) {
                 if (isset($res['batch']['moreResults'])) {
                     $moreResultsType = $res['batch']['moreResults'];
                     // Transform gRPC enum to string
@@ -444,25 +444,38 @@ class Operation
                         $moreResultsType = MoreResultsType::name($moreResultsType);
                     }
 
-                    return $query->canPaginate() && $moreResultsType === 'NOT_FINISHED';
+                    $isNotFinished = $runQueryObj->canPaginate() && $moreResultsType === 'NOT_FINISHED';
+                    if($isNotFinished && array_key_exists('limit', $runQueryObj->queryObject())) {
+                        $remainingLimit = $runQueryObj->queryObject()['limit'];
+                        if(is_array($remainingLimit) && array_key_exists('value', $remainingLimit)){
+                            $remainingLimit = $remainingLimit['value'];
+                        }
+
+                        $remainingLimit -= count($res['batch']['entityResults']);
+                    }
+
+                    return $isNotFinished;
                 }
 
                 return false;
             }
         ];
 
-        if (isset($query->queryObject()['limit'])) {
+        if (array_key_exists('limit', $query->queryObject())) {
             // Setting resultLimit ensures we loop through all pages.
             $iteratorConfig['resultLimit'] = $query->queryObject()['limit'];
+            $remainingLimit = $query->queryObject()['limit'];
         }
-        $runQueryObj = clone $query;
-        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options) {
+        $runQueryFn = function (array $args = []) use (&$runQueryObj, $options, &$remainingLimit) {
             $args += [
                 'query' => []
             ];
 
             // The iterator provides the startCursor for subsequent pages as an argument.
             $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
+            if(isset($remainingLimit)) {
+                $requestQueryArr['limit'] = $remainingLimit;
+            }
             $request = [
                 'projectId' => $this->projectId,
                 'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
