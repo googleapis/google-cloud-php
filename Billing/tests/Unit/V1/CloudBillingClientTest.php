@@ -25,7 +25,6 @@ namespace Google\Cloud\Billing\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Billing\V1\BillingAccount;
 use Google\Cloud\Billing\V1\CloudBillingClient;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class CloudBillingClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudBillingClient
-     */
+    /** @return CloudBillingClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class CloudBillingClientTest extends GeneratedTest
         return new CloudBillingClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBillingAccountTest()
     {
         $transport = $this->createTransport();
@@ -106,9 +97,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBillingAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +130,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBillingAccountTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +163,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBillingAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +196,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +225,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -277,9 +258,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProjectBillingInfoTest()
     {
         $transport = $this->createTransport();
@@ -312,9 +291,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getProjectBillingInfoExceptionTest()
     {
         $transport = $this->createTransport();
@@ -347,9 +324,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBillingAccountsTest()
     {
         $transport = $this->createTransport();
@@ -380,9 +355,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBillingAccountsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -413,9 +386,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProjectBillingInfoTest()
     {
         $transport = $this->createTransport();
@@ -450,9 +421,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listProjectBillingInfoExceptionTest()
     {
         $transport = $this->createTransport();
@@ -485,9 +454,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -519,9 +486,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -555,9 +520,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -585,9 +548,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -621,9 +582,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBillingAccountTest()
     {
         $transport = $this->createTransport();
@@ -659,9 +618,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBillingAccountExceptionTest()
     {
         $transport = $this->createTransport();
@@ -695,9 +652,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProjectBillingInfoTest()
     {
         $transport = $this->createTransport();
@@ -730,9 +685,7 @@ class CloudBillingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProjectBillingInfoExceptionTest()
     {
         $transport = $this->createTransport();

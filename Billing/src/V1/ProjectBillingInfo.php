@@ -9,9 +9,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Encapsulation of billing information for a GCP Console project. A project
- * has at most one associated billing account at a time (but a billing account
- * can be assigned to multiple projects).
+ * Encapsulation of billing information for a Google Cloud Console project. A
+ * project has at most one associated billing account at a time (but a billing
+ * account can be assigned to multiple projects).
  *
  * Generated from protobuf message <code>google.cloud.billing.v1.ProjectBillingInfo</code>
  */
