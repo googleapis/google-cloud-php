@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\BoundingPoly
     name: BoundingPoly
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: BoundingPoly
     summary: |
       A bounding polygon for the detected image annotation.

@@ -32,15 +32,24 @@ class PageTree
     public function __construct(
         private string $xmlPath,
         private string $namespace,
-        private string $friendlyApiName
+        private string $packageDescription
     ) {}
 
     public function getPages(): array
     {
+        if (!isset($this->pages)) {
+            $this->pages = $this->loadPages();
+        }
+
+        return $this->pages;
+    }
+
+    private function loadPages(): array
+    {
         $structure = new SimpleXMLElement(file_get_contents($this->xmlPath));
 
         // List of pages, to sort alphabetically by key
-        $pages = [];
+        $pageMap = [];
 
         $isDiregapic = false;
 
@@ -96,7 +105,7 @@ class PageTree
                 continue;
             }
 
-            $pages[$fullName] = new Page($classNode, $file['path'], $this->friendlyApiName);
+            $pageMap[$fullName] = new Page($classNode, $file['path'], $this->packageDescription);
         }
 
         /**
@@ -104,27 +113,32 @@ class PageTree
          * @TODO: Do not generate them in V2, eventually mark them as deprecated
          */
         if ($isDiregapic) {
-            foreach ($pages as $className => $page) {
+            foreach ($pageMap as $className => $page) {
                 if ($page->getClassNode()->isProtobufEnumClass()) {
-                    unset($pages[$className]);
+                    unset($pageMap[$className]);
                 }
             }
         }
 
         // Combine Client classes with internal Gapic\Client
-        $pages = $this->combineGapicClients($gapicClients, $pages);
+        $pageMap = $this->combineGapicClients($gapicClients, $pageMap);
+
+        // We no longer need the array keys
+        $pages = array_values($pageMap);
 
         /**
          * Set a map of protobuf package names to PHP namespaces for Xrefs.
-         * This has to be done after we combine GAPIC clients.
+         * This MUST be done after combining GAPIC clients.
          */
         $protoPackages = [];
         foreach ($pages as $page) {
+            $classNode = $page->getClassNode();
             if ($protoPackage = $classNode->getProtoPackage()) {
                 $protoPackages[$protoPackage] = ltrim($classNode->getNamespace(), '\\');
             }
         }
 
+        // Add the proto packages to every class node
         foreach ($pages as $page) {
             $page->getClassNode()->setProtoPackages($protoPackages);
         }
@@ -132,10 +146,10 @@ class PageTree
         // Sort pages alphabetically by full class name
         ksort($pages);
 
-        return $this->pages = $pages;
+        return $pages;
     }
 
-    private function combineGapicClients(array $gapicClients, array $pages): array
+    private function combineGapicClients(array $gapicClients, array $pageMap): array
     {
         // Combine Client with internal Gapic\Client
         foreach ($gapicClients as $gapicClient) {
@@ -145,15 +159,12 @@ class PageTree
             array_pop($parts); // remove "Gapic" namespace
             $parts[] = $clientClassName;
             $clientFullName = implode('\\', $parts);
-            if (isset($pages[$clientFullName])) {
-                $pages[$clientFullName]->getClassNode()->setChildNode($gapicClient);
+            if (isset($pageMap[$clientFullName])) {
+                $pageMap[$clientFullName]->getClassNode()->setChildNode($gapicClient);
             }
         }
 
-        // We don't need the array keys anymore
-        $pages = array_values($pages);
-
-        return $pages;
+        return $pageMap;
     }
 
     public function getTocItems(): array

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Property
     name: Property
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: Property
     summary: |
       A `Property` consists of a user-supplied name/value pair.

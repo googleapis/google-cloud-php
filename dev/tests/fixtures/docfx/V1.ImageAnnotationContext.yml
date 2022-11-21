@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImageAnnotationContext
     name: ImageAnnotationContext
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageAnnotationContext
     summary: |
       If an image was produced from a file (e.g. a PDF), this message gives

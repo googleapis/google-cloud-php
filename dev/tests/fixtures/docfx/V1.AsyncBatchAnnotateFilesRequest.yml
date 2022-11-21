@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateFilesRequest
     name: AsyncBatchAnnotateFilesRequest
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncBatchAnnotateFilesRequest
     summary: |
       Multiple async file annotation requests are batched into a single service
