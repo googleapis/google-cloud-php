@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-beyondcorp-appgateways",
-    "description": "Google Cloud BeyondCorp AppGateways for PHP Client for PHP",
+    "description": "Google Cloud BeyondCorp AppGateways for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {

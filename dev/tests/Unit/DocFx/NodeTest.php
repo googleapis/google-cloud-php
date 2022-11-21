@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
+use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
 use SimpleXMLElement;
 
 /**
@@ -199,6 +200,65 @@ class NodeTest extends TestCase
         $this->assertEquals(
             '<xref uid="\Google\Cloud\Bigtable\Admin\V2\BigtableTableAdminClient::listBackups()">ListBackups</xref>',
             $classNode->getContent()
+        );
+    }
+
+    public function testAddingPhpLanguageHintToFencedCodeBlock()
+    {
+        $fencedCodeBlock = new class {
+            use FencedCodeBlockTrait;
+
+            public function replace(string $description) {
+                return $this->addPhpLanguageHintToFencedCodeblock($description);
+            }
+        };
+
+        $description = <<<EOF
+This is a test fenced codeblock
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($description)
+        );
+
+        $descriptionWithIndent = <<<EOF
+This is an indented test fenced codeblock
+
+    ```
+    use Some\TestFoo;
+    \$n = new TestFoo();
+    ```
+
+And now you know how to use it!
+EOF;
+
+        // Ensure the whitespace indentation works as expected
+        $this->assertStringContainsString(
+            "\n    ```php\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+        $this->assertStringContainsString(
+            "\n    ```\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
         );
     }
 

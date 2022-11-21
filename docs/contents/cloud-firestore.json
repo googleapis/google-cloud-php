@@ -30,6 +30,9 @@
         "title": "WriteBatch",
         "type": "firestore/writebatch"
     }, {
+      "title": "BulkWriter",
+      "type": "firestore/bulkwriter"
+    }, {
         "title": "FieldPath",
         "type": "firestore/fieldpath"
     }, {

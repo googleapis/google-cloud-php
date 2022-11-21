@@ -209,7 +209,7 @@ class GqlQuery implements QueryInterface
     //@codingStandardsIgnoreEnd
 
     /**
-     * Define the json respresentation of the object.
+     * Define the json representation of the object.
      *
      * @access private
      * @return array

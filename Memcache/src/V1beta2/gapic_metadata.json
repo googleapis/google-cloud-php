@@ -40,6 +40,11 @@
                                 "listInstances"
                             ]
                         },
+                        "RescheduleMaintenance": {
+                            "methods": [
+                                "rescheduleMaintenance"
+                            ]
+                        },
                         "UpdateInstance": {
                             "methods": [
                                 "updateInstance"
@@ -48,6 +53,16 @@
                         "UpdateParameters": {
                             "methods": [
                                 "updateParameters"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         }
                     }

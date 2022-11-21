@@ -1,4 +1,4 @@
-# Google Cloud BeyondCorp Client Gateways for PHP for PHP
+# Google Cloud BeyondCorp Client Gateways for PHP
 
 > Idiomatic PHP client for [Google Cloud BeyondCorp Client Gateways for PHP](https://cloud.google.com/beyondcorp-enterprise).
 
