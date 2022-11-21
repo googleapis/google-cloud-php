@@ -1,0 +1,1 @@
+{"id":"billing\/v1\/geotaxonomy\/type","type":"","title":"Google\\Cloud\\Billing\\V1\\GeoTaxonomy\\Type","name":"Type","description":"<p>The type of Geo Taxonomy: GLOBAL, REGIONAL, or MULTI_REGIONAL.<\/p>\n<p>Protobuf type <code>google.cloud.billing.v1.GeoTaxonomy.Type<\/code><\/p>","examples":[],"resources":[],"methods":[]}
