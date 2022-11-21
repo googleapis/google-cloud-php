@@ -60,7 +60,7 @@ class Container extends \Google\Protobuf\Internal\Message
     private $block_external_network = false;
     /**
      * Optional username for logging in to a docker registry. If username
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * username from the Secret Manager.
      *
      * Generated from protobuf field <code>string username = 10;</code>
@@ -68,7 +68,7 @@ class Container extends \Google\Protobuf\Internal\Message
     private $username = '';
     /**
      * Optional password for logging in to a docker registry. If password
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * password from the Secret Manager;
      *
      * Generated from protobuf field <code>string password = 11;</code>
@@ -102,11 +102,11 @@ class Container extends \Google\Protobuf\Internal\Message
      *           'goog-internal'.
      *     @type string $username
      *           Optional username for logging in to a docker registry. If username
-     *           matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      *           username from the Secret Manager.
      *     @type string $password
      *           Optional password for logging in to a docker registry. If password
-     *           matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     *           matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      *           password from the Secret Manager;
      * }
      */
@@ -287,7 +287,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional username for logging in to a docker registry. If username
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * username from the Secret Manager.
      *
      * Generated from protobuf field <code>string username = 10;</code>
@@ -300,7 +300,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional username for logging in to a docker registry. If username
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * username from the Secret Manager.
      *
      * Generated from protobuf field <code>string username = 10;</code>
@@ -317,7 +317,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional password for logging in to a docker registry. If password
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * password from the Secret Manager;
      *
      * Generated from protobuf field <code>string password = 11;</code>
@@ -330,7 +330,7 @@ class Container extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional password for logging in to a docker registry. If password
-     * matches "projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;" then Batch will read the
+     * matches `projects/&#42;&#47;secrets/&#42;&#47;versions/&#42;` then Batch will read the
      * password from the Secret Manager;
      *
      * Generated from protobuf field <code>string password = 11;</code>
