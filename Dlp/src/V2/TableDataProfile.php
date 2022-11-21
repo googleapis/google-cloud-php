@@ -135,6 +135,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
     private $table_size_bytes = 0;
     /**
      * Number of rows in the table when the profile was generated.
+     * This will not be populated for BigLake tables.
      *
      * Generated from protobuf field <code>int64 row_count = 13;</code>
      */
@@ -220,6 +221,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
      *           The size of the table when the profile was generated.
      *     @type int|string $row_count
      *           Number of rows in the table when the profile was generated.
+     *           This will not be populated for BigLake tables.
      *     @type int $encryption_status
      *           How the table is encrypted.
      *     @type int $resource_visibility
@@ -801,6 +803,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of rows in the table when the profile was generated.
+     * This will not be populated for BigLake tables.
      *
      * Generated from protobuf field <code>int64 row_count = 13;</code>
      * @return int|string
@@ -812,6 +815,7 @@ class TableDataProfile extends \Google\Protobuf\Internal\Message
 
     /**
      * Number of rows in the table when the profile was generated.
+     * This will not be populated for BigLake tables.
      *
      * Generated from protobuf field <code>int64 row_count = 13;</code>
      * @param int|string $var
