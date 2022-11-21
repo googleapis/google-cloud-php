@@ -59,7 +59,7 @@ class RetryConformanceTest extends TestCase
         ]);
         self::$storageClient = new StorageClient([
             'apiEndpoint' => self::$emaulatorUrl,
-            'projectId' => 'test'
+            'projectId' => self::$projectId
         ]);
 
         $data = json_decode(file_get_contents(__DIR__ . '/data/retry_tests.json'), true);
@@ -67,25 +67,31 @@ class RetryConformanceTest extends TestCase
         $methodInvocations = self::getMethodInvocationMapping();
 
         // create the permutations to be used for tests
-        foreach($scenarios as $scenario) {
+        foreach ($scenarios as $scenario) {
             $scenarioId = $scenario['id'];
             $errorCases = $scenario['cases'];
             $methods = $scenario['methods'];
             $expectedSuccess = $scenario['expectSuccess'];
 
-            if(!isset(self::$cases[$scenarioId])){
+            if (!isset(self::$cases[$scenarioId])) {
                 self::$cases[$scenarioId] = [];
             }
 
-            foreach($errorCases as $row) {
+            foreach ($errorCases as $row) {
                 $instructions = $row['instructions'];
-                foreach($methods as $method){
+                foreach ($methods as $method) {
                     $methodName = $method['name'];
                     $resources = $method['resources'];
 
-                    if(array_key_exists($methodName, $methodInvocations)) {
-                        foreach($methodInvocations[$methodName] as $invocationIndex => $callable) {
-                            self::$cases[$scenarioId][] = compact('methodName', 'instructions', 'resources', 'expectedSuccess', 'invocationIndex');
+                    if (array_key_exists($methodName, $methodInvocations)) {
+                        foreach ($methodInvocations[$methodName] as $invocationIndex => $callable) {
+                            self::$cases[$scenarioId][] = compact(
+                                'methodName',
+                                'instructions',
+                                'resources',
+                                'expectedSuccess',
+                                'invocationIndex'
+                            );
                         }
                     }
                 }
@@ -93,7 +99,8 @@ class RetryConformanceTest extends TestCase
         }
     }
 
-    public function idempotentCases(){
+    public function idempotentCases()
+    {
         self::set_up_before_class();
         $scenarioId = 1;
 
@@ -103,14 +110,15 @@ class RetryConformanceTest extends TestCase
     /**
      * @dataProvider idempotentCases
      */
-    public function testIdempotentOps($methodName, $instructions, $resources, $expectedSuccess, $invocationIndex){
+    public function testIdempotentOps($methodName, $instructions, $resources, $expectedSuccess, $invocationIndex)
+    {
         $this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
         $callable = $methodInvocations[$methodName][$invocationIndex];
 
-        if(!$expectedSuccess){
+        if (!$expectedSuccess) {
             $this->expectException('Exception');
         }
 
@@ -126,12 +134,16 @@ class RetryConformanceTest extends TestCase
         call_user_func($callable, $options);
 
         // if an exception was thrown, then this block would never reach
-        if($expectedSuccess){
+        if ($expectedSuccess) {
             $this->assertTrue(true);
         }
 
-        if(!$this->checkCaseCompletion($caseId)){
-            $this->fail(sprintf('The test case didn\'t complete for %s(invocation: %d).', $methodName, $invocationIndex));
+        if (!$this->checkCaseCompletion($caseId)) {
+            $this->fail(sprintf(
+                'The test case didn\'t complete for %s(invocation: %d).',
+                $methodName,
+                $invocationIndex
+            ));
         }
     }
 
@@ -139,7 +151,8 @@ class RetryConformanceTest extends TestCase
      * Create a Retry Test Resource by sending a request to the testbench emulator.
      * @return string
      */
-    private function createRetryTestResource(string $method, array $instruction) {
+    private function createRetryTestResource(string $method, array $instruction)
+    {
         $data = [
             'json' => ["instructions" => [
                 $method => $instruction
@@ -153,11 +166,12 @@ class RetryConformanceTest extends TestCase
 
     /**
      * Helper method that checks if a test case resource has been completed or not.
-     * 
+     *
      * @param string $caseId The test case resource ID
      * @return boolean
      */
-    private function checkCaseCompletion(string $caseId) {
+    private function checkCaseCompletion(string $caseId)
+    {
         $response = self::$httpClient->request('GET', sprintf('retry_test/%s', $caseId));
         $obj = json_decode($response->getBody()->getContents());
 
@@ -167,10 +181,11 @@ class RetryConformanceTest extends TestCase
     /**
      * Lists the different ways of invocing an API.
      */
-    private static function getMethodInvocationMapping() {
+    private static function getMethodInvocationMapping()
+    {
         return [
             'storage.bucket_acl.get' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName, 'bucket_acl' => true]);
 
@@ -185,7 +200,7 @@ class RetryConformanceTest extends TestCase
                 },
             ],
             'storage.bucket_acl.list' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName, 'bucket_acl' => true]);
 
@@ -199,7 +214,7 @@ class RetryConformanceTest extends TestCase
                 },
             ],
             'storage.buckets.delete' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -208,7 +223,7 @@ class RetryConformanceTest extends TestCase
                 },
             ],
             'storage.buckets.get' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -217,7 +232,7 @@ class RetryConformanceTest extends TestCase
 
                     self::disposeResources(['bucket' => $bucketName]);
                 },
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -228,7 +243,7 @@ class RetryConformanceTest extends TestCase
                 },
             ],
             'storage.buckets.getIamPolicy' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -240,7 +255,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.buckets.insert' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $bucket = self::$storageClient->createBucket($bucketName, $options);
                     $name = $bucket->name();
@@ -249,16 +264,17 @@ class RetryConformanceTest extends TestCase
                 },
             ],
             'storage.buckets.list' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
                     $buckets = self::$storageClient->buckets($options);
-                    foreach($buckets as $bucket){}
+                    foreach ($buckets as $bucket) {
+                    }
                 },
             ],
             'storage.buckets.lockRetentionPolicy' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -269,7 +285,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.buckets.testIamPermissions' => [
-                function($options) {
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
@@ -281,7 +297,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.default_object_acl.get' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName, 'bucket_default_acl' => true]);
 
@@ -294,7 +310,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.default_object_acl.list' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName, 'bucket_default_acl' => true]);
 
@@ -306,7 +322,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.hmacKey.delete' => [
-                function($options){
+                function ($options) {
                     $keyName = uniqid(self::$keyPrefix);
                     $ids = self::createResources(['hmacKey' => $keyName]);
                     $accessId = $ids['hmacKeyId'];
@@ -317,7 +333,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.hmacKey.get' => [
-                function($options){
+                function ($options) {
                     $keyName = uniqid(self::$keyPrefix);
                     $ids = self::createResources(['hmacKey' => $keyName]);
                     $accessId = $ids['hmacKeyId'];
@@ -329,20 +345,20 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.hmacKey.list' => [
-                function($options){
+                function ($options) {
                     $keyName = uniqid(self::$keyPrefix);
                     $ids = self::createResources(['hmacKey' => $keyName]);
                     $accessId = $ids['hmacKeyId'];
 
                     $keys = self::$storageClient->hmacKeys($options);
-                    foreach($keys as $key){
+                    foreach ($keys as $key) {
                     }
 
                     self::disposeResources(['hmacKey' => $accessId]);
                 }
             ],
             'storage.notifications.delete' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $ids = self::createResources(['bucket' => $bucketName, 'notification' => 'test']);
 
@@ -355,7 +371,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.notifications.get' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $ids = self::createResources(['bucket' => $bucketName, 'notification' => 'test']);
 
@@ -366,7 +382,7 @@ class RetryConformanceTest extends TestCase
 
                     self::disposeResources(['bucket' => $bucketName, 'notification' => true]);
                 },
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $ids = self::createResources(['bucket' => $bucketName, 'notification' => 'test']);
 
@@ -379,20 +395,20 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.notifications.list' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $ids = self::createResources(['bucket' => $bucketName, 'notification' => 'test']);
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $notifs = $bucket->notifications($options);
-                    foreach($notifs as $notif){
+                    foreach ($notifs as $notif) {
                     }
 
                     self::disposeResources(['bucket' => $bucketName, 'notification' => true]);
                 }
             ],
             'storage.object_acl.get' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $objectName = sprintf('%s.txt', uniqid(self::$objectPrefix));
                     self::createResources(['bucket' => $bucketName, 'object' => $objectName,'object_acl' => true]);
@@ -407,7 +423,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.object_acl.get' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $objectName = sprintf('%s.txt', uniqid(self::$objectPrefix));
                     self::createResources(['bucket' => $bucketName, 'object' => $objectName,'object_acl' => true]);
@@ -422,7 +438,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.object_acl.list' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $objectName = sprintf('%s.txt', uniqid(self::$objectPrefix));
                     self::createResources(['bucket' => $bucketName, 'object' => $objectName,'object_acl' => true]);
@@ -436,7 +452,7 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.objects.get' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $objectName = sprintf('%s.txt', uniqid(self::$objectPrefix));
                     self::createResources(['bucket' => $bucketName, 'object' => $objectName]);
@@ -447,7 +463,7 @@ class RetryConformanceTest extends TestCase
 
                     self::disposeResources(['bucket' => $bucketName, 'object' => $objectName]);
                 },
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     $objectName = sprintf('%s.txt', uniqid(self::$objectPrefix));
                     self::createResources(['bucket' => $bucketName, 'object' => $objectName]);
@@ -460,20 +476,20 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.objects.list' => [
-                function($options){
+                function ($options) {
                     $bucketName = uniqid(self::$bucketPrefix);
                     self::createResources(['bucket' => $bucketName]);
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $objects = $bucket->objects($options);
-                    foreach($objects as $obj){
+                    foreach ($objects as $obj) {
                     }
 
                     self::disposeResources(['bucket' => $bucketName]);
                 }
             ],
             'storage.serviceaccount.get' => [
-                function($options){
+                function ($options) {
                     self::$storageClient->getServiceAccount($options);
                 }
             ],
@@ -483,44 +499,46 @@ class RetryConformanceTest extends TestCase
 
     /**
      * Helper function to create the resources needed by a test.
-     * 
+     *
      * @param $list array List of resources to create.
-     * 
+     *
      * @return array The ids of resources created(where applicable).
      */
-    private function createResources(array $list){
+    private function createResources(array $list)
+    {
         $ids = [];
 
-        if(isset($list['bucket'])){
+        if (isset($list['bucket'])) {
             $bucket = self::$storageClient->createBucket($list['bucket']);
 
-            if(isset($list['bucket_acl'])){
+            if (isset($list['bucket_acl'])) {
                 $acl = $bucket->acl();
                 $acl->add('allUsers', 'READER');
                 $acl->add('allAuthenticatedUsers', 'READER');
             }
-            if(isset($list['bucket_default_acl'])){
+            if (isset($list['bucket_default_acl'])) {
                 $acl = $bucket->defaultAcl();
                 $acl->add('allUsers', 'READER');
                 $acl->add('allAuthenticatedUsers', 'READER');
             }
-            if(isset($list['notification'])){
+            if (isset($list['notification'])) {
                 $notification = $bucket->createNotification($list['notification']);
                 $ids['notificationId'] = $notification->id();
             }
-            if(isset($list['object'])){
+            if (isset($list['object'])) {
                 $object = $bucket->upload('file text', ['name' => $list['object']]);
                 $ids['objectName'] = $list['object'];
 
-                if(isset($list['object_acl'])){
+                if (isset($list['object_acl'])) {
                     $acl = $object->acl();
                     $acl->add('allUsers', 'READER');
                     $acl->add('allAuthenticatedUsers', 'READER');
                 }
             }
         }
-        if(isset($list['hmacKey'])){
-            $response = self::$storageClient->createHmacKey(sprintf('%s@%s.iam.gserviceaccount.com', $list['hmacKey'], self::$projectId));
+        if (isset($list['hmacKey'])) {
+            $keyEmail = sprintf('%s@%s.iam.gserviceaccount.com', $list['hmacKey'], self::$projectId);
+            $response = self::$storageClient->createHmacKey($keyEmail);
             $key = $response->hmacKey();
             $ids['hmacKeyId'] = $key->accessId();
         }
@@ -530,22 +548,23 @@ class RetryConformanceTest extends TestCase
 
     /**
      * Helper function to dispose off the resources after a test has been performed.
-     * 
+     *
      * @param $list array List of resources to destroy.
      */
-    private static function disposeResources(array $list){
-        if(isset($list['bucket'])){
+    private static function disposeResources(array $list)
+    {
+        if (isset($list['bucket'])) {
             $bucket = self::$storageClient->bucket($list['bucket']);
 
             // delete the ACLs related to that bucket
-            if(isset($list['bucket_acl'])){
+            if (isset($list['bucket_acl'])) {
                 $acl = $bucket->acl();
 
                 $acl->delete('allUsers');
                 $acl->delete('allAuthenticatedUsers');
             }
 
-            if(isset($list['bucket_default_acl'])){
+            if (isset($list['bucket_default_acl'])) {
                 $acl = $bucket->defaultAcl();
 
                 $acl->delete('allUsers');
@@ -553,17 +572,17 @@ class RetryConformanceTest extends TestCase
             }
 
             // delete the notifications if we created any
-            if(isset($list['notification'])){
+            if (isset($list['notification'])) {
                 $notifications = $bucket->notifications();
-                foreach($notifications as $notification){
+                foreach ($notifications as $notification) {
                     $notification->delete();
                 }
             }
 
-            if(isset($list['object'])){
+            if (isset($list['object'])) {
                 $object = $bucket->object($list['object']);
 
-                if(isset($list['object_acl'])){
+                if (isset($list['object_acl'])) {
                     $acl = $object->acl();
                     
                     $acl->delete('allUsers');
@@ -576,7 +595,7 @@ class RetryConformanceTest extends TestCase
             // finally delete the bucket
             $bucket->delete();
         }
-        if(isset($list['hmacKey'])){
+        if (isset($list['hmacKey'])) {
             $key = self::$storageClient->hmacKey($list['hmacKey']);
             $key->update('INACTIVE');
             $key->delete();
