@@ -44,7 +44,7 @@ class RetryConformanceTest extends TestCase
     private static $cases = [];
 
     // Storage test bench URL. To be populated by an env variable.
-    private static $emaulatorUrl = '';
+    private static $emaulatorUrl = 'https://storage.googleapis.com';
 
     public static function set_up_before_class()
     {
