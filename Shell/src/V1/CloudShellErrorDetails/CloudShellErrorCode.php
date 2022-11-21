@@ -47,6 +47,13 @@ class CloudShellErrorCode
      * Generated from protobuf enum <code>QUOTA_EXCEEDED = 5;</code>
      */
     const QUOTA_EXCEEDED = 5;
+    /**
+     * The Cloud Shell environment is unavailable and cannot be connected to at
+     * the moment.
+     *
+     * Generated from protobuf enum <code>ENVIRONMENT_UNAVAILABLE = 6;</code>
+     */
+    const ENVIRONMENT_UNAVAILABLE = 6;
 
     private static $valueToName = [
         self::CLOUD_SHELL_ERROR_CODE_UNSPECIFIED => 'CLOUD_SHELL_ERROR_CODE_UNSPECIFIED',
@@ -54,6 +61,7 @@ class CloudShellErrorCode
         self::CLOUD_SHELL_DISABLED => 'CLOUD_SHELL_DISABLED',
         self::TOS_VIOLATION => 'TOS_VIOLATION',
         self::QUOTA_EXCEEDED => 'QUOTA_EXCEEDED',
+        self::ENVIRONMENT_UNAVAILABLE => 'ENVIRONMENT_UNAVAILABLE',
     ];
 
     public static function name($value)
