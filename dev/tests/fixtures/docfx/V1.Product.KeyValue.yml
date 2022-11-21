@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Product\KeyValue
     name: KeyValue
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: KeyValue
     summary: |
       A product label represented as a key-value pair.

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\FaceAnnotation\Landmark\Type
     name: Type
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: Type
     summary: |
       Face landmark (feature) type.

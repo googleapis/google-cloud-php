@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Block
     name: Block
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: Block
     summary: |
       Logical element on the page.

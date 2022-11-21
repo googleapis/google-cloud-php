@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\BatchAnnotateImagesRequest
     name: BatchAnnotateImagesRequest
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchAnnotateImagesRequest
     summary: |
       Multiple image annotation requests are batched into a single service call.

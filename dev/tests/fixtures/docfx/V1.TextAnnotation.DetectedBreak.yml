@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\TextAnnotation\DetectedBreak
     name: DetectedBreak
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: DetectedBreak
     summary: |
       Detected start or end of a structural component.

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     name: ImageAnnotatorClient
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageAnnotatorClient
     summary: |
       Service Description: Service that performs Google Cloud Vision API detection tasks over client

@@ -50,6 +50,12 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
     private $inspect_config = null;
     /**
      * The item to de-identify. Will be treated as text.
+     * This value must be of type
+     * [Table][google.privacy.dlp.v2.Table] if your
+     * [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     * is a
+     * [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     * object.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
      */
@@ -110,6 +116,12 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
      *           inspect_template_name argument.
      *     @type \Google\Cloud\Dlp\V2\ContentItem $item
      *           The item to de-identify. Will be treated as text.
+     *           This value must be of type
+     *           [Table][google.privacy.dlp.v2.Table] if your
+     *           [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     *           is a
+     *           [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     *           object.
      *     @type string $inspect_template_name
      *           Template to use. Any configuration directly specified in
      *           inspect_config will override those set in the template. Singular fields
@@ -261,6 +273,12 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The item to de-identify. Will be treated as text.
+     * This value must be of type
+     * [Table][google.privacy.dlp.v2.Table] if your
+     * [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     * is a
+     * [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     * object.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
      * @return \Google\Cloud\Dlp\V2\ContentItem|null
@@ -282,6 +300,12 @@ class DeidentifyContentRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * The item to de-identify. Will be treated as text.
+     * This value must be of type
+     * [Table][google.privacy.dlp.v2.Table] if your
+     * [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     * is a
+     * [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     * object.
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.ContentItem item = 4;</code>
      * @param \Google\Cloud\Dlp\V2\ContentItem $var

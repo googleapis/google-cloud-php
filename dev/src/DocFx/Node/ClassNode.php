@@ -82,9 +82,27 @@ class ClassNode
         }
 
         // If the namespace contains a segment like "V1alpha1/" or "/V1p1beta1/"
-        $regex = '/\\\V[0-9](p[0-9])?(beta|alpha)[0-9]?(\\\.*)?$/';
-        if (preg_match($regex, $this->getNamespace())) {
+        $version = $this->getVersion();
+        if (str_contains($version, 'beta') || str_contains($version, 'alpha')) {
             return 'beta';
+        }
+
+        return '';
+    }
+
+    public function getVersion(): string
+    {
+        // Matches all known combinations of version numbers:
+        //   - V1
+        //   - V1alpha
+        //   - V1alpha1
+        //   - V1beta
+        //   - V1beta1
+        //   - V1p1beta
+        //   - V1p1beta1
+        $regex = '/\\\(V[0-9]?(p[0-9])?(beta|alpha)?[0-9]?)?(\\\.*)?$/';
+        if (preg_match($regex, $this->getNamespace(), $matches)) {
+            return $matches[1];
         }
 
         return '';

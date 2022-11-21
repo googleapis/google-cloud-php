@@ -18,7 +18,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The billing account resource to create.
      * Currently CreateBillingAccount only supports subaccount creation, so
-     * any created billing accounts must be under a provided master billing
+     * any created billing accounts must be under a provided parent billing
      * account.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount billing_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -34,7 +34,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Billing\V1\BillingAccount $billing_account
      *           Required. The billing account resource to create.
      *           Currently CreateBillingAccount only supports subaccount creation, so
-     *           any created billing accounts must be under a provided master billing
+     *           any created billing accounts must be under a provided parent billing
      *           account.
      * }
      */
@@ -46,7 +46,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The billing account resource to create.
      * Currently CreateBillingAccount only supports subaccount creation, so
-     * any created billing accounts must be under a provided master billing
+     * any created billing accounts must be under a provided parent billing
      * account.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount billing_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -70,7 +70,7 @@ class CreateBillingAccountRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The billing account resource to create.
      * Currently CreateBillingAccount only supports subaccount creation, so
-     * any created billing accounts must be under a provided master billing
+     * any created billing accounts must be under a provided parent billing
      * account.
      *
      * Generated from protobuf field <code>.google.cloud.billing.v1.BillingAccount billing_account = 1 [(.google.api.field_behavior) = REQUIRED];</code>

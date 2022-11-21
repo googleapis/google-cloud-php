@@ -77,8 +77,6 @@ class DocFx extends Command
                 : sprintf('Default structure.xml file "%s" not found.', $xml));
         }
 
-        $namespaces = $this->getNamespaces();
-
         if (!is_dir($outDir)) {
             if (!mkdir($outDir)) {
                 throw new RuntimeException('out directory doesn\'t exist and cannot be created');
@@ -93,12 +91,11 @@ class DocFx extends Command
         $flags = Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK;
 
         $tocItems = [];
-        $friendlyApiName = $this->getFriendlyApiName();
-        foreach ($namespaces as $namespace) {
-            $pages = new PageTree($xml, $namespace, $friendlyApiName);
-            $pageList = $pages->getPages();
+        $packageDescription = $this->getPackageDescription();
+        foreach ($this->getNamespaces() as $namespace) {
+            $pageTree = new PageTree($xml, $namespace, $packageDescription);
 
-            foreach ($pageList as $page) {
+            foreach ($pageTree->getPages() as $page) {
                 $docFxArray = ['items' => $page->getItems()];
 
                 // Dump the YAML for the class node
@@ -110,7 +107,7 @@ class DocFx extends Command
                 file_put_contents($outFile, $yaml);
             }
 
-            $tocItems = array_merge($tocItems, $pages->getTocItems());
+            $tocItems = array_merge($tocItems, $pageTree->getTocItems());
         }
 
         $releaseLevel = $this->getReleaseLevel();
@@ -252,7 +249,7 @@ class DocFx extends Command
         return str_replace('/', '-', $this->getDistributionName());
     }
 
-    private function getFriendlyApiName(): string
+    private function getPackageDescription(): string
     {
         if (empty($this->composerJson['description'])) {
             throw new RuntimeException('composer.json does not contain "description"');
