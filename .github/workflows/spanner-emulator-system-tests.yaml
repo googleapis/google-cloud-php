@@ -28,7 +28,7 @@ jobs:
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v0
         env:
-          CLOUDSDK_PYTHON=python2
+          CLOUDSDK_PYTHON: python2
         with:
           version: '290.0.1'
       - run: gcloud info
