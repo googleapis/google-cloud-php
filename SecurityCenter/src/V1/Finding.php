@@ -283,6 +283,12 @@ class Finding extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.securitycenter.v1.Database database = 44;</code>
      */
     private $database = null;
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     */
+    private $files;
 
     /**
      * Constructor.
@@ -421,6 +427,8 @@ class Finding extends \Google\Protobuf\Internal\Message
      *           Kubernetes resources associated with the finding.
      *     @type \Google\Cloud\SecurityCenter\V1\Database $database
      *           Database associated with the finding.
+     *     @type array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $files
+     *           File associated with the finding.
      * }
      */
     public function __construct($data = NULL) {
@@ -1522,6 +1530,32 @@ class Finding extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\SecurityCenter\V1\Database::class);
         $this->database = $var;
+
+        return $this;
+    }
+
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getFiles()
+    {
+        return $this->files;
+    }
+
+    /**
+     * File associated with the finding.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.securitycenter.v1.File files = 46;</code>
+     * @param array<\Google\Cloud\SecurityCenter\V1\File>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setFiles($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\SecurityCenter\V1\File::class);
+        $this->files = $arr;
 
         return $this;
     }

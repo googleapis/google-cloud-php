@@ -23,15 +23,12 @@
 namespace Google\Cloud\SecurityCenter\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-
 use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\BulkMuteFindingsResponse;
 use Google\Cloud\SecurityCenter\V1\ExternalSystem;
@@ -71,25 +68,19 @@ use stdClass;
  */
 class SecurityCenterClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SecurityCenterClient
-     */
+    /** @return SecurityCenterClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -98,9 +89,7 @@ class SecurityCenterClientTest extends GeneratedTest
         return new SecurityCenterClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkMuteFindingsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -162,9 +151,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkMuteFindingsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -219,9 +206,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBigQueryExportTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +249,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createBigQueryExportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -301,9 +284,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFindingTest()
     {
         $transport = $this->createTransport();
@@ -354,9 +335,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createFindingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -391,9 +370,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMuteConfigTest()
     {
         $transport = $this->createTransport();
@@ -436,9 +413,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMuteConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -475,9 +450,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +489,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNotificationConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -553,9 +524,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSourceTest()
     {
         $transport = $this->createTransport();
@@ -591,9 +560,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -627,9 +594,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBigQueryExportTest()
     {
         $transport = $this->createTransport();
@@ -653,9 +618,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteBigQueryExportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -688,9 +651,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMuteConfigTest()
     {
         $transport = $this->createTransport();
@@ -714,9 +675,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMuteConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -749,9 +708,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -775,9 +732,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNotificationConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -810,9 +765,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBigQueryExportTest()
     {
         $transport = $this->createTransport();
@@ -849,9 +802,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getBigQueryExportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -884,9 +835,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -915,9 +864,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -950,9 +897,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMuteConfigTest()
     {
         $transport = $this->createTransport();
@@ -987,9 +932,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMuteConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1022,9 +965,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -1057,9 +998,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNotificationConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1092,9 +1031,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOrganizationSettingsTest()
     {
         $transport = $this->createTransport();
@@ -1123,9 +1060,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOrganizationSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1158,9 +1093,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSourceTest()
     {
         $transport = $this->createTransport();
@@ -1193,9 +1126,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1228,9 +1159,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function groupAssetsTest()
     {
         $transport = $this->createTransport();
@@ -1270,9 +1199,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function groupAssetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1306,9 +1233,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function groupFindingsTest()
     {
         $transport = $this->createTransport();
@@ -1348,9 +1273,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function groupFindingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1384,9 +1307,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssetsTest()
     {
         $transport = $this->createTransport();
@@ -1423,9 +1344,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAssetsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1458,9 +1377,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBigQueryExportsTest()
     {
         $transport = $this->createTransport();
@@ -1495,9 +1412,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listBigQueryExportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1530,9 +1445,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingsTest()
     {
         $transport = $this->createTransport();
@@ -1569,9 +1482,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFindingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1604,9 +1515,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMuteConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1641,9 +1550,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMuteConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1676,9 +1583,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationConfigsTest()
     {
         $transport = $this->createTransport();
@@ -1713,9 +1618,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNotificationConfigsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1748,9 +1651,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSourcesTest()
     {
         $transport = $this->createTransport();
@@ -1785,9 +1686,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSourcesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1820,9 +1719,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAssetDiscoveryTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1884,9 +1781,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runAssetDiscoveryExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1941,9 +1836,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setFindingStateTest()
     {
         $transport = $this->createTransport();
@@ -1994,9 +1887,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setFindingStateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2031,9 +1922,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2065,9 +1954,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2101,9 +1988,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMuteTest()
     {
         $transport = $this->createTransport();
@@ -2151,9 +2036,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMuteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2187,9 +2070,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -2217,9 +2098,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2253,9 +2132,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBigQueryExportTest()
     {
         $transport = $this->createTransport();
@@ -2292,9 +2169,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateBigQueryExportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2327,9 +2202,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExternalSystemTest()
     {
         $transport = $this->createTransport();
@@ -2360,9 +2233,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExternalSystemExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2395,9 +2266,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFindingTest()
     {
         $transport = $this->createTransport();
@@ -2442,9 +2311,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFindingExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2477,9 +2344,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMuteConfigTest()
     {
         $transport = $this->createTransport();
@@ -2516,9 +2381,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateMuteConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2553,9 +2416,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNotificationConfigTest()
     {
         $transport = $this->createTransport();
@@ -2588,9 +2449,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNotificationConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2623,9 +2482,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOrganizationSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2654,9 +2511,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOrganizationSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2689,9 +2544,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSecurityMarksTest()
     {
         $transport = $this->createTransport();
@@ -2720,9 +2573,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSecurityMarksExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2755,9 +2606,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSourceTest()
     {
         $transport = $this->createTransport();
@@ -2790,9 +2639,7 @@ class SecurityCenterClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSourceExceptionTest()
     {
         $transport = $this->createTransport();
