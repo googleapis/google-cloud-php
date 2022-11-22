@@ -23,13 +23,10 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\DetectIntentResponse;
 use Google\Cloud\Dialogflow\V2\QueryInput;
 use Google\Cloud\Dialogflow\V2\SessionsClient;
@@ -47,25 +44,19 @@ use stdClass;
  */
 class SessionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SessionsClient
-     */
+    /** @return SessionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +65,7 @@ class SessionsClientTest extends GeneratedTest
         return new SessionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detectIntentTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +97,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detectIntentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +131,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingDetectIntentTest()
     {
         $transport = $this->createTransport();
@@ -225,9 +210,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingDetectIntentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -260,9 +243,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -289,9 +270,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -322,9 +301,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -355,9 +332,7 @@ class SessionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
