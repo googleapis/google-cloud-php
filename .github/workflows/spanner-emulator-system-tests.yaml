@@ -27,11 +27,11 @@ jobs:
 
       - name: Create Spanner instance
         uses: google-github-actions/setup-gcloud@v0
-        env:
-          CLOUDSDK_PYTHON: python2
         with:
           version: '290.0.1'
       - run: gcloud info
+        env:
+          CLOUDSDK_PYTHON: python2
       - run: gcloud config configurations create emulator
       - run: gcloud config set auth/disable_credentials true
       - run: gcloud config set project emulator-project
