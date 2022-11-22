@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM permissions
+ * {{iam_name_short}} permissions
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicySearchResult.Explanation.Permissions</code>
  */

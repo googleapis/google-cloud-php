@@ -17,7 +17,7 @@ class Identity extends \Google\Protobuf\Internal\Message
 {
     /**
      * The identity name in any form of members appear in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such
      * as:
      * - user:foo&#64;google.com
@@ -46,7 +46,7 @@ class Identity extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The identity name in any form of members appear in
-     *           [IAM policy
+     *           [{{iam_name_short}} policy
      *           binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such
      *           as:
      *           - user:foo&#64;google.com
@@ -67,7 +67,7 @@ class Identity extends \Google\Protobuf\Internal\Message
 
     /**
      * The identity name in any form of members appear in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such
      * as:
      * - user:foo&#64;google.com
@@ -88,7 +88,7 @@ class Identity extends \Google\Protobuf\Internal\Message
 
     /**
      * The identity name in any form of members appear in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such
      * as:
      * - user:foo&#64;google.com

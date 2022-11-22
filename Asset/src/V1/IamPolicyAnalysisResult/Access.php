@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An IAM role or permission under analysis.
+ * An {{iam_name_short}} role or permission under analysis.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisResult.Access</code>
  */

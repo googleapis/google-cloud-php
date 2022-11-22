@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A representation of a Google Cloud resource.
+ * A representation of a {{gcp_name}} resource.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.Resource</code>
  */
@@ -26,7 +26,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Example:
      * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_document_uri = 2;</code>
      */
@@ -35,7 +35,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * The JSON schema name listed in the discovery document. Example:
      * `Project`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_name = 3;</code>
      */
@@ -54,8 +54,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
-     * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * For {{gcp_name}} assets, this value is the parent resource defined in the
+     * [{{iam_name_short}} policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -72,7 +72,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      */
     private $data = null;
     /**
-     * The location of the resource in Google Cloud, such as its zone and region.
+     * The location of the resource in {{gcp_name}}, such as its zone and region.
      * For more information, see https://cloud.google.com/about/locations/.
      *
      * Generated from protobuf field <code>string location = 8;</code>
@@ -92,12 +92,12 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           Example:
      *           `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      *           This value is unspecified for resources that do not have an API based on a
-     *           discovery document, such as Cloud Bigtable.
+     *           discovery document, such as {{bigtable_name}}.
      *     @type string $discovery_name
      *           The JSON schema name listed in the discovery document. Example:
      *           `Project`
      *           This value is unspecified for resources that do not have an API based on a
-     *           discovery document, such as Cloud Bigtable.
+     *           discovery document, such as {{bigtable_name}}.
      *     @type string $resource_url
      *           The REST URL for accessing the resource. An HTTP `GET` request using this
      *           URL returns the resource itself. Example:
@@ -108,8 +108,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           [Resource
      *           Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      *           for more information.
-     *           For Google Cloud assets, this value is the parent resource defined in the
-     *           [Cloud IAM policy
+     *           For {{gcp_name}} assets, this value is the parent resource defined in the
+     *           [{{iam_name_short}} policy
      *           hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      *           Example:
      *           `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -118,7 +118,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      *           The content of the resource, in which some sensitive fields are removed
      *           and may not be present.
      *     @type string $location
-     *           The location of the resource in Google Cloud, such as its zone and region.
+     *           The location of the resource in {{gcp_name}}, such as its zone and region.
      *           For more information, see https://cloud.google.com/about/locations/.
      * }
      */
@@ -158,7 +158,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Example:
      * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_document_uri = 2;</code>
      * @return string
@@ -173,7 +173,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * Example:
      * `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_document_uri = 2;</code>
      * @param string $var
@@ -191,7 +191,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * The JSON schema name listed in the discovery document. Example:
      * `Project`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_name = 3;</code>
      * @return string
@@ -205,7 +205,7 @@ class Resource extends \Google\Protobuf\Internal\Message
      * The JSON schema name listed in the discovery document. Example:
      * `Project`
      * This value is unspecified for resources that do not have an API based on a
-     * discovery document, such as Cloud Bigtable.
+     * discovery document, such as {{bigtable_name}}.
      *
      * Generated from protobuf field <code>string discovery_name = 3;</code>
      * @param string $var
@@ -256,8 +256,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
-     * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * For {{gcp_name}} assets, this value is the parent resource defined in the
+     * [{{iam_name_short}} policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -276,8 +276,8 @@ class Resource extends \Google\Protobuf\Internal\Message
      * [Resource
      * Names](https://cloud.google.com/apis/design/resource_names#full_resource_name)
      * for more information.
-     * For Google Cloud assets, this value is the parent resource defined in the
-     * [Cloud IAM policy
+     * For {{gcp_name}} assets, this value is the parent resource defined in the
+     * [{{iam_name_short}} policy
      * hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy).
      * Example:
      * `//cloudresourcemanager.googleapis.com/projects/my_project_123`
@@ -334,7 +334,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the resource in Google Cloud, such as its zone and region.
+     * The location of the resource in {{gcp_name}}, such as its zone and region.
      * For more information, see https://cloud.google.com/about/locations/.
      *
      * Generated from protobuf field <code>string location = 8;</code>
@@ -346,7 +346,7 @@ class Resource extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The location of the resource in Google Cloud, such as its zone and region.
+     * The location of the resource in {{gcp_name}}, such as its zone and region.
      * For more information, see https://cloud.google.com/about/locations/.
      *
      * Generated from protobuf field <code>string location = 8;</code>

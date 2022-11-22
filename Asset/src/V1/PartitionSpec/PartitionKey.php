@@ -8,9 +8,9 @@ use UnexpectedValueException;
 
 /**
  * This enum is used to determine the partition key column when exporting
- * assets to BigQuery partitioned table(s). Note that, if the partition key is
- * a timestamp column, the actual partition is based on its date value
- * (expressed in UTC. see details in
+ * assets to {{bigquery_name}} partitioned table(s). Note that, if the
+ * partition key is a timestamp column, the actual partition is based on its
+ * date value (expressed in UTC. see details in
  * https://cloud.google.com/bigquery/docs/partitioned-tables#date_timestamp_partitioned_tables).
  *
  * Protobuf type <code>google.cloud.asset.v1.PartitionSpec.PartitionKey</code>

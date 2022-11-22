@@ -97,9 +97,9 @@ class Feed extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships of the types of [asset_names] and
      * [asset_types] or returns an error if any of the [asset_names] or the
      * [asset_types] has no replationship support.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
-     * for all supported asset types and relationship types.
+     * See [Introduction to
+     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
+     * all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      */
@@ -165,9 +165,9 @@ class Feed extends \Google\Protobuf\Internal\Message
      *           it outputs the supported relationships of the types of [asset_names] and
      *           [asset_types] or returns an error if any of the [asset_names] or the
      *           [asset_types] has no replationship support.
-     *           See [Introduction to Cloud Asset
-     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
-     *           for all supported asset types and relationship types.
+     *           See [Introduction to
+     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
+     *           all supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -421,9 +421,9 @@ class Feed extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships of the types of [asset_names] and
      * [asset_types] or returns an error if any of the [asset_names] or the
      * [asset_types] has no replationship support.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
-     * for all supported asset types and relationship types.
+     * See [Introduction to
+     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
+     * all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -447,9 +447,9 @@ class Feed extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships of the types of [asset_names] and
      * [asset_types] or returns an error if any of the [asset_names] or the
      * [asset_types] has no replationship support.
-     * See [Introduction to Cloud Asset
-     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
-     * for all supported asset types and relationship types.
+     * See [Introduction to
+     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
+     * all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

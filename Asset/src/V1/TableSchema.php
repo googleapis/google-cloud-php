@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * BigQuery Compatible table schema.
+ * {{bigquery_name}} Compatible table schema.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.TableSchema</code>
  */

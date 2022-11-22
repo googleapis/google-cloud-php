@@ -9,22 +9,23 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * BigQuery destination.
+ * {{bigquery_name}} destination.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.QueryAssetsOutputConfig.BigQueryDestination</code>
  */
 class BigQueryDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The {{bigquery_name}} dataset where the query results will be
+     * saved. It has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = '';
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The {{bigquery_name}} table where the query results will be
+     * saved. If this table does not exist, a new table with the given name will
+     * be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -32,10 +33,10 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the action that occurs if the destination table or partition
      * already exists. The following values are supported:
-     * * WRITE_TRUNCATE: If the table or partition already exists, BigQuery
-     * overwrites the entire table or all the partitions data.
-     * * WRITE_APPEND: If the table or partition already exists, BigQuery
-     * appends the data to the table or the latest partition.
+     * * WRITE_TRUNCATE: If the table or partition already exists,
+     * {{bigquery_name}} overwrites the entire table or all the partitions data.
+     * * WRITE_APPEND: If the table or partition already exists,
+     * {{bigquery_name}} appends the data to the table or the latest partition.
      * * WRITE_EMPTY: If the table already exists and contains data, a
      * 'duplicate' error is returned in the job result.
      * The default value is WRITE_EMPTY.
@@ -51,18 +52,19 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Required. The BigQuery dataset where the query results will be saved. It has the
-     *           format of "projects/{projectId}/datasets/{datasetId}".
+     *           Required. The {{bigquery_name}} dataset where the query results will be
+     *           saved. It has the format of "projects/{projectId}/datasets/{datasetId}".
      *     @type string $table
-     *           Required. The BigQuery table where the query results will be saved. If this table
-     *           does not exist, a new table with the given name will be created.
+     *           Required. The {{bigquery_name}} table where the query results will be
+     *           saved. If this table does not exist, a new table with the given name will
+     *           be created.
      *     @type string $write_disposition
      *           Specifies the action that occurs if the destination table or partition
      *           already exists. The following values are supported:
-     *           * WRITE_TRUNCATE: If the table or partition already exists, BigQuery
-     *           overwrites the entire table or all the partitions data.
-     *           * WRITE_APPEND: If the table or partition already exists, BigQuery
-     *           appends the data to the table or the latest partition.
+     *           * WRITE_TRUNCATE: If the table or partition already exists,
+     *           {{bigquery_name}} overwrites the entire table or all the partitions data.
+     *           * WRITE_APPEND: If the table or partition already exists,
+     *           {{bigquery_name}} appends the data to the table or the latest partition.
      *           * WRITE_EMPTY: If the table already exists and contains data, a
      *           'duplicate' error is returned in the job result.
      *           The default value is WRITE_EMPTY.
@@ -74,8 +76,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The {{bigquery_name}} dataset where the query results will be
+     * saved. It has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -86,8 +88,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset where the query results will be saved. It has the
-     * format of "projects/{projectId}/datasets/{datasetId}".
+     * Required. The {{bigquery_name}} dataset where the query results will be
+     * saved. It has the format of "projects/{projectId}/datasets/{datasetId}".
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -102,8 +104,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The {{bigquery_name}} table where the query results will be
+     * saved. If this table does not exist, a new table with the given name will
+     * be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -114,8 +117,9 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table where the query results will be saved. If this table
-     * does not exist, a new table with the given name will be created.
+     * Required. The {{bigquery_name}} table where the query results will be
+     * saved. If this table does not exist, a new table with the given name will
+     * be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -132,10 +136,10 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the action that occurs if the destination table or partition
      * already exists. The following values are supported:
-     * * WRITE_TRUNCATE: If the table or partition already exists, BigQuery
-     * overwrites the entire table or all the partitions data.
-     * * WRITE_APPEND: If the table or partition already exists, BigQuery
-     * appends the data to the table or the latest partition.
+     * * WRITE_TRUNCATE: If the table or partition already exists,
+     * {{bigquery_name}} overwrites the entire table or all the partitions data.
+     * * WRITE_APPEND: If the table or partition already exists,
+     * {{bigquery_name}} appends the data to the table or the latest partition.
      * * WRITE_EMPTY: If the table already exists and contains data, a
      * 'duplicate' error is returned in the job result.
      * The default value is WRITE_EMPTY.
@@ -151,10 +155,10 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     /**
      * Specifies the action that occurs if the destination table or partition
      * already exists. The following values are supported:
-     * * WRITE_TRUNCATE: If the table or partition already exists, BigQuery
-     * overwrites the entire table or all the partitions data.
-     * * WRITE_APPEND: If the table or partition already exists, BigQuery
-     * appends the data to the table or the latest partition.
+     * * WRITE_TRUNCATE: If the table or partition already exists,
+     * {{bigquery_name}} overwrites the entire table or all the partitions data.
+     * * WRITE_APPEND: If the table or partition already exists,
+     * {{bigquery_name}} appends the data to the table or the latest partition.
      * * WRITE_EMPTY: If the table already exists and contains data, a
      * 'duplicate' error is returned in the job result.
      * The default value is WRITE_EMPTY.

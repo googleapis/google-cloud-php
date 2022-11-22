@@ -9,14 +9,16 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A request message for [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
+ * A request message for
+ * [AssetService.BatchGetEffectiveIamPolicies][google.cloud.asset.v1.AssetService.BatchGetEffectiveIamPolicies].
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.BatchGetEffectiveIamPoliciesRequest</code>
  */
 class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Only IAM policies on or below the scope will be returned.
+     * Required. Only {{iam_name_short}} policies on or below the scope will be
+     * returned.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -46,7 +48,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. Only IAM policies on or below the scope will be returned.
+     *           Required. Only {{iam_name_short}} policies on or below the scope will be
+     *           returned.
      *           This can only be an organization number (such as "organizations/123"), a
      *           folder number (such as "folders/123"), a project ID (such as
      *           "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -68,7 +71,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. Only IAM policies on or below the scope will be returned.
+     * Required. Only {{iam_name_short}} policies on or below the scope will be
+     * returned.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -86,7 +90,8 @@ class BatchGetEffectiveIamPoliciesRequest extends \Google\Protobuf\Internal\Mess
     }
 
     /**
-     * Required. Only IAM policies on or below the scope will be returned.
+     * Required. Only {{iam_name_short}} policies on or below the scope will be
+     * returned.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").

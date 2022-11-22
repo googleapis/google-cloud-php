@@ -19,7 +19,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The identity appear in the form of principals in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
      * "user:mike&#64;example.com",
@@ -41,7 +41,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
      *
      *     @type string $identity
      *           Required. The identity appear in the form of principals in
-     *           [IAM policy
+     *           [{{iam_name_short}} policy
      *           binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      *           The examples of supported forms are:
      *           "user:mike&#64;example.com",
@@ -59,7 +59,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The identity appear in the form of principals in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
      * "user:mike&#64;example.com",
@@ -79,7 +79,7 @@ class IdentitySelector extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The identity appear in the form of principals in
-     * [IAM policy
+     * [{{iam_name_short}} policy
      * binding](https://cloud.google.com/iam/reference/rest/v1/Binding).
      * The examples of supported forms are:
      * "user:mike&#64;example.com",

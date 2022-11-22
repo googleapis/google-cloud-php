@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class QueryAssetsOutputConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * BigQuery destination where the query results will be saved.
+     * {{bigquery_name}} destination where the query results will be saved.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig.BigQueryDestination bigquery_destination = 1;</code>
      */
@@ -29,7 +29,7 @@ class QueryAssetsOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\QueryAssetsOutputConfig\BigQueryDestination $bigquery_destination
-     *           BigQuery destination where the query results will be saved.
+     *           {{bigquery_name}} destination where the query results will be saved.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class QueryAssetsOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery destination where the query results will be saved.
+     * {{bigquery_name}} destination where the query results will be saved.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig.BigQueryDestination bigquery_destination = 1;</code>
      * @return \Google\Cloud\Asset\V1\QueryAssetsOutputConfig\BigQueryDestination|null
@@ -59,7 +59,7 @@ class QueryAssetsOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * BigQuery destination where the query results will be saved.
+     * {{bigquery_name}} destination where the query results will be saved.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.QueryAssetsOutputConfig.BigQueryDestination bigquery_destination = 1;</code>
      * @param \Google\Cloud\Asset\V1\QueryAssetsOutputConfig\BigQueryDestination $var

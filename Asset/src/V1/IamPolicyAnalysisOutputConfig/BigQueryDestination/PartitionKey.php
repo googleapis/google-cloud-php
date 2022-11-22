@@ -7,9 +7,9 @@ namespace Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\BigQueryDestinatio
 use UnexpectedValueException;
 
 /**
- * This enum determines the partition key column for the bigquery tables.
- * Partitioning can improve query performance and reduce query cost by
- * filtering partitions. Refer to
+ * This enum determines the partition key column for the {{bigquery_name}}
+ * tables. Partitioning can improve query performance and reduce query cost
+ * by filtering partitions. Refer to
  * https://cloud.google.com/bigquery/docs/partitioned-tables for details.
  *
  * Protobuf type <code>google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.BigQueryDestination.PartitionKey</code>

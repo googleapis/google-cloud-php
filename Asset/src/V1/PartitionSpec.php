@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Specifications of BigQuery partitioned table as export destination.
+ * Specifications of {{bigquery_name}} partitioned table as export destination.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.PartitionSpec</code>
  */
 class PartitionSpec extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The partition key for BigQuery partitioned table.
+     * The partition key for {{bigquery_name}} partitioned table.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec.PartitionKey partition_key = 1;</code>
      */
@@ -29,7 +29,7 @@ class PartitionSpec extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $partition_key
-     *           The partition key for BigQuery partitioned table.
+     *           The partition key for {{bigquery_name}} partitioned table.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class PartitionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The partition key for BigQuery partitioned table.
+     * The partition key for {{bigquery_name}} partitioned table.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec.PartitionKey partition_key = 1;</code>
      * @return int
@@ -49,7 +49,7 @@ class PartitionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The partition key for BigQuery partitioned table.
+     * The partition key for {{bigquery_name}} partitioned table.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.PartitionSpec.PartitionKey partition_key = 1;</code>
      * @param int $var

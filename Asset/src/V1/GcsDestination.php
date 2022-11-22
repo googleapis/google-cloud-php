@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Cloud Storage location.
+ * A {{storage_name}} location.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.GcsDestination</code>
  */
@@ -24,16 +24,16 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $uri
-     *           The uri of the Cloud Storage object. It's the same uri that is used by
+     *           The uri of the {{storage_name}} object. It's the same uri that is used by
      *           gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      *           Editing Object
      *           Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      *           for more information.
-     *           If the specified Cloud Storage object already exists and there is no
+     *           If the specified {{storage_name}} object already exists and there is no
      *           [hold](https://cloud.google.com/storage/docs/object-holds), it will be
      *           overwritten with the exported result.
      *     @type string $uri_prefix
-     *           The uri prefix of all generated Cloud Storage objects. Example:
+     *           The uri prefix of all generated {{storage_name}} objects. Example:
      *           "gs://bucket_name/object_name_prefix". Each object uri is in format:
      *           "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      *           contains assets for that type. <shard number> starts from 0. Example:
@@ -50,12 +50,12 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * The uri of the {{storage_name}} object. It's the same uri that is used by
      * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
-     * If the specified Cloud Storage object already exists and there is no
+     * If the specified {{storage_name}} object already exists and there is no
      * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
      * overwritten with the exported result.
      *
@@ -73,12 +73,12 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri of the Cloud Storage object. It's the same uri that is used by
+     * The uri of the {{storage_name}} object. It's the same uri that is used by
      * gsutil. Example: "gs://bucket_name/object_name". See [Viewing and
      * Editing Object
      * Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata)
      * for more information.
-     * If the specified Cloud Storage object already exists and there is no
+     * If the specified {{storage_name}} object already exists and there is no
      * [hold](https://cloud.google.com/storage/docs/object-holds), it will be
      * overwritten with the exported result.
      *
@@ -95,7 +95,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri prefix of all generated Cloud Storage objects. Example:
+     * The uri prefix of all generated {{storage_name}} objects. Example:
      * "gs://bucket_name/object_name_prefix". Each object uri is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      * contains assets for that type. <shard number> starts from 0. Example:
@@ -119,7 +119,7 @@ class GcsDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The uri prefix of all generated Cloud Storage objects. Example:
+     * The uri prefix of all generated {{storage_name}} objects. Example:
      * "gs://bucket_name/object_name_prefix". Each object uri is in format:
      * "gs://bucket_name/object_name_prefix/<asset type>/<shard number> and only
      * contains assets for that type. <shard number> starts from 0. Example:

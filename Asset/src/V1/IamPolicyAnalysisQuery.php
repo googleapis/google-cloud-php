@@ -9,15 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * IAM policy analysis query message.
+ * {{iam_name_short}} policy analysis query message.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisQuery</code>
  */
 class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within
-     * the scope will be analyzed.
+     * Required. The relative name of the root asset. Only resources and
+     * {{iam_name_short}} policies within the scope will be analyzed.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -54,7 +54,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      */
     private $options = null;
     /**
-     * Optional. The hypothetical context for IAM conditions evaluation.
+     * Optional. The hypothetical context for {{iam_name_short}} conditions
+     * evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -67,8 +68,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $scope
-     *           Required. The relative name of the root asset. Only resources and IAM policies within
-     *           the scope will be analyzed.
+     *           Required. The relative name of the root asset. Only resources and
+     *           {{iam_name_short}} policies within the scope will be analyzed.
      *           This can only be an organization number (such as "organizations/123"), a
      *           folder number (such as "folders/123"), a project ID (such as
      *           "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -85,7 +86,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\Options $options
      *           Optional. The query options.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext $condition_context
-     *           Optional. The hypothetical context for IAM conditions evaluation.
+     *           Optional. The hypothetical context for {{iam_name_short}} conditions
+     *           evaluation.
      * }
      */
     public function __construct($data = NULL) {
@@ -94,8 +96,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within
-     * the scope will be analyzed.
+     * Required. The relative name of the root asset. Only resources and
+     * {{iam_name_short}} policies within the scope will be analyzed.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -113,8 +115,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The relative name of the root asset. Only resources and IAM policies within
-     * the scope will be analyzed.
+     * Required. The relative name of the root asset. Only resources and
+     * {{iam_name_short}} policies within the scope will be analyzed.
      * This can only be an organization number (such as "organizations/123"), a
      * folder number (such as "folders/123"), a project ID (such as
      * "projects/my-project-id"), or a project number (such as "projects/12345").
@@ -280,7 +282,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The hypothetical context for IAM conditions evaluation.
+     * Optional. The hypothetical context for {{iam_name_short}} conditions
+     * evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext|null
@@ -301,7 +304,8 @@ class IamPolicyAnalysisQuery extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The hypothetical context for IAM conditions evaluation.
+     * Optional. The hypothetical context for {{iam_name_short}} conditions
+     * evaluation.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext condition_context = 6 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery\ConditionContext $var

@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Explanation about the IAM policy search result.
+ * Explanation about the {{iam_name_short}} policy search result.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicySearchResult.Explanation</code>
  */

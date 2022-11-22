@@ -9,28 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A BigQuery destination for exporting assets to.
+ * A {{bigquery_name}} destination for exporting assets to.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.BigQueryDestination</code>
  */
 class BigQueryDestination extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery dataset in format
+     * Required. The {{bigquery_name}} dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
      * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
-     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
-     * influences the schema.
+     * of the {{bigquery_name}} table. Setting `separateTablesPerAssetType` to
+     * `TRUE` also influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $dataset = '';
     /**
-     * Required. The BigQuery table to which the snapshot result should be
-     * written. If this table does not exist, a new table with the given name
+     * Required. The {{bigquery_name}} table to which the snapshot result should
+     * be written. If this table does not exist, a new table with the given name
      * will be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -81,7 +81,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of
      * each table will include RECORD-type columns mapped to the nested fields in
      * the Asset.resource.data field of that asset type (up to the 15 nested level
-     * BigQuery supports
+     * {{bigquery_name}} supports
      * (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The
      * fields in >15 nested levels will be stored in JSON format string as a child
      * column of its parent RECORD column.
@@ -102,17 +102,17 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $dataset
-     *           Required. The BigQuery dataset in format
+     *           Required. The {{bigquery_name}} dataset in format
      *           "projects/projectId/datasets/datasetId", to which the snapshot result
      *           should be exported. If this dataset does not exist, the export call returns
      *           an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      *           determines the
      *           [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
-     *           of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
-     *           influences the schema.
+     *           of the {{bigquery_name}} table. Setting `separateTablesPerAssetType` to
+     *           `TRUE` also influences the schema.
      *     @type string $table
-     *           Required. The BigQuery table to which the snapshot result should be
-     *           written. If this table does not exist, a new table with the given name
+     *           Required. The {{bigquery_name}} table to which the snapshot result should
+     *           be written. If this table does not exist, a new table with the given name
      *           will be created.
      *     @type bool $force
      *           If the destination table already exists and this flag is `TRUE`, the
@@ -151,7 +151,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      *           When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of
      *           each table will include RECORD-type columns mapped to the nested fields in
      *           the Asset.resource.data field of that asset type (up to the 15 nested level
-     *           BigQuery supports
+     *           {{bigquery_name}} supports
      *           (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The
      *           fields in >15 nested levels will be stored in JSON format string as a child
      *           column of its parent RECORD column.
@@ -168,14 +168,14 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset in format
+     * Required. The {{bigquery_name}} dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
      * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
-     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
-     * influences the schema.
+     * of the {{bigquery_name}} table. Setting `separateTablesPerAssetType` to
+     * `TRUE` also influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -186,14 +186,14 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery dataset in format
+     * Required. The {{bigquery_name}} dataset in format
      * "projects/projectId/datasets/datasetId", to which the snapshot result
      * should be exported. If this dataset does not exist, the export call returns
      * an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets`
      * determines the
      * [schema](https://cloud.google.com/asset-inventory/docs/exporting-to-bigquery#bigquery-schema)
-     * of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also
-     * influences the schema.
+     * of the {{bigquery_name}} table. Setting `separateTablesPerAssetType` to
+     * `TRUE` also influences the schema.
      *
      * Generated from protobuf field <code>string dataset = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -208,8 +208,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table to which the snapshot result should be
-     * written. If this table does not exist, a new table with the given name
+     * Required. The {{bigquery_name}} table to which the snapshot result should
+     * be written. If this table does not exist, a new table with the given name
      * will be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -221,8 +221,8 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery table to which the snapshot result should be
-     * written. If this table does not exist, a new table with the given name
+     * Required. The {{bigquery_name}} table to which the snapshot result should
+     * be written. If this table does not exist, a new table with the given name
      * will be created.
      *
      * Generated from protobuf field <code>string table = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -349,7 +349,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of
      * each table will include RECORD-type columns mapped to the nested fields in
      * the Asset.resource.data field of that asset type (up to the 15 nested level
-     * BigQuery supports
+     * {{bigquery_name}} supports
      * (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The
      * fields in >15 nested levels will be stored in JSON format string as a child
      * column of its parent RECORD column.
@@ -383,7 +383,7 @@ class BigQueryDestination extends \Google\Protobuf\Internal\Message
      * When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of
      * each table will include RECORD-type columns mapped to the nested fields in
      * the Asset.resource.data field of that asset type (up to the 15 nested level
-     * BigQuery supports
+     * {{bigquery_name}} supports
      * (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The
      * fields in >15 nested levels will be stored in JSON format string as a child
      * column of its parent RECORD column.

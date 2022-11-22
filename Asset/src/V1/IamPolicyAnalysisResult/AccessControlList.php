@@ -9,13 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * An access control list, derived from the above IAM policy binding, which
- * contains a set of resources and accesses. May include one
+ * An access control list, derived from the above {{iam_name_short}} policy
+ * binding, which contains a set of resources and accesses. May include one
  * item from each set to compose an access control entry.
- * NOTICE that there could be multiple access control lists for one IAM policy
- * binding. The access control lists are created based on resource and access
- * combinations.
- * For example, assume we have the following cases in one IAM policy binding:
+ * NOTICE that there could be multiple access control lists for one
+ * {{iam_name_short}} policy binding. The access control lists are created
+ * based on resource and access combinations.
+ * For example, assume we have the following cases in one
+ * {{iam_name_short}} policy binding:
  * - Permission P1 and P2 apply to resource R1 and R2;
  * - Permission P3 applies to resource R2 and R3;
  * This will result in the following access control lists:
@@ -44,8 +45,10 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
     private $accesses;
     /**
      * Resource edges of the graph starting from the policy attached
-     * resource to any descendant resources. The [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node] contains
-     * the full resource name of a parent resource and [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
+     * resource to any descendant resources. The
+     * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
+     * contains the full resource name of a parent resource and
+     * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
      * contains the full resource name of a child resource. This field is
      * present only if the output_resource_edges option is enabled in request.
      *
@@ -54,7 +57,7 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
     private $resource_edges;
     /**
      * Condition evaluation for this AccessControlList, if there is a condition
-     * defined in the above IAM policy binding.
+     * defined in the above {{iam_name_short}} policy binding.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
      */
@@ -76,13 +79,15 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
      *           - Otherwise, access specifiers reachable from the policy binding's role.
      *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\Edge>|\Google\Protobuf\Internal\RepeatedField $resource_edges
      *           Resource edges of the graph starting from the policy attached
-     *           resource to any descendant resources. The [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node] contains
-     *           the full resource name of a parent resource and [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
+     *           resource to any descendant resources. The
+     *           [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
+     *           contains the full resource name of a parent resource and
+     *           [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
      *           contains the full resource name of a child resource. This field is
      *           present only if the output_resource_edges option is enabled in request.
      *     @type \Google\Cloud\Asset\V1\ConditionEvaluation $condition_evaluation
      *           Condition evaluation for this AccessControlList, if there is a condition
-     *           defined in the above IAM policy binding.
+     *           defined in the above {{iam_name_short}} policy binding.
      * }
      */
     public function __construct($data = NULL) {
@@ -152,8 +157,10 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource edges of the graph starting from the policy attached
-     * resource to any descendant resources. The [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node] contains
-     * the full resource name of a parent resource and [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
+     * resource to any descendant resources. The
+     * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
+     * contains the full resource name of a parent resource and
+     * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
      * contains the full resource name of a child resource. This field is
      * present only if the output_resource_edges option is enabled in request.
      *
@@ -167,8 +174,10 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
 
     /**
      * Resource edges of the graph starting from the policy attached
-     * resource to any descendant resources. The [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node] contains
-     * the full resource name of a parent resource and [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
+     * resource to any descendant resources. The
+     * [Edge.source_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.source_node]
+     * contains the full resource name of a parent resource and
+     * [Edge.target_node][google.cloud.asset.v1.IamPolicyAnalysisResult.Edge.target_node]
      * contains the full resource name of a child resource. This field is
      * present only if the output_resource_edges option is enabled in request.
      *
@@ -186,7 +195,7 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
 
     /**
      * Condition evaluation for this AccessControlList, if there is a condition
-     * defined in the above IAM policy binding.
+     * defined in the above {{iam_name_short}} policy binding.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
      * @return \Google\Cloud\Asset\V1\ConditionEvaluation|null
@@ -208,7 +217,7 @@ class AccessControlList extends \Google\Protobuf\Internal\Message
 
     /**
      * Condition evaluation for this AccessControlList, if there is a condition
-     * defined in the above IAM policy binding.
+     * defined in the above {{iam_name_short}} policy binding.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.ConditionEvaluation condition_evaluation = 4;</code>
      * @param \Google\Cloud\Asset\V1\ConditionEvaluation $var

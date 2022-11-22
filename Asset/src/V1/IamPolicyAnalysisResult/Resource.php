@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A Google Cloud resource under analysis.
+ * A {{gcp_name}} resource under analysis.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisResult.Resource</code>
  */

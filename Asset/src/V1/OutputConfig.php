@@ -24,10 +24,10 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\GcsDestination $gcs_destination
-     *           Destination on Cloud Storage.
+     *           Destination on {{storage_name}}.
      *     @type \Google\Cloud\Asset\V1\BigQueryDestination $bigquery_destination
-     *           Destination on BigQuery. The output table stores the fields in asset
-     *           Protobuf as columns in BigQuery.
+     *           Destination on {{bigquery_name}}. The output table stores the fields in
+     *           asset Protobuf as columns in {{bigquery_name}}.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +36,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Cloud Storage.
+     * Destination on {{storage_name}}.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsDestination gcs_destination = 1;</code>
      * @return \Google\Cloud\Asset\V1\GcsDestination|null
@@ -52,7 +52,7 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on Cloud Storage.
+     * Destination on {{storage_name}}.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsDestination gcs_destination = 1;</code>
      * @param \Google\Cloud\Asset\V1\GcsDestination $var
@@ -67,8 +67,8 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on BigQuery. The output table stores the fields in asset
-     * Protobuf as columns in BigQuery.
+     * Destination on {{bigquery_name}}. The output table stores the fields in
+     * asset Protobuf as columns in {{bigquery_name}}.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
      * @return \Google\Cloud\Asset\V1\BigQueryDestination|null
@@ -84,8 +84,8 @@ class OutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on BigQuery. The output table stores the fields in asset
-     * Protobuf as columns in BigQuery.
+     * Destination on {{bigquery_name}}. The output table stores the fields in
+     * asset Protobuf as columns in {{bigquery_name}}.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.BigQueryDestination bigquery_destination = 2;</code>
      * @param \Google\Cloud\Asset\V1\BigQueryDestination $var
