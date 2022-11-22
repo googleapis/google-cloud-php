@@ -34,7 +34,8 @@ class TextChange extends \Google\Protobuf\Internal\Message
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
+     * @deprecated
      */
     private $provenance;
 
@@ -134,23 +135,27 @@ class TextChange extends \Google\Protobuf\Internal\Message
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return $this->provenance;
     }
 
     /**
      * The history of this annotation.
      *
-     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3;</code>
+     * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Provenance provenance = 3 [deprecated = true];</code>
      * @param array<\Google\Cloud\DocumentAI\V1\Document\Provenance>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setProvenance($var)
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
         $this->provenance = $arr;
 

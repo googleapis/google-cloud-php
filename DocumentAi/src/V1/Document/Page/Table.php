@@ -39,6 +39,12 @@ class Table extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .google.cloud.documentai.v1.Document.Page.DetectedLanguage detected_languages = 4;</code>
      */
     private $detected_languages;
+    /**
+     * The history of this table.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 5;</code>
+     */
+    private $provenance = null;
 
     /**
      * Constructor.
@@ -54,6 +60,8 @@ class Table extends \Google\Protobuf\Internal\Message
      *           Body rows of the table.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage>|\Google\Protobuf\Internal\RepeatedField $detected_languages
      *           A list of detected languages together with confidence.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
+     *           The history of this table.
      * }
      */
     public function __construct($data = NULL) {
@@ -171,6 +179,42 @@ class Table extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\DocumentAI\V1\Document\Page\DetectedLanguage::class);
         $this->detected_languages = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The history of this table.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 5;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\Provenance|null
+     */
+    public function getProvenance()
+    {
+        return $this->provenance;
+    }
+
+    public function hasProvenance()
+    {
+        return isset($this->provenance);
+    }
+
+    public function clearProvenance()
+    {
+        unset($this->provenance);
+    }
+
+    /**
+     * The history of this table.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 5;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Provenance $var
+     * @return $this
+     */
+    public function setProvenance($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
+        $this->provenance = $var;
 
         return $this;
     }
