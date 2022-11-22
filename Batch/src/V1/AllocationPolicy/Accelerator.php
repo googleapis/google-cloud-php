@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Accelerator describes Compute Engine accelerators to be attached to VMs.
+ * Accelerator describes Compute Engine accelerators to be attached to the VM.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.Accelerator</code>
  */

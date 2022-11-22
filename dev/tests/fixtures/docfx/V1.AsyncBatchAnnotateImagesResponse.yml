@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\AsyncBatchAnnotateImagesResponse
     name: AsyncBatchAnnotateImagesResponse
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncBatchAnnotateImagesResponse
     summary: |
       Response to an async batch image annotation request.

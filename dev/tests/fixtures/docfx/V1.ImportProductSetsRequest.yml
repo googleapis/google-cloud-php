@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImportProductSetsRequest
     name: ImportProductSetsRequest
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImportProductSetsRequest
     summary: |
       Request message for the `ImportProductSets` method.

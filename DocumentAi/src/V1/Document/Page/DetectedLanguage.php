@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class DetectedLanguage extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
      * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
@@ -24,7 +24,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      */
     private $language_code = '';
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      */
@@ -37,11 +37,11 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $language_code
-     *           The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     *           The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      *           information, see
      *           https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *     @type float $confidence
-     *           Confidence of detected language. Range [0, 1].
+     *           Confidence of detected language. Range `[0, 1]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -50,7 +50,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
      * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
@@ -63,7 +63,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more
+     * The BCP-47 language code, such as `en-US` or `sr-Latn`. For more
      * information, see
      * https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      *
@@ -80,7 +80,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @return float
@@ -91,7 +91,7 @@ class DetectedLanguage extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Confidence of detected language. Range [0, 1].
+     * Confidence of detected language. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 2;</code>
      * @param float $var

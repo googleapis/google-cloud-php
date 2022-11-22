@@ -32,6 +32,13 @@ class State
      */
     const READY = 2;
     /**
+     * Memcached instance is updating configuration such as maintenance policy
+     * and schedule.
+     *
+     * Generated from protobuf enum <code>UPDATING = 3;</code>
+     */
+    const UPDATING = 3;
+    /**
      * Memcached instance is being deleted.
      *
      * Generated from protobuf enum <code>DELETING = 4;</code>
@@ -48,6 +55,7 @@ class State
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
         self::CREATING => 'CREATING',
         self::READY => 'READY',
+        self::UPDATING => 'UPDATING',
         self::DELETING => 'DELETING',
         self::PERFORMING_MAINTENANCE => 'PERFORMING_MAINTENANCE',
     ];

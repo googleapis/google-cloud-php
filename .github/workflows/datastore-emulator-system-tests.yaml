@@ -5,9 +5,11 @@ on:
       - main
     paths:
       - 'Datastore/**'
+      - '.github/workflows/datastore-emulator-system-tests.yaml'
   pull_request:
     paths:
       - 'Datastore/**'
+      - '.github/workflows/datastore-emulator-system-tests.yaml'
 jobs:
   test:
     runs-on: ubuntu-latest

@@ -51,6 +51,12 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Pad pad = 6;</code>
      */
     private $pad = null;
+    /**
+     * Specify the video deinterlace configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace deinterlace = 7;</code>
+     */
+    private $deinterlace = null;
 
     /**
      * Constructor.
@@ -70,6 +76,8 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
      *           Specify the video cropping configuration.
      *     @type \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Pad $pad
      *           Specify the video pad filter configuration.
+     *     @type \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Deinterlace $deinterlace
+     *           Specify the video deinterlace configuration.
      * }
      */
     public function __construct($data = NULL) {
@@ -289,6 +297,42 @@ class PreprocessingConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Pad::class);
         $this->pad = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specify the video deinterlace configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace deinterlace = 7;</code>
+     * @return \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Deinterlace|null
+     */
+    public function getDeinterlace()
+    {
+        return $this->deinterlace;
+    }
+
+    public function hasDeinterlace()
+    {
+        return isset($this->deinterlace);
+    }
+
+    public function clearDeinterlace()
+    {
+        unset($this->deinterlace);
+    }
+
+    /**
+     * Specify the video deinterlace configuration.
+     *
+     * Generated from protobuf field <code>.google.cloud.video.transcoder.v1.PreprocessingConfig.Deinterlace deinterlace = 7;</code>
+     * @param \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Deinterlace $var
+     * @return $this
+     */
+    public function setDeinterlace($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Video\Transcoder\V1\PreprocessingConfig\Deinterlace::class);
+        $this->deinterlace = $var;
 
         return $this;
     }

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImportProductSetsGcsSource
     name: ImportProductSetsGcsSource
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImportProductSetsGcsSource
     summary: |
       The Google Cloud Storage location for a csv file which preserves a list of

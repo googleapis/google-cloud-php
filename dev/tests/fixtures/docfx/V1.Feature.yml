@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\Feature
     name: Feature
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: Feature
     summary: |
       The type of Google Cloud Vision API detection to perform, and the maximum

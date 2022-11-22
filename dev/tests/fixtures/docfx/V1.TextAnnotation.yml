@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\TextAnnotation
     name: TextAnnotation
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: TextAnnotation
     summary: |
       TextAnnotation contains a structured representation of OCR extracted text.

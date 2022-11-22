@@ -27,9 +27,7 @@ namespace Google\Cloud\Batch\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -89,29 +87,19 @@ class BatchServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.batch.v1.BatchService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'batch.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -466,8 +454,9 @@ class BatchServiceGapicClient
      *
      *     @type string $jobId
      *           ID used to uniquely identify the Job within its parent scope.
-     *           This field should contain at most 63 characters.
-     *           Only alphanumeric characters or '-' are accepted.
+     *           This field should contain at most 63 characters and must start with
+     *           lowercase characters.
+     *           Only lowercase characters, numbers and '-' are accepted.
      *           The '-' character cannot be the first or the last one.
      *           A system generated ID will be used if the field is not set.
      *

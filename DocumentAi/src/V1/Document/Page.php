@@ -116,11 +116,18 @@ class Page extends \Google\Protobuf\Internal\Message
      */
     private $detected_barcodes;
     /**
+     * Image Quality Scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
+     */
+    private $image_quality_scores = null;
+    /**
      * The history of this page.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16 [deprecated = true];</code>
+     * @deprecated
      */
-    private $provenance = null;
+    protected $provenance = null;
 
     /**
      * Constructor.
@@ -168,6 +175,8 @@ class Page extends \Google\Protobuf\Internal\Message
      *           A list of visually detected symbols on the page.
      *     @type array<\Google\Cloud\DocumentAI\V1\Document\Page\DetectedBarcode>|\Google\Protobuf\Internal\RepeatedField $detected_barcodes
      *           A list of detected barcodes.
+     *     @type \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $image_quality_scores
+     *           Image Quality Scores.
      *     @type \Google\Cloud\DocumentAI\V1\Document\Provenance $provenance
      *           The history of this page.
      * }
@@ -618,35 +627,77 @@ class Page extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Image Quality Scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
+     * @return \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores|null
+     */
+    public function getImageQualityScores()
+    {
+        return $this->image_quality_scores;
+    }
+
+    public function hasImageQualityScores()
+    {
+        return isset($this->image_quality_scores);
+    }
+
+    public function clearImageQualityScores()
+    {
+        unset($this->image_quality_scores);
+    }
+
+    /**
+     * Image Quality Scores.
+     *
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Page.ImageQualityScores image_quality_scores = 17;</code>
+     * @param \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores $var
+     * @return $this
+     */
+    public function setImageQualityScores($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Page\ImageQualityScores::class);
+        $this->image_quality_scores = $var;
+
+        return $this;
+    }
+
+    /**
      * The history of this page.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16 [deprecated = true];</code>
      * @return \Google\Cloud\DocumentAI\V1\Document\Provenance|null
+     * @deprecated
      */
     public function getProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return $this->provenance;
     }
 
     public function hasProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         return isset($this->provenance);
     }
 
     public function clearProvenance()
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         unset($this->provenance);
     }
 
     /**
      * The history of this page.
      *
-     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16;</code>
+     * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Provenance provenance = 16 [deprecated = true];</code>
      * @param \Google\Cloud\DocumentAI\V1\Document\Provenance $var
      * @return $this
+     * @deprecated
      */
     public function setProvenance($var)
     {
+        @trigger_error('provenance is deprecated.', E_USER_DEPRECATED);
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Provenance::class);
         $this->provenance = $var;
 

@@ -23,15 +23,13 @@
 namespace Google\Cloud\Video\Transcoder\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Video\Transcoder\V1\Job;
 use Google\Cloud\Video\Transcoder\V1\JobTemplate;
-use Google\Cloud\Video\Transcoder\V1\ListJobsResponse;
 use Google\Cloud\Video\Transcoder\V1\ListJobTemplatesResponse;
+use Google\Cloud\Video\Transcoder\V1\ListJobsResponse;
 use Google\Cloud\Video\Transcoder\V1\TranscoderServiceClient;
 use Google\Protobuf\GPBEmpty;
 use Google\Rpc\Code;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class TranscoderServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return TranscoderServiceClient
-     */
+    /** @return TranscoderServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         return new TranscoderServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTest()
     {
         $transport = $this->createTransport();
@@ -111,9 +101,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -147,9 +135,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTemplateTest()
     {
         $transport = $this->createTransport();
@@ -182,9 +168,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -219,9 +203,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTest()
     {
         $transport = $this->createTransport();
@@ -245,9 +227,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -280,9 +260,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTemplateTest()
     {
         $transport = $this->createTransport();
@@ -306,9 +284,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -341,9 +317,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTest()
     {
         $transport = $this->createTransport();
@@ -378,9 +352,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -413,9 +385,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTemplateTest()
     {
         $transport = $this->createTransport();
@@ -442,9 +412,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTemplateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -477,9 +445,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobTemplatesTest()
     {
         $transport = $this->createTransport();
@@ -514,9 +480,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobTemplatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -549,9 +513,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsTest()
     {
         $transport = $this->createTransport();
@@ -586,9 +548,7 @@ class TranscoderServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();

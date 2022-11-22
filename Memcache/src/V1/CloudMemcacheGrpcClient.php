@@ -107,9 +107,10 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Updates the defined Memcached Parameters for an existing Instance.
+     * Updates the defined Memcached parameters for an existing instance.
      * This method only stages the parameters, it must be followed by
-     * ApplyParameters to apply the parameters to nodes of the Memcached Instance.
+     * `ApplyParameters` to apply the parameters to nodes of the Memcached
+     * instance.
      * @param \Google\Cloud\Memcache\V1\UpdateParametersRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -139,7 +140,7 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * ApplyParameters will restart the set of specified nodes in order to update
+     * `ApplyParameters` restarts the set of specified nodes in order to update
      * them to the current set of parameters for the Memcached Instance.
      * @param \Google\Cloud\Memcache\V1\ApplyParametersRequest $argument input argument
      * @param array $metadata metadata
@@ -149,6 +150,21 @@ class CloudMemcacheGrpcClient extends \Grpc\BaseStub {
     public function ApplyParameters(\Google\Cloud\Memcache\V1\ApplyParametersRequest $argument,
       $metadata = [], $options = []) {
         return $this->_simpleRequest('/google.cloud.memcache.v1.CloudMemcache/ApplyParameters',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     * @param \Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function RescheduleMaintenance(\Google\Cloud\Memcache\V1\RescheduleMaintenanceRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.memcache.v1.CloudMemcache/RescheduleMaintenance',
         $argument,
         ['\Google\LongRunning\Operation', 'decode'],
         $metadata, $options);

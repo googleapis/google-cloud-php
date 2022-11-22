@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\OutputConfig
     name: OutputConfig
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: OutputConfig
     summary: |
       The desired output location and metadata.
