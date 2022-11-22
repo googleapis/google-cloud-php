@@ -16,7 +16,7 @@ jobs:
 
     services:
       emulator:
-        image: gcr.io/cloud-spanner-emulator/emulator:1.4.7
+        image: gcr.io/cloud-spanner-emulator/emulator:1.4.5
         ports:
           - 9010:9010
           - 9020:9020
@@ -30,8 +30,6 @@ jobs:
         with:
           version: '290.0.1'
       - run: gcloud info
-        env:
-          CLOUDSDK_PYTHON: python2
       - run: gcloud config configurations create emulator
       - run: gcloud config set auth/disable_credentials true
       - run: gcloud config set project emulator-project
