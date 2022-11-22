@@ -16,7 +16,7 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which transfer configs
      * should be returned: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *
@@ -53,7 +53,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. The BigQuery project id for which data sources
+     *           Required. The BigQuery project id for which transfer configs
      *           should be returned: `projects/{project_id}` or
      *           `projects/{project_id}/locations/{location_id}`
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $data_source_ids
@@ -74,7 +74,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which transfer configs
      * should be returned: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *
@@ -87,7 +87,7 @@ class ListTransferConfigsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. The BigQuery project id for which data sources
+     * Required. The BigQuery project id for which transfer configs
      * should be returned: `projects/{project_id}` or
      * `projects/{project_id}/locations/{location_id}`
      *

@@ -29,10 +29,10 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
      */
     private $type = 0;
     /**
-     * Required. Count of cores of this accelerator. Note that not all
-     * combinations of `type` and `core_count` are valid. Check [GPUs on Compute
-     * Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
-     * valid combination. TPUs are not supported.
+     * Required. Count of cores of this accelerator. Note that not all combinations
+     * of `type` and `core_count` are valid. Check [GPUs on
+     * Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     * find a valid combination. TPUs are not supported.
      *
      * Generated from protobuf field <code>int64 core_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -50,10 +50,10 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
      *     @type int $type
      *           Required. Type of this accelerator.
      *     @type int|string $core_count
-     *           Required. Count of cores of this accelerator. Note that not all
-     *           combinations of `type` and `core_count` are valid. Check [GPUs on Compute
-     *           Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
-     *           valid combination. TPUs are not supported.
+     *           Required. Count of cores of this accelerator. Note that not all combinations
+     *           of `type` and `core_count` are valid. Check [GPUs on
+     *           Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     *           find a valid combination. TPUs are not supported.
      * }
      */
     public function __construct($data = NULL) {
@@ -116,10 +116,10 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Count of cores of this accelerator. Note that not all
-     * combinations of `type` and `core_count` are valid. Check [GPUs on Compute
-     * Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
-     * valid combination. TPUs are not supported.
+     * Required. Count of cores of this accelerator. Note that not all combinations
+     * of `type` and `core_count` are valid. Check [GPUs on
+     * Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     * find a valid combination. TPUs are not supported.
      *
      * Generated from protobuf field <code>int64 core_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return int|string
@@ -130,10 +130,10 @@ class SetInstanceAcceleratorRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Count of cores of this accelerator. Note that not all
-     * combinations of `type` and `core_count` are valid. Check [GPUs on Compute
-     * Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a
-     * valid combination. TPUs are not supported.
+     * Required. Count of cores of this accelerator. Note that not all combinations
+     * of `type` and `core_count` are valid. Check [GPUs on
+     * Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to
+     * find a valid combination. TPUs are not supported.
      *
      * Generated from protobuf field <code>int64 core_count = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param int|string $var

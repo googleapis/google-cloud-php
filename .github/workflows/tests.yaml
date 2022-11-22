@@ -108,7 +108,7 @@ jobs:
         wget -O /usr/local/bin/phpdoc "https://github.com/phpDocumentor/phpDocumentor/releases/download/v3.3.1/phpDocumentor.phar" \
           && chmod +x /usr/local/bin/phpdoc
     - name: Run DocFX Unit Test Suite
-      run: vendor/bin/phpunit dev/tests/Unit/DocFx/
+      run: vendor/bin/phpunit -c dev/phpunit-docfx.xml.dist
     - name: Run Docs Generator (Dry Run)
       run: bash .kokoro/docs/publish.sh
 

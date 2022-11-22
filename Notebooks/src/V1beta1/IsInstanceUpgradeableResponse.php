@@ -34,6 +34,14 @@ class IsInstanceUpgradeableResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string upgrade_info = 3;</code>
      */
     private $upgrade_info = '';
+    /**
+     * The new image self link this instance will be upgraded to if calling the
+     * upgrade endpoint. This field will only be populated if field upgradeable
+     * is true.
+     *
+     * Generated from protobuf field <code>string upgrade_image = 4;</code>
+     */
+    private $upgrade_image = '';
 
     /**
      * Constructor.
@@ -48,6 +56,10 @@ class IsInstanceUpgradeableResponse extends \Google\Protobuf\Internal\Message
      *           endpoint. This field will only be populated if field upgradeable is true.
      *     @type string $upgrade_info
      *           Additional information about upgrade.
+     *     @type string $upgrade_image
+     *           The new image self link this instance will be upgraded to if calling the
+     *           upgrade endpoint. This field will only be populated if field upgradeable
+     *           is true.
      * }
      */
     public function __construct($data = NULL) {
@@ -131,6 +143,36 @@ class IsInstanceUpgradeableResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->upgrade_info = $var;
+
+        return $this;
+    }
+
+    /**
+     * The new image self link this instance will be upgraded to if calling the
+     * upgrade endpoint. This field will only be populated if field upgradeable
+     * is true.
+     *
+     * Generated from protobuf field <code>string upgrade_image = 4;</code>
+     * @return string
+     */
+    public function getUpgradeImage()
+    {
+        return $this->upgrade_image;
+    }
+
+    /**
+     * The new image self link this instance will be upgraded to if calling the
+     * upgrade endpoint. This field will only be populated if field upgradeable
+     * is true.
+     *
+     * Generated from protobuf field <code>string upgrade_image = 4;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setUpgradeImage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->upgrade_image = $var;
 
         return $this;
     }

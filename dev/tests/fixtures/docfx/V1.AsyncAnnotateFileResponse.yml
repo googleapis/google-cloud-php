@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\AsyncAnnotateFileResponse
     name: AsyncAnnotateFileResponse
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: AsyncAnnotateFileResponse
     summary: |
       The response for a single offline file annotation request.

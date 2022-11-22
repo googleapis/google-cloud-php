@@ -27,7 +27,7 @@ class Page
     public function __construct(
         private ClassNode $classNode,
         private string $filePath,
-        private string $friendlyApiName,
+        private string $packageDescription,
     ) {}
 
     public function getClassNode(): ClassNode
@@ -40,6 +40,29 @@ class Page
         $filename = str_replace(['src/', '.php'], '', $this->filePath);
 
         return str_replace('/', '.', $filename);
+    }
+
+    private function getFriendlyApiName(): string
+    {
+        $friendlyApiName = $this->packageDescription;
+
+        // Strip " for PHP" from the end of the package description
+        if (' for PHP' === substr($friendlyApiName, -8)) {
+            $friendlyApiName = substr($friendlyApiName, 0, -8);
+        }
+
+        // Strip " Client" from the end of the package description
+        if (' Client' === substr($friendlyApiName, -7)) {
+            $friendlyApiName = substr($friendlyApiName, 0, -7);
+        }
+
+        // Append Version
+        if ($version = $this->classNode->getVersion()) {
+            $friendlyApiName .= ' ' . $version;
+        }
+
+        // Append "Client"
+        return $friendlyApiName . ' Client';
     }
 
     public function getItems(): array
@@ -64,7 +87,7 @@ class Page
         return array_filter([
             'uid' => $this->classNode->getFullname(),
             'name' => $this->classNode->getName(),
-            'friendlyApiName' => $this->friendlyApiName,
+            'friendlyApiName' => $this->getFriendlyApiName(),
             'id' => $this->classNode->getName(),
             'summary' => $this->classNode->getContent(),
             'status' => $this->classNode->getStatus(),

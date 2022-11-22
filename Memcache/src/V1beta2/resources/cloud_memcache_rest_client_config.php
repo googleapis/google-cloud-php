@@ -99,6 +99,18 @@ return [
                     ],
                 ],
             ],
+            'RescheduleMaintenance' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1beta2/{instance=projects/*/locations/*/instances/*}:rescheduleMaintenance',
+                'body' => '*',
+                'placeholders' => [
+                    'instance' => [
+                        'getters' => [
+                            'getInstance',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateInstance' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1beta2/{resource.name=projects/*/locations/*/instances/*}',

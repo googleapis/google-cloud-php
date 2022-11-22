@@ -35,8 +35,9 @@ class Action extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Dlp\V2\Action\Deidentify $deidentify
      *           Create a de-identified copy of the input data.
      *     @type \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $job_notification_emails
-     *           Enable email notification for project owners and editors on job's
-     *           completion/failure.
+     *           Sends an email when the job completes. The email goes to IAM project
+     *           owners and technical [Essential
+     *           Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *     @type \Google\Cloud\Dlp\V2\Action\PublishToStackdriver $publish_to_stackdriver
      *           Enable Stackdriver metric dlp.googleapis.com/finding_count.
      * }
@@ -202,8 +203,9 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification for project owners and editors on job's
-     * completion/failure.
+     * Sends an email when the job completes. The email goes to IAM project
+     * owners and technical [Essential
+     * Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
      * @return \Google\Cloud\Dlp\V2\Action\JobNotificationEmails|null
@@ -219,8 +221,9 @@ class Action extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Enable email notification for project owners and editors on job's
-     * completion/failure.
+     * Sends an email when the job completes. The email goes to IAM project
+     * owners and technical [Essential
+     * Contacts](https://cloud.google.com/resource-manager/docs/managing-notification-contacts).
      *
      * Generated from protobuf field <code>.google.privacy.dlp.v2.Action.JobNotificationEmails job_notification_emails = 8;</code>
      * @param \Google\Cloud\Dlp\V2\Action\JobNotificationEmails $var

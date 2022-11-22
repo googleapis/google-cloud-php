@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ColorInfo
     name: ColorInfo
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ColorInfo
     summary: |
       Color information consists of RGB channels, score, and the fraction of

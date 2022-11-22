@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\BatchAnnotateFilesResponse
     name: BatchAnnotateFilesResponse
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: BatchAnnotateFilesResponse
     summary: |
       A list of file annotation responses.

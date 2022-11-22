@@ -18,13 +18,13 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
 {
     /**
      * The resource name of the processor type.
-     * Format: projects/{project}/processorTypes/{processor_type}
+     * Format: `projects/{project}/processorTypes/{processor_type}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
     private $name = '';
     /**
-     * The type of the processor, e.g., "invoice_parsing".
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      */
@@ -63,9 +63,9 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           The resource name of the processor type.
-     *           Format: projects/{project}/processorTypes/{processor_type}
+     *           Format: `projects/{project}/processorTypes/{processor_type}`
      *     @type string $type
-     *           The type of the processor, e.g., "invoice_parsing".
+     *           The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      *     @type string $category
      *           The processor category, used by UI to group processor types.
      *     @type array<\Google\Cloud\DocumentAI\V1\ProcessorType\LocationInfo>|\Google\Protobuf\Internal\RepeatedField $available_locations
@@ -84,7 +84,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the processor type.
-     * Format: projects/{project}/processorTypes/{processor_type}
+     * Format: `projects/{project}/processorTypes/{processor_type}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -96,7 +96,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
 
     /**
      * The resource name of the processor type.
-     * Format: projects/{project}/processorTypes/{processor_type}
+     * Format: `projects/{project}/processorTypes/{processor_type}`
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var
@@ -111,7 +111,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the processor, e.g., "invoice_parsing".
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @return string
@@ -122,7 +122,7 @@ class ProcessorType extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The type of the processor, e.g., "invoice_parsing".
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      *
      * Generated from protobuf field <code>string type = 2;</code>
      * @param string $var
