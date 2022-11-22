@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Output configuration for export {{iam_name_short}} policy analysis
- * destination.
+ * Output configuration for export IAM policy analysis destination.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisOutputConfig</code>
  */
@@ -25,9 +24,9 @@ class IamPolicyAnalysisOutputConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\GcsDestination $gcs_destination
-     *           Destination on {{storage_name}}.
+     *           Destination on Cloud Storage.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\BigQueryDestination $bigquery_destination
-     *           Destination on {{bigquery_name}}.
+     *           Destination on BigQuery.
      * }
      */
     public function __construct($data = NULL) {
@@ -36,7 +35,7 @@ class IamPolicyAnalysisOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on {{storage_name}}.
+     * Destination on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.GcsDestination gcs_destination = 1;</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\GcsDestination|null
@@ -52,7 +51,7 @@ class IamPolicyAnalysisOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on {{storage_name}}.
+     * Destination on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.GcsDestination gcs_destination = 1;</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\GcsDestination $var
@@ -67,7 +66,7 @@ class IamPolicyAnalysisOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on {{bigquery_name}}.
+     * Destination on BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.BigQueryDestination bigquery_destination = 2;</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\BigQueryDestination|null
@@ -83,7 +82,7 @@ class IamPolicyAnalysisOutputConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Destination on {{bigquery_name}}.
+     * Destination on BigQuery.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisOutputConfig.BigQueryDestination bigquery_destination = 2;</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisOutputConfig\BigQueryDestination $var

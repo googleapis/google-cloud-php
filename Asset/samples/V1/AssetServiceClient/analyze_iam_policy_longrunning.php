@@ -32,20 +32,18 @@ use Google\Cloud\Asset\V1\IamPolicyAnalysisQuery;
 use Google\Rpc\Status;
 
 /**
- * Analyzes {{iam_name_short}} policies asynchronously to answer which
- * identities have what accesses on which resources, and writes the analysis
- * results to a Google
- * {{storage_name}} or a {{bigquery_name}} destination. For {{storage_name}}
- * destination, the output format is the JSON format that represents a
- * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
- * This method implements the
- * [google.longrunning.Operation][google.longrunning.Operation], which allows
- * you to track the operation status. We recommend intervals of at least 2
- * seconds with exponential backoff retry to poll the operation result. The
- * metadata contains the metadata for the long-running operation.
+ * Analyzes IAM policies asynchronously to answer which identities have what
+ * accesses on which resources, and writes the analysis results to a Google
+ * Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
+ * output format is the JSON format that represents a
+ * [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse]. This method implements the
+ * [google.longrunning.Operation][google.longrunning.Operation], which allows you to track the operation
+ * status. We recommend intervals of at least 2 seconds with exponential
+ * backoff retry to poll the operation result. The metadata contains the
+ * metadata for the long-running operation.
  *
- * @param string $analysisQueryScope The relative name of the root asset. Only resources and
- *                                   {{iam_name_short}} policies within the scope will be analyzed.
+ * @param string $analysisQueryScope The relative name of the root asset. Only resources and IAM policies within
+ *                                   the scope will be analyzed.
  *
  *                                   This can only be an organization number (such as "organizations/123"), a
  *                                   folder number (such as "folders/123"), a project ID (such as

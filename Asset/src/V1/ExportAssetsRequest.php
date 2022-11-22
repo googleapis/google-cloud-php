@@ -46,9 +46,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -61,8 +61,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      */
     private $content_type = 0;
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -80,9 +79,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
      */
@@ -117,15 +116,14 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *           If specified, only matching assets will be returned, otherwise, it will
-     *           snapshot all asset types. See [Introduction to
-     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     *           all supported asset types.
+     *           snapshot all asset types. See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will be
      *           returned.
      *     @type \Google\Cloud\Asset\V1\OutputConfig $output_config
-     *           Required. Output configuration indicating where the results will be output
-     *           to.
+     *           Required. Output configuration indicating where the results will be output to.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $relationship_types
      *           A list of relationship types to export, for example:
      *           `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if
@@ -139,9 +137,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      *           it snapshots the supported relationships for all [asset_types] or returns
      *           an error if any of the [asset_types] has no relationship support.
      *           An unspecified asset types field means all supported asset_types.
-     *           See [Introduction to
-     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     *           all supported asset types and relationship types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -237,9 +235,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -261,9 +259,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -306,8 +304,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return \Google\Cloud\Asset\V1\OutputConfig|null
@@ -328,8 +325,7 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Output configuration indicating where the results will be output
-     * to.
+     * Required. Output configuration indicating where the results will be output to.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.OutputConfig output_config = 5 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param \Google\Cloud\Asset\V1\OutputConfig $var
@@ -356,9 +352,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -381,9 +377,9 @@ class ExportAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 6;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

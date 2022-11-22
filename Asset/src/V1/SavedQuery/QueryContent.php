@@ -24,12 +24,9 @@ class QueryContent extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $iam_policy_analysis_query
-     *           An {{iam_name_short}} Policy Analysis query, which could be used in
-     *           the
-     *           [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
-     *           rpc or the
-     *           [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
-     *           rpc.
+     *           An IAM Policy Analysis query, which could be used in
+     *           the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
+     *           the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,12 +35,9 @@ class QueryContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An {{iam_name_short}} Policy Analysis query, which could be used in
-     * the
-     * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
-     * rpc or the
-     * [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
-     * rpc.
+     * An IAM Policy Analysis query, which could be used in
+     * the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
+     * the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery iam_policy_analysis_query = 1;</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery|null
@@ -59,12 +53,9 @@ class QueryContent extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An {{iam_name_short}} Policy Analysis query, which could be used in
-     * the
-     * [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy]
-     * rpc or the
-     * [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning]
-     * rpc.
+     * An IAM Policy Analysis query, which could be used in
+     * the [AssetService.AnalyzeIamPolicy][google.cloud.asset.v1.AssetService.AnalyzeIamPolicy] rpc or
+     * the [AssetService.AnalyzeIamPolicyLongrunning][google.cloud.asset.v1.AssetService.AnalyzeIamPolicyLongrunning] rpc.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisQuery iam_policy_analysis_query = 1;</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisQuery $var

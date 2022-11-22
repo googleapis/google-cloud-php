@@ -9,8 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * {{iam_name_short}} Policy analysis result, consisting of one
- * {{iam_name_short}} policy binding and derived
+ * IAM Policy analysis result, consisting of one IAM policy binding and derived
  * access control lists.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisResult</code>
@@ -20,40 +19,34 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the resource to which the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * policy attaches.
+     * of the resource to which the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] policy attaches.
      *
      * Generated from protobuf field <code>string attached_resource_full_name = 1;</code>
      */
     private $attached_resource_full_name = '';
     /**
-     * The {{iam_name_short}} policy binding under analysis.
+     * The Cloud IAM policy binding under analysis.
      *
      * Generated from protobuf field <code>.google.iam.v1.Binding iam_binding = 2;</code>
      */
     private $iam_binding = null;
     /**
-     * The access control lists derived from the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match resource and access selectors specified in
-     * the request.
+     * The access control lists derived from the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match resource and access selectors specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
      */
     private $access_control_lists;
     /**
-     * The identity list derived from members of the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match identity selector specified in the request.
+     * The identity list derived from members of the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match identity selector specified in the request.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList identity_list = 4;</code>
      */
     private $identity_list = null;
     /**
-     * Represents whether all analyses on the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * have successfully finished.
+     * Represents whether all analyses on the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] have successfully
+     * finished.
      *
      * Generated from protobuf field <code>bool fully_explored = 5;</code>
      */
@@ -68,24 +61,18 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
      *     @type string $attached_resource_full_name
      *           The [full resource
      *           name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     *           of the resource to which the
-     *           [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     *           policy attaches.
+     *           of the resource to which the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] policy attaches.
      *     @type \Google\Cloud\Iam\V1\Binding $iam_binding
-     *           The {{iam_name_short}} policy binding under analysis.
+     *           The Cloud IAM policy binding under analysis.
      *     @type array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $access_control_lists
-     *           The access control lists derived from the
-     *           [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     *           that match or potentially match resource and access selectors specified in
-     *           the request.
+     *           The access control lists derived from the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     *           potentially match resource and access selectors specified in the request.
      *     @type \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\IdentityList $identity_list
-     *           The identity list derived from members of the
-     *           [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     *           that match or potentially match identity selector specified in the request.
+     *           The identity list derived from members of the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     *           potentially match identity selector specified in the request.
      *     @type bool $fully_explored
-     *           Represents whether all analyses on the
-     *           [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     *           have successfully finished.
+     *           Represents whether all analyses on the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] have successfully
+     *           finished.
      * }
      */
     public function __construct($data = NULL) {
@@ -96,9 +83,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the resource to which the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * policy attaches.
+     * of the resource to which the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] policy attaches.
      *
      * Generated from protobuf field <code>string attached_resource_full_name = 1;</code>
      * @return string
@@ -111,9 +96,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     /**
      * The [full resource
      * name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
-     * of the resource to which the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * policy attaches.
+     * of the resource to which the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] policy attaches.
      *
      * Generated from protobuf field <code>string attached_resource_full_name = 1;</code>
      * @param string $var
@@ -128,7 +111,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The {{iam_name_short}} policy binding under analysis.
+     * The Cloud IAM policy binding under analysis.
      *
      * Generated from protobuf field <code>.google.iam.v1.Binding iam_binding = 2;</code>
      * @return \Google\Cloud\Iam\V1\Binding|null
@@ -149,7 +132,7 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The {{iam_name_short}} policy binding under analysis.
+     * The Cloud IAM policy binding under analysis.
      *
      * Generated from protobuf field <code>.google.iam.v1.Binding iam_binding = 2;</code>
      * @param \Google\Cloud\Iam\V1\Binding $var
@@ -164,10 +147,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The access control lists derived from the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match resource and access selectors specified in
-     * the request.
+     * The access control lists derived from the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match resource and access selectors specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -178,10 +159,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The access control lists derived from the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match resource and access selectors specified in
-     * the request.
+     * The access control lists derived from the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match resource and access selectors specified in the request.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicyAnalysisResult.AccessControlList access_control_lists = 3;</code>
      * @param array<\Google\Cloud\Asset\V1\IamPolicyAnalysisResult\AccessControlList>|\Google\Protobuf\Internal\RepeatedField $var
@@ -196,9 +175,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identity list derived from members of the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match identity selector specified in the request.
+     * The identity list derived from members of the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match identity selector specified in the request.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList identity_list = 4;</code>
      * @return \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\IdentityList|null
@@ -219,9 +197,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The identity list derived from members of the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * that match or potentially match identity selector specified in the request.
+     * The identity list derived from members of the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] that match or
+     * potentially match identity selector specified in the request.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.IamPolicyAnalysisResult.IdentityList identity_list = 4;</code>
      * @param \Google\Cloud\Asset\V1\IamPolicyAnalysisResult\IdentityList $var
@@ -236,9 +213,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all analyses on the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * have successfully finished.
+     * Represents whether all analyses on the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] have successfully
+     * finished.
      *
      * Generated from protobuf field <code>bool fully_explored = 5;</code>
      * @return bool
@@ -249,9 +225,8 @@ class IamPolicyAnalysisResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Represents whether all analyses on the
-     * [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding]
-     * have successfully finished.
+     * Represents whether all analyses on the [iam_binding][google.cloud.asset.v1.IamPolicyAnalysisResult.iam_binding] have successfully
+     * finished.
      *
      * Generated from protobuf field <code>bool fully_explored = 5;</code>
      * @param bool $var

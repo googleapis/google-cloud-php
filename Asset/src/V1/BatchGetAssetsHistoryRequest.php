@@ -65,9 +65,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships' history on the [asset_names] or
      * returns an error if any of the [asset_names]'s types has no relationship
      * support.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -113,9 +113,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      *           it outputs the supported relationships' history on the [asset_names] or
      *           returns an error if any of the [asset_names]'s types has no relationship
      *           support.
-     *           See [Introduction to
-     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     *           all supported asset types and relationship types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     *           supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -275,9 +275,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships' history on the [asset_names] or
      * returns an error if any of the [asset_names]'s types has no relationship
      * support.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -301,9 +301,9 @@ class BatchGetAssetsHistoryRequest extends \Google\Protobuf\Internal\Message
      * it outputs the supported relationships' history on the [asset_names] or
      * returns an error if any of the [asset_names]'s types has no relationship
      * support.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all
+     * supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

@@ -28,10 +28,9 @@ use Google\Cloud\Asset\V1\AssetServiceClient;
 use Google\Cloud\Asset\V1\BatchGetEffectiveIamPoliciesResponse;
 
 /**
- * Gets effective {{iam_name_short}} policies for a batch of resources.
+ * Gets effective IAM policies for a batch of resources.
  *
- * @param string $scope        Only {{iam_name_short}} policies on or below the scope will be
- *                             returned.
+ * @param string $scope        Only IAM policies on or below the scope will be returned.
  *
  *                             This can only be an organization number (such as "organizations/123"), a
  *                             folder number (such as "folders/123"), a project ID (such as

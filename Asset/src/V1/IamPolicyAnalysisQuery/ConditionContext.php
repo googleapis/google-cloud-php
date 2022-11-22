@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * The {{iam_name_short}} conditions context.
+ * The IAM conditions context.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.IamPolicyAnalysisQuery.ConditionContext</code>
  */
@@ -24,9 +24,9 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Protobuf\Timestamp $access_time
-     *           The hypothetical access timestamp to evaluate {{iam_name_short}}
-     *           conditions. Note that this value must not be earlier than the current
-     *           time; otherwise, an INVALID_ARGUMENT error will be returned.
+     *           The hypothetical access timestamp to evaluate IAM conditions. Note that
+     *           this value must not be earlier than the current time; otherwise, an
+     *           INVALID_ARGUMENT error will be returned.
      * }
      */
     public function __construct($data = NULL) {
@@ -35,9 +35,9 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hypothetical access timestamp to evaluate {{iam_name_short}}
-     * conditions. Note that this value must not be earlier than the current
-     * time; otherwise, an INVALID_ARGUMENT error will be returned.
+     * The hypothetical access timestamp to evaluate IAM conditions. Note that
+     * this value must not be earlier than the current time; otherwise, an
+     * INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp access_time = 1;</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -53,9 +53,9 @@ class ConditionContext extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The hypothetical access timestamp to evaluate {{iam_name_short}}
-     * conditions. Note that this value must not be earlier than the current
-     * time; otherwise, an INVALID_ARGUMENT error will be returned.
+     * The hypothetical access timestamp to evaluate IAM conditions. Note that
+     * this value must not be earlier than the current time; otherwise, an
+     * INVALID_ARGUMENT error will be returned.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp access_time = 1;</code>
      * @param \Google\Protobuf\Timestamp $var

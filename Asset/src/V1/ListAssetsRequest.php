@@ -16,11 +16,11 @@ use Google\Protobuf\Internal\GPBUtil;
 class ListAssetsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the organization, folder, or project the assets belong
-     * to. Format: "organizations/[organization-number]" (such as
-     * "organizations/123"), "projects/[project-id]" (such as
-     * "projects/my-project-id"), "projects/[project-number]" (such as
-     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -47,9 +47,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      */
@@ -89,9 +89,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      */
@@ -104,11 +104,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $parent
-     *           Required. Name of the organization, folder, or project the assets belong
-     *           to. Format: "organizations/[organization-number]" (such as
-     *           "organizations/123"), "projects/[project-id]" (such as
-     *           "projects/my-project-id"), "projects/[project-number]" (such as
-     *           "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     *           Required. Name of the organization, folder, or project the assets belong to. Format:
+     *           "organizations/[organization-number]" (such as "organizations/123"),
+     *           "projects/[project-id]" (such as "projects/my-project-id"),
+     *           "projects/[project-number]" (such as "projects/12345"), or
+     *           "folders/[folder-number]" (such as "folders/12345").
      *     @type \Google\Protobuf\Timestamp $read_time
      *           Timestamp to take an asset snapshot. This can only be set to a timestamp
      *           between the current time and the current time minus 35 days (inclusive).
@@ -127,9 +127,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           regular expression syntax. If the regular expression does not match any
      *           supported asset type, an INVALID_ARGUMENT error will be returned.
      *           If specified, only matching assets will be returned, otherwise, it will
-     *           snapshot all asset types. See [Introduction to
-     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     *           all supported asset types.
+     *           snapshot all asset types. See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types.
      *     @type int $content_type
      *           Asset content type. If not specified, no content but the asset name will
      *           be returned.
@@ -153,9 +153,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      *           it snapshots the supported relationships for all [asset_types] or returns
      *           an error if any of the [asset_types] has no relationship support.
      *           An unspecified asset types field means all supported asset_types.
-     *           See [Introduction to
-     *           {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     *           all supported asset types and relationship types.
+     *           See [Introduction to Cloud Asset
+     *           Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     *           for all supported asset types and relationship types.
      * }
      */
     public function __construct($data = NULL) {
@@ -164,11 +164,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization, folder, or project the assets belong
-     * to. Format: "organizations/[organization-number]" (such as
-     * "organizations/123"), "projects/[project-id]" (such as
-     * "projects/my-project-id"), "projects/[project-number]" (such as
-     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -179,11 +179,11 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the organization, folder, or project the assets belong
-     * to. Format: "organizations/[organization-number]" (such as
-     * "organizations/123"), "projects/[project-id]" (such as
-     * "projects/my-project-id"), "projects/[project-number]" (such as
-     * "projects/12345"), or "folders/[folder-number]" (such as "folders/12345").
+     * Required. Name of the organization, folder, or project the assets belong to. Format:
+     * "organizations/[organization-number]" (such as "organizations/123"),
+     * "projects/[project-id]" (such as "projects/my-project-id"),
+     * "projects/[project-number]" (such as "projects/12345"), or
+     * "folders/[folder-number]" (such as "folders/12345").
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -253,9 +253,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -277,9 +277,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * regular expression syntax. If the regular expression does not match any
      * supported asset type, an INVALID_ARGUMENT error will be returned.
      * If specified, only matching assets will be returned, otherwise, it will
-     * snapshot all asset types. See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types.
+     * snapshot all asset types. See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types.
      *
      * Generated from protobuf field <code>repeated string asset_types = 3;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -392,9 +392,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -417,9 +417,9 @@ class ListAssetsRequest extends \Google\Protobuf\Internal\Message
      * it snapshots the supported relationships for all [asset_types] or returns
      * an error if any of the [asset_types] has no relationship support.
      * An unspecified asset types field means all supported asset_types.
-     * See [Introduction to
-     * {{cai_name}}](https://cloud.google.com/asset-inventory/docs/overview) for
-     * all supported asset types and relationship types.
+     * See [Introduction to Cloud Asset
+     * Inventory](https://cloud.google.com/asset-inventory/docs/overview)
+     * for all supported asset types and relationship types.
      *
      * Generated from protobuf field <code>repeated string relationship_types = 7;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

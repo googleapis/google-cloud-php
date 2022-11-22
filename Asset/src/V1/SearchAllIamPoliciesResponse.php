@@ -9,16 +9,15 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Search all {{iam_name_short}} policies response.
+ * Search all IAM policies response.
  *
  * Generated from protobuf message <code>google.cloud.asset.v1.SearchAllIamPoliciesResponse</code>
  */
 class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
 {
     /**
-     * A list of {{iam_name_short}} policies that match the search query. Related
-     * information such as the associated resource is returned along with the
-     * policy.
+     * A list of IamPolicy that match the search query. Related information such
+     * as the associated resource is returned along with the policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicySearchResult results = 1;</code>
      */
@@ -39,9 +38,8 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Asset\V1\IamPolicySearchResult>|\Google\Protobuf\Internal\RepeatedField $results
-     *           A list of {{iam_name_short}} policies that match the search query. Related
-     *           information such as the associated resource is returned along with the
-     *           policy.
+     *           A list of IamPolicy that match the search query. Related information such
+     *           as the associated resource is returned along with the policy.
      *     @type string $next_page_token
      *           Set if there are more results than those appearing in this response; to get
      *           the next set of results, call this method again, using this value as the
@@ -54,9 +52,8 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of {{iam_name_short}} policies that match the search query. Related
-     * information such as the associated resource is returned along with the
-     * policy.
+     * A list of IamPolicy that match the search query. Related information such
+     * as the associated resource is returned along with the policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicySearchResult results = 1;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -67,9 +64,8 @@ class SearchAllIamPoliciesResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A list of {{iam_name_short}} policies that match the search query. Related
-     * information such as the associated resource is returned along with the
-     * policy.
+     * A list of IamPolicy that match the search query. Related information such
+     * as the associated resource is returned along with the policy.
      *
      * Generated from protobuf field <code>repeated .google.cloud.asset.v1.IamPolicySearchResult results = 1;</code>
      * @param array<\Google\Cloud\Asset\V1\IamPolicySearchResult>|\Google\Protobuf\Internal\RepeatedField $var

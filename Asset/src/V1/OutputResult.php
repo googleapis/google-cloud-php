@@ -24,7 +24,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Asset\V1\GcsOutputResult $gcs_result
-     *           Export result on {{storage_name}}.
+     *           Export result on Cloud Storage.
      * }
      */
     public function __construct($data = NULL) {
@@ -33,7 +33,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Export result on {{storage_name}}.
+     * Export result on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsOutputResult gcs_result = 1;</code>
      * @return \Google\Cloud\Asset\V1\GcsOutputResult|null
@@ -49,7 +49,7 @@ class OutputResult extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Export result on {{storage_name}}.
+     * Export result on Cloud Storage.
      *
      * Generated from protobuf field <code>.google.cloud.asset.v1.GcsOutputResult gcs_result = 1;</code>
      * @param \Google\Cloud\Asset\V1\GcsOutputResult $var

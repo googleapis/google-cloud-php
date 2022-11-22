@@ -26,19 +26,19 @@ class ContentType
      */
     const RESOURCE = 1;
     /**
-     * The actual {{iam_name_short}} policy set on a resource.
+     * The actual IAM policy set on a resource.
      *
      * Generated from protobuf enum <code>IAM_POLICY = 2;</code>
      */
     const IAM_POLICY = 2;
     /**
-     * The organization policy set on an asset.
+     * The Cloud Organization Policy set on an asset.
      *
      * Generated from protobuf enum <code>ORG_POLICY = 4;</code>
      */
     const ORG_POLICY = 4;
     /**
-     * The {{acm_name}} policy set on an asset.
+     * The Cloud Access context manager Policy set on an asset.
      *
      * Generated from protobuf enum <code>ACCESS_POLICY = 5;</code>
      */

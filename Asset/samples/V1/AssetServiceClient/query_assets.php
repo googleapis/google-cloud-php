@@ -29,7 +29,7 @@ use Google\Cloud\Asset\V1\QueryAssetsResponse;
 
 /**
  * Issue a job that queries assets using a SQL statement compatible with
- * [{{bigquery_name}} Standard
+ * [BigQuery Standard
  * SQL](http://cloud/bigquery/docs/reference/standard-sql/enabling-standard-sql).
  *
  * If the query execution finishes within timeout and there's no pagination,
@@ -39,7 +39,7 @@ use Google\Cloud\Asset\V1\QueryAssetsResponse;
  * with the `job_reference` from the a previous `QueryAssets` call.
  *
  * Note, the query result has approximately 10 GB limitation enforced by
- * {{bigquery_name}}
+ * BigQuery
  * https://cloud.google.com/bigquery/docs/best-practices-performance-output,
  * queries return larger results will result in errors.
  *
