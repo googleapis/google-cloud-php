@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A new or an existing persistent disk or a local ssd attached to a VM
+ * A new or an existing persistent disk (PD) or a local ssd attached to a VM
  * instance.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.AllocationPolicy.AttachedDisk</code>
