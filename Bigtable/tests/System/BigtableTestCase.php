@@ -25,6 +25,7 @@ use Google\Cloud\Bigtable\Admin\V2\Instance;
 use Google\Cloud\Bigtable\Admin\V2\Table;
 use Google\Cloud\Bigtable\BigtableClient;
 use Google\Cloud\Core\Testing\System\SystemTestCase;
+use Google\Cloud\Bigtable\Admin\V2\StorageType;
 use Exception;
 
 /**
@@ -33,10 +34,10 @@ use Exception;
  */
 class BigtableTestCase extends SystemTestCase
 {
-    const INSTANCE_ID_PREFIX = 'php-sys-instance-';
-    const CLUSTER_ID_PREFIX = 'php-sys-cluster-';
-    const TABLE_ID = 'bigtable-php-sys-test-table';
-    const LOCATION_ID = 'us-east1-b';
+    public const INSTANCE_ID_PREFIX = 'php-sys-instance-';
+    public const CLUSTER_ID_PREFIX = 'php-sys-cluster-';
+    public const TABLE_ID = 'bigtable-php-sys-test-table';
+    public const LOCATION_ID = 'us-east1-b';
 
     protected static $instanceAdminClient;
     protected static $tableAdminClient;
@@ -64,38 +65,47 @@ class BigtableTestCase extends SystemTestCase
             'credentials' => $keyFilePath
         ]))->table(self::$instanceId, self::TABLE_ID);
         if (!self::isEmulatorUsed()) {
-            self::createInstance();
+            self::createInstance(
+                self::$projectId,
+                self::$instanceId,
+                self::LOCATION_ID,
+                self::$clusterId
+            );
         }
-        self::createTable();
+        self::createTable(self::$projectId, self::$instanceId, self::TABLE_ID);
     }
 
     public static function tear_down_after_class()
     {
-        self::deleteTable();
+        self::deleteTable(self::$projectId, self::$instanceId, self::TABLE_ID);
         if (!self::isEmulatorUsed()) {
-            self::deleteInstance();
+            self::deleteInstance(self::$projectId, self::$instanceId);
         }
     }
 
-    private static function createInstance()
-    {
-        $formattedParent = self::$instanceAdminClient->projectName(self::$projectId);
+    protected static function createInstance(
+        string $projectId,
+        string $instanceId,
+        string $locationId,
+        string $clusterId
+    ) {
+        $formattedParent = self::$instanceAdminClient->projectName($projectId);
         $instance = new Instance();
-        $instance->setDisplayName(self::$instanceId);
+        $instance->setDisplayName($instanceId);
         $cluster = new Cluster();
         $cluster->setLocation(
             self::$instanceAdminClient->locationName(
-                self::$projectId,
-                self::LOCATION_ID
+                $projectId,
+                $locationId
             )
         );
         $cluster->setServeNodes(3);
         $clusters = [
-            self::$clusterId => $cluster
+            $clusterId => $cluster
         ];
         $operationResponse = self::$instanceAdminClient->createInstance(
             $formattedParent,
-            self::$instanceId,
+            $instanceId,
             $instance,
             $clusters
         );
@@ -105,20 +115,62 @@ class BigtableTestCase extends SystemTestCase
         }
     }
 
-    private static function deleteInstance()
+    protected static function createCluster(
+        string $projectId,
+        string $instanceId,
+        string $locationId,
+        string $clusterId
+    ) {
+        $instanceName = self::$instanceAdminClient->instanceName(
+            $projectId,
+            $instanceId
+        );
+        $clusterName = self::$instanceAdminClient->clusterName(
+            $projectId,
+            $instanceId,
+            $clusterId
+        );
+
+        $storage_type = StorageType::SSD;
+        $serve_nodes = 3;
+
+        $cluster = new Cluster();
+        $cluster->setServeNodes($serve_nodes);
+        $cluster->setDefaultStorageType($storage_type);
+        $cluster->setLocation(
+            self::$instanceAdminClient->locationName(
+                $projectId,
+                $locationId
+            )
+        );
+        $operationResponse = self::$instanceAdminClient->createCluster(
+            $instanceName,
+            $clusterId,
+            $cluster
+        );
+        $operationResponse->pollUntilComplete();
+        if (!$operationResponse->operationSucceeded()) {
+            throw new Exception('error creating cluster', -1);
+        }
+    }
+
+    protected static function deleteInstance(string $projectId, string $instanceId)
     {
         $formattedName = self::$instanceAdminClient->instanceName(
-            self::$projectId,
-            self::$instanceId
+            $projectId,
+            $instanceId
         );
         self::$instanceAdminClient->deleteInstance($formattedName);
     }
 
-    private static function createTable()
-    {
+    protected static function createTable(
+        string $projectId,
+        string $instanceId,
+        string $tableId
+    ) {
         $formattedParent = self::$tableAdminClient->instanceName(
-            self::$projectId,
-            self::$instanceId
+            $projectId,
+            $instanceId
         );
         $table = new Table();
         $columnFamily = new ColumnFamily();
@@ -136,17 +188,20 @@ class BigtableTestCase extends SystemTestCase
         ]);
         self::$tableAdminClient->createTable(
             $formattedParent,
-            self::TABLE_ID,
+            $tableId,
             $table
         );
     }
 
-    private static function deleteTable()
-    {
+    protected static function deleteTable(
+        string $projectId,
+        string $instanceId,
+        string $tableId
+    ) {
         $formattedName = self::$tableAdminClient->tableName(
-            self::$projectId,
-            self::$instanceId,
-            self::TABLE_ID
+            $projectId,
+            $instanceId,
+            $tableId
         );
         self::$tableAdminClient->deleteTable($formattedName);
     }
