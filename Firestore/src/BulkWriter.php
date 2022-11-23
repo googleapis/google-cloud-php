@@ -218,7 +218,7 @@ class BulkWriter
      *     upgrading.
      *
      *     For legacy reasons if provided as `string` or `null`, its assumed
-     *     to be transaction id for {@see Google\Cloud\Firestore\WriteBatch}.
+     *     to be transaction id for Google\Cloud\Firestore\WriteBatch.
      *
      *     @type int $maxBatchSize Maximum number of requests per BulkWriter batch.
      *           **Defaults to** `20`.
