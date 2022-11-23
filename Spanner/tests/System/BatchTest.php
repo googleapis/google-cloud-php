@@ -22,6 +22,7 @@ use Google\Cloud\Spanner\Batch\BatchSnapshot;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
@@ -49,16 +50,18 @@ class BatchTest extends SpannerTestCase
             self::$tableName
         ))->pollUntilComplete();
 
-        $db->updateDdl(sprintf(
-            'CREATE ROLE %s',
-            self::$databaseRole
-        ))->pollUntilComplete();
+        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            $db->updateDdl(sprintf(
+                'CREATE ROLE %s',
+                self::$databaseRole
+            ))->pollUntilComplete();
 
-        $db->updateDdl(sprintf(
-            'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
-            self::$tableName,
-            self::$databaseRole
-        ))->pollUntilComplete();
+            $db->updateDdl(sprintf(
+                'GRANT SELECT(id) ON TABLE %s TO ROLE %s',
+                self::$tableName,
+                self::$databaseRole
+            ))->pollUntilComplete();
+        }
 
         self::seedTable();
     }
@@ -122,6 +125,9 @@ class BatchTest extends SpannerTestCase
 
     public function testBatchWithRestrictiveDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $query = 'SELECT
                 id,
                 decade
@@ -155,6 +161,9 @@ class BatchTest extends SpannerTestCase
 
     public function testBatchWithDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         self::$database->updateDdl(sprintf(
             'GRANT SELECT ON TABLE %s TO ROLE %s',
             self::$tableName,

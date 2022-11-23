@@ -120,6 +120,11 @@ class BatchClient
     private $databaseName;
 
     /**
+     * @var string
+     */
+    private $databaseRole;
+
+    /**
      * @var array
      */
     private $allowedPartitionTypes = [

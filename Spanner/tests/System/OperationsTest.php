@@ -200,6 +200,9 @@ class OperationsTest extends SpannerTestCase
 
     public function testInsertWithDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $db = self::$databaseWithReaderDatabaseRole;
 
         try {
@@ -216,6 +219,9 @@ class OperationsTest extends SpannerTestCase
 
     public function testInsertWithRestrictiveDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $db = self::$databaseWithReaderDatabaseRole;
 
         try {
@@ -232,6 +238,9 @@ class OperationsTest extends SpannerTestCase
 
     public function testReadWithDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $db = self::$databaseWithReaderDatabaseRole;
 
         $keySet = self::$client->keySet([
@@ -246,6 +255,9 @@ class OperationsTest extends SpannerTestCase
 
     public function testReadWithRestrictiveDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $db = self::$databaseWithRestrictiveDatabaseRole;
 
         $keySet = self::$client->keySet([

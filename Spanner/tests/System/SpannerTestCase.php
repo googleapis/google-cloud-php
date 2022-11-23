@@ -82,38 +82,40 @@ class SpannerTestCase extends SystemTestCase
             ON ' . self::TEST_TABLE_NAME . ' (name)'
         )->pollUntilComplete();
 
-        $db->updateDdl(
-            'CREATE ROLE ' . self::DATABASE_ROLE
-        )->pollUntilComplete();
-        $db->updateDdl(
-            'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
-        )->pollUntilComplete();
-
-        $db->updateDdl(
-            'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME . ' TO ROLE ' . self::DATABASE_ROLE
-        )->pollUntilComplete();
-        $db->updateDdl(
-            'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
-            . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
-        )->pollUntilComplete();
-
         self::$database = $db;
         self::$database2 = self::getDatabaseInstance(self::$dbName);
 
-        self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(
-            self::$dbName,
-            ['databaseRole' => self::DATABASE_ROLE]
-        );
+        if ($db->info()['databaseDialect'] == DatabaseDialect::GOOGLE_STANDARD_SQL) {
+            $db->updateDdl(
+                'CREATE ROLE ' . self::DATABASE_ROLE
+            )->pollUntilComplete();
+            $db->updateDdl(
+                'CREATE ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
+            )->pollUntilComplete();
 
-        self::$databaseWithRestrictiveDatabaseRole = self::getDatabaseInstance(
-            self::$dbName,
-            ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
+            $db->updateDdl(
+                'GRANT SELECT ON TABLE ' . self::TEST_TABLE_NAME . ' TO ROLE ' . self::DATABASE_ROLE
+            )->pollUntilComplete();
+            $db->updateDdl(
+                'GRANT SELECT(id, name), INSERT(id, name), UPDATE(id, name) ON TABLE '
+                . self::TEST_TABLE_NAME . ' TO ROLE ' . self::RESTRICTIVE_DATABASE_ROLE
+            )->pollUntilComplete();
 
-        self::$databaseWithSessionPoolRestrictiveDatabaseRole = self::getDatabaseWithSessionPool(
-            self::$dbName,
-            ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
-        );
+            self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(
+                self::$dbName,
+                ['databaseRole' => self::DATABASE_ROLE]
+            );
+
+            self::$databaseWithRestrictiveDatabaseRole = self::getDatabaseInstance(
+                self::$dbName,
+                ['databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+            );
+
+            self::$databaseWithSessionPoolRestrictiveDatabaseRole = self::getDatabaseWithSessionPool(
+                self::$dbName,
+                ['minSessions' => 1, 'maxSession' => 2, 'databaseRole' => self::RESTRICTIVE_DATABASE_ROLE]
+            );
+        }
 
         self::$hasSetUp = true;
     }

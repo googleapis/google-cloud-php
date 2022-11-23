@@ -2104,5 +2104,4 @@ class Database
 
         return sprintf('CREATE DATABASE `%s`', $databaseId);
     }
-
 }

@@ -223,6 +223,9 @@ class TransactionTest extends SpannerTestCase
 
     public function testRunTransactionWithDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+        
         $db = self::$databaseWithRestrictiveDatabaseRole;
 
         $row = $this->getRow();
@@ -255,6 +258,9 @@ class TransactionTest extends SpannerTestCase
 
     public function testRunTransactionWithSessionPoolDatabaseRole()
     {
+        // Emulator does not support FGAC
+        $this->skipEmulatorTests();
+
         $db = self::$databaseWithSessionPoolRestrictiveDatabaseRole;
 
         $row = $this->getRow();
