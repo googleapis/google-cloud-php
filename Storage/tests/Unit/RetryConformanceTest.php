@@ -20,6 +20,7 @@ namespace Google\Cloud\Storage\Tests\Unit;
 use Google\Cloud\Storage\StorageClient;
 use GuzzleHttp\Client;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
+use PHPUnit\Framework\SkippedTestError;
 
 /**
  * @group storage
@@ -114,8 +115,14 @@ class RetryConformanceTest extends TestCase
     /**
      * @dataProvider casesProvider
      */
-    public function testOps($methodName, $instructions, $resources, $expectedSuccess, $precondtionProvided, $invocationIndex)
-    {
+    public function testOps(
+        $methodName,
+        $instructions,
+        $resources,
+        $expectedSuccess,
+        $precondtionProvided,
+        $invocationIndex
+    ) {
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
@@ -137,7 +144,7 @@ class RetryConformanceTest extends TestCase
         $resourceIds = self::createResources(array_flip($resources));
 
         // call the implementation
-        try{
+        try {
             call_user_func($callable, $resourceIds, $options, $precondtionProvided);
             // if an exception was thrown, then this block would never reach
             if ($expectedSuccess) {
@@ -145,9 +152,12 @@ class RetryConformanceTest extends TestCase
             } else {
                 $this->fail('The code block was expected to fail but never did.');
             }
-        }
-        catch(\Exception $e){
-            if($expectedSuccess){
+        } catch (SkippedTestError $e) {
+            // Don't treat a skipped test as an exception.
+            // For example we skip tests when the only precondition is Etags.
+            $this->markTestSkipped($e->getMessage());
+        } catch (\Exception $e) {
+            if ($expectedSuccess) {
                 $this->fail('Exception ' . $e->getMessage());
             } else {
                 $this->assertTrue(true);
@@ -272,7 +282,8 @@ class RetryConformanceTest extends TestCase
                     $buckets = self::$storageClient->buckets($options);
 
                     // added this to trigger the API call
-                    foreach ($buckets as $bucket) {}
+                    foreach ($buckets as $bucket) {
+                    }
                 },
             ],
             'storage.buckets.lockRetentionPolicy' => [
@@ -337,7 +348,8 @@ class RetryConformanceTest extends TestCase
                     $keys = self::$storageClient->hmacKeys($options);
 
                     // Added this to trigger the API call
-                    foreach ($keys as $key) {}
+                    foreach ($keys as $key) {
+                    }
                 }
             ],
             'storage.notifications.delete' => [
@@ -376,7 +388,8 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
                     $notifs = $bucket->notifications($options);
                     // Added this to trigger the API call
-                    foreach ($notifs as $notif) {}
+                    foreach ($notifs as $notif) {
+                    }
                 }
             ],
             'storage.object_acl.get' => [
@@ -400,7 +413,7 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $acl = $object->acl();
                     $options['entity'] = 'allUsers';
-                    if($precondition){
+                    if ($precondition) {
                         $options['generation'] = $object->info()['generation'];
                     }
                     $acl->get($options);
@@ -414,7 +427,7 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     $acl = $object->acl();
-                    if($precondition){
+                    if ($precondition) {
                         $options['generation'] = $object->info()['generation'];
                     }
                     $acl->get($options);
@@ -445,7 +458,8 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
                     $objects = $bucket->objects($options);
                     // Added this to trigger the API call
-                    foreach ($objects as $obj) {}
+                    foreach ($objects as $obj) {
+                    }
                 }
             ],
             'storage.serviceaccount.get' => [
@@ -460,7 +474,7 @@ class RetryConformanceTest extends TestCase
                     $options['labels'] = ['key' => 'value'];
                     $bucket = self::$storageClient->bucket($bucketName);
 
-                    if($precondition){
+                    if ($precondition) {
                         $metageneration = $bucket->info()['metageneration'];
                         $options['ifMetagenerationMatch'] = $metageneration;
                     }
@@ -479,9 +493,8 @@ class RetryConformanceTest extends TestCase
                     $policy['bindings'][0]['members'] = ['user:test@test.com'];
                     $iam->setPolicy($policy, $options);
 
-                    if($precondition){
-                        $metageneration = $bucket->info()['metageneration'];
-                        $options['ifMetagenerationMatch'] = $metageneration;
+                    if ($precondition) {
+                        self::markTestSkipped('Etag is currently not supported.');
                     }
 
                     $bucket->update($options);
@@ -495,8 +508,8 @@ class RetryConformanceTest extends TestCase
                     $accessId = $resourceIds['hmacKeyId'];
 
                     $key = self::$storageClient->hmacKey($accessId);
-                    if($precondition){
-                        $this->markTestSkipped('Etag is currently not supported.');
+                    if ($precondition) {
+                        self::markTestSkipped('Etag is currently not supported.');
                     }
                     $key->update('INACTIVE', $options);
                 }
@@ -508,18 +521,19 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     $obj1 = $bucket->object($ob1Name);
-                    $obj2 = $bucket->upload("line2",["name" => "file2.txt"]);
+                    $obj2 = $bucket->upload("line2", ["name" => "file2.txt"]);
                     $obj3 = $bucket->upload("test", ["name" => "combined.txt"]);
 
-                    $sourceObjects = ['file1.txt', 'file2.txt'];
-                    if($precondition){
-                        $options['ifMetagenerationMatch'] = $obj3->info()['metageneration'];
+                    $sourceObjects = [$ob1Name, 'file2.txt'];
+                    if ($precondition) {
                         $options['ifGenerationMatch'] = $obj3->info()['generation'];
                     }
                     $bucket->compose($sourceObjects, 'combined.txt', $options);
 
                     $obj2->delete();
-                    $obj3->delete();
+                    // We can't use $obj3 as it has changed,
+                    // so we need to request the file again
+                    $bucket->object('combined.txt')->delete();
                 }
             ],
             'storage.objects.copy' => [
@@ -531,13 +545,14 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $copy = $bucket->upload("copy", ["name" => "copy.txt"]);
                     $options['name'] = 'copy.txt';
-                    if($precondition){
-                        $options['ifMetagenerationMatch'] = $copy->info()['metageneration'];
+                    if ($precondition) {
                         $options['ifGenerationMatch'] = $copy->info()['generation'];
                     }
                     $object->copy($bucketName, $options);
 
-                    $copy->delete();
+                    // We can't use $copy as it has been copied over,
+                    // so we need to request the file again
+                    $bucket->object('copy.txt')->delete();
                 }
             ],
             'storage.objects.delete' => [
@@ -548,8 +563,7 @@ class RetryConformanceTest extends TestCase
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
                     
-                    if($precondition){
-                        $options['ifMetagenerationMatch'] = $object->info()['metageneration'];
+                    if ($precondition) {
                         $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
 
@@ -562,12 +576,13 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     
-                    if($precondition){
+                    if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
                     }
 
-                    $object = $bucket->upload('text', ['name'=> 'file.txt'], $options);
+                    $options['name'] = 'file.txt';
+                    $object = $bucket->upload('text', $options);
 
                     $object->delete();
                 },
@@ -576,25 +591,26 @@ class RetryConformanceTest extends TestCase
 
                     $bucket = self::$storageClient->bucket($bucketName);
                     
-                    if($precondition){
+                    if ($precondition) {
                         // 0 generation for a new file
                         $options['ifGenerationMatch'] = 0;
                     }
 
-                    $promise = $bucket->uploadAsync('text', ['name'=> 'file.txt'], $options);
+                    $options['name'] = 'file.txt';
+                    $promise = $bucket->uploadAsync('text', $options);
                     $object = $promise->wait();
 
                     $object->delete();
                 }
             ],
             'storage.objects.patch' => [
-                function($resourceIds, $options, $precondition = false){
+                function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
     
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
-                    if($precondition){
+                    if ($precondition) {
                         $options['ifGenerationMatch'] = $object->info()['generation'];
                     }
 
@@ -603,20 +619,20 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.objects.rewrite' => [
-                function($resourceIds, $options, $precondition = false){
+                function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
                     $objectName = $resourceIds['objectName'];
     
                     $bucket = self::$storageClient->bucket($bucketName);
                     $object = $bucket->object($objectName);
-                    if($precondition){
+                    if ($precondition) {
                         $options['ifGenerationMatch'] = 0;
                     }
 
                     $options['name'] = 'updated-file.txt';
                     $object->rewrite($bucket, $options);
 
-                    $object->delete();
+                    $bucket->object('updated-file.txt')->delete();
                 }
             ],
             'storage.objects.update' =>[
@@ -667,7 +683,6 @@ class RetryConformanceTest extends TestCase
                 $acl = $object->acl();
                 $acl->add('allUsers', 'READER');
                 $acl->add('allAuthenticatedUsers', 'READER');
-                
             }
         }
 
@@ -691,8 +706,7 @@ class RetryConformanceTest extends TestCase
     {
         if (isset($ids['bucketName'])) {
             $bucket = self::$storageClient->bucket($ids['bucketName']);
-            if($bucket->exists()) {
-
+            if ($bucket->exists()) {
                 // delete the ACLs added to the bucket
                 $acl = $bucket->acl();
 
@@ -708,7 +722,7 @@ class RetryConformanceTest extends TestCase
                 // delete the notifications if we created any
                 if (isset($ids['notificationId'])) {
                     $notification = $bucket->notification($ids['notificationId']);
-                    if($notification->exists()){
+                    if ($notification->exists()) {
                         $notification->delete();
                     }
                 }
@@ -716,7 +730,7 @@ class RetryConformanceTest extends TestCase
                 if (isset($ids['objectName'])) {
                     $object = $bucket->object($ids['objectName']);
 
-                    if($object->exists()){
+                    if ($object->exists()) {
                         // Delete the ACLs created on the object
                         $acl = $object->acl();
                         
@@ -736,11 +750,10 @@ class RetryConformanceTest extends TestCase
         // Dispose the hmac key if requested
         if (isset($ids['hmacKeyId'])) {
             $key = self::$storageClient->hmacKey($ids['hmacKeyId']);
-            try{
+            try {
                 $key->update('INACTIVE');
                 $key->delete();
-            }
-            catch(\Exception $e){
+            } catch (\Exception $e) {
                 // This might be thrown for a deleted key,
                 // for example in storage.hmacKey.delete.
                 // We don't have an exists method on the HmackKey class.
