@@ -112,4 +112,3 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $this->assertTrue($hasEntity);
     }
 }
-
