@@ -233,7 +233,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $entity = $this->transaction->lookup($key);
             if ($entity !== null && isset($entity['data'])) {
@@ -263,10 +266,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                [
+                array_filter([
                     'namespaceId' => $this->namespaceId,
                     'databaseId' => $this->databaseId,
-                ]
+                ])
             );
             $entity = $this->datastore->entity(
                 $key,
@@ -298,7 +301,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $this->transaction->delete($key);
             $this->transaction->commit();
@@ -330,7 +336,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
                 ->limit($this->gcLimit);
             $result = $this->datastore->runQuery(
                 $query,
-                ['namespaceId' => $this->namespaceId]
+                array_filter([
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ])
             );
             $keys = [];
             /* @var Entity $e */
