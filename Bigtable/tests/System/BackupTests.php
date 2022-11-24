@@ -19,6 +19,7 @@ namespace Google\Cloud\Bigtable\Tests\System;
 
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Protobuf\Timestamp;
+use Google\ApiCore\ApiException;
 
 /**
  * @group bigtable
@@ -79,6 +80,7 @@ class BackupTests extends BigtableTestCase
         $operationResponse->pollUntilComplete();
         $result = $operationResponse->getResult();
         self::assertStringContainsString(self::$backupName, $result->getName());
+        self::assertEquals("", $result->getSourceBackup());
     }
 
     /**
@@ -86,7 +88,7 @@ class BackupTests extends BigtableTestCase
      */
     public function testCopyBackup()
     {
-        // Test for same project, different cluster region
+        // Test for copying to the same project but different cluster region
         self::createCluster(
             self::$projectId,
             self::$instanceId,
@@ -117,7 +119,7 @@ class BackupTests extends BigtableTestCase
         self::assertStringContainsString($expectedResponse, $result->getName());
         self::assertStringContainsString(self::$backupName, $result->getSourceBackup());
 
-        // Test for different project
+        // Test for copying to a different project
         self::createInstance(
             self::$destinationProjectId,
             self::$instanceId,
@@ -146,6 +148,30 @@ class BackupTests extends BigtableTestCase
         );
         self::assertStringContainsString($expectedResponse, $result->getName());
         self::assertStringContainsString(self::$backupName, $result->getSourceBackup());
+
+        // Test copying a copied backup
+        $exceptionMessage = '';
+        try {
+            $copiedBackupName = self::$tableAdminClient->backupName(
+                self::$projectId,
+                self::$instanceId,
+                self::$destinationClusterId,
+                self::$copyBackupId
+            );
+            $operationResponse = self::$tableAdminClient->copyBackup(
+                $parent,
+                self::$copyBackupId,
+                $copiedBackupName,
+                self::$expireTime
+            );
+            $operationResponse->pollUntilComplete();
+        } catch (ApiException $th) {
+            $exceptionMessage = $th->getMessage();
+        }
+        self::assertStringContainsString(
+            "copying a copied backup is not supported",
+            $exceptionMessage
+        );
     }
 
     public static function tear_down_after_class()
