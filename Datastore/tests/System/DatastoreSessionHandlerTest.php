@@ -30,7 +30,7 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
 {
     public function testSessionHandler()
     {
-        $client = current(self::clientProvider())[0];
+        $client = current(self::defaultDbClientProvider())[0];
 
         $namespace = uniqid('sess-' . self::TESTING_PREFIX);
         $content = 'foo';
