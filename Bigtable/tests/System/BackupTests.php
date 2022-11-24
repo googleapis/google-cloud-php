@@ -17,13 +17,13 @@
 
 namespace Google\Cloud\Bigtable\Tests\System;
 
+use Google\ApiCore\ApiException;
 use Google\Cloud\Bigtable\Admin\V2\Backup;
 use Google\Protobuf\Timestamp;
-use Google\ApiCore\ApiException;
 
 /**
  * @group bigtable
- * @group bigatableBackup
+ * @group bigatable-backup
  */
 class BackupTests extends BigtableTestCase
 {
@@ -36,9 +36,9 @@ class BackupTests extends BigtableTestCase
 
     public const DESTINATION_LOCATION_ID = 'us-central1-b';
 
-    public static function set_up_before_class()
+    public static function setUpBeforeClass(): void
     {
-        parent::set_up_before_class();
+        self::set_up_before_class();
         self::$destinationClusterId = uniqid(self::CLUSTER_ID_PREFIX);
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_WHITELIST_TESTS_KEY_PATH');
         $keyFileData = json_decode(file_get_contents($keyFilePath), true);
@@ -55,7 +55,42 @@ class BackupTests extends BigtableTestCase
         );
     }
 
-    public function testCreateBackup()
+    public static function tearDownAfterClass(): void
+    {
+        self::deleteBackupIfExists(self::$backupName);
+
+        $backupName = self::$tableAdminClient->backupName(
+            self::$projectId,
+            self::$instanceId,
+            self::$destinationClusterId,
+            self::$copyBackupId
+        );
+        self::deleteBackupIfExists($backupName);
+
+        $backupName = self::$tableAdminClient->backupName(
+            self::$destinationProjectId,
+            self::$instanceId,
+            self::$clusterId,
+            self::$copyBackupId
+        );
+        self::deleteBackupIfExists($backupName);
+
+        if (!self::isEmulatorUsed()) {
+            try {
+                $formattedInstanceName = self::$instanceAdminClient->instanceName(
+                    self::$destinationProjectId,
+                    self::$instanceId
+                );
+                self::$instanceAdminClient->getInstance($formattedInstanceName);
+                self::deleteInstance(self::$destinationProjectId, self::$instanceId);
+            } catch (\Throwable $th) {
+            }
+        }
+
+        self::tear_down_after_class();
+    }
+
+    public function testCreateBackup(): void
     {
         $backup = new Backup();
 
@@ -86,9 +121,8 @@ class BackupTests extends BigtableTestCase
     /**
      * @depends testCreateBackup
      */
-    public function testCopyBackup()
+    public function testCopyBackupShouldWorkForSameProjectDifferentClusterRegion(): void
     {
-        // Test for copying to the same project but different cluster region
         self::createCluster(
             self::$projectId,
             self::$instanceId,
@@ -118,8 +152,13 @@ class BackupTests extends BigtableTestCase
         );
         self::assertStringContainsString($expectedResponse, $result->getName());
         self::assertStringContainsString(self::$backupName, $result->getSourceBackup());
+    }
 
-        // Test for copying to a different project
+    /**
+     * @depends testCreateBackup
+     */
+    public function testCopyBackupShouldWorkForDifferentProject(): void
+    {
         self::createInstance(
             self::$destinationProjectId,
             self::$instanceId,
@@ -148,9 +187,19 @@ class BackupTests extends BigtableTestCase
         );
         self::assertStringContainsString($expectedResponse, $result->getName());
         self::assertStringContainsString(self::$backupName, $result->getSourceBackup());
+    }
 
-        // Test copying a copied backup
+    /**
+     * @depends testCreateBackup
+     */
+    public function testCopyBackupShouldThrowForCopiedBackup(): void
+    {
         $exceptionMessage = '';
+        $parent = self::$tableAdminClient->clusterName(
+            self::$destinationProjectId,
+            self::$instanceId,
+            self::$clusterId
+        );
         try {
             $copiedBackupName = self::$tableAdminClient->backupName(
                 self::$projectId,
@@ -174,30 +223,12 @@ class BackupTests extends BigtableTestCase
         );
     }
 
-    public static function tear_down_after_class()
+    private static function deleteBackupIfExists(string $backupName): void
     {
-        self::$tableAdminClient->deleteBackup(self::$backupName);
-
-        $backupName = self::$tableAdminClient->backupName(
-            self::$projectId,
-            self::$instanceId,
-            self::$destinationClusterId,
-            self::$copyBackupId
-        );
-        self::$tableAdminClient->deleteBackup($backupName);
-
-        $backupName = self::$tableAdminClient->backupName(
-            self::$destinationProjectId,
-            self::$instanceId,
-            self::$clusterId,
-            self::$copyBackupId
-        );
-        self::$tableAdminClient->deleteBackup($backupName);
-
-        if (!self::isEmulatorUsed()) {
-            self::deleteInstance(self::$destinationProjectId, self::$instanceId);
+        try {
+            self::$tableAdminClient->getBackup($backupName);
+            self::$tableAdminClient->deleteBackup($backupName);
+        } catch (ApiException $th) {
         }
-
-        parent::tear_down_after_class();
     }
 }
