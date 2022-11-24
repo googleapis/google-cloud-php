@@ -85,12 +85,14 @@ class RetryConformanceTest extends TestCase
                 $instructions = $row['instructions'];
                 foreach ($methods as $method) {
                     $methodName = $method['name'];
+                    $methodGroup = isset($method['group']) ? $method['group'] : null;
                     $resources = $method['resources'];
 
                     if (array_key_exists($methodName, $methodInvocations)) {
                         foreach ($methodInvocations[$methodName] as $invocationIndex => $callable) {
                             self::$cases[$scenarioId][] = compact(
                                 'methodName',
+                                'methodGroup',
                                 'instructions',
                                 'resources',
                                 'expectedSuccess',
@@ -108,7 +110,7 @@ class RetryConformanceTest extends TestCase
     {
         self::set_up_before_class();
         // These scenario IDs will be run
-        $scenarios = [1, 2, 3, 4, 5, 6];
+        $scenarios = [1, 2, 3, 4, 5, 6, 7];
 
         $cases = [];
 
@@ -124,12 +126,14 @@ class RetryConformanceTest extends TestCase
      */
     public function testOps(
         $methodName,
+        $methodGroup,
         $instructions,
         $resources,
         $expectedSuccess,
         $precondtionProvided,
         $invocationIndex
     ) {
+        $this->markTestSkipped();
         $caseId = $this->createRetryTestResource($methodName, $instructions, null);
 
         $methodInvocations = self::getMethodInvocationMapping();
@@ -152,7 +156,7 @@ class RetryConformanceTest extends TestCase
 
         // call the implementation
         try {
-            call_user_func($callable, $resourceIds, $options, $precondtionProvided);
+            call_user_func($callable, $resourceIds, $options, $precondtionProvided, $methodGroup);
             // if an exception was thrown, then this block would never reach
             if ($expectedSuccess) {
                 $this->assertTrue(true);
@@ -558,9 +562,11 @@ class RetryConformanceTest extends TestCase
                 }
             ],
             'storage.objects.insert' => [
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if (!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable uploads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
-
                     $bucket = self::$storageClient->bucket($bucketName);
                     
                     if ($precondition) {
@@ -573,9 +579,11 @@ class RetryConformanceTest extends TestCase
 
                     $object->delete();
                 },
-                function ($resourceIds, $options, $precondition = false) {
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if (!is_null($methodGroup)) {
+                        self::markTestSkipped("Test only needs to run for resumable uploads");
+                    }
                     $bucketName = $resourceIds['bucketName'];
-
                     $bucket = self::$storageClient->bucket($bucketName);
                     
                     if ($precondition) {
@@ -588,6 +596,23 @@ class RetryConformanceTest extends TestCase
                     $object = $promise->wait();
 
                     $object->delete();
+                },
+                function ($resourceIds, $options, $precondition = false, $methodGroup = null) {
+                    if ($methodGroup !== "storage.resumable.upload") {
+                        self::markTestSkipped("Test only needs to run for normal uploads");
+                    }
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $options['name'] = 'file.txt';
+                    $options['resumable'] = true;
+                    $options['chunkSize'] = 512 * 1024;
+                    if ($precondition) {
+                        $options['IfGenerationMatch'] = 0;
+                    }
+                    $bucket->upload(random_bytes(16 * 1024 * 1024), $options);
+
+                    $bucket->object('file.txt')->delete();
                 }
             ],
             'storage.objects.patch' => [
