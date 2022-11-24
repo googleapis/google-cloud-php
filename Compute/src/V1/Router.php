@@ -64,6 +64,12 @@ class Router extends \Google\Protobuf\Internal\Message
      */
     private $kind = null;
     /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     */
+    private $md5_authentication_keys;
+    /**
      * Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *
      * Generated from protobuf field <code>optional string name = 3373707;</code>
@@ -116,6 +122,8 @@ class Router extends \Google\Protobuf\Internal\Message
      *           Router interfaces. Each interface requires either one linked resource, (for example, linkedVpnTunnel), or IP address and IP address range (for example, ipRange), or both.
      *     @type string $kind
      *           [Output Only] Type of resource. Always compute#router for routers.
+     *     @type array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $md5_authentication_keys
+     *           Keys used for MD5 authentication.
      *     @type string $name
      *           Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     @type array<\Google\Cloud\Compute\V1\RouterNat>|\Google\Protobuf\Internal\RepeatedField $nats
@@ -397,6 +405,32 @@ class Router extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->kind = $var;
+
+        return $this;
+    }
+
+    /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getMd5AuthenticationKeys()
+    {
+        return $this->md5_authentication_keys;
+    }
+
+    /**
+     * Keys used for MD5 authentication.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.compute.v1.RouterMd5AuthenticationKey md5_authentication_keys = 71063322;</code>
+     * @param array<\Google\Cloud\Compute\V1\RouterMd5AuthenticationKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setMd5AuthenticationKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\Compute\V1\RouterMd5AuthenticationKey::class);
+        $this->md5_authentication_keys = $arr;
 
         return $this;
     }

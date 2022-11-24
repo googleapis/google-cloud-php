@@ -18,7 +18,7 @@ class ListTensorboardRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -71,7 +71,7 @@ class ListTensorboardRunsRequest extends \Google\Protobuf\Internal\Message
      *     @type string $parent
      *           Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
      *           Format:
-     *           'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}'
+     *           `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *     @type string $filter
      *           Lists the TensorboardRuns that match the filter expression.
      *     @type int $page_size
@@ -100,7 +100,7 @@ class ListTensorboardRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -113,7 +113,7 @@ class ListTensorboardRunsRequest extends \Google\Protobuf\Internal\Message
     /**
      * Required. The resource name of the TensorboardExperiment to list TensorboardRuns.
      * Format:
-     * 'projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}'
+     * `projects/{project}/locations/{location}/tensorboards/{tensorboard}/experiments/{experiment}`
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

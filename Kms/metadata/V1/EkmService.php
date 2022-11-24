@@ -22,7 +22,7 @@ class EkmService
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-›
+‚
 %google/cloud/kms/v1/ekm_service.protogoogle.cloud.kms.v1google/api/client.protogoogle/api/field_behavior.protogoogle/api/resource.proto google/protobuf/field_mask.protogoogle/protobuf/timestamp.proto"≥
 ListEkmConnectionsRequest9
 parent (	B)‡A˙A#
@@ -57,12 +57,12 @@ total_size ("V
 not_before_time (2.google.protobuf.TimestampB‡A7
 not_after_time (2.google.protobuf.TimestampB‡A
 serial_number (	B‡A
-sha256_fingerprint	 (	B‡A"ã
+sha256_fingerprint	 (	B‡A"ê
 EkmConnection
 name (	B‡A4
 create_time (2.google.protobuf.TimestampB‡AM
-service_resolvers (22.google.cloud.kms.v1.EkmConnection.ServiceResolver
-etag (	ﬁ
+service_resolvers (22.google.cloud.kms.v1.EkmConnection.ServiceResolver
+etag (	B‡Aﬁ
 ServiceResolverR
 service_directory_service (	B/‡A˙A)
 \'servicedirectory.googleapis.com/Service

@@ -9,20 +9,21 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * A billing account in [GCP Console](https://console.cloud.google.com/).
- * You can assign a billing account to one or more projects.
+ * A billing account in the
+ * [Google Cloud Console](https://console.cloud.google.com/). You can assign a
+ * billing account to one or more projects.
  *
  * Generated from protobuf message <code>google.cloud.billing.v1.BillingAccount</code>
  */
 class BillingAccount extends \Google\Protobuf\Internal\Message
 {
     /**
-     * The resource name of the billing account. The resource name has the form
+     * Output only. The resource name of the billing account. The resource name has the form
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
     private $name = '';
     /**
@@ -35,7 +36,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     private $open = false;
     /**
      * The display name given to the billing account, such as `My Billing
-     * Account`. This name is displayed in the GCP Console.
+     * Account`. This name is displayed in the Google Cloud Console.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      */
@@ -43,7 +44,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
-     * will be the resource name of the master billing account that it is being
+     * will be the resource name of the parent billing account that it is being
      * resold through.
      * Otherwise this will be empty.
      *
@@ -58,7 +59,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           The resource name of the billing account. The resource name has the form
+     *           Output only. The resource name of the billing account. The resource name has the form
      *           `billingAccounts/{billing_account_id}`. For example,
      *           `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      *           billing account `012345-567890-ABCDEF`.
@@ -68,11 +69,11 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
      *           therefore projects associated with it will be unable to use paid services.
      *     @type string $display_name
      *           The display name given to the billing account, such as `My Billing
-     *           Account`. This name is displayed in the GCP Console.
+     *           Account`. This name is displayed in the Google Cloud Console.
      *     @type string $master_billing_account
      *           If this account is a
      *           [subaccount](https://cloud.google.com/billing/docs/concepts), then this
-     *           will be the resource name of the master billing account that it is being
+     *           will be the resource name of the parent billing account that it is being
      *           resold through.
      *           Otherwise this will be empty.
      * }
@@ -83,12 +84,12 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the billing account. The resource name has the form
+     * Output only. The resource name of the billing account. The resource name has the form
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
      */
     public function getName()
@@ -97,12 +98,12 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The resource name of the billing account. The resource name has the form
+     * Output only. The resource name of the billing account. The resource name has the form
      * `billingAccounts/{billing_account_id}`. For example,
      * `billingAccounts/012345-567890-ABCDEF` would be the resource name for
      * billing account `012345-567890-ABCDEF`.
      *
-     * Generated from protobuf field <code>string name = 1 [(.google.api.resource_reference) = {</code>
+     * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var
      * @return $this
      */
@@ -146,7 +147,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name given to the billing account, such as `My Billing
-     * Account`. This name is displayed in the GCP Console.
+     * Account`. This name is displayed in the Google Cloud Console.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @return string
@@ -158,7 +159,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
 
     /**
      * The display name given to the billing account, such as `My Billing
-     * Account`. This name is displayed in the GCP Console.
+     * Account`. This name is displayed in the Google Cloud Console.
      *
      * Generated from protobuf field <code>string display_name = 3;</code>
      * @param string $var
@@ -175,7 +176,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
-     * will be the resource name of the master billing account that it is being
+     * will be the resource name of the parent billing account that it is being
      * resold through.
      * Otherwise this will be empty.
      *
@@ -190,7 +191,7 @@ class BillingAccount extends \Google\Protobuf\Internal\Message
     /**
      * If this account is a
      * [subaccount](https://cloud.google.com/billing/docs/concepts), then this
-     * will be the resource name of the master billing account that it is being
+     * will be the resource name of the parent billing account that it is being
      * resold through.
      * Otherwise this will be empty.
      *

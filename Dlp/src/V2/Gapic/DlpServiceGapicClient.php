@@ -27,7 +27,6 @@ namespace Google\Cloud\Dlp\V2\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -130,29 +129,19 @@ class DlpServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.privacy.dlp.v2.DlpService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'dlp.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -1761,6 +1750,13 @@ class DlpServiceGapicClient
      *           inspect_template_name argument.
      *     @type ContentItem $item
      *           The item to de-identify. Will be treated as text.
+     *
+     *           This value must be of type
+     *           [Table][google.privacy.dlp.v2.Table] if your
+     *           [deidentify_config][google.privacy.dlp.v2.DeidentifyContentRequest.deidentify_config]
+     *           is a
+     *           [RecordTransformations][google.privacy.dlp.v2.RecordTransformations]
+     *           object.
      *     @type string $inspectTemplateName
      *           Template to use. Any configuration directly specified in
      *           inspect_config will override those set in the template. Singular fields

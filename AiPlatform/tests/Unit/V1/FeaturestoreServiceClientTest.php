@@ -1480,10 +1480,12 @@ class FeaturestoreServiceClientTest extends GeneratedTest
         $importedEntityCount = 1840044274;
         $importedFeatureValueCount = 1221471427;
         $invalidRowCount = 366655966;
+        $timestampOutsideRetentionRowsCount = 43092019;
         $expectedResponse = new ImportFeatureValuesResponse();
         $expectedResponse->setImportedEntityCount($importedEntityCount);
         $expectedResponse->setImportedFeatureValueCount($importedFeatureValueCount);
         $expectedResponse->setInvalidRowCount($invalidRowCount);
+        $expectedResponse->setTimestampOutsideRetentionRowsCount($timestampOutsideRetentionRowsCount);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();

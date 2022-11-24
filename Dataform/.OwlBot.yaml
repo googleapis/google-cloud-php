@@ -1,0 +1,4 @@
+deep-copy-regex:
+    - source: /google/cloud/dataform/v1beta1/.*-php/(.*)
+      dest: /owl-bot-staging/Dataform/v1beta1/$1
+api-name: Dataform

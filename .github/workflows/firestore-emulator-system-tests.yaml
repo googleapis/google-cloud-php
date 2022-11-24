@@ -4,9 +4,11 @@ on:
       - main
     paths:
       - 'Firestore/**'
+      - '.github/workflows/firestore-emulator-system-tests.yaml'
   pull_request:
     paths:
       - 'Firestore/**'
+      - '.github/workflows/firestore-emulator-system-tests.yaml'
 name: Run Firestore System Tests With Emulator
 jobs:
   test:

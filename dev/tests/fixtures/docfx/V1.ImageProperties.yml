@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImageProperties
     name: ImageProperties
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageProperties
     summary: |
       Stores image properties, such as dominant colors.

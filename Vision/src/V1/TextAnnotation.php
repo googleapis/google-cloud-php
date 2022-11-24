@@ -40,7 +40,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type \Google\Cloud\Vision\V1\Page[]|\Google\Protobuf\Internal\RepeatedField $pages
+     *     @type array<\Google\Cloud\Vision\V1\Page>|\Google\Protobuf\Internal\RepeatedField $pages
      *           List of pages detected by OCR.
      *     @type string $text
      *           UTF-8 text detected on the pages.
@@ -66,7 +66,7 @@ class TextAnnotation extends \Google\Protobuf\Internal\Message
      * List of pages detected by OCR.
      *
      * Generated from protobuf field <code>repeated .google.cloud.vision.v1.Page pages = 1;</code>
-     * @param \Google\Cloud\Vision\V1\Page[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Vision\V1\Page>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPages($var)

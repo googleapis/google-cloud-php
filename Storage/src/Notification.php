@@ -96,13 +96,15 @@ class Notification
      *     echo 'Notification exists!';
      * }
      * ```
-     *
+     * @param array $options [optional] {
+     *     Configuration options.
+     * }
      * @return bool
      */
-    public function exists()
+    public function exists(array $options = [])
     {
         try {
-            $this->connection->getNotification($this->identity + ['fields' => 'id']);
+            $this->connection->getNotification($options + $this->identity + ['fields' => 'id']);
         } catch (NotFoundException $ex) {
             return false;
         }

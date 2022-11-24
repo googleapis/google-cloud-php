@@ -23,7 +23,7 @@ class ListChannelConnectionsResponse extends \Google\Protobuf\Internal\Message
      */
     private $channel_connections;
     /**
-     * A page token that can be sent to ListChannelConnections to request the
+     * A page token that can be sent to `ListChannelConnections` to request the
      * next page.
      * If this is empty, then there are no more pages.
      *
@@ -47,7 +47,7 @@ class ListChannelConnectionsResponse extends \Google\Protobuf\Internal\Message
      *           The requested channel connections, up to the number specified in
      *           `page_size`.
      *     @type string $next_page_token
-     *           A page token that can be sent to ListChannelConnections to request the
+     *           A page token that can be sent to `ListChannelConnections` to request the
      *           next page.
      *           If this is empty, then there are no more pages.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $unreachable
@@ -88,7 +88,7 @@ class ListChannelConnectionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token that can be sent to ListChannelConnections to request the
+     * A page token that can be sent to `ListChannelConnections` to request the
      * next page.
      * If this is empty, then there are no more pages.
      *
@@ -101,7 +101,7 @@ class ListChannelConnectionsResponse extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A page token that can be sent to ListChannelConnections to request the
+     * A page token that can be sent to `ListChannelConnections` to request the
      * next page.
      * If this is empty, then there are no more pages.
      *

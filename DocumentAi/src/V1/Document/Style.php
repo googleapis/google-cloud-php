@@ -62,6 +62,13 @@ class Style extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.documentai.v1.Document.Style.FontSize font_size = 7;</code>
      */
     private $font_size = null;
+    /**
+     * Font family such as `Arial`, `Times New Roman`.
+     * https://www.w3schools.com/cssref/pr_font_font-family.asp
+     *
+     * Generated from protobuf field <code>string font_family = 8;</code>
+     */
+    private $font_family = '';
 
     /**
      * Constructor.
@@ -87,6 +94,9 @@ class Style extends \Google\Protobuf\Internal\Message
      *           https://www.w3schools.com/cssref/pr_text_text-decoration.asp
      *     @type \Google\Cloud\DocumentAI\V1\Document\Style\FontSize $font_size
      *           Font size.
+     *     @type string $font_family
+     *           Font family such as `Arial`, `Times New Roman`.
+     *           https://www.w3schools.com/cssref/pr_font_font-family.asp
      * }
      */
     public function __construct($data = NULL) {
@@ -320,6 +330,34 @@ class Style extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\DocumentAI\V1\Document\Style\FontSize::class);
         $this->font_size = $var;
+
+        return $this;
+    }
+
+    /**
+     * Font family such as `Arial`, `Times New Roman`.
+     * https://www.w3schools.com/cssref/pr_font_font-family.asp
+     *
+     * Generated from protobuf field <code>string font_family = 8;</code>
+     * @return string
+     */
+    public function getFontFamily()
+    {
+        return $this->font_family;
+    }
+
+    /**
+     * Font family such as `Arial`, `Times New Roman`.
+     * https://www.w3schools.com/cssref/pr_font_font-family.asp
+     *
+     * Generated from protobuf field <code>string font_family = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFontFamily($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->font_family = $var;
 
         return $this;
     }

@@ -39,14 +39,13 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
     private $provisioning_model = 0;
     /**
      * The accelerators attached to each VM instance.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.Accelerator accelerators = 5;</code>
      */
     private $accelerators;
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
-     * New disks will be deleted when the attached VM is deleted.
+     * New disks will be deleted when the VM is deleted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      */
@@ -69,10 +68,9 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
      *           The provisioning model.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $accelerators
      *           The accelerators attached to each VM instance.
-     *           Not yet implemented.
      *     @type array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $disks
      *           Non-boot disks to be attached for each VM created by this InstancePolicy.
-     *           New disks will be deleted when the attached VM is deleted.
+     *           New disks will be deleted when the VM is deleted.
      * }
      */
     public function __construct($data = NULL) {
@@ -166,7 +164,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The accelerators attached to each VM instance.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.Accelerator accelerators = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -178,7 +175,6 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * The accelerators attached to each VM instance.
-     * Not yet implemented.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.Accelerator accelerators = 5;</code>
      * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\Accelerator>|\Google\Protobuf\Internal\RepeatedField $var
@@ -194,7 +190,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
-     * New disks will be deleted when the attached VM is deleted.
+     * New disks will be deleted when the VM is deleted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -206,7 +202,7 @@ class InstancePolicy extends \Google\Protobuf\Internal\Message
 
     /**
      * Non-boot disks to be attached for each VM created by this InstancePolicy.
-     * New disks will be deleted when the attached VM is deleted.
+     * New disks will be deleted when the VM is deleted.
      *
      * Generated from protobuf field <code>repeated .google.cloud.batch.v1.AllocationPolicy.AttachedDisk disks = 6;</code>
      * @param array<\Google\Cloud\Batch\V1\AllocationPolicy\AttachedDisk>|\Google\Protobuf\Internal\RepeatedField $var

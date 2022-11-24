@@ -147,17 +147,17 @@ class CollectionGroupTest extends FirestoreTestCase
         foreach ($paths as &$path) {
             $path = sprintf($path, $collectionGroup);
         }
+        $batch = self::$client->bulkWriter();
 
-        $batch = self::$client->batch();
-        foreach ($paths as $path) {
-            $doc = self::$client->document($path);
+        foreach ($paths as $docpath) {
+            $doc = self::$client->document($docpath);
             self::$deletionQueue->add($doc);
             $batch->set($doc, [
                 'x' => 1
             ]);
         }
 
-        $batch->commit();
+        $batch->flush();
 
         return [$query, $paths, $collectionGroup];
     }

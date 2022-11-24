@@ -27,7 +27,6 @@ namespace Google\Cloud\Kms\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -68,17 +67,16 @@ use Google\Cloud\Kms\V1\GetPublicKeyRequest;
 use Google\Cloud\Kms\V1\ImportCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\ImportJob;
 use Google\Cloud\Kms\V1\KeyRing;
-use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
-use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsRequest;
 use Google\Cloud\Kms\V1\ListCryptoKeyVersionsResponse;
+use Google\Cloud\Kms\V1\ListCryptoKeysRequest;
+use Google\Cloud\Kms\V1\ListCryptoKeysResponse;
 use Google\Cloud\Kms\V1\ListImportJobsRequest;
 use Google\Cloud\Kms\V1\ListImportJobsResponse;
 use Google\Cloud\Kms\V1\ListKeyRingsRequest;
 use Google\Cloud\Kms\V1\ListKeyRingsResponse;
 use Google\Cloud\Kms\V1\MacSignRequest;
 use Google\Cloud\Kms\V1\MacSignResponse;
-
 use Google\Cloud\Kms\V1\MacVerifyRequest;
 use Google\Cloud\Kms\V1\MacVerifyResponse;
 use Google\Cloud\Kms\V1\ProtectionLevel;
@@ -87,6 +85,10 @@ use Google\Cloud\Kms\V1\RestoreCryptoKeyVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyPrimaryVersionRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyRequest;
 use Google\Cloud\Kms\V1\UpdateCryptoKeyVersionRequest;
+use Google\Cloud\Location\GetLocationRequest;
+use Google\Cloud\Location\ListLocationsRequest;
+use Google\Cloud\Location\ListLocationsResponse;
+use Google\Cloud\Location\Location;
 use Google\Protobuf\FieldMask;
 use Google\Protobuf\Int64Value;
 
@@ -111,7 +113,7 @@ use Google\Protobuf\Int64Value;
  * $keyManagementServiceClient = new KeyManagementServiceClient();
  * try {
  *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
- *     $ciphertext = '';
+ *     $ciphertext = '...';
  *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
  * } finally {
  *     $keyManagementServiceClient->close();
@@ -127,29 +129,19 @@ class KeyManagementServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.kms.v1.KeyManagementService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudkms.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/cloudkms',
@@ -467,7 +459,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $ciphertext = '';
+     *     $ciphertext = '...';
      *     $response = $keyManagementServiceClient->asymmetricDecrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -870,7 +862,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]');
-     *     $ciphertext = '';
+     *     $ciphertext = '...';
      *     $response = $keyManagementServiceClient->decrypt($formattedName, $ciphertext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1033,7 +1025,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $name = 'name';
-     *     $plaintext = '';
+     *     $plaintext = '...';
      *     $response = $keyManagementServiceClient->encrypt($name, $plaintext);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1051,7 +1043,9 @@ class KeyManagementServiceGapicClient
      *
      *                             The maximum size depends on the key version's
      *                             [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the
+     *                             For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
+     *                             [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
+     *                             [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys, the
      *                             plaintext must be no larger than 64KiB. For
      *                             [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
      *                             the plaintext and additional_authenticated_data fields must be no larger
@@ -1066,8 +1060,10 @@ class KeyManagementServiceGapicClient
      *
      *           The maximum size depends on the key version's
      *           [protection_level][google.cloud.kms.v1.CryptoKeyVersionTemplate.protection_level].
-     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE] keys, the AAD
-     *           must be no larger than 64KiB. For
+     *           For [SOFTWARE][google.cloud.kms.v1.ProtectionLevel.SOFTWARE],
+     *           [EXTERNAL][google.cloud.kms.v1.ProtectionLevel.EXTERNAL], and
+     *           [EXTERNAL_VPC][google.cloud.kms.v1.ProtectionLevel.EXTERNAL_VPC] keys the
+     *           AAD must be no larger than 64KiB. For
      *           [HSM][google.cloud.kms.v1.ProtectionLevel.HSM] keys, the combined length of
      *           the plaintext and additional_authenticated_data fields must be no larger
      *           than 8KiB.
@@ -1475,31 +1471,51 @@ class KeyManagementServiceGapicClient
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] exactly if the
      *           [CryptoKeyVersion][google.cloud.kms.v1.CryptoKeyVersion] has ever contained
      *           key material.
-     *     @type string $rsaAesWrappedKey
-     *           Wrapped key material produced with
-     *           [RSA_OAEP_3072_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA1_AES_256]
-     *           or
-     *           [RSA_OAEP_4096_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_4096_SHA1_AES_256].
+     *     @type string $wrappedKey
+     *           Optional. The wrapped key material to import.
      *
-     *           This field contains the concatenation of two wrapped keys:
+     *           Before wrapping, key material must be formatted. If importing symmetric key
+     *           material, the expected key material format is plain bytes. If importing
+     *           asymmetric key material, the expected key material format is PKCS#8-encoded
+     *           DER (the PrivateKeyInfo structure from RFC 5208).
+     *
+     *           When wrapping with import methods
+     *           ([RSA_OAEP_3072_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA1_AES_256]
+     *           or
+     *           [RSA_OAEP_4096_SHA1_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_4096_SHA1_AES_256]
+     *           or
+     *           [RSA_OAEP_3072_SHA256_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA256_AES_256]
+     *           or
+     *           [RSA_OAEP_4096_SHA256_AES_256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_4096_SHA256_AES_256]),
+     *
+     *           this field must contain the concatenation of:
      *           <ol>
      *           <li>An ephemeral AES-256 wrapping key wrapped with the
      *           [public_key][google.cloud.kms.v1.ImportJob.public_key] using
-     *           RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an
-     *           empty label.
+     *           RSAES-OAEP with SHA-1/SHA-256, MGF1 with SHA-1/SHA-256, and an empty
+     *           label.
      *           </li>
-     *           <li>The key to be imported, wrapped with the ephemeral AES-256 key
-     *           using AES-KWP (RFC 5649).
+     *           <li>The formatted key to be imported, wrapped with the ephemeral AES-256
+     *           key using AES-KWP (RFC 5649).
      *           </li>
      *           </ol>
      *
-     *           If importing symmetric key material, it is expected that the unwrapped
-     *           key contains plain bytes. If importing asymmetric key material, it is
-     *           expected that the unwrapped key is in PKCS#8-encoded DER format (the
-     *           PrivateKeyInfo structure from RFC 5208).
-     *
      *           This format is the same as the format produced by PKCS#11 mechanism
      *           CKM_RSA_AES_KEY_WRAP.
+     *
+     *           When wrapping with import methods
+     *           ([RSA_OAEP_3072_SHA256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_3072_SHA256]
+     *           or
+     *           [RSA_OAEP_4096_SHA256][google.cloud.kms.v1.ImportJob.ImportMethod.RSA_OAEP_4096_SHA256]),
+     *
+     *           this field must contain the formatted key to be imported, wrapped with the
+     *           [public_key][google.cloud.kms.v1.ImportJob.public_key] using RSAES-OAEP
+     *           with SHA-256, MGF1 with SHA-256, and an empty label.
+     *     @type string $rsaAesWrappedKey
+     *           Optional. This field has the same meaning as
+     *           [wrapped_key][google.cloud.kms.v1.ImportCryptoKeyVersionRequest.wrapped_key].
+     *           Prefer to use that field in new work. Either that field or this field
+     *           (but not both) must be specified.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1520,6 +1536,10 @@ class KeyManagementServiceGapicClient
         $requestParamHeaders['parent'] = $parent;
         if (isset($optionalArgs['cryptoKeyVersion'])) {
             $request->setCryptoKeyVersion($optionalArgs['cryptoKeyVersion']);
+        }
+
+        if (isset($optionalArgs['wrappedKey'])) {
+            $request->setWrappedKey($optionalArgs['wrappedKey']);
         }
 
         if (isset($optionalArgs['rsaAesWrappedKey'])) {
@@ -1905,7 +1925,7 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $data = '';
+     *     $data = '...';
      *     $response = $keyManagementServiceClient->macSign($formattedName, $data);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -1975,8 +1995,8 @@ class KeyManagementServiceGapicClient
      * $keyManagementServiceClient = new KeyManagementServiceClient();
      * try {
      *     $formattedName = $keyManagementServiceClient->cryptoKeyVersionName('[PROJECT]', '[LOCATION]', '[KEY_RING]', '[CRYPTO_KEY]', '[CRYPTO_KEY_VERSION]');
-     *     $data = '';
-     *     $mac = '';
+     *     $data = '...';
+     *     $mac = '...';
      *     $response = $keyManagementServiceClient->macVerify($formattedName, $data, $mac);
      * } finally {
      *     $keyManagementServiceClient->close();
@@ -2251,6 +2271,125 @@ class KeyManagementServiceGapicClient
         $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
         $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
         return $this->startCall('UpdateCryptoKeyVersion', CryptoKeyVersion::class, $optionalArgs, $request)->wait();
+    }
+
+    /**
+     * Gets information about a location.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     $response = $keyManagementServiceClient->getLocation();
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           Resource name for the location.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Location\Location
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getLocation(array $optionalArgs = [])
+    {
+        $request = new GetLocationRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->startCall('GetLocation', Location::class, $optionalArgs, $request, Call::UNARY_CALL, 'google.cloud.location.Locations')->wait();
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     *
+     * Sample code:
+     * ```
+     * $keyManagementServiceClient = new KeyManagementServiceClient();
+     * try {
+     *     // Iterate over pages of elements
+     *     $pagedResponse = $keyManagementServiceClient->listLocations();
+     *     foreach ($pagedResponse->iteratePages() as $page) {
+     *         foreach ($page as $element) {
+     *             // doSomethingWith($element);
+     *         }
+     *     }
+     *     // Alternatively:
+     *     // Iterate through all elements
+     *     $pagedResponse = $keyManagementServiceClient->listLocations();
+     *     foreach ($pagedResponse->iterateAllElements() as $element) {
+     *         // doSomethingWith($element);
+     *     }
+     * } finally {
+     *     $keyManagementServiceClient->close();
+     * }
+     * ```
+     *
+     * @param array $optionalArgs {
+     *     Optional.
+     *
+     *     @type string $name
+     *           The resource that owns the locations collection, if applicable.
+     *     @type string $filter
+     *           The standard list filter.
+     *     @type int $pageSize
+     *           The maximum number of resources contained in the underlying API
+     *           response. The API may return fewer values in a page, even if
+     *           there are additional values to be retrieved.
+     *     @type string $pageToken
+     *           A page token is used to specify a page of values to be returned.
+     *           If no page token is specified (the default), the first page
+     *           of values will be returned. Any page token used here must have
+     *           been generated by a previous call to the API.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\ApiCore\PagedListResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function listLocations(array $optionalArgs = [])
+    {
+        $request = new ListLocationsRequest();
+        $requestParamHeaders = [];
+        if (isset($optionalArgs['name'])) {
+            $request->setName($optionalArgs['name']);
+            $requestParamHeaders['name'] = $optionalArgs['name'];
+        }
+
+        if (isset($optionalArgs['filter'])) {
+            $request->setFilter($optionalArgs['filter']);
+        }
+
+        if (isset($optionalArgs['pageSize'])) {
+            $request->setPageSize($optionalArgs['pageSize']);
+        }
+
+        if (isset($optionalArgs['pageToken'])) {
+            $request->setPageToken($optionalArgs['pageToken']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor($requestParamHeaders);
+        $optionalArgs['headers'] = isset($optionalArgs['headers']) ? array_merge($requestParams->getHeader(), $optionalArgs['headers']) : $requestParams->getHeader();
+        return $this->getPagedListResponse('ListLocations', $optionalArgs, ListLocationsResponse::class, $request, 'google.cloud.location.Locations');
     }
 
     /**

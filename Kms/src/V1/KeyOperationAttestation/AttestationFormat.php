@@ -22,6 +22,8 @@ class AttestationFormat
     /**
      * Cavium HSM attestation compressed with gzip. Note that this format is
      * defined by Cavium and subject to change at any time.
+     * See
+     * https://www.marvell.com/products/security-solutions/nitrox-hs-adapters/software-key-attestation.html.
      *
      * Generated from protobuf enum <code>CAVIUM_V1_COMPRESSED = 3;</code>
      */

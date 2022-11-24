@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\CropHint
     name: CropHint
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: CropHint
     summary: |
       Single crop hint that is used to generate a new crop when serving an image.

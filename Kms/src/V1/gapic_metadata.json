@@ -30,6 +30,16 @@
                                 "updateEkmConnection"
                             ]
                         },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
+                        },
                         "GetIamPolicy": {
                             "methods": [
                                 "getIamPolicy"
@@ -182,6 +192,16 @@
                         "UpdateCryptoKeyVersion": {
                             "methods": [
                                 "updateCryptoKeyVersion"
+                            ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
                             ]
                         },
                         "GetIamPolicy": {

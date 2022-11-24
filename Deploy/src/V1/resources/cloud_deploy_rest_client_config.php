@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.deploy.v1.CloudDeploy' => [
+            'AbandonRelease' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*}:abandon',
+                'body' => '*',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'ApproveRollout' => [
                 'method' => 'post',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:approve',
@@ -119,6 +131,17 @@ return [
                     ],
                 ],
             ],
+            'GetJobRun' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*/jobRuns/*}',
+                'placeholders' => [
+                    'name' => [
+                        'getters' => [
+                            'getName',
+                        ],
+                    ],
+                ],
+            ],
             'GetRelease' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/deliveryPipelines/*/releases/*}',
@@ -163,6 +186,17 @@ return [
                     ],
                 ],
             ],
+            'ListJobRuns' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}/jobRuns',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'ListReleases' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1/{parent=projects/*/locations/*/deliveryPipelines/*}/releases',
@@ -192,6 +226,18 @@ return [
                     'parent' => [
                         'getters' => [
                             'getParent',
+                        ],
+                    ],
+                ],
+            ],
+            'RetryJob' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{rollout=projects/*/locations/*/deliveryPipelines/*/releases/*/rollouts/*}:retryJob',
+                'body' => '*',
+                'placeholders' => [
+                    'rollout' => [
+                        'getters' => [
+                            'getRollout',
                         ],
                     ],
                 ],

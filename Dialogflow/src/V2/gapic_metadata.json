@@ -339,6 +339,11 @@
                                 "listParticipants"
                             ]
                         },
+                        "StreamingAnalyzeContent": {
+                            "methods": [
+                                "streamingAnalyzeContent"
+                            ]
+                        },
                         "SuggestArticles": {
                             "methods": [
                                 "suggestArticles"

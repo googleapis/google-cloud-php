@@ -62,6 +62,13 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.container.v1.PrivateClusterMasterGlobalAccessConfig master_global_access_config = 8;</code>
      */
     private $master_global_access_config = null;
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation.
+     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     *
+     * Generated from protobuf field <code>string private_endpoint_subnetwork = 10;</code>
+     */
+    private $private_endpoint_subnetwork = '';
 
     /**
      * Constructor.
@@ -88,6 +95,9 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
      *           Output only. The peering name in the customer VPC used by this cluster.
      *     @type \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig $master_global_access_config
      *           Controls master global access settings.
+     *     @type string $private_endpoint_subnetwork
+     *           Subnet to provision the master's private endpoint during cluster creation.
+     *           Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
      * }
      */
     public function __construct($data = NULL) {
@@ -293,6 +303,34 @@ class PrivateClusterConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Container\V1\PrivateClusterMasterGlobalAccessConfig::class);
         $this->master_global_access_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation.
+     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     *
+     * Generated from protobuf field <code>string private_endpoint_subnetwork = 10;</code>
+     * @return string
+     */
+    public function getPrivateEndpointSubnetwork()
+    {
+        return $this->private_endpoint_subnetwork;
+    }
+
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation.
+     * Specified in projects/&#42;&#47;regions/&#42;&#47;subnetworks/&#42; format.
+     *
+     * Generated from protobuf field <code>string private_endpoint_subnetwork = 10;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPrivateEndpointSubnetwork($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->private_endpoint_subnetwork = $var;
 
         return $this;
     }

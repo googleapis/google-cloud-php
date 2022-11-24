@@ -15,11 +15,12 @@ class Common
           return;
         }
         \GPBMetadata\Google\Api\FieldBehavior::initOnce();
+        \GPBMetadata\Google\Api\Resource::initOnce();
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ã
-0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/protobuf/timestamp.proto"Ä
+¯
+0google/cloud/networkconnectivity/v1/common.proto#google.cloud.networkconnectivity.v1google/api/resource.protogoogle/protobuf/timestamp.proto"Ä
 OperationMetadata4
 create_time (2.google.protobuf.TimestampB‡A1
 end_time (2.google.protobuf.TimestampB‡A
@@ -27,8 +28,10 @@ class Common
 verb (	B‡A
 status_message (	B‡A#
 requested_cancellation (B‡A
-api_version (	B‡ABÖ
-\'com.google.cloud.networkconnectivity.v1BCommonProtoPZVgoogle.golang.org/genproto/googleapis/cloud/networkconnectivity/v1;networkconnectivity™#Google.Cloud.NetworkConnectivity.V1 #Google\\Cloud\\NetworkConnectivity\\V1Í&Google::Cloud::NetworkConnectivity::V1bproto3'
+api_version (	B‡AB◊
+\'com.google.cloud.networkconnectivity.v1BCommonProtoPZVgoogle.golang.org/genproto/googleapis/cloud/networkconnectivity/v1;networkconnectivity™#Google.Cloud.NetworkConnectivity.V1 #Google\\Cloud\\NetworkConnectivity\\V1Í&Google::Cloud::NetworkConnectivity::V1ÍAz
+-compute.googleapis.com/InterconnectAttachmentIprojects/{project}/regions/{region}/interconnectAttachments/{resource_id}ÍAR
+compute.googleapis.com/Network0projects/{project}/global/networks/{resource_id}bproto3'
         , true);
 
         static::$is_initialized = true;

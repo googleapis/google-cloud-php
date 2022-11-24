@@ -27,7 +27,6 @@ namespace Google\Cloud\Billing\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -54,7 +53,8 @@ use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Protobuf\FieldMask;
 
 /**
- * Service Description: Retrieves GCP Console billing accounts and associates them with projects.
+ * Service Description: Retrieves the Google Cloud Console billing accounts and associates them with
+ * projects.
  *
  * This class provides the ability to make remote calls to the backing service through method
  * calls that map to API methods. Sample code to get started:
@@ -78,30 +78,22 @@ class CloudBillingGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.billing.v1.CloudBilling';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'cloudbilling.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
+        'https://www.googleapis.com/auth/cloud-billing',
+        'https://www.googleapis.com/auth/cloud-billing.readonly',
         'https://www.googleapis.com/auth/cloud-platform',
     ];
 
@@ -280,15 +272,20 @@ class CloudBillingGapicClient
     }
 
     /**
-     * Creates a billing account.
-     * This method can only be used to create
-     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts)
-     * by GCP resellers.
+     * This method creates [billing
+     * subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts).
+     *
+     * Google Cloud resellers should use the
+     * Channel Services APIs,
+     * [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create)
+     * and
+     * [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create).
+     *
      * When creating a subaccount, the current authenticated user must have the
-     * `billing.accounts.update` IAM permission on the master account, which is
+     * `billing.accounts.update` IAM permission on the parent account, which is
      * typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * This method will return an error if the master account has not been
+     * This method will return an error if the parent account has not been
      * provisioned as a reseller account.
      *
      * Sample code:
@@ -304,7 +301,7 @@ class CloudBillingGapicClient
      *
      * @param BillingAccount $billingAccount Required. The billing account resource to create.
      *                                       Currently CreateBillingAccount only supports subaccount creation, so
-     *                                       any created billing accounts must be under a provided master billing
+     *                                       any created billing accounts must be under a provided parent billing
      *                                       account.
      * @param array          $optionalArgs   {
      *     Optional.
@@ -445,9 +442,10 @@ class CloudBillingGapicClient
 
     /**
      * Gets the billing information for a project. The current authenticated user
-     * must have [permission to view the
-     * project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
-     * ).
+     * must have the `resourcemanager.projects.get` permission for the project,
+     * which can be granted by assigning the [Project
+     * Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
+     * role.
      *
      * Sample code:
      * ```
@@ -860,7 +858,7 @@ class CloudBillingGapicClient
      * usage charges.
      *
      * *Note:* Incurred charges that have not yet been reported in the transaction
-     * history of the GCP Console might be billed to the new billing
+     * history of the Google Cloud Console might be billed to the new billing
      * account, even if the charge occurred before the new billing account was
      * assigned to the project.
      *

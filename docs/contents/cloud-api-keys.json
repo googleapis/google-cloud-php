@@ -1,0 +1,15 @@
+{
+    "title": "ApiKeys",
+    "defaultService": "apikeys\/readme",
+    "services": [
+        {
+            "title": "Overview",
+            "type": "apikeys\/readme"
+        },
+        {
+            "title": "ApiKeysClient (v2)",
+            "type": "apikeys\/v2\/apikeysclient"
+        }
+    ],
+    "pattern": "apikeys\/\\w{1,}"
+}

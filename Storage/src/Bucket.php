@@ -157,12 +157,15 @@ class Bucket
      * }
      * ```
      *
+     * @param array $options [optional] {
+     *     Configuration options.
+     * }
      * @return bool
      */
-    public function exists()
+    public function exists(array $options = [])
     {
         try {
-            $this->connection->getBucket($this->identity + ['fields' => 'name']);
+            $this->connection->getBucket($options + $this->identity + ['fields' => 'name']);
         } catch (NotFoundException $ex) {
             return false;
         }
@@ -941,6 +944,10 @@ class Bucket
      *           more information, refer to the
      *           [Storage Classes](https://cloud.google.com/storage/docs/storage-classes)
      *           documentation. **Defaults to** `"STANDARD"`.
+     *     @type array $autoclass The bucket's autoclass configuration.
+     *           Buckets can have either StorageClass OLM rules or Autoclass,
+     *           but not both. When Autoclass is enabled on a bucket, adding
+     *           StorageClass OLM rules will result in failure.
      *     @type array $versioning The bucket's versioning configuration.
      *     @type array $website The bucket's website configuration.
      *     @type array $billing The bucket's billing configuration.

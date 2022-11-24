@@ -25,17 +25,35 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $bfd_status = null;
     /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     */
+    private $enable_ipv6 = null;
+    /**
      * IP address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
      */
     private $ip_address = null;
     /**
+     * IPv6 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     */
+    private $ipv6_nexthop_address = null;
+    /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
      */
     private $linked_vpn_tunnel = null;
+    /**
+     * Informs whether MD5 authentication is enabled on this BGP peer.
+     *
+     * Generated from protobuf field <code>optional bool md5_auth_enabled = 451152075;</code>
+     */
+    private $md5_auth_enabled = null;
     /**
      * Name of this BGP peer. Unique within the Routers resource.
      *
@@ -55,6 +73,12 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      */
     private $peer_ip_address = null;
     /**
+     * IPv6 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     */
+    private $peer_ipv6_nexthop_address = null;
+    /**
      * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
@@ -73,6 +97,13 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>optional string status = 181260274;</code>
      */
     private $status = null;
+    /**
+     * Indicates why particular status was returned.
+     * Check the StatusReason enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status_reason = 342706993;</code>
+     */
+    private $status_reason = null;
     /**
      * Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *
@@ -95,16 +126,24 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Compute\V1\Route>|\Google\Protobuf\Internal\RepeatedField $advertised_routes
      *           Routes that were advertised to the remote BGP peer
      *     @type \Google\Cloud\Compute\V1\BfdStatus $bfd_status
+     *     @type bool $enable_ipv6
+     *           Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
      *     @type string $ip_address
      *           IP address of the local BGP interface.
+     *     @type string $ipv6_nexthop_address
+     *           IPv6 address of the local BGP interface.
      *     @type string $linked_vpn_tunnel
      *           URL of the VPN tunnel that this BGP peer controls.
+     *     @type bool $md5_auth_enabled
+     *           Informs whether MD5 authentication is enabled on this BGP peer.
      *     @type string $name
      *           Name of this BGP peer. Unique within the Routers resource.
      *     @type int $num_learned_routes
      *           Number of routes learned from the remote BGP Peer.
      *     @type string $peer_ip_address
      *           IP address of the remote BGP interface.
+     *     @type string $peer_ipv6_nexthop_address
+     *           IPv6 address of the remote BGP interface.
      *     @type string $router_appliance_instance
      *           [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *     @type string $state
@@ -112,6 +151,9 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
      *     @type string $status
      *           Status of the BGP peer: {UP, DOWN}
      *           Check the Status enum for the list of possible values.
+     *     @type string $status_reason
+     *           Indicates why particular status was returned.
+     *           Check the StatusReason enum for the list of possible values.
      *     @type string $uptime
      *           Time this session has been up. Format: 14 years, 51 weeks, 6 days, 23 hours, 59 minutes, 59 seconds
      *     @type string $uptime_seconds
@@ -182,6 +224,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     * @return bool
+     */
+    public function getEnableIpv6()
+    {
+        return isset($this->enable_ipv6) ? $this->enable_ipv6 : false;
+    }
+
+    public function hasEnableIpv6()
+    {
+        return isset($this->enable_ipv6);
+    }
+
+    public function clearEnableIpv6()
+    {
+        unset($this->enable_ipv6);
+    }
+
+    /**
+     * Enable IPv6 traffic over BGP Peer. If not specified, it is disabled by default.
+     *
+     * Generated from protobuf field <code>optional bool enable_ipv6 = 181467939;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setEnableIpv6($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->enable_ipv6 = $var;
+
+        return $this;
+    }
+
+    /**
      * IP address of the local BGP interface.
      *
      * Generated from protobuf field <code>optional string ip_address = 406272220;</code>
@@ -218,6 +296,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * IPv6 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     * @return string
+     */
+    public function getIpv6NexthopAddress()
+    {
+        return isset($this->ipv6_nexthop_address) ? $this->ipv6_nexthop_address : '';
+    }
+
+    public function hasIpv6NexthopAddress()
+    {
+        return isset($this->ipv6_nexthop_address);
+    }
+
+    public function clearIpv6NexthopAddress()
+    {
+        unset($this->ipv6_nexthop_address);
+    }
+
+    /**
+     * IPv6 address of the local BGP interface.
+     *
+     * Generated from protobuf field <code>optional string ipv6_nexthop_address = 27968211;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIpv6NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->ipv6_nexthop_address = $var;
+
+        return $this;
+    }
+
+    /**
      * URL of the VPN tunnel that this BGP peer controls.
      *
      * Generated from protobuf field <code>optional string linked_vpn_tunnel = 352296953;</code>
@@ -249,6 +363,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->linked_vpn_tunnel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Informs whether MD5 authentication is enabled on this BGP peer.
+     *
+     * Generated from protobuf field <code>optional bool md5_auth_enabled = 451152075;</code>
+     * @return bool
+     */
+    public function getMd5AuthEnabled()
+    {
+        return isset($this->md5_auth_enabled) ? $this->md5_auth_enabled : false;
+    }
+
+    public function hasMd5AuthEnabled()
+    {
+        return isset($this->md5_auth_enabled);
+    }
+
+    public function clearMd5AuthEnabled()
+    {
+        unset($this->md5_auth_enabled);
+    }
+
+    /**
+     * Informs whether MD5 authentication is enabled on this BGP peer.
+     *
+     * Generated from protobuf field <code>optional bool md5_auth_enabled = 451152075;</code>
+     * @param bool $var
+     * @return $this
+     */
+    public function setMd5AuthEnabled($var)
+    {
+        GPBUtil::checkBool($var);
+        $this->md5_auth_enabled = $var;
 
         return $this;
     }
@@ -362,6 +512,42 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * IPv6 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     * @return string
+     */
+    public function getPeerIpv6NexthopAddress()
+    {
+        return isset($this->peer_ipv6_nexthop_address) ? $this->peer_ipv6_nexthop_address : '';
+    }
+
+    public function hasPeerIpv6NexthopAddress()
+    {
+        return isset($this->peer_ipv6_nexthop_address);
+    }
+
+    public function clearPeerIpv6NexthopAddress()
+    {
+        unset($this->peer_ipv6_nexthop_address);
+    }
+
+    /**
+     * IPv6 address of the remote BGP interface.
+     *
+     * Generated from protobuf field <code>optional string peer_ipv6_nexthop_address = 491486608;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setPeerIpv6NexthopAddress($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->peer_ipv6_nexthop_address = $var;
+
+        return $this;
+    }
+
+    /**
      * [Output only] URI of the VM instance that is used as third-party router appliances such as Next Gen Firewalls, Virtual Routers, or Router Appliances. The VM instance is the peer side of the BGP session.
      *
      * Generated from protobuf field <code>optional string router_appliance_instance = 468312989;</code>
@@ -467,6 +653,44 @@ class RouterStatusBgpPeerStatus extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->status = $var;
+
+        return $this;
+    }
+
+    /**
+     * Indicates why particular status was returned.
+     * Check the StatusReason enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status_reason = 342706993;</code>
+     * @return string
+     */
+    public function getStatusReason()
+    {
+        return isset($this->status_reason) ? $this->status_reason : '';
+    }
+
+    public function hasStatusReason()
+    {
+        return isset($this->status_reason);
+    }
+
+    public function clearStatusReason()
+    {
+        unset($this->status_reason);
+    }
+
+    /**
+     * Indicates why particular status was returned.
+     * Check the StatusReason enum for the list of possible values.
+     *
+     * Generated from protobuf field <code>optional string status_reason = 342706993;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setStatusReason($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->status_reason = $var;
 
         return $this;
     }
