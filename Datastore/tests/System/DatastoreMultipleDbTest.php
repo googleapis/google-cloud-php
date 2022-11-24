@@ -43,7 +43,7 @@ class DatastoreMultipleDbTest extends DatastoreMultipleDbTestCase
         ],
         [
             'knownDances' => 10,
-            'name' => 'Dhingra Demesne',
+            'name' => 'Dhingra Assets',
         ],
     ];
 
