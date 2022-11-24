@@ -155,6 +155,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *     @type array $entityOptions Default options to be passed to the
      *           {@see \Google\Cloud\Datastore\DatastoreClient::entity()} method when writing session data to Datastore.
      *           If not specified, defaults to `['excludeFromIndexes' => ['data']]`.
+     *     @type string $databaseId The value of databaseId to be used for queries.
      * }
      */
     public function __construct(
@@ -166,6 +167,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
         // Cut down to 1000
         $this->gcLimit = min($gcLimit, 1000);
 
+        $options += [
+            'databaseId' => '',
+        ];
+        $this->databaseId = $options['databaseId'];
         if (!isset($options['entityOptions'])) {
             $options['entityOptions'] = [
                 'excludeFromIndexes' => ['data']
@@ -190,11 +195,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *        used here. It will use this value as the Datastore namespaceId.
      * @param string $sessionName The value of `session.name` setting will be
      *        used here. It will use this value as the Datastore kind.
-     * @param string $databaseId The value of Datastore databaseId.
      * @return bool
      */
     #[\ReturnTypeWillChange]
-    public function open($savePath, $sessionName, $databaseId = '')
+    public function open($savePath, $sessionName)
     {
         $this->kind = $sessionName;
         if (preg_match(self::NAMESPACE_ALLOWED_PATTERN, $savePath) !== 1 ||
@@ -204,7 +208,6 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             );
         }
         $this->namespaceId = $savePath;
-        $this->databaseId = $databaseId;
         $this->transaction = $this->datastore->transaction([
             'databaseId' => $this->databaseId
         ]);
@@ -260,7 +263,10 @@ class DatastoreSessionHandler implements SessionHandlerInterface
             $key = $this->datastore->key(
                 $this->kind,
                 $id,
-                ['namespaceId' => $this->namespaceId]
+                [
+                    'namespaceId' => $this->namespaceId,
+                    'databaseId' => $this->databaseId,
+                ]
             );
             $entity = $this->datastore->entity(
                 $key,

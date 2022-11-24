@@ -30,7 +30,7 @@ use Google\Cloud\Datastore\Tests\System\Entities\Species;
 class CustomEntityTypeTest extends DatastoreMultipleDbTestCase
 {
     /**
-     * @dataProvider defaultDbClientProvider
+     * @dataProvider clientProvider
      */
     public function testCustomEntity(DatastoreClient $client)
     {

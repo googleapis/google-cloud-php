@@ -101,6 +101,10 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
         self::$localDeletionQueue->add($key1);
         self::$localDeletionQueue->add($key2);
 
+        // validate default DB should not have data
+        $defaultDbClient = current(self::defaultDbClientProvider())[0];
+        $this->assertOtherDbEntities($defaultDbClient, $kind, $testId, 0);
+
         // transaction with query
         $transaction2 = $client->transaction();
         $query = $client->query()

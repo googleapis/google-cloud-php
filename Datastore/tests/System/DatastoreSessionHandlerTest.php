@@ -22,6 +22,7 @@ use Google\Cloud\Datastore\DatastoreSessionHandler;
 /**
  * @group datastore
  * @group datastore-session
+ * @group datastore-multipledb
  *
  * @runTestsInSeparateProcesses
  */
@@ -65,5 +66,67 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         }
 
         $this->assertTrue($hasEntity);
+
+        // other db should not have any data
+        $client = current(self::multiDbClientProvider())[0];
+        $res = $client->runQuery($q, [
+            'namespaceId' => $namespace,
+            'databaseId' => self::TEST_DB_NAME,
+        ]);
+
+        $this->assertCount(0, iterator_to_array($res));
+    }
+
+    public function testMultipleDbSessionHandler()
+    {
+        $client = current(self::multiDbClientProvider())[0];
+
+        $namespace = uniqid('sess-' . self::TESTING_PREFIX);
+        $content = 'foo';
+        $storedValue = 'name|' . serialize($content);
+
+        $handler = new DatastoreSessionHandler($client, 0, [
+            'databaseId' => self::TEST_DB_NAME,
+        ]);
+
+        @session_set_save_handler($handler, true);
+        @session_save_path($namespace);
+        @session_start();
+
+        $sessionId = session_id();
+
+        $_SESSION['name'] = $content;
+
+        session_write_close();
+        sleep(1);
+
+        $q = $client->query();
+        $q->kind('PHPSESSID');
+
+        // multi db should have data
+        $res = $client->runQuery($q, [
+            'namespaceId' => $namespace,
+            'databaseId' => self::TEST_DB_NAME,
+        ]);
+
+        $hasEntity = false;
+        foreach ($res as $e) {
+            if (!$hasEntity) {
+                $hasEntity = $e['data'] === $storedValue;
+            }
+
+            self::$localDeletionQueue->add($e->key());
+        }
+
+        $this->assertTrue($hasEntity);
+
+        // default db should not have any data
+        $client = current(self::defaultDbClientProvider())[0];
+        $res = $client->runQuery($q, [
+            'namespaceId' => $namespace,
+            'databaseId' => '',
+        ]);
+
+        $this->assertCount(0, iterator_to_array($res));
     }
 }
