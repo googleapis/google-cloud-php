@@ -187,7 +187,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->datastore->key(
             self::KIND,
             'sessionid',
-            ['namespaceId' => self::NAMESPACE_ID]
+            Argument::any()
         )
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
@@ -231,7 +231,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->datastore->key(
             self::KIND,
             'sessionid',
-            ['namespaceId' => self::NAMESPACE_ID]
+            Argument::any()
         )
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
@@ -276,7 +276,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->datastore->key(
             self::KIND,
             'sessionid',
-            ['namespaceId' => self::NAMESPACE_ID]
+            Argument::any()
         )
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
@@ -322,7 +322,7 @@ class DatastoreSessionHandlerTest extends TestCase
         $this->datastore->key(
             self::KIND,
             'sessionid',
-            ['namespaceId' => self::NAMESPACE_ID]
+            Argument::any()
         )
             ->shouldBeCalledTimes(1)
             ->willReturn($key);
