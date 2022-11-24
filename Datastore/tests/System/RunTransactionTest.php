@@ -118,7 +118,6 @@ class RunTransactionTest extends DatastoreMultipleDbTestCase
 
         // transaction with lookup
         $transaction3 = $client->transaction();
-        // NOTE: transaction->lookup(..) is failing in GRPC mode only.
         $result = $transaction3->lookup($key2);
         $transaction3->rollback();
 

@@ -95,7 +95,7 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertEquals('my-application-namespace', $nsProp->getValue($op));
     }
 
-    public function testMultiDatabases()
+    public function testMultipleDatabases()
     {
         $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
         $res = $snippet->invoke('datastore');
