@@ -107,7 +107,7 @@ class RetryConformanceTest extends TestCase
     public function casesProvider()
     {
         self::set_up_before_class();
-        $scenarioId = 2;
+        $scenarioId = 4;
 
         return self::$cases[$scenarioId];
     }
@@ -149,20 +149,12 @@ class RetryConformanceTest extends TestCase
             // if an exception was thrown, then this block would never reach
             if ($expectedSuccess) {
                 $this->assertTrue(true);
-            } else {
-                $this->fail('The code block was expected to fail but never did.');
-            }
+            } 
         } catch (SkippedTestError $e) {
             // Don't treat a skipped test as an exception.
             // For example we skip tests when the only precondition is Etags.
             $this->markTestSkipped($e->getMessage());
-        } catch (\Exception $e) {
-            if ($expectedSuccess) {
-                $this->fail('Exception ' . $e->getMessage());
-            } else {
-                $this->assertTrue(true);
-            }
-        }
+        } 
 
         self::disposeResources($resourceIds);
 
@@ -401,18 +393,6 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($objectName);
                     $acl = $object->acl();
                     $options['entity'] = 'allUsers';
-                    $acl->get($options);
-                }
-            ],
-            'storage.object_acl.get' => [
-                function ($resourceIds, $options, $precondition = false) {
-                    $bucketName = $resourceIds['bucketName'];
-                    $objectName = $resourceIds['objectName'];
-
-                    $bucket = self::$storageClient->bucket($bucketName);
-                    $object = $bucket->object($objectName);
-                    $acl = $object->acl();
-                    $options['entity'] = 'allUsers';
                     if ($precondition) {
                         $options['generation'] = $object->info()['generation'];
                     }
@@ -635,9 +615,139 @@ class RetryConformanceTest extends TestCase
                     $bucket->object('updated-file.txt')->delete();
                 }
             ],
-            'storage.objects.update' =>[
+            'storage.objects.update' => [
                 // This isn't used in the library
             ],
+            'storage.bucket_acl.delete' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->acl();
+                    $list = $acl->get();
+                    $entity = $list[0]['entity'];
+                    $acl->delete($entity, $options);
+                }
+            ],
+            'storage.bucket_acl.insert' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->acl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $acl->add($entity, 'WRITER', $options);
+                }
+            ],
+            'storage.bucket_acl.patch' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->acl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $acl->update($entity, 'READER', $options);
+                }
+            ],
+            'storage.bucket_acl.update' => [
+                // This isn't used in the library
+            ],
+            'storage.default_object_acl.delete' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->defaultAcl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $acl->delete($entity, $options);
+                }
+            ],
+            'storage.default_object_acl.insert' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->defaultAcl();
+                    $acl->add('allAuthenticatedUsers', 'OWNER', $options);
+                }
+            ],
+            'storage.default_object_acl.patch' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $acl = $bucket->defaultAcl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $acl->update($entity, 'READER', $options);
+                }
+            ],
+            'storage.default_object_acl.update' => [
+                // This isn't used in the library
+            ],
+            'storage.hmacKey.create' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $options['projectId'] = 'test';
+                    self::$storageClient->createHmacKey('temp@test.iam.gserviceaccount.com', $options);
+                }
+            ],
+            'storage.notifications.insert' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+
+                    $notification = $bucket->createNotification('testNotif', $options);
+
+                    $notification->delete();
+                }
+            ],
+            'storage.object_acl.delete' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+
+                    $acl = $object->acl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $role = $aclList[0]['role'];
+                    $acl->delete($entity, $options);
+                }
+            ],
+            'storage.object_acl.insert' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+
+                    $acl = $object->acl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $acl->add($entity, 'READER', $options);
+                }
+            ],
+            'storage.object_acl.patch' => [
+                function ($resourceIds, $options, $precondition = false) {
+                    $bucketName = $resourceIds['bucketName'];
+                    $objectName = $resourceIds['objectName'];
+                    $bucket = self::$storageClient->bucket($bucketName);
+                    $object = $bucket->object($objectName);
+
+                    $acl = $object->acl();
+                    $aclList = $acl->get();
+                    $entity = $aclList[0]['entity'];
+                    $role = $aclList[0]['role'];
+                    $acl->update($entity, 'READER', $options);
+                }
+            ],
+            'storage.object_acl.update' => [
+                // This isn't used in the library
+            ]
         ];
     }
 
