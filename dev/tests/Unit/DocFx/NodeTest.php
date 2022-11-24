@@ -21,6 +21,7 @@ use PHPUnit\Framework\TestCase;
 use Google\Cloud\Dev\DocFx\Node\ClassNode;
 use Google\Cloud\Dev\DocFx\Node\MethodNode;
 use Google\Cloud\Dev\DocFx\Node\XrefTrait;
+use Google\Cloud\Dev\DocFx\Node\FencedCodeBlockTrait;
 use SimpleXMLElement;
 
 /**
@@ -202,36 +203,103 @@ class NodeTest extends TestCase
         );
     }
 
-    /**
-     * @dataProvider provideClassNodeStatusByVersion
-     */
-    public function testClassNodeStatusByVersion(string $version, string $status)
+    public function testAddingPhpLanguageHintToFencedCodeBlock()
     {
+        $fencedCodeBlock = new class {
+            use FencedCodeBlockTrait;
+
+            public function replace(string $description) {
+                return $this->addPhpLanguageHintToFencedCodeblock($description);
+            }
+        };
+
+        $description = <<<EOF
+This is a test fenced codeblock
+
+```
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $expected = <<<EOF
+This is a test fenced codeblock
+
+```php
+use Some\TestFoo;
+\$n = new TestFoo();
+```
+
+And now you know how to use it!
+EOF;
+
+        $this->assertEquals(
+            $expected,
+            $fencedCodeBlock->replace($description)
+        );
+
+        $descriptionWithIndent = <<<EOF
+This is an indented test fenced codeblock
+
+    ```
+    use Some\TestFoo;
+    \$n = new TestFoo();
+    ```
+
+And now you know how to use it!
+EOF;
+
+        // Ensure the whitespace indentation works as expected
+        $this->assertStringContainsString(
+            "\n    ```php\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+        $this->assertStringContainsString(
+            "\n    ```\n",
+            $fencedCodeBlock->replace($descriptionWithIndent)
+        );
+    }
+
+    /**
+     * @dataProvider provideStatusAndVersionByNamespace
+     */
+    public function testStatusAndVersionByNamespace(
+        string $namespace,
+        string $version,
+        bool $isBeta = false
+    ) {
         $serviceXml = str_replace(
             '\Google\Cloud\Vision\V1',
-            '\Google\Cloud\Vision\\' . $version,
-            file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml'));
+            '\Google\Cloud\Vision\\' . $namespace,
+            file_get_contents(__DIR__ . '/../../fixtures/phpdoc/service.xml')
+        );
         $class = new ClassNode(new SimpleXMLElement($serviceXml));
 
         $this->assertTrue($class->isServiceClass());
-        $this->assertEquals($status, $class->getStatus());
+        $this->assertEquals($version, $class->getVersion());
+        $this->assertEquals($isBeta, $class->getStatus() === 'beta');
     }
 
-    public function provideClassNodeStatusByVersion()
+    public function provideStatusAndVersionByNamespace()
     {
         return [
-            ['V1alpha', 'beta'],
-            ['V1beta', 'beta'],
-            ['V1alpha1', 'beta'],
-            ['V1beta1', 'beta'],
-            ['V1p1beta1', 'beta'],
-            ['V1p1alpha1', 'beta'],
-            ['V2p2beta2', 'beta'],
-            ['V1beta1\Foo', 'beta'],
-            ['V1beta\Foo', 'beta'],
-            ['V1', ''],
+            ['V1alpha', 'V1alpha', true],
+            ['V1beta', 'V1beta', true],
+            ['V1alpha1', 'V1alpha1', true],
+            ['V1beta1', 'V1beta1', true],
+            ['V1p1alpha1', 'V1p1alpha1', true],
+            ['V1p1beta1', 'V1p1beta1', true],
+            ['V2p2beta2', 'V2p2beta2', true],
+            ['V1beta1\Foo', 'V1beta1', true],
+            ['V1beta\Foo', 'V1beta', true],
+            ['V1betaFoo', ''],
+            ['V1', 'V1'],
+            ['V1\Foo', 'V1'],
             ['V1p1zeta1', ''],
             ['V1z1beta', ''],
+            ['Foo', ''],
         ];
     }
 }

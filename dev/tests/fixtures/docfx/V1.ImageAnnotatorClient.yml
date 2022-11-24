@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ImageAnnotatorClient
     name: ImageAnnotatorClient
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ImageAnnotatorClient
     summary: |
       Service Description: Service that performs Google Cloud Vision API detection tasks over client
@@ -13,7 +13,7 @@ items:
       This class provides the ability to make remote calls to the backing service through method
       calls that map to API methods. Sample code to get started:
       
-      ```
+      ```php
       $imageAnnotatorClient = new ImageAnnotatorClient();
       try {
           $requests = [];
@@ -84,7 +84,7 @@ items:
       Creates an Image object that can be used as part of an image annotation request.
       
       Example:
-      ```
+      ```php
       
       $imageResource = fopen('path/to/image.jpg', 'r');
       $image = $imageAnnotatorClient->createImageObject($imageResource);
@@ -125,7 +125,7 @@ items:
       Run image detection and annotation for an image.
       
       Example:
-      ```
+      ```php
       use Google\Cloud\Vision\V1\Feature;
       use Google\Cloud\Vision\V1\Feature\Type;
       
@@ -170,7 +170,7 @@ items:
       Run face detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->faceDetection($imageContent);
       ```
@@ -207,7 +207,7 @@ items:
       Run landmark detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->landmarkDetection($imageContent);
       ```
@@ -244,7 +244,7 @@ items:
       Run logo detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->logoDetection($imageContent);
       ```
@@ -281,7 +281,7 @@ items:
       Run label detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->labelDetection($imageContent);
       ```
@@ -318,7 +318,7 @@ items:
       Run text detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->textDetection($imageContent);
       ```
@@ -355,7 +355,7 @@ items:
       Run document text detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->documentTextDetection($imageContent);
       ```
@@ -392,7 +392,7 @@ items:
       Run safe search detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->safeSearchDetection($imageContent);
       ```
@@ -429,7 +429,7 @@ items:
       Run image properties detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->imagePropertiesDetection($imageContent);
       ```
@@ -466,7 +466,7 @@ items:
       Run crop hints detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->cropHintsDetection($imageContent);
       ```
@@ -503,7 +503,7 @@ items:
       Run web detection for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->webDetection($imageContent);
       ```
@@ -540,7 +540,7 @@ items:
       Run object localization for an image.
       
       Example:
-      ```
+      ```php
       $imageContent = file_get_contents('path/to/image.jpg');
       $response = $imageAnnotatorClient->objectLocalization($imageContent);
       ```
@@ -577,7 +577,7 @@ items:
       Run product search for an image.
       
       Example:
-      ```
+      ```php
       use Google\Cloud\Vision\V1\ProductSearchClient;
       use Google\Cloud\Vision\V1\ProductSearchParams;
       
@@ -723,7 +723,7 @@ items:
       `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
       
       Sample code:
-      ```
+      ```php
       $imageAnnotatorClient = new ImageAnnotatorClient();
       try {
           $requests = [];
@@ -798,7 +798,7 @@ items:
       GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
       
       Sample code:
-      ```
+      ```php
       $imageAnnotatorClient = new ImageAnnotatorClient();
       try {
           $requests = [];
@@ -877,7 +877,7 @@ items:
       extracted.
       
       Sample code:
-      ```
+      ```php
       $imageAnnotatorClient = new ImageAnnotatorClient();
       try {
           $requests = [];
@@ -919,7 +919,7 @@ items:
       Run image detection and annotation for a batch of images.
       
       Sample code:
-      ```
+      ```php
       $imageAnnotatorClient = new ImageAnnotatorClient();
       try {
           $requests = [];

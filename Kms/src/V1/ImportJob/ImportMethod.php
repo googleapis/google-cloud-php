@@ -43,11 +43,55 @@ class ImportMethod
      * Generated from protobuf enum <code>RSA_OAEP_4096_SHA1_AES_256 = 2;</code>
      */
     const RSA_OAEP_4096_SHA1_AES_256 = 2;
+    /**
+     * This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
+     * scheme defined in the PKCS #11 standard. In summary, this involves
+     * wrapping the raw key with an ephemeral AES key, and wrapping the
+     * ephemeral AES key with a 3072 bit RSA key. For more details, see
+     * [RSA AES key wrap
+     * mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).
+     *
+     * Generated from protobuf enum <code>RSA_OAEP_3072_SHA256_AES_256 = 3;</code>
+     */
+    const RSA_OAEP_3072_SHA256_AES_256 = 3;
+    /**
+     * This ImportMethod represents the CKM_RSA_AES_KEY_WRAP key wrapping
+     * scheme defined in the PKCS #11 standard. In summary, this involves
+     * wrapping the raw key with an ephemeral AES key, and wrapping the
+     * ephemeral AES key with a 4096 bit RSA key. For more details, see
+     * [RSA AES key wrap
+     * mechanism](http://docs.oasis-open.org/pkcs11/pkcs11-curr/v2.40/cos01/pkcs11-curr-v2.40-cos01.html#_Toc408226908).
+     *
+     * Generated from protobuf enum <code>RSA_OAEP_4096_SHA256_AES_256 = 4;</code>
+     */
+    const RSA_OAEP_4096_SHA256_AES_256 = 4;
+    /**
+     * This ImportMethod represents RSAES-OAEP with a 3072 bit RSA key. The
+     * key material to be imported is wrapped directly with the RSA key. Due
+     * to technical limitations of RSA wrapping, this method cannot be used to
+     * wrap RSA keys for import.
+     *
+     * Generated from protobuf enum <code>RSA_OAEP_3072_SHA256 = 5;</code>
+     */
+    const RSA_OAEP_3072_SHA256 = 5;
+    /**
+     * This ImportMethod represents RSAES-OAEP with a 4096 bit RSA key. The
+     * key material to be imported is wrapped directly with the RSA key. Due
+     * to technical limitations of RSA wrapping, this method cannot be used to
+     * wrap RSA keys for import.
+     *
+     * Generated from protobuf enum <code>RSA_OAEP_4096_SHA256 = 6;</code>
+     */
+    const RSA_OAEP_4096_SHA256 = 6;
 
     private static $valueToName = [
         self::IMPORT_METHOD_UNSPECIFIED => 'IMPORT_METHOD_UNSPECIFIED',
         self::RSA_OAEP_3072_SHA1_AES_256 => 'RSA_OAEP_3072_SHA1_AES_256',
         self::RSA_OAEP_4096_SHA1_AES_256 => 'RSA_OAEP_4096_SHA1_AES_256',
+        self::RSA_OAEP_3072_SHA256_AES_256 => 'RSA_OAEP_3072_SHA256_AES_256',
+        self::RSA_OAEP_4096_SHA256_AES_256 => 'RSA_OAEP_4096_SHA256_AES_256',
+        self::RSA_OAEP_3072_SHA256 => 'RSA_OAEP_3072_SHA256',
+        self::RSA_OAEP_4096_SHA256 => 'RSA_OAEP_4096_SHA256',
     ];
 
     public static function name($value)

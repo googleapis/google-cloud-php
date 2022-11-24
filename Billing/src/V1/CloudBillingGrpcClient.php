@@ -2,7 +2,7 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 // Original file comments:
-// Copyright 2019 Google LLC.
+// Copyright 2022 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,11 +16,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-//
 namespace Google\Cloud\Billing\V1;
 
 /**
- * Retrieves GCP Console billing accounts and associates them with projects.
+ * Retrieves the Google Cloud Console billing accounts and associates them with
+ * projects.
  */
 class CloudBillingGrpcClient extends \Grpc\BaseStub {
 
@@ -88,15 +88,20 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Creates a billing account.
-     * This method can only be used to create
-     * [billing subaccounts](https://cloud.google.com/billing/docs/concepts)
-     * by GCP resellers.
+     * This method creates [billing
+     * subaccounts](https://cloud.google.com/billing/docs/concepts#subaccounts).
+     *
+     * Google Cloud resellers should use the
+     * Channel Services APIs,
+     * [accounts.customers.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers/create)
+     * and
+     * [accounts.customers.entitlements.create](https://cloud.google.com/channel/docs/reference/rest/v1/accounts.customers.entitlements/create).
+     *
      * When creating a subaccount, the current authenticated user must have the
-     * `billing.accounts.update` IAM permission on the master account, which is
+     * `billing.accounts.update` IAM permission on the parent account, which is
      * typically given to billing account
      * [administrators](https://cloud.google.com/billing/docs/how-to/billing-access).
-     * This method will return an error if the master account has not been
+     * This method will return an error if the parent account has not been
      * provisioned as a reseller account.
      * @param \Google\Cloud\Billing\V1\CreateBillingAccountRequest $argument input argument
      * @param array $metadata metadata
@@ -131,9 +136,10 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Gets the billing information for a project. The current authenticated user
-     * must have [permission to view the
-     * project](https://cloud.google.com/docs/permissions-overview#h.bgs0oxofvnoo
-     * ).
+     * must have the `resourcemanager.projects.get` permission for the project,
+     * which can be granted by assigning the [Project
+     * Viewer](https://cloud.google.com/iam/docs/understanding-roles#predefined_roles)
+     * role.
      * @param \Google\Cloud\Billing\V1\GetProjectBillingInfoRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
@@ -157,7 +163,7 @@ class CloudBillingGrpcClient extends \Grpc\BaseStub {
      * usage charges.
      *
      * *Note:* Incurred charges that have not yet been reported in the transaction
-     * history of the GCP Console might be billed to the new billing
+     * history of the Google Cloud Console might be billed to the new billing
      * account, even if the charge occurred before the new billing account was
      * assigned to the project.
      *

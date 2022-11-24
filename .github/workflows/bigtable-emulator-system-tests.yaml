@@ -4,9 +4,11 @@ on:
       - main
     paths:
       - 'Bigtable/**'
+      - '.github/workflows/bigtable-emulator-system-tests.yaml'
   pull_request:
     paths:
       - 'Bigtable/**'
+      - '.github/workflows/bigtable-emulator-system-tests.yaml'
 name: Run Bigtable System Tests With Emulator
 jobs:
   test:

@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [KeyManagementService.ListEkmConnections][].
+ * Request message for
+ * [EkmService.ListEkmConnections][google.cloud.kms.v1.EkmService.ListEkmConnections].
  *
  * Generated from protobuf message <code>google.cloud.kms.v1.ListEkmConnectionsRequest</code>
  */

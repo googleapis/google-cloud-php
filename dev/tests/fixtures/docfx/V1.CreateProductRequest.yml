@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\CreateProductRequest
     name: CreateProductRequest
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: CreateProductRequest
     summary: |
       Request message for the `CreateProduct` method.

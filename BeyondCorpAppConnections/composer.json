@@ -1,6 +1,6 @@
 {
     "name": "google/cloud-beyondcorp-appconnections",
-    "description": "Google Cloud BeyondCorp AppConnections for PHP Client for PHP",
+    "description": "Google Cloud BeyondCorp AppConnections for PHP",
     "license": "Apache-2.0",
     "minimum-stability": "stable",
     "autoload": {

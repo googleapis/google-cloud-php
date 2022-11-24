@@ -24,7 +24,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc.
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      * To get a list of processors types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *
@@ -79,7 +79,7 @@ class Processor extends \Google\Protobuf\Internal\Message
      *           Output only. Immutable. The resource name of the processor.
      *           Format: `projects/{project}/locations/{location}/processors/{processor}`
      *     @type string $type
-     *           The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc.
+     *           The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      *           To get a list of processors types, see
      *           [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *     @type string $display_name
@@ -131,7 +131,7 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc.
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      * To get a list of processors types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *
@@ -144,7 +144,7 @@ class Processor extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc.
+     * The processor type, e.g., `OCR_PROCESSOR`, `INVOICE_PROCESSOR`, etc.
      * To get a list of processors types, see
      * [FetchProcessorTypes][google.cloud.documentai.v1.DocumentProcessorService.FetchProcessorTypes].
      *

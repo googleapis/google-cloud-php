@@ -21,6 +21,14 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string gcs_uri = 1;</code>
      */
     private $gcs_uri = '';
+    /**
+     * Specifies which fields to include in the output documents.
+     * Only supports top level document and pages field so it must be in the
+     * form of `{document_field_name}` or `pages.{page_field_name}`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     */
+    private $field_mask = null;
 
     /**
      * Constructor.
@@ -30,6 +38,10 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
      *
      *     @type string $gcs_uri
      *           The Cloud Storage uri (a directory) of the output.
+     *     @type \Google\Protobuf\FieldMask $field_mask
+     *           Specifies which fields to include in the output documents.
+     *           Only supports top level document and pages field so it must be in the
+     *           form of `{document_field_name}` or `pages.{page_field_name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -59,6 +71,46 @@ class GcsOutputConfig extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->gcs_uri = $var;
+
+        return $this;
+    }
+
+    /**
+     * Specifies which fields to include in the output documents.
+     * Only supports top level document and pages field so it must be in the
+     * form of `{document_field_name}` or `pages.{page_field_name}`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @return \Google\Protobuf\FieldMask|null
+     */
+    public function getFieldMask()
+    {
+        return $this->field_mask;
+    }
+
+    public function hasFieldMask()
+    {
+        return isset($this->field_mask);
+    }
+
+    public function clearFieldMask()
+    {
+        unset($this->field_mask);
+    }
+
+    /**
+     * Specifies which fields to include in the output documents.
+     * Only supports top level document and pages field so it must be in the
+     * form of `{document_field_name}` or `pages.{page_field_name}`.
+     *
+     * Generated from protobuf field <code>.google.protobuf.FieldMask field_mask = 2;</code>
+     * @param \Google\Protobuf\FieldMask $var
+     * @return $this
+     */
+    public function setFieldMask($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\FieldMask::class);
+        $this->field_mask = $var;
 
         return $this;
     }

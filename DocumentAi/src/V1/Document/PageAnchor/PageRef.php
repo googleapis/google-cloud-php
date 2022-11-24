@@ -44,7 +44,7 @@ class PageRef extends \Google\Protobuf\Internal\Message
      */
     private $bounding_poly = null;
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -68,7 +68,7 @@ class PageRef extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\DocumentAI\V1\BoundingPoly $bounding_poly
      *           Optional. Identifies the bounding polygon of a layout element on the page.
      *     @type float $confidence
-     *           Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     *           Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,7 +201,7 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return float
@@ -212,7 +212,7 @@ class PageRef extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     * Optional. Confidence of detected page element, if applicable. Range `[0, 1]`.
      *
      * Generated from protobuf field <code>float confidence = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param float $var

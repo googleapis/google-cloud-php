@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\ProductSearchClient
     name: ProductSearchClient
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: ProductSearchClient
     summary: |
       Service Description: Manages Products and ProductSets of reference images for use in product
@@ -24,7 +24,7 @@ items:
       This class provides the ability to make remote calls to the backing service through method
       calls that map to API methods. Sample code to get started:
       
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -332,7 +332,7 @@ items:
       * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -379,7 +379,7 @@ items:
       * Returns INVALID_ARGUMENT if product_category is missing or invalid.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -431,7 +431,7 @@ items:
       4096 characters.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -496,7 +496,7 @@ items:
       * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
@@ -547,7 +547,7 @@ items:
       until all related caches are refreshed.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
@@ -585,7 +585,7 @@ items:
       The actual image files are not deleted from Google Cloud Storage.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -626,7 +626,7 @@ items:
       The actual image files are not deleted from Google Cloud Storage.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
@@ -665,7 +665,7 @@ items:
       * Returns NOT_FOUND if the Product does not exist.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
@@ -707,7 +707,7 @@ items:
       * Returns NOT_FOUND if the ProductSet does not exist.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -749,7 +749,7 @@ items:
       * Returns NOT_FOUND if the specified image does not exist.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->referenceImageName('[PROJECT]', '[LOCATION]', '[PRODUCT]', '[REFERENCE_IMAGE]');
@@ -797,7 +797,7 @@ items:
       <xref uid="\Google\Cloud\Vision\V1\ImportProductSetsGcsSource::getCsvFileUri()">ImportProductSetsGcsSource.csv_file_uri</xref>.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -870,7 +870,7 @@ items:
       than 1.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -932,7 +932,7 @@ items:
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -996,7 +996,7 @@ items:
       * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -1060,7 +1060,7 @@ items:
       than 1.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->productName('[PROJECT]', '[LOCATION]', '[PRODUCT]');
@@ -1141,7 +1141,7 @@ items:
       `Operation.metadata` contains `BatchOperationMetadata`. (progress)
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedParent = $productSearchClient->locationName('[PROJECT]', '[LOCATION]');
@@ -1214,7 +1214,7 @@ items:
       Removes a Product from the specified ProductSet.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $formattedName = $productSearchClient->productSetName('[PROJECT]', '[LOCATION]', '[PRODUCT_SET]');
@@ -1269,7 +1269,7 @@ items:
       * Returns INVALID_ARGUMENT if product_category is present in update_mask.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $product = new Product();
@@ -1319,7 +1319,7 @@ items:
       missing from the request or longer than 4096 characters.
       
       Sample code:
-      ```
+      ```php
       $productSearchClient = new ProductSearchClient();
       try {
           $productSet = new ProductSet();

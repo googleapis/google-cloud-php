@@ -19,6 +19,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The width of the video in pixels. Must be an even integer.
      * When not specified, the width is adjusted to match the specified height
      * and input aspect ratio. If both are omitted, the input width is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the width, in pixels, per the horizontal ASR. The API calculates
+     * the height per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      */
@@ -27,6 +31,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The height of the video in pixels. Must be an even integer.
      * When not specified, the height is adjusted to match the specified width
      * and input aspect ratio. If both are omitted, the input height is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the height, in pixels, per the horizontal ASR. The API calculates
+     * the width per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      */
@@ -110,10 +118,18 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      *           The width of the video in pixels. Must be an even integer.
      *           When not specified, the width is adjusted to match the specified height
      *           and input aspect ratio. If both are omitted, the input width is used.
+     *           For portrait videos that contain horizontal ASR and rotation metadata,
+     *           provide the width, in pixels, per the horizontal ASR. The API calculates
+     *           the height per the horizontal ASR. The API detects any rotation metadata
+     *           and swaps the requested height and width for the output.
      *     @type int $height_pixels
      *           The height of the video in pixels. Must be an even integer.
      *           When not specified, the height is adjusted to match the specified width
      *           and input aspect ratio. If both are omitted, the input height is used.
+     *           For portrait videos that contain horizontal ASR and rotation metadata,
+     *           provide the height, in pixels, per the horizontal ASR. The API calculates
+     *           the width per the horizontal ASR. The API detects any rotation metadata
+     *           and swaps the requested height and width for the output.
      *     @type float $frame_rate
      *           Required. The target video frame rate in frames per second (FPS). Must be less than
      *           or equal to 120. Will default to the input frame rate if larger than the
@@ -177,6 +193,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The width of the video in pixels. Must be an even integer.
      * When not specified, the width is adjusted to match the specified height
      * and input aspect ratio. If both are omitted, the input width is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the width, in pixels, per the horizontal ASR. The API calculates
+     * the height per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      * @return int
@@ -190,6 +210,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The width of the video in pixels. Must be an even integer.
      * When not specified, the width is adjusted to match the specified height
      * and input aspect ratio. If both are omitted, the input width is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the width, in pixels, per the horizontal ASR. The API calculates
+     * the height per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 width_pixels = 1;</code>
      * @param int $var
@@ -207,6 +231,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The height of the video in pixels. Must be an even integer.
      * When not specified, the height is adjusted to match the specified width
      * and input aspect ratio. If both are omitted, the input height is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the height, in pixels, per the horizontal ASR. The API calculates
+     * the width per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      * @return int
@@ -220,6 +248,10 @@ class Vp9CodecSettings extends \Google\Protobuf\Internal\Message
      * The height of the video in pixels. Must be an even integer.
      * When not specified, the height is adjusted to match the specified width
      * and input aspect ratio. If both are omitted, the input height is used.
+     * For portrait videos that contain horizontal ASR and rotation metadata,
+     * provide the height, in pixels, per the horizontal ASR. The API calculates
+     * the width per the horizontal ASR. The API detects any rotation metadata
+     * and swaps the requested height and width for the output.
      *
      * Generated from protobuf field <code>int32 height_pixels = 2;</code>
      * @param int $var

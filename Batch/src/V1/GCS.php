@@ -9,7 +9,7 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Represents a Google Cloud Storage volume source config.
+ * Represents a Google Cloud Storage volume.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.GCS</code>
  */

@@ -3,7 +3,7 @@ items:
   -
     uid: \Google\Cloud\Vision\V1\TextAnnotation\TextProperty
     name: TextProperty
-    friendlyApiName: 'Cloud Vision Client for PHP'
+    friendlyApiName: 'Cloud Vision V1 Client'
     id: TextProperty
     summary: |
       Additional information detected on the structural component.

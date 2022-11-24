@@ -34,20 +34,20 @@ class State
      */
     const DISABLED = 2;
     /**
-     * The processor is being enabled, will become ENABLED if successful.
+     * The processor is being enabled, will become `ENABLED` if successful.
      *
      * Generated from protobuf enum <code>ENABLING = 3;</code>
      */
     const ENABLING = 3;
     /**
-     * The processor is being disabled, will become DISABLED if successful.
+     * The processor is being disabled, will become `DISABLED` if successful.
      *
      * Generated from protobuf enum <code>DISABLING = 4;</code>
      */
     const DISABLING = 4;
     /**
-     * The processor is being created, will become either ENABLED (for
-     * successful creation) or FAILED (for failed ones).
+     * The processor is being created, will become either `ENABLED` (for
+     * successful creation) or `FAILED` (for failed ones).
      * Once a processor is in this state, it can then be used for document
      * processing, but the feature dependencies of the processor might not be
      * fully created yet.

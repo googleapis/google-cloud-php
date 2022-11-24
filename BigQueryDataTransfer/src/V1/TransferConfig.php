@@ -38,7 +38,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      */
     private $display_name = '';
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      */
@@ -168,7 +170,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
      *     @type string $display_name
      *           User specified display name for the data transfer.
      *     @type string $data_source_id
-     *           Data source id. Cannot be changed once data transfer is created.
+     *           Data source ID. This cannot be changed once data transfer is created. The
+     *           full list of available data source IDs can be returned through an API call:
+     *           https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *     @type \Google\Protobuf\Struct $params
      *           Parameters specific to each data source. For more information see the
      *           bq tab in the 'Setting up a data transfer' section for each data source.
@@ -323,7 +327,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      * @return string
@@ -334,7 +340,9 @@ class TransferConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Data source id. Cannot be changed once data transfer is created.
+     * Data source ID. This cannot be changed once data transfer is created. The
+     * full list of available data source IDs can be returned through an API call:
+     * https://cloud.google.com/bigquery-transfer/docs/reference/datatransfer/rest/v1/projects.locations.dataSources/list
      *
      * Generated from protobuf field <code>string data_source_id = 5;</code>
      * @param string $var
