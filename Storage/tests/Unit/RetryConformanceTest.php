@@ -107,9 +107,16 @@ class RetryConformanceTest extends TestCase
     public function casesProvider()
     {
         self::set_up_before_class();
-        $scenarioId = 4;
+        // These scenario IDs will be run
+        $scenarios = [1, 2, 3, 4, 5, 6];
 
-        return self::$cases[$scenarioId];
+        $cases = [];
+
+        foreach ($scenarios as $scenarioId) {
+            $cases = array_merge($cases, self::$cases[$scenarioId]);
+        }
+
+        return $cases;
     }
 
     /**
@@ -149,12 +156,12 @@ class RetryConformanceTest extends TestCase
             // if an exception was thrown, then this block would never reach
             if ($expectedSuccess) {
                 $this->assertTrue(true);
-            } 
+            }
         } catch (SkippedTestError $e) {
             // Don't treat a skipped test as an exception.
             // For example we skip tests when the only precondition is Etags.
             $this->markTestSkipped($e->getMessage());
-        } 
+        }
 
         self::disposeResources($resourceIds);
 
@@ -281,8 +288,10 @@ class RetryConformanceTest extends TestCase
             'storage.buckets.lockRetentionPolicy' => [
                 function ($resourceIds, $options, $precondition = false) {
                     $bucketName = $resourceIds['bucketName'];
-
                     $bucket = self::$storageClient->bucket($bucketName);
+
+                    $metageneration = $bucket->info()['metageneration'];
+                    $options['IfMetagenerationMatch'] = $metageneration;
                     $bucket->lockRetentionPolicy($options);
                 }
             ],
@@ -335,8 +344,6 @@ class RetryConformanceTest extends TestCase
             ],
             'storage.hmacKey.list' => [
                 function ($resourceIds, $options, $precondition = false) {
-                    $accessId = $resourceIds['hmacKeyId'];
-
                     $keys = self::$storageClient->hmacKeys($options);
 
                     // Added this to trigger the API call
@@ -817,18 +824,6 @@ class RetryConformanceTest extends TestCase
         if (isset($ids['bucketName'])) {
             $bucket = self::$storageClient->bucket($ids['bucketName']);
             if ($bucket->exists()) {
-                // delete the ACLs added to the bucket
-                $acl = $bucket->acl();
-
-                $acl->delete('allUsers');
-                $acl->delete('allAuthenticatedUsers');
-
-                // Delete the default ACLs added to the bucket
-                $acl = $bucket->defaultAcl();
-
-                $acl->delete('allUsers');
-                $acl->delete('allAuthenticatedUsers');
-
                 // delete the notifications if we created any
                 if (isset($ids['notificationId'])) {
                     $notification = $bucket->notification($ids['notificationId']);
@@ -841,12 +836,6 @@ class RetryConformanceTest extends TestCase
                     $object = $bucket->object($ids['objectName']);
 
                     if ($object->exists()) {
-                        // Delete the ACLs created on the object
-                        $acl = $object->acl();
-                        
-                        $acl->delete('allUsers');
-                        $acl->delete('allAuthenticatedUsers');
-                        
                         // delete the object
                         $object->delete();
                     }
