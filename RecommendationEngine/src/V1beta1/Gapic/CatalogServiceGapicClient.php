@@ -29,9 +29,7 @@ namespace Google\Cloud\RecommendationEngine\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
@@ -81,29 +79,19 @@ class CatalogServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.recommendationengine.v1beta1.CatalogService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'recommendationengine.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -662,7 +650,7 @@ class CatalogServiceGapicClient
      * ```
      *
      * @param string      $name         Required. Full resource name of catalog item, such as
-     *                                  "projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     *                                  `projects/&#42;/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      * @param CatalogItem $catalogItem  Required. The catalog item to update/create. The 'catalog_item_id' field
      *                                  has to match that in the 'name'.
      * @param array       $optionalArgs {
