@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Configuration of Shielded Nodes feature.
+ * Configuration of Fast Socket feature.
  *
- * Generated from protobuf message <code>google.container.v1.ShieldedNodes</code>
+ * Generated from protobuf message <code>google.container.v1.FastSocket</code>
  */
-class ShieldedNodes extends \Google\Protobuf\Internal\Message
+class FastSocket extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     * Whether Fast Socket features are enabled in the node pool.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      */
-    protected $enabled = false;
+    private $enabled = false;
 
     /**
      * Constructor.
@@ -29,7 +29,7 @@ class ShieldedNodes extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $enabled
-     *           Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     *           Whether Fast Socket features are enabled in the node pool.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,7 +38,7 @@ class ShieldedNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     * Whether Fast Socket features are enabled in the node pool.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @return bool
@@ -49,7 +49,7 @@ class ShieldedNodes extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Whether Shielded Nodes features are enabled on all nodes in this cluster.
+     * Whether Fast Socket features are enabled in the node pool.
      *
      * Generated from protobuf field <code>bool enabled = 1;</code>
      * @param bool $var
