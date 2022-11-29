@@ -39,8 +39,9 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * A destination visit or vehicle end matches iff its
      * [VisitRequest.tags][google.cloud.optimization.v1.Shipment.VisitRequest.tags]
-     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either contains `dst_tag` or does not contain
-     * `excluded_dst_tag` (depending on which of these two fields is non-empty).
+     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either
+     * contains `dst_tag` or does not contain `excluded_dst_tag` (depending on
+     * which of these two fields is non-empty).
      *
      * Generated from protobuf field <code>string dst_tag = 3;</code>
      */
@@ -63,7 +64,8 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a cost per kilometer applied to the distance traveled while
      * performing this transition. It adds up to any
-     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer] specified on vehicles.
+     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer]
+     * specified on vehicles.
      *
      * Generated from protobuf field <code>double cost_per_kilometer = 6;</code>
      */
@@ -104,8 +106,9 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *     @type string $dst_tag
      *           A destination visit or vehicle end matches iff its
      *           [VisitRequest.tags][google.cloud.optimization.v1.Shipment.VisitRequest.tags]
-     *           or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either contains `dst_tag` or does not contain
-     *           `excluded_dst_tag` (depending on which of these two fields is non-empty).
+     *           or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either
+     *           contains `dst_tag` or does not contain `excluded_dst_tag` (depending on
+     *           which of these two fields is non-empty).
      *     @type string $excluded_dst_tag
      *           See `dst_tag`. Exactly one of `dst_tag` and `excluded_dst_tag` must be
      *           non-empty.
@@ -116,7 +119,8 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
      *     @type float $cost_per_kilometer
      *           Specifies a cost per kilometer applied to the distance traveled while
      *           performing this transition. It adds up to any
-     *           [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer] specified on vehicles.
+     *           [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer]
+     *           specified on vehicles.
      *     @type \Google\Cloud\Optimization\V1\DistanceLimit $distance_limit
      *           Specifies a limit on the distance traveled while performing this
      *           transition.
@@ -199,8 +203,9 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * A destination visit or vehicle end matches iff its
      * [VisitRequest.tags][google.cloud.optimization.v1.Shipment.VisitRequest.tags]
-     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either contains `dst_tag` or does not contain
-     * `excluded_dst_tag` (depending on which of these two fields is non-empty).
+     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either
+     * contains `dst_tag` or does not contain `excluded_dst_tag` (depending on
+     * which of these two fields is non-empty).
      *
      * Generated from protobuf field <code>string dst_tag = 3;</code>
      * @return string
@@ -213,8 +218,9 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * A destination visit or vehicle end matches iff its
      * [VisitRequest.tags][google.cloud.optimization.v1.Shipment.VisitRequest.tags]
-     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either contains `dst_tag` or does not contain
-     * `excluded_dst_tag` (depending on which of these two fields is non-empty).
+     * or [Vehicle.end_tags][google.cloud.optimization.v1.Vehicle.end_tags] either
+     * contains `dst_tag` or does not contain `excluded_dst_tag` (depending on
+     * which of these two fields is non-empty).
      *
      * Generated from protobuf field <code>string dst_tag = 3;</code>
      * @param string $var
@@ -289,7 +295,8 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a cost per kilometer applied to the distance traveled while
      * performing this transition. It adds up to any
-     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer] specified on vehicles.
+     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer]
+     * specified on vehicles.
      *
      * Generated from protobuf field <code>double cost_per_kilometer = 6;</code>
      * @return float
@@ -302,7 +309,8 @@ class TransitionAttributes extends \Google\Protobuf\Internal\Message
     /**
      * Specifies a cost per kilometer applied to the distance traveled while
      * performing this transition. It adds up to any
-     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer] specified on vehicles.
+     * [Vehicle.cost_per_kilometer][google.cloud.optimization.v1.Vehicle.cost_per_kilometer]
+     * specified on vehicles.
      *
      * Generated from protobuf field <code>double cost_per_kilometer = 6;</code>
      * @param float $var
