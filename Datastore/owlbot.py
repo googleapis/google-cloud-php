@@ -34,7 +34,7 @@ php.owlbot_main(
     src=src,
     dest=dest,
     copy_excludes=[
-        src / "src/V1/TransactionOptions/ReadOnly.php"
+        src / "*/proto/src/Google/Cloud/Datastore/V1/TransactionOptions/ReadOnly.php"
     ]
 )
 
