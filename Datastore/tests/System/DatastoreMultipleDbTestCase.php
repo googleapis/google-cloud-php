@@ -39,6 +39,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
     protected static $returnInt64AsObjectMultiDbClient;
     private static $hasSetUp = false;
     private static $projectId;
+    private static $multipleDbValidationResult = false;
 
     public static function set_up_multi_db_before_class()
     {
@@ -46,11 +47,6 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             return;
         }
         self::$projectId = getenv('GOOGLE_PROJECT_ID');
-
-        $fsAdminClient = self::getFirestoreAdminClient();
-        if (!self::checkTestDbExists($fsAdminClient) && !self::createDb($fsAdminClient)) {
-            throw new \Exception('Could not create DB: ' . self::TEST_DB_NAME);
-        }
 
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
@@ -75,6 +71,14 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         self::set_up_before_class();
         self::set_up_multi_db_before_class();
 
+        if (!self::$multipleDbValidationResult) {
+            $fsAdminClient = $this->getFirestoreAdminClient();
+            if (!$this->checkTestDbExists($fsAdminClient) && !$this->createDb($fsAdminClient)) {
+                throw new \Exception('Could not create DB: ' . self::TEST_DB_NAME);
+            }
+            self::$multipleDbValidationResult = true;
+        }
+
         return [
             'multiDbRestClient' => [self::$restMultiDbClient],
             'multiDbGrpcClient' => [self::$grpcMultiDbClient],
@@ -86,7 +90,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         return self::multiDbClientProvider() + self::defaultDbClientProvider();
     }
 
-    private static function checkTestDbExists($client)
+    private function checkTestDbExists($client)
     {
         $response = $client->request(
             'GET',
@@ -114,20 +118,22 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         return false;
     }
 
-    private static function getFirestoreAdminClient()
+    private function getFirestoreAdminClient()
     {
         $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
         if ((bool) $emulatorHost) {
             // datastore emulator does not support firestore admin operations
             // such as create DB or get DB in Datastore mode.
-            return self::getMockedFirestoreAdminClient();
-        }
-        if (!class_exists(HandlerStack::class)) {
-            throw new \Exception('HandlerStack is missing from path.');
+            return $this->getMockedFirestoreAdminClient();
         }
         $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
         putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
         $middleware = ApplicationDefaultCredentials::getMiddleware();
+        if (!class_exists(HandlerStack::class)) {
+            throw new \Exception(
+                'HandlerStack is required for Multiple DB tests but was not found.'
+            );
+        }
         $stack = HandlerStack::create();
         $stack->push($middleware);
 
