@@ -27,7 +27,6 @@ namespace Google\Cloud\Spanner\Admin\Database\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
 use Google\ApiCore\PathTemplate;
@@ -68,7 +67,6 @@ use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseOperationsResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesRequest;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabaseRolesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesRequest;
-
 use Google\Cloud\Spanner\Admin\Database\V1\ListDatabasesResponse;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseEncryptionConfig;
 use Google\Cloud\Spanner\Admin\Database\V1\RestoreDatabaseMetadata;
@@ -140,29 +138,19 @@ class DatabaseAdminGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.spanner.admin.database.v1.DatabaseAdmin';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'spanner.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/spanner.admin',
