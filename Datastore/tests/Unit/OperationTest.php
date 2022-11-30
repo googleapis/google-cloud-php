@@ -1000,6 +1000,4 @@ class OperationTest extends TestCase
             ['databaseId' => 'otherDatabaseId']
         );
     }
-
-
 }
