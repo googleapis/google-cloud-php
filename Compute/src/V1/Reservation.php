@@ -64,7 +64,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      */
     private $self_link = null;
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      */
@@ -118,7 +118,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
      *     @type string $self_link
      *           [Output Only] Server-defined fully-qualified URL for this resource.
      *     @type \Google\Cloud\Compute\V1\ShareSettings $share_settings
-     *           Share-settings for shared-reservation
+     *           Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *     @type \Google\Cloud\Compute\V1\AllocationSpecificSKUReservation $specific_reservation
      *           Reservation for instances with specific machine shapes.
      *     @type bool $specific_reservation_required
@@ -424,7 +424,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @return \Google\Cloud\Compute\V1\ShareSettings|null
@@ -445,7 +445,7 @@ class Reservation extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Share-settings for shared-reservation
+     * Specify share-settings to create a shared reservation. This property is optional. For more information about the syntax and options for this field and its subfields, see the guide for creating a shared reservation.
      *
      * Generated from protobuf field <code>optional .google.cloud.compute.v1.ShareSettings share_settings = 266668163;</code>
      * @param \Google\Cloud\Compute\V1\ShareSettings $var

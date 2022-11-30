@@ -26,7 +26,6 @@ namespace Google\Cloud\Compute\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -60,29 +59,19 @@ class LicenseCodesGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.compute.v1.LicenseCodes';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'compute.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/compute.readonly',
         'https://www.googleapis.com/auth/compute',
@@ -108,17 +97,13 @@ class LicenseCodesGapicClient
         ];
     }
 
-    /**
-     * Implements GapicClientTrait::defaultTransport.
-     */
+    /** Implements GapicClientTrait::defaultTransport. */
     private static function defaultTransport()
     {
         return 'rest';
     }
 
-    /**
-     * Implements GapicClientTrait::getSupportedTransports.
-     */
+    /** Implements GapicClientTrait::getSupportedTransports. */
     private static function getSupportedTransports()
     {
         return [

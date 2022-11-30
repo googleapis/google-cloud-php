@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\AccessConfig;
 use Google\Cloud\Compute\V1\AttachedDisk;
@@ -76,25 +75,19 @@ use stdClass;
  */
 class InstancesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return InstancesClient
-     */
+    /** @return InstancesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -103,9 +96,7 @@ class InstancesClientTest extends GeneratedTest
         return new InstancesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAccessConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -175,9 +166,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAccessConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -234,9 +223,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addResourcePoliciesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -303,9 +290,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addResourcePoliciesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -361,9 +346,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
@@ -405,9 +388,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -440,9 +421,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function attachDiskTest()
     {
         $operationsTransport = $this->createTransport();
@@ -509,9 +488,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function attachDiskExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -567,9 +544,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkInsertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -633,9 +608,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkInsertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -690,9 +663,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -756,9 +727,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -813,9 +782,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccessConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -885,9 +852,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAccessConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -944,9 +909,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachDiskTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1013,9 +976,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function detachDiskExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1071,9 +1032,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -1154,9 +1113,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1191,9 +1148,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEffectiveFirewallsTest()
     {
         $transport = $this->createTransport();
@@ -1227,9 +1182,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEffectiveFirewallsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1265,9 +1218,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGuestAttributesTest()
     {
         $transport = $this->createTransport();
@@ -1308,9 +1259,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getGuestAttributesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1345,9 +1294,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1384,9 +1331,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1421,9 +1366,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScreenshotTest()
     {
         $transport = $this->createTransport();
@@ -1458,9 +1401,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getScreenshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1495,9 +1436,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSerialPortOutputTest()
     {
         $transport = $this->createTransport();
@@ -1538,9 +1477,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSerialPortOutputExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1575,9 +1512,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getShieldedInstanceIdentityTest()
     {
         $transport = $this->createTransport();
@@ -1610,9 +1545,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getShieldedInstanceIdentityExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1647,9 +1580,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1713,9 +1644,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1770,9 +1699,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -1816,9 +1743,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1852,9 +1777,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReferrersTest()
     {
         $transport = $this->createTransport();
@@ -1901,9 +1824,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listReferrersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1938,9 +1859,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeResourcePoliciesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2007,9 +1926,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeResourcePoliciesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2065,9 +1982,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2131,9 +2046,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2188,9 +2101,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2254,9 +2165,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2311,9 +2220,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendDiagnosticInterruptTest()
     {
         $transport = $this->createTransport();
@@ -2344,9 +2251,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function sendDiagnosticInterruptExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2381,9 +2286,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDeletionProtectionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2447,9 +2350,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDeletionProtectionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2504,9 +2405,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDiskAutoDeleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2576,9 +2475,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setDiskAutoDeleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2635,9 +2532,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2677,9 +2572,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2715,9 +2608,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setLabelsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2784,9 +2675,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setLabelsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2842,9 +2731,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMachineResourcesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2911,9 +2798,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMachineResourcesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -2969,9 +2854,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMachineTypeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3038,9 +2921,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMachineTypeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3096,9 +2977,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMetadataTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3165,9 +3044,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMetadataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3223,9 +3100,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMinCpuPlatformTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3292,9 +3167,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setMinCpuPlatformExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3350,9 +3223,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setSchedulingTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3419,9 +3290,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setSchedulingExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3477,9 +3346,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setServiceAccountTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3546,9 +3413,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setServiceAccountExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3604,9 +3469,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setShieldedInstanceIntegrityPolicyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3673,9 +3536,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setShieldedInstanceIntegrityPolicyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3731,9 +3592,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTagsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3800,9 +3659,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setTagsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3858,9 +3715,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function simulateMaintenanceEventTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3924,9 +3779,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function simulateMaintenanceEventExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -3981,9 +3834,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4047,9 +3898,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4104,9 +3953,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startWithEncryptionKeyTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4173,9 +4020,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startWithEncryptionKeyExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4231,9 +4076,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4297,9 +4140,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4354,9 +4195,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suspendTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4420,9 +4259,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function suspendExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4477,9 +4314,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -4513,9 +4348,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -4551,9 +4384,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4620,9 +4451,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4678,9 +4507,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccessConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4750,9 +4577,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAccessConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4809,9 +4634,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDisplayDeviceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4878,9 +4701,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDisplayDeviceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -4936,9 +4757,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNetworkInterfaceTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5008,9 +4827,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNetworkInterfaceExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5067,9 +4884,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateShieldedInstanceConfigTest()
     {
         $operationsTransport = $this->createTransport();
@@ -5136,9 +4951,7 @@ class InstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateShieldedInstanceConfigExceptionTest()
     {
         $operationsTransport = $this->createTransport();

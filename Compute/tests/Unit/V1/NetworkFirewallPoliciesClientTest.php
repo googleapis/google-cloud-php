@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\FirewallPolicy;
 use Google\Cloud\Compute\V1\FirewallPolicyAssociation;
@@ -50,25 +49,19 @@ use stdClass;
  */
 class NetworkFirewallPoliciesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return NetworkFirewallPoliciesClient
-     */
+    /** @return NetworkFirewallPoliciesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +70,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         return new NetworkFirewallPoliciesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAssociationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -142,9 +133,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -199,9 +188,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addRuleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -264,9 +251,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -321,9 +306,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneRulesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -383,9 +366,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneRulesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -439,9 +420,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -501,9 +480,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -557,9 +534,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -613,9 +588,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -649,9 +622,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAssociationTest()
     {
         $transport = $this->createTransport();
@@ -689,9 +660,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAssociationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -725,9 +694,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -761,9 +728,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -797,9 +762,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRuleTest()
     {
         $transport = $this->createTransport();
@@ -845,9 +808,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRuleExceptionTest()
     {
         $transport = $this->createTransport();
@@ -881,9 +842,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -943,9 +902,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -999,9 +956,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -1040,9 +995,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1075,9 +1028,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1140,9 +1091,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1197,9 +1146,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchRuleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1262,9 +1209,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1319,9 +1264,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeAssociationTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1381,9 +1324,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeAssociationExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1437,9 +1378,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeRuleTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1499,9 +1438,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeRuleExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1555,9 +1492,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1594,9 +1529,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1631,9 +1564,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1664,9 +1595,7 @@ class NetworkFirewallPoliciesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

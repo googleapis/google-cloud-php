@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -46,25 +45,19 @@ use stdClass;
  */
 class RegionTargetHttpsProxiesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionTargetHttpsProxiesClient
-     */
+    /** @return RegionTargetHttpsProxiesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +66,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         return new RegionTargetHttpsProxiesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -139,9 +130,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -196,9 +185,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -259,9 +246,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -296,9 +281,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -362,9 +345,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -419,9 +400,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -465,9 +444,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -501,9 +478,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -570,9 +545,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -628,9 +601,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setSslCertificatesTest()
     {
         $operationsTransport = $this->createTransport();
@@ -697,9 +668,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setSslCertificatesExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -755,9 +724,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setUrlMapTest()
     {
         $operationsTransport = $this->createTransport();
@@ -824,9 +791,7 @@ class RegionTargetHttpsProxiesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setUrlMapExceptionTest()
     {
         $operationsTransport = $this->createTransport();

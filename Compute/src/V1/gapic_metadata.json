@@ -3865,6 +3865,11 @@
                 "grpc": {
                     "libraryClient": "TargetTcpProxiesGapicClient",
                     "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
                         "Delete": {
                             "methods": [
                                 "delete"

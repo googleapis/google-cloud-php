@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\BulkInsertInstanceResource;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
@@ -43,25 +42,19 @@ use stdClass;
  */
 class RegionInstancesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegionInstancesClient
-     */
+    /** @return RegionInstancesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +63,7 @@ class RegionInstancesClientTest extends GeneratedTest
         return new RegionInstancesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkInsertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -136,9 +127,7 @@ class RegionInstancesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function bulkInsertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
