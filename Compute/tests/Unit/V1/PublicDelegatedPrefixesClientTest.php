@@ -25,16 +25,15 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetRegionOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
 use Google\Cloud\Compute\V1\Operation\Status;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixAggregatedList;
+use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesClient;
 use Google\Cloud\Compute\V1\PublicDelegatedPrefixesScopedList;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefixList;
 use Google\Cloud\Compute\V1\RegionOperationsClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -46,25 +45,19 @@ use stdClass;
  */
 class PublicDelegatedPrefixesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublicDelegatedPrefixesClient
-     */
+    /** @return PublicDelegatedPrefixesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +66,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         return new PublicDelegatedPrefixesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +108,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -152,9 +141,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -218,9 +205,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -275,9 +260,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -332,9 +315,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -369,9 +350,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -435,9 +414,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -492,9 +469,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -538,9 +513,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -574,9 +547,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $operationsTransport = $this->createTransport();
@@ -643,9 +614,7 @@ class PublicDelegatedPrefixesClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $operationsTransport = $this->createTransport();
