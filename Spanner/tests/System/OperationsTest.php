@@ -203,6 +203,7 @@ class OperationsTest extends SpannerTestCase
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
         
+        $error = null;
         $db = self::$databaseWithReaderDatabaseRole;
 
         try {
@@ -212,9 +213,11 @@ class OperationsTest extends SpannerTestCase
                 'birthday' => new Date(new \DateTime('2000-01-01'))
             ]);
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
+
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     public function testInsertWithRestrictiveDatabaseRole()
@@ -222,6 +225,7 @@ class OperationsTest extends SpannerTestCase
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
         
+        $error = null;
         $db = self::$databaseWithReaderDatabaseRole;
 
         try {
@@ -231,9 +235,11 @@ class OperationsTest extends SpannerTestCase
                 'birthday' => new Date(new \DateTime('2000-01-01'))
             ]);
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
+
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     public function testReadWithDatabaseRole()
@@ -258,6 +264,7 @@ class OperationsTest extends SpannerTestCase
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
         
+        $error = null;
         $db = self::$databaseWithRestrictiveDatabaseRole;
 
         $keySet = self::$client->keySet([
@@ -269,9 +276,11 @@ class OperationsTest extends SpannerTestCase
             $res = $db->read(self::TEST_TABLE_NAME, $keySet, $columns);
             $row = $res->rows()->current();
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
+
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     private function getRow()

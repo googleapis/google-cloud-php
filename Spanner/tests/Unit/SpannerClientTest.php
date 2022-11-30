@@ -43,7 +43,6 @@ use Google\Cloud\Spanner\Timestamp;
 use Yoast\PHPUnitPolyfills\TestCases\TestCase;
 use Prophecy\Argument;
 use Yoast\PHPUnitPolyfills\Polyfills\ExpectException;
-use Google\Cloud\Core\LongRunning\LongRunningConnectionInterface;
 
 /**
  * @group spanner

@@ -19,10 +19,10 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Batch\BatchClient;
 use Google\Cloud\Spanner\Batch\BatchSnapshot;
+use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 use Google\Cloud\Spanner\KeyRange;
 use Google\Cloud\Spanner\KeySet;
 use Google\Cloud\Core\Exception\ServiceException;
-use Google\Cloud\Spanner\Admin\Database\V1\DatabaseDialect;
 
 /**
  * @group spanner
@@ -127,7 +127,8 @@ class BatchTest extends SpannerTestCase
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
-        
+
+        $error = null;
         $query = 'SELECT
                 id,
                 decade
@@ -152,10 +153,12 @@ class BatchTest extends SpannerTestCase
         try {
             $partitions = $snapshot->partitionQuery($query, ['parameters' => $parameters]);
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
 
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+        
         $snapshot->close();
     }
 

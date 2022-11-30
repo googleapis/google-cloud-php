@@ -19,8 +19,8 @@ namespace Google\Cloud\Spanner\Tests\System;
 
 use Google\Cloud\Spanner\Date;
 use Google\Cloud\Spanner\KeySet;
-use Google\Cloud\Spanner\Timestamp;
 use Google\Cloud\Core\Exception\ServiceException;
+use Google\Cloud\Spanner\Timestamp;
 
 /**
  * @group spanner
@@ -31,9 +31,8 @@ class TransactionTest extends SpannerTestCase
     const TABLE_NAME = 'Transactions';
 
     private static $row = [];
-
+    
     private static $tableName;
-
     private static $id1;
 
     public static function set_up_before_class()
@@ -221,11 +220,12 @@ class TransactionTest extends SpannerTestCase
         $this->assertInstanceOf(Timestamp::class, $snapshot->readTimestamp());
     }
 
-    public function testRunTransactionWithDatabaseRole()
+    public function testRunTransactionWithRestrictiveDatabaseRole()
     {
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
         
+        $error = null;
         $db = self::$databaseWithRestrictiveDatabaseRole;
 
         $row = $this->getRow();
@@ -251,9 +251,11 @@ class TransactionTest extends SpannerTestCase
                 $t->commit();
             });
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
+
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     public function testRunTransactionWithSessionPoolDatabaseRole()
@@ -261,6 +263,7 @@ class TransactionTest extends SpannerTestCase
         // Emulator does not support FGAC
         $this->skipEmulatorTests();
 
+        $error = null;
         $db = self::$databaseWithSessionPoolRestrictiveDatabaseRole;
 
         $row = $this->getRow();
@@ -286,9 +289,11 @@ class TransactionTest extends SpannerTestCase
                 $t->commit();
             });
         } catch (ServiceException $e) {
-            $this->assertInstanceOf(ServiceException::class, $e);
-            $this->assertEquals($e->getServiceException()->getStatus(), 'PERMISSION_DENIED');
+            $error = $e;
         }
+
+        $this->assertInstanceOf(ServiceException::class, $error);
+        $this->assertEquals($error->getServiceException()->getStatus(), 'PERMISSION_DENIED');
     }
 
     private function readArgs()

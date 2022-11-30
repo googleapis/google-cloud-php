@@ -252,9 +252,9 @@ class SpannerClient
      * $batch = $spanner->batch('instance-id', 'database-id');
      * ```
      *
-     * ```
      * Database role configured in the optional $options array
      * will be applied to the session created by this object.
+     * ```
      * $batch = $spanner->batch('instance-id', 'database-id', ['databaseRole' => 'Reader']);
      * ```
      *
@@ -578,11 +578,11 @@ class SpannerClient
      * $database = $spanner->connect('instance-id', 'database-id');
      * ```
      *
-     * ```
      * Database role configured on the $options parameter
      * will be applied to the session created by this object.
      * Note: When the databseRole and sessionPool both are present in the options,
      * we prioritize the sessionPool.
+     * ```
      * $database = $spanner->connect('instance-id', 'database-id', ['databaseRole' => 'Reader']);
      * ```
      *

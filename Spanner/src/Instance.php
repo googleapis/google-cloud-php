@@ -482,9 +482,9 @@ class Instance
      * $database = $instance->database('my-database');
      * ```
      *
-     * ```
      * Database role configured on the database object
      * will be applied to the session created by this object.
+     * ```
      * $database = $instance->database('my-database', ['databaseRole' => 'Reader']);
      * ```
      *
