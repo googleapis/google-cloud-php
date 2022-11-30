@@ -536,7 +536,8 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromTransaction()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -550,7 +551,8 @@ class OperationTest extends TestCase
 
     public function testRunQueryWithReadOptionsFromReadConsistency()
     {
-        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([]);
+        $this->connection->runQuery(Argument::withKey('readOptions'))->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -566,7 +568,7 @@ class OperationTest extends TestCase
     {
         $this->connection->runQuery(Argument::that(function ($args) {
             return !isset($args['readOptions']);
-        }))->willReturn([]);
+        }))->willReturn([])->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -707,7 +709,8 @@ class OperationTest extends TestCase
         ]);
 
         $mutation = $this->operation->mutation('insert', $e, Entity::class);
-        $this->operation->commit([$mutation]);
+        $ret = $this->operation->commit([$mutation]);
+        $this->assertEquals('foo', $ret);
     }
 
     public function testMutateWithKey()
@@ -731,7 +734,8 @@ class OperationTest extends TestCase
         ]);
 
         $mutation = $this->operation->mutation('delete', $key, Key::class);
-        $this->operation->commit([$mutation]);
+        $ret = $this->operation->commit([$mutation]);
+        $this->assertEquals('foo', $ret);
     }
 
     public function testMutateInvalidType()
@@ -744,7 +748,7 @@ class OperationTest extends TestCase
     public function testCheckOverwrite()
     {
         $e = $this->prophesize(Entity::class);
-        $e->populatedByService()->willReturn(true);
+        $e->populatedByService()->willReturn(true)->shouldBeCalled();
 
         $this->operation->checkOverwrite([$e->reveal()]);
     }
@@ -752,7 +756,7 @@ class OperationTest extends TestCase
     public function testCheckOverwriteWithFlagEnabled()
     {
         $e = $this->prophesize(Entity::class);
-        $e->populatedByService()->willReturn(false);
+        $e->populatedByService()->willReturn(false)->shouldBeCalled();
 
         $this->operation->checkOverwrite([$e->reveal()], true);
     }
@@ -858,7 +862,8 @@ class OperationTest extends TestCase
         $this->connection->lookup(Argument::that(function ($arg) {
             return isset($arg['readOptions']['transaction']);
         }))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -873,7 +878,8 @@ class OperationTest extends TestCase
         $this->connection->lookup(Argument::that(function ($arg) {
             return !isset($arg['readOptions']['transaction']);
         }))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 
@@ -884,7 +890,8 @@ class OperationTest extends TestCase
     public function testReadConsistencyInReadOptions()
     {
         $this->connection->lookup(Argument::withEntry('readOptions', ['readConsistency' => 'test']))
-            ->willReturn([]);
+            ->willReturn([])
+            ->shouldBeCalled();
 
         $this->operation->___setProperty('connection', $this->connection->reveal());
 

@@ -45,6 +45,8 @@ class ValidateTraitTest extends TestCase
         ];
 
         $this->stub->call('validateBatch', [$input, \stdClass::class]);
+
+        $this->assertTrue(true);
     }
 
     public function testValidateBatchInvalidInput()
