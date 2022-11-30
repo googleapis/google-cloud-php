@@ -33,7 +33,7 @@ if (false) {
  * $firestore = new FirestoreClient();
  * $batch = $firestore->batch();
  * ```
- * This class is deprecated. Use  {@see Google\Cloud\Firestore\BulkWriter} instead.
+ * This class is deprecated. Use Google\Cloud\Firestore\BulkWriter instead.
  * @deprecated
  */
     class WriteBatch

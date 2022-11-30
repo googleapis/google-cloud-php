@@ -23,15 +23,12 @@
 namespace Google\Cloud\Firestore\Admin\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Firestore\Admin\V1\Database;
 use Google\Cloud\Firestore\Admin\V1\ExportDocumentsResponse;
-
 use Google\Cloud\Firestore\Admin\V1\Field;
 use Google\Cloud\Firestore\Admin\V1\FirestoreAdminClient;
 use Google\Cloud\Firestore\Admin\V1\Index;
@@ -52,25 +49,19 @@ use stdClass;
  */
 class FirestoreAdminClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FirestoreAdminClient
-     */
+    /** @return FirestoreAdminClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -79,9 +70,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         return new FirestoreAdminClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIndexTest()
     {
         $operationsTransport = $this->createTransport();
@@ -148,9 +137,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIndexExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -206,9 +193,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIndexTest()
     {
         $transport = $this->createTransport();
@@ -232,9 +217,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIndexExceptionTest()
     {
         $transport = $this->createTransport();
@@ -267,9 +250,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDocumentsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -333,9 +314,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportDocumentsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -390,9 +369,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatabaseTest()
     {
         $transport = $this->createTransport();
@@ -425,9 +402,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getDatabaseExceptionTest()
     {
         $transport = $this->createTransport();
@@ -460,9 +435,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFieldTest()
     {
         $transport = $this->createTransport();
@@ -489,9 +462,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFieldExceptionTest()
     {
         $transport = $this->createTransport();
@@ -524,9 +495,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIndexTest()
     {
         $transport = $this->createTransport();
@@ -553,9 +522,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIndexExceptionTest()
     {
         $transport = $this->createTransport();
@@ -588,9 +555,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDocumentsTest()
     {
         $operationsTransport = $this->createTransport();
@@ -652,9 +617,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importDocumentsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -709,9 +672,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatabasesTest()
     {
         $transport = $this->createTransport();
@@ -736,9 +697,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listDatabasesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -771,9 +730,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFieldsTest()
     {
         $transport = $this->createTransport();
@@ -808,9 +765,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listFieldsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -843,9 +798,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIndexesTest()
     {
         $transport = $this->createTransport();
@@ -880,9 +833,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIndexesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -915,9 +866,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDatabaseTest()
     {
         $operationsTransport = $this->createTransport();
@@ -987,9 +936,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateDatabaseExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1044,9 +991,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFieldTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1112,9 +1057,7 @@ class FirestoreAdminClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFieldExceptionTest()
     {
         $operationsTransport = $this->createTransport();

@@ -64,6 +64,16 @@
                             "methods": [
                                 "stopNode"
                             ]
+                        },
+                        "GetLocation": {
+                            "methods": [
+                                "getLocation"
+                            ]
+                        },
+                        "ListLocations": {
+                            "methods": [
+                                "listLocations"
+                            ]
                         }
                     }
                 }

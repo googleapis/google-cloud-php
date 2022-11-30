@@ -39,7 +39,7 @@ php.owlbot_main(
     copy_excludes=[
         src / '*/src/V1/FirestoreClient.php',
         src / '*/src/Admin/V1/FirestoreAdminClient.php',
-        src / "*/src/V1/TransactionOptions/ReadOnly.php",
+        src / "*/proto/src/Google/Cloud/Firestore/V1/TransactionOptions/ReadOnly.php",
     ]
 )
 

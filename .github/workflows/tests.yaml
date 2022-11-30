@@ -53,7 +53,7 @@ jobs:
         vendor/bin/phpunit -c ${{ matrix.phpunit-filename }}-snippets.xml.dist --verbose
 
   test_package:
-    name: Package Unit Tests
+    name: Package Tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -62,7 +62,7 @@ jobs:
       with:
         php-version: '8.0'
         extensions: grpc
-    - name: Run Unit Test Suites
+    - name: Run Package Test Suites
       run: bash .github/run-package-tests.sh
 
   style:

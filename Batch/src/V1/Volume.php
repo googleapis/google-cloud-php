@@ -9,29 +9,28 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Volume and mount parameters to be associated with a TaskSpec. A TaskSpec
- * might describe zero, one, or multiple volumes to be mounted as part of the
- * task.
+ * Volume describes a volume and parameters for it to be mounted to a VM.
  *
  * Generated from protobuf message <code>google.cloud.batch.v1.Volume</code>
  */
 class Volume extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Mount path for the volume, e.g. /mnt/share
+     * The mount path for the volume, e.g. /mnt/disks/share.
      *
      * Generated from protobuf field <code>string mount_path = 4;</code>
      */
     private $mount_path = '';
     /**
-     * Mount options
-     * For Google Cloud Storage, mount options are the global options supported by
-     * gcsfuse tool. Batch will use them to mount the volume with the following
-     * command:
-     * "gcsfuse [global options] bucket mountpoint".
-     * For PD, NFS, mount options are these supported by /etc/fstab. Batch will
-     * use Fstab to mount such volumes.
-     * https://help.ubuntu.com/community/Fstab
+     * For Google Cloud Storage (GCS), mount options are the options supported by
+     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
+     * For existing persistent disks, mount options provided by the
+     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
+     * writing are supported. This is due to restrictions of multi-writer mode
+     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * For other attached disks and Network File System (NFS), mount options are
+     * these supported by the mount command
+     * (https://man7.org/linux/man-pages/man8/mount.8.html).
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      */
@@ -45,22 +44,28 @@ class Volume extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type \Google\Cloud\Batch\V1\NFS $nfs
-     *           An NFS source for the volume (could be a Filestore, for example).
+     *           A Network File System (NFS) volume. For example, a
+     *           Filestore file share.
      *     @type \Google\Cloud\Batch\V1\GCS $gcs
-     *           A Google Cloud Storage source for the volume.
+     *           A Google Cloud Storage (GCS) volume.
      *     @type string $device_name
-     *           Device name of an attached disk
+     *           Device name of an attached disk volume, which should align with a
+     *           device_name specified by
+     *           job.allocation_policy.instances[0].policy.disks[i].device_name or
+     *           defined by the given instance template in
+     *           job.allocation_policy.instances[0].instance_template.
      *     @type string $mount_path
-     *           Mount path for the volume, e.g. /mnt/share
+     *           The mount path for the volume, e.g. /mnt/disks/share.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $mount_options
-     *           Mount options
-     *           For Google Cloud Storage, mount options are the global options supported by
-     *           gcsfuse tool. Batch will use them to mount the volume with the following
-     *           command:
-     *           "gcsfuse [global options] bucket mountpoint".
-     *           For PD, NFS, mount options are these supported by /etc/fstab. Batch will
-     *           use Fstab to mount such volumes.
-     *           https://help.ubuntu.com/community/Fstab
+     *           For Google Cloud Storage (GCS), mount options are the options supported by
+     *           the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
+     *           For existing persistent disks, mount options provided by the
+     *           mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
+     *           writing are supported. This is due to restrictions of multi-writer mode
+     *           (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     *           For other attached disks and Network File System (NFS), mount options are
+     *           these supported by the mount command
+     *           (https://man7.org/linux/man-pages/man8/mount.8.html).
      * }
      */
     public function __construct($data = NULL) {
@@ -69,7 +74,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An NFS source for the volume (could be a Filestore, for example).
+     * A Network File System (NFS) volume. For example, a
+     * Filestore file share.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.NFS nfs = 1;</code>
      * @return \Google\Cloud\Batch\V1\NFS|null
@@ -85,7 +91,8 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * An NFS source for the volume (could be a Filestore, for example).
+     * A Network File System (NFS) volume. For example, a
+     * Filestore file share.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.NFS nfs = 1;</code>
      * @param \Google\Cloud\Batch\V1\NFS $var
@@ -100,7 +107,7 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Cloud Storage source for the volume.
+     * A Google Cloud Storage (GCS) volume.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.GCS gcs = 3;</code>
      * @return \Google\Cloud\Batch\V1\GCS|null
@@ -116,7 +123,7 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A Google Cloud Storage source for the volume.
+     * A Google Cloud Storage (GCS) volume.
      *
      * Generated from protobuf field <code>.google.cloud.batch.v1.GCS gcs = 3;</code>
      * @param \Google\Cloud\Batch\V1\GCS $var
@@ -131,7 +138,11 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Device name of an attached disk
+     * Device name of an attached disk volume, which should align with a
+     * device_name specified by
+     * job.allocation_policy.instances[0].policy.disks[i].device_name or
+     * defined by the given instance template in
+     * job.allocation_policy.instances[0].instance_template.
      *
      * Generated from protobuf field <code>string device_name = 6;</code>
      * @return string
@@ -147,7 +158,11 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Device name of an attached disk
+     * Device name of an attached disk volume, which should align with a
+     * device_name specified by
+     * job.allocation_policy.instances[0].policy.disks[i].device_name or
+     * defined by the given instance template in
+     * job.allocation_policy.instances[0].instance_template.
      *
      * Generated from protobuf field <code>string device_name = 6;</code>
      * @param string $var
@@ -162,7 +177,7 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mount path for the volume, e.g. /mnt/share
+     * The mount path for the volume, e.g. /mnt/disks/share.
      *
      * Generated from protobuf field <code>string mount_path = 4;</code>
      * @return string
@@ -173,7 +188,7 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mount path for the volume, e.g. /mnt/share
+     * The mount path for the volume, e.g. /mnt/disks/share.
      *
      * Generated from protobuf field <code>string mount_path = 4;</code>
      * @param string $var
@@ -188,14 +203,15 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mount options
-     * For Google Cloud Storage, mount options are the global options supported by
-     * gcsfuse tool. Batch will use them to mount the volume with the following
-     * command:
-     * "gcsfuse [global options] bucket mountpoint".
-     * For PD, NFS, mount options are these supported by /etc/fstab. Batch will
-     * use Fstab to mount such volumes.
-     * https://help.ubuntu.com/community/Fstab
+     * For Google Cloud Storage (GCS), mount options are the options supported by
+     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
+     * For existing persistent disks, mount options provided by the
+     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
+     * writing are supported. This is due to restrictions of multi-writer mode
+     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * For other attached disks and Network File System (NFS), mount options are
+     * these supported by the mount command
+     * (https://man7.org/linux/man-pages/man8/mount.8.html).
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -206,14 +222,15 @@ class Volume extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mount options
-     * For Google Cloud Storage, mount options are the global options supported by
-     * gcsfuse tool. Batch will use them to mount the volume with the following
-     * command:
-     * "gcsfuse [global options] bucket mountpoint".
-     * For PD, NFS, mount options are these supported by /etc/fstab. Batch will
-     * use Fstab to mount such volumes.
-     * https://help.ubuntu.com/community/Fstab
+     * For Google Cloud Storage (GCS), mount options are the options supported by
+     * the gcsfuse tool (https://github.com/GoogleCloudPlatform/gcsfuse).
+     * For existing persistent disks, mount options provided by the
+     * mount command (https://man7.org/linux/man-pages/man8/mount.8.html) except
+     * writing are supported. This is due to restrictions of multi-writer mode
+     * (https://cloud.google.com/compute/docs/disks/sharing-disks-between-vms).
+     * For other attached disks and Network File System (NFS), mount options are
+     * these supported by the mount command
+     * (https://man7.org/linux/man-pages/man8/mount.8.html).
      *
      * Generated from protobuf field <code>repeated string mount_options = 5;</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var

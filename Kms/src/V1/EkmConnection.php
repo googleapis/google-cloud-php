@@ -49,11 +49,10 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      */
     private $service_resolvers;
     /**
-     * This checksum is computed by the server based on the value of other fields,
-     * and may be sent on update requests to ensure the client has an up-to-date
-     * value before proceeding.
+     * Optional. Etag of the currently stored
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string etag = 5;</code>
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $etag = '';
 
@@ -78,9 +77,8 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
      *           [ServiceResolver][google.cloud.kms.v1.EkmConnection.ServiceResolver] is
      *           supported.
      *     @type string $etag
-     *           This checksum is computed by the server based on the value of other fields,
-     *           and may be sent on update requests to ensure the client has an up-to-date
-     *           value before proceeding.
+     *           Optional. Etag of the currently stored
+     *           [EkmConnection][google.cloud.kms.v1.EkmConnection].
      * }
      */
     public function __construct($data = NULL) {
@@ -193,11 +191,10 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other fields,
-     * and may be sent on update requests to ensure the client has an up-to-date
-     * value before proceeding.
+     * Optional. Etag of the currently stored
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string etag = 5;</code>
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
      */
     public function getEtag()
@@ -206,11 +203,10 @@ class EkmConnection extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * This checksum is computed by the server based on the value of other fields,
-     * and may be sent on update requests to ensure the client has an up-to-date
-     * value before proceeding.
+     * Optional. Etag of the currently stored
+     * [EkmConnection][google.cloud.kms.v1.EkmConnection].
      *
-     * Generated from protobuf field <code>string etag = 5;</code>
+     * Generated from protobuf field <code>string etag = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
      * @return $this
      */

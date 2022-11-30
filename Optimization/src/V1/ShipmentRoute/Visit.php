@@ -17,7 +17,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Visit extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      */
@@ -92,8 +93,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * type specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *
@@ -123,7 +125,8 @@ class Visit extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $shipment_index
-     *           Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     *           Index of the `shipments` field in the source
+     *           [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *     @type bool $is_pickup
      *           If true the visit corresponds to a pickup of a `Shipment`. Otherwise, it
      *           corresponds to a delivery.
@@ -166,8 +169,9 @@ class Visit extends \Google\Protobuf\Internal\Message
      *     @type array<\Google\Cloud\Optimization\V1\CapacityQuantity>|\Google\Protobuf\Internal\RepeatedField $arrival_loads
      *           Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      *           Vehicle loads upon arrival at the visit location, for each
-     *           type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     *           `end_load_intervals` or `demands`.
+     *           type specified in
+     *           [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     *           `start_load_intervals`, `end_load_intervals` or `demands`.
      *           Exception: we omit loads for quantity types unconstrained by intervals
      *           and that don't have any non-zero demand on the route.
      *     @type \Google\Cloud\Optimization\V1\ShipmentRoute\Delay $delay_before_start
@@ -182,7 +186,8 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      * @return int
@@ -193,7 +198,8 @@ class Visit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Index of the `shipments` field in the source [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
+     * Index of the `shipments` field in the source
+     * [ShipmentModel][google.cloud.optimization.v1.ShipmentModel].
      *
      * Generated from protobuf field <code>int32 shipment_index = 1;</code>
      * @param int $var
@@ -462,8 +468,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * type specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *
@@ -480,8 +487,9 @@ class Visit extends \Google\Protobuf\Internal\Message
     /**
      * Deprecated: Use [ShipmentRoute.Transition.loads][] instead.
      * Vehicle loads upon arrival at the visit location, for each
-     * type specified in [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities], `start_load_intervals`,
-     * `end_load_intervals` or `demands`.
+     * type specified in
+     * [Vehicle.capacities][google.cloud.optimization.v1.Vehicle.capacities],
+     * `start_load_intervals`, `end_load_intervals` or `demands`.
      * Exception: we omit loads for quantity types unconstrained by intervals
      * and that don't have any non-zero demand on the route.
      *

@@ -26,11 +26,9 @@ namespace Google\Cloud\Firestore\V1\Gapic;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\Call;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -104,29 +102,19 @@ class FirestoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.firestore.v1.Firestore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'firestore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/datastore',
@@ -1000,7 +988,7 @@ class FirestoreGapicClient
      * $firestoreClient = new FirestoreClient();
      * try {
      *     $database = 'database';
-     *     $transaction = '';
+     *     $transaction = '...';
      *     $firestoreClient->rollback($database, $transaction);
      * } finally {
      *     $firestoreClient->close();

@@ -110,7 +110,7 @@ class TpuGrpcClient extends \Grpc\BaseStub {
     }
 
     /**
-     * Stops a node.
+     * Stops a node, this operation is only available with single TPU nodes.
      * @param \Google\Cloud\Tpu\V1\StopNodeRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options

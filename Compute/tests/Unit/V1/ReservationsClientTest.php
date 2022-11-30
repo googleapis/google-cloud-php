@@ -25,7 +25,6 @@ namespace Google\Cloud\Compute\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Compute\V1\GetZoneOperationRequest;
 use Google\Cloud\Compute\V1\Operation;
@@ -51,25 +50,19 @@ use stdClass;
  */
 class ReservationsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ReservationsClient
-     */
+    /** @return ReservationsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -78,9 +71,7 @@ class ReservationsClientTest extends GeneratedTest
         return new ReservationsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListTest()
     {
         $transport = $this->createTransport();
@@ -122,9 +113,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function aggregatedListExceptionTest()
     {
         $transport = $this->createTransport();
@@ -157,9 +146,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $operationsTransport = $this->createTransport();
@@ -223,9 +210,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -280,9 +265,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +318,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -372,9 +353,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -411,9 +390,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -448,9 +425,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $operationsTransport = $this->createTransport();
@@ -514,9 +489,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -571,9 +544,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -617,9 +588,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -653,9 +622,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeTest()
     {
         $operationsTransport = $this->createTransport();
@@ -722,9 +689,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resizeExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -780,9 +745,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -822,9 +785,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -860,9 +821,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -896,9 +855,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -934,9 +891,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTest()
     {
         $operationsTransport = $this->createTransport();
@@ -1003,9 +958,7 @@ class ReservationsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $operationsTransport = $this->createTransport();
