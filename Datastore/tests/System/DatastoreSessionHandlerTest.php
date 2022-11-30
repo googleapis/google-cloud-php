@@ -46,7 +46,7 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $_SESSION['name'] = $content;
 
         session_write_close();
-        sleep(1);
+        sleep(2);
 
         $q = $client->query();
         $q->kind('PHPSESSID');
@@ -89,7 +89,7 @@ class DatastoreSessionHandlerTest extends DatastoreMultipleDbTestCase
         $_SESSION['name'] = $content;
 
         session_write_close();
-        sleep(1);
+        sleep(2);
 
         $q = $client->query();
         $q->kind('PHPSESSID');
