@@ -75,7 +75,7 @@ use Psr\Http\Message\StreamInterface;
  * ```
  *
  * ```
- * // Multi-databases applications can supply a database ID.
+ * // Multi-database applications can supply a database ID.
  * use Google\Cloud\Datastore\DatastoreClient;
  *
  * $datastore = new DatastoreClient([
@@ -543,14 +543,12 @@ class DatastoreClient
      *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
-     *     @type string $databaseId The value of databaseId to be used for queries.
      * }
      * @return Transaction
      * @codingStandardsIgnoreEnd
      */
     public function transaction(array $options = [])
     {
-        $options += ['databaseId' => ''];
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
             'readWrite' => $this->pluck('transactionOptions', $options, false) ?: (object) []
@@ -579,14 +577,12 @@ class DatastoreClient
      *
      *     @type array $transactionOptions See
      *           [ReadOnly](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadOnly).
-     *     @type string $databaseId The value of databaseId to be used for queries.
      * }
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
      */
     public function readOnlyTransaction(array $options = [])
     {
-        $options += ['databaseId' => ''];
         $transaction = $this->operation->beginTransaction([
             // if empty, force request to encode as {} rather than [].
             'readOnly' => $this->pluck('transactionOptions', $options, false) ?: (object) []

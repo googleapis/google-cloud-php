@@ -155,7 +155,7 @@ class DatastoreSessionHandler implements SessionHandlerInterface
      *     @type array $entityOptions Default options to be passed to the
      *           {@see \Google\Cloud\Datastore\DatastoreClient::entity()} method when writing session data to Datastore.
      *           If not specified, defaults to `['excludeFromIndexes' => ['data']]`.
-     *     @type string $databaseId The value of databaseId to be used for queries.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      */
     public function __construct(

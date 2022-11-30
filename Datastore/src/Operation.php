@@ -263,11 +263,11 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        $res = $this->connection->beginTransaction([
+        $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'transactionOptions' => $transactionOptions,
-        ] + $options);
+        ]);
 
         return $res['transaction'];
     }
@@ -308,11 +308,11 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         }
 
-        $res = $this->connection->allocateIds([
+        $res = $this->connection->allocateIds($options + [
             'projectId' => $this->projectId,
             'databaseId' => $this->databaseId,
             'keys' => $serviceKeys,
-        ] + $options);
+        ]);
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {

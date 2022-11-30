@@ -47,6 +47,11 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         }
         self::$projectId = getenv('GOOGLE_PROJECT_ID');
 
+        $fsAdminClient = self::getFirestoreAdminClient();
+        if (!self::checkTestDbExists($fsAdminClient) && !self::createDb($fsAdminClient)) {
+            throw new \Exception('Could not create DB: ' . self::TEST_DB_NAME);
+        }
+
         $config = [
             'keyFilePath' => getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH'),
             'namespaceId' => uniqid(self::TESTING_PREFIX),
@@ -70,11 +75,6 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         self::set_up_before_class();
         self::set_up_multi_db_before_class();
 
-        $fsAdminClient = self::getFirestoreAdminClient();
-        if (!self::checkTestDbExists($fsAdminClient) && !self::createDb($fsAdminClient)) {
-            throw new \Exception('Could not create DB: ' . self::TEST_DB_NAME);
-        }
-
         return [
             'multiDbRestClient' => [self::$restMultiDbClient],
             'multiDbGrpcClient' => [self::$grpcMultiDbClient],
@@ -86,7 +86,7 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         return self::multiDbClientProvider() + self::defaultDbClientProvider();
     }
 
-    private function checkTestDbExists($client)
+    private static function checkTestDbExists($client)
     {
         $response = $client->request(
             'GET',
@@ -112,6 +112,30 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             }
         }
         return false;
+    }
+
+    private static function getFirestoreAdminClient()
+    {
+        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
+        if ((bool) $emulatorHost) {
+            // datastore emulator does not support firestore admin operations
+            // such as create DB or get DB in Datastore mode.
+            return self::getMockedFirestoreAdminClient();
+        }
+        if (!class_exists(HandlerStack::class)) {
+            throw new \Exception('HandlerStack is missing from path.');
+        }
+        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
+        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
+        $middleware = ApplicationDefaultCredentials::getMiddleware();
+        $stack = HandlerStack::create();
+        $stack->push($middleware);
+
+        return new Client([
+            'handler' => $stack,
+            'base_uri' => 'https://firestore.googleapis.com',
+            'auth' => 'google_auth', // authorize all requests
+        ]);
     }
 
     private function createDb($client)
@@ -143,25 +167,13 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
         return true;
     }
 
-    private function getFirestoreAdminClient()
+    private static function getDbId()
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-        putenv("GOOGLE_APPLICATION_CREDENTIALS=$keyFilePath");
-        $middleware = ApplicationDefaultCredentials::getMiddleware();
-        $stack = HandlerStack::create();
-        $stack->push($middleware);
-        $emulatorHost = getenv('DATASTORE_EMULATOR_HOST');
-        if ((bool) $emulatorHost) {
-            // datastore emulator does not support firestore admin operations
-            // such as create DB or get DB in Datastore mode.
-            return self::getMockedFirestoreAdminClient();
-        }
-
-        return new Client([
-            'handler' => $stack,
-            'base_uri' => 'https://firestore.googleapis.com',
-            'auth' => 'google_auth', // authorize all requests
-        ]);
+        return sprintf(
+            'projects/%s/databases/%s',
+            self::$projectId,
+            self::TEST_DB_NAME
+        );
     }
 
     private function getMockedFirestoreAdminClient()
@@ -177,16 +189,9 @@ class DatastoreMultipleDbTestCase extends DatastoreTestCase
             )
         );
 
-        $client->request('GET', Argument::any())->shouldBeCalledOnce()->willReturn($getResponse);
+        $client->request('GET', Argument::any())
+            ->shouldBeCalledOnce()
+            ->willReturn($getResponse);
         return $client->reveal();
-    }
-
-    private static function getDbId()
-    {
-        return sprintf(
-            'projects/%s/databases/%s',
-            self::$projectId,
-            self::TEST_DB_NAME
-        );
     }
 }
