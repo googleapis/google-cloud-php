@@ -543,6 +543,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions Transaction configuration. See
      *           [ReadWrite](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadWrite).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Transaction
      * @codingStandardsIgnoreEnd
@@ -577,6 +578,7 @@ class DatastoreClient
      *
      *     @type array $transactionOptions See
      *           [ReadOnly](https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction#ReadOnly).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return ReadOnlyTransaction
      * @codingStandardsIgnoreEnd
@@ -940,6 +942,7 @@ class DatastoreClient
      *           Value must be the name of a class implementing
      *           {@see Google\Cloud\Datastore\EntityInterface}. **Defaults to**
      *           {@see Google\Cloud\Datastore\Entity}.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return EntityInterface|null
      */
@@ -989,6 +992,7 @@ class DatastoreClient
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of

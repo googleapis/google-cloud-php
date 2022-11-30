@@ -103,6 +103,7 @@ class Operation
      *           if you want to create keys with `name` but your values may
      *           pass PHP's `is_numeric()` check), this value may be
      *           explicitly set using `Key::TYPE_ID` or `Key::TYPE_NAME`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Key
      */
@@ -349,6 +350,7 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -435,6 +437,7 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return EntityIterator<EntityInterface>
      */
@@ -523,6 +526,7 @@ class Operation
      *
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      * @codingStandardsIgnoreEnd
