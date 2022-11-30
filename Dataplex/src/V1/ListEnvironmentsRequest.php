@@ -17,7 +17,7 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -60,7 +60,7 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the parent lake:
-     *           projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     *           `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *     @type int $page_size
      *           Optional. Maximum number of environments to return. The service may return fewer than
      *           this value. If unspecified, at most 10 environments will be returned. The
@@ -83,7 +83,7 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -95,7 +95,7 @@ class ListEnvironmentsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent lake:
-     * projects/{project_id}/locations/{location_id}/lakes/{lake_id}
+     * `projects/{project_id}/locations/{location_id}/lakes/{lake_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

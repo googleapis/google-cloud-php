@@ -11,15 +11,17 @@ use Google\Protobuf\Internal\GPBUtil;
 /**
  * Represents a key field within the entity's partition structure. You could
  * have up to 20 partition fields, but only the first 10 partitions have the
- * filtering ability due to performance consideration.
+ * filtering ability due to performance consideration. **Note:**
+ * Partition fields are immutable.
  *
  * Generated from protobuf message <code>google.cloud.dataplex.v1.Schema.PartitionField</code>
  */
 class PartitionField extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Partition name is editable if only the partition style is not HIVE
-     * compatible. The maximum length allowed is 767 characters.
+     * Required. Partition field name must consist of letters, numbers, and underscores
+     * only, with a maximum of length of 256 characters,
+     * and must begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
@@ -38,8 +40,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Partition name is editable if only the partition style is not HIVE
-     *           compatible. The maximum length allowed is 767 characters.
+     *           Required. Partition field name must consist of letters, numbers, and underscores
+     *           only, with a maximum of length of 256 characters,
+     *           and must begin with a letter or underscore..
      *     @type int $type
      *           Required. Immutable. The type of field.
      * }
@@ -50,8 +53,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Partition name is editable if only the partition style is not HIVE
-     * compatible. The maximum length allowed is 767 characters.
+     * Required. Partition field name must consist of letters, numbers, and underscores
+     * only, with a maximum of length of 256 characters,
+     * and must begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -62,8 +66,9 @@ class PartitionField extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Partition name is editable if only the partition style is not HIVE
-     * compatible. The maximum length allowed is 767 characters.
+     * Required. Partition field name must consist of letters, numbers, and underscores
+     * only, with a maximum of length of 256 characters,
+     * and must begin with a letter or underscore..
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var

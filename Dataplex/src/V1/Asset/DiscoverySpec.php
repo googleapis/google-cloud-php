@@ -62,13 +62,13 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      *
      *     @type bool $enabled
      *           Optional. Whether discovery is enabled.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $include_patterns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $include_patterns
      *           Optional. The list of patterns to apply for selecting data to include during
      *           discovery if only a subset of the data should considered.  For Cloud
      *           Storage bucket assets, these are interpreted as glob patterns used to
      *           match object names. For BigQuery dataset assets, these are interpreted as
      *           patterns to match table names.
-     *     @type string[]|\Google\Protobuf\Internal\RepeatedField $exclude_patterns
+     *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $exclude_patterns
      *           Optional. The list of patterns to apply for selecting data to exclude during
      *           discovery.  For Cloud Storage bucket assets, these are interpreted as
      *           glob patterns used to match object names. For BigQuery dataset assets,
@@ -143,7 +143,7 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      * patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string include_patterns = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setIncludePatterns($var)
@@ -175,7 +175,7 @@ class DiscoverySpec extends \Google\Protobuf\Internal\Message
      * these are interpreted as patterns to match table names.
      *
      * Generated from protobuf field <code>repeated string exclude_patterns = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param string[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setExcludePatterns($var)

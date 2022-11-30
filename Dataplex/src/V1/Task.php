@@ -78,6 +78,12 @@ class Task extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionSpec execution_spec = 101 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $execution_spec = null;
+    /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $execution_status = null;
     protected $config;
 
     /**
@@ -109,8 +115,12 @@ class Task extends \Google\Protobuf\Internal\Message
      *           Required. Spec related to how often and when a task should be triggered.
      *     @type \Google\Cloud\Dataplex\V1\Task\ExecutionSpec $execution_spec
      *           Required. Spec related to how a task is executed.
+     *     @type \Google\Cloud\Dataplex\V1\Task\ExecutionStatus $execution_status
+     *           Output only. Status of the latest task executions.
      *     @type \Google\Cloud\Dataplex\V1\Task\SparkTaskConfig $spark
      *           Config related to running custom Spark tasks.
+     *     @type \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig $notebook
+     *           Config related to running scheduled Notebooks.
      * }
      */
     public function __construct($data = NULL) {
@@ -425,6 +435,42 @@ class Task extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Cloud\Dataplex\V1\Task\ExecutionStatus|null
+     */
+    public function getExecutionStatus()
+    {
+        return $this->execution_status;
+    }
+
+    public function hasExecutionStatus()
+    {
+        return isset($this->execution_status);
+    }
+
+    public function clearExecutionStatus()
+    {
+        unset($this->execution_status);
+    }
+
+    /**
+     * Output only. Status of the latest task executions.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.ExecutionStatus execution_status = 201 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Cloud\Dataplex\V1\Task\ExecutionStatus $var
+     * @return $this
+     */
+    public function setExecutionStatus($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\ExecutionStatus::class);
+        $this->execution_status = $var;
+
+        return $this;
+    }
+
+    /**
      * Config related to running custom Spark tasks.
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.SparkTaskConfig spark = 300;</code>
@@ -451,6 +497,37 @@ class Task extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\SparkTaskConfig::class);
         $this->writeOneof(300, $var);
+
+        return $this;
+    }
+
+    /**
+     * Config related to running scheduled Notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.NotebookTaskConfig notebook = 302;</code>
+     * @return \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig|null
+     */
+    public function getNotebook()
+    {
+        return $this->readOneof(302);
+    }
+
+    public function hasNotebook()
+    {
+        return $this->hasOneof(302);
+    }
+
+    /**
+     * Config related to running scheduled Notebooks.
+     *
+     * Generated from protobuf field <code>.google.cloud.dataplex.v1.Task.NotebookTaskConfig notebook = 302;</code>
+     * @param \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig $var
+     * @return $this
+     */
+    public function setNotebook($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Dataplex\V1\Task\NotebookTaskConfig::class);
+        $this->writeOneof(302, $var);
 
         return $this;
     }

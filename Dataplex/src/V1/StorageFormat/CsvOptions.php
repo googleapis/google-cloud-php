@@ -36,8 +36,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      */
     private $delimiter = '';
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -58,8 +59,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
      *     @type string $delimiter
      *           Optional. The delimiter used to separate values. Defaults to ','.
      *     @type string $quote
-     *           Optional. The character used to quote column values. Accepts '"' and '''.
-     *           Defaults to '"' if unspecified.
+     *           Optional. The character used to quote column values. Accepts '"'
+     *           (double quotation mark) or ''' (single quotation mark). Defaults to
+     *           '"' (double quotation mark) if unspecified.
      * }
      */
     public function __construct($data = NULL) {
@@ -150,8 +152,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -162,8 +165,9 @@ class CsvOptions extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The character used to quote column values. Accepts '"' and '''.
-     * Defaults to '"' if unspecified.
+     * Optional. The character used to quote column values. Accepts '"'
+     * (double quotation mark) or ''' (single quotation mark). Defaults to
+     * '"' (double quotation mark) if unspecified.
      *
      * Generated from protobuf field <code>string quote = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

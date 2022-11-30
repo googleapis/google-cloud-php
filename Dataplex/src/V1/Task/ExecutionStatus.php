@@ -20,13 +20,13 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $update_time = null;
+    private $update_time = null;
     /**
      * Output only. latest job execution
      *
      * Generated from protobuf field <code>.google.cloud.dataplex.v1.Job latest_job = 9 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
-    protected $latest_job = null;
+    private $latest_job = null;
 
     /**
      * Constructor.
@@ -119,6 +119,4 @@ class ExecutionStatus extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(ExecutionStatus::class, \Google\Cloud\Dataplex\V1\Task_ExecutionStatus::class);
 

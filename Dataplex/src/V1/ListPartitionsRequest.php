@@ -40,13 +40,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
      */
     private $page_token = '';
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value pair
+     * expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**
@@ -79,13 +79,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
      *           provided to `ListPartitions` must match the call that provided the
      *           page token.
      *     @type string $filter
-     *           Optional. Filter the partitions returned to the caller using a key vslue pair
-     *           expression. The filter expression supports:
-     *           - logical operators: AND, OR
+     *           Optional. Filter the partitions returned to the caller using a key value pair
+     *           expression. Supported operators and syntax:
+     *           - logic operators: AND, OR
      *           - comparison operators: <, >, >=, <= ,=, !=
      *           - LIKE operators:
-     *               - The right hand of a LIKE operator supports “.” and
-     *                 “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *             - The right hand of a LIKE operator supports "." and
+     *               "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      *           - parenthetical grouping: ( )
      *           Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      *           **Notes:**
@@ -192,13 +192,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value pair
+     * expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**
@@ -217,13 +217,13 @@ class ListPartitionsRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Filter the partitions returned to the caller using a key vslue pair
-     * expression. The filter expression supports:
-     * - logical operators: AND, OR
+     * Optional. Filter the partitions returned to the caller using a key value pair
+     * expression. Supported operators and syntax:
+     * - logic operators: AND, OR
      * - comparison operators: <, >, >=, <= ,=, !=
      * - LIKE operators:
-     *     - The right hand of a LIKE operator supports “.” and
-     *       “*” for wildcard searches, for example "value1 LIKE ".*oo.*"
+     *   - The right hand of a LIKE operator supports "." and
+     *     "*" for wildcard searches, for example "value1 LIKE ".*oo.*"
      * - parenthetical grouping: ( )
      * Sample filter expression: `?filter="key1 < value1 OR key2 > value2"
      * **Notes:**

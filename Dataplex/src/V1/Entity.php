@@ -23,7 +23,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      */
     private $name = '';
     /**
-     * Optional. Display name must be shorter than or equal to 63 characters.
+     * Optional. Display name must be shorter than or equal to 256 characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -52,14 +52,15 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter.
+     * underscores. Must begin with a letter and consist of 256 or fewer
+     * characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $id = '';
     /**
-     * Optional. The etag for this entity. Required for update and delete requests. Must
-     * match the server's etag.
+     * Optional. The etag associated with the entity, which can be retrieved with a
+     * [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -139,7 +140,7 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the entity, of the form:
      *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}/entities/{id}`.
      *     @type string $display_name
-     *           Optional. Display name must be shorter than or equal to 63 characters.
+     *           Optional. Display name must be shorter than or equal to 256 characters.
      *     @type string $description
      *           Optional. User friendly longer description text. Must be shorter than or equal to
      *           1024 characters.
@@ -152,10 +153,11 @@ class Entity extends \Google\Protobuf\Internal\Message
      *           published table name. Specifying a new ID in an update entity
      *           request will override the existing value.
      *           The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     *           underscores. Must begin with a letter.
+     *           underscores. Must begin with a letter and consist of 256 or fewer
+     *           characters.
      *     @type string $etag
-     *           Optional. The etag for this entity. Required for update and delete requests. Must
-     *           match the server's etag.
+     *           Optional. The etag associated with the entity, which can be retrieved with a
+     *           [GetEntity][] request. Required for update and delete requests.
      *     @type int $type
      *           Required. Immutable. The type of entity.
      *     @type string $asset
@@ -220,7 +222,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Display name must be shorter than or equal to 63 characters.
+     * Optional. Display name must be shorter than or equal to 256 characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -231,7 +233,7 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Display name must be shorter than or equal to 63 characters.
+     * Optional. Display name must be shorter than or equal to 256 characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -350,7 +352,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter.
+     * underscores. Must begin with a letter and consist of 256 or fewer
+     * characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return string
@@ -365,7 +368,8 @@ class Entity extends \Google\Protobuf\Internal\Message
      * published table name. Specifying a new ID in an update entity
      * request will override the existing value.
      * The ID must contain only letters (a-z, A-Z), numbers (0-9), and
-     * underscores. Must begin with a letter.
+     * underscores. Must begin with a letter and consist of 256 or fewer
+     * characters.
      *
      * Generated from protobuf field <code>string id = 7 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param string $var
@@ -380,8 +384,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag for this entity. Required for update and delete requests. Must
-     * match the server's etag.
+     * Optional. The etag associated with the entity, which can be retrieved with a
+     * [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -392,8 +396,8 @@ class Entity extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The etag for this entity. Required for update and delete requests. Must
-     * match the server's etag.
+     * Optional. The etag associated with the entity, which can be retrieved with a
+     * [GetEntity][] request. Required for update and delete requests.
      *
      * Generated from protobuf field <code>string etag = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

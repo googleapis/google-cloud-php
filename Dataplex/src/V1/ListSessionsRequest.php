@@ -17,7 +17,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. The resource name of the parent environment:
-     * projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -39,6 +39,19 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string page_token = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $page_token = '';
+    /**
+     * Optional. Filter request. The following `mode` filter is supported to return only the
+     * sessions belonging to the requester when the mode is USER and return
+     * sessions of all the users when the mode is ADMIN. When no filter is sent
+     * default to USER mode.
+     * NOTE: When the mode is ADMIN, the requester should have
+     * `dataplex.environments.listAllSessions` permission to list all sessions,
+     * in absence of the permission, the request fails.
+     * mode = ADMIN | USER
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $filter = '';
 
     /**
      * Constructor.
@@ -48,7 +61,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $parent
      *           Required. The resource name of the parent environment:
-     *           projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *     @type int $page_size
      *           Optional. Maximum number of sessions to return. The service may return fewer than
      *           this value. If unspecified, at most 10 sessions will be returned. The
@@ -58,6 +71,15 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
      *           retrieve the subsequent page. When paginating, all other parameters
      *           provided to `ListSessions` must match the call that provided the page
      *           token.
+     *     @type string $filter
+     *           Optional. Filter request. The following `mode` filter is supported to return only the
+     *           sessions belonging to the requester when the mode is USER and return
+     *           sessions of all the users when the mode is ADMIN. When no filter is sent
+     *           default to USER mode.
+     *           NOTE: When the mode is ADMIN, the requester should have
+     *           `dataplex.environments.listAllSessions` permission to list all sessions,
+     *           in absence of the permission, the request fails.
+     *           mode = ADMIN | USER
      * }
      */
     public function __construct($data = NULL) {
@@ -67,7 +89,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent environment:
-     * projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -79,7 +101,7 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The resource name of the parent environment:
-     * projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/environment/{environment_id}`.
      *
      * Generated from protobuf field <code>string parent = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var
@@ -151,6 +173,46 @@ class ListSessionsRequest extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->page_token = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. Filter request. The following `mode` filter is supported to return only the
+     * sessions belonging to the requester when the mode is USER and return
+     * sessions of all the users when the mode is ADMIN. When no filter is sent
+     * default to USER mode.
+     * NOTE: When the mode is ADMIN, the requester should have
+     * `dataplex.environments.listAllSessions` permission to list all sessions,
+     * in absence of the permission, the request fails.
+     * mode = ADMIN | USER
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+
+    /**
+     * Optional. Filter request. The following `mode` filter is supported to return only the
+     * sessions belonging to the requester when the mode is USER and return
+     * sessions of all the users when the mode is ADMIN. When no filter is sent
+     * default to USER mode.
+     * NOTE: When the mode is ADMIN, the requester should have
+     * `dataplex.environments.listAllSessions` permission to list all sessions,
+     * in absence of the permission, the request fails.
+     * mode = ADMIN | USER
+     *
+     * Generated from protobuf field <code>string filter = 4 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setFilter($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->filter = $var;
 
         return $this;
     }

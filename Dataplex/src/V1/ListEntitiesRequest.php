@@ -51,8 +51,8 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      * - Entity ID: ?filter="id=entityID"
      * - Asset ID: ?filter="asset=assetID"
      * - Data path ?filter="data_path=gs://my-bucket"
-     * - Is HIVE compatible: ?filter=”hive_compatible=true”
-     * - Is BigQuery compatible: ?filter=”bigquery_compatible=true”
+     * - Is HIVE compatible: ?filter="hive_compatible=true"
+     * - Is BigQuery compatible: ?filter="bigquery_compatible=true"
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -84,8 +84,8 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      *           - Entity ID: ?filter="id=entityID"
      *           - Asset ID: ?filter="asset=assetID"
      *           - Data path ?filter="data_path=gs://my-bucket"
-     *           - Is HIVE compatible: ?filter=”hive_compatible=true”
-     *           - Is BigQuery compatible: ?filter=”bigquery_compatible=true”
+     *           - Is HIVE compatible: ?filter="hive_compatible=true"
+     *           - Is BigQuery compatible: ?filter="bigquery_compatible=true"
      * }
      */
     public function __construct($data = NULL) {
@@ -215,8 +215,8 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      * - Entity ID: ?filter="id=entityID"
      * - Asset ID: ?filter="asset=assetID"
      * - Data path ?filter="data_path=gs://my-bucket"
-     * - Is HIVE compatible: ?filter=”hive_compatible=true”
-     * - Is BigQuery compatible: ?filter=”bigquery_compatible=true”
+     * - Is HIVE compatible: ?filter="hive_compatible=true"
+     * - Is BigQuery compatible: ?filter="bigquery_compatible=true"
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -232,8 +232,8 @@ class ListEntitiesRequest extends \Google\Protobuf\Internal\Message
      * - Entity ID: ?filter="id=entityID"
      * - Asset ID: ?filter="asset=assetID"
      * - Data path ?filter="data_path=gs://my-bucket"
-     * - Is HIVE compatible: ?filter=”hive_compatible=true”
-     * - Is BigQuery compatible: ?filter=”bigquery_compatible=true”
+     * - Is HIVE compatible: ?filter="hive_compatible=true"
+     * - Is BigQuery compatible: ?filter="bigquery_compatible=true"
      *
      * Generated from protobuf field <code>string filter = 5 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var

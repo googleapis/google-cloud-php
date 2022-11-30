@@ -447,10 +447,6 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:getIamPolicy',
                     ],
-                    [
-                        'method' => 'get',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:getIamPolicy',
-                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -485,11 +481,6 @@ return [
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:setIamPolicy',
                         'body' => '*',
                     ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:setIamPolicy',
-                        'body' => '*',
-                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -522,11 +513,6 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/environments/*}:testIamPermissions',
-                        'body' => '*',
-                    ],
-                    [
-                        'method' => 'post',
-                        'uriTemplate' => '/v1/{resource=projects/*/locations/*/lakes/*/content/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

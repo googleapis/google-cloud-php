@@ -20,7 +20,7 @@ class Zone extends \Google\Protobuf\Internal\Message
 {
     /**
      * Output only. The relative resource name of the zone, of the form:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      */
@@ -102,7 +102,7 @@ class Zone extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Output only. The relative resource name of the zone, of the form:
-     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`
+     *           `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *     @type string $display_name
      *           Optional. User friendly display name.
      *     @type string $uid
@@ -136,7 +136,7 @@ class Zone extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the zone, of the form:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @return string
@@ -148,7 +148,7 @@ class Zone extends \Google\Protobuf\Internal\Message
 
     /**
      * Output only. The relative resource name of the zone, of the form:
-     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`
+     * `projects/{project_number}/locations/{location_id}/lakes/{lake_id}/zones/{zone_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = OUTPUT_ONLY, (.google.api.resource_reference) = {</code>
      * @param string $var

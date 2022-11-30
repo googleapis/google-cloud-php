@@ -41,11 +41,26 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      */
     private $service_account = '';
     /**
+     * Optional. The project in which jobs are run. By default, the project containing the
+     * Lake is used. If a project is provided, the
+     * [ExecutionSpec.service_account][google.cloud.dataplex.v1.Task.ExecutionSpec.service_account] must belong to this project.
+     *
+     * Generated from protobuf field <code>string project = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $project = '';
+    /**
      * Optional. The maximum duration after which the job execution is expired.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_job_execution_lifetime = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $max_job_execution_lifetime = null;
+    /**
+     * Optional. The Cloud KMS key to use for encryption, of the form:
+     * `projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}`.
+     *
+     * Generated from protobuf field <code>string kms_key = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     */
+    private $kms_key = '';
 
     /**
      * Constructor.
@@ -70,8 +85,15 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
      *           Required. Service account to use to execute a task.
      *           If not provided, the default Compute service account for the project is
      *           used.
+     *     @type string $project
+     *           Optional. The project in which jobs are run. By default, the project containing the
+     *           Lake is used. If a project is provided, the
+     *           [ExecutionSpec.service_account][google.cloud.dataplex.v1.Task.ExecutionSpec.service_account] must belong to this project.
      *     @type \Google\Protobuf\Duration $max_job_execution_lifetime
      *           Optional. The maximum duration after which the job execution is expired.
+     *     @type string $kms_key
+     *           Optional. The Cloud KMS key to use for encryption, of the form:
+     *           `projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -158,6 +180,36 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Optional. The project in which jobs are run. By default, the project containing the
+     * Lake is used. If a project is provided, the
+     * [ExecutionSpec.service_account][google.cloud.dataplex.v1.Task.ExecutionSpec.service_account] must belong to this project.
+     *
+     * Generated from protobuf field <code>string project = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getProject()
+    {
+        return $this->project;
+    }
+
+    /**
+     * Optional. The project in which jobs are run. By default, the project containing the
+     * Lake is used. If a project is provided, the
+     * [ExecutionSpec.service_account][google.cloud.dataplex.v1.Task.ExecutionSpec.service_account] must belong to this project.
+     *
+     * Generated from protobuf field <code>string project = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setProject($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->project = $var;
+
+        return $this;
+    }
+
+    /**
      * Optional. The maximum duration after which the job execution is expired.
      *
      * Generated from protobuf field <code>.google.protobuf.Duration max_job_execution_lifetime = 8 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -189,6 +241,34 @@ class ExecutionSpec extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Duration::class);
         $this->max_job_execution_lifetime = $var;
+
+        return $this;
+    }
+
+    /**
+     * Optional. The Cloud KMS key to use for encryption, of the form:
+     * `projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}`.
+     *
+     * Generated from protobuf field <code>string kms_key = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @return string
+     */
+    public function getKmsKey()
+    {
+        return $this->kms_key;
+    }
+
+    /**
+     * Optional. The Cloud KMS key to use for encryption, of the form:
+     * `projects/{project_number}/locations/{location_id}/keyRings/{key-ring-name}/cryptoKeys/{key-name}`.
+     *
+     * Generated from protobuf field <code>string kms_key = 9 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setKmsKey($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->kms_key = $var;
 
         return $this;
     }

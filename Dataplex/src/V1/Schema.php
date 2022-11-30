@@ -16,29 +16,24 @@ use Google\Protobuf\Internal\GPBUtil;
 class Schema extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Whether the schema is user-managed or managed by the service.
-     * - Set user_manage to false if you would like Dataplex to help you manage
-     * the schema. You will get the full service provided by Dataplex discovery,
-     * including new data discovery, schema inference and schema evolution. You
-     * can still provide input the schema of the entities, for example renaming a
-     * schema field, changing CSV or Json options if you think the discovered
-     * values are not as accurate. Dataplex will consider your input as the
-     * initial schema (as if they were produced by the previous discovery run),
-     * and will evolve schema or flag actions based on that.
-     * - Set user_manage to true if you would like to fully manage the entity
-     * schema by yourself. This is useful when you would like to manually specify
-     * the schema for a table. In this case, the schema defined by the user is
-     * guaranteed to be kept unchanged and would not be overwritten. But this also
-     * means Dataplex will not provide schema evolution management for you.
-     * Dataplex will still be able to manage partition registration (i.e., keeping
-     * the list of partitions up to date) when Dataplex discovery is turned on and
-     * user_managed is set to true.
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
+     * default is `false` (managed by Dataplex).
+     * - Set to `false`to enable Dataplex discovery to update the schema.
+     *   including new data discovery, schema inference, and schema evolution.
+     *   Users retain the ability to input and edit the schema. Dataplex
+     *   treats schema input by the user as though produced
+     *   by a previous Dataplex discovery operation, and it will
+     *   evolve the schema and take action based on that treatment.
+     * - Set to `true` to fully manage the entity
+     *   schema. This setting guarantees that Dataplex will not
+     *   change schema fields.
      *
      * Generated from protobuf field <code>bool user_managed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $user_managed = false;
     /**
      * Optional. The sequence of fields describing data in table entities.
+     * **Note:** BigQuery SchemaFields are immutable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
@@ -64,26 +59,21 @@ class Schema extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type bool $user_managed
-     *           Required. Whether the schema is user-managed or managed by the service.
-     *           - Set user_manage to false if you would like Dataplex to help you manage
-     *           the schema. You will get the full service provided by Dataplex discovery,
-     *           including new data discovery, schema inference and schema evolution. You
-     *           can still provide input the schema of the entities, for example renaming a
-     *           schema field, changing CSV or Json options if you think the discovered
-     *           values are not as accurate. Dataplex will consider your input as the
-     *           initial schema (as if they were produced by the previous discovery run),
-     *           and will evolve schema or flag actions based on that.
-     *           - Set user_manage to true if you would like to fully manage the entity
-     *           schema by yourself. This is useful when you would like to manually specify
-     *           the schema for a table. In this case, the schema defined by the user is
-     *           guaranteed to be kept unchanged and would not be overwritten. But this also
-     *           means Dataplex will not provide schema evolution management for you.
-     *           Dataplex will still be able to manage partition registration (i.e., keeping
-     *           the list of partitions up to date) when Dataplex discovery is turned on and
-     *           user_managed is set to true.
-     *     @type \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $fields
+     *           Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
+     *           default is `false` (managed by Dataplex).
+     *           - Set to `false`to enable Dataplex discovery to update the schema.
+     *             including new data discovery, schema inference, and schema evolution.
+     *             Users retain the ability to input and edit the schema. Dataplex
+     *             treats schema input by the user as though produced
+     *             by a previous Dataplex discovery operation, and it will
+     *             evolve the schema and take action based on that treatment.
+     *           - Set to `true` to fully manage the entity
+     *             schema. This setting guarantees that Dataplex will not
+     *             change schema fields.
+     *     @type array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $fields
      *           Optional. The sequence of fields describing data in table entities.
-     *     @type \Google\Cloud\Dataplex\V1\Schema\PartitionField[]|\Google\Protobuf\Internal\RepeatedField $partition_fields
+     *           **Note:** BigQuery SchemaFields are immutable.
+     *     @type array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $partition_fields
      *           Optional. The sequence of fields describing the partition structure in entities.
      *           If this field is empty, there are no partitions within the data.
      *     @type int $partition_style
@@ -96,23 +86,17 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Whether the schema is user-managed or managed by the service.
-     * - Set user_manage to false if you would like Dataplex to help you manage
-     * the schema. You will get the full service provided by Dataplex discovery,
-     * including new data discovery, schema inference and schema evolution. You
-     * can still provide input the schema of the entities, for example renaming a
-     * schema field, changing CSV or Json options if you think the discovered
-     * values are not as accurate. Dataplex will consider your input as the
-     * initial schema (as if they were produced by the previous discovery run),
-     * and will evolve schema or flag actions based on that.
-     * - Set user_manage to true if you would like to fully manage the entity
-     * schema by yourself. This is useful when you would like to manually specify
-     * the schema for a table. In this case, the schema defined by the user is
-     * guaranteed to be kept unchanged and would not be overwritten. But this also
-     * means Dataplex will not provide schema evolution management for you.
-     * Dataplex will still be able to manage partition registration (i.e., keeping
-     * the list of partitions up to date) when Dataplex discovery is turned on and
-     * user_managed is set to true.
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
+     * default is `false` (managed by Dataplex).
+     * - Set to `false`to enable Dataplex discovery to update the schema.
+     *   including new data discovery, schema inference, and schema evolution.
+     *   Users retain the ability to input and edit the schema. Dataplex
+     *   treats schema input by the user as though produced
+     *   by a previous Dataplex discovery operation, and it will
+     *   evolve the schema and take action based on that treatment.
+     * - Set to `true` to fully manage the entity
+     *   schema. This setting guarantees that Dataplex will not
+     *   change schema fields.
      *
      * Generated from protobuf field <code>bool user_managed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @return bool
@@ -123,23 +107,17 @@ class Schema extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Whether the schema is user-managed or managed by the service.
-     * - Set user_manage to false if you would like Dataplex to help you manage
-     * the schema. You will get the full service provided by Dataplex discovery,
-     * including new data discovery, schema inference and schema evolution. You
-     * can still provide input the schema of the entities, for example renaming a
-     * schema field, changing CSV or Json options if you think the discovered
-     * values are not as accurate. Dataplex will consider your input as the
-     * initial schema (as if they were produced by the previous discovery run),
-     * and will evolve schema or flag actions based on that.
-     * - Set user_manage to true if you would like to fully manage the entity
-     * schema by yourself. This is useful when you would like to manually specify
-     * the schema for a table. In this case, the schema defined by the user is
-     * guaranteed to be kept unchanged and would not be overwritten. But this also
-     * means Dataplex will not provide schema evolution management for you.
-     * Dataplex will still be able to manage partition registration (i.e., keeping
-     * the list of partitions up to date) when Dataplex discovery is turned on and
-     * user_managed is set to true.
+     * Required. Set to `true` if user-managed or `false` if managed by Dataplex. The
+     * default is `false` (managed by Dataplex).
+     * - Set to `false`to enable Dataplex discovery to update the schema.
+     *   including new data discovery, schema inference, and schema evolution.
+     *   Users retain the ability to input and edit the schema. Dataplex
+     *   treats schema input by the user as though produced
+     *   by a previous Dataplex discovery operation, and it will
+     *   evolve the schema and take action based on that treatment.
+     * - Set to `true` to fully manage the entity
+     *   schema. This setting guarantees that Dataplex will not
+     *   change schema fields.
      *
      * Generated from protobuf field <code>bool user_managed = 1 [(.google.api.field_behavior) = REQUIRED];</code>
      * @param bool $var
@@ -155,6 +133,7 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The sequence of fields describing data in table entities.
+     * **Note:** BigQuery SchemaFields are immutable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -166,9 +145,10 @@ class Schema extends \Google\Protobuf\Internal\Message
 
     /**
      * Optional. The sequence of fields describing data in table entities.
+     * **Note:** BigQuery SchemaFields are immutable.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.SchemaField fields = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataplex\V1\Schema\SchemaField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Schema\SchemaField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setFields($var)
@@ -196,7 +176,7 @@ class Schema extends \Google\Protobuf\Internal\Message
      * If this field is empty, there are no partitions within the data.
      *
      * Generated from protobuf field <code>repeated .google.cloud.dataplex.v1.Schema.PartitionField partition_fields = 3 [(.google.api.field_behavior) = OPTIONAL];</code>
-     * @param \Google\Cloud\Dataplex\V1\Schema\PartitionField[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Dataplex\V1\Schema\PartitionField>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPartitionFields($var)
