@@ -26,7 +26,10 @@ namespace Google\Cloud\Speech\V2;
 
 use Google\Cloud\Speech\V2\Gapic\SpeechGapicClient;
 
-/** {@inheritdoc} */
+/**
+ * {@inheritdoc}
+ * @experimental
+ */
 class SpeechClient extends SpeechGapicClient
 {
     // This class is intentionally empty, and is intended to hold manual additions to
