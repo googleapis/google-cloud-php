@@ -96,8 +96,11 @@ class Transition extends \Google\Protobuf\Internal\Message
     private $route_polyline = null;
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending
@@ -162,8 +165,11 @@ class Transition extends \Google\Protobuf\Internal\Message
      *           is set to true.
      *     @type array|\Google\Protobuf\Internal\MapField $vehicle_loads
      *           Vehicle loads during this transition, for each type that either appears
-     *           in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     *           in this vehicle's
+     *           [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     *           or that have non-zero
+     *           [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     *           on some shipment performed on this route.
      *           The loads during the first transition are the starting loads of the
      *           vehicle route. Then, after each visit, the visit's `load_demands` are
      *           either added or subtracted to get the next transition's loads, depending
@@ -527,8 +533,11 @@ class Transition extends \Google\Protobuf\Internal\Message
 
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending
@@ -544,8 +553,11 @@ class Transition extends \Google\Protobuf\Internal\Message
 
     /**
      * Vehicle loads during this transition, for each type that either appears
-     * in this vehicle's [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits], or that have non-zero
-     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands] on some shipment performed on this route.
+     * in this vehicle's
+     * [Vehicle.load_limits][google.cloud.optimization.v1.Vehicle.load_limits],
+     * or that have non-zero
+     * [Shipment.load_demands][google.cloud.optimization.v1.Shipment.load_demands]
+     * on some shipment performed on this route.
      * The loads during the first transition are the starting loads of the
      * vehicle route. Then, after each visit, the visit's `load_demands` are
      * either added or subtracted to get the next transition's loads, depending

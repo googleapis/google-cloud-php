@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Defines a load limit applying to a vehicle, e.g. "this truck may only
- * carry up to 3500 kg". See [load_limits][google.cloud.optimization.v1.Vehicle.load_limits].
+ * carry up to 3500 kg". See
+ * [load_limits][google.cloud.optimization.v1.Vehicle.load_limits].
  *
  * Generated from protobuf message <code>google.cloud.optimization.v1.Vehicle.LoadLimit</code>
  */
@@ -23,16 +24,21 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      */
     private $max_load = null;
     /**
-     * A soft limit of the load. See [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
+     * A soft limit of the load. See
+     * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
      *
      * Generated from protobuf field <code>int64 soft_max_load = 2;</code>
      */
     private $soft_max_load = 0;
     /**
-     * If the load ever exceeds [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load] along this vehicle's route,
-     * the following cost penalty applies (only once per vehicle):
-     * (load - [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]) * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
-     * add up and must be in the same unit as [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
+     * If the load ever exceeds
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]
+     * along this vehicle's route, the following cost penalty applies (only once
+     * per vehicle): (load -
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load])
+     * * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
+     * add up and must be in the same unit as
+     * [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      */
@@ -59,12 +65,17 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
      *     @type int|string $max_load
      *           The maximum acceptable amount of load.
      *     @type int|string $soft_max_load
-     *           A soft limit of the load. See [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
+     *           A soft limit of the load. See
+     *           [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
      *     @type float $cost_per_unit_above_soft_max
-     *           If the load ever exceeds [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load] along this vehicle's route,
-     *           the following cost penalty applies (only once per vehicle):
-     *           (load - [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]) * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
-     *           add up and must be in the same unit as [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
+     *           If the load ever exceeds
+     *           [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]
+     *           along this vehicle's route, the following cost penalty applies (only once
+     *           per vehicle): (load -
+     *           [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load])
+     *           * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
+     *           add up and must be in the same unit as
+     *           [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
      *     @type \Google\Cloud\Optimization\V1\Vehicle\LoadLimit\Interval $start_load_interval
      *           The acceptable load interval of the vehicle at the start of the route.
      *     @type \Google\Cloud\Optimization\V1\Vehicle\LoadLimit\Interval $end_load_interval
@@ -113,7 +124,8 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A soft limit of the load. See [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
+     * A soft limit of the load. See
+     * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
      *
      * Generated from protobuf field <code>int64 soft_max_load = 2;</code>
      * @return int|string
@@ -124,7 +136,8 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * A soft limit of the load. See [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
+     * A soft limit of the load. See
+     * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max].
      *
      * Generated from protobuf field <code>int64 soft_max_load = 2;</code>
      * @param int|string $var
@@ -139,10 +152,14 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the load ever exceeds [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load] along this vehicle's route,
-     * the following cost penalty applies (only once per vehicle):
-     * (load - [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]) * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
-     * add up and must be in the same unit as [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
+     * If the load ever exceeds
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]
+     * along this vehicle's route, the following cost penalty applies (only once
+     * per vehicle): (load -
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load])
+     * * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
+     * add up and must be in the same unit as
+     * [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      * @return float
@@ -153,10 +170,14 @@ class LoadLimit extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * If the load ever exceeds [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load] along this vehicle's route,
-     * the following cost penalty applies (only once per vehicle):
-     * (load - [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]) * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
-     * add up and must be in the same unit as [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
+     * If the load ever exceeds
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load]
+     * along this vehicle's route, the following cost penalty applies (only once
+     * per vehicle): (load -
+     * [soft_max_load][google.cloud.optimization.v1.Vehicle.LoadLimit.soft_max_load])
+     * * [cost_per_unit_above_soft_max][google.cloud.optimization.v1.Vehicle.LoadLimit.cost_per_unit_above_soft_max]. All costs
+     * add up and must be in the same unit as
+     * [Shipment.penalty_cost][google.cloud.optimization.v1.Shipment.penalty_cost].
      *
      * Generated from protobuf field <code>double cost_per_unit_above_soft_max = 3;</code>
      * @param float $var

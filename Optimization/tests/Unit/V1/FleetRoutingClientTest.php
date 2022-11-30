@@ -23,14 +23,11 @@
 namespace Google\Cloud\Optimization\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Optimization\V1\BatchOptimizeToursResponse;
-
 use Google\Cloud\Optimization\V1\FleetRoutingClient;
 use Google\Cloud\Optimization\V1\OptimizeToursResponse;
 use Google\LongRunning\GetOperationRequest;
@@ -46,25 +43,19 @@ use stdClass;
  */
 class FleetRoutingClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FleetRoutingClient
-     */
+    /** @return FleetRoutingClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +64,7 @@ class FleetRoutingClientTest extends GeneratedTest
         return new FleetRoutingClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchOptimizeToursTest()
     {
         $operationsTransport = $this->createTransport();
@@ -140,9 +129,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchOptimizeToursExceptionTest()
     {
         $operationsTransport = $this->createTransport();
@@ -198,9 +185,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function optimizeToursTest()
     {
         $transport = $this->createTransport();
@@ -229,9 +214,7 @@ class FleetRoutingClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function optimizeToursExceptionTest()
     {
         $transport = $this->createTransport();

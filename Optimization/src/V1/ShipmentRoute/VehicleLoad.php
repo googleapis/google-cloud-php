@@ -10,7 +10,8 @@ use Google\Protobuf\Internal\GPBUtil;
 
 /**
  * Reports the actual load of the vehicle at some point along the route,
- * for a given type (see [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]).
+ * for a given type (see
+ * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads]).
  *
  * Generated from protobuf message <code>google.cloud.optimization.v1.ShipmentRoute.VehicleLoad</code>
  */
@@ -18,7 +19,8 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
 {
     /**
      * The amount of load on the vehicle, for the given type. The unit of load
-     * is usually indicated by the type. See [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
+     * is usually indicated by the type. See
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
      *
      * Generated from protobuf field <code>int64 amount = 1;</code>
      */
@@ -32,7 +34,8 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
      *
      *     @type int|string $amount
      *           The amount of load on the vehicle, for the given type. The unit of load
-     *           is usually indicated by the type. See [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
+     *           is usually indicated by the type. See
+     *           [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
      * }
      */
     public function __construct($data = NULL) {
@@ -42,7 +45,8 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
 
     /**
      * The amount of load on the vehicle, for the given type. The unit of load
-     * is usually indicated by the type. See [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
+     * is usually indicated by the type. See
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
      *
      * Generated from protobuf field <code>int64 amount = 1;</code>
      * @return int|string
@@ -54,7 +58,8 @@ class VehicleLoad extends \Google\Protobuf\Internal\Message
 
     /**
      * The amount of load on the vehicle, for the given type. The unit of load
-     * is usually indicated by the type. See [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
+     * is usually indicated by the type. See
+     * [Transition.vehicle_loads][google.cloud.optimization.v1.ShipmentRoute.Transition.vehicle_loads].
      *
      * Generated from protobuf field <code>int64 amount = 1;</code>
      * @param int|string $var
