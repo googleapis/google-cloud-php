@@ -28,7 +28,7 @@ class AggregationResultBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.QueryResultBatch.MoreResultsType more_results = 2;</code>
      */
-    protected $more_results = 0;
+    private $more_results = 0;
     /**
      * Read timestamp this batch was returned from.
      * In a single transaction, subsequent query result batches for the same query
@@ -37,7 +37,7 @@ class AggregationResultBatch extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp read_time = 3;</code>
      */
-    protected $read_time = null;
+    private $read_time = null;
 
     /**
      * Constructor.

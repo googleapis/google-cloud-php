@@ -20,13 +20,13 @@ class RunAggregationQueryResponse extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.AggregationResultBatch batch = 1;</code>
      */
-    protected $batch = null;
+    private $batch = null;
     /**
      * The parsed form of the `GqlQuery` from the request, if it was set.
      *
      * Generated from protobuf field <code>.google.datastore.v1.AggregationQuery query = 2;</code>
      */
-    protected $query = null;
+    private $query = null;
 
     /**
      * Constructor.

@@ -46,7 +46,7 @@ class Aggregation extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string alias = 7 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $alias = '';
+    private $alias = '';
     protected $operator;
 
     /**

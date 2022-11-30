@@ -33,7 +33,7 @@ class Count extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Int64Value up_to = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
-    protected $up_to = null;
+    private $up_to = null;
 
     /**
      * Constructor.
@@ -112,7 +112,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Int64Value up_to = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return int|string|null
      */
-    public function getUpToUnwrapped()
+    public function getUpToValue()
     {
         return $this->readWrapperValue("up_to");
     }
@@ -163,7 +163,7 @@ class Count extends \Google\Protobuf\Internal\Message
      * @param int|string|null $var
      * @return $this
      */
-    public function setUpToUnwrapped($var)
+    public function setUpToValue($var)
     {
         $this->writeWrapperValue("up_to", $var);
         return $this;}

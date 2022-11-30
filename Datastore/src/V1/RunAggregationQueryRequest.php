@@ -20,7 +20,7 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string project_id = 8 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $project_id = '';
+    private $project_id = '';
     /**
      * The ID of the database against which to make the request.
      * '(default)' is not allowed; please use empty string '' to refer the default
@@ -28,7 +28,7 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string database_id = 9;</code>
      */
-    protected $database_id = '';
+    private $database_id = '';
     /**
      * Entities are partitioned into subsets, identified by a partition ID.
      * Queries are scoped to a single partition.
@@ -37,13 +37,13 @@ class RunAggregationQueryRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.datastore.v1.PartitionId partition_id = 2;</code>
      */
-    protected $partition_id = null;
+    private $partition_id = null;
     /**
      * The options for this query.
      *
      * Generated from protobuf field <code>.google.datastore.v1.ReadOptions read_options = 1;</code>
      */
-    protected $read_options = null;
+    private $read_options = null;
     protected $query_type;
 
     /**
