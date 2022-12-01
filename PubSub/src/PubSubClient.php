@@ -783,10 +783,14 @@ class PubSubClient
      */
     public function __debugInfo()
     {
-        return [
-            'connection' => get_class($this->connection),
-            'projectId' => $this->projectId,
-            'encode' => $this->encode
-        ];
+        $debugInfo = [];
+        if ($this->connection) {
+            $debugInfo['connection'] = get_class($this->connection);
+        }
+
+        $debugInfo['projectId'] = $this->projectId;
+        $debugInfo['encode'] = $this->encode;
+
+        return $debugInfo;
     }
 }
