@@ -95,6 +95,28 @@ class DatastoreClientTest extends SnippetTestCase
         $this->assertEquals('my-application-namespace', $nsProp->getValue($op));
     }
 
+    public function testMultipleDatabases()
+    {
+        $snippet = $this->snippetFromClass(DatastoreClient::class, 3);
+        $res = $snippet->invoke('datastore');
+
+        $this->assertInstanceOf(DatastoreClient::class, $res->returnVal());
+
+        $ds = $res->returnVal();
+
+        $ref = new \ReflectionClass($ds);
+        $opProp = $ref->getProperty('operation');
+        $opProp->setAccessible(true);
+
+        $op = $opProp->getValue($ds);
+
+        $opRef = new \ReflectionClass($op);
+        $dsProp = $opRef->getProperty('databaseId');
+        $dsProp->setAccessible(true);
+
+        $this->assertEquals('my-database', $dsProp->getValue($op));
+    }
+
     public function testEmulator()
     {
         $snippet = $this->snippetFromClass(DatastoreClient::class, 2);

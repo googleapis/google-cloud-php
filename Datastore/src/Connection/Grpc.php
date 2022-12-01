@@ -309,7 +309,10 @@ class Grpc implements ConnectionInterface
                         : null,
                     'namespace_id' => isset($key['partitionId']['namespaceId'])
                         ? $key['partitionId']['namespaceId']
-                        : null
+                        : null,
+                    'database_id' => isset($key['partitionId']['databaseId'])
+                        ? $key['partitionId']['databaseId']
+                        : null,
                 ]);
 
                 $local['partition_id'] = new PartitionId($p);

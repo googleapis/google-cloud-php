@@ -23,7 +23,7 @@ use Google\Cloud\Datastore\DatastoreClient;
  * @group datastore
  * @group datastore-query
  */
-class RunQueryTest extends DatastoreTestCase
+class RunQueryTest extends DatastoreMultipleDbTestCase
 {
     private static $ancestor;
     private static $kind = 'Person';
@@ -78,8 +78,45 @@ class RunQueryTest extends DatastoreTestCase
         self::$localDeletionQueue->add($key3);
     }
 
+    public static function tear_down_after_class()
+    {
+        self::tearDownFixtures();
+    }
+
     /**
-     * @dataProvider clientProvider
+     * @dataProvider multiDbClientProvider
+     */
+    public function testQueryMultipleDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertCount(0, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
+     */
+    public function testQueryDefaultDbClients(DatastoreClient $client)
+    {
+        $query = $client->query()
+            ->kind(self::$kind)
+            ->order('knownDances');
+
+        $results = iterator_to_array($client->runQuery($query));
+
+        $this->assertEquals(self::$data[0], $results[0]->get());
+        $this->assertEquals(self::$data[1], $results[1]->get());
+        $this->assertEquals(self::$data[2], $results[2]->get());
+        $this->assertEquals(self::$data[3], $results[3]->get());
+        $this->assertCount(4, $results);
+    }
+
+    /**
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOrder(DatastoreClient $client)
     {
@@ -97,7 +134,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithFilter(DatastoreClient $client)
     {
@@ -114,7 +151,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithAncestor(DatastoreClient $client)
     {
@@ -131,7 +168,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithProjection(DatastoreClient $client)
     {
@@ -156,7 +193,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithDistinctOn(DatastoreClient $client)
     {
@@ -172,7 +209,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithKeysOnly(DatastoreClient $client)
     {
@@ -189,7 +226,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithOffset(DatastoreClient $client)
     {
@@ -204,7 +241,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithStartCursor(DatastoreClient $client)
     {
@@ -227,7 +264,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithEndCursor(DatastoreClient $client)
     {
@@ -248,7 +285,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryWithLimit(DatastoreClient $client)
     {
@@ -263,7 +300,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithBindings(DatastoreClient $client)
     {
@@ -280,7 +317,7 @@ class RunQueryTest extends DatastoreTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testGqlQueryWithLiteral(DatastoreClient $client)
     {

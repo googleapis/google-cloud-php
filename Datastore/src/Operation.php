@@ -55,6 +55,11 @@ class Operation
     private $namespaceId;
 
     /**
+     * @var string
+     */
+    private $databaseId;
+
+    /**
      * @var EntityMapper
      */
     private $entityMapper;
@@ -66,16 +71,19 @@ class Operation
      * @param string $projectId The Google Cloud Platform project ID.
      * @param string $namespaceId The namespace to use for all service requests.
      * @param EntityMapper $entityMapper A Datastore Entity Mapper instance.
+     * @param string $databaseId ID of the database to which the entities belong.
      */
     public function __construct(
         ConnectionInterface $connection,
         $projectId,
         $namespaceId,
-        EntityMapper $entityMapper
+        EntityMapper $entityMapper,
+        $databaseId = ''
     ) {
         $this->connection = $connection;
         $this->projectId = $projectId;
         $this->namespaceId = $namespaceId;
+        $this->databaseId = $databaseId;
         $this->entityMapper = $entityMapper;
     }
 
@@ -95,13 +103,15 @@ class Operation
      *           if you want to create keys with `name` but your values may
      *           pass PHP's `is_numeric()` check), this value may be
      *           explicitly set using `Key::TYPE_ID` or `Key::TYPE_NAME`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return Key
      */
     public function key($kind, $identifier = null, array $options = [])
     {
         $options += [
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
         ];
 
         $key = new Key($this->projectId, $options);
@@ -162,7 +172,8 @@ class Operation
 
         $key = new Key($this->projectId, [
             'path' => $path,
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId,
         ]);
 
         $keys = [$key];
@@ -253,10 +264,11 @@ class Operation
      */
     public function beginTransaction($transactionOptions, array $options = [])
     {
-        $res = $this->connection->beginTransaction([
+        $res = $this->connection->beginTransaction($options + [
             'projectId' => $this->projectId,
-            'transactionOptions' => $transactionOptions
-        ] + $options);
+            'databaseId' => $this->databaseId,
+            'transactionOptions' => $transactionOptions,
+        ]);
 
         return $res['transaction'];
     }
@@ -297,10 +309,11 @@ class Operation
             $serviceKeys[] = $key->keyObject();
         }
 
-        $res = $this->connection->allocateIds([
+        $res = $this->connection->allocateIds($options + [
             'projectId' => $this->projectId,
-            'keys' => $serviceKeys
-        ] + $options);
+            'databaseId' => $this->databaseId,
+            'keys' => $serviceKeys,
+        ]);
 
         if (isset($res['keys'])) {
             foreach ($res['keys'] as $index => $key) {
@@ -337,6 +350,7 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type bool $sort If set to true, results in each set will be sorted
      *           to match the order given in $keys. **Defaults to** `false`.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array Returns an array with keys [`found`, `missing`, and `deferred`].
      *         Members of `found` will be instance of
@@ -366,7 +380,8 @@ class Operation
 
         $res = $this->connection->lookup($options + $this->readOptions($options) + [
             'projectId' => $this->projectId,
-            'keys' => $serviceKeys
+            'databaseId' => $this->databaseId,
+            'keys' => $serviceKeys,
         ]);
 
         $result = [];
@@ -422,6 +437,7 @@ class Operation
      *           {@see Google\Cloud\Datastore\Entity}.
      *     @type string $readConsistency See
      *           [ReadConsistency](https://cloud.google.com/datastore/reference/rest/v1/ReadOptions#ReadConsistency).
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return EntityIterator<EntityInterface>
      */
@@ -429,7 +445,8 @@ class Operation
     {
         $options += [
             'className' => Entity::class,
-            'namespaceId' => $this->namespaceId
+            'namespaceId' => $this->namespaceId,
+            'databaseId' => $this->databaseId
         ];
 
         $iteratorConfig = [
@@ -461,7 +478,11 @@ class Operation
             $requestQueryArr = $args['query'] + $runQueryObj->queryObject();
             $request = [
                 'projectId' => $this->projectId,
-                'partitionId' => $this->partitionId($this->projectId, $options['namespaceId']),
+                'partitionId' => $this->partitionId(
+                    $this->projectId,
+                    $options['namespaceId'],
+                    $options['databaseId']
+                ),
                 $runQueryObj->queryKey() => $requestQueryArr
             ] + $this->readOptions($options) + $options;
 
@@ -505,6 +526,7 @@ class Operation
      *
      *     @type string $transaction The transaction ID, if the query should be
      *           run in a transaction.
+     *     @type string $databaseId ID of the database to which the entities belong.
      * }
      * @return array [Response Body](https://cloud.google.com/datastore/reference/rest/v1/projects/commit#response-body)
      * @codingStandardsIgnoreEnd
@@ -512,7 +534,8 @@ class Operation
     public function commit(array $mutations, array $options = [])
     {
         $options += [
-            'transaction' => null
+            'transaction' => null,
+            'databaseId' => $this->databaseId,
         ];
 
         $res = $this->connection->commit($options + [
@@ -613,7 +636,8 @@ class Operation
     {
         $this->connection->rollback([
             'projectId' => $this->projectId,
-            'transaction' => $transactionId
+            'transaction' => $transactionId,
+            'databaseId' => $this->databaseId,
         ]);
     }
 
@@ -664,10 +688,14 @@ class Operation
         $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
             ? $entity['key']['partitionId']['namespaceId']
             : null;
+        $databaseId = (isset($entity['key']['partitionId']['databaseId']))
+            ? $entity['key']['partitionId']['databaseId']
+            : '';
 
         $key = new Key($this->projectId, [
             'path' => $entity['key']['path'],
-            'namespaceId' => $namespaceId
+            'namespaceId' => $namespaceId,
+            'databaseId' => $databaseId,
         ]);
 
         if (is_array($class)) {
