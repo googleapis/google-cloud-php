@@ -1,0 +1,1 @@
+{"id":"speech\/v2\/recognitionfeatures\/multichannelmode","type":"","title":"Google\\Cloud\\Speech\\V2\\RecognitionFeatures\\MultiChannelMode","name":"MultiChannelMode","description":"<p>Options for how to recognize multi-channel audio.<\/p>\n<p>Protobuf type <code>google.cloud.speech.v2.RecognitionFeatures.MultiChannelMode<\/code><\/p>","examples":[],"resources":[],"methods":[]}
