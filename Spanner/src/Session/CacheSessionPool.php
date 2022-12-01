@@ -824,6 +824,8 @@ class CacheSessionPool implements SessionPoolInterface
                     'database' => $this->database->name()
                 ]);
         }
+
+        \GuzzleHttp\Promise\Utils::all($this->deleteCalls)->wait();
     }
 
     /**
