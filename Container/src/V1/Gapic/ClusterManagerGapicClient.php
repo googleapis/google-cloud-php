@@ -43,6 +43,7 @@ use Google\Cloud\Container\V1\CreateClusterRequest;
 use Google\Cloud\Container\V1\CreateNodePoolRequest;
 use Google\Cloud\Container\V1\DeleteClusterRequest;
 use Google\Cloud\Container\V1\DeleteNodePoolRequest;
+use Google\Cloud\Container\V1\FastSocket;
 use Google\Cloud\Container\V1\GcfsConfig;
 use Google\Cloud\Container\V1\GetClusterRequest;
 use Google\Cloud\Container\V1\GetJSONWebKeysRequest;
@@ -2654,6 +2655,8 @@ class ClusterManagerGapicClient
      *           All the nodes in the node pool will be Confidential VM once enabled.
      *     @type VirtualNIC $gvnic
      *           Enable or disable gvnic on the node pool.
+     *     @type FastSocket $fastSocket
+     *           Enable or disable NCCL fast socket for the node pool.
      *     @type NodePoolLoggingConfig $loggingConfig
      *           Logging configuration.
      *     @type ResourceLabels $resourceLabels
@@ -2746,6 +2749,10 @@ class ClusterManagerGapicClient
 
         if (isset($optionalArgs['gvnic'])) {
             $request->setGvnic($optionalArgs['gvnic']);
+        }
+
+        if (isset($optionalArgs['fastSocket'])) {
+            $request->setFastSocket($optionalArgs['fastSocket']);
         }
 
         if (isset($optionalArgs['loggingConfig'])) {

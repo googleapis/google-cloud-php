@@ -25,9 +25,8 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      */
     protected $enabled = false;
     /**
-     * Mode of operation for binauthz policy evaluation. Currently the only
-     * options are equivalent to enable/disable. If unspecified, defaults to
-     * DISABLED.
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults
+     * to DISABLED.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
      */
@@ -44,9 +43,8 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
      *           BinaryAuthorization using evaluation_mode. If evaluation_mode is set to
      *           anything other than EVALUATION_MODE_UNSPECIFIED, this field is ignored.
      *     @type int $evaluation_mode
-     *           Mode of operation for binauthz policy evaluation. Currently the only
-     *           options are equivalent to enable/disable. If unspecified, defaults to
-     *           DISABLED.
+     *           Mode of operation for binauthz policy evaluation. If unspecified, defaults
+     *           to DISABLED.
      * }
      */
     public function __construct($data = NULL) {
@@ -89,9 +87,8 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mode of operation for binauthz policy evaluation. Currently the only
-     * options are equivalent to enable/disable. If unspecified, defaults to
-     * DISABLED.
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults
+     * to DISABLED.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
      * @return int
@@ -102,9 +99,8 @@ class BinaryAuthorization extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Mode of operation for binauthz policy evaluation. Currently the only
-     * options are equivalent to enable/disable. If unspecified, defaults to
-     * DISABLED.
+     * Mode of operation for binauthz policy evaluation. If unspecified, defaults
+     * to DISABLED.
      *
      * Generated from protobuf field <code>.google.container.v1.BinaryAuthorization.EvaluationMode evaluation_mode = 2;</code>
      * @param int $var
