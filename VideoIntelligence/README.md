@@ -17,7 +17,7 @@ per segment, per shot, and per frame.
 **NOTE:** This documentation covers the most recent stable release (V1). There is an additional beta release included
 in this component. To check out its documentation, see the link below:
 
-* [VideoIntelligence V1beta2 client](https://googleapis.github.io/google-cloud-php/#/docs/google-cloud/latest/videointelligence/v1beta2/videointelligenceserviceclient)
+* [VideoIntelligence](https://cloud.google.com/php/docs/reference/cloud-videointelligence/latest))
 
 ### Installation
 
