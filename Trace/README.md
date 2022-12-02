@@ -123,7 +123,7 @@ any minor or patch releases. We will address issues and requests with the highes
 
 [stackdriver-trace]: https://cloud.google.com/trace/
 [homepage]: http://googleapis.github.io/google-cloud-php
-[api-docs]: http://googleapis.github.io/google-cloud-php/#/docs/cloud-trace/latest
+[api-docs]: https://cloud.google.com/php/docs/reference/cloud-trace/latest
 [opencensus]: http://opencensus.io
 [opencensus-php]: https://github.com/census-instrumentation/opencensus-php
 [opencensus-migration]: http://opencensus.io/opencensus-php/migrating-stackdriver-trace

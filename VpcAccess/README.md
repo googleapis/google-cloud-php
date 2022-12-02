@@ -4,7 +4,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/google/cloud-vpc-access/v/stable)](https://packagist.org/packages/google/cloud-vpc-access) [![Packagist](https://img.shields.io/packagist/dm/google/cloud-vpc-access.svg)](https://packagist.org/packages/google/cloud-vpc-access)
 
-* [API documentation](http://googleapis.github.io/google-cloud-php/#/docs/cloud-vpc-access/latest/vpcaccess/readme)
+* [API documentation](https://cloud.google.com/php/docs/reference/cloud-vpc-access/latest)
 
 **NOTE:** This repository is part of [Google Cloud PHP](https://github.com/googleapis/google-cloud-php). Any
 support requests, bug reports, or development contributions should be directed to

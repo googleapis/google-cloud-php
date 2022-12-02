@@ -1,7 +1,7 @@
 {
     "distribution_name": "google/cloud-dataform",
     "release_level": "beta",
-    "client_documentation": "http://googleapis.github.io/google-cloud-php/#/docs/cloud-dataform/latest",
+    "client_documentation": "https://cloud.google.com/php/docs/reference/cloud-dataform/latest",
     "library_type": "GAPIC_AUTO",
     "product_documentation": "https://cloud.google.com/dataform/docs",
     "issue_tracker": "https://github.com/googleapis/google-cloud-php/issues"
