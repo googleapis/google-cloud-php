@@ -139,7 +139,7 @@ class DocFx extends Command
             $output->write(sprintf('Writing docs.metadata with version <fg=white>%s</>... ', $metadataVersion));
             $process = new Process([
                 'docuploader', 'create-metadata',
-                '--name', strtolower($component),
+                '--name', str_replace('google/', '', $this->getDistributionName()),
                 '--version', $metadataVersion,
                 '--language', 'php',
                 '--distribution-name', $this->getDistributionName(),
