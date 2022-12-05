@@ -12,6 +12,12 @@ return [
                     'responsePageTokenGetMethod' => 'getNextPageToken',
                 ],
             ],
+            'templateMap' => [
+                'project' => 'projects/{project}',
+                'location' => 'projects/{project}/locations/{location}',
+                'archive' => 'archives/{archive}',
+                'book' => 'archives/{archive}/books/{book}',
+            ],
         ],
     ],
 ];
