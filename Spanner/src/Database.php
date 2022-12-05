@@ -190,7 +190,7 @@ class Database
      * @param bool $returnInt64AsObject [optional If true, 64 bit integers will
      *        be returned as a {@see Google\Cloud\Core\Int64} object for 32 bit
      *        platform compatibility. **Defaults to** false.
-     * @param string $databaseRole The session owner database role.
+     * @param string $databaseRole The user created database role which creates the session.
      */
     public function __construct(
         ConnectionInterface $connection,
@@ -2031,7 +2031,7 @@ class Database
             return $this->session = $this->sessionPool->acquire($context);
         }
 
-        if ($this->databaseRole != null) {
+        if ($this->databaseRole !== null) {
             $options['creator_role'] = $this->databaseRole;
         }
 

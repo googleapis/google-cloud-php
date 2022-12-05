@@ -494,7 +494,7 @@ class Instance
      *
      *     @type SessionPoolInterface $sessionPool A pool used to manage
      *           sessions.
-     *     @type string $databaseRole The session owner database role.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return Database
      */

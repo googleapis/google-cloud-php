@@ -122,7 +122,10 @@ class DatabaseTest extends TestCase
             $this->lroCallables,
             self::PROJECT,
             self::DATABASE,
-            $this->sessionPool->reveal()
+            $this->sessionPool->reveal(),
+            false,
+            [],
+            'Reader'
         ];
 
         $props = [
@@ -130,19 +133,7 @@ class DatabaseTest extends TestCase
         ];
 
         $this->database = TestHelpers::stub(Database::class, $args, $props);
-
-        $args = [
-            $this->connection->reveal(),
-            $this->instance,
-            $this->lro->reveal(),
-            $this->lroCallables,
-            self::PROJECT,
-            self::DATABASE,
-            null,
-            false,
-            [],
-            'Reader'
-        ];
+        $args[6] = null;
         $this->databaseWithDatabaseRole = TestHelpers::stub(Database::class, $args, $props);
     }
 

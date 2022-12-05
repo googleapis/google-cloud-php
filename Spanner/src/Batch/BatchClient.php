@@ -139,7 +139,7 @@ class BatchClient
      * @param array $options  [optional] {
      *     Configuration options.
      *
-     *     @type string $databaseRole The session owner database role.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      */
     public function __construct(Operation $operation, $databaseName, array $options = [])
@@ -189,7 +189,7 @@ class BatchClient
 
         $transactionOptions = $this->configureSnapshotOptions($transactionOptions);
 
-        if ($this->databaseRole != null) {
+        if ($this->databaseRole !== null) {
             $sessionOptions['creator_role'] = $this->databaseRole;
         }
 

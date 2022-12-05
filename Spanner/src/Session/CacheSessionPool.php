@@ -202,7 +202,7 @@ class CacheSessionPool implements SessionPoolInterface
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
-     *     @type string $databaseRole The session owner database role.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * }
      * @throws \InvalidArgumentException

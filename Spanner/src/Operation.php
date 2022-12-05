@@ -553,7 +553,7 @@ class Operation
      *           labels can be associated with a given session. See
      *           https://goo.gl/xmQnxf for more information on and examples of
      *           labels.
-     *     @type string $creator_role The session owner database role.
+     *     @type string $creator_role The user created database role which creates the session.
      * }
      * @return Session
      */

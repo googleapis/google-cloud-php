@@ -263,7 +263,7 @@ class SpannerClient
      * @param array $options  [optional] {
      *     Configuration options.
      *
-     *     @type string $databaseRole The session owner database role.
+     *     @type string $databaseRole The user created database role which creates the session.
      * }
      * @return BatchClient
      */
