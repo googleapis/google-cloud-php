@@ -90,7 +90,9 @@ class SpeechClientTest extends GeneratedTest
         $incompleteOperation->setName('operations/longRunningRecognizeTest');
         $incompleteOperation->setDone(false);
         $transport->addResponse($incompleteOperation);
+        $requestId = 37109963;
         $expectedResponse = new LongRunningRecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $anyResponse = new Any();
         $anyResponse->setValue($expectedResponse->serializeToString());
         $completeOperation = new Operation();
@@ -203,7 +205,9 @@ class SpeechClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $requestId = 37109963;
         $expectedResponse = new RecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $transport->addResponse($expectedResponse);
         // Mock request
         $config = new RecognitionConfig();
@@ -269,11 +273,17 @@ class SpeechClientTest extends GeneratedTest
         ]);
         $this->assertTrue($transport->isExhausted());
         // Mock response
+        $requestId = 37109963;
         $expectedResponse = new StreamingRecognizeResponse();
+        $expectedResponse->setRequestId($requestId);
         $transport->addResponse($expectedResponse);
+        $requestId2 = 1302939070;
         $expectedResponse2 = new StreamingRecognizeResponse();
+        $expectedResponse2->setRequestId($requestId2);
         $transport->addResponse($expectedResponse2);
+        $requestId3 = 1302939071;
         $expectedResponse3 = new StreamingRecognizeResponse();
+        $expectedResponse3->setRequestId($requestId3);
         $transport->addResponse($expectedResponse3);
         // Mock request
         $request = new StreamingRecognizeRequest();
