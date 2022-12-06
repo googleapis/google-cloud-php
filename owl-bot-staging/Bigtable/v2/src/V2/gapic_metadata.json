@@ -1,0 +1,53 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.bigtable.v2",
+    "libraryPackage": "Google\\Cloud\\Bigtable\\V2",
+    "services": {
+        "Bigtable": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "BigtableGapicClient",
+                    "rpcs": {
+                        "CheckAndMutateRow": {
+                            "methods": [
+                                "checkAndMutateRow"
+                            ]
+                        },
+                        "MutateRow": {
+                            "methods": [
+                                "mutateRow"
+                            ]
+                        },
+                        "MutateRows": {
+                            "methods": [
+                                "mutateRows"
+                            ]
+                        },
+                        "PingAndWarm": {
+                            "methods": [
+                                "pingAndWarm"
+                            ]
+                        },
+                        "ReadModifyWriteRow": {
+                            "methods": [
+                                "readModifyWriteRow"
+                            ]
+                        },
+                        "ReadRows": {
+                            "methods": [
+                                "readRows"
+                            ]
+                        },
+                        "SampleRowKeys": {
+                            "methods": [
+                                "sampleRowKeys"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
