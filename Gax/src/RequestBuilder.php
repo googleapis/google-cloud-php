@@ -201,7 +201,20 @@ class RequestBuilder
                 $requiredQueryParam = Serializer::toCamelCase($requiredQueryParam);
                 if (!array_key_exists($requiredQueryParam, $queryParams)) {
                     $getter = Serializer::getGetter($requiredQueryParam);
-                    $queryParams[$requiredQueryParam] = $message->$getter();
+                    $queryParamValue = $message->$getter();
+                    if ($queryParamValue instanceof Message) {
+                        // Decode message for the query parameter.
+                        $queryParamValue = json_decode($queryParamValue->serializeToJsonString(), true);
+                    }
+                    if (is_array($queryParamValue)) {
+                        // If the message has properties, add them as nested querystring values.
+                        // NOTE: This only supports nesting at one level of depth.
+                        foreach ($queryParamValue as $key => $value) {
+                            $queryParams[$requiredQueryParam . '.' . $key] = $value;
+                        }
+                    } else {
+                        $queryParams[$requiredQueryParam] = $queryParamValue;
+                    }
                 }
             }
         }
