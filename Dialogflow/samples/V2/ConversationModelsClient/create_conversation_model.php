@@ -26,6 +26,7 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\OperationResponse;
 use Google\Cloud\Dialogflow\V2\ConversationModel;
+use Google\Cloud\Dialogflow\V2\ConversationDatasetsClient;
 use Google\Cloud\Dialogflow\V2\ConversationModelsClient;
 use Google\Cloud\Dialogflow\V2\InputDataset;
 use Google\Rpc\Status;
@@ -93,7 +94,7 @@ function create_conversation_model_sample(
 function callSample(): void
 {
     $conversationModelDisplayName = '[DISPLAY_NAME]';
-    $formattedConversationModelDatasetsDataset = ConversationModelsClient::conversationDatasetName(
+    $formattedConversationModelDatasetsDataset = ConversationDatasetsClient::conversationDatasetName(
         '[PROJECT]',
         '[LOCATION]',
         '[CONVERSATION_DATASET]'
