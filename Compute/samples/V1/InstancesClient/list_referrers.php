@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstancesClient;
-use Google\Cloud\Compute\V1\Reference;
 
 /**
  * Retrieves a list of resources that refer to the VM instance specified in the request. For example, if the VM instance is part of a managed or unmanaged instance group, the referrers list includes the instance group. For more information, read Viewing referrers to VM instances.
@@ -45,7 +44,6 @@ function list_referrers_sample(string $instance, string $project, string $zone):
         /** @var PagedListResponse $response */
         $response = $instancesClient->listReferrers($instance, $project, $zone);
 
-        /** @var Reference $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

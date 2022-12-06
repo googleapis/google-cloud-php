@@ -58,7 +58,7 @@ function import_user_events_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ImportUserEventsResponse $response */
+            /** @var ImportUserEventsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

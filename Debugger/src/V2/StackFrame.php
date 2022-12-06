@@ -52,10 +52,10 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      *           Demangled function name at the call site.
      *     @type \Google\Cloud\Debugger\V2\SourceLocation $location
      *           Source location of the call site.
-     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $arguments
+     *     @type array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $arguments
      *           Set of arguments passed to this function.
      *           Note that this might not be populated for all stack frames.
-     *     @type \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $locals
+     *     @type array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $locals
      *           Set of local variables at the stack frame location.
      *           Note that this might not be populated for all stack frames.
      * }
@@ -144,7 +144,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * Note that this might not be populated for all stack frames.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Variable arguments = 3;</code>
-     * @param \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setArguments($var)
@@ -172,7 +172,7 @@ class StackFrame extends \Google\Protobuf\Internal\Message
      * Note that this might not be populated for all stack frames.
      *
      * Generated from protobuf field <code>repeated .google.devtools.clouddebugger.v2.Variable locals = 4;</code>
-     * @param \Google\Cloud\Debugger\V2\Variable[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\Debugger\V2\Variable>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setLocals($var)

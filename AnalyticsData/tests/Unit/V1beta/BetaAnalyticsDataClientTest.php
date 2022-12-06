@@ -22,10 +22,9 @@
 
 namespace Google\Analytics\Data\Tests\Unit\V1beta;
 
-use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\BatchRunPivotReportsResponse;
 use Google\Analytics\Data\V1beta\BatchRunReportsResponse;
-
+use Google\Analytics\Data\V1beta\BetaAnalyticsDataClient;
 use Google\Analytics\Data\V1beta\CheckCompatibilityResponse;
 use Google\Analytics\Data\V1beta\Metadata;
 use Google\Analytics\Data\V1beta\RunPivotReportResponse;
@@ -45,25 +44,19 @@ use stdClass;
  */
 class BetaAnalyticsDataClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return BetaAnalyticsDataClient
-     */
+    /** @return BetaAnalyticsDataClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +65,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         return new BetaAnalyticsDataClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchRunPivotReportsTest()
     {
         $transport = $this->createTransport();
@@ -97,9 +88,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchRunPivotReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -130,9 +119,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchRunReportsTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +142,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function batchRunReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -188,9 +173,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkCompatibilityTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +194,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function checkCompatibilityExceptionTest()
     {
         $transport = $this->createTransport();
@@ -244,9 +225,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +252,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataExceptionTest()
     {
         $transport = $this->createTransport();
@@ -308,9 +285,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runPivotReportTest()
     {
         $transport = $this->createTransport();
@@ -333,9 +308,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runPivotReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -366,9 +339,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runRealtimeReportTest()
     {
         $transport = $this->createTransport();
@@ -393,9 +364,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runRealtimeReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -426,9 +395,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runReportTest()
     {
         $transport = $this->createTransport();
@@ -453,9 +420,7 @@ class BetaAnalyticsDataClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runReportExceptionTest()
     {
         $transport = $this->createTransport();

@@ -23,14 +23,11 @@
 namespace Google\Cloud\Retail\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Retail\V2\BigQuerySource;
-
 use Google\Cloud\Retail\V2\CompleteQueryResponse;
 use Google\Cloud\Retail\V2\CompletionDataInputConfig;
 use Google\Cloud\Retail\V2\CompletionServiceClient;
@@ -48,25 +45,19 @@ use stdClass;
  */
 class CompletionServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CompletionServiceClient
-     */
+    /** @return CompletionServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -75,9 +66,7 @@ class CompletionServiceClientTest extends GeneratedTest
         return new CompletionServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeQueryTest()
     {
         $transport = $this->createTransport();
@@ -107,9 +96,7 @@ class CompletionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeQueryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -143,14 +130,12 @@ class CompletionServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCompletionDataTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -216,14 +201,12 @@ class CompletionServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importCompletionDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

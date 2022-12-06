@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_Projects_ListXpnHosts_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\Project;
 use Google\Cloud\Compute\V1\ProjectsClient;
 use Google\Cloud\Compute\V1\ProjectsListXpnHostsRequest;
 
@@ -47,7 +46,6 @@ function list_xpn_hosts_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $projectsClient->listXpnHosts($project, $projectsListXpnHostsRequestResource);
 
-        /** @var Project $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

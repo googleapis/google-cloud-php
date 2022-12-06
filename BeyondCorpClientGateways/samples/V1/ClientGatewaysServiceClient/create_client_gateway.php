@@ -52,7 +52,7 @@ function create_client_gateway_sample(string $formattedParent, string $clientGat
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ClientGateway $response */
+            /** @var ClientGateway $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

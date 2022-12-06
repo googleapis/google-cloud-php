@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_RegionInstanceGroupManagers_ListErrors_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\InstanceManagedByIgmError;
 use Google\Cloud\Compute\V1\RegionInstanceGroupManagersClient;
 
 /**
@@ -49,7 +48,6 @@ function list_errors_sample(string $instanceGroupManager, string $project, strin
             $region
         );
 
-        /** @var InstanceManagedByIgmError $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

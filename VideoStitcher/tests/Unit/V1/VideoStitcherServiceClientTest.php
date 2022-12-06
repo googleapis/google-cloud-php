@@ -23,11 +23,9 @@
 namespace Google\Cloud\Video\Stitcher\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Video\Stitcher\V1\CdnKey;
 use Google\Cloud\Video\Stitcher\V1\ListCdnKeysResponse;
 use Google\Cloud\Video\Stitcher\V1\ListLiveAdTagDetailsResponse;
@@ -53,25 +51,19 @@ use stdClass;
  */
 class VideoStitcherServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VideoStitcherServiceClient
-     */
+    /** @return VideoStitcherServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -80,9 +72,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         return new VideoStitcherServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCdnKeyTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +107,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -154,9 +142,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createLiveSessionTest()
     {
         $transport = $this->createTransport();
@@ -198,9 +184,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createLiveSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -234,9 +218,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSlateTest()
     {
         $transport = $this->createTransport();
@@ -271,9 +253,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSlateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -308,9 +288,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVodSessionTest()
     {
         $transport = $this->createTransport();
@@ -354,9 +332,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVodSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -394,9 +370,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCdnKeyTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +394,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -455,9 +427,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSlateTest()
     {
         $transport = $this->createTransport();
@@ -481,9 +451,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSlateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +484,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCdnKeyTest()
     {
         $transport = $this->createTransport();
@@ -547,9 +513,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -582,9 +546,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLiveAdTagDetailTest()
     {
         $transport = $this->createTransport();
@@ -611,9 +573,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLiveAdTagDetailExceptionTest()
     {
         $transport = $this->createTransport();
@@ -646,9 +606,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLiveSessionTest()
     {
         $transport = $this->createTransport();
@@ -687,9 +645,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLiveSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -722,9 +678,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSlateTest()
     {
         $transport = $this->createTransport();
@@ -753,9 +707,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSlateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -788,9 +740,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodAdTagDetailTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +767,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodAdTagDetailExceptionTest()
     {
         $transport = $this->createTransport();
@@ -852,9 +800,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodSessionTest()
     {
         $transport = $this->createTransport();
@@ -891,9 +837,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodSessionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -926,9 +870,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodStitchDetailTest()
     {
         $transport = $this->createTransport();
@@ -955,9 +897,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVodStitchDetailExceptionTest()
     {
         $transport = $this->createTransport();
@@ -990,9 +930,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCdnKeysTest()
     {
         $transport = $this->createTransport();
@@ -1027,9 +965,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCdnKeysExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1062,9 +998,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLiveAdTagDetailsTest()
     {
         $transport = $this->createTransport();
@@ -1099,9 +1033,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLiveAdTagDetailsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1134,9 +1066,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSlatesTest()
     {
         $transport = $this->createTransport();
@@ -1171,9 +1101,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSlatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1206,9 +1134,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVodAdTagDetailsTest()
     {
         $transport = $this->createTransport();
@@ -1243,9 +1169,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVodAdTagDetailsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1278,9 +1202,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVodStitchDetailsTest()
     {
         $transport = $this->createTransport();
@@ -1315,9 +1237,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVodStitchDetailsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1350,9 +1270,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCdnKeyTest()
     {
         $transport = $this->createTransport();
@@ -1384,9 +1302,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateCdnKeyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1420,9 +1336,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSlateTest()
     {
         $transport = $this->createTransport();
@@ -1454,9 +1368,7 @@ class VideoStitcherServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSlateExceptionTest()
     {
         $transport = $this->createTransport();
