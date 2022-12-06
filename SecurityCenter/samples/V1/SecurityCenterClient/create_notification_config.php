@@ -36,8 +36,8 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
  *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
  * @param string $configId        Required.
  *                                Unique identifier provided by the client within the parent scope.
- *                                It must be between 1 and 128 characters, and contains alphanumeric
- *                                characters, underscores or hyphens only.
+ *                                It must be between 1 and 128 characters and contain alphanumeric
+ *                                characters, underscores, or hyphens only.
  */
 function create_notification_config_sample(string $formattedParent, string $configId): void
 {

@@ -20,62 +20,62 @@ class KernelRootkit extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
-    protected $name = '';
+    private $name = '';
     /**
      * True if unexpected modifications of kernel code memory are present.
      *
      * Generated from protobuf field <code>bool unexpected_code_modification = 2;</code>
      */
-    protected $unexpected_code_modification = false;
+    private $unexpected_code_modification = false;
     /**
      * True if unexpected modifications of kernel read-only data memory are
      * present.
      *
      * Generated from protobuf field <code>bool unexpected_read_only_data_modification = 3;</code>
      */
-    protected $unexpected_read_only_data_modification = false;
+    private $unexpected_read_only_data_modification = false;
     /**
      * True if `ftrace` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_ftrace_handler = 4;</code>
      */
-    protected $unexpected_ftrace_handler = false;
+    private $unexpected_ftrace_handler = false;
     /**
      * True if `kprobe` points are present with callbacks pointing to regions
      * that are not in the expected kernel or module code range.
      *
      * Generated from protobuf field <code>bool unexpected_kprobe_handler = 5;</code>
      */
-    protected $unexpected_kprobe_handler = false;
+    private $unexpected_kprobe_handler = false;
     /**
      * True if kernel code pages that are not in the expected kernel or module
      * code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_kernel_code_pages = 6;</code>
      */
-    protected $unexpected_kernel_code_pages = false;
+    private $unexpected_kernel_code_pages = false;
     /**
      * True if system call handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_system_call_handler = 7;</code>
      */
-    protected $unexpected_system_call_handler = false;
+    private $unexpected_system_call_handler = false;
     /**
      * True if interrupt handlers that are are not in the expected kernel or
      * module code regions are present.
      *
      * Generated from protobuf field <code>bool unexpected_interrupt_handler = 8;</code>
      */
-    protected $unexpected_interrupt_handler = false;
+    private $unexpected_interrupt_handler = false;
     /**
      * True if unexpected processes in the scheduler run queue are present. Such
      * processes are in the run queue, but not in the process task list.
      *
      * Generated from protobuf field <code>bool unexpected_processes_in_runqueue = 9;</code>
      */
-    protected $unexpected_processes_in_runqueue = false;
+    private $unexpected_processes_in_runqueue = false;
 
     /**
      * Constructor.

@@ -1534,7 +1534,7 @@ class SecurityCenterGapicClient
     }
 
     /**
-     * Creates a big query export.
+     * Creates a BigQuery export.
      *
      * Sample code:
      * ```
@@ -1549,10 +1549,10 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string         $parent           Required. Resource name of the new big query export's parent. Its format is
-     *                                         "organizations/[organization_id]", "folders/[folder_id]", or
+     * @param string         $parent           Required. The name of the parent resource of the new BigQuery export. Its
+     *                                         format is "organizations/[organization_id]", "folders/[folder_id]", or
      *                                         "projects/[project_id]".
-     * @param BigQueryExport $bigQueryExport   Required. The big query export being created.
+     * @param BigQueryExport $bigQueryExport   Required. The BigQuery export being created.
      * @param string         $bigQueryExportId Required. Unique identifier provided by the client within the parent scope.
      *                                         It must consist of lower case letters, numbers, and hyphen, with the first
      *                                         character a letter, the last a letter or a number, and a 63 character
@@ -1704,8 +1704,8 @@ class SecurityCenterGapicClient
      *                                               "projects/[project_id]".
      * @param string             $configId           Required.
      *                                               Unique identifier provided by the client within the parent scope.
-     *                                               It must be between 1 and 128 characters, and contains alphanumeric
-     *                                               characters, underscores or hyphens only.
+     *                                               It must be between 1 and 128 characters and contain alphanumeric
+     *                                               characters, underscores, or hyphens only.
      * @param NotificationConfig $notificationConfig Required. The notification config being created. The name and the service
      *                                               account will be ignored as they are both output only fields on this
      *                                               resource.
@@ -1780,7 +1780,7 @@ class SecurityCenterGapicClient
     }
 
     /**
-     * Deletes an existing big query export.
+     * Deletes an existing BigQuery export.
      *
      * Sample code:
      * ```
@@ -1793,7 +1793,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the big query export to delete. Its format is
+     * @param string $name         Required. The name of the BigQuery export to delete. Its format is
      *                             organizations/{organization}/bigQueryExports/{export_id},
      *                             folders/{folder}/bigQueryExports/{export_id}, or
      *                             projects/{project}/bigQueryExports/{export_id}
@@ -1874,7 +1874,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the notification config to delete. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
+     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
+     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1898,7 +1900,7 @@ class SecurityCenterGapicClient
     }
 
     /**
-     * Gets a big query export.
+     * Gets a BigQuery export.
      *
      * Sample code:
      * ```
@@ -1911,7 +1913,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. Name of the big query export to retrieve. Its format is
+     * @param string $name         Required. Name of the BigQuery export to retrieve. Its format is
      *                             organizations/{organization}/bigQueryExports/{export_id},
      *                             folders/{folder}/bigQueryExports/{export_id}, or
      *                             projects/{project}/bigQueryExports/{export_id}
@@ -2043,7 +2045,9 @@ class SecurityCenterGapicClient
      * ```
      *
      * @param string $name         Required. Name of the notification config to get. Its format is
-     *                             "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *                             "organizations/[organization_id]/notificationConfigs/[config_id]",
+     *                             "folders/[folder_id]/notificationConfigs/[config_id]",
+     *                             or "projects/[project_id]/notificationConfigs/[config_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -2176,7 +2180,7 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to groupBy. Its format is
+     * @param string $parent       Required. The name of the parent to group the assets by. Its format is
      *                             "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
      * @param string $groupBy      Required. Expression that defines what assets fields to use for grouping.
@@ -2580,8 +2584,8 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization assets should belong to. Its format is
-     *                             "organizations/[organization_id], folders/[folder_id], or
+     * @param string $parent       Required. The name of the parent that the listed assets belong to. Its
+     *                             format is "organizations/[organization_id], folders/[folder_id], or
      *                             projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
@@ -3150,9 +3154,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. Name of the organization to list notification configs. Its format
-     *                             is "organizations/[organization_id]", "folders/[folder_id]", or
-     *                             "projects/[project_id]".
+     * @param string $parent       Required. The name of the parent in which to list the notification
+     *                             configurations. Its format is "organizations/[organization_id]",
+     *                             "folders/[folder_id]", or "projects/[project_id]".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -3350,10 +3354,12 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string    $name         Required. The relative resource name of the finding. See:
-     *                                https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                                Example:
-     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}".
+     * @param string    $name         Required. The [relative resource
+     *                                name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                                of the finding. Example:
+     *                                "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
+     *                                "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
+     *                                "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
      * @param int       $state        Required. The desired State of the finding.
      *                                For allowed values, use constants defined on {@see \Google\Cloud\SecurityCenter\V1\Finding\State}
      * @param Timestamp $startTime    Required. The time at which the updated state takes effect.
@@ -3454,9 +3460,9 @@ class SecurityCenterGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the finding. See:
-     *                             https://cloud.google.com/apis/design/resource_names#relative_resource_name
-     *                             Example:
+     * @param string $name         Required. The [relative resource
+     *                             name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+     *                             of the finding. Example:
      *                             "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
      *                             "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
      *                             "projects/{project_id}/sources/{source_id}/findings/{finding_id}".
