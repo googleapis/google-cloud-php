@@ -62,7 +62,7 @@ function update_access_level_sample(): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AccessLevel $response */
+            /** @var AccessLevel $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

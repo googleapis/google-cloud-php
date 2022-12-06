@@ -37,31 +37,33 @@ use Google\Rpc\Status;
  * the changed binding is deployed onto all affected users, which may take
  * more time.
  *
- * @param string $gcpUserAccessBindingGroupKey Immutable. Google Group id whose members are subject to this binding's restrictions.
- *                                             See "id" in the [G Suite Directory API's Groups resource]
- *                                             (https://developers.google.com/admin-sdk/directory/v1/reference/groups#resource).
- *                                             If a group's email address/alias is changed, this resource will continue
- *                                             to point at the changed group. This field does not accept group email
- *                                             addresses or aliases.
- *                                             Example: "01d520gv4vjcrht"
- * @param string $formattedAccessLevelsElement Access level that a user must have to be granted access. Only one access
- *                                             level is supported, not multiple. This repeated field must have exactly
- *                                             one element.
- *                                             Example: "accessPolicies/9522/accessLevels/device_trusted"
- *                                             Please see {@see AccessContextManagerClient::accessLevelName()} for help formatting this field.
+ * @param string $gcpUserAccessBindingGroupKey                     Immutable. Google Group id whose members are subject to this binding's restrictions.
+ *                                                                 See "id" in the [G Suite Directory API's Groups resource]
+ *                                                                 (https://developers.google.com/admin-sdk/directory/v1/reference/groups#resource).
+ *                                                                 If a group's email address/alias is changed, this resource will continue
+ *                                                                 to point at the changed group. This field does not accept group email
+ *                                                                 addresses or aliases.
+ *                                                                 Example: "01d520gv4vjcrht"
+ * @param string $formattedGcpUserAccessBindingAccessLevelsElement Access level that a user must have to be granted access. Only one access
+ *                                                                 level is supported, not multiple. This repeated field must have exactly
+ *                                                                 one element.
+ *                                                                 Example: "accessPolicies/9522/accessLevels/device_trusted"
+ *                                                                 Please see {@see AccessContextManagerClient::accessLevelName()} for help formatting this field.
  */
 function update_gcp_user_access_binding_sample(
     string $gcpUserAccessBindingGroupKey,
-    string $formattedAccessLevelsElement
+    string $formattedGcpUserAccessBindingAccessLevelsElement
 ): void {
     // Create a client.
     $accessContextManagerClient = new AccessContextManagerClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
-    $formattedAccessLevels = [$formattedAccessLevelsElement,];
+    $formattedGcpUserAccessBindingAccessLevels = [
+        $formattedGcpUserAccessBindingAccessLevelsElement,
+    ];
     $gcpUserAccessBinding = (new GcpUserAccessBinding())
         ->setGroupKey($gcpUserAccessBindingGroupKey)
-        ->setAccessLevels($gcpUserAccessBindingAccessLevels);
+        ->setAccessLevels($formattedGcpUserAccessBindingAccessLevels);
     $updateMask = new FieldMask();
 
     // Call the API and handle any network failures.
@@ -69,13 +71,12 @@ function update_gcp_user_access_binding_sample(
         /** @var OperationResponse $response */
         $response = $accessContextManagerClient->updateGcpUserAccessBinding(
             $gcpUserAccessBinding,
-            $formattedAccessLevels,
             $updateMask
         );
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var GcpUserAccessBinding $response */
+            /** @var GcpUserAccessBinding $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -100,11 +101,14 @@ function update_gcp_user_access_binding_sample(
 function callSample(): void
 {
     $gcpUserAccessBindingGroupKey = '[GROUP_KEY]';
-    $formattedAccessLevelsElement = AccessContextManagerClient::accessLevelName(
+    $formattedGcpUserAccessBindingAccessLevelsElement = AccessContextManagerClient::accessLevelName(
         '[ACCESS_POLICY]',
         '[ACCESS_LEVEL]'
     );
 
-    update_gcp_user_access_binding_sample($gcpUserAccessBindingGroupKey, $formattedAccessLevelsElement);
+    update_gcp_user_access_binding_sample(
+        $gcpUserAccessBindingGroupKey,
+        $formattedGcpUserAccessBindingAccessLevelsElement
+    );
 }
 // [END accesscontextmanager_v1_generated_AccessContextManager_UpdateGcpUserAccessBinding_sync]

@@ -70,7 +70,7 @@ function replace_service_perimeters_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ReplaceServicePerimetersResponse $response */
+            /** @var ReplaceServicePerimetersResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -67,7 +67,7 @@ function commit_service_perimeters_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var CommitServicePerimetersResponse $response */
+            /** @var CommitServicePerimetersResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

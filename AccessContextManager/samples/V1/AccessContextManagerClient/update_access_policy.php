@@ -60,7 +60,7 @@ function update_access_policy_sample(): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AccessPolicy $response */
+            /** @var AccessPolicy $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

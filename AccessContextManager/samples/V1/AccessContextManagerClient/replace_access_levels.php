@@ -71,7 +71,7 @@ function replace_access_levels_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ReplaceAccessLevelsResponse $response */
+            /** @var ReplaceAccessLevelsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

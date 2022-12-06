@@ -62,7 +62,7 @@ function update_service_perimeter_sample(): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ServicePerimeter $response */
+            /** @var ServicePerimeter $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
