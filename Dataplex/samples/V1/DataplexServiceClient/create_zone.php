@@ -74,7 +74,7 @@ function create_zone_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Zone $response */
+            /** @var Zone $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

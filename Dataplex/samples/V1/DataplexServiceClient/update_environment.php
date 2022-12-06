@@ -58,7 +58,7 @@ function update_environment_sample(string $environmentInfrastructureSpecOsImageI
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Environment $response */
+            /** @var Environment $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

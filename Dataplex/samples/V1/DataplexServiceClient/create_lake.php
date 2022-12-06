@@ -60,7 +60,7 @@ function create_lake_sample(string $formattedParent, string $lakeId): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Lake $response */
+            /** @var Lake $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -68,7 +68,7 @@ function create_asset_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Asset $response */
+            /** @var Asset $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
