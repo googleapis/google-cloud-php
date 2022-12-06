@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dataform\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dataform\V1beta1\CommitAuthor;
 use Google\Cloud\Dataform\V1beta1\CompilationResult;
 use Google\Cloud\Dataform\V1beta1\CompilationResultAction;
@@ -67,25 +65,19 @@ use stdClass;
  */
 class DataformClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return DataformClient
-     */
+    /** @return DataformClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -94,9 +86,7 @@ class DataformClientTest extends GeneratedTest
         return new DataformClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelWorkflowInvocationTest()
     {
         $transport = $this->createTransport();
@@ -120,9 +110,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelWorkflowInvocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +143,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitWorkspaceChangesTest()
     {
         $transport = $this->createTransport();
@@ -188,9 +174,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function commitWorkspaceChangesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -228,9 +212,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompilationResultTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +246,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createCompilationResultExceptionTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +280,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +313,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -372,9 +348,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkflowInvocationTest()
     {
         $transport = $this->createTransport();
@@ -406,9 +380,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkflowInvocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -442,9 +414,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkspaceTest()
     {
         $transport = $this->createTransport();
@@ -477,9 +447,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createWorkspaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -514,9 +482,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -540,9 +506,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -575,9 +539,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkflowInvocationTest()
     {
         $transport = $this->createTransport();
@@ -601,9 +563,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkflowInvocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -636,9 +596,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkspaceTest()
     {
         $transport = $this->createTransport();
@@ -662,9 +620,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteWorkspaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -697,9 +653,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchFileDiffTest()
     {
         $transport = $this->createTransport();
@@ -729,9 +683,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchFileDiffExceptionTest()
     {
         $transport = $this->createTransport();
@@ -765,9 +717,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchFileGitStatusesTest()
     {
         $transport = $this->createTransport();
@@ -792,9 +742,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchFileGitStatusesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -827,9 +775,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchGitAheadBehindTest()
     {
         $transport = $this->createTransport();
@@ -858,9 +804,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchGitAheadBehindExceptionTest()
     {
         $transport = $this->createTransport();
@@ -893,9 +837,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchRemoteBranchesTest()
     {
         $transport = $this->createTransport();
@@ -920,9 +862,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function fetchRemoteBranchesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -955,9 +895,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompilationResultTest()
     {
         $transport = $this->createTransport();
@@ -988,9 +926,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getCompilationResultExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1023,9 +959,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -1052,9 +986,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1087,9 +1019,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkflowInvocationTest()
     {
         $transport = $this->createTransport();
@@ -1118,9 +1048,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkflowInvocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1153,9 +1081,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkspaceTest()
     {
         $transport = $this->createTransport();
@@ -1182,9 +1108,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getWorkspaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1217,9 +1141,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function installNpmPackagesTest()
     {
         $transport = $this->createTransport();
@@ -1244,9 +1166,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function installNpmPackagesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1279,9 +1199,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCompilationResultsTest()
     {
         $transport = $this->createTransport();
@@ -1316,9 +1234,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listCompilationResultsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1351,9 +1267,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRepositoriesTest()
     {
         $transport = $this->createTransport();
@@ -1388,9 +1302,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listRepositoriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1423,9 +1335,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkflowInvocationsTest()
     {
         $transport = $this->createTransport();
@@ -1460,9 +1370,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkflowInvocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1495,9 +1403,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkspacesTest()
     {
         $transport = $this->createTransport();
@@ -1532,9 +1438,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listWorkspacesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1567,9 +1471,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function makeDirectoryTest()
     {
         $transport = $this->createTransport();
@@ -1597,9 +1499,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function makeDirectoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1633,9 +1533,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveDirectoryTest()
     {
         $transport = $this->createTransport();
@@ -1666,9 +1564,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveDirectoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1703,9 +1599,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveFileTest()
     {
         $transport = $this->createTransport();
@@ -1736,9 +1630,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function moveFileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1773,9 +1665,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullGitCommitsTest()
     {
         $transport = $this->createTransport();
@@ -1806,9 +1696,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullGitCommitsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1846,9 +1734,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pushGitCommitsTest()
     {
         $transport = $this->createTransport();
@@ -1872,9 +1758,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pushGitCommitsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1907,9 +1791,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryCompilationResultActionsTest()
     {
         $transport = $this->createTransport();
@@ -1944,9 +1826,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryCompilationResultActionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1979,9 +1859,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryDirectoryContentsTest()
     {
         $transport = $this->createTransport();
@@ -2016,9 +1894,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryDirectoryContentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2051,9 +1927,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryWorkflowInvocationActionsTest()
     {
         $transport = $this->createTransport();
@@ -2088,9 +1962,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryWorkflowInvocationActionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2123,9 +1995,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readFileTest()
     {
         $transport = $this->createTransport();
@@ -2155,9 +2025,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function readFileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2191,9 +2059,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeDirectoryTest()
     {
         $transport = $this->createTransport();
@@ -2220,9 +2086,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeDirectoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2256,9 +2120,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeFileTest()
     {
         $transport = $this->createTransport();
@@ -2285,9 +2147,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeFileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2321,9 +2181,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetWorkspaceChangesTest()
     {
         $transport = $this->createTransport();
@@ -2347,9 +2205,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetWorkspaceChangesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2382,9 +2238,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRepositoryTest()
     {
         $transport = $this->createTransport();
@@ -2411,9 +2265,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateRepositoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2446,9 +2298,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeFileTest()
     {
         $transport = $this->createTransport();
@@ -2479,9 +2329,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function writeFileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2516,9 +2364,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2545,9 +2391,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2578,9 +2422,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2611,9 +2453,7 @@ class DataformClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

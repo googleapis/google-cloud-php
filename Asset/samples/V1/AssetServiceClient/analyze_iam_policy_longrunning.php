@@ -72,7 +72,7 @@ function analyze_iam_policy_longrunning_sample(string $analysisQueryScope): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AnalyzeIamPolicyLongrunningResponse $response */
+            /** @var AnalyzeIamPolicyLongrunningResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

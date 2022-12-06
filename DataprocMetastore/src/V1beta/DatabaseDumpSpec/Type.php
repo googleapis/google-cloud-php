@@ -25,10 +25,17 @@ class Type
      * Generated from protobuf enum <code>MYSQL = 1;</code>
      */
     const MYSQL = 1;
+    /**
+     * Database dump contains Avro files.
+     *
+     * Generated from protobuf enum <code>AVRO = 2;</code>
+     */
+    const AVRO = 2;
 
     private static $valueToName = [
         self::TYPE_UNSPECIFIED => 'TYPE_UNSPECIFIED',
         self::MYSQL => 'MYSQL',
+        self::AVRO => 'AVRO',
     ];
 
     public static function name($value)

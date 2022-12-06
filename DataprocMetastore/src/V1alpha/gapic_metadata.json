@@ -88,6 +88,40 @@
                     }
                 }
             }
+        },
+        "DataprocMetastoreFederation": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "DataprocMetastoreFederationGapicClient",
+                    "rpcs": {
+                        "CreateFederation": {
+                            "methods": [
+                                "createFederation"
+                            ]
+                        },
+                        "DeleteFederation": {
+                            "methods": [
+                                "deleteFederation"
+                            ]
+                        },
+                        "GetFederation": {
+                            "methods": [
+                                "getFederation"
+                            ]
+                        },
+                        "ListFederations": {
+                            "methods": [
+                                "listFederations"
+                            ]
+                        },
+                        "UpdateFederation": {
+                            "methods": [
+                                "updateFederation"
+                            ]
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -25,7 +25,6 @@ namespace Google\Cloud\Sql\Tests\Unit\V1beta4;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1beta4\FlagsListResponse;
 use Google\Cloud\Sql\V1beta4\SqlFlagsServiceClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class SqlFlagsServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SqlFlagsServiceClient
-     */
+    /** @return SqlFlagsServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class SqlFlagsServiceClientTest extends GeneratedTest
         return new SqlFlagsServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -91,9 +82,7 @@ class SqlFlagsServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();

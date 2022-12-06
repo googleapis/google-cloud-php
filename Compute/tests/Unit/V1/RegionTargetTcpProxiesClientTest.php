@@ -69,7 +69,7 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -133,7 +133,7 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -274,7 +274,7 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -338,7 +338,7 @@ class RegionTargetTcpProxiesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new RegionOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

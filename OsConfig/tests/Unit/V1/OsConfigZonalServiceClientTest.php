@@ -23,25 +23,22 @@
 namespace Google\Cloud\OsConfig\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\OsConfig\V1\FixedOrPercent;
 use Google\Cloud\OsConfig\V1\Inventory;
-
 use Google\Cloud\OsConfig\V1\ListInventoriesResponse;
 use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentReportsResponse;
 use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentRevisionsResponse;
 use Google\Cloud\OsConfig\V1\ListOSPolicyAssignmentsResponse;
 use Google\Cloud\OsConfig\V1\ListVulnerabilityReportsResponse;
-use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment;
+use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment\InstanceFilter;
 use Google\Cloud\OsConfig\V1\OSPolicyAssignment\Rollout;
-use Google\Cloud\OsConfig\V1\OSPolicyAssignmentReport;
+use Google\Cloud\OsConfig\V1\OsConfigZonalServiceClient;
 use Google\Cloud\OsConfig\V1\VulnerabilityReport;
 use Google\LongRunning\GetOperationRequest;
 use Google\LongRunning\Operation;
@@ -58,25 +55,19 @@ use stdClass;
  */
 class OsConfigZonalServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return OsConfigZonalServiceClient
-     */
+    /** @return OsConfigZonalServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -85,14 +76,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         return new OsConfigZonalServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOSPolicyAssignmentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -181,14 +170,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOSPolicyAssignmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -250,14 +237,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOSPolicyAssignmentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -314,14 +299,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteOSPolicyAssignmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -371,9 +354,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInventoryTest()
     {
         $transport = $this->createTransport();
@@ -400,9 +381,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getInventoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -435,9 +414,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOSPolicyAssignmentTest()
     {
         $transport = $this->createTransport();
@@ -478,9 +455,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOSPolicyAssignmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -513,9 +488,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOSPolicyAssignmentReportTest()
     {
         $transport = $this->createTransport();
@@ -548,9 +521,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getOSPolicyAssignmentReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -583,9 +554,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVulnerabilityReportTest()
     {
         $transport = $this->createTransport();
@@ -612,9 +581,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVulnerabilityReportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -647,9 +614,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInventoriesTest()
     {
         $transport = $this->createTransport();
@@ -684,9 +649,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listInventoriesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -719,9 +682,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentReportsTest()
     {
         $transport = $this->createTransport();
@@ -756,9 +717,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -791,9 +750,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentRevisionsTest()
     {
         $transport = $this->createTransport();
@@ -828,9 +785,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentRevisionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -863,9 +818,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentsTest()
     {
         $transport = $this->createTransport();
@@ -900,9 +853,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listOSPolicyAssignmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -935,9 +886,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVulnerabilityReportsTest()
     {
         $transport = $this->createTransport();
@@ -972,9 +921,7 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVulnerabilityReportsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1007,14 +954,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOSPolicyAssignmentTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1097,14 +1042,12 @@ class OsConfigZonalServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateOSPolicyAssignmentExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

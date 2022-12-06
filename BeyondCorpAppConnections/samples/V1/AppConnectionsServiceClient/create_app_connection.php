@@ -69,7 +69,7 @@ function create_app_connection_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AppConnection $response */
+            /** @var AppConnection $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

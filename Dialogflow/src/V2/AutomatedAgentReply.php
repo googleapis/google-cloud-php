@@ -35,6 +35,14 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>bool allow_cancellation = 8;</code>
      */
     private $allow_cancellation = false;
+    /**
+     * The unique identifier of the current Dialogflow CX conversation page.
+     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *
+     * Generated from protobuf field <code>string cx_current_page = 11;</code>
+     */
+    private $cx_current_page = '';
 
     /**
      * Constructor.
@@ -50,6 +58,10 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
      *           Indicates whether the partial automated agent reply is interruptible when a
      *           later reply message arrives. e.g. if the agent specified some music as
      *           partial response, it can be cancelled.
+     *     @type string $cx_current_page
+     *           The unique identifier of the current Dialogflow CX conversation page.
+     *           Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     *           ID>/flows/<Flow ID>/pages/<Page ID>`.
      * }
      */
     public function __construct($data = NULL) {
@@ -145,6 +157,36 @@ class AutomatedAgentReply extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkBool($var);
         $this->allow_cancellation = $var;
+
+        return $this;
+    }
+
+    /**
+     * The unique identifier of the current Dialogflow CX conversation page.
+     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *
+     * Generated from protobuf field <code>string cx_current_page = 11;</code>
+     * @return string
+     */
+    public function getCxCurrentPage()
+    {
+        return $this->cx_current_page;
+    }
+
+    /**
+     * The unique identifier of the current Dialogflow CX conversation page.
+     * Format: `projects/<Project ID>/locations/<Location ID>/agents/<Agent
+     * ID>/flows/<Flow ID>/pages/<Page ID>`.
+     *
+     * Generated from protobuf field <code>string cx_current_page = 11;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setCxCurrentPage($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->cx_current_page = $var;
 
         return $this;
     }

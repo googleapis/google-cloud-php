@@ -43,6 +43,12 @@ class State
      * Generated from protobuf enum <code>FAILED = 4;</code>
      */
     const FAILED = 4;
+    /**
+     * The backup is being restored.
+     *
+     * Generated from protobuf enum <code>RESTORING = 5;</code>
+     */
+    const RESTORING = 5;
 
     private static $valueToName = [
         self::STATE_UNSPECIFIED => 'STATE_UNSPECIFIED',
@@ -50,6 +56,7 @@ class State
         self::DELETING => 'DELETING',
         self::ACTIVE => 'ACTIVE',
         self::FAILED => 'FAILED',
+        self::RESTORING => 'RESTORING',
     ];
 
     public static function name($value)

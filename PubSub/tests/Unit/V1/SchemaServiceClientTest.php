@@ -23,11 +23,9 @@
 namespace Google\Cloud\PubSub\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\PubSub\V1\ListSchemasResponse;
@@ -46,25 +44,19 @@ use stdClass;
  */
 class SchemaServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SchemaServiceClient
-     */
+    /** @return SchemaServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +65,7 @@ class SchemaServiceClientTest extends GeneratedTest
         return new SchemaServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSchemaTest()
     {
         $transport = $this->createTransport();
@@ -109,9 +99,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -147,9 +135,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSchemaTest()
     {
         $transport = $this->createTransport();
@@ -173,9 +159,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -208,9 +192,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSchemaTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +221,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,9 +254,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSchemasTest()
     {
         $transport = $this->createTransport();
@@ -311,9 +289,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSchemasExceptionTest()
     {
         $transport = $this->createTransport();
@@ -346,9 +322,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateMessageTest()
     {
         $transport = $this->createTransport();
@@ -373,9 +347,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateMessageExceptionTest()
     {
         $transport = $this->createTransport();
@@ -408,9 +380,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateSchemaTest()
     {
         $transport = $this->createTransport();
@@ -440,9 +410,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function validateSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -478,9 +446,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -509,9 +475,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -544,9 +508,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -578,9 +540,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -614,9 +574,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -644,9 +602,7 @@ class SchemaServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

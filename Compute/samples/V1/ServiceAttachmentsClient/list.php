@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_ServiceAttachments_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\ServiceAttachment;
 use Google\Cloud\Compute\V1\ServiceAttachmentsClient;
 
 /**
@@ -44,7 +43,6 @@ function list_sample(string $project, string $region): void
         /** @var PagedListResponse $response */
         $response = $serviceAttachmentsClient->list($project, $region);
 
-        /** @var ServiceAttachment $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

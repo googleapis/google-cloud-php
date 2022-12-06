@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\Environment;
 use Google\Cloud\Dialogflow\V2\EnvironmentHistory;
 use Google\Cloud\Dialogflow\V2\EnvironmentHistory\Entry;
@@ -47,25 +45,19 @@ use stdClass;
  */
 class EnvironmentsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return EnvironmentsClient
-     */
+    /** @return EnvironmentsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -74,9 +66,7 @@ class EnvironmentsClientTest extends GeneratedTest
         return new EnvironmentsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -113,9 +103,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -150,9 +138,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -176,9 +162,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +195,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -244,9 +226,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -279,9 +259,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentHistoryTest()
     {
         $transport = $this->createTransport();
@@ -318,9 +296,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEnvironmentHistoryExceptionTest()
     {
         $transport = $this->createTransport();
@@ -353,9 +329,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsTest()
     {
         $transport = $this->createTransport();
@@ -390,9 +364,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEnvironmentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -425,9 +397,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEnvironmentTest()
     {
         $transport = $this->createTransport();
@@ -461,9 +431,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEnvironmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -497,9 +465,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -526,9 +492,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -559,9 +523,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -592,9 +554,7 @@ class EnvironmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstanceGroupsClient;
 use Google\Cloud\Compute\V1\InstanceGroupsListInstancesRequest;
-use Google\Cloud\Compute\V1\InstanceWithNamedPorts;
 
 /**
  * Lists the instances in the specified instance group. The orderBy query parameter is not supported. The filter query parameter is supported, but only for expressions that use `eq` (equal) or `ne` (not equal) operators.
@@ -54,7 +53,6 @@ function list_instances_sample(string $instanceGroup, string $project, string $z
             $zone
         );
 
-        /** @var InstanceWithNamedPorts $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
