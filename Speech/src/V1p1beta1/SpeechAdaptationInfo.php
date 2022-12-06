@@ -21,14 +21,14 @@ class SpeechAdaptationInfo extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>bool adaptation_timeout = 1;</code>
      */
-    protected $adaptation_timeout = false;
+    private $adaptation_timeout = false;
     /**
      * If set, returns a message specifying which part of the speech adaptation
      * request timed out.
      *
      * Generated from protobuf field <code>string timeout_message = 4;</code>
      */
-    protected $timeout_message = '';
+    private $timeout_message = '';
 
     /**
      * Constructor.
