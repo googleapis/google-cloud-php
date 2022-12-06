@@ -16,7 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class Service extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the following
+     * format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -89,6 +90,8 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * The one hour maintenance window of the metastore service. This specifies
      * when the service can be restarted for maintenance purposes in UTC time.
+     * Maintenance window is not needed for services with the SPANNER
+     * database type.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MaintenanceWindow maintenance_window = 15;</code>
      */
@@ -112,6 +115,33 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.metastore.v1.Service.ReleaseChannel release_channel = 19 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
     private $release_channel = 0;
+    /**
+     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
+     * customer data at rest. Cannot be updated.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $encryption_config = null;
+    /**
+     * The configuration specifying the network settings for the
+     * Dataproc Metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.NetworkConfig network_config = 21;</code>
+     */
+    private $network_config = null;
+    /**
+     * Immutable. The database type that the Metastore service stores its data.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.Service.DatabaseType database_type = 22 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     */
+    private $database_type = 0;
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.TelemetryConfig telemetry_config = 23;</code>
+     */
+    private $telemetry_config = null;
     protected $metastore_config;
 
     /**
@@ -124,7 +154,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *           Configuration information specific to running Hive metastore
      *           software as the metastore service.
      *     @type string $name
-     *           Immutable. The relative resource name of the metastore service, of the form:
+     *           Immutable. The relative resource name of the metastore service, in the following
+     *           format:
      *           `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *     @type \Google\Protobuf\Timestamp $create_time
      *           Output only. The time when the metastore service was created.
@@ -153,6 +184,8 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\Metastore\V1\MaintenanceWindow $maintenance_window
      *           The one hour maintenance window of the metastore service. This specifies
      *           when the service can be restarted for maintenance purposes in UTC time.
+     *           Maintenance window is not needed for services with the SPANNER
+     *           database type.
      *     @type string $uid
      *           Output only. The globally unique resource identifier of the metastore service.
      *     @type \Google\Cloud\Metastore\V1\MetadataManagementActivity $metadata_management_activity
@@ -160,6 +193,17 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type int $release_channel
      *           Immutable. The release channel of the service.
      *           If unspecified, defaults to `STABLE`.
+     *     @type \Google\Cloud\Metastore\V1\EncryptionConfig $encryption_config
+     *           Immutable. Information used to configure the Dataproc Metastore service to encrypt
+     *           customer data at rest. Cannot be updated.
+     *     @type \Google\Cloud\Metastore\V1\NetworkConfig $network_config
+     *           The configuration specifying the network settings for the
+     *           Dataproc Metastore service.
+     *     @type int $database_type
+     *           Immutable. The database type that the Metastore service stores its data.
+     *     @type \Google\Cloud\Metastore\V1\TelemetryConfig $telemetry_config
+     *           The configuration specifying telemetry settings for the Dataproc Metastore
+     *           service. If unspecified defaults to `JSON`.
      * }
      */
     public function __construct($data = NULL) {
@@ -201,7 +245,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the following
+     * format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -213,7 +258,8 @@ class Service extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:
+     * Immutable. The relative resource name of the metastore service, in the following
+     * format:
      * `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
@@ -519,6 +565,8 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * The one hour maintenance window of the metastore service. This specifies
      * when the service can be restarted for maintenance purposes in UTC time.
+     * Maintenance window is not needed for services with the SPANNER
+     * database type.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MaintenanceWindow maintenance_window = 15;</code>
      * @return \Google\Cloud\Metastore\V1\MaintenanceWindow|null
@@ -541,6 +589,8 @@ class Service extends \Google\Protobuf\Internal\Message
     /**
      * The one hour maintenance window of the metastore service. This specifies
      * when the service can be restarted for maintenance purposes in UTC time.
+     * Maintenance window is not needed for services with the SPANNER
+     * database type.
      *
      * Generated from protobuf field <code>.google.cloud.metastore.v1.MaintenanceWindow maintenance_window = 15;</code>
      * @param \Google\Cloud\Metastore\V1\MaintenanceWindow $var
@@ -640,6 +690,146 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \Google\Cloud\Metastore\V1\Service\ReleaseChannel::class);
         $this->release_channel = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
+     * customer data at rest. Cannot be updated.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return \Google\Cloud\Metastore\V1\EncryptionConfig|null
+     */
+    public function getEncryptionConfig()
+    {
+        return $this->encryption_config;
+    }
+
+    public function hasEncryptionConfig()
+    {
+        return isset($this->encryption_config);
+    }
+
+    public function clearEncryptionConfig()
+    {
+        unset($this->encryption_config);
+    }
+
+    /**
+     * Immutable. Information used to configure the Dataproc Metastore service to encrypt
+     * customer data at rest. Cannot be updated.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.EncryptionConfig encryption_config = 20 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param \Google\Cloud\Metastore\V1\EncryptionConfig $var
+     * @return $this
+     */
+    public function setEncryptionConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1\EncryptionConfig::class);
+        $this->encryption_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration specifying the network settings for the
+     * Dataproc Metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.NetworkConfig network_config = 21;</code>
+     * @return \Google\Cloud\Metastore\V1\NetworkConfig|null
+     */
+    public function getNetworkConfig()
+    {
+        return $this->network_config;
+    }
+
+    public function hasNetworkConfig()
+    {
+        return isset($this->network_config);
+    }
+
+    public function clearNetworkConfig()
+    {
+        unset($this->network_config);
+    }
+
+    /**
+     * The configuration specifying the network settings for the
+     * Dataproc Metastore service.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.NetworkConfig network_config = 21;</code>
+     * @param \Google\Cloud\Metastore\V1\NetworkConfig $var
+     * @return $this
+     */
+    public function setNetworkConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1\NetworkConfig::class);
+        $this->network_config = $var;
+
+        return $this;
+    }
+
+    /**
+     * Immutable. The database type that the Metastore service stores its data.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.Service.DatabaseType database_type = 22 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @return int
+     */
+    public function getDatabaseType()
+    {
+        return $this->database_type;
+    }
+
+    /**
+     * Immutable. The database type that the Metastore service stores its data.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.Service.DatabaseType database_type = 22 [(.google.api.field_behavior) = IMMUTABLE];</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDatabaseType($var)
+    {
+        GPBUtil::checkEnum($var, \Google\Cloud\Metastore\V1\Service\DatabaseType::class);
+        $this->database_type = $var;
+
+        return $this;
+    }
+
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.TelemetryConfig telemetry_config = 23;</code>
+     * @return \Google\Cloud\Metastore\V1\TelemetryConfig|null
+     */
+    public function getTelemetryConfig()
+    {
+        return $this->telemetry_config;
+    }
+
+    public function hasTelemetryConfig()
+    {
+        return isset($this->telemetry_config);
+    }
+
+    public function clearTelemetryConfig()
+    {
+        unset($this->telemetry_config);
+    }
+
+    /**
+     * The configuration specifying telemetry settings for the Dataproc Metastore
+     * service. If unspecified defaults to `JSON`.
+     *
+     * Generated from protobuf field <code>.google.cloud.metastore.v1.TelemetryConfig telemetry_config = 23;</code>
+     * @param \Google\Cloud\Metastore\V1\TelemetryConfig $var
+     * @return $this
+     */
+    public function setTelemetryConfig($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\Metastore\V1\TelemetryConfig::class);
+        $this->telemetry_config = $var;
 
         return $this;
     }

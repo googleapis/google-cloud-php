@@ -48,8 +48,9 @@ class MetadataExport extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $destination_gcs_uri
-     *           Output only. A Cloud Storage URI of a folder that metadata are exported to, in the
-     *           form of `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
+     *           Output only. A Cloud Storage URI of a folder that metadata are exported
+     *           to, in the form of
+     *           `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
      *           `<export_folder>` is automatically generated.
      *     @type \Google\Protobuf\Timestamp $start_time
      *           Output only. The time when the export started.
@@ -67,8 +68,9 @@ class MetadataExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the
-     * form of `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
+     * Output only. A Cloud Storage URI of a folder that metadata are exported
+     * to, in the form of
+     * `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
      * `<export_folder>` is automatically generated.
      *
      * Generated from protobuf field <code>string destination_gcs_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
@@ -85,8 +87,9 @@ class MetadataExport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the
-     * form of `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
+     * Output only. A Cloud Storage URI of a folder that metadata are exported
+     * to, in the form of
+     * `gs://<bucket_name>/<path_inside_bucket>/<export_folder>`, where
      * `<export_folder>` is automatically generated.
      *
      * Generated from protobuf field <code>string destination_gcs_uri = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>

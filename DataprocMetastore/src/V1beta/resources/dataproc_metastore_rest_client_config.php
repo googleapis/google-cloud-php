@@ -221,6 +221,24 @@ return [
             'GetIamPolicy' => [
                 'method' => 'get',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:getIamPolicy',
+                'additionalBindings' => [
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:getIamPolicy',
+                    ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:getIamPolicy',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -233,6 +251,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:setIamPolicy',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
@@ -245,6 +285,28 @@ return [
                 'method' => 'post',
                 'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*}:testIamPermissions',
                 'body' => '*',
+                'additionalBindings' => [
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/backups/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1beta/{resource=projects/*/locations/*/federations/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                ],
                 'placeholders' => [
                     'resource' => [
                         'getters' => [
