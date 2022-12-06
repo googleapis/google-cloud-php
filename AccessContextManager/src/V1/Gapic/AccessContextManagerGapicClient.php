@@ -27,18 +27,20 @@ namespace Google\Identity\AccessContextManager\V1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
-
 use Google\ApiCore\Transport\TransportInterface;
-
 use Google\ApiCore\ValidationException;
 use Google\Auth\FetchAuthTokenInterface;
+use Google\Cloud\Iam\V1\GetIamPolicyRequest;
+use Google\Cloud\Iam\V1\GetPolicyOptions;
+use Google\Cloud\Iam\V1\Policy;
+use Google\Cloud\Iam\V1\SetIamPolicyRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsRequest;
+use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Identity\AccessContextManager\V1\AccessLevel;
 use Google\Identity\AccessContextManager\V1\AccessPolicy;
 use Google\Identity\AccessContextManager\V1\CommitServicePerimetersRequest;
@@ -70,7 +72,6 @@ use Google\Identity\AccessContextManager\V1\ReplaceServicePerimetersResponse;
 use Google\Identity\AccessContextManager\V1\ServicePerimeter;
 use Google\Identity\AccessContextManager\V1\UpdateAccessLevelRequest;
 use Google\Identity\AccessContextManager\V1\UpdateAccessPolicyRequest;
-
 use Google\Identity\AccessContextManager\V1\UpdateGcpUserAccessBindingRequest;
 use Google\Identity\AccessContextManager\V1\UpdateServicePerimeterRequest;
 use Google\LongRunning\Operation;
@@ -78,15 +79,15 @@ use Google\Protobuf\FieldMask;
 use Google\Protobuf\Timestamp;
 
 /**
- * Service Description: API for setting [Access Levels]
- * [google.identity.accesscontextmanager.v1.AccessLevel] and [Service
- * Perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
- * for Google Cloud Projects. Each organization has one [AccessPolicy]
- * [google.identity.accesscontextmanager.v1.AccessPolicy] containing the
- * [Access Levels] [google.identity.accesscontextmanager.v1.AccessLevel]
- * and [Service Perimeters]
+ * Service Description: API for setting [access levels]
+ * [google.identity.accesscontextmanager.v1.AccessLevel] and [service
+ * perimeters] [google.identity.accesscontextmanager.v1.ServicePerimeter]
+ * for Google Cloud projects. Each organization has one [access policy]
+ * [google.identity.accesscontextmanager.v1.AccessPolicy] that contains the
+ * [access levels] [google.identity.accesscontextmanager.v1.AccessLevel]
+ * and [service perimeters]
  * [google.identity.accesscontextmanager.v1.ServicePerimeter]. This
- * [AccessPolicy] [google.identity.accesscontextmanager.v1.AccessPolicy] is
+ * [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy] is
  * applicable to all resources in the organization.
  * AccessPolicies
  *
@@ -137,29 +138,19 @@ class AccessContextManagerGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.identity.accesscontextmanager.v1.AccessContextManager';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'accesscontextmanager.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -451,9 +442,6 @@ class AccessContextManagerGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'accesscontextmanager.googleapis.com:443'.
@@ -483,7 +471,7 @@ class AccessContextManagerGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -510,21 +498,21 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Commit the dry-run spec for all the [Service Perimeters]
+     * Commits the dry-run specification for all the [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
-     * [Access Policy][google.identity.accesscontextmanager.v1.AccessPolicy].
-     * A commit operation on a Service Perimeter involves copying its `spec` field
-     * to that Service Perimeter's `status` field. Only [Service Perimeters]
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * A commit operation on a service perimeter involves copying its `spec` field
+     * to the `status` field of the service perimeter. Only [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] with
      * `use_explicit_dry_run_spec` field set to true are affected by a commit
-     * operation. The longrunning operation from this RPC will have a successful
-     * status once the dry-run specs for all the [Service Perimeters]
+     * operation. The long-running operation from this RPC has a successful
+     * status after the dry-run specifications for all the [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] have been
-     * committed. If a commit fails, it will cause the longrunning operation to
-     * return an error response and the entire commit operation will be cancelled.
-     * When successful, Operation.response field will contain
-     * CommitServicePerimetersResponse. The `dry_run` and the `spec` fields will
-     * be cleared after a successful commit operation.
+     * committed. If a commit fails, it causes the long-running operation to
+     * return an error response and the entire commit operation is cancelled.
+     * When successful, the Operation.response field contains
+     * CommitServicePerimetersResponse. The `dry_run` and the `spec` fields are
+     * cleared after a successful commit operation.
      *
      * Sample code:
      * ```
@@ -574,7 +562,7 @@ class AccessContextManagerGapicClient
      *
      *     @type string $etag
      *           Optional. The etag for the version of the [Access Policy]
-     *           [google.identity.accesscontextmanager.v1alpha.AccessPolicy] that this
+     *           [google.identity.accesscontextmanager.v1.AccessPolicy] that this
      *           commit operation is to be performed on. If, at the time of commit, the
      *           etag for the Access Policy stored in Access Context Manager is different
      *           from the specified etag, then the commit operation will not be performed
@@ -615,13 +603,13 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Create an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel]. The longrunning
-     * operation from this RPC will have a successful status once the [Access
-     * Level] [google.identity.accesscontextmanager.v1.AccessLevel] has
-     * propagated to long-lasting storage. [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] containing
-     * errors will result in an error response for the first error encountered.
+     * Creates an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+     * operation from this RPC has a successful status after the [access
+     * level] [google.identity.accesscontextmanager.v1.AccessLevel]
+     * propagates to long-lasting storage. If [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] contain
+     * errors, an error response is returned for the first error encountered.
      *
      * Sample code:
      * ```
@@ -707,10 +695,10 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Create an `AccessPolicy`. Fails if this organization already has a
-     * `AccessPolicy`. The longrunning Operation will have a successful status
-     * once the `AccessPolicy` has propagated to long-lasting storage.
-     * Syntactic and basic semantic errors will be returned in `metadata` as a
+     * Creates an access policy. This method fails if the organization already has
+     * an access policy. The long-running operation has a successful status
+     * after the access policy propagates to long-lasting storage.
+     * Syntactic and basic semantic errors are returned in `metadata` as a
      * BadRequest proto.
      *
      * Sample code:
@@ -760,6 +748,21 @@ class AccessContextManagerGapicClient
      *           `organizations/{organization_id}`
      *     @type string $title
      *           Required. Human readable title. Does not affect behavior.
+     *     @type string[] $scopes
+     *           The scopes of a policy define which resources an ACM policy can restrict,
+     *           and where ACM resources can be referenced.
+     *           For example, a policy with scopes=["folders/123"] has the following
+     *           behavior:
+     *           - vpcsc perimeters can only restrict projects within folders/123
+     *           - access levels can only be referenced by resources within folders/123.
+     *           If empty, there are no limitations on which resources can be restricted by
+     *           an ACM policy, and there are no limitations on where ACM resources can be
+     *           referenced.
+     *           Only one policy can include a given scope (attempting to create a second
+     *           policy which includes "folders/123" will result in an error).
+     *           Currently, scopes cannot be modified after a policy is created.
+     *           Currently, policies can only have a single scope.
+     *           Format: list of `folders/{folder_number}` or `projects/{project_number}`
      *     @type Timestamp $createTime
      *           Output only. Time the `AccessPolicy` was created in UTC.
      *     @type Timestamp $updateTime
@@ -794,6 +797,10 @@ class AccessContextManagerGapicClient
             $request->setTitle($optionalArgs['title']);
         }
 
+        if (isset($optionalArgs['scopes'])) {
+            $request->setScopes($optionalArgs['scopes']);
+        }
+
         if (isset($optionalArgs['createTime'])) {
             $request->setCreateTime($optionalArgs['createTime']);
         }
@@ -819,7 +826,7 @@ class AccessContextManagerGapicClient
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding]. If the
      * client specifies a [name]
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.name],
-     * the server will ignore it. Fails if a resource already exists with the same
+     * the server ignores it. Fails if a resource already exists with the same
      * [group_key]
      * [google.identity.accesscontextmanager.v1.GcpUserAccessBinding.group_key].
      * Completion of this long-running operation does not necessarily signify that
@@ -904,14 +911,14 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Create a [Service Perimeter]
+     * Creates a [service perimeter]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
-     * longrunning operation from this RPC will have a successful status once the
-     * [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] has
-     * propagated to long-lasting storage. [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] containing
-     * errors will result in an error response for the first error encountered.
+     * long-running operation from this RPC has a successful status after the
+     * [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter]
+     * propagates to long-lasting storage. If a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+     * errors, an error response is returned for the first error encountered.
      *
      * Sample code:
      * ```
@@ -997,10 +1004,10 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Delete an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] by resource
-     * name. The longrunning operation from this RPC will have a successful status
-     * once the [Access Level]
+     * Deletes an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
+     * name. The long-running operation from this RPC has a successful status
+     * after the [access level]
      * [google.identity.accesscontextmanager.v1.AccessLevel] has been removed
      * from long-lasting storage.
      *
@@ -1077,11 +1084,11 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Delete an [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] by resource
-     * name. The longrunning Operation will have a successful status once the
-     * [AccessPolicy] [google.identity.accesscontextmanager.v1.AccessPolicy]
-     * has been removed from long-lasting storage.
+     * Deletes an [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the
+     * resource name. The long-running operation has a successful status after the
+     * [access policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
+     * is removed from long-lasting storage.
      *
      * Sample code:
      * ```
@@ -1229,12 +1236,12 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Delete a [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] by resource
-     * name. The longrunning operation from this RPC will have a successful status
-     * once the [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] has been
-     * removed from long-lasting storage.
+     * Deletes a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+     * resource name. The long-running operation from this RPC has a successful
+     * status after the [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] is removed from
+     * long-lasting storage.
      *
      * Sample code:
      * ```
@@ -1309,8 +1316,8 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Get an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] by resource
+     * Gets an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] based on the resource
      * name.
      *
      * Sample code:
@@ -1377,8 +1384,8 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Get an [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] by name.
+     * Returns an [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] based on the name.
      *
      * Sample code:
      * ```
@@ -1478,9 +1485,66 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Get a [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] by resource
-     * name.
+     * Gets the IAM policy for the specified Access Context Manager
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     *
+     * Sample code:
+     * ```
+     * $accessContextManagerClient = new AccessContextManagerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $response = $accessContextManagerClient->getIamPolicy($resource);
+     * } finally {
+     *     $accessContextManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being requested.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type GetPolicyOptions $options
+     *           OPTIONAL: A `GetPolicyOptions` object for specifying options to
+     *           `GetIamPolicy`.
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function getIamPolicy($resource, array $optionalArgs = [])
+    {
+        $request = new GetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['options'])) {
+            $request->setOptions($optionalArgs['options']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'GetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Gets a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] based on the
+     * resource name.
      *
      * Sample code:
      * ```
@@ -1532,7 +1596,7 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * List all [Access Levels]
+     * Lists all [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] for an access
      * policy.
      *
@@ -1624,9 +1688,9 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * List all [AccessPolicies]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] under a
-     * container.
+     * Lists all [access policies]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] in an
+     * organization.
      *
      * Sample code:
      * ```
@@ -1778,7 +1842,7 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * List all [Service Perimeters]
+     * Lists all [service perimeters]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter] for an
      * access policy.
      *
@@ -1861,22 +1925,22 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Replace all existing [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] in an [Access
-     * Policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
-     * the [Access Levels]
+     * Replaces all existing [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] in an [access
+     * policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with
+     * the [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] provided. This
-     * is done atomically. The longrunning operation from this RPC will have a
-     * successful status once all replacements have propagated to long-lasting
-     * storage. Replacements containing errors will result in an error response
-     * for the first error encountered.  Replacement will be cancelled on error,
-     * existing [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] will not be
-     * affected. Operation.response field will contain
-     * ReplaceAccessLevelsResponse. Removing [Access Levels]
+     * is done atomically. The long-running operation from this RPC has a
+     * successful status after all replacements propagate to long-lasting
+     * storage. If the replacement contains errors, an error response is returned
+     * for the first error encountered.  Upon error, the replacement is cancelled,
+     * and existing [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] are not
+     * affected. The Operation.response field contains
+     * ReplaceAccessLevelsResponse. Removing [access levels]
      * [google.identity.accesscontextmanager.v1.AccessLevel] contained in existing
-     * [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] will result in
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] result in an
      * error.
      *
      * Sample code:
@@ -1977,18 +2041,18 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Replace all existing [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an
-     * [Access Policy] [google.identity.accesscontextmanager.v1.AccessPolicy]
-     * with the [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] provided.
-     * This is done atomically. The longrunning operation from this
-     * RPC will have a successful status once all replacements have propagated to
-     * long-lasting storage. Replacements containing errors will result in an
-     * error response for the first error encountered. Replacement will be
-     * cancelled on error, existing [Service Perimeters]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] will not be
-     * affected. Operation.response field will contain
+     * Replace all existing [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] in an [access
+     * policy] [google.identity.accesscontextmanager.v1.AccessPolicy] with the
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] provided. This
+     * is done atomically. The long-running operation from this RPC has a
+     * successful status after all replacements propagate to long-lasting storage.
+     * Replacements containing errors result in an error response for the first
+     * error encountered. Upon an error, replacement are cancelled and existing
+     * [service perimeters]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] are not
+     * affected. The Operation.response field contains
      * ReplaceServicePerimetersResponse.
      *
      * Sample code:
@@ -2089,14 +2153,147 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Update an [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel]. The longrunning
-     * operation from this RPC will have a successful status once the changes to
-     * the [Access Level]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] have propagated
-     * to long-lasting storage. [Access Levels]
-     * [google.identity.accesscontextmanager.v1.AccessLevel] containing
-     * errors will result in an error response for the first error encountered.
+     * Sets the IAM policy for the specified Access Context Manager
+     * [access policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     * This method replaces the existing IAM policy on the access policy. The IAM
+     * policy controls the set of users who can perform specific operations on the
+     * Access Context Manager [access
+     * policy][google.identity.accesscontextmanager.v1.AccessPolicy].
+     *
+     * Sample code:
+     * ```
+     * $accessContextManagerClient = new AccessContextManagerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $policy = new Policy();
+     *     $response = $accessContextManagerClient->setIamPolicy($resource, $policy);
+     * } finally {
+     *     $accessContextManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string $resource     REQUIRED: The resource for which the policy is being specified.
+     *                             See the operation documentation for the appropriate value for this field.
+     * @param Policy $policy       REQUIRED: The complete policy to be applied to the `resource`. The size of
+     *                             the policy is limited to a few 10s of KB. An empty policy is a
+     *                             valid policy but certain Cloud Platform services (such as Projects)
+     *                             might reject them.
+     * @param array  $optionalArgs {
+     *     Optional.
+     *
+     *     @type FieldMask $updateMask
+     *           OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only
+     *           the fields in the mask will be modified. If no mask is provided, the
+     *           following default mask is used:
+     *
+     *           `paths: "bindings, etag"`
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\Policy
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function setIamPolicy($resource, $policy, array $optionalArgs = [])
+    {
+        $request = new SetIamPolicyRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPolicy($policy);
+        $requestParamHeaders['resource'] = $resource;
+        if (isset($optionalArgs['updateMask'])) {
+            $request->setUpdateMask($optionalArgs['updateMask']);
+        }
+
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'SetIamPolicy',
+            Policy::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Returns the IAM permissions that the caller has on the specified Access
+     * Context Manager resource. The resource can be an
+     * [AccessPolicy][google.identity.accesscontextmanager.v1.AccessPolicy],
+     * [AccessLevel][google.identity.accesscontextmanager.v1.AccessLevel], or
+     * [ServicePerimeter][google.identity.accesscontextmanager.v1.ServicePerimeter
+     * ]. This method does not support other resources.
+     *
+     * Sample code:
+     * ```
+     * $accessContextManagerClient = new AccessContextManagerClient();
+     * try {
+     *     $resource = 'resource';
+     *     $permissions = [];
+     *     $response = $accessContextManagerClient->testIamPermissions($resource, $permissions);
+     * } finally {
+     *     $accessContextManagerClient->close();
+     * }
+     * ```
+     *
+     * @param string   $resource     REQUIRED: The resource for which the policy detail is being requested.
+     *                               See the operation documentation for the appropriate value for this field.
+     * @param string[] $permissions  The set of permissions to check for the `resource`. Permissions with
+     *                               wildcards (such as '*' or 'storage.*') are not allowed. For more
+     *                               information see
+     *                               [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * @param array    $optionalArgs {
+     *     Optional.
+     *
+     *     @type RetrySettings|array $retrySettings
+     *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
+     *           associative array of retry settings parameters. See the documentation on
+     *           {@see RetrySettings} for example usage.
+     * }
+     *
+     * @return \Google\Cloud\Iam\V1\TestIamPermissionsResponse
+     *
+     * @throws ApiException if the remote call fails
+     */
+    public function testIamPermissions(
+        $resource,
+        $permissions,
+        array $optionalArgs = []
+    ) {
+        $request = new TestIamPermissionsRequest();
+        $requestParamHeaders = [];
+        $request->setResource($resource);
+        $request->setPermissions($permissions);
+        $requestParamHeaders['resource'] = $resource;
+        $requestParams = new RequestParamsHeaderDescriptor(
+            $requestParamHeaders
+        );
+        $optionalArgs['headers'] = isset($optionalArgs['headers'])
+            ? array_merge($requestParams->getHeader(), $optionalArgs['headers'])
+            : $requestParams->getHeader();
+        return $this->startCall(
+            'TestIamPermissions',
+            TestIamPermissionsResponse::class,
+            $optionalArgs,
+            $request
+        )->wait();
+    }
+
+    /**
+     * Updates an [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel]. The long-running
+     * operation from this RPC has a successful status after the changes to
+     * the [access level]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] propagate
+     * to long-lasting storage. If [access levels]
+     * [google.identity.accesscontextmanager.v1.AccessLevel] contain
+     * errors, an error response is returned for the first error encountered.
      *
      * Sample code:
      * ```
@@ -2179,13 +2376,12 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Update an [AccessPolicy]
+     * Updates an [access policy]
      * [google.identity.accesscontextmanager.v1.AccessPolicy]. The
-     * longrunning Operation from this RPC will have a successful status once the
-     * changes to the [AccessPolicy]
-     * [google.identity.accesscontextmanager.v1.AccessPolicy] have propagated
-     * to long-lasting storage. Syntactic and basic semantic errors will be
-     * returned in `metadata` as a BadRequest proto.
+     * long-running operation from this RPC has a successful status after the
+     * changes to the [access policy]
+     * [google.identity.accesscontextmanager.v1.AccessPolicy] propagate
+     * to long-lasting storage.
      *
      * Sample code:
      * ```
@@ -2355,14 +2551,14 @@ class AccessContextManagerGapicClient
     }
 
     /**
-     * Update a [Service Perimeter]
+     * Updates a [service perimeter]
      * [google.identity.accesscontextmanager.v1.ServicePerimeter]. The
-     * longrunning operation from this RPC will have a successful status once the
-     * changes to the [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] have
-     * propagated to long-lasting storage. [Service Perimeter]
-     * [google.identity.accesscontextmanager.v1.ServicePerimeter] containing
-     * errors will result in an error response for the first error encountered.
+     * long-running operation from this RPC has a successful status after the
+     * [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter]
+     * propagates to long-lasting storage. If a [service perimeter]
+     * [google.identity.accesscontextmanager.v1.ServicePerimeter] contains
+     * errors, an error response is returned for the first error encountered.
      *
      * Sample code:
      * ```
