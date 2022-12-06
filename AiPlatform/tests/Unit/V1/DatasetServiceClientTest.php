@@ -30,6 +30,7 @@ use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\Annotation;
 use Google\Cloud\AIPlatform\V1\AnnotationSpec;
 use Google\Cloud\AIPlatform\V1\DataItem;
+use Google\Cloud\AIPlatform\V1\DataItemView;
 use Google\Cloud\AIPlatform\V1\Dataset;
 use Google\Cloud\AIPlatform\V1\DatasetServiceClient;
 use Google\Cloud\AIPlatform\V1\ExportDataConfig;
@@ -40,6 +41,7 @@ use Google\Cloud\AIPlatform\V1\ListDataItemsResponse;
 use Google\Cloud\AIPlatform\V1\ListDatasetsResponse;
 use Google\Cloud\AIPlatform\V1\ListSavedQueriesResponse;
 use Google\Cloud\AIPlatform\V1\SavedQuery;
+use Google\Cloud\AIPlatform\V1\SearchDataItemsResponse;
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\Location\ListLocationsResponse;
@@ -980,6 +982,74 @@ class DatasetServiceClientTest extends GeneratedTest
         $formattedParent = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
         try {
             $gapicClient->listSavedQueries($formattedParent);
+            // If the $gapicClient method call did not throw, fail the test
+            $this->fail('Expected an ApiException, but no exception was thrown.');
+        } catch (ApiException $ex) {
+            $this->assertEquals($status->code, $ex->getCode());
+            $this->assertEquals($expectedExceptionMessage, $ex->getMessage());
+        }
+        // Call popReceivedCalls to ensure the stub is exhausted
+        $transport->popReceivedCalls();
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchDataItemsTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        // Mock response
+        $nextPageToken = '';
+        $dataItemViewsElement = new DataItemView();
+        $dataItemViews = [
+            $dataItemViewsElement,
+        ];
+        $expectedResponse = new SearchDataItemsResponse();
+        $expectedResponse->setNextPageToken($nextPageToken);
+        $expectedResponse->setDataItemViews($dataItemViews);
+        $transport->addResponse($expectedResponse);
+        // Mock request
+        $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        $response = $gapicClient->searchDataItems($formattedDataset);
+        $this->assertEquals($expectedResponse, $response->getPage()->getResponseObject());
+        $resources = iterator_to_array($response->iterateAllElements());
+        $this->assertSame(1, count($resources));
+        $this->assertEquals($expectedResponse->getDataItemViews()[0], $resources[0]);
+        $actualRequests = $transport->popReceivedCalls();
+        $this->assertSame(1, count($actualRequests));
+        $actualFuncCall = $actualRequests[0]->getFuncCall();
+        $actualRequestObject = $actualRequests[0]->getRequestObject();
+        $this->assertSame('/google.cloud.aiplatform.v1.DatasetService/SearchDataItems', $actualFuncCall);
+        $actualValue = $actualRequestObject->getDataset();
+        $this->assertProtobufEquals($formattedDataset, $actualValue);
+        $this->assertTrue($transport->isExhausted());
+    }
+
+    /** @test */
+    public function searchDataItemsExceptionTest()
+    {
+        $transport = $this->createTransport();
+        $gapicClient = $this->createClient([
+            'transport' => $transport,
+        ]);
+        $this->assertTrue($transport->isExhausted());
+        $status = new stdClass();
+        $status->code = Code::DATA_LOSS;
+        $status->details = 'internal error';
+        $expectedExceptionMessage  = json_encode([
+            'message' => 'internal error',
+            'code' => Code::DATA_LOSS,
+            'status' => 'DATA_LOSS',
+            'details' => [],
+        ], JSON_PRETTY_PRINT);
+        $transport->addResponse(null, $status);
+        // Mock request
+        $formattedDataset = $gapicClient->datasetName('[PROJECT]', '[LOCATION]', '[DATASET]');
+        try {
+            $gapicClient->searchDataItems($formattedDataset);
             // If the $gapicClient method call did not throw, fail the test
             $this->fail('Expected an ApiException, but no exception was thrown.');
         } catch (ApiException $ex) {
