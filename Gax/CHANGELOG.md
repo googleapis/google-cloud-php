@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/googleapis/gax-php/compare/v1.17.0...v1.18.0) (2022-12-05)
+
+
+### Features
+
+* Add ResourceHelperTrait ([#428](https://github.com/googleapis/gax-php/issues/428)) ([0439efa](https://github.com/googleapis/gax-php/commit/0439efa926865be5fea25b699469b0c1f8c1c768))
+
 ## [1.17.0](https://github.com/googleapis/gax-php/compare/v1.16.4...v1.17.0) (2022-09-08)
 
 
