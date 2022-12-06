@@ -31,9 +31,9 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 /**
  * Updates the mute state of a finding.
  *
- * @param string $formattedName The relative resource name of the finding. See:
- *                              https://cloud.google.com/apis/design/resource_names#relative_resource_name
- *                              Example:
+ * @param string $formattedName The [relative resource
+ *                              name](https://cloud.google.com/apis/design/resource_names#relative_resource_name)
+ *                              of the finding. Example:
  *                              "organizations/{organization_id}/sources/{source_id}/findings/{finding_id}",
  *                              "folders/{folder_id}/sources/{source_id}/findings/{finding_id}",
  *                              "projects/{project_id}/sources/{source_id}/findings/{finding_id}". Please see
