@@ -64,7 +64,7 @@ function create_app_gateway_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AppGateway $response */
+            /** @var AppGateway $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

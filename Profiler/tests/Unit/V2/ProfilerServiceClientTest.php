@@ -25,7 +25,6 @@ namespace Google\Cloud\Profiler\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Profiler\V2\Profile;
 use Google\Cloud\Profiler\V2\ProfilerServiceClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class ProfilerServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ProfilerServiceClient
-     */
+    /** @return ProfilerServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         return new ProfilerServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOfflineProfileTest()
     {
         $transport = $this->createTransport();
@@ -93,9 +84,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createOfflineProfileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -126,9 +115,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProfileTest()
     {
         $transport = $this->createTransport();
@@ -153,9 +140,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createProfileExceptionTest()
     {
         $transport = $this->createTransport();
@@ -186,9 +171,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProfileTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +196,7 @@ class ProfilerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateProfileExceptionTest()
     {
         $transport = $this->createTransport();

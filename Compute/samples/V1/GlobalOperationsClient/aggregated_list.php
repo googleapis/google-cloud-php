@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\GlobalOperationsClient;
-use Google\Cloud\Compute\V1\OperationAggregatedList\ItemsEntry;
 
 /**
  * Retrieves an aggregated list of all operations.
@@ -43,7 +42,6 @@ function aggregated_list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $globalOperationsClient->aggregatedList($project);
 
-        /** @var ItemsEntry $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\InstanceGroupManagersClient;
-use Google\Cloud\Compute\V1\InstanceManagedByIgmError;
 
 /**
  * Lists all errors thrown by actions on instances for a given managed instance group. The filter and orderBy query parameters are not supported.
@@ -45,7 +44,6 @@ function list_errors_sample(string $instanceGroupManager, string $project, strin
         /** @var PagedListResponse $response */
         $response = $instanceGroupManagersClient->listErrors($instanceGroupManager, $project, $zone);
 
-        /** @var InstanceManagedByIgmError $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

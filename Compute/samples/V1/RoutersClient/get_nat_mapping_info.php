@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\RoutersClient;
-use Google\Cloud\Compute\V1\VmEndpointNatMappings;
 
 /**
  * Retrieves runtime Nat mapping information of VM endpoints.
@@ -45,7 +44,6 @@ function get_nat_mapping_info_sample(string $project, string $region, string $ro
         /** @var PagedListResponse $response */
         $response = $routersClient->getNatMappingInfo($project, $region, $router);
 
-        /** @var VmEndpointNatMappings $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

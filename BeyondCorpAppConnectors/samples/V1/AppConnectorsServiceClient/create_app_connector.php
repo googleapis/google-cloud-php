@@ -57,7 +57,7 @@ function create_app_connector_sample(string $formattedParent, string $appConnect
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AppConnector $response */
+            /** @var AppConnector $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

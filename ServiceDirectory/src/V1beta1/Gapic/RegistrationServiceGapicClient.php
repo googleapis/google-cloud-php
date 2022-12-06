@@ -29,7 +29,6 @@ namespace Google\Cloud\ServiceDirectory\V1beta1\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
 use Google\ApiCore\RetrySettings;
@@ -109,29 +108,19 @@ class RegistrationServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.servicedirectory.v1beta1.RegistrationService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'servicedirectory.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -152,7 +141,7 @@ class RegistrationServiceGapicClient
     {
         return [
             'serviceName' => self::SERVICE_NAME,
-            'serviceAddress' =>
+            'apiEndpoint' =>
                 self::SERVICE_ADDRESS . ':' . self::DEFAULT_SERVICE_PORT,
             'clientConfig' =>
                 __DIR__ .
@@ -418,9 +407,6 @@ class RegistrationServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'servicedirectory.googleapis.com:443'.
@@ -450,7 +436,7 @@ class RegistrationServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For

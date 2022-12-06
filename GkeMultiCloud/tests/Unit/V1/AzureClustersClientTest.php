@@ -23,15 +23,12 @@
 namespace Google\Cloud\GkeMultiCloud\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\GkeMultiCloud\V1\AzureAuthorization;
 use Google\Cloud\GkeMultiCloud\V1\AzureClient;
-
 use Google\Cloud\GkeMultiCloud\V1\AzureCluster;
 use Google\Cloud\GkeMultiCloud\V1\AzureClusterNetworking;
 use Google\Cloud\GkeMultiCloud\V1\AzureClustersClient;
@@ -61,25 +58,19 @@ use stdClass;
  */
 class AzureClustersClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AzureClustersClient
-     */
+    /** @return AzureClustersClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -88,14 +79,12 @@ class AzureClustersClientTest extends GeneratedTest
         return new AzureClustersClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureClientTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -172,14 +161,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureClientExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -235,14 +222,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -351,14 +336,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -436,14 +419,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureNodePoolTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -540,14 +521,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAzureNodePoolExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -619,14 +598,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureClientTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -683,14 +660,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureClientExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -740,14 +715,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -804,14 +777,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -861,14 +832,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureNodePoolTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -925,14 +894,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAzureNodePoolExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -982,9 +949,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateAzureAccessTokenTest()
     {
         $transport = $this->createTransport();
@@ -1011,9 +976,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function generateAzureAccessTokenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1046,9 +1009,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureClientTest()
     {
         $transport = $this->createTransport();
@@ -1083,9 +1044,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureClientExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1118,9 +1077,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureClusterTest()
     {
         $transport = $this->createTransport();
@@ -1165,9 +1122,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureClusterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1200,9 +1155,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureNodePoolTest()
     {
         $transport = $this->createTransport();
@@ -1241,9 +1194,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureNodePoolExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1276,9 +1227,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureServerConfigTest()
     {
         $transport = $this->createTransport();
@@ -1305,9 +1254,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAzureServerConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1340,9 +1287,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureClientsTest()
     {
         $transport = $this->createTransport();
@@ -1377,9 +1322,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureClientsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1412,9 +1355,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureClustersTest()
     {
         $transport = $this->createTransport();
@@ -1449,9 +1390,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureClustersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1484,9 +1423,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureNodePoolsTest()
     {
         $transport = $this->createTransport();
@@ -1521,9 +1458,7 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAzureNodePoolsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1556,14 +1491,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAzureClusterTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1669,14 +1602,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAzureClusterExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1753,14 +1684,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAzureNodePoolTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1854,14 +1783,12 @@ class AzureClustersClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAzureNodePoolExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
