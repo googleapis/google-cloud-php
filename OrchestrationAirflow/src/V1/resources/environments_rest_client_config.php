@@ -48,6 +48,30 @@ return [
                     ],
                 ],
             ],
+            'LoadSnapshot' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{environment=projects/*/locations/*/environments/*}:loadSnapshot',
+                'body' => '*',
+                'placeholders' => [
+                    'environment' => [
+                        'getters' => [
+                            'getEnvironment',
+                        ],
+                    ],
+                ],
+            ],
+            'SaveSnapshot' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{environment=projects/*/locations/*/environments/*}:saveSnapshot',
+                'body' => '*',
+                'placeholders' => [
+                    'environment' => [
+                        'getters' => [
+                            'getEnvironment',
+                        ],
+                    ],
+                ],
+            ],
             'UpdateEnvironment' => [
                 'method' => 'patch',
                 'uriTemplate' => '/v1/{name=projects/*/locations/*/environments/*}',
