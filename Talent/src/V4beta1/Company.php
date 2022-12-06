@@ -98,6 +98,8 @@ class Company extends \Google\Protobuf\Internal\Message
      */
     private $image_uri = '';
     /**
+     * This field is deprecated. Please set the searchability of the custom
+     * attribute in the [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] going forward.
      * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
      * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
@@ -105,7 +107,8 @@ class Company extends \Google\Protobuf\Internal\Message
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and those keyword queries must be surrounded by quotes.
      *
-     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11;</code>
+     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11 [deprecated = true];</code>
+     * @deprecated
      */
     private $keyword_searchable_job_custom_attributes;
     /**
@@ -170,6 +173,8 @@ class Company extends \Google\Protobuf\Internal\Message
      *     @type string $image_uri
      *           A URI that hosts the employer's company logo.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $keyword_searchable_job_custom_attributes
+     *           This field is deprecated. Please set the searchability of the custom
+     *           attribute in the [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] going forward.
      *           A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
      *           corresponding `string_values` are used in keyword searches. Jobs with
      *           `string_values` under these specified field keys are returned if any
@@ -490,6 +495,8 @@ class Company extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * This field is deprecated. Please set the searchability of the custom
+     * attribute in the [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] going forward.
      * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
      * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
@@ -497,15 +504,19 @@ class Company extends \Google\Protobuf\Internal\Message
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and those keyword queries must be surrounded by quotes.
      *
-     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11;</code>
+     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11 [deprecated = true];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
+     * @deprecated
      */
     public function getKeywordSearchableJobCustomAttributes()
     {
+        @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
         return $this->keyword_searchable_job_custom_attributes;
     }
 
     /**
+     * This field is deprecated. Please set the searchability of the custom
+     * attribute in the [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes] going forward.
      * A list of keys of filterable [Job.custom_attributes][google.cloud.talent.v4beta1.Job.custom_attributes], whose
      * corresponding `string_values` are used in keyword searches. Jobs with
      * `string_values` under these specified field keys are returned if any
@@ -513,12 +524,14 @@ class Company extends \Google\Protobuf\Internal\Message
      * parenthesis, brackets and special symbols are not searchable as-is,
      * and those keyword queries must be surrounded by quotes.
      *
-     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11;</code>
+     * Generated from protobuf field <code>repeated string keyword_searchable_job_custom_attributes = 11 [deprecated = true];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
+     * @deprecated
      */
     public function setKeywordSearchableJobCustomAttributes($var)
     {
+        @trigger_error('keyword_searchable_job_custom_attributes is deprecated.', E_USER_DEPRECATED);
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::STRING);
         $this->keyword_searchable_job_custom_attributes = $arr;
 

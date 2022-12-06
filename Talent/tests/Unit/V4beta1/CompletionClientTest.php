@@ -25,7 +25,6 @@ namespace Google\Cloud\Talent\Tests\Unit\V4beta1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Talent\V4beta1\CompleteQueryResponse;
 use Google\Cloud\Talent\V4beta1\CompletionClient;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class CompletionClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CompletionClient
-     */
+    /** @return CompletionClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class CompletionClientTest extends GeneratedTest
         return new CompletionClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeQueryTest()
     {
         $transport = $this->createTransport();
@@ -99,9 +90,7 @@ class CompletionClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function completeQueryExceptionTest()
     {
         $transport = $this->createTransport();
