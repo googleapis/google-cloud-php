@@ -1,0 +1,236 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.pubsub.v1",
+    "libraryPackage": "Google\\Cloud\\PubSub\\V1",
+    "services": {
+        "SchemaService": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SchemaServiceGapicClient",
+                    "rpcs": {
+                        "CreateSchema": {
+                            "methods": [
+                                "createSchema"
+                            ]
+                        },
+                        "DeleteSchema": {
+                            "methods": [
+                                "deleteSchema"
+                            ]
+                        },
+                        "GetSchema": {
+                            "methods": [
+                                "getSchema"
+                            ]
+                        },
+                        "ListSchemas": {
+                            "methods": [
+                                "listSchemas"
+                            ]
+                        },
+                        "ValidateMessage": {
+                            "methods": [
+                                "validateMessage"
+                            ]
+                        },
+                        "ValidateSchema": {
+                            "methods": [
+                                "validateSchema"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Publisher": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "PublisherGapicClient",
+                    "rpcs": {
+                        "CreateTopic": {
+                            "methods": [
+                                "createTopic"
+                            ]
+                        },
+                        "DeleteTopic": {
+                            "methods": [
+                                "deleteTopic"
+                            ]
+                        },
+                        "DetachSubscription": {
+                            "methods": [
+                                "detachSubscription"
+                            ]
+                        },
+                        "GetTopic": {
+                            "methods": [
+                                "getTopic"
+                            ]
+                        },
+                        "ListTopicSnapshots": {
+                            "methods": [
+                                "listTopicSnapshots"
+                            ]
+                        },
+                        "ListTopicSubscriptions": {
+                            "methods": [
+                                "listTopicSubscriptions"
+                            ]
+                        },
+                        "ListTopics": {
+                            "methods": [
+                                "listTopics"
+                            ]
+                        },
+                        "Publish": {
+                            "methods": [
+                                "publish"
+                            ]
+                        },
+                        "UpdateTopic": {
+                            "methods": [
+                                "updateTopic"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "Subscriber": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SubscriberGapicClient",
+                    "rpcs": {
+                        "Acknowledge": {
+                            "methods": [
+                                "acknowledge"
+                            ]
+                        },
+                        "CreateSnapshot": {
+                            "methods": [
+                                "createSnapshot"
+                            ]
+                        },
+                        "CreateSubscription": {
+                            "methods": [
+                                "createSubscription"
+                            ]
+                        },
+                        "DeleteSnapshot": {
+                            "methods": [
+                                "deleteSnapshot"
+                            ]
+                        },
+                        "DeleteSubscription": {
+                            "methods": [
+                                "deleteSubscription"
+                            ]
+                        },
+                        "GetSnapshot": {
+                            "methods": [
+                                "getSnapshot"
+                            ]
+                        },
+                        "GetSubscription": {
+                            "methods": [
+                                "getSubscription"
+                            ]
+                        },
+                        "ListSnapshots": {
+                            "methods": [
+                                "listSnapshots"
+                            ]
+                        },
+                        "ListSubscriptions": {
+                            "methods": [
+                                "listSubscriptions"
+                            ]
+                        },
+                        "ModifyAckDeadline": {
+                            "methods": [
+                                "modifyAckDeadline"
+                            ]
+                        },
+                        "ModifyPushConfig": {
+                            "methods": [
+                                "modifyPushConfig"
+                            ]
+                        },
+                        "Pull": {
+                            "methods": [
+                                "pull"
+                            ]
+                        },
+                        "Seek": {
+                            "methods": [
+                                "seek"
+                            ]
+                        },
+                        "StreamingPull": {
+                            "methods": [
+                                "streamingPull"
+                            ]
+                        },
+                        "UpdateSnapshot": {
+                            "methods": [
+                                "updateSnapshot"
+                            ]
+                        },
+                        "UpdateSubscription": {
+                            "methods": [
+                                "updateSubscription"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

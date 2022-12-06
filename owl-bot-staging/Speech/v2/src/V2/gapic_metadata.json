@@ -1,0 +1,133 @@
+{
+    "schema": "1.0",
+    "comment": "This file maps proto services\/RPCs to the corresponding library clients\/methods",
+    "language": "php",
+    "protoPackage": "google.cloud.speech.v2",
+    "libraryPackage": "Google\\Cloud\\Speech\\V2",
+    "services": {
+        "Speech": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "SpeechGapicClient",
+                    "rpcs": {
+                        "BatchRecognize": {
+                            "methods": [
+                                "batchRecognize"
+                            ]
+                        },
+                        "CreateCustomClass": {
+                            "methods": [
+                                "createCustomClass"
+                            ]
+                        },
+                        "CreatePhraseSet": {
+                            "methods": [
+                                "createPhraseSet"
+                            ]
+                        },
+                        "CreateRecognizer": {
+                            "methods": [
+                                "createRecognizer"
+                            ]
+                        },
+                        "DeleteCustomClass": {
+                            "methods": [
+                                "deleteCustomClass"
+                            ]
+                        },
+                        "DeletePhraseSet": {
+                            "methods": [
+                                "deletePhraseSet"
+                            ]
+                        },
+                        "DeleteRecognizer": {
+                            "methods": [
+                                "deleteRecognizer"
+                            ]
+                        },
+                        "GetConfig": {
+                            "methods": [
+                                "getConfig"
+                            ]
+                        },
+                        "GetCustomClass": {
+                            "methods": [
+                                "getCustomClass"
+                            ]
+                        },
+                        "GetPhraseSet": {
+                            "methods": [
+                                "getPhraseSet"
+                            ]
+                        },
+                        "GetRecognizer": {
+                            "methods": [
+                                "getRecognizer"
+                            ]
+                        },
+                        "ListCustomClasses": {
+                            "methods": [
+                                "listCustomClasses"
+                            ]
+                        },
+                        "ListPhraseSets": {
+                            "methods": [
+                                "listPhraseSets"
+                            ]
+                        },
+                        "ListRecognizers": {
+                            "methods": [
+                                "listRecognizers"
+                            ]
+                        },
+                        "Recognize": {
+                            "methods": [
+                                "recognize"
+                            ]
+                        },
+                        "StreamingRecognize": {
+                            "methods": [
+                                "streamingRecognize"
+                            ]
+                        },
+                        "UndeleteCustomClass": {
+                            "methods": [
+                                "undeleteCustomClass"
+                            ]
+                        },
+                        "UndeletePhraseSet": {
+                            "methods": [
+                                "undeletePhraseSet"
+                            ]
+                        },
+                        "UndeleteRecognizer": {
+                            "methods": [
+                                "undeleteRecognizer"
+                            ]
+                        },
+                        "UpdateConfig": {
+                            "methods": [
+                                "updateConfig"
+                            ]
+                        },
+                        "UpdateCustomClass": {
+                            "methods": [
+                                "updateCustomClass"
+                            ]
+                        },
+                        "UpdatePhraseSet": {
+                            "methods": [
+                                "updatePhraseSet"
+                            ]
+                        },
+                        "UpdateRecognizer": {
+                            "methods": [
+                                "updateRecognizer"
+                            ]
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
