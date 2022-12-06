@@ -33,38 +33,38 @@ use Google\Cloud\Talent\V4beta1\JobServiceClient;
  * Typically, updated contents become visible in search results within 10
  * seconds, but it may take up to 5 minutes.
  *
- * @param string $formattedCompany The resource name of the company listing the job.
+ * @param string $formattedJobCompany The resource name of the company listing the job.
  *
- *                                 The format is
- *                                 "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
- *                                 example, "projects/foo/tenants/bar/companies/baz".
+ *                                    The format is
+ *                                    "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+ *                                    example, "projects/foo/tenants/bar/companies/baz".
  *
- *                                 If tenant id is unspecified, the default tenant is used. For
- *                                 example, "projects/foo/companies/bar". Please see
- *                                 {@see JobServiceClient::companyName()} for help formatting this field.
- * @param string $jobRequisitionId The requisition ID, also referred to as the posting ID, is assigned by the
- *                                 client to identify a job. This field is intended to be used by clients
- *                                 for client identification and tracking of postings. A job isn't allowed
- *                                 to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
- *                                 [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+ *                                    If tenant id is unspecified, the default tenant is used. For
+ *                                    example, "projects/foo/companies/bar". Please see
+ *                                    {@see JobServiceClient::companyName()} for help formatting this field.
+ * @param string $jobRequisitionId    The requisition ID, also referred to as the posting ID, is assigned by the
+ *                                    client to identify a job. This field is intended to be used by clients
+ *                                    for client identification and tracking of postings. A job isn't allowed
+ *                                    to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+ *                                    [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
  *
- *                                 The maximum number of allowed characters is 255.
- * @param string $jobTitle         The title of the job, such as "Software Engineer"
+ *                                    The maximum number of allowed characters is 255.
+ * @param string $jobTitle            The title of the job, such as "Software Engineer"
  *
- *                                 The maximum number of allowed characters is 500.
- * @param string $jobDescription   The description of the job, which typically includes a multi-paragraph
- *                                 description of the company and related information. Separate fields are
- *                                 provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
- *                                 [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
- *                                 these separate job fields is recommended.
+ *                                    The maximum number of allowed characters is 500.
+ * @param string $jobDescription      The description of the job, which typically includes a multi-paragraph
+ *                                    description of the company and related information. Separate fields are
+ *                                    provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+ *                                    [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+ *                                    these separate job fields is recommended.
  *
- *                                 This field accepts and sanitizes HTML input, and also accepts
- *                                 bold, italic, ordered list, and unordered list markup tags.
+ *                                    This field accepts and sanitizes HTML input, and also accepts
+ *                                    bold, italic, ordered list, and unordered list markup tags.
  *
- *                                 The maximum number of allowed characters is 100,000.
+ *                                    The maximum number of allowed characters is 100,000.
  */
 function update_job_sample(
-    string $formattedCompany,
+    string $formattedJobCompany,
     string $jobRequisitionId,
     string $jobTitle,
     string $jobDescription
@@ -74,7 +74,7 @@ function update_job_sample(
 
     // Prepare any non-scalar elements to be passed along with the request.
     $job = (new Job())
-        ->setCompany($jobCompany)
+        ->setCompany($formattedJobCompany)
         ->setRequisitionId($jobRequisitionId)
         ->setTitle($jobTitle)
         ->setDescription($jobDescription);
@@ -82,7 +82,7 @@ function update_job_sample(
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobServiceClient->updateJob($job, $formattedCompany);
+        $response = $jobServiceClient->updateJob($job);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -100,11 +100,11 @@ function update_job_sample(
  */
 function callSample(): void
 {
-    $formattedCompany = JobServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+    $formattedJobCompany = JobServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
     $jobRequisitionId = '[REQUISITION_ID]';
     $jobTitle = '[TITLE]';
     $jobDescription = '[DESCRIPTION]';
 
-    update_job_sample($formattedCompany, $jobRequisitionId, $jobTitle, $jobDescription);
+    update_job_sample($formattedJobCompany, $jobRequisitionId, $jobTitle, $jobDescription);
 }
 // [END jobs_v4beta1_generated_JobService_UpdateJob_sync]

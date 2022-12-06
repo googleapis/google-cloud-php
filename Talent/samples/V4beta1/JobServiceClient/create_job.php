@@ -33,45 +33,45 @@ use Google\Cloud\Talent\V4beta1\JobServiceClient;
  * Typically, the job becomes searchable within 10 seconds, but it may take
  * up to 5 minutes.
  *
- * @param string $formattedParent  The resource name of the tenant under which the job is created.
+ * @param string $formattedParent     The resource name of the tenant under which the job is created.
  *
- *                                 The format is "projects/{project_id}/tenants/{tenant_id}". For example,
- *                                 "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
- *                                 is created. For example, "projects/foo". Please see
- *                                 {@see JobServiceClient::projectName()} for help formatting this field.
- * @param string $formattedCompany The resource name of the company listing the job.
+ *                                    The format is "projects/{project_id}/tenants/{tenant_id}". For example,
+ *                                    "projects/foo/tenant/bar". If tenant id is unspecified a default tenant
+ *                                    is created. For example, "projects/foo". Please see
+ *                                    {@see JobServiceClient::projectName()} for help formatting this field.
+ * @param string $formattedJobCompany The resource name of the company listing the job.
  *
- *                                 The format is
- *                                 "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
- *                                 example, "projects/foo/tenants/bar/companies/baz".
+ *                                    The format is
+ *                                    "projects/{project_id}/tenants/{tenant_id}/companies/{company_id}". For
+ *                                    example, "projects/foo/tenants/bar/companies/baz".
  *
- *                                 If tenant id is unspecified, the default tenant is used. For
- *                                 example, "projects/foo/companies/bar". Please see
- *                                 {@see JobServiceClient::companyName()} for help formatting this field.
- * @param string $jobRequisitionId The requisition ID, also referred to as the posting ID, is assigned by the
- *                                 client to identify a job. This field is intended to be used by clients
- *                                 for client identification and tracking of postings. A job isn't allowed
- *                                 to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
- *                                 [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
+ *                                    If tenant id is unspecified, the default tenant is used. For
+ *                                    example, "projects/foo/companies/bar". Please see
+ *                                    {@see JobServiceClient::companyName()} for help formatting this field.
+ * @param string $jobRequisitionId    The requisition ID, also referred to as the posting ID, is assigned by the
+ *                                    client to identify a job. This field is intended to be used by clients
+ *                                    for client identification and tracking of postings. A job isn't allowed
+ *                                    to be created if there is another job with the same [company][google.cloud.talent.v4beta1.Job.name],
+ *                                    [language_code][google.cloud.talent.v4beta1.Job.language_code] and [requisition_id][google.cloud.talent.v4beta1.Job.requisition_id].
  *
- *                                 The maximum number of allowed characters is 255.
- * @param string $jobTitle         The title of the job, such as "Software Engineer"
+ *                                    The maximum number of allowed characters is 255.
+ * @param string $jobTitle            The title of the job, such as "Software Engineer"
  *
- *                                 The maximum number of allowed characters is 500.
- * @param string $jobDescription   The description of the job, which typically includes a multi-paragraph
- *                                 description of the company and related information. Separate fields are
- *                                 provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
- *                                 [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
- *                                 these separate job fields is recommended.
+ *                                    The maximum number of allowed characters is 500.
+ * @param string $jobDescription      The description of the job, which typically includes a multi-paragraph
+ *                                    description of the company and related information. Separate fields are
+ *                                    provided on the job object for [responsibilities][google.cloud.talent.v4beta1.Job.responsibilities],
+ *                                    [qualifications][google.cloud.talent.v4beta1.Job.qualifications], and other job characteristics. Use of
+ *                                    these separate job fields is recommended.
  *
- *                                 This field accepts and sanitizes HTML input, and also accepts
- *                                 bold, italic, ordered list, and unordered list markup tags.
+ *                                    This field accepts and sanitizes HTML input, and also accepts
+ *                                    bold, italic, ordered list, and unordered list markup tags.
  *
- *                                 The maximum number of allowed characters is 100,000.
+ *                                    The maximum number of allowed characters is 100,000.
  */
 function create_job_sample(
     string $formattedParent,
-    string $formattedCompany,
+    string $formattedJobCompany,
     string $jobRequisitionId,
     string $jobTitle,
     string $jobDescription
@@ -81,7 +81,7 @@ function create_job_sample(
 
     // Prepare any non-scalar elements to be passed along with the request.
     $job = (new Job())
-        ->setCompany($jobCompany)
+        ->setCompany($formattedJobCompany)
         ->setRequisitionId($jobRequisitionId)
         ->setTitle($jobTitle)
         ->setDescription($jobDescription);
@@ -89,7 +89,7 @@ function create_job_sample(
     // Call the API and handle any network failures.
     try {
         /** @var Job $response */
-        $response = $jobServiceClient->createJob($formattedParent, $job, $formattedCompany);
+        $response = $jobServiceClient->createJob($formattedParent, $job);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -108,14 +108,14 @@ function create_job_sample(
 function callSample(): void
 {
     $formattedParent = JobServiceClient::projectName('[PROJECT]');
-    $formattedCompany = JobServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
+    $formattedJobCompany = JobServiceClient::companyName('[PROJECT]', '[TENANT]', '[COMPANY]');
     $jobRequisitionId = '[REQUISITION_ID]';
     $jobTitle = '[TITLE]';
     $jobDescription = '[DESCRIPTION]';
 
     create_job_sample(
         $formattedParent,
-        $formattedCompany,
+        $formattedJobCompany,
         $jobRequisitionId,
         $jobTitle,
         $jobDescription
