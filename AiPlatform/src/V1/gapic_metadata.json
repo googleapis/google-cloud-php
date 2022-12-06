@@ -60,11 +60,6 @@
                                 "listSavedQueries"
                             ]
                         },
-                        "SearchDataItems": {
-                            "methods": [
-                                "searchDataItems"
-                            ]
-                        },
                         "UpdateDataset": {
                             "methods": [
                                 "updateDataset"
