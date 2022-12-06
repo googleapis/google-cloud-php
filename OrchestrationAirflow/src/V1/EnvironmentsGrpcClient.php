@@ -107,4 +107,40 @@ class EnvironmentsGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Creates a snapshots of a Cloud Composer environment.
+     *
+     * As a result of this operation, snapshot of environment's state is stored
+     * in a location specified in the SaveSnapshotRequest.
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function SaveSnapshot(\Google\Cloud\Orchestration\Airflow\Service\V1\SaveSnapshotRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.orchestration.airflow.service.v1.Environments/SaveSnapshot',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
+     * Loads a snapshot of a Cloud Composer environment.
+     *
+     * As a result of this operation, a snapshot of environment's specified in
+     * LoadSnapshotRequest is loaded into the environment.
+     * @param \Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function LoadSnapshot(\Google\Cloud\Orchestration\Airflow\Service\V1\LoadSnapshotRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.orchestration.airflow.service.v1.Environments/LoadSnapshot',
+        $argument,
+        ['\Google\LongRunning\Operation', 'decode'],
+        $metadata, $options);
+    }
+
 }

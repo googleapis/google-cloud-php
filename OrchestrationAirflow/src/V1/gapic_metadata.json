@@ -30,6 +30,16 @@
                                 "listEnvironments"
                             ]
                         },
+                        "LoadSnapshot": {
+                            "methods": [
+                                "loadSnapshot"
+                            ]
+                        },
+                        "SaveSnapshot": {
+                            "methods": [
+                                "saveSnapshot"
+                            ]
+                        },
                         "UpdateEnvironment": {
                             "methods": [
                                 "updateEnvironment"
