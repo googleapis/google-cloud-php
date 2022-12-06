@@ -9,7 +9,8 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for [DataprocMetastore.UpdateService][google.cloud.metastore.v1alpha.DataprocMetastore.UpdateService].
+ * Request message for
+ * [DataprocMetastore.UpdateService][google.cloud.metastore.v1alpha.DataprocMetastore.UpdateService].
  *
  * Generated from protobuf message <code>google.cloud.metastore.v1alpha.UpdateServiceRequest</code>
  */
@@ -34,10 +35,10 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      */
     private $service = null;
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -66,10 +67,10 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
      *           The metastore service's `name` field is used to identify the metastore
      *           service to be updated.
      *     @type string $request_id
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
      *           the creation of duplicate commitments.
@@ -168,10 +169,10 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.
@@ -188,10 +189,10 @@ class UpdateServiceRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     * request if it has completed. The server will ignore subsequent requests
-     * that provide a duplicate request ID for at least 60 minutes after the first
-     * request.
+     * Optional. A request ID. Specify a unique request ID to allow the server to
+     * ignore the request if it has completed. The server will ignore subsequent
+     * requests that provide a duplicate request ID for at least 60 minutes after
+     * the first request.
      * For example, if an initial request times out, followed by another request
      * with the same request ID, the server ignores the second request to prevent
      * the creation of duplicate commitments.

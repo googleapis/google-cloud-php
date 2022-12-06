@@ -19,8 +19,8 @@ class Company
         \GPBMetadata\Google\Cloud\Talent\V4\Common::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ø
-$google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.proto"ƒ
+√
+$google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resource.proto#google/cloud/talent/v4/common.proto"»
 Company
 name (	
 display_name (	B‡A
@@ -32,8 +32,8 @@ $google/cloud/talent/v4/company.protogoogle.cloud.talent.v4google/api/resour
 website_uri (	
 career_site_uri	 (	
 	image_uri
- (	0
-(keyword_searchable_job_custom_attributes (	F
+ (	4
+(keyword_searchable_job_custom_attributes (	BF
 derived_info (2+.google.cloud.talent.v4.Company.DerivedInfoB‡A
 	suspended (B‡AN
 DerivedInfo?

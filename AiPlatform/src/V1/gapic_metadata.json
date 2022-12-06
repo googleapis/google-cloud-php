@@ -60,6 +60,11 @@
                                 "listSavedQueries"
                             ]
                         },
+                        "SearchDataItems": {
+                            "methods": [
+                                "searchDataItems"
+                            ]
+                        },
                         "UpdateDataset": {
                             "methods": [
                                 "updateDataset"
@@ -176,6 +181,11 @@
                         "StreamingReadFeatureValues": {
                             "methods": [
                                 "streamingReadFeatureValues"
+                            ]
+                        },
+                        "WriteFeatureValues": {
+                            "methods": [
+                                "writeFeatureValues"
                             ]
                         },
                         "GetLocation": {
