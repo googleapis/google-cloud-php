@@ -71,7 +71,7 @@ function import_documents_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ImportDocumentsResponse $response */
+            /** @var ImportDocumentsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

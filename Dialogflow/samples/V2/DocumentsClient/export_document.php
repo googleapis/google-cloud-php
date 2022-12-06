@@ -57,7 +57,7 @@ function export_document_sample(string $formattedName): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var Document $response */
+            /** @var Document $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

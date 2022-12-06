@@ -34,7 +34,7 @@ use Google\Cloud\Dialogflow\V2\AgentsClient;
  * [training
  * documentation](https://cloud.google.com/dialogflow/es/docs/training).
  *
- * @param string $formattedParent          The project of this agent.
+ * @param string $formattedAgentParent     The project of this agent.
  *                                         Format: `projects/<Project ID>`. Please see
  *                                         {@see AgentsClient::projectName()} for help formatting this field.
  * @param string $agentDisplayName         The name of this agent.
@@ -48,7 +48,7 @@ use Google\Cloud\Dialogflow\V2\AgentsClient;
  *                                         America/New_York, Europe/Paris.
  */
 function set_agent_sample(
-    string $formattedParent,
+    string $formattedAgentParent,
     string $agentDisplayName,
     string $agentDefaultLanguageCode,
     string $agentTimeZone
@@ -58,7 +58,7 @@ function set_agent_sample(
 
     // Prepare any non-scalar elements to be passed along with the request.
     $agent = (new Agent())
-        ->setParent($agentParent)
+        ->setParent($formattedAgentParent)
         ->setDisplayName($agentDisplayName)
         ->setDefaultLanguageCode($agentDefaultLanguageCode)
         ->setTimeZone($agentTimeZone);
@@ -66,7 +66,7 @@ function set_agent_sample(
     // Call the API and handle any network failures.
     try {
         /** @var Agent $response */
-        $response = $agentsClient->setAgent($agent, $formattedParent);
+        $response = $agentsClient->setAgent($agent);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -84,11 +84,16 @@ function set_agent_sample(
  */
 function callSample(): void
 {
-    $formattedParent = AgentsClient::projectName('[PROJECT]');
+    $formattedAgentParent = AgentsClient::projectName('[PROJECT]');
     $agentDisplayName = '[DISPLAY_NAME]';
     $agentDefaultLanguageCode = '[DEFAULT_LANGUAGE_CODE]';
     $agentTimeZone = '[TIME_ZONE]';
 
-    set_agent_sample($formattedParent, $agentDisplayName, $agentDefaultLanguageCode, $agentTimeZone);
+    set_agent_sample(
+        $formattedAgentParent,
+        $agentDisplayName,
+        $agentDefaultLanguageCode,
+        $agentTimeZone
+    );
 }
 // [END dialogflow_v2_generated_Agents_SetAgent_sync]

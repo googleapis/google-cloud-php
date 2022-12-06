@@ -60,7 +60,7 @@ function batch_update_entity_types_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BatchUpdateEntityTypesResponse $response */
+            /** @var BatchUpdateEntityTypesResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

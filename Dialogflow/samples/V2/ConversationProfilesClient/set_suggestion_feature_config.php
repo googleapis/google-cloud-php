@@ -76,7 +76,7 @@ function set_suggestion_feature_config_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ConversationProfile $response */
+            /** @var ConversationProfile $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

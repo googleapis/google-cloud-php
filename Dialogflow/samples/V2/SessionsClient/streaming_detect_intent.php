@@ -73,14 +73,14 @@ function streaming_detect_intent_sample(string $formattedSession): void
     // Prepare any non-scalar elements to be passed along with the request.
     $queryInput = new QueryInput();
     $request = (new StreamingDetectIntentRequest())
-        ->setSession($session)
+        ->setSession($formattedSession)
         ->setQueryInput($queryInput);
 
     // Call the API and handle any network failures.
     try {
         /** @var BidiStream $stream */
         $stream = $sessionsClient->streamingDetectIntent();
-        $stream->writeAll($formattedSession, [$request,]);
+        $stream->writeAll([$request,]);
 
         /** @var StreamingDetectIntentResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

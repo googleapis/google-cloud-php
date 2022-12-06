@@ -47,34 +47,30 @@ use Google\Cloud\Dialogflow\V2\ConversationsClient;
  * [Intent][google.cloud.dialogflow.v2.Intent] with [Intent.live_agent_handoff][google.cloud.dialogflow.v2.Intent.live_agent_handoff] is triggered, conversation
  * will transfer to Assist Stage.
  *
- * @param string $formattedParent              Resource identifier of the project creating the conversation.
- *                                             Format: `projects/<Project ID>/locations/<Location ID>`. Please see
- *                                             {@see ConversationsClient::projectName()} for help formatting this field.
- * @param string $formattedConversationProfile The Conversation Profile to be used to configure this
- *                                             Conversation. This field cannot be updated.
- *                                             Format: `projects/<Project ID>/locations/<Location
- *                                             ID>/conversationProfiles/<Conversation Profile ID>`. Please see
- *                                             {@see ConversationsClient::conversationProfileName()} for help formatting this field.
+ * @param string $formattedParent                          Resource identifier of the project creating the conversation.
+ *                                                         Format: `projects/<Project ID>/locations/<Location ID>`. Please see
+ *                                                         {@see ConversationsClient::projectName()} for help formatting this field.
+ * @param string $formattedConversationConversationProfile The Conversation Profile to be used to configure this
+ *                                                         Conversation. This field cannot be updated.
+ *                                                         Format: `projects/<Project ID>/locations/<Location
+ *                                                         ID>/conversationProfiles/<Conversation Profile ID>`. Please see
+ *                                                         {@see ConversationsClient::conversationProfileName()} for help formatting this field.
  */
 function create_conversation_sample(
     string $formattedParent,
-    string $formattedConversationProfile
+    string $formattedConversationConversationProfile
 ): void {
     // Create a client.
     $conversationsClient = new ConversationsClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
     $conversation = (new Conversation())
-        ->setConversationProfile($conversationConversationProfile);
+        ->setConversationProfile($formattedConversationConversationProfile);
 
     // Call the API and handle any network failures.
     try {
         /** @var Conversation $response */
-        $response = $conversationsClient->createConversation(
-            $formattedParent,
-            $conversation,
-            $formattedConversationProfile
-        );
+        $response = $conversationsClient->createConversation($formattedParent, $conversation);
         printf('Response data: %s' . PHP_EOL, $response->serializeToJsonString());
     } catch (ApiException $ex) {
         printf('Call failed with message: %s' . PHP_EOL, $ex->getMessage());
@@ -93,11 +89,11 @@ function create_conversation_sample(
 function callSample(): void
 {
     $formattedParent = ConversationsClient::projectName('[PROJECT]');
-    $formattedConversationProfile = ConversationsClient::conversationProfileName(
+    $formattedConversationConversationProfile = ConversationsClient::conversationProfileName(
         '[PROJECT]',
         '[CONVERSATION_PROFILE]'
     );
 
-    create_conversation_sample($formattedParent, $formattedConversationProfile);
+    create_conversation_sample($formattedParent, $formattedConversationConversationProfile);
 }
 // [END dialogflow_v2_generated_Conversations_CreateConversation_sync]

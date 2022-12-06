@@ -55,7 +55,7 @@ function create_conversation_model_evaluation_sample(string $formattedParent): v
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ConversationModelEvaluation $response */
+            /** @var ConversationModelEvaluation $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -58,13 +58,13 @@ function streaming_analyze_content_sample(string $formattedParticipant): void
 
     // Prepare any non-scalar elements to be passed along with the request.
     $request = (new StreamingAnalyzeContentRequest())
-        ->setParticipant($participant);
+        ->setParticipant($formattedParticipant);
 
     // Call the API and handle any network failures.
     try {
         /** @var BidiStream $stream */
         $stream = $participantsClient->streamingAnalyzeContent();
-        $stream->writeAll($formattedParticipant, [$request,]);
+        $stream->writeAll([$request,]);
 
         /** @var StreamingAnalyzeContentResponse $element */
         foreach ($stream->closeWriteAndReadAll() as $element) {

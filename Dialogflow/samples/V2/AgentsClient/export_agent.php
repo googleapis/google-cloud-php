@@ -66,7 +66,7 @@ function export_agent_sample(string $formattedParent, string $agentUri): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ExportAgentResponse $response */
+            /** @var ExportAgentResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -60,7 +60,7 @@ function batch_update_intents_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BatchUpdateIntentsResponse $response */
+            /** @var BatchUpdateIntentsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

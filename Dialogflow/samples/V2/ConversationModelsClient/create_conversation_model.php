@@ -40,22 +40,22 @@ use Google\Rpc\Status;
  * - `metadata`: [CreateConversationModelOperationMetadata][google.cloud.dialogflow.v2.CreateConversationModelOperationMetadata]
  * - `response`: [ConversationModel][google.cloud.dialogflow.v2.ConversationModel]
  *
- * @param string $conversationModelDisplayName The display name of the model. At most 64 bytes long.
- * @param string $formattedDataset             ConversationDataset resource name. Format:
- *                                             `projects/<Project ID>/locations/<Location
- *                                             ID>/conversationDatasets/<Conversation Dataset ID>`
- *                                             Please see {@see ConversationModelsClient::conversationDatasetName()} for help formatting this field.
+ * @param string $conversationModelDisplayName              The display name of the model. At most 64 bytes long.
+ * @param string $formattedConversationModelDatasetsDataset ConversationDataset resource name. Format:
+ *                                                          `projects/<Project ID>/locations/<Location
+ *                                                          ID>/conversationDatasets/<Conversation Dataset ID>`
+ *                                                          Please see {@see ConversationModelsClient::conversationDatasetName()} for help formatting this field.
  */
 function create_conversation_model_sample(
     string $conversationModelDisplayName,
-    string $formattedDataset
+    string $formattedConversationModelDatasetsDataset
 ): void {
     // Create a client.
     $conversationModelsClient = new ConversationModelsClient();
 
     // Prepare any non-scalar elements to be passed along with the request.
     $inputDataset = (new InputDataset())
-        ->setDataset($conversationModelDatasetsDataset);
+        ->setDataset($formattedConversationModelDatasetsDataset);
     $conversationModelDatasets = [$inputDataset,];
     $conversationModel = (new ConversationModel())
         ->setDisplayName($conversationModelDisplayName)
@@ -64,14 +64,11 @@ function create_conversation_model_sample(
     // Call the API and handle any network failures.
     try {
         /** @var OperationResponse $response */
-        $response = $conversationModelsClient->createConversationModel(
-            $conversationModel,
-            $formattedDataset
-        );
+        $response = $conversationModelsClient->createConversationModel($conversationModel);
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ConversationModel $response */
+            /** @var ConversationModel $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
@@ -96,12 +93,15 @@ function create_conversation_model_sample(
 function callSample(): void
 {
     $conversationModelDisplayName = '[DISPLAY_NAME]';
-    $formattedDataset = ConversationModelsClient::conversationDatasetName(
+    $formattedConversationModelDatasetsDataset = ConversationModelsClient::conversationDatasetName(
         '[PROJECT]',
         '[LOCATION]',
         '[CONVERSATION_DATASET]'
     );
 
-    create_conversation_model_sample($conversationModelDisplayName, $formattedDataset);
+    create_conversation_model_sample(
+        $conversationModelDisplayName,
+        $formattedConversationModelDatasetsDataset
+    );
 }
 // [END dialogflow_v2_generated_ConversationModels_CreateConversationModel_sync]
