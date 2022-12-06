@@ -23,15 +23,11 @@
 namespace Google\Cloud\Build\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Build\V1\OrderedBuildEvent;
-
 use Google\Cloud\Build\V1\PublishBuildEventClient;
 use Google\Cloud\Build\V1\PublishBuildToolEventStreamRequest;
 use Google\Cloud\Build\V1\PublishBuildToolEventStreamResponse;
@@ -46,25 +42,19 @@ use stdClass;
  */
 class PublishBuildEventClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PublishBuildEventClient
-     */
+    /** @return PublishBuildEventClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -73,9 +63,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         return new PublishBuildEventClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishBuildToolEventStreamTest()
     {
         $transport = $this->createTransport();
@@ -148,9 +136,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishBuildToolEventStreamExceptionTest()
     {
         $transport = $this->createTransport();
@@ -183,9 +169,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishLifecycleEventTest()
     {
         $transport = $this->createTransport();
@@ -212,9 +196,7 @@ class PublishBuildEventClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function publishLifecycleEventExceptionTest()
     {
         $transport = $this->createTransport();
