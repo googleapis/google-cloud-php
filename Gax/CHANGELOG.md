@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/googleapis/gax-php/compare/v1.18.0...v1.18.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* Message parameters in required querystring ([#430](https://github.com/googleapis/gax-php/issues/430)) ([77bc5e1](https://github.com/googleapis/gax-php/commit/77bc5e1cb8f347601d9237bf5164cf8b8ad8aa0f))
+
 ## [1.18.0](https://github.com/googleapis/gax-php/compare/v1.17.0...v1.18.0) (2022-12-05)
 
 
