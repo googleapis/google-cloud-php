@@ -29,13 +29,10 @@ namespace Google\Cloud\Metastore\V1alpha\Gapic;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\GapicClientTrait;
-
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\OperationResponse;
-
 use Google\ApiCore\PathTemplate;
 use Google\ApiCore\RequestParamsHeaderDescriptor;
-
 use Google\ApiCore\RetrySettings;
 use Google\ApiCore\Transport\TransportInterface;
 use Google\ApiCore\ValidationException;
@@ -64,7 +61,6 @@ use Google\Cloud\Metastore\V1alpha\Service;
 use Google\Cloud\Metastore\V1alpha\UpdateMetadataImportRequest;
 use Google\Cloud\Metastore\V1alpha\UpdateServiceRequest;
 use Google\LongRunning\Operation;
-
 use Google\Protobuf\FieldMask;
 
 /**
@@ -137,29 +133,19 @@ class DataprocMetastoreGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.cloud.metastore.v1alpha.DataprocMetastore';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'metastore.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/cloud-platform',
     ];
@@ -448,9 +434,6 @@ class DataprocMetastoreGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'metastore.googleapis.com:443'.
@@ -480,7 +463,7 @@ class DataprocMetastoreGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For
@@ -549,8 +532,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the service in which to create a backup
-     *                             of the following form:
+     * @param string $parent       Required. The relative resource name of the service in which to create a
+     *                             backup of the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param string $backupId     Required. The ID of the backup, which is used as the final component of the
@@ -559,16 +542,16 @@ class DataprocMetastoreGapicClient
      *                             This value must be between 1 and 64 characters long, begin with a letter,
      *                             end with a letter or number, and consist of alpha-numeric ASCII characters
      *                             or hyphens.
-     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the created
-     *                             backup must be provided in the request's `backup_id` field.
+     * @param Backup $backup       Required. The backup to create. The `name` field is ignored. The ID of the
+     *                             created backup must be provided in the request's `backup_id` field.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -647,27 +630,27 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string         $parent           Required. The relative resource name of the service in which to create a metastore
-     *                                         import, in the following form:
+     * @param string         $parent           Required. The relative resource name of the service in which to create a
+     *                                         metastore import, in the following form:
      *
      *                                         `projects/{project_number}/locations/{location_id}/services/{service_id}`.
-     * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final component of the
-     *                                         metadata import's name.
+     * @param string         $metadataImportId Required. The ID of the metadata import, which is used as the final
+     *                                         component of the metadata import's name.
      *
      *                                         This value must be between 1 and 64 characters long, begin with a letter,
      *                                         end with a letter or number, and consist of alpha-numeric ASCII characters
      *                                         or hyphens.
-     * @param MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The ID of the
-     *                                         created metadata import must be provided in the request's
+     * @param MetadataImport $metadataImport   Required. The metadata import to create. The `name` field is ignored. The
+     *                                         ID of the created metadata import must be provided in the request's
      *                                         `metadata_import_id` field.
      * @param array          $optionalArgs     {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -746,8 +729,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string  $parent       Required. The relative resource name of the location in which to create a metastore
-     *                              service, in the following form:
+     * @param string  $parent       Required. The relative resource name of the location in which to create a
+     *                              metastore service, in the following form:
      *
      *                              `projects/{project_number}/locations/{location_id}`.
      * @param string  $serviceId    Required. The ID of the metastore service, which is used as the final
@@ -763,10 +746,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -849,10 +832,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -925,18 +908,18 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore service to delete, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metastore service to delete, in
+     *                             the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1011,8 +994,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $service      Required. The relative resource name of the metastore service to run export, in the
-     *                             following form:
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             export, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
@@ -1023,10 +1006,10 @@ class DataprocMetastoreGapicClient
      *           `gs://<bucket_name>/<path_inside_bucket>`. A sub-folder
      *           `<export_folder>` containing exported files will be created below it.
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1036,7 +1019,8 @@ class DataprocMetastoreGapicClient
      *           [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier#Format).
      *           A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     @type int $databaseDumpType
-     *           Optional. The type of the database dump. If unspecified, defaults to `MYSQL`.
+     *           Optional. The type of the database dump. If unspecified, defaults to
+     *           `MYSQL`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1alpha\DatabaseDumpSpec\Type}
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
@@ -1131,8 +1115,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metadata import to retrieve, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metadata import to retrieve, in
+     *                             the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}`.
      * @param array  $optionalArgs {
@@ -1175,8 +1159,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $name         Required. The relative resource name of the metastore service to retrieve, in the
-     *                             following form:
+     * @param string $name         Required. The relative resource name of the metastore service to retrieve,
+     *                             in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}`.
      * @param array  $optionalArgs {
@@ -1318,8 +1302,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the service whose metadata imports to
-     *                             list, in the following form:
+     * @param string $parent       Required. The relative resource name of the service whose metadata imports
+     *                             to list, in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports`.
      * @param array  $optionalArgs {
@@ -1405,8 +1389,8 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The relative resource name of the location of metastore services to
-     *                             list, in the following form:
+     * @param string $parent       Required. The relative resource name of the location of metastore services
+     *                             to list, in the following form:
      *
      *                             `projects/{project_number}/locations/{location_id}`.
      * @param array  $optionalArgs {
@@ -1506,12 +1490,12 @@ class DataprocMetastoreGapicClient
      * }
      * ```
      *
-     * @param string $service      Required. The relative resource name of the metastore service to run restore, in the
-     *                             following form:
+     * @param string $service      Required. The relative resource name of the metastore service to run
+     *                             restore, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}`.
-     * @param string $backup       Required. The relative resource name of the metastore service backup to restore
-     *                             from, in the following form:
+     * @param string $backup       Required. The relative resource name of the metastore service backup to
+     *                             restore from, in the following form:
      *
      *                             `projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}`.
      * @param array  $optionalArgs {
@@ -1521,10 +1505,10 @@ class DataprocMetastoreGapicClient
      *           Optional. The type of restore. If unspecified, defaults to `METADATA_ONLY`.
      *           For allowed values, use constants defined on {@see \Google\Cloud\Metastore\V1alpha\Restore\RestoreType}
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1619,10 +1603,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent
@@ -1712,10 +1696,10 @@ class DataprocMetastoreGapicClient
      *     Optional.
      *
      *     @type string $requestId
-     *           Optional. A request ID. Specify a unique request ID to allow the server to ignore the
-     *           request if it has completed. The server will ignore subsequent requests
-     *           that provide a duplicate request ID for at least 60 minutes after the first
-     *           request.
+     *           Optional. A request ID. Specify a unique request ID to allow the server to
+     *           ignore the request if it has completed. The server will ignore subsequent
+     *           requests that provide a duplicate request ID for at least 60 minutes after
+     *           the first request.
      *
      *           For example, if an initial request times out, followed by another request
      *           with the same request ID, the server ignores the second request to prevent

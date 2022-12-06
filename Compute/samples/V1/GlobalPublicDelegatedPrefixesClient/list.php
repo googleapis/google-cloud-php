@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\GlobalPublicDelegatedPrefixesClient;
-use Google\Cloud\Compute\V1\PublicDelegatedPrefix;
 
 /**
  * Lists the global PublicDelegatedPrefixes for a project.
@@ -43,7 +42,6 @@ function list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $globalPublicDelegatedPrefixesClient->list($project);
 
-        /** @var PublicDelegatedPrefix $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

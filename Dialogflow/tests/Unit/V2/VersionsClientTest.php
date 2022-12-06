@@ -23,11 +23,9 @@
 namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Dialogflow\V2\ListVersionsResponse;
 use Google\Cloud\Dialogflow\V2\Version;
 use Google\Cloud\Dialogflow\V2\VersionsClient;
@@ -45,25 +43,19 @@ use stdClass;
  */
 class VersionsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return VersionsClient
-     */
+    /** @return VersionsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -72,9 +64,7 @@ class VersionsClientTest extends GeneratedTest
         return new VersionsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVersionTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +132,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionTest()
     {
         $transport = $this->createTransport();
@@ -170,9 +156,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -205,9 +189,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionTest()
     {
         $transport = $this->createTransport();
@@ -238,9 +220,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +253,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsTest()
     {
         $transport = $this->createTransport();
@@ -310,9 +288,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -345,9 +321,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateVersionTest()
     {
         $transport = $this->createTransport();
@@ -381,9 +355,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -417,9 +389,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -446,9 +416,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -479,9 +447,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -512,9 +478,7 @@ class VersionsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

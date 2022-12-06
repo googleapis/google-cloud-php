@@ -48,7 +48,7 @@ class PublishBuildEventGrpcClient extends \Grpc\BaseStub {
 
     /**
      * Publish a build event stating the new state of a build (typically from the
-     * build queue). The BuildEnqueued event must be publishd before all other
+     * build queue). The BuildEnqueued event must be published before all other
      * events for the same build ID.
      *
      * The backend will persist the event and deliver it to registered frontend

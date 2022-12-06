@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\RegionSslCertificatesClient;
-use Google\Cloud\Compute\V1\SslCertificate;
 
 /**
  * Retrieves the list of SslCertificate resources available to the specified project in the specified region.
@@ -44,7 +43,6 @@ function list_sample(string $project, string $region): void
         /** @var PagedListResponse $response */
         $response = $regionSslCertificatesClient->list($project, $region);
 
-        /** @var SslCertificate $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
