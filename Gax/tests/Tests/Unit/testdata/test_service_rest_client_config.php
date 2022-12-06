@@ -144,6 +144,20 @@ return [
                     'name',
                     'number'
                 ]
+            ],
+            'MethodWithRequiredNestedQueryParameters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/fixedurl',
+                'queryParams' => [
+                    'nested_message'
+                ]
+            ],
+            'MethodWithRequiredTimestampQueryParameters' => [
+                'method' => 'get',
+                'uriTemplate' => '/v1/fixedurl',
+                'queryParams' => [
+                    'timestamp_value'
+                ]
             ]
         ],
     ],
