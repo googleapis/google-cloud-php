@@ -9,14 +9,14 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Request message for deleting a big query export.
+ * Request message for deleting a BigQuery export.
  *
  * Generated from protobuf message <code>google.cloud.securitycenter.v1.DeleteBigQueryExportRequest</code>
  */
 class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}
@@ -32,7 +32,7 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $name
-     *           Required. Name of the big query export to delete. Its format is
+     *           Required. The name of the BigQuery export to delete. Its format is
      *           organizations/{organization}/bigQueryExports/{export_id},
      *           folders/{folder}/bigQueryExports/{export_id}, or
      *           projects/{project}/bigQueryExports/{export_id}
@@ -44,7 +44,7 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}
@@ -58,7 +58,7 @@ class DeleteBigQueryExportRequest extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Required. Name of the big query export to delete. Its format is
+     * Required. The name of the BigQuery export to delete. Its format is
      * organizations/{organization}/bigQueryExports/{export_id},
      * folders/{folder}/bigQueryExports/{export_id}, or
      * projects/{project}/bigQueryExports/{export_id}

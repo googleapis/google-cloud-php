@@ -21,7 +21,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket",
+     * "folders/{folder_id}/notificationConfigs/notify_public_bucket",
+     * or "projects/{project_id}/notificationConfigs/notify_public_bucket".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      */
@@ -58,7 +60,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      *           The relative resource name of this notification config. See:
      *           https://cloud.google.com/apis/design/resource_names#relative_resource_name
      *           Example:
-     *           "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     *           "organizations/{organization_id}/notificationConfigs/notify_public_bucket",
+     *           "folders/{folder_id}/notificationConfigs/notify_public_bucket",
+     *           or "projects/{project_id}/notificationConfigs/notify_public_bucket".
      *     @type string $description
      *           The description of the notification config (max of 1024 characters).
      *     @type string $pubsub_topic
@@ -80,7 +84,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket",
+     * "folders/{folder_id}/notificationConfigs/notify_public_bucket",
+     * or "projects/{project_id}/notificationConfigs/notify_public_bucket".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @return string
@@ -94,7 +100,9 @@ class NotificationConfig extends \Google\Protobuf\Internal\Message
      * The relative resource name of this notification config. See:
      * https://cloud.google.com/apis/design/resource_names#relative_resource_name
      * Example:
-     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket".
+     * "organizations/{organization_id}/notificationConfigs/notify_public_bucket",
+     * "folders/{folder_id}/notificationConfigs/notify_public_bucket",
+     * or "projects/{project_id}/notificationConfigs/notify_public_bucket".
      *
      * Generated from protobuf field <code>string name = 1;</code>
      * @param string $var

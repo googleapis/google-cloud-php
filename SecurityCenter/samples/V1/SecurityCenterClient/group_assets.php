@@ -32,7 +32,7 @@ use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
  * Filters an organization's assets and  groups them by their specified
  * properties.
  *
- * @param string $formattedParent Name of the organization to groupBy. Its format is
+ * @param string $formattedParent The name of the parent to group the assets by. Its format is
  *                                "organizations/[organization_id], folders/[folder_id], or
  *                                projects/[project_id]". Please see
  *                                {@see SecurityCenterClient::projectName()} for help formatting this field.
