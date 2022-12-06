@@ -54,7 +54,7 @@ function report_status_sample(string $formattedAppConnector, string $resourceInf
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var AppConnector $response */
+            /** @var AppConnector $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

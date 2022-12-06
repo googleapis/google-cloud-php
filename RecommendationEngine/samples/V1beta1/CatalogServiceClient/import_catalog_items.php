@@ -56,7 +56,7 @@ function import_catalog_items_sample(string $formattedParent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ImportCatalogItemsResponse $response */
+            /** @var ImportCatalogItemsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

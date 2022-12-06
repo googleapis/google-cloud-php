@@ -77,7 +77,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -140,7 +140,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -270,7 +270,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -330,7 +330,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -384,7 +384,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -447,7 +447,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -742,7 +742,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -802,7 +802,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -930,7 +930,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -993,7 +993,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1048,7 +1048,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1111,7 +1111,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1238,7 +1238,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1301,7 +1301,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1356,7 +1356,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1419,7 +1419,7 @@ class BackendServicesClientTest extends GeneratedTest
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new GlobalOperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);

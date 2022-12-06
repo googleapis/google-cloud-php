@@ -23,17 +23,12 @@
 namespace Google\Cloud\PubSub\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\BidiStream;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
-
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
-
 use Google\Cloud\PubSub\V1\ListSnapshotsResponse;
 use Google\Cloud\PubSub\V1\ListSubscriptionsResponse;
 use Google\Cloud\PubSub\V1\PullResponse;
@@ -56,25 +51,19 @@ use stdClass;
  */
 class SubscriberClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SubscriberClient
-     */
+    /** @return SubscriberClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -83,9 +72,7 @@ class SubscriberClientTest extends GeneratedTest
         return new SubscriberClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function acknowledgeTest()
     {
         $transport = $this->createTransport();
@@ -112,9 +99,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function acknowledgeExceptionTest()
     {
         $transport = $this->createTransport();
@@ -148,9 +133,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -182,9 +165,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -218,9 +199,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +243,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +277,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -326,9 +301,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -361,9 +334,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -387,9 +358,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -422,9 +391,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -453,9 +420,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -488,9 +453,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -531,9 +494,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -566,9 +527,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSnapshotsTest()
     {
         $transport = $this->createTransport();
@@ -603,9 +562,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSnapshotsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -638,9 +595,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSubscriptionsTest()
     {
         $transport = $this->createTransport();
@@ -675,9 +630,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSubscriptionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -710,9 +663,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyAckDeadlineTest()
     {
         $transport = $this->createTransport();
@@ -742,9 +693,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyAckDeadlineExceptionTest()
     {
         $transport = $this->createTransport();
@@ -779,9 +728,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyPushConfigTest()
     {
         $transport = $this->createTransport();
@@ -808,9 +755,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function modifyPushConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -844,9 +789,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullTest()
     {
         $transport = $this->createTransport();
@@ -874,9 +817,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pullExceptionTest()
     {
         $transport = $this->createTransport();
@@ -910,9 +851,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function seekTest()
     {
         $transport = $this->createTransport();
@@ -937,9 +876,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function seekExceptionTest()
     {
         $transport = $this->createTransport();
@@ -972,9 +909,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingPullTest()
     {
         $transport = $this->createTransport();
@@ -1041,9 +976,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function streamingPullExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1076,9 +1009,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSnapshotTest()
     {
         $transport = $this->createTransport();
@@ -1110,9 +1041,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSnapshotExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1146,9 +1075,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSubscriptionTest()
     {
         $transport = $this->createTransport();
@@ -1196,9 +1123,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSubscriptionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1236,9 +1161,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1267,9 +1190,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1302,9 +1223,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -1336,9 +1255,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1372,9 +1289,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1402,9 +1317,7 @@ class SubscriberClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();

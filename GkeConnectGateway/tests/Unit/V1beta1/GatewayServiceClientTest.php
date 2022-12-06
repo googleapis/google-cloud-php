@@ -24,10 +24,9 @@ namespace Google\Cloud\GkeConnect\Gateway\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
-use Google\Api\HttpBody;
-
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
+use Google\Api\HttpBody;
 use Google\Cloud\GkeConnect\Gateway\V1beta1\GatewayServiceClient;
 use Google\Rpc\Code;
 use stdClass;
@@ -39,25 +38,19 @@ use stdClass;
  */
 class GatewayServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return GatewayServiceClient
-     */
+    /** @return GatewayServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -66,9 +59,7 @@ class GatewayServiceClientTest extends GeneratedTest
         return new GatewayServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteResourceTest()
     {
         $transport = $this->createTransport();
@@ -93,9 +84,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteResourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -126,9 +115,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getResourceTest()
     {
         $transport = $this->createTransport();
@@ -153,9 +140,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getResourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -186,9 +171,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchResourceTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +196,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchResourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -246,9 +227,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function postResourceTest()
     {
         $transport = $this->createTransport();
@@ -273,9 +252,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function postResourceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -306,9 +283,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function putResourceTest()
     {
         $transport = $this->createTransport();
@@ -333,9 +308,7 @@ class GatewayServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function putResourceExceptionTest()
     {
         $transport = $this->createTransport();

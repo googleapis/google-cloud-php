@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\RegionTargetHttpProxiesClient;
-use Google\Cloud\Compute\V1\TargetHttpProxy;
 
 /**
  * Retrieves the list of TargetHttpProxy resources available to the specified project in the specified region.
@@ -44,7 +43,6 @@ function list_sample(string $project, string $region): void
         /** @var PagedListResponse $response */
         $response = $regionTargetHttpProxiesClient->list($project, $region);
 
-        /** @var TargetHttpProxy $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

@@ -23,11 +23,9 @@
 namespace Google\Cloud\OsConfig\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\OsConfig\V1\ListPatchDeploymentsResponse;
 use Google\Cloud\OsConfig\V1\ListPatchJobInstanceDetailsResponse;
 use Google\Cloud\OsConfig\V1\ListPatchJobsResponse;
@@ -49,25 +47,19 @@ use stdClass;
  */
 class OsConfigServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return OsConfigServiceClient
-     */
+    /** @return OsConfigServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +68,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         return new OsConfigServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelPatchJobTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +107,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cancelPatchJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -152,9 +140,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -195,9 +181,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -238,9 +222,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -264,9 +246,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -299,9 +279,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executePatchJobTest()
     {
         $transport = $this->createTransport();
@@ -343,9 +321,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function executePatchJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -379,9 +355,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -410,9 +384,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -445,9 +417,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPatchJobTest()
     {
         $transport = $this->createTransport();
@@ -486,9 +456,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPatchJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -521,9 +489,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchDeploymentsTest()
     {
         $transport = $this->createTransport();
@@ -558,9 +524,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchDeploymentsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -593,9 +557,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchJobInstanceDetailsTest()
     {
         $transport = $this->createTransport();
@@ -630,9 +592,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchJobInstanceDetailsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -665,9 +625,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchJobsTest()
     {
         $transport = $this->createTransport();
@@ -702,9 +660,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPatchJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -737,9 +693,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pausePatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -768,9 +722,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pausePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -803,9 +755,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumePatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -834,9 +784,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -869,9 +817,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePatchDeploymentTest()
     {
         $transport = $this->createTransport();
@@ -906,9 +852,7 @@ class OsConfigServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePatchDeploymentExceptionTest()
     {
         $transport = $this->createTransport();

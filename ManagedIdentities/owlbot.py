@@ -32,6 +32,12 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
+# Apply fix to sample
+subprocess.run([
+    'git',
+    'apply',
+    '.owlbot/create_microsoft_ad_domain_sample_fix.patch'])
+
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(
     "**/Gapic/*GapicClient.php",

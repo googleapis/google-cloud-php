@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_AcceleratorTypes_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\AcceleratorType;
 use Google\Cloud\Compute\V1\AcceleratorTypesClient;
 
 /**
@@ -44,7 +43,6 @@ function list_sample(string $project, string $zone): void
         /** @var PagedListResponse $response */
         $response = $acceleratorTypesClient->list($project, $zone);
 
-        /** @var AcceleratorType $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

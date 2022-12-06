@@ -23,11 +23,9 @@
 namespace Google\Cloud\Monitoring\Tests\Unit\V3;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Monitoring\V3\ListServiceLevelObjectivesResponse;
 use Google\Cloud\Monitoring\V3\ListServicesResponse;
 use Google\Cloud\Monitoring\V3\Service;
@@ -44,25 +42,19 @@ use stdClass;
  */
 class ServiceMonitoringServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ServiceMonitoringServiceClient
-     */
+    /** @return ServiceMonitoringServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +63,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         return new ServiceMonitoringServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTest()
     {
         $transport = $this->createTransport();
@@ -105,9 +95,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +129,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceTest()
     {
         $transport = $this->createTransport();
@@ -239,9 +221,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -274,9 +254,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
@@ -300,9 +278,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
@@ -335,9 +311,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceTest()
     {
         $transport = $this->createTransport();
@@ -366,9 +340,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -401,9 +373,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
@@ -434,9 +404,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();
@@ -469,9 +437,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceLevelObjectivesTest()
     {
         $transport = $this->createTransport();
@@ -506,9 +472,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServiceLevelObjectivesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -541,9 +505,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -578,9 +540,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -613,9 +573,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceTest()
     {
         $transport = $this->createTransport();
@@ -644,9 +602,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -679,9 +635,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceLevelObjectiveTest()
     {
         $transport = $this->createTransport();
@@ -712,9 +666,7 @@ class ServiceMonitoringServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceLevelObjectiveExceptionTest()
     {
         $transport = $this->createTransport();

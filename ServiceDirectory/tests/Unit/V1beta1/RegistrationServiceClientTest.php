@@ -23,11 +23,9 @@
 namespace Google\Cloud\ServiceDirectory\Tests\Unit\V1beta1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\ServiceDirectory\V1beta1\Endpoint;
@@ -49,25 +47,19 @@ use stdClass;
  */
 class RegistrationServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return RegistrationServiceClient
-     */
+    /** @return RegistrationServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -76,9 +68,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         return new RegistrationServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEndpointTest()
     {
         $transport = $this->createTransport();
@@ -117,9 +107,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -154,9 +142,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNamespaceTest()
     {
         $transport = $this->createTransport();
@@ -189,9 +175,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createNamespaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -226,9 +210,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceTest()
     {
         $transport = $this->createTransport();
@@ -261,9 +243,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -298,9 +278,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEndpointTest()
     {
         $transport = $this->createTransport();
@@ -324,9 +302,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -359,9 +335,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNamespaceTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +359,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteNamespaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +392,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceTest()
     {
         $transport = $this->createTransport();
@@ -446,9 +416,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -481,9 +449,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEndpointTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +482,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -551,9 +515,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -582,9 +544,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -617,9 +577,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNamespaceTest()
     {
         $transport = $this->createTransport();
@@ -646,9 +604,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getNamespaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -681,9 +637,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceTest()
     {
         $transport = $this->createTransport();
@@ -710,9 +664,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getServiceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -745,9 +697,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEndpointsTest()
     {
         $transport = $this->createTransport();
@@ -782,9 +732,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listEndpointsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -817,9 +765,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNamespacesTest()
     {
         $transport = $this->createTransport();
@@ -854,9 +800,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listNamespacesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -889,9 +833,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesTest()
     {
         $transport = $this->createTransport();
@@ -926,9 +868,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServicesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -961,9 +901,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -995,9 +933,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1031,9 +967,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1061,9 +995,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1097,9 +1029,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEndpointTest()
     {
         $transport = $this->createTransport();
@@ -1135,9 +1065,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateEndpointExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1171,9 +1099,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNamespaceTest()
     {
         $transport = $this->createTransport();
@@ -1203,9 +1129,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateNamespaceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1239,9 +1163,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceTest()
     {
         $transport = $this->createTransport();
@@ -1271,9 +1193,7 @@ class RegistrationServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateServiceExceptionTest()
     {
         $transport = $this->createTransport();

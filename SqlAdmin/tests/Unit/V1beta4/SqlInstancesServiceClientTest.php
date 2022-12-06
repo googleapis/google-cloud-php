@@ -25,7 +25,6 @@ namespace Google\Cloud\Sql\Tests\Unit\V1beta4;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Sql\V1beta4\DatabaseInstance;
 use Google\Cloud\Sql\V1beta4\InstancesListResponse;
@@ -44,25 +43,19 @@ use stdClass;
  */
 class SqlInstancesServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SqlInstancesServiceClient
-     */
+    /** @return SqlInstancesServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -71,9 +64,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         return new SqlInstancesServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addServerCaTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +99,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addServerCaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +130,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneTest()
     {
         $transport = $this->createTransport();
@@ -178,9 +165,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function cloneExceptionTest()
     {
         $transport = $this->createTransport();
@@ -211,9 +196,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEphemeralTest()
     {
         $transport = $this->createTransport();
@@ -248,9 +231,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createEphemeralExceptionTest()
     {
         $transport = $this->createTransport();
@@ -281,9 +262,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteTest()
     {
         $transport = $this->createTransport();
@@ -318,9 +297,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExceptionTest()
     {
         $transport = $this->createTransport();
@@ -351,9 +328,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function demoteMasterTest()
     {
         $transport = $this->createTransport();
@@ -388,9 +363,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function demoteMasterExceptionTest()
     {
         $transport = $this->createTransport();
@@ -421,9 +394,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportTest()
     {
         $transport = $this->createTransport();
@@ -458,9 +429,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportExceptionTest()
     {
         $transport = $this->createTransport();
@@ -491,9 +460,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverTest()
     {
         $transport = $this->createTransport();
@@ -528,9 +495,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function failoverExceptionTest()
     {
         $transport = $this->createTransport();
@@ -561,9 +526,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getTest()
     {
         $transport = $this->createTransport();
@@ -614,9 +577,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExceptionTest()
     {
         $transport = $this->createTransport();
@@ -647,9 +608,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importTest()
     {
         $transport = $this->createTransport();
@@ -684,9 +643,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importExceptionTest()
     {
         $transport = $this->createTransport();
@@ -717,9 +674,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertTest()
     {
         $transport = $this->createTransport();
@@ -754,9 +709,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function insertExceptionTest()
     {
         $transport = $this->createTransport();
@@ -787,9 +740,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listTest()
     {
         $transport = $this->createTransport();
@@ -814,9 +765,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExceptionTest()
     {
         $transport = $this->createTransport();
@@ -847,9 +796,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServerCasTest()
     {
         $transport = $this->createTransport();
@@ -874,9 +821,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listServerCasExceptionTest()
     {
         $transport = $this->createTransport();
@@ -907,9 +852,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchTest()
     {
         $transport = $this->createTransport();
@@ -944,9 +887,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function patchExceptionTest()
     {
         $transport = $this->createTransport();
@@ -977,9 +918,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function promoteReplicaTest()
     {
         $transport = $this->createTransport();
@@ -1014,9 +953,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function promoteReplicaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1047,9 +984,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceTest()
     {
         $transport = $this->createTransport();
@@ -1084,9 +1019,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rescheduleMaintenanceExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1117,9 +1050,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetSslConfigTest()
     {
         $transport = $this->createTransport();
@@ -1154,9 +1085,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resetSslConfigExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1187,9 +1116,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restartTest()
     {
         $transport = $this->createTransport();
@@ -1224,9 +1151,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restartExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1257,9 +1182,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreBackupTest()
     {
         $transport = $this->createTransport();
@@ -1294,9 +1217,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function restoreBackupExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1327,9 +1248,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rotateServerCaTest()
     {
         $transport = $this->createTransport();
@@ -1364,9 +1283,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function rotateServerCaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1397,9 +1314,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startExternalSyncTest()
     {
         $transport = $this->createTransport();
@@ -1434,9 +1349,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startExternalSyncExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1467,9 +1380,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startReplicaTest()
     {
         $transport = $this->createTransport();
@@ -1504,9 +1415,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function startReplicaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1537,9 +1446,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopReplicaTest()
     {
         $transport = $this->createTransport();
@@ -1574,9 +1481,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function stopReplicaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1607,9 +1512,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function truncateLogTest()
     {
         $transport = $this->createTransport();
@@ -1644,9 +1547,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function truncateLogExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1677,9 +1578,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateTest()
     {
         $transport = $this->createTransport();
@@ -1714,9 +1613,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1747,9 +1644,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function verifyExternalSyncSettingsTest()
     {
         $transport = $this->createTransport();
@@ -1772,9 +1667,7 @@ class SqlInstancesServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function verifyExternalSyncSettingsExceptionTest()
     {
         $transport = $this->createTransport();

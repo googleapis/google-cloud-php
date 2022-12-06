@@ -70,7 +70,7 @@ function purge_user_events_sample(string $formattedParent, string $filter): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var PurgeUserEventsResponse $response */
+            /** @var PurgeUserEventsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

@@ -63,7 +63,7 @@ function create_client_connector_service_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ClientConnectorService $response */
+            /** @var ClientConnectorService $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

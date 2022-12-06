@@ -27,7 +27,6 @@ use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsClient;
 use Google\Cloud\Compute\V1\NetworkEndpointGroupsListEndpointsRequest;
-use Google\Cloud\Compute\V1\NetworkEndpointWithHealthStatus;
 
 /**
  * Lists the network endpoints in the specified network endpoint group.
@@ -57,7 +56,6 @@ function list_network_endpoints_sample(
             $zone
         );
 
-        /** @var NetworkEndpointWithHealthStatus $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

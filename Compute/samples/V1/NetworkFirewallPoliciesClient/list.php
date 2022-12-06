@@ -25,7 +25,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // [START compute_v1_generated_NetworkFirewallPolicies_List_sync]
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
-use Google\Cloud\Compute\V1\FirewallPolicy;
 use Google\Cloud\Compute\V1\NetworkFirewallPoliciesClient;
 
 /**
@@ -43,7 +42,6 @@ function list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $networkFirewallPoliciesClient->list($project);
 
-        /** @var FirewallPolicy $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }
