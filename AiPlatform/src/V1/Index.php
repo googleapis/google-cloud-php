@@ -24,7 +24,7 @@ class Index extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -124,7 +124,7 @@ class Index extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the Index.
      *     @type string $display_name
      *           Required. The display name of the Index.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type string $description
      *           The description of the Index.
@@ -204,7 +204,7 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -217,7 +217,7 @@ class Index extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The display name of the Index.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>

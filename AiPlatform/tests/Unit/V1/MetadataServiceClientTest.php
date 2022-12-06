@@ -23,15 +23,12 @@
 namespace Google\Cloud\AIPlatform\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\AIPlatform\V1\AddContextArtifactsAndExecutionsResponse;
 use Google\Cloud\AIPlatform\V1\AddContextChildrenResponse;
-
 use Google\Cloud\AIPlatform\V1\AddExecutionEventsResponse;
 use Google\Cloud\AIPlatform\V1\Artifact;
 use Google\Cloud\AIPlatform\V1\Context;
@@ -67,25 +64,19 @@ use stdClass;
  */
 class MetadataServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return MetadataServiceClient
-     */
+    /** @return MetadataServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -94,9 +85,7 @@ class MetadataServiceClientTest extends GeneratedTest
         return new MetadataServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addContextArtifactsAndExecutionsTest()
     {
         $transport = $this->createTransport();
@@ -121,9 +110,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addContextArtifactsAndExecutionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -156,9 +143,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addContextChildrenTest()
     {
         $transport = $this->createTransport();
@@ -183,9 +168,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addContextChildrenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -218,9 +201,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addExecutionEventsTest()
     {
         $transport = $this->createTransport();
@@ -245,9 +226,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addExecutionEventsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -280,9 +259,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createArtifactTest()
     {
         $transport = $this->createTransport();
@@ -324,9 +301,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -360,9 +335,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContextTest()
     {
         $transport = $this->createTransport();
@@ -402,9 +375,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -438,9 +409,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createExecutionTest()
     {
         $transport = $this->createTransport();
@@ -480,9 +449,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createExecutionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -516,9 +483,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataSchemaTest()
     {
         $transport = $this->createTransport();
@@ -556,9 +521,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -594,14 +557,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataStoreTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -665,14 +626,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createMetadataStoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -723,14 +682,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteArtifactTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -787,14 +744,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteArtifactExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -844,14 +799,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContextTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -908,14 +861,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteContextExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -965,14 +916,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExecutionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1029,14 +978,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteExecutionExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1086,14 +1033,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMetadataStoreTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1150,14 +1095,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteMetadataStoreExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1207,9 +1150,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactTest()
     {
         $transport = $this->createTransport();
@@ -1248,9 +1189,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1283,9 +1222,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContextTest()
     {
         $transport = $this->createTransport();
@@ -1322,9 +1259,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1357,9 +1292,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExecutionTest()
     {
         $transport = $this->createTransport();
@@ -1396,9 +1329,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getExecutionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1431,9 +1362,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataSchemaTest()
     {
         $transport = $this->createTransport();
@@ -1466,9 +1395,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataSchemaExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1501,9 +1428,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataStoreTest()
     {
         $transport = $this->createTransport();
@@ -1532,9 +1457,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getMetadataStoreExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1567,9 +1490,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listArtifactsTest()
     {
         $transport = $this->createTransport();
@@ -1604,9 +1525,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listArtifactsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1639,9 +1558,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContextsTest()
     {
         $transport = $this->createTransport();
@@ -1676,9 +1593,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listContextsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1711,9 +1626,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExecutionsTest()
     {
         $transport = $this->createTransport();
@@ -1748,9 +1661,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listExecutionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1783,9 +1694,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataSchemasTest()
     {
         $transport = $this->createTransport();
@@ -1820,9 +1729,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataSchemasExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1855,9 +1762,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataStoresTest()
     {
         $transport = $this->createTransport();
@@ -1892,9 +1797,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listMetadataStoresExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1927,14 +1830,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeArtifactsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1996,14 +1897,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeArtifactsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2054,14 +1953,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeContextsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2123,14 +2020,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeContextsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2181,14 +2076,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeExecutionsTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2250,14 +2143,12 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function purgeExecutionsExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2308,9 +2199,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryArtifactLineageSubgraphTest()
     {
         $transport = $this->createTransport();
@@ -2335,9 +2224,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryArtifactLineageSubgraphExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2370,9 +2257,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryContextLineageSubgraphTest()
     {
         $transport = $this->createTransport();
@@ -2397,9 +2282,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryContextLineageSubgraphExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2432,9 +2315,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryExecutionInputsAndOutputsTest()
     {
         $transport = $this->createTransport();
@@ -2459,9 +2340,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function queryExecutionInputsAndOutputsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2494,9 +2373,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeContextChildrenTest()
     {
         $transport = $this->createTransport();
@@ -2521,9 +2398,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function removeContextChildrenExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2556,9 +2431,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateArtifactTest()
     {
         $transport = $this->createTransport();
@@ -2597,9 +2470,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateArtifactExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2632,9 +2503,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContextTest()
     {
         $transport = $this->createTransport();
@@ -2671,9 +2540,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateContextExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2706,9 +2573,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExecutionTest()
     {
         $transport = $this->createTransport();
@@ -2745,9 +2610,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateExecutionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2780,9 +2643,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -2809,9 +2670,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2842,9 +2701,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -2875,9 +2732,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2908,9 +2763,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -2939,9 +2792,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2974,9 +2825,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -3008,9 +2857,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -3044,9 +2891,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -3074,9 +2919,7 @@ class MetadataServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
