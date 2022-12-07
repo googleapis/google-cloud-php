@@ -160,4 +160,6 @@ class ArtifactObjects extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ArtifactObjects::class, \Google\Cloud\Build\V1\Artifacts_ArtifactObjects::class);
 

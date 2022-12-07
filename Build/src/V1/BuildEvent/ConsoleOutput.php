@@ -140,4 +140,6 @@ class ConsoleOutput extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(ConsoleOutput::class, \Google\Cloud\Build\V1\BuildEvent_ConsoleOutput::class);
 

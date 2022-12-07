@@ -61,4 +61,6 @@ class CommentControl
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(CommentControl::class, \Google\Cloud\Build\V1\PullRequestFilter_CommentControl::class);
 
