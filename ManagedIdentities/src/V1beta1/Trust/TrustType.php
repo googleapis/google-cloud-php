@@ -59,6 +59,4 @@ class TrustType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(TrustType::class, \Google\Cloud\ManagedIdentities\V1beta1\Trust_TrustType::class);
 

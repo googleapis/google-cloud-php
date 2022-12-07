@@ -59,6 +59,4 @@ class DocumentCorrectness
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(DocumentCorrectness::class, \Google\Cloud\Dialogflow\V2\AgentAssistantFeedback_DocumentCorrectness::class);
 

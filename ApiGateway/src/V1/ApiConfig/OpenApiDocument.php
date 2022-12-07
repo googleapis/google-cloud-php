@@ -75,6 +75,4 @@ class OpenApiDocument extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(OpenApiDocument::class, \Google\Cloud\ApiGateway\V1\ApiConfig_OpenApiDocument::class);
 

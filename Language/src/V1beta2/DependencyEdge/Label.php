@@ -623,6 +623,4 @@ class Label
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Label::class, \Google\Cloud\Language\V1beta2\DependencyEdge_Label::class);
 

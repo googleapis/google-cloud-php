@@ -63,6 +63,4 @@ class Basis
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Basis::class, \Google\Cloud\Billing\Budgets\V1beta1\ThresholdRule_Basis::class);
 

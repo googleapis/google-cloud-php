@@ -92,6 +92,4 @@ class RouteType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RouteType::class, \Google\Cloud\NetworkManagement\V1\RouteInfo_RouteType::class);
 

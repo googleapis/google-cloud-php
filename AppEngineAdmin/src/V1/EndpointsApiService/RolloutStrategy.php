@@ -60,6 +60,4 @@ class RolloutStrategy
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(RolloutStrategy::class, \Google\Cloud\AppEngine\V1\EndpointsApiService_RolloutStrategy::class);
 

@@ -99,6 +99,4 @@ class NodeConfig extends \Google\Protobuf\Internal\Message
 
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(NodeConfig::class, \Google\Cloud\Memcache\V1\Instance_NodeConfig::class);
 

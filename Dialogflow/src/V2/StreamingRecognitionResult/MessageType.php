@@ -65,6 +65,4 @@ class MessageType
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(MessageType::class, \Google\Cloud\Dialogflow\V2\StreamingRecognitionResult_MessageType::class);
 

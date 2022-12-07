@@ -87,6 +87,4 @@ class Type
     }
 }
 
-// Adding a class alias for backwards compatibility with the previous class name.
-class_alias(Type::class, \Google\Cloud\Orchestration\Airflow\Service\V1\OperationMetadata_Type::class);
 
