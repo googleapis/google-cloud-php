@@ -422,15 +422,16 @@ class RecaptchaEnterpriseServiceGapicClient
      *
      * @param string $name         Required. The resource name of the Assessment, in the format
      *                             "projects/{project}/assessments/{assessment}".
-     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can be left
-     *                             empty to provide reasons that apply to an event without concluding whether
-     *                             the event is legitimate or fraudulent.
+     * @param int    $annotation   Optional. The annotation that will be assigned to the Event. This field can
+     *                             be left empty to provide reasons that apply to an event without concluding
+     *                             whether the event is legitimate or fraudulent.
      *                             For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Annotation}
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type int[] $reasons
-     *           Optional. Optional reasons for the annotation that will be assigned to the Event.
+     *           Optional. Optional reasons for the annotation that will be assigned to the
+     *           Event.
      *           For allowed values, use constants defined on {@see \Google\Cloud\RecaptchaEnterprise\V1\AnnotateAssessmentRequest\Reason}
      *     @type string $hashedAccountId
      *           Optional. Unique stable hashed user identifier to apply to the assessment.
@@ -917,8 +918,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $parent       Required. The name of the project to list related account groups from, in the format
-     *                             "projects/{project}".
+     * @param string $parent       Required. The name of the project to list related account groups from, in
+     *                             the format "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -993,6 +994,15 @@ class RecaptchaEnterpriseServiceGapicClient
      * @param array  $optionalArgs {
      *     Optional.
      *
+     *     @type bool $skipBillingCheck
+     *           Optional. If true, skips the billing check.
+     *           A reCAPTCHA Enterprise key or migrated key behaves differently than a
+     *           reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see
+     *           https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid
+     *           any disruption of your usage, we check that a billing account is present.
+     *           If your usage of reCAPTCHA is under the free quota, you can safely skip the
+     *           billing check and proceed with the migration. See
+     *           https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on
@@ -1009,6 +1019,10 @@ class RecaptchaEnterpriseServiceGapicClient
         $requestParamHeaders = [];
         $request->setName($name);
         $requestParamHeaders['name'] = $name;
+        if (isset($optionalArgs['skipBillingCheck'])) {
+            $request->setSkipBillingCheck($optionalArgs['skipBillingCheck']);
+        }
+
         $requestParams = new RequestParamsHeaderDescriptor(
             $requestParamHeaders
         );
@@ -1039,8 +1053,8 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $key          Required. The public key name linked to the requested secret key in the format
-     *                             "projects/{project}/keys/{key}".
+     * @param string $key          Required. The public key name linked to the requested secret key in the
+     *                             format "projects/{project}/keys/{key}".
      * @param array  $optionalArgs {
      *     Optional.
      *
@@ -1100,15 +1114,16 @@ class RecaptchaEnterpriseServiceGapicClient
      * }
      * ```
      *
-     * @param string $project      Required. The name of the project to search related account group memberships from.
-     *                             Specify the project name in the following format: "projects/{project}".
+     * @param string $project      Required. The name of the project to search related account group
+     *                             memberships from. Specify the project name in the following format:
+     *                             "projects/{project}".
      * @param array  $optionalArgs {
      *     Optional.
      *
      *     @type string $hashedAccountId
-     *           Optional. The unique stable hashed user identifier we should search connections to.
-     *           The identifier should correspond to a `hashed_account_id` provided in a
-     *           previous `CreateAssessment` or `AnnotateAssessment` call.
+     *           Optional. The unique stable hashed user identifier we should search
+     *           connections to. The identifier should correspond to a `hashed_account_id`
+     *           provided in a previous `CreateAssessment` or `AnnotateAssessment` call.
      *     @type int $pageSize
      *           The maximum number of resources contained in the underlying API
      *           response. The API may return fewer values in a page, even if
@@ -1181,8 +1196,8 @@ class RecaptchaEnterpriseServiceGapicClient
      *     Optional.
      *
      *     @type FieldMask $updateMask
-     *           Optional. The mask to control which fields of the key get updated. If the mask is not
-     *           present, all fields will be updated.
+     *           Optional. The mask to control which fields of the key get updated. If the
+     *           mask is not present, all fields will be updated.
      *     @type RetrySettings|array $retrySettings
      *           Retry settings to use for this call. Can be a {@see RetrySettings} object, or an
      *           associative array of retry settings parameters. See the documentation on

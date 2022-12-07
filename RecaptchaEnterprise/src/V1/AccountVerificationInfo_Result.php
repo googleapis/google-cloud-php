@@ -12,5 +12,5 @@ if (false) {
     class AccountVerificationInfo_Result {}
 }
 class_exists(AccountVerificationInfo\Result::class);
-@trigger_error('Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo_Result is deprecated and will be removed in the next major release. Use Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo\Result instead', E_USER_DEPRECATED);
+@trigger_error('Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo_Result is deprecated and will be removed in a future release. Use Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo\Result instead', E_USER_DEPRECATED);
 

@@ -41,6 +41,13 @@ class Assessment extends \Google\Protobuf\Internal\Message
      */
     private $token_properties = null;
     /**
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     */
+    private $account_verification = null;
+    /**
      * Assessment returned by account defender when a hashed_account_id is
      * provided.
      *
@@ -70,6 +77,9 @@ class Assessment extends \Google\Protobuf\Internal\Message
      *           Output only. The risk analysis result for the event being assessed.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties $token_properties
      *           Output only. Properties of the provided event token.
+     *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $account_verification
+     *           Account verification information for identity verification. The assessment
+     *           event must include a token and site key to use this feature.
      *     @type \Google\Cloud\RecaptchaEnterprise\V1\AccountDefenderAssessment $account_defender_assessment
      *           Assessment returned by account defender when a hashed_account_id is
      *           provided.
@@ -215,6 +225,44 @@ class Assessment extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\TokenProperties::class);
         $this->token_properties = $var;
+
+        return $this;
+    }
+
+    /**
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * @return \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo|null
+     */
+    public function getAccountVerification()
+    {
+        return $this->account_verification;
+    }
+
+    public function hasAccountVerification()
+    {
+        return isset($this->account_verification);
+    }
+
+    public function clearAccountVerification()
+    {
+        unset($this->account_verification);
+    }
+
+    /**
+     * Account verification information for identity verification. The assessment
+     * event must include a token and site key to use this feature.
+     *
+     * Generated from protobuf field <code>.google.cloud.recaptchaenterprise.v1.AccountVerificationInfo account_verification = 5;</code>
+     * @param \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo $var
+     * @return $this
+     */
+    public function setAccountVerification($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Cloud\RecaptchaEnterprise\V1\AccountVerificationInfo::class);
+        $this->account_verification = $var;
 
         return $this;
     }

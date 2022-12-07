@@ -16,32 +16,33 @@ use Google\Protobuf\Internal\GPBUtil;
 class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It
-     * is used to look up password leaks associated with that hash prefix.
+     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * username. It is used to look up password leaks associated with that hash
+     * prefix.
      *
      * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $lookup_hash_prefix = '';
     /**
-     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It is
-     * re-encrypted by the server and returned through
+     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It
+     * is re-encrypted by the server and returned through
      * `reencrypted_user_credentials_hash`.
      *
      * Generated from protobuf field <code>bytes encrypted_user_credentials_hash = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
      */
     private $encrypted_user_credentials_hash = '';
     /**
-     * Output only. List of prefixes of the encrypted potential password leaks that matched the
-     * given parameters. They must be compared with the client-side decryption
-     * prefix of `reencrypted_user_credentials_hash`
+     * Output only. List of prefixes of the encrypted potential password leaks
+     * that matched the given parameters. They must be compared with the
+     * client-side decryption prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $encrypted_leak_match_prefixes;
     /**
-     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash`
-     * field. It is used to match potential password leaks within
-     * `encrypted_leak_match_prefixes`.
+     * Output only. Corresponds to the re-encryption of the
+     * `encrypted_user_credentials_hash` field. It is used to match potential
+     * password leaks within `encrypted_leak_match_prefixes`.
      *
      * Generated from protobuf field <code>bytes reencrypted_user_credentials_hash = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -54,20 +55,21 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type string $lookup_hash_prefix
-     *           Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It
-     *           is used to look up password leaks associated with that hash prefix.
+     *           Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     *           username. It is used to look up password leaks associated with that hash
+     *           prefix.
      *     @type string $encrypted_user_credentials_hash
-     *           Optional. Encrypted Scrypt hash of the canonicalized username+password. It is
-     *           re-encrypted by the server and returned through
+     *           Optional. Encrypted Scrypt hash of the canonicalized username+password. It
+     *           is re-encrypted by the server and returned through
      *           `reencrypted_user_credentials_hash`.
      *     @type array<string>|\Google\Protobuf\Internal\RepeatedField $encrypted_leak_match_prefixes
-     *           Output only. List of prefixes of the encrypted potential password leaks that matched the
-     *           given parameters. They must be compared with the client-side decryption
-     *           prefix of `reencrypted_user_credentials_hash`
+     *           Output only. List of prefixes of the encrypted potential password leaks
+     *           that matched the given parameters. They must be compared with the
+     *           client-side decryption prefix of `reencrypted_user_credentials_hash`
      *     @type string $reencrypted_user_credentials_hash
-     *           Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash`
-     *           field. It is used to match potential password leaks within
-     *           `encrypted_leak_match_prefixes`.
+     *           Output only. Corresponds to the re-encryption of the
+     *           `encrypted_user_credentials_hash` field. It is used to match potential
+     *           password leaks within `encrypted_leak_match_prefixes`.
      * }
      */
     public function __construct($data = NULL) {
@@ -76,8 +78,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It
-     * is used to look up password leaks associated with that hash prefix.
+     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * username. It is used to look up password leaks associated with that hash
+     * prefix.
      *
      * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @return string
@@ -88,8 +91,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized username. It
-     * is used to look up password leaks associated with that hash prefix.
+     * Optional. Exactly 26-bit prefix of the SHA-256 hash of the canonicalized
+     * username. It is used to look up password leaks associated with that hash
+     * prefix.
      *
      * Generated from protobuf field <code>bytes lookup_hash_prefix = 1 [(.google.api.field_behavior) = OPTIONAL];</code>
      * @param string $var
@@ -104,8 +108,8 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It is
-     * re-encrypted by the server and returned through
+     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It
+     * is re-encrypted by the server and returned through
      * `reencrypted_user_credentials_hash`.
      *
      * Generated from protobuf field <code>bytes encrypted_user_credentials_hash = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -117,8 +121,8 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It is
-     * re-encrypted by the server and returned through
+     * Optional. Encrypted Scrypt hash of the canonicalized username+password. It
+     * is re-encrypted by the server and returned through
      * `reencrypted_user_credentials_hash`.
      *
      * Generated from protobuf field <code>bytes encrypted_user_credentials_hash = 2 [(.google.api.field_behavior) = OPTIONAL];</code>
@@ -134,9 +138,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of prefixes of the encrypted potential password leaks that matched the
-     * given parameters. They must be compared with the client-side decryption
-     * prefix of `reencrypted_user_credentials_hash`
+     * Output only. List of prefixes of the encrypted potential password leaks
+     * that matched the given parameters. They must be compared with the
+     * client-side decryption prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -147,9 +151,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. List of prefixes of the encrypted potential password leaks that matched the
-     * given parameters. They must be compared with the client-side decryption
-     * prefix of `reencrypted_user_credentials_hash`
+     * Output only. List of prefixes of the encrypted potential password leaks
+     * that matched the given parameters. They must be compared with the
+     * client-side decryption prefix of `reencrypted_user_credentials_hash`
      *
      * Generated from protobuf field <code>repeated bytes encrypted_leak_match_prefixes = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param array<string>|\Google\Protobuf\Internal\RepeatedField $var
@@ -164,9 +168,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash`
-     * field. It is used to match potential password leaks within
-     * `encrypted_leak_match_prefixes`.
+     * Output only. Corresponds to the re-encryption of the
+     * `encrypted_user_credentials_hash` field. It is used to match potential
+     * password leaks within `encrypted_leak_match_prefixes`.
      *
      * Generated from protobuf field <code>bytes reencrypted_user_credentials_hash = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return string
@@ -177,9 +181,9 @@ class PrivatePasswordLeakVerification extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. Corresponds to the re-encryption of the `encrypted_user_credentials_hash`
-     * field. It is used to match potential password leaks within
-     * `encrypted_leak_match_prefixes`.
+     * Output only. Corresponds to the re-encryption of the
+     * `encrypted_user_credentials_hash` field. It is used to match potential
+     * password leaks within `encrypted_leak_match_prefixes`.
      *
      * Generated from protobuf field <code>bytes reencrypted_user_credentials_hash = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param string $var
