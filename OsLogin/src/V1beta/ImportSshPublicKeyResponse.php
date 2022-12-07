@@ -21,6 +21,12 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.oslogin.v1beta.LoginProfile login_profile = 1;</code>
      */
     private $login_profile = null;
+    /**
+     * Detailed information about import results.
+     *
+     * Generated from protobuf field <code>string details = 2;</code>
+     */
+    private $details = '';
 
     /**
      * Constructor.
@@ -30,6 +36,8 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
      *
      *     @type \Google\Cloud\OsLogin\V1beta\LoginProfile $login_profile
      *           The login profile information for the user.
+     *     @type string $details
+     *           Detailed information about import results.
      * }
      */
     public function __construct($data = NULL) {
@@ -69,6 +77,32 @@ class ImportSshPublicKeyResponse extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\OsLogin\V1beta\LoginProfile::class);
         $this->login_profile = $var;
+
+        return $this;
+    }
+
+    /**
+     * Detailed information about import results.
+     *
+     * Generated from protobuf field <code>string details = 2;</code>
+     * @return string
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * Detailed information about import results.
+     *
+     * Generated from protobuf field <code>string details = 2;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setDetails($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->details = $var;
 
         return $this;
     }

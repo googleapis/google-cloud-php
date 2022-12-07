@@ -3,6 +3,18 @@
 return [
     'interfaces' => [
         'google.cloud.oslogin.v1.OsLoginService' => [
+            'CreateSshPublicKey' => [
+                'method' => 'post',
+                'uriTemplate' => '/v1/{parent=users/*}/sshPublicKeys',
+                'body' => 'ssh_public_key',
+                'placeholders' => [
+                    'parent' => [
+                        'getters' => [
+                            'getParent',
+                        ],
+                    ],
+                ],
+            ],
             'DeletePosixAccount' => [
                 'method' => 'delete',
                 'uriTemplate' => '/v1/{name=users/*/projects/*}',
