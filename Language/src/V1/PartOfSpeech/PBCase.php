@@ -145,4 +145,6 @@ class PBCase
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(PBCase::class, \Google\Cloud\Language\V1\PartOfSpeech_Case::class);
 

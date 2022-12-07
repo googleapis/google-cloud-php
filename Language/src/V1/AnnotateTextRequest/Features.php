@@ -250,4 +250,6 @@ class Features extends \Google\Protobuf\Internal\Message
 
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Features::class, \Google\Cloud\Language\V1\AnnotateTextRequest_Features::class);
 

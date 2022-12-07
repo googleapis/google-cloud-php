@@ -60,4 +60,6 @@ class BoilerplateHandling
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(BoilerplateHandling::class, \Google\Cloud\Language\V1beta2\Document_BoilerplateHandling::class);
 
