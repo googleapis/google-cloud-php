@@ -1,5 +1,1746 @@
 # Changelog
 
+## 0.194.0
+
+<details><summary>google/cloud-access-approval 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/access-context-manager 0.3.0</summary>
+
+
+
+### Features
+
+* [AccessContextManager] added AccessPolicy.scopes, EgressTo.external_resources, and IAM methods ([#5599](https://github.com/googleapis/google-cloud-php/issues/5599)) ([dcdb265](https://github.com/googleapis/google-cloud-php/commit/dcdb265456c2621ba668ebc66f379ea3c2f79db4))
+
+</details>
+
+<details><summary>google/cloud-ai-platform 0.10.0</summary>
+
+
+
+### Features
+
+* [AiPlatform] add annotation_labels to ImportDataConfig ([#5587](https://github.com/googleapis/google-cloud-php/issues/5587)) ([cb97279](https://github.com/googleapis/google-cloud-php/commit/cb97279989a0ebedbf98b994a74ddfa02b99fbc9))
+* [AiPlatform] add SearchDataItems RPC ([#5610](https://github.com/googleapis/google-cloud-php/issues/5610)) ([85cb9fc](https://github.com/googleapis/google-cloud-php/commit/85cb9fcc7bd1ffb2c782a395616aa61a6280db3c))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/analytics-admin 0.8.0</summary>
+
+
+
+### Features
+
+* Introduce analytics admin v1beta ([#5541](https://github.com/googleapis/google-cloud-php/issues/5541)) ([e30271a](https://github.com/googleapis/google-cloud-php/commit/e30271afb97542037c2922345b6b188ba8f967bf))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/analytics-data 0.9.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-api-gateway 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-api-keys 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-apigee-connect 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-apigee-registry 0.2.2</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-appengine-admin 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-artifact-registry 0.3.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-asset 1.9.1</summary>
+
+
+
+### Documentation
+
+* Introduce code samples ([#5641](https://github.com/googleapis/google-cloud-php/issues/5641)) ([83d679e](https://github.com/googleapis/google-cloud-php/commit/83d679ef918512faf2d723be35b32e1d0f22e153))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-assured-workloads 0.7.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-automl 1.4.11</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bare-metal-solution 0.2.3</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-batch 0.2.1</summary>
+
+
+
+### Documentation
+
+* [Batch] fix minor docstring formatting ([#5604](https://github.com/googleapis/google-cloud-php/issues/5604)) ([85c6bb8](https://github.com/googleapis/google-cloud-php/commit/85c6bb81b37df5924fa1013f4a225f5aee1b2b39))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnections 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples ([#5620](https://github.com/googleapis/google-cloud-php/issues/5620)) ([bffbd70](https://github.com/googleapis/google-cloud-php/commit/bffbd70055546ba408820c5920b105c95d0a426a))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appconnectors 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples ([#5620](https://github.com/googleapis/google-cloud-php/issues/5620)) ([bffbd70](https://github.com/googleapis/google-cloud-php/commit/bffbd70055546ba408820c5920b105c95d0a426a))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-appgateways 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples ([#5620](https://github.com/googleapis/google-cloud-php/issues/5620)) ([bffbd70](https://github.com/googleapis/google-cloud-php/commit/bffbd70055546ba408820c5920b105c95d0a426a))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientconnectorservices 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples ([#5620](https://github.com/googleapis/google-cloud-php/issues/5620)) ([bffbd70](https://github.com/googleapis/google-cloud-php/commit/bffbd70055546ba408820c5920b105c95d0a426a))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-beyondcorp-clientgateways 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples ([#5620](https://github.com/googleapis/google-cloud-php/issues/5620)) ([bffbd70](https://github.com/googleapis/google-cloud-php/commit/bffbd70055546ba408820c5920b105c95d0a426a))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquery-analyticshub 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquery-connection 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-bigquery-data-exchange 0.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquery-datapolicies 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquerydatatransfer 1.3.7</summary>
+
+
+
+### Documentation
+
+* [BigQueryDataTransfer] updated comments / added samples ([#5627](https://github.com/googleapis/google-cloud-php/issues/5627)) ([73a1f58](https://github.com/googleapis/google-cloud-php/commit/73a1f58428516b6f4bb90372c5fdd8c37933e81c))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquery-migration 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigquery-reservation 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-bigquery-storage 1.2.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-bigtable 1.20.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-billing 1.5.0</summary>
+
+
+
+### Features
+
+* [Billing] added Sku.geo_taxonomy ([#5614](https://github.com/googleapis/google-cloud-php/issues/5614)) ([fbb648b](https://github.com/googleapis/google-cloud-php/commit/fbb648bcf22e19e7984ebe32812e2e1551021312))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-billing-budgets 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-binary-authorization 0.5.4</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-build 0.3.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-certificate-manager 0.3.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-channel 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-compute 1.5.0</summary>
+
+
+
+### Features
+
+* [Compute] introduce aggregated list RPC to TargetTcpProxiesClient ([#751](https://github.com/googleapis/google-cloud-php/issues/751)) ([#5635](https://github.com/googleapis/google-cloud-php/issues/5635)) ([38eb77c](https://github.com/googleapis/google-cloud-php/commit/38eb77c0332021a3b9940d9d6d55e2a33c4bce3e))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-contact-center-insights 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-container 1.9.0</summary>
+
+
+
+### Features
+
+* [Container] add a FastSocket API ([#5657](https://github.com/googleapis/google-cloud-php/issues/5657)) ([1d811a5](https://github.com/googleapis/google-cloud-php/commit/1d811a597108bfe08f9ca6143a2f90e90d1012a1))
+* [Container] add APIs for GKE Control Plane Logs ([#5588](https://github.com/googleapis/google-cloud-php/issues/5588)) ([a097d62](https://github.com/googleapis/google-cloud-php/commit/a097d62ab7c65e3426259c6239e35491b4abf3b2))
+* [Container] add compact placement feature for node pools ([#5613](https://github.com/googleapis/google-cloud-php/issues/5613)) ([9a75a9c](https://github.com/googleapis/google-cloud-php/commit/9a75a9c0fc94e8f8735f8713e0ce949259d1082b))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-container-analysis 0.2.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-core 1.48.0</summary>
+
+
+
+### Features
+
+* Add support for self-signed JWTs in handwritten client libraries ([#4690](https://github.com/googleapis/google-cloud-php/issues/4690)) ([c147a07](https://github.com/googleapis/google-cloud-php/commit/c147a07f4ef6b535b781906efeefdfc79f0eff6b))
+
+</details>
+
+<details><summary>google/cloud-data-catalog 1.3.6</summary>
+
+
+
+### Documentation
+
+* [DataCatalog] documentation updates ([#5591](https://github.com/googleapis/google-cloud-php/issues/5591)) ([3d05ccb](https://github.com/googleapis/google-cloud-php/commit/3d05ccb75abc7b57834b21ba5ecd0ea53f96ead7))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-data-fusion 0.2.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-datalabeling 0.1.9</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dataflow 0.3.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dataform 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dataplex 0.1.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dataproc 3.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dataproc-metastore 0.4.0</summary>
+
+
+
+### Features
+
+* [DataprocMetastore] added federation API ([#5653](https://github.com/googleapis/google-cloud-php/issues/5653)) ([913dc5d](https://github.com/googleapis/google-cloud-php/commit/913dc5d89cd1c86990611a9a6aeb4ef63991f30d))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-datastore 1.17.0</summary>
+
+
+
+### Features
+
+* [Datastore] add aggregation query APIs ([#5527](https://github.com/googleapis/google-cloud-php/issues/5527)) ([75226df](https://github.com/googleapis/google-cloud-php/commit/75226df4642df755f8d0f5521a1dd099e32f93e0))
+* **datastore:** Adding support for multiple db ([#5488](https://github.com/googleapis/google-cloud-php/issues/5488)) ([222f301](https://github.com/googleapis/google-cloud-php/commit/222f301d43a26c6bd2788f9a46f81f609eb5bf5c))
+
+
+### Bug Fixes
+
+* Owlbot copy_excludes for ReadOnly ([#5660](https://github.com/googleapis/google-cloud-php/issues/5660)) ([53ac0e0](https://github.com/googleapis/google-cloud-php/commit/53ac0e01f4954d09f26ebcdb68907690914d4707))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-datastore-admin 0.5.3</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-datastream 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-debugger 1.4.11</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-deploy 0.3.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dialogflow 1.0.0</summary>
+
+
+
+### Features
+
+* [Dialogflow] added cx_current_page field to AutomatedAgentReply ([#5640](https://github.com/googleapis/google-cloud-php/issues/5640)) ([962267e](https://github.com/googleapis/google-cloud-php/commit/962267e0f9643ad2d4b846f695cf539bb6d28c68))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-dlp 1.8.0</summary>
+
+
+
+### Features
+
+* [Dlp] ExcludeByHotword added as an ExclusionRule type, NEW_ZEALAND added as a LocationCategory value ([#5606](https://github.com/googleapis/google-cloud-php/issues/5606)) ([c8325db](https://github.com/googleapis/google-cloud-php/commit/c8325db49c48217c433c1ed6a2390816d0dbb8df))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-dms 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-document-ai 1.0.0</summary>
+
+
+
+### Features
+
+* [DocumentAi] added font_family to document.proto ([#5598](https://github.com/googleapis/google-cloud-php/issues/5598)) ([e919d8c](https://github.com/googleapis/google-cloud-php/commit/e919d8c6d99372962634b40a4eb69cf726882a5f))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-domains 0.2.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-error-reporting 0.19.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-essential-contacts 0.2.8</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-eventarc 1.0.0</summary>
+
+
+
+### Features
+
+* [Eventarc] Add CMEK support to Eventarc client library ([#5590](https://github.com/googleapis/google-cloud-php/issues/5590)) ([4b18fa4](https://github.com/googleapis/google-cloud-php/commit/4b18fa45832fbf23f8cd14da1211f6eef5b10b46))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-eventarc-publishing 0.3.0</summary>
+
+
+
+### Features
+
+* [EventarcPublishing] Introduce the event publishing using JSON representation of CloudEvents ([#5589](https://github.com/googleapis/google-cloud-php/issues/5589)) ([e1d43aa](https://github.com/googleapis/google-cloud-php/commit/e1d43aac00bd0f7307e31b90f8c34ce6708ae4aa))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-filestore 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-firestore 1.27.0</summary>
+
+
+
+### Features
+
+* **firestore:** [1/N] adds Bulkwriter support to Firestore client ([#5376](https://github.com/googleapis/google-cloud-php/issues/5376)) ([819ec39](https://github.com/googleapis/google-cloud-php/commit/819ec39b5c1c6b03b34a59932e5f5cceefaf3c63))
+
+
+### Bug Fixes
+
+* Owlbot copy_excludes for ReadOnly ([#5660](https://github.com/googleapis/google-cloud-php/issues/5660)) ([53ac0e0](https://github.com/googleapis/google-cloud-php/commit/53ac0e01f4954d09f26ebcdb68907690914d4707))
+
+
+### Documentation
+
+* [Firestore] introduce samples ([#5529](https://github.com/googleapis/google-cloud-php/issues/5529)) ([d6672d7](https://github.com/googleapis/google-cloud-php/commit/d6672d7487215f1aadc4082f3a06f8c97da58873))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-functions 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-gsuite-addons 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-game-servers 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-gke-backup 0.1.2</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-gke-connect-gateway 0.1.8</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-gke-hub 0.5.3</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-gke-multi-cloud 0.1.3</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/grafeas 0.4.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-iam 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-iam-credentials 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-iap 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-ids 0.1.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-iot 1.5.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-kms 1.15.0</summary>
+
+
+
+### Features
+
+* [Kms] add SHA-2 import methods ([#5644](https://github.com/googleapis/google-cloud-php/issues/5644)) ([5c74afd](https://github.com/googleapis/google-cloud-php/commit/5c74afda256bb4c8cce9d6807ed54c0ac0933866))
+* Add support for additional HMAC algorithms ([#5617](https://github.com/googleapis/google-cloud-php/issues/5617)) ([e8ec64f](https://github.com/googleapis/google-cloud-php/commit/e8ec64fb2858427adce41ab2295e26d5cca44c29))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-language 0.28.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+* Revert changes to Language for v1.0.0 ([#5682](https://github.com/googleapis/google-cloud-php/issues/5682)) ([b3a5b7f](https://github.com/googleapis/google-cloud-php/commit/b3a5b7fb031446b7066073a177d6e7edc0422a41))
+
+</details>
+
+<details><summary>google/cloud-life-sciences 0.3.0</summary>
+
+
+
+### Features
+
+* [LifeSciences] add Pipeline.secret_environment, Action.secret_environment, VirtualMachine.reservation ([#5611](https://github.com/googleapis/google-cloud-php/issues/5611)) ([b771ad6](https://github.com/googleapis/google-cloud-php/commit/b771ad6f7c5476065aab1479fb8a6624209d996f))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-logging 1.24.9</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/longrunning 0.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-managed-identities 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-media-translation 0.2.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-memcache 1.0.0</summary>
+
+
+
+### Features
+
+* [Memcache] maintenance schedules ([#5624](https://github.com/googleapis/google-cloud-php/issues/5624)) ([6bdb65d](https://github.com/googleapis/google-cloud-php/commit/6bdb65d8e8dc2bcfb532daf0d0be229f6114c48d))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-monitoring 1.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-network-connectivity 1.0.0</summary>
+
+
+
+### Features
+
+* [NetworkConnectivity] add policy based routing ([#5584](https://github.com/googleapis/google-cloud-php/issues/5584)) ([658f2f3](https://github.com/googleapis/google-cloud-php/commit/658f2f33a7d97a9000d83d23f241ac8f6115c32a))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-network-management 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-network-security 0.3.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-notebooks 0.3.0</summary>
+
+
+
+### Features
+
+* [Notebooks] add Instance.reservation_affinity, nic_type, can_ip_forward to v1beta1 API ([#5626](https://github.com/googleapis/google-cloud-php/issues/5626)) ([8583d80](https://github.com/googleapis/google-cloud-php/commit/8583d8059ec57f14766826af161a5d86835ba5c8))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-optimization 0.1.4</summary>
+
+
+
+### Documentation
+
+* [Optimization] fix minor docstring formatting / introduce samples ([#5659](https://github.com/googleapis/google-cloud-php/issues/5659)) ([0b3d7b4](https://github.com/googleapis/google-cloud-php/commit/0b3d7b402150a9cfc9a0bd2d3ad4997219440d3d))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-orchestration-airflow 1.0.0</summary>
+
+
+
+### Features
+
+* [OrchestrationAirflow] added LoadSnapshot, SaveSnapshot RPCs ([#5667](https://github.com/googleapis/google-cloud-php/issues/5667)) ([d6bcabe](https://github.com/googleapis/google-cloud-php/commit/d6bcabe42004ffddfb0972ca401ec81a2bea56fe))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-org-policy 0.3.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-osconfig 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-oslogin 1.4.0</summary>
+
+
+
+### Features
+
+* [OsLogin] added CreateSshPublicKey RPC ([#5612](https://github.com/googleapis/google-cloud-php/issues/5612)) ([037ab67](https://github.com/googleapis/google-cloud-php/commit/037ab670b1b7bfdb445d0a97b5161b408029b6f1))
+
+</details>
+
+<details><summary>google/cloud-policy-troubleshooter 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-private-catalog 0.2.9</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-profiler 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-pubsub 1.39.2</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-recommendations-ai 0.4.7</summary>
+
+
+
+### Documentation
+
+* [RecommendationEngine] introduce samples ([#5658](https://github.com/googleapis/google-cloud-php/issues/5658)) ([316b2e5](https://github.com/googleapis/google-cloud-php/commit/316b2e5cb6148a587012c13b7f6a3d65015ec626))
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-recommender 1.7.2</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-redis 1.6.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-resource-manager 0.3.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-resource-settings 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-retail 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-run 0.3.0</summary>
+
+
+
+### Features
+
+* [Run] Add gRPC probe and Jobs clients ([#5586](https://github.com/googleapis/google-cloud-php/issues/5586)) ([c5796b1](https://github.com/googleapis/google-cloud-php/commit/c5796b1d8fa494b1fc2cc4ebdbf5e75fda7e7cbf))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-scheduler 1.6.7</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-secret-manager 1.9.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-security-center 1.13.0</summary>
+
+
+
+### Features
+
+* [SecurityCenter] Add files field to finding's list of attributes ([#5608](https://github.com/googleapis/google-cloud-php/issues/5608)) ([ba944ee](https://github.com/googleapis/google-cloud-php/commit/ba944ee79a7115fd25db21732a284f4be6caefc3))
+* [SecurityCenter] add kernel_rootkit field to finding's list of attributes ([#5674](https://github.com/googleapis/google-cloud-php/issues/5674)) ([71743cd](https://github.com/googleapis/google-cloud-php/commit/71743cd80e611606712ed6a18827434fdff72119))
+
+</details>
+
+<details><summary>google/cloud-security-private-ca 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-security-public-ca 0.1.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-service-control 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-service-directory 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-service-management 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-service-usage 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-shell 1.0.0</summary>
+
+
+
+### Features
+
+* [Shell] add CloudShellErrorCode.ENVIRONMENT_UNAVAILABLE enum value ([#5628](https://github.com/googleapis/google-cloud-php/issues/5628)) ([a8d7a50](https://github.com/googleapis/google-cloud-php/commit/a8d7a505f22216a18bd7926a0c8da87b106214f8))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-spanner 1.54.1</summary>
+
+
+
+### Bug Fixes
+
+* Owlbot copy_excludes for ReadOnly ([#5660](https://github.com/googleapis/google-cloud-php/issues/5660)) ([53ac0e0](https://github.com/googleapis/google-cloud-php/commit/53ac0e01f4954d09f26ebcdb68907690914d4707))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-speech 1.7.0</summary>
+
+
+
+### Features
+
+* Introduce speech v2 ([#5603](https://github.com/googleapis/google-cloud-php/issues/5603)) ([7ecaefb](https://github.com/googleapis/google-cloud-php/commit/7ecaefbf294cb0d1b0eb0f194b306dc298e90634))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-sql-admin 0.2.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-storage 1.30.0</summary>
+
+
+
+### Features
+
+* Add support for self-signed JWTs in handwritten client libraries ([#4690](https://github.com/googleapis/google-cloud-php/issues/4690)) ([c147a07](https://github.com/googleapis/google-cloud-php/commit/c147a07f4ef6b535b781906efeefdfc79f0eff6b))
+
+
+### Bug Fixes
+
+* **Storage:** Pass optional params to the connection layer from GCS methods ([#5636](https://github.com/googleapis/google-cloud-php/issues/5636)) ([0196b6b](https://github.com/googleapis/google-cloud-php/commit/0196b6be4904a23d74a81114e16f21f897e5e8fe))
+
+</details>
+
+<details><summary>google/cloud-storage-transfer 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-talent 1.0.0</summary>
+
+
+
+### Documentation
+
+* [Talent] mark keyword_searchable_job_custom_attributes/company_size histogram facet as deprecated ([#5596](https://github.com/googleapis/google-cloud-php/issues/5596)) ([0144c7c](https://github.com/googleapis/google-cloud-php/commit/0144c7c9cc28812879ff667e83ce4aa52c592680))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-tasks 1.11.6</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-text-to-speech 1.4.5</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-tpu 1.0.0</summary>
+
+
+
+### Features
+
+* [Tpu] add location RPCs / samples ([#5661](https://github.com/googleapis/google-cloud-php/issues/5661)) ([30f440d](https://github.com/googleapis/google-cloud-php/commit/30f440d2963a83e983926969d2189df896abc808))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-trace 1.4.10</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-translate 1.12.9</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-videointelligence 1.12.11</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-video-live-stream 0.2.3</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-video-stitcher 0.3.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-video-transcoder 0.5.0</summary>
+
+
+
+### Features
+
+* [VideoTranscoder] add PreprocessingConfig.deinterlace ([#5632](https://github.com/googleapis/google-cloud-php/issues/5632)) ([de43e63](https://github.com/googleapis/google-cloud-php/commit/de43e63a3fb335cb3d7f639e906abb001b9e1dd0))
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-vision 1.6.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-vm-migration 0.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-vpc-access 1.0.0</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+
+### Chores
+
+* release v1.0.0 for GA libraries ([bec6ea8](https://github.com/googleapis/google-cloud-php/commit/bec6ea887efe1465baa967339d82c621a0735376))
+
+</details>
+
+<details><summary>google/cloud-web-risk 1.2.1</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-web-security-scanner 0.7.8</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
+<details><summary>google/cloud-workflows 0.2.9</summary>
+
+
+
+### Documentation
+
+* Introduce samples / remove deprecated serviceAddress documentation ([#5675](https://github.com/googleapis/google-cloud-php/issues/5675)) ([7e1b3d4](https://github.com/googleapis/google-cloud-php/commit/7e1b3d4d4217dfd11426be7b6fd34a6ee76138db))
+
+</details>
+
 ## 0.193.0
 
 <details><summary>google/cloud-storage 1.29.0</summary>
