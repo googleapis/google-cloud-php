@@ -102,6 +102,7 @@ class SpannerTestCase extends SystemTestCase
             )->pollUntilComplete();
 
             self::$databaseWithReaderDatabaseRole = self::getDatabaseFromInstance(
+                self::INSTANCE_NAME,
                 self::$dbName,
                 ['databaseRole' => self::DATABASE_ROLE]
             );
@@ -154,23 +155,17 @@ class SpannerTestCase extends SystemTestCase
 
     public static function getDatabaseInstance($dbName, $options = [])
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
         return self::$client->connect(self::INSTANCE_NAME, $dbName, $options);
     }
 
-    public static function getDatabaseFromInstance($dbName, $options = [])
+    public static function getDatabaseFromInstance($instance, $dbName, $options = [])
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
-        $instance = self::$client->instance(self::INSTANCE_NAME);
+        $instance = self::$client->instance($instance);
         return $instance->database($dbName, $options);
     }
 
     public static function getDatabaseWithSessionPool($dbName, $options = [])
     {
-        $keyFilePath = getenv('GOOGLE_CLOUD_PHP_TESTS_KEY_PATH');
-
         $sessionCache = new MemoryCacheItemPool;
         $sessionPool = new CacheSessionPool(
             $sessionCache,

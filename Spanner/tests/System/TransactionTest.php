@@ -31,7 +31,7 @@ class TransactionTest extends SpannerTestCase
     const TABLE_NAME = 'Transactions';
 
     private static $row = [];
-    
+
     private static $tableName;
     private static $id1;
 
