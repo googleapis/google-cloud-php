@@ -107,12 +107,18 @@ use Psr\Cache\CacheItemPoolInterface;
  *
  * Database role configured on the pool will be applied to each session created by the pool.
  * ```
+ * use Google\Cloud\Spanner\SpannerClient;
  * use Google\Cloud\Spanner\Session\CacheSessionPool;
  * use Symfony\Component\Cache\Adapter\FilesystemAdapter;
  *
+ * $spanner = new SpannerClient();
  * $cache = new FilesystemAdapter();
  * $sessionPool = new CacheSessionPool($cache, [
  *     'databaseRole' => 'Reader'
+ * ]);
+ *
+ * $database = $spanner->connect('my-instance', 'my-database', [
+ *     'sessionPool' => $sessionPool
  * ]);
  * ```
  */
