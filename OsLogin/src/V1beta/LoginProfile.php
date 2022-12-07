@@ -34,6 +34,12 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>map<string, .google.cloud.oslogin.common.SshPublicKey> ssh_public_keys = 3;</code>
      */
     private $ssh_public_keys;
+    /**
+     * The registered security key credentials for a user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oslogin.v1beta.SecurityKey security_keys = 5;</code>
+     */
+    private $security_keys;
 
     /**
      * Constructor.
@@ -43,10 +49,12 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. A unique user ID.
-     *     @type \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $posix_accounts
+     *     @type array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $posix_accounts
      *           The list of POSIX accounts associated with the user.
      *     @type array|\Google\Protobuf\Internal\MapField $ssh_public_keys
      *           A map from SSH public key fingerprint to the associated key object.
+     *     @type array<\Google\Cloud\OsLogin\V1beta\SecurityKey>|\Google\Protobuf\Internal\RepeatedField $security_keys
+     *           The registered security key credentials for a user.
      * }
      */
     public function __construct($data = NULL) {
@@ -95,7 +103,7 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
      * The list of POSIX accounts associated with the user.
      *
      * Generated from protobuf field <code>repeated .google.cloud.oslogin.common.PosixAccount posix_accounts = 2;</code>
-     * @param \Google\Cloud\OsLogin\Common\PosixAccount[]|\Google\Protobuf\Internal\RepeatedField $var
+     * @param array<\Google\Cloud\OsLogin\Common\PosixAccount>|\Google\Protobuf\Internal\RepeatedField $var
      * @return $this
      */
     public function setPosixAccounts($var)
@@ -128,6 +136,32 @@ class LoginProfile extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkMapField($var, \Google\Protobuf\Internal\GPBType::STRING, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsLogin\Common\SshPublicKey::class);
         $this->ssh_public_keys = $arr;
+
+        return $this;
+    }
+
+    /**
+     * The registered security key credentials for a user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oslogin.v1beta.SecurityKey security_keys = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getSecurityKeys()
+    {
+        return $this->security_keys;
+    }
+
+    /**
+     * The registered security key credentials for a user.
+     *
+     * Generated from protobuf field <code>repeated .google.cloud.oslogin.v1beta.SecurityKey security_keys = 5;</code>
+     * @param array<\Google\Cloud\OsLogin\V1beta\SecurityKey>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setSecurityKeys($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Google\Cloud\OsLogin\V1beta\SecurityKey::class);
+        $this->security_keys = $arr;
 
         return $this;
     }
