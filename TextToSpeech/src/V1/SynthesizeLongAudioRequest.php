@@ -22,19 +22,19 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string parent = 1;</code>
      */
-    protected $parent = '';
+    private $parent = '';
     /**
      * Required. The Synthesizer requires either plain text or SSML as input.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.SynthesisInput input = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $input = null;
+    private $input = null;
     /**
      * Required. The configuration of the synthesized audio.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.AudioConfig audio_config = 3 [(.google.api.field_behavior) = REQUIRED];</code>
      */
-    protected $audio_config = null;
+    private $audio_config = null;
     /**
      * Specifies a Cloud Storage URI for the synthesis results. Must be
      * specified in the format: `gs://bucket_name/object_name`, and the bucket
@@ -42,13 +42,13 @@ class SynthesizeLongAudioRequest extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string output_gcs_uri = 4;</code>
      */
-    protected $output_gcs_uri = '';
+    private $output_gcs_uri = '';
     /**
      * The desired voice of the synthesized audio.
      *
      * Generated from protobuf field <code>.google.cloud.texttospeech.v1.VoiceSelectionParams voice = 5;</code>
      */
-    protected $voice = null;
+    private $voice = null;
 
     /**
      * Constructor.

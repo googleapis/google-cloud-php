@@ -20,19 +20,19 @@ class SynthesizeLongAudioMetadata extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp start_time = 1;</code>
      */
-    protected $start_time = null;
+    private $start_time = null;
     /**
      * Time of the most recent processing update.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp last_update_time = 2;</code>
      */
-    protected $last_update_time = null;
+    private $last_update_time = null;
     /**
      * The progress of the most recent processing update in percentage, ie. 70.0%.
      *
      * Generated from protobuf field <code>double progress_percentage = 3;</code>
      */
-    protected $progress_percentage = 0.0;
+    private $progress_percentage = 0.0;
 
     /**
      * Constructor.
