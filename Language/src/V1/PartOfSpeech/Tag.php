@@ -136,4 +136,6 @@ class Tag
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Tag::class, \Google\Cloud\Language\V1\PartOfSpeech_Tag::class);
 

@@ -87,4 +87,6 @@ class Mood
     }
 }
 
+// Adding a class alias for backwards compatibility with the previous class name.
+class_alias(Mood::class, \Google\Cloud\Language\V1\PartOfSpeech_Mood::class);
 
