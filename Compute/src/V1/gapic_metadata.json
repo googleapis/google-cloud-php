@@ -1584,6 +1584,55 @@
                 }
             }
         },
+        "NetworkAttachments": {
+            "clients": {
+                "grpc": {
+                    "libraryClient": "NetworkAttachmentsGapicClient",
+                    "rpcs": {
+                        "AggregatedList": {
+                            "methods": [
+                                "aggregatedList"
+                            ]
+                        },
+                        "Delete": {
+                            "methods": [
+                                "delete"
+                            ]
+                        },
+                        "Get": {
+                            "methods": [
+                                "get"
+                            ]
+                        },
+                        "GetIamPolicy": {
+                            "methods": [
+                                "getIamPolicy"
+                            ]
+                        },
+                        "Insert": {
+                            "methods": [
+                                "insert"
+                            ]
+                        },
+                        "List": {
+                            "methods": [
+                                "list"
+                            ]
+                        },
+                        "SetIamPolicy": {
+                            "methods": [
+                                "setIamPolicy"
+                            ]
+                        },
+                        "TestIamPermissions": {
+                            "methods": [
+                                "testIamPermissions"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
         "NetworkEdgeSecurityServices": {
             "clients": {
                 "grpc": {

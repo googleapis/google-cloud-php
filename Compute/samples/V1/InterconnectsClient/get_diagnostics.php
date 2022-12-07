@@ -28,7 +28,7 @@ use Google\Cloud\Compute\V1\InterconnectsClient;
 use Google\Cloud\Compute\V1\InterconnectsGetDiagnosticsResponse;
 
 /**
- * Returns the interconnectDiagnostics for the specified interconnect.
+ * Returns the interconnectDiagnostics for the specified Interconnect.
  *
  * @param string $interconnect Name of the interconnect resource to query.
  * @param string $project      Project ID for this request.
