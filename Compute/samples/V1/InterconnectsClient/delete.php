@@ -29,7 +29,7 @@ use Google\Cloud\Compute\V1\InterconnectsClient;
 use Google\Rpc\Status;
 
 /**
- * Deletes the specified interconnect.
+ * Deletes the specified Interconnect.
  *
  * @param string $interconnect Name of the interconnect to delete.
  * @param string $project      Project ID for this request.
