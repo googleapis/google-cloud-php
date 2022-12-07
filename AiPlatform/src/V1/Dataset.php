@@ -23,16 +23,16 @@ class Dataset extends \Google\Protobuf\Internal\Message
     private $name = '';
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
      */
     private $display_name = '';
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      */
     private $description = '';
     /**
@@ -93,6 +93,14 @@ class Dataset extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.cloud.aiplatform.v1.EncryptionSpec encryption_spec = 11;</code>
      */
     private $encryption_spec = null;
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Dataset. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $metadata_artifact = '';
 
     /**
      * Constructor.
@@ -104,10 +112,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *           Output only. The resource name of the Dataset.
      *     @type string $display_name
      *           Required. The user-defined name of the Dataset.
-     *           The name can be up to 128 characters long and can be consist of any UTF-8
+     *           The name can be up to 128 characters long and can consist of any UTF-8
      *           characters.
      *     @type string $description
-     *           Optional. The description of the Dataset.
+     *           The description of the Dataset.
      *     @type string $metadata_schema_uri
      *           Required. Points to a YAML file stored on Google Cloud Storage describing additional
      *           information about the Dataset.
@@ -138,6 +146,10 @@ class Dataset extends \Google\Protobuf\Internal\Message
      *     @type \Google\Cloud\AIPlatform\V1\EncryptionSpec $encryption_spec
      *           Customer-managed encryption key spec for a Dataset. If set, this Dataset
      *           and all sub-resources of this Dataset will be secured by this key.
+     *     @type string $metadata_artifact
+     *           Output only. The resource name of the Artifact that was created in MetadataStore when
+     *           creating the Dataset. The Artifact resource name pattern is
+     *           `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
      * }
      */
     public function __construct($data = NULL) {
@@ -173,7 +185,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -186,7 +198,7 @@ class Dataset extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. The user-defined name of the Dataset.
-     * The name can be up to 128 characters long and can be consist of any UTF-8
+     * The name can be up to 128 characters long and can consist of any UTF-8
      * characters.
      *
      * Generated from protobuf field <code>string display_name = 2 [(.google.api.field_behavior) = REQUIRED];</code>
@@ -202,9 +214,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      * @return string
      */
     public function getDescription()
@@ -213,9 +225,9 @@ class Dataset extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Optional. The description of the Dataset.
+     * The description of the Dataset.
      *
-     * Generated from protobuf field <code>string description = 16 [(.google.api.field_behavior) = OPTIONAL];</code>
+     * Generated from protobuf field <code>string description = 16;</code>
      * @param string $var
      * @return $this
      */
@@ -477,6 +489,36 @@ class Dataset extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Cloud\AIPlatform\V1\EncryptionSpec::class);
         $this->encryption_spec = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Dataset. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return string
+     */
+    public function getMetadataArtifact()
+    {
+        return $this->metadata_artifact;
+    }
+
+    /**
+     * Output only. The resource name of the Artifact that was created in MetadataStore when
+     * creating the Dataset. The Artifact resource name pattern is
+     * `projects/{project}/locations/{location}/metadataStores/{metadata_store}/artifacts/{artifact}`.
+     *
+     * Generated from protobuf field <code>string metadata_artifact = 17 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setMetadataArtifact($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->metadata_artifact = $var;
 
         return $this;
     }

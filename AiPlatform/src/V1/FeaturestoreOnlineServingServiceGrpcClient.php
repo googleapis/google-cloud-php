@@ -66,4 +66,23 @@ class FeaturestoreOnlineServingServiceGrpcClient extends \Grpc\BaseStub {
         $metadata, $options);
     }
 
+    /**
+     * Writes Feature values of one or more entities of an EntityType.
+     *
+     * The Feature values are merged into existing entities if any. The Feature
+     * values to be written must have timestamp within the online storage
+     * retention.
+     * @param \Google\Cloud\AIPlatform\V1\WriteFeatureValuesRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function WriteFeatureValues(\Google\Cloud\AIPlatform\V1\WriteFeatureValuesRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/google.cloud.aiplatform.v1.FeaturestoreOnlineServingService/WriteFeatureValues',
+        $argument,
+        ['\Google\Cloud\AIPlatform\V1\WriteFeatureValuesResponse', 'decode'],
+        $metadata, $options);
+    }
+
 }

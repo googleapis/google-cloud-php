@@ -25,7 +25,6 @@ namespace Google\Cloud\Dialogflow\Tests\Unit\V2;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\Dialogflow\V2\Fulfillment;
 use Google\Cloud\Dialogflow\V2\FulfillmentsClient;
@@ -42,25 +41,19 @@ use stdClass;
  */
 class FulfillmentsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return FulfillmentsClient
-     */
+    /** @return FulfillmentsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +62,7 @@ class FulfillmentsClientTest extends GeneratedTest
         return new FulfillmentsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFulfillmentTest()
     {
         $transport = $this->createTransport();
@@ -102,9 +93,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getFulfillmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -137,9 +126,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFulfillmentTest()
     {
         $transport = $this->createTransport();
@@ -175,9 +162,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateFulfillmentExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +198,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationTest()
     {
         $transport = $this->createTransport();
@@ -242,9 +225,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getLocationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -275,9 +256,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsTest()
     {
         $transport = $this->createTransport();
@@ -308,9 +287,7 @@ class FulfillmentsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listLocationsExceptionTest()
     {
         $transport = $this->createTransport();

@@ -25,7 +25,6 @@ namespace Google\Cloud\DataCatalog\Tests\Unit\V1;
 use Google\ApiCore\ApiException;
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\DataCatalog\V1\ExportTaxonomiesResponse;
 use Google\Cloud\DataCatalog\V1\ImportTaxonomiesResponse;
@@ -42,25 +41,19 @@ use stdClass;
  */
 class PolicyTagManagerSerializationClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return PolicyTagManagerSerializationClient
-     */
+    /** @return PolicyTagManagerSerializationClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +62,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         return new PolicyTagManagerSerializationClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportTaxonomiesTest()
     {
         $transport = $this->createTransport();
@@ -101,9 +92,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -139,9 +128,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importTaxonomiesTest()
     {
         $transport = $this->createTransport();
@@ -166,9 +153,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function importTaxonomiesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -201,9 +186,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceTaxonomyTest()
     {
         $transport = $this->createTransport();
@@ -241,9 +224,7 @@ class PolicyTagManagerSerializationClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function replaceTaxonomyExceptionTest()
     {
         $transport = $this->createTransport();

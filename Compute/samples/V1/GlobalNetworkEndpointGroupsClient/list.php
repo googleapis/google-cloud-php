@@ -26,7 +26,6 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 use Google\ApiCore\ApiException;
 use Google\ApiCore\PagedListResponse;
 use Google\Cloud\Compute\V1\GlobalNetworkEndpointGroupsClient;
-use Google\Cloud\Compute\V1\NetworkEndpointGroup;
 
 /**
  * Retrieves the list of network endpoint groups that are located in the specified project.
@@ -43,7 +42,6 @@ function list_sample(string $project): void
         /** @var PagedListResponse $response */
         $response = $globalNetworkEndpointGroupsClient->list($project);
 
-        /** @var NetworkEndpointGroup $element */
         foreach ($response as $element) {
             printf('Element data: %s' . PHP_EOL, $element->serializeToJsonString());
         }

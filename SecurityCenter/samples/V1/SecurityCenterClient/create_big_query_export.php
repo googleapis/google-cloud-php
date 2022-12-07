@@ -28,10 +28,10 @@ use Google\Cloud\SecurityCenter\V1\BigQueryExport;
 use Google\Cloud\SecurityCenter\V1\SecurityCenterClient;
 
 /**
- * Creates a big query export.
+ * Creates a BigQuery export.
  *
- * @param string $formattedParent  Resource name of the new big query export's parent. Its format is
- *                                 "organizations/[organization_id]", "folders/[folder_id]", or
+ * @param string $formattedParent  The name of the parent resource of the new BigQuery export. Its
+ *                                 format is "organizations/[organization_id]", "folders/[folder_id]", or
  *                                 "projects/[project_id]". Please see
  *                                 {@see SecurityCenterClient::projectName()} for help formatting this field.
  * @param string $bigQueryExportId Unique identifier provided by the client within the parent scope.

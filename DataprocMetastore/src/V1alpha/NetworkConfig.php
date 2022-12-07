@@ -16,8 +16,8 @@ use Google\Protobuf\Internal\GPBUtil;
 class NetworkConfig extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      */
@@ -30,8 +30,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $consumers
-     *           Immutable. The consumer-side network configuration for the Dataproc Metastore
-     *           instance.
+     *           Immutable. The consumer-side network configuration for the Dataproc
+     *           Metastore instance.
      * }
      */
     public function __construct($data = NULL) {
@@ -40,8 +40,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @return \Google\Protobuf\Internal\RepeatedField
@@ -52,8 +52,8 @@ class NetworkConfig extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Immutable. The consumer-side network configuration for the Dataproc Metastore
-     * instance.
+     * Immutable. The consumer-side network configuration for the Dataproc
+     * Metastore instance.
      *
      * Generated from protobuf field <code>repeated .google.cloud.metastore.v1alpha.NetworkConfig.Consumer consumers = 1 [(.google.api.field_behavior) = IMMUTABLE];</code>
      * @param array<\Google\Cloud\Metastore\V1alpha\NetworkConfig\Consumer>|\Google\Protobuf\Internal\RepeatedField $var

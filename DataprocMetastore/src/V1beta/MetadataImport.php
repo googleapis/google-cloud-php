@@ -29,7 +29,7 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
      */
     private $description = '';
     /**
-     * Output only. The time when the metadata import was created.
+     * Output only. The time when the metadata import was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
@@ -40,6 +40,12 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp update_time = 4 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      */
     private $update_time = null;
+    /**
+     * Output only. The time when the metadata import finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     */
+    private $end_time = null;
     /**
      * Output only. The current state of the metadata import.
      *
@@ -62,9 +68,11 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *           The description of the metadata import.
      *     @type \Google\Protobuf\Timestamp $create_time
-     *           Output only. The time when the metadata import was created.
+     *           Output only. The time when the metadata import was started.
      *     @type \Google\Protobuf\Timestamp $update_time
      *           Output only. The time when the metadata import was last updated.
+     *     @type \Google\Protobuf\Timestamp $end_time
+     *           Output only. The time when the metadata import finished.
      *     @type int $state
      *           Output only. The current state of the metadata import.
      * }
@@ -160,7 +168,7 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the metadata import was created.
+     * Output only. The time when the metadata import was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @return \Google\Protobuf\Timestamp|null
@@ -181,7 +189,7 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Output only. The time when the metadata import was created.
+     * Output only. The time when the metadata import was started.
      *
      * Generated from protobuf field <code>.google.protobuf.Timestamp create_time = 3 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
      * @param \Google\Protobuf\Timestamp $var
@@ -227,6 +235,42 @@ class MetadataImport extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->update_time = $var;
+
+        return $this;
+    }
+
+    /**
+     * Output only. The time when the metadata import finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getEndTime()
+    {
+        return $this->end_time;
+    }
+
+    public function hasEndTime()
+    {
+        return isset($this->end_time);
+    }
+
+    public function clearEndTime()
+    {
+        unset($this->end_time);
+    }
+
+    /**
+     * Output only. The time when the metadata import finished.
+     *
+     * Generated from protobuf field <code>.google.protobuf.Timestamp end_time = 7 [(.google.api.field_behavior) = OUTPUT_ONLY];</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setEndTime($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->end_time = $var;
 
         return $this;
     }

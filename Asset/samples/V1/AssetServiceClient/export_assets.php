@@ -62,7 +62,7 @@ function export_assets_sample(string $parent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var ExportAssetsResponse $response */
+            /** @var ExportAssetsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

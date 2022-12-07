@@ -17,7 +17,9 @@ class GetNotificationConfigRequest extends \Google\Protobuf\Internal\Message
 {
     /**
      * Required. Name of the notification config to get. Its format is
-     * "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * "organizations/[organization_id]/notificationConfigs/[config_id]",
+     * "folders/[folder_id]/notificationConfigs/[config_id]",
+     * or "projects/[project_id]/notificationConfigs/[config_id]".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      */
@@ -31,7 +33,9 @@ class GetNotificationConfigRequest extends \Google\Protobuf\Internal\Message
      *
      *     @type string $name
      *           Required. Name of the notification config to get. Its format is
-     *           "organizations/[organization_id]/notificationConfigs/[config_id]".
+     *           "organizations/[organization_id]/notificationConfigs/[config_id]",
+     *           "folders/[folder_id]/notificationConfigs/[config_id]",
+     *           or "projects/[project_id]/notificationConfigs/[config_id]".
      * }
      */
     public function __construct($data = NULL) {
@@ -41,7 +45,9 @@ class GetNotificationConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the notification config to get. Its format is
-     * "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * "organizations/[organization_id]/notificationConfigs/[config_id]",
+     * "folders/[folder_id]/notificationConfigs/[config_id]",
+     * or "projects/[project_id]/notificationConfigs/[config_id]".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @return string
@@ -53,7 +59,9 @@ class GetNotificationConfigRequest extends \Google\Protobuf\Internal\Message
 
     /**
      * Required. Name of the notification config to get. Its format is
-     * "organizations/[organization_id]/notificationConfigs/[config_id]".
+     * "organizations/[organization_id]/notificationConfigs/[config_id]",
+     * "folders/[folder_id]/notificationConfigs/[config_id]",
+     * or "projects/[project_id]/notificationConfigs/[config_id]".
      *
      * Generated from protobuf field <code>string name = 1 [(.google.api.field_behavior) = REQUIRED, (.google.api.resource_reference) = {</code>
      * @param string $var

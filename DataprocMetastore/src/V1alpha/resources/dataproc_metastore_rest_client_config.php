@@ -234,6 +234,10 @@ return [
                         'method' => 'get',
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:getIamPolicy',
                     ],
+                    [
+                        'method' => 'get',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:getIamPolicy',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -263,6 +267,11 @@ return [
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:setIamPolicy',
                         'body' => '*',
                     ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:setIamPolicy',
+                        'body' => '*',
+                    ],
                 ],
                 'placeholders' => [
                     'resource' => [
@@ -290,6 +299,11 @@ return [
                     [
                         'method' => 'post',
                         'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/services/*/databases/*/tables/*}:testIamPermissions',
+                        'body' => '*',
+                    ],
+                    [
+                        'method' => 'post',
+                        'uriTemplate' => '/v1alpha/{resource=projects/*/locations/*/federations/*}:testIamPermissions',
                         'body' => '*',
                     ],
                 ],

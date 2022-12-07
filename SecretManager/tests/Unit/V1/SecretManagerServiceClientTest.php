@@ -23,16 +23,14 @@
 namespace Google\Cloud\SecretManager\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Iam\V1\Policy;
 use Google\Cloud\Iam\V1\TestIamPermissionsResponse;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
-use Google\Cloud\SecretManager\V1\ListSecretsResponse;
 use Google\Cloud\SecretManager\V1\ListSecretVersionsResponse;
+use Google\Cloud\SecretManager\V1\ListSecretsResponse;
 use Google\Cloud\SecretManager\V1\Replication;
 use Google\Cloud\SecretManager\V1\Secret;
 use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
@@ -50,25 +48,19 @@ use stdClass;
  */
 class SecretManagerServiceClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return SecretManagerServiceClient
-     */
+    /** @return SecretManagerServiceClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -77,9 +69,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         return new SecretManagerServiceClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function accessSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -106,9 +96,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function accessSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -141,9 +129,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -177,9 +163,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function addSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -213,9 +197,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSecretTest()
     {
         $transport = $this->createTransport();
@@ -252,9 +234,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -291,9 +271,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSecretTest()
     {
         $transport = $this->createTransport();
@@ -317,9 +295,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -352,9 +328,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function destroySecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -385,9 +359,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function destroySecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -420,9 +392,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -453,9 +423,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function disableSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -488,9 +456,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -521,9 +487,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function enableSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -556,9 +520,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -587,9 +549,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -622,9 +582,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSecretTest()
     {
         $transport = $this->createTransport();
@@ -653,9 +611,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSecretExceptionTest()
     {
         $transport = $this->createTransport();
@@ -688,9 +644,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSecretVersionTest()
     {
         $transport = $this->createTransport();
@@ -721,9 +675,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSecretVersionExceptionTest()
     {
         $transport = $this->createTransport();
@@ -756,9 +708,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSecretVersionsTest()
     {
         $transport = $this->createTransport();
@@ -795,9 +745,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSecretVersionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -830,9 +778,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSecretsTest()
     {
         $transport = $this->createTransport();
@@ -869,9 +815,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listSecretsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -904,9 +848,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyTest()
     {
         $transport = $this->createTransport();
@@ -938,9 +880,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function setIamPolicyExceptionTest()
     {
         $transport = $this->createTransport();
@@ -974,9 +914,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsTest()
     {
         $transport = $this->createTransport();
@@ -1004,9 +942,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function testIamPermissionsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1040,9 +976,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSecretTest()
     {
         $transport = $this->createTransport();
@@ -1076,9 +1010,7 @@ class SecretManagerServiceClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSecretExceptionTest()
     {
         $transport = $this->createTransport();

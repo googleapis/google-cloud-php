@@ -50,7 +50,7 @@ function bulk_mute_findings_sample(string $parent): void
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var BulkMuteFindingsResponse $response */
+            /** @var BulkMuteFindingsResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {

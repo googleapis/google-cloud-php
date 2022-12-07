@@ -32,7 +32,11 @@ _tracked_paths.add(src)
 
 php.owlbot_main(src=src, dest=dest)
 
-
+# Apply fix to sample
+subprocess.run([
+    'git',
+    'apply',
+    '.owlbot/create_conversation_model_sample_fix.patch'])
 
 # document and utilize apiEndpoint instead of serviceAddress
 s.replace(

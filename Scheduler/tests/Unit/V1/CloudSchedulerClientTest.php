@@ -23,11 +23,9 @@
 namespace Google\Cloud\Scheduler\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\Scheduler\V1\CloudSchedulerClient;
 use Google\Cloud\Scheduler\V1\Job;
 use Google\Cloud\Scheduler\V1\ListJobsResponse;
@@ -43,25 +41,19 @@ use stdClass;
  */
 class CloudSchedulerClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return CloudSchedulerClient
-     */
+    /** @return CloudSchedulerClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -70,9 +62,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         return new CloudSchedulerClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobTest()
     {
         $transport = $this->createTransport();
@@ -108,9 +98,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -144,9 +132,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobTest()
     {
         $transport = $this->createTransport();
@@ -170,9 +156,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -205,9 +189,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobTest()
     {
         $transport = $this->createTransport();
@@ -240,9 +222,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -275,9 +255,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsTest()
     {
         $transport = $this->createTransport();
@@ -312,9 +290,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listJobsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -347,9 +323,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseJobTest()
     {
         $transport = $this->createTransport();
@@ -382,9 +356,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function pauseJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -417,9 +389,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeJobTest()
     {
         $transport = $this->createTransport();
@@ -452,9 +422,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function resumeJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -487,9 +455,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runJobTest()
     {
         $transport = $this->createTransport();
@@ -522,9 +488,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function runJobExceptionTest()
     {
         $transport = $this->createTransport();
@@ -557,9 +521,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobTest()
     {
         $transport = $this->createTransport();
@@ -595,9 +557,7 @@ class CloudSchedulerClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateJobExceptionTest()
     {
         $transport = $this->createTransport();

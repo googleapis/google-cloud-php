@@ -29,7 +29,6 @@ namespace Google\Analytics\Admin\V1beta\Gapic;
 use Google\Analytics\Admin\V1beta\Account;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionRequest;
 use Google\Analytics\Admin\V1beta\AcknowledgeUserDataCollectionResponse;
-
 use Google\Analytics\Admin\V1beta\ArchiveCustomDimensionRequest;
 use Google\Analytics\Admin\V1beta\ArchiveCustomMetricRequest;
 use Google\Analytics\Admin\V1beta\ConversionEvent;
@@ -64,12 +63,11 @@ use Google\Analytics\Admin\V1beta\GetDataStreamRequest;
 use Google\Analytics\Admin\V1beta\GetMeasurementProtocolSecretRequest;
 use Google\Analytics\Admin\V1beta\GetPropertyRequest;
 use Google\Analytics\Admin\V1beta\GoogleAdsLink;
-use Google\Analytics\Admin\V1beta\ListAccountsRequest;
-use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesRequest;
 use Google\Analytics\Admin\V1beta\ListAccountSummariesResponse;
+use Google\Analytics\Admin\V1beta\ListAccountsRequest;
+use Google\Analytics\Admin\V1beta\ListAccountsResponse;
 use Google\Analytics\Admin\V1beta\ListConversionEventsRequest;
-
 use Google\Analytics\Admin\V1beta\ListConversionEventsResponse;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsRequest;
 use Google\Analytics\Admin\V1beta\ListCustomDimensionsResponse;
@@ -140,29 +138,19 @@ class AnalyticsAdminServiceGapicClient
 {
     use GapicClientTrait;
 
-    /**
-     * The name of the service.
-     */
+    /** The name of the service. */
     const SERVICE_NAME = 'google.analytics.admin.v1beta.AnalyticsAdminService';
 
-    /**
-     * The default address of the service.
-     */
+    /** The default address of the service. */
     const SERVICE_ADDRESS = 'analyticsadmin.googleapis.com';
 
-    /**
-     * The default port of the service.
-     */
+    /** The default port of the service. */
     const DEFAULT_SERVICE_PORT = 443;
 
-    /**
-     * The name of the code generator, to be included in the agent header.
-     */
+    /** The name of the code generator, to be included in the agent header. */
     const CODEGEN_NAME = 'gapic';
 
-    /**
-     * The default scopes required by the service.
-     */
+    /** The default scopes required by the service. */
     public static $serviceScopes = [
         'https://www.googleapis.com/auth/analytics.edit',
         'https://www.googleapis.com/auth/analytics.readonly',
@@ -593,9 +581,6 @@ class AnalyticsAdminServiceGapicClient
      * @param array $options {
      *     Optional. Options for configuring the service API wrapper.
      *
-     *     @type string $serviceAddress
-     *           **Deprecated**. This option will be removed in a future major release. Please
-     *           utilize the `$apiEndpoint` option instead.
      *     @type string $apiEndpoint
      *           The address of the API remote host. May optionally include the port, formatted
      *           as "<uri>:<port>". Default 'analyticsadmin.googleapis.com:443'.
@@ -625,7 +610,7 @@ class AnalyticsAdminServiceGapicClient
      *           *Advanced usage*: Additionally, it is possible to pass in an already
      *           instantiated {@see \Google\ApiCore\Transport\TransportInterface} object. Note
      *           that when this object is provided, any settings in $transportConfig, and any
-     *           $serviceAddress setting, will be ignored.
+     *           $apiEndpoint setting, will be ignored.
      *     @type array $transportConfig
      *           Configuration options that will be used to construct the transport. Options for
      *           each supported transport type should be passed in a key for that transport. For

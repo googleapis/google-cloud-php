@@ -23,11 +23,9 @@
 namespace Google\Cloud\AppEngine\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\Testing\GeneratedTest;
 use Google\ApiCore\Testing\MockTransport;
-
 use Google\Cloud\AppEngine\V1\AuthorizedCertificate;
 use Google\Cloud\AppEngine\V1\AuthorizedCertificatesClient;
 use Google\Cloud\AppEngine\V1\ListAuthorizedCertificatesResponse;
@@ -42,25 +40,19 @@ use stdClass;
  */
 class AuthorizedCertificatesClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return AuthorizedCertificatesClient
-     */
+    /** @return AuthorizedCertificatesClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -69,9 +61,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         return new AuthorizedCertificatesClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
@@ -100,9 +90,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -133,9 +121,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
@@ -155,9 +141,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -188,9 +172,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
@@ -219,9 +201,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();
@@ -252,9 +232,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizedCertificatesTest()
     {
         $transport = $this->createTransport();
@@ -285,9 +263,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAuthorizedCertificatesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -318,9 +294,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAuthorizedCertificateTest()
     {
         $transport = $this->createTransport();
@@ -349,9 +323,7 @@ class AuthorizedCertificatesClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateAuthorizedCertificateExceptionTest()
     {
         $transport = $this->createTransport();

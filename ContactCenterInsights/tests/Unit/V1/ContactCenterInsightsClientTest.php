@@ -23,15 +23,12 @@
 namespace Google\Cloud\ContactCenterInsights\Tests\Unit\V1;
 
 use Google\ApiCore\ApiException;
-
 use Google\ApiCore\CredentialsWrapper;
 use Google\ApiCore\LongRunning\OperationsClient;
 use Google\ApiCore\Testing\GeneratedTest;
-
 use Google\ApiCore\Testing\MockTransport;
 use Google\Cloud\ContactCenterInsights\V1\Analysis;
 use Google\Cloud\ContactCenterInsights\V1\CalculateIssueModelStatsResponse;
-
 use Google\Cloud\ContactCenterInsights\V1\CalculateStatsResponse;
 use Google\Cloud\ContactCenterInsights\V1\ContactCenterInsightsClient;
 use Google\Cloud\ContactCenterInsights\V1\Conversation;
@@ -65,25 +62,19 @@ use stdClass;
  */
 class ContactCenterInsightsClientTest extends GeneratedTest
 {
-    /**
-     * @return TransportInterface
-     */
+    /** @return TransportInterface */
     private function createTransport($deserialize = null)
     {
         return new MockTransport($deserialize);
     }
 
-    /**
-     * @return CredentialsWrapper
-     */
+    /** @return CredentialsWrapper */
     private function createCredentials()
     {
         return $this->getMockBuilder(CredentialsWrapper::class)->disableOriginalConstructor()->getMock();
     }
 
-    /**
-     * @return ContactCenterInsightsClient
-     */
+    /** @return ContactCenterInsightsClient */
     private function createClient(array $options = [])
     {
         $options += [
@@ -92,9 +83,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         return new ContactCenterInsightsClient($options);
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function calculateIssueModelStatsTest()
     {
         $transport = $this->createTransport();
@@ -119,9 +108,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function calculateIssueModelStatsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -154,9 +141,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function calculateStatsTest()
     {
         $transport = $this->createTransport();
@@ -185,9 +170,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function calculateStatsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -220,14 +203,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAnalysisTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -289,14 +270,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createAnalysisExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -347,9 +326,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationTest()
     {
         $transport = $this->createTransport();
@@ -387,9 +364,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -423,14 +398,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIssueModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -494,14 +467,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createIssueModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -552,9 +523,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPhraseMatcherTest()
     {
         $transport = $this->createTransport();
@@ -594,9 +563,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createPhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
@@ -632,9 +599,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createViewTest()
     {
         $transport = $this->createTransport();
@@ -668,9 +633,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function createViewExceptionTest()
     {
         $transport = $this->createTransport();
@@ -704,9 +667,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnalysisTest()
     {
         $transport = $this->createTransport();
@@ -730,9 +691,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteAnalysisExceptionTest()
     {
         $transport = $this->createTransport();
@@ -765,9 +724,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversationTest()
     {
         $transport = $this->createTransport();
@@ -791,9 +748,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -826,14 +781,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIssueModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -890,14 +843,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteIssueModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -947,9 +898,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePhraseMatcherTest()
     {
         $transport = $this->createTransport();
@@ -973,9 +922,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deletePhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1008,9 +955,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteViewTest()
     {
         $transport = $this->createTransport();
@@ -1034,9 +979,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deleteViewExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1069,14 +1012,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployIssueModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1133,14 +1074,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function deployIssueModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1190,14 +1129,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInsightsDataTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1254,14 +1191,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function exportInsightsDataExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -1311,9 +1246,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnalysisTest()
     {
         $transport = $this->createTransport();
@@ -1340,9 +1273,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getAnalysisExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1375,9 +1306,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationTest()
     {
         $transport = $this->createTransport();
@@ -1412,9 +1341,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1447,9 +1374,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIssueTest()
     {
         $transport = $this->createTransport();
@@ -1478,9 +1403,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIssueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1513,9 +1436,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIssueModelTest()
     {
         $transport = $this->createTransport();
@@ -1544,9 +1465,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getIssueModelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1579,9 +1498,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPhraseMatcherTest()
     {
         $transport = $this->createTransport();
@@ -1616,9 +1533,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getPhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1651,9 +1566,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSettingsTest()
     {
         $transport = $this->createTransport();
@@ -1682,9 +1595,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1717,9 +1628,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getViewTest()
     {
         $transport = $this->createTransport();
@@ -1750,9 +1659,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function getViewExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1785,9 +1692,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnalysesTest()
     {
         $transport = $this->createTransport();
@@ -1822,9 +1727,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listAnalysesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1857,9 +1760,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationsTest()
     {
         $transport = $this->createTransport();
@@ -1894,9 +1795,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listConversationsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1929,9 +1828,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIssueModelsTest()
     {
         $transport = $this->createTransport();
@@ -1956,9 +1853,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIssueModelsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -1991,9 +1886,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIssuesTest()
     {
         $transport = $this->createTransport();
@@ -2018,9 +1911,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listIssuesExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2053,9 +1944,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPhraseMatchersTest()
     {
         $transport = $this->createTransport();
@@ -2090,9 +1979,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listPhraseMatchersExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2125,9 +2012,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listViewsTest()
     {
         $transport = $this->createTransport();
@@ -2162,9 +2047,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function listViewsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2197,14 +2080,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployIssueModelTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2261,14 +2142,12 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function undeployIssueModelExceptionTest()
     {
         $operationsTransport = $this->createTransport();
         $operationsClient = new OperationsClient([
-            'serviceAddress' => '',
+            'apiEndpoint' => '',
             'transport' => $operationsTransport,
             'credentials' => $this->createCredentials(),
         ]);
@@ -2318,9 +2197,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($operationsTransport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConversationTest()
     {
         $transport = $this->createTransport();
@@ -2355,9 +2232,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateConversationExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2390,9 +2265,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIssueTest()
     {
         $transport = $this->createTransport();
@@ -2421,9 +2294,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIssueExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2456,9 +2327,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIssueModelTest()
     {
         $transport = $this->createTransport();
@@ -2487,9 +2356,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateIssueModelExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2522,9 +2389,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePhraseMatcherTest()
     {
         $transport = $this->createTransport();
@@ -2561,9 +2426,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updatePhraseMatcherExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2598,9 +2461,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSettingsTest()
     {
         $transport = $this->createTransport();
@@ -2632,9 +2493,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateSettingsExceptionTest()
     {
         $transport = $this->createTransport();
@@ -2668,9 +2527,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateViewTest()
     {
         $transport = $this->createTransport();
@@ -2701,9 +2558,7 @@ class ContactCenterInsightsClientTest extends GeneratedTest
         $this->assertTrue($transport->isExhausted());
     }
 
-    /**
-     * @test
-     */
+    /** @test */
     public function updateViewExceptionTest()
     {
         $transport = $this->createTransport();

@@ -58,7 +58,7 @@ function set_default_processor_version_sample(
         $response->pollUntilComplete();
 
         if ($response->operationSucceeded()) {
-            /** @var SetDefaultProcessorVersionResponse $response */
+            /** @var SetDefaultProcessorVersionResponse $result */
             $result = $response->getResult();
             printf('Operation successful with response data: %s' . PHP_EOL, $result->serializeToJsonString());
         } else {
