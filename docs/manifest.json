@@ -11,7 +11,7 @@
             "name": "google/cloud",
             "defaultService": "servicebuilder",
             "versions": [
-                "v0.28.0",
+                "v0.194.0",
                 "v0.193.0",
                 "v0.192.0",
                 "v0.191.0",
