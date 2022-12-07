@@ -21,13 +21,13 @@ class SecurityKey extends \Google\Protobuf\Internal\Message
      *
      * Generated from protobuf field <code>string public_key = 1;</code>
      */
-    protected $public_key = '';
+    private $public_key = '';
     /**
      * Hardware-backed private key text in SSH format.
      *
      * Generated from protobuf field <code>string private_key = 2;</code>
      */
-    protected $private_key = '';
+    private $private_key = '';
     protected $protocol_type;
 
     /**

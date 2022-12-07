@@ -9,18 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Security key information specific to the Web Authentication protocol.
+ * Security key information specific to the U2F protocol.
  *
- * Generated from protobuf message <code>google.cloud.oslogin.v1beta.WebAuthn</code>
+ * Generated from protobuf message <code>google.cloud.oslogin.v1beta.UniversalTwoFactor</code>
  */
-class WebAuthn extends \Google\Protobuf\Internal\Message
+class UniversalTwoFactor extends \Google\Protobuf\Internal\Message
 {
     /**
-     * Relying party ID for Web Authentication.
+     * Application ID for the U2F protocol.
      *
-     * Generated from protobuf field <code>string rp_id = 1;</code>
+     * Generated from protobuf field <code>string app_id = 1;</code>
      */
-    protected $rp_id = '';
+    private $app_id = '';
 
     /**
      * Constructor.
@@ -28,8 +28,8 @@ class WebAuthn extends \Google\Protobuf\Internal\Message
      * @param array $data {
      *     Optional. Data for populating the Message object.
      *
-     *     @type string $rp_id
-     *           Relying party ID for Web Authentication.
+     *     @type string $app_id
+     *           Application ID for the U2F protocol.
      * }
      */
     public function __construct($data = NULL) {
@@ -38,27 +38,27 @@ class WebAuthn extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Relying party ID for Web Authentication.
+     * Application ID for the U2F protocol.
      *
-     * Generated from protobuf field <code>string rp_id = 1;</code>
+     * Generated from protobuf field <code>string app_id = 1;</code>
      * @return string
      */
-    public function getRpId()
+    public function getAppId()
     {
-        return $this->rp_id;
+        return $this->app_id;
     }
 
     /**
-     * Relying party ID for Web Authentication.
+     * Application ID for the U2F protocol.
      *
-     * Generated from protobuf field <code>string rp_id = 1;</code>
+     * Generated from protobuf field <code>string app_id = 1;</code>
      * @param string $var
      * @return $this
      */
-    public function setRpId($var)
+    public function setAppId($var)
     {
         GPBUtil::checkString($var, True);
-        $this->rp_id = $var;
+        $this->app_id = $var;
 
         return $this;
     }
