@@ -37,6 +37,7 @@ trait DocblockTrait
             $content .= $longDescription;
         }
 
+        $content = html_entity_decode($content);
         $content = $this->replaceSeeTag($content);
         $content = $this->replaceProtoRef($content);
         $content = $this->stripSnippetTag($content);
