@@ -148,7 +148,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPaginationByPage(DatastoreClient $client)
     {
@@ -158,7 +158,7 @@ class QueryResultPaginationTest extends DatastoreMultipleDbTestCase
     }
 
     /**
-     * @dataProvider clientProvider
+     * @dataProvider defaultDbClientProvider
      */
     public function testQueryPaginationWithLimit(DatastoreClient $client)
     {

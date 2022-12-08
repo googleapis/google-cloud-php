@@ -387,7 +387,7 @@ class Operation
         $result = [];
         if (isset($res['found'])) {
             foreach ($res['found'] as $found) {
-              $result['found'][] = $this->mapEntityResult($found, $options['className']);
+                $result['found'][] = $this->mapEntityResult($found, $options['className']);
             }
 
             if ($options['sort']) {
