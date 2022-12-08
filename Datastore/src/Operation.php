@@ -387,7 +387,10 @@ class Operation
         $result = [];
         if (isset($res['found'])) {
             foreach ($res['found'] as $found) {
+              $result['found'][] = $this->mapEntityResult($found, $options['className']);
+            }
 
+            if ($options['sort']) {
                 $result['found'] = $this->sortEntities($result['found'], $keys);
             }
         }
@@ -701,11 +704,11 @@ class Operation
         $entity = $result['entity'];
 
         $namespaceId = (isset($entity['key']['partitionId']['namespaceId']))
-        ? $entity['key']['partitionId']['namespaceId']
-        : null;
+            ? $entity['key']['partitionId']['namespaceId']
+            : null;
         $databaseId = (isset($entity['key']['partitionId']['databaseId']))
-        ? $entity['key']['partitionId']['databaseId']
-        : '';
+            ? $entity['key']['partitionId']['databaseId']
+            : '';
 
         $key = new Key($this->projectId, [
             'path' => $entity['key']['path'],
@@ -741,11 +744,11 @@ class Operation
 
         return $this->entity($key, $properties, [
             'cursor' => (isset($result['cursor']))
-            ? $result['cursor']
-            : null,
+                ? $result['cursor']
+                : null,
             'baseVersion' => (isset($result['version']))
-            ? $result['version']
-            : null,
+                ? $result['version']
+                : null,
             'className' => $className,
             'populatedByService' => true,
             'excludeFromIndexes' => $excludes,
